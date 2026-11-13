@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 14: Structures (Structs) &amp; Value Semantics — C# Masterclass</title>
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body id="top">
+
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <div class="header-left">
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+        <span class="sidebar-toggle-text">« Collapse</span>
+      </button>
+      <a href="../index.html" class="brand-link">
+        <span class="brand-icon">C#</span>
+        <span>Masterclass</span>
+      </a>
+      <span class="version-pill">.NET 9 / C# 13</span>
+    </div>
+
+    <div class="header-right">
+      <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
+        <span>📚 Course Index</span>
+      </a>
+
+      <button class="search-trigger-btn" aria-label="Search curriculum">
+        <span>🔍 Search topics...</span>
+        <kbd class="kbd-shortcut">Ctrl+K</kbd>
+      </button>
+
+      <button class="theme-toggle-btn" aria-label="Toggle dark/light theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="sidebar-backdrop"></div>
+
+  <!-- Documentation Layout -->
+  <div class="docs-wrapper">
+
+    <!-- Left Navigation Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-top-bar">
+        <span class="sidebar-top-title">Navigation</span>
+        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+          <span>Collapse</span>
+        </button>
+      </div>
+      <div class="sidebar-search-box">
+        <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
+          <span>🏠 Return to Dashboard</span>
+        </a>
+      </div>
+      
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 1</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-01.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">01</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Course Fundamentals &amp; .NET Architecture</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-02.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">02</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# Language Basics &amp; Syntax</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-03.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">03</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Development Environment, .NET CLI &amp; First Program</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 2</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-04.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">04</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">OOP Basics (Classes &amp; Objects)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-05.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">05</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Fields &amp; Access Modifiers</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-06.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">06</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Methods &amp; Parameters</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-07.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">07</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Type Conversion &amp; Casting</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-08.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">08</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Constructors (Basics &amp; Chaining)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-09.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">09</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Properties &amp; Indexers</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 3</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-10.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">10</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Inheritance, Hiding &amp; Overriding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-11.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">11</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Abstract Classes &amp; Interfaces</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-12.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">12</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Namespaces &amp; Code Organization</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-13.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">13</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Partial Classes, Static Classes &amp; Enums</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-14.html" class="sidebar-link active">
+            <span class="sidebar-sec-num">14</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Structures (Structs) &amp; Value Semantics</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-15.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">15</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">System.Object &amp; Core Method Overrides</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 4</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-16.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">16</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Generics (Classes, Methods, Constraints)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-17.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">17</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Handling Null &amp; Nullable Value/Ref Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-18.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">18</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Extension Methods &amp; Pattern Matching</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-19.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">19</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Garbage Collection, Destructors &amp; IDisposable</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 5</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-20.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">20</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Delegates, Multicast &amp; Events</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-21.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">21</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Arrays (1D, Multi-Dimensional, Jagged)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-22.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">22</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Collections (Lists, Dictionaries, Sets, Queues)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-23.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">23</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Anonymous Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-24.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">24</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tuples &amp; ValueTuples</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-25.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">25</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">LINQ (Language-Integrated Query)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 6</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-26.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">26</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">String Manipulation, DateTime &amp; Math</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-27.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">27</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">File I/O, Streams, Serialization &amp; Encoding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-28.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">28</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Exception Handling &amp; Defensive Programming</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-29.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">29</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Advanced Exception Patterns &amp; Diagnostics</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 7</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-31.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">31</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Threading &amp; Synchronization Primitives</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-32.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">32</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tasks &amp; Task Parallel Library (TPL)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-33.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">33</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Asynchronous Programming (Async &amp; Await)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 8</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">5</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-30.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">30</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-34.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">34</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 11 New Features (.NET 7)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-35.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">35</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 12 New Features (.NET 8)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-36.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">36</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 13 Innovations (.NET 9)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-37.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">37</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 14 &amp; Future Modern C# Roadmap</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+    </aside>
+
+    <!-- Main Content Container -->
+    <main class="docs-main-container">
+
+      <!-- Floating Expand Button when Sidebar is Collapsed -->
+      <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+        <span>» Expand Sidebar</span>
+      </button>
+
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs" aria-label="Breadcrumbs">
+        <a href="../index.html">Course Index</a>
+        <span class="crumb-sep">/</span>
+        <span>Module 3</span>
+        <span class="crumb-sep">/</span>
+        <span style="color: var(--text-main); font-weight: 600;">Section 14</span>
+      </nav>
+
+      <!-- Section Banner Header -->
+      <header class="section-banner">
+        <div class="section-meta-row">
+          <span class="module-badge">Module 3</span>
+          <span class="read-time-badge">⏱️ 20 min read</span>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <span class="tag-pill">struct</span> <span class="tag-pill">Value Types</span> <span class="tag-pill">Stack Allocation</span> <span class="tag-pill">readonly struct</span> <span class="tag-pill">ref struct</span>
+          </div>
+        </div>
+        <h1>Section 14: Structures (Structs) &amp; Value Semantics</h1>
+        <p class="section-description">
+          Detailed architectural breakdown integrating comprehensive explanations, syntax reference matrices, compiler internals, and production C# code.
+        </p>
+      </header>
+
+      <!-- Body Content -->
+      <article class="docs-content">
+        
+    <h2 id="struct-value-semantics">1. Structs vs Classes: Value vs Reference Semantics</h2>
+    <p>
+      A <strong>struct</strong> (structure) is a composite data type that has <strong>value semantics</strong>. While classes are allocated on the managed heap and accessed via reference pointers, structs are allocated inline wherever they are declared (directly on the stack for local variables, or embedded inside the heap object if declared as a class field).
+    </p>
+
+    
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Dimension</th><th>Class (Reference Type)</th><th>Struct (Value Type)</th></tr></thead>
+        <tbody><tr><td>Memory Location</td><td>Always on the <strong>Managed Heap</strong></td><td><strong>Inline</strong> (Stack for locals; inside parent object if field)</td></tr><tr><td>Assignment Behavior</td><td><strong>Copies the reference pointer</strong> (both variables point to same instance)</td><td><strong>Copies all fields bit-for-bit</strong> (independent new clone)</td></tr><tr><td>Inheritance</td><td>Supports inheritance hierarchies from classes</td><td>Cannot inherit from other structs/classes (implements interfaces only)</td></tr><tr><td>Garbage Collection</td><td>Requires GC to allocate and reclaim</td><td>Zero GC overhead; popped instantly when stack frame exits</td></tr><tr><td>Default Value</td><td><code>null</code></td><td>All fields zeroed (<code>0, false, null</code>)</td></tr></tbody>
+      </table>
+    </div>
+  
+
+    <h2 id="stack-allocation-diagram">2. Memory Layout: Inlined Structs on Stack</h2>
+    
+    <div class="diagram-container">
+      <div class="diagram-title">📊 Diagram: Class Reference vs Struct Inline Allocation</div>
+      <pre class="diagram-pre">STACK FRAME:
++-------------------------------------------------------------+
+| PointClass pRef --------(Pointer: 0x9000)---+               |
+|                                             |               |
+| PointStruct pVal: [X: 10, Y: 20]            | (INLINE STACK)|
++---------------------------------------------|---------------+
+                                              v
+                                   MANAGED HEAP:
+                                   +--------------------------+
+                                   | Address: 0x9000          |
+                                   | [MethodTable Pointer]    |
+                                   | [SyncBlock Index]        |
+                                   | X: 10, Y: 20             |
+                                   +--------------------------+</pre>
+    </div>
+  
+
+    <h2 id="copy-by-value">3. Copy-on-Assignment & Mutation Behavior</h2>
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Copy-by-Value Behavior</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public struct GeoPoint
+{
+    public double Latitude;
+    public double Longitude;
+
+    public GeoPoint(double lat, double lon) { Latitude = lat; Longitude = lon; }
+}
+
+GeoPoint p1 = new GeoPoint(40.7128, -74.0060);
+GeoPoint p2 = p1; // COMPLETE COPY OF MEMORY BITS!
+
+p2.Latitude = 51.5074; // Mutating p2 has ZERO effect on p1!
+
+Console.WriteLine(p1.Latitude); // Still 40.7128!</code></pre>
+    </div>
+  
+
+    <h2 id="readonly-structs">4. readonly struct & Defensive Copy Prevention</h2>
+    <p>
+      When a mutable struct is passed as an <code>in</code> parameter or marked <code>readonly</code>, the compiler creates hidden <em>defensive copies</em> on every member access to prevent mutation. Marking the struct <code>readonly struct</code> tells Roslyn all fields are immutable, completely eliminating defensive copy overhead:
+    </p>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">readonly struct</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public readonly struct Vector3D
+{
+    public double X { get; }
+    public double Y { get; }
+    public double Z { get; }
+
+    public Vector3D(double x, double y, double z) =&gt; (X, Y, Z) = (x, y, z);
+
+    public double MagnitudeSq =&gt; (X * X) + (Y * Y) + (Z * Z);
+}</code></pre>
+    </div>
+  
+
+    <h2 id="ref-structs">5. ref struct & Span&lt;T&gt; Stack-Only Guarantees</h2>
+    <p>
+      A <code>ref struct</code> is strictly enforced by the compiler to reside <strong>only on the execution stack</strong>. It can never be boxed, cannot be stored in a class field, cannot be used in async state machines, and cannot be captured in lambdas. This guarantees high-speed zero-allocation operations like <code>Span&lt;T&gt;</code> and <code>ReadOnlySpan&lt;T&gt;</code>:
+    </p>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">ref struct</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public ref struct StackBuffer
+{
+    public Span&lt;byte&gt; Buffer;
+    public int Length;
+}</code></pre>
+    </div>
+  
+
+    <h2 id="pitfalls">6. Struct Gotchas & Boxing Overhead</h2>
+    
+    <div class="callout callout-warning">
+      <div class="callout-header">
+        <span>🟠 Compiler Trap & Common Gotcha</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        <strong>Trap:</strong> Casting a struct to an interface or <code>object</code>:
+      </p>
+      <pre><code>GeoPoint p = new GeoPoint(1, 2);
+object boxed = p; // BOXING! Allocates a new object on the Heap!</code></pre>
+      <p>
+        <strong>Consequence:</strong> Destroys the zero-allocation performance benefit of structs and generates GC garbage.
+      </p>
+    
+      </div>
+    </div>
+  
+  
+      </article>
+
+      <!-- Bottom Navigation Prev / Next -->
+      <nav class="bottom-nav">
+        
+    <a href="section-13.html" class="nav-card prev">
+      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-title">Sec 13: Partial Classes, Static Classes &amp; Enums</span>
+    </a>
+  
+        
+    <a href="section-15.html" class="nav-card next">
+      <span class="nav-direction">Next Section →</span>
+      <span class="nav-title">Sec 15: System.Object &amp; Core Method Overrides</span>
+    </a>
+  
+      </nav>
+
+      <!-- Section Footer -->
+      <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <span>C# Masterclass Static Documentation Portal</span>
+        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+      </footer>
+    </main>
+
+    <!-- Right Table of Contents (TOC) -->
+    <aside class="docs-toc">
+      <div class="toc-title">On This Page</div>
+      <ul class="toc-list">
+        
+      <li class="toc-item">
+        <a href="#struct-value-semantics" class="toc-link">1. Structs vs Classes: Value vs Reference Semantics</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#stack-allocation-diagram" class="toc-link">2. Memory Layout: Inlined Structs on Stack</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#copy-by-value" class="toc-link">3. Copy-on-Assignment &amp; Mutation Behavior</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#readonly-structs" class="toc-link">4. readonly struct &amp; Defensive Copy Prevention</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#ref-structs" class="toc-link">5. ref struct &amp; Span&lt;T&gt; Stack-Only Guarantees</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#pitfalls" class="toc-link">6. Struct Gotchas &amp; Boxing Overhead</a>
+      </li>
+    
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/search-index.js"></script>
+  <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

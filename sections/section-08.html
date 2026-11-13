@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 08: Constructors (Basics &amp; Chaining) — C# Masterclass</title>
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body id="top">
+
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <div class="header-left">
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+        <span class="sidebar-toggle-text">« Collapse</span>
+      </button>
+      <a href="../index.html" class="brand-link">
+        <span class="brand-icon">C#</span>
+        <span>Masterclass</span>
+      </a>
+      <span class="version-pill">.NET 9 / C# 13</span>
+    </div>
+
+    <div class="header-right">
+      <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
+        <span>📚 Course Index</span>
+      </a>
+
+      <button class="search-trigger-btn" aria-label="Search curriculum">
+        <span>🔍 Search topics...</span>
+        <kbd class="kbd-shortcut">Ctrl+K</kbd>
+      </button>
+
+      <button class="theme-toggle-btn" aria-label="Toggle dark/light theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="sidebar-backdrop"></div>
+
+  <!-- Documentation Layout -->
+  <div class="docs-wrapper">
+
+    <!-- Left Navigation Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-top-bar">
+        <span class="sidebar-top-title">Navigation</span>
+        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+          <span>Collapse</span>
+        </button>
+      </div>
+      <div class="sidebar-search-box">
+        <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
+          <span>🏠 Return to Dashboard</span>
+        </a>
+      </div>
+      
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 1</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-01.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">01</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Course Fundamentals &amp; .NET Architecture</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-02.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">02</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# Language Basics &amp; Syntax</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-03.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">03</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Development Environment, .NET CLI &amp; First Program</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 2</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-04.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">04</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">OOP Basics (Classes &amp; Objects)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-05.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">05</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Fields &amp; Access Modifiers</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-06.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">06</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Methods &amp; Parameters</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-07.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">07</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Type Conversion &amp; Casting</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-08.html" class="sidebar-link active">
+            <span class="sidebar-sec-num">08</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Constructors (Basics &amp; Chaining)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-09.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">09</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Properties &amp; Indexers</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 3</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-10.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">10</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Inheritance, Hiding &amp; Overriding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-11.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">11</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Abstract Classes &amp; Interfaces</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-12.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">12</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Namespaces &amp; Code Organization</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-13.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">13</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Partial Classes, Static Classes &amp; Enums</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-14.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">14</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Structures (Structs) &amp; Value Semantics</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-15.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">15</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">System.Object &amp; Core Method Overrides</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 4</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-16.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">16</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Generics (Classes, Methods, Constraints)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-17.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">17</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Handling Null &amp; Nullable Value/Ref Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-18.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">18</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Extension Methods &amp; Pattern Matching</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-19.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">19</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Garbage Collection, Destructors &amp; IDisposable</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 5</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-20.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">20</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Delegates, Multicast &amp; Events</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-21.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">21</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Arrays (1D, Multi-Dimensional, Jagged)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-22.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">22</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Collections (Lists, Dictionaries, Sets, Queues)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-23.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">23</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Anonymous Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-24.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">24</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tuples &amp; ValueTuples</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-25.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">25</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">LINQ (Language-Integrated Query)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 6</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-26.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">26</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">String Manipulation, DateTime &amp; Math</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-27.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">27</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">File I/O, Streams, Serialization &amp; Encoding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-28.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">28</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Exception Handling &amp; Defensive Programming</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-29.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">29</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Advanced Exception Patterns &amp; Diagnostics</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 7</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-31.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">31</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Threading &amp; Synchronization Primitives</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-32.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">32</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tasks &amp; Task Parallel Library (TPL)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-33.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">33</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Asynchronous Programming (Async &amp; Await)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 8</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">5</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-30.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">30</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-34.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">34</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 11 New Features (.NET 7)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-35.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">35</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 12 New Features (.NET 8)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-36.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">36</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 13 Innovations (.NET 9)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-37.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">37</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 14 &amp; Future Modern C# Roadmap</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+    </aside>
+
+    <!-- Main Content Container -->
+    <main class="docs-main-container">
+
+      <!-- Floating Expand Button when Sidebar is Collapsed -->
+      <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+        <span>» Expand Sidebar</span>
+      </button>
+
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs" aria-label="Breadcrumbs">
+        <a href="../index.html">Course Index</a>
+        <span class="crumb-sep">/</span>
+        <span>Module 2</span>
+        <span class="crumb-sep">/</span>
+        <span style="color: var(--text-main); font-weight: 600;">Section 08</span>
+      </nav>
+
+      <!-- Section Banner Header -->
+      <header class="section-banner">
+        <div class="section-meta-row">
+          <span class="module-badge">Module 2</span>
+          <span class="read-time-badge">⏱️ 20 min read</span>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <span class="tag-pill">Constructors</span> <span class="tag-pill">Initialization</span> <span class="tag-pill">Chaining</span> <span class="tag-pill">this()</span> <span class="tag-pill">base()</span>
+          </div>
+        </div>
+        <h1>Section 08: Constructors (Basics &amp; Chaining)</h1>
+        <p class="section-description">
+          Detailed architectural breakdown integrating comprehensive explanations, syntax reference matrices, compiler internals, and production C# code.
+        </p>
+      </header>
+
+      <!-- Body Content -->
+      <article class="docs-content">
+        
+    <h2 id="constructor-role">1. Role of Constructors & Object Initialization</h2>
+    <p>
+      An <strong>instance constructor</strong> is a special member method invoked automatically whenever an object is instantiated via the <code>new</code> operator. Its primary duty is to establish the object's <strong>invariants</strong>—ensuring that the newly minted object starts its lifecycle in a valid, cohesive, and usable state.
+    </p>
+
+    
+    <div class="callout callout-original">
+      <div class="callout-header">
+        <span>🔵 Core Concept (from Notes)</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        Constructors adhere to two strict syntactic mandates:
+      </p>
+      <ol>
+        <li>They must bear the <strong>exact same name</strong> as the enclosing class.</li>
+        <li>They have <strong>no return type</strong> whatsoever—not even <code>void</code>. Returning a value from a constructor is illegal.</li>
+      </ol>
+    
+      </div>
+    </div>
+  
+
+    <h2 id="default-constructor">2. The Default Parameterless Constructor</h2>
+    <p>
+      If a class contains zero explicit constructor declarations, the C# compiler automatically injects an invisible, parameterless constructor:
+    </p>
+
+    
+    <div class="callout callout-deepdive">
+      <div class="callout-header">
+        <span>🟣 Under the Hood / Compiler Lowering</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        When you write:
+      </p>
+      <pre><code>public class Customer { }</code></pre>
+      <p>
+        The Roslyn compiler automatically generates:
+      </p>
+      <pre><code>public class Customer
+{
+    public Customer() : base()
+    {
+    }
+}</code></pre>
+      <p>
+        <strong>Crucial Rule:</strong> The instant you declare <em>any</em> custom constructor with parameters (e.g. <code>public Customer(string name)</code>), the compiler permanently revokes the automatic default constructor! If callers still need <code>new Customer()</code>, you must explicitly declare it.
+      </p>
+    
+      </div>
+    </div>
+  
+
+    <h2 id="parameterized-constructors">3. Parameterized Constructors & Overloading</h2>
+    <p>
+      Constructors can be overloaded to provide multiple convenient mechanisms for instantiating an object:
+    </p>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Overloaded Constructors</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class Employee
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Department { get; set; }
+    public decimal Salary { get; set; }
+
+    // Constructor 1: Fully parameterized
+    public Employee(int id, string name, string department, decimal salary)
+    {
+        Id = id;
+        Name = name;
+        Department = department;
+        Salary = salary;
+    }
+
+    // Constructor 2: Overload providing defaults
+    public Employee(int id, string name)
+    {
+        Id = id;
+        Name = name;
+        Department = &quot;General&quot;;
+        Salary = 40_000m;
+    }
+}</code></pre>
+    </div>
+  
+
+    <h2 id="constructor-chaining">4. Constructor Chaining with this() and base()</h2>
+    <p>
+      In the example above, initializing fields across multiple constructors duplicates code and violates DRY (Don't Repeat Yourself). <strong>Constructor chaining</strong> allows one constructor to invoke another constructor within the same class using <code>this(...)</code>:
+    </p>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Constructor Chaining with this()</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class Employee
+{
+    public int Id { get; }
+    public string Name { get; }
+    public string Department { get; }
+    public decimal Salary { get; }
+
+    // Master / Canonical Constructor
+    public Employee(int id, string name, string department, decimal salary)
+    {
+        Id = id;
+        Name = name;
+        Department = department;
+        Salary = salary;
+    }
+
+    // Chained constructor: delegates to master constructor with defaults
+    public Employee(int id, string name) 
+        : this(id, name, &quot;General&quot;, 40_000m)
+    {
+        // Any secondary initialization specific to this overload executes AFTER this(...)
+    }
+
+    // Another chained overload
+    public Employee(int id) 
+        : this(id, &quot;Unknown Worker&quot;)
+    {
+    }
+}</code></pre>
+    </div>
+  
+
+    <h2 id="static-constructors">5. Static Constructors & Thread-Safe Loading</h2>
+    <p>
+      A <strong>static constructor</strong> initializes static fields and executes exactly once per application lifetime—before the first instance is created or any static member is accessed:
+    </p>
+    <ul>
+      <li>Has no access modifiers (cannot be marked <code>public</code> or <code>private</code>).</li>
+      <li>Cannot accept parameters.</li>
+      <li>Guaranteed by the CLR to execute thread-safely without requiring manual locks.</li>
+    </ul>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Static Constructor</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class DatabaseConfig
+{
+    public static readonly string ConnectionString;
+
+    // Static constructor executes once automatically
+    static DatabaseConfig()
+    {
+        ConnectionString = &quot;Server=prod-sql;Database=CoreDb;Trusted_Connection=True;&quot;;
+        Console.WriteLine(&quot;Static DatabaseConfig initialized.&quot;);
+    }
+}</code></pre>
+    </div>
+  
+
+    <h2 id="private-constructors">6. Private Constructors & The Singleton Pattern</h2>
+    <p>
+      Declaring a constructor with <code>private</code> prevents external code from creating instances with <code>new</code>. This is common in the <strong>Singleton Pattern</strong>:
+    </p>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Thread-Safe Singleton with Private Constructor</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public sealed class ApplicationCache
+{
+    // Thread-safe Lazy Singleton instance
+    private static readonly Lazy&lt;ApplicationCache&gt; _instance = 
+        new Lazy&lt;ApplicationCache&gt;(() =&gt; new ApplicationCache());
+
+    public static ApplicationCache Instance =&gt; _instance.Value;
+
+    // Private constructor: blocks external instantiation
+    private ApplicationCache()
+    {
+        Console.WriteLine(&quot;ApplicationCache initialized.&quot;);
+    }
+
+    public void Store(string key, object val) { /* ... */ }
+}</code></pre>
+    </div>
+  
+
+    <h2 id="pitfalls">7. Common Constructor Traps</h2>
+    
+    <div class="callout callout-warning">
+      <div class="callout-header">
+        <span>🟠 Compiler Trap & Common Gotcha</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        <strong>Severe Trap:</strong> Invoking a <code>virtual</code> method inside a base class constructor.
+      </p>
+      <p>
+        <strong>Under the Hood:</strong> The derived class's override runs <em>before</em> the derived class's constructor body has executed! If the overridden method accesses fields in the derived class, they will be uninitialized (e.g. null), causing subtle crashes.
+      </p>
+      <p>
+        <strong>Rule:</strong> Keep constructors clean. Never call virtual or abstract methods from within a constructor.
+      </p>
+    
+      </div>
+    </div>
+  
+  
+      </article>
+
+      <!-- Bottom Navigation Prev / Next -->
+      <nav class="bottom-nav">
+        
+    <a href="section-07.html" class="nav-card prev">
+      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-title">Sec 07: Type Conversion &amp; Casting</span>
+    </a>
+  
+        
+    <a href="section-09.html" class="nav-card next">
+      <span class="nav-direction">Next Section →</span>
+      <span class="nav-title">Sec 09: Properties &amp; Indexers</span>
+    </a>
+  
+      </nav>
+
+      <!-- Section Footer -->
+      <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <span>C# Masterclass Static Documentation Portal</span>
+        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+      </footer>
+    </main>
+
+    <!-- Right Table of Contents (TOC) -->
+    <aside class="docs-toc">
+      <div class="toc-title">On This Page</div>
+      <ul class="toc-list">
+        
+      <li class="toc-item">
+        <a href="#constructor-role" class="toc-link">1. Role of Constructors &amp; Object Initialization</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#default-constructor" class="toc-link">2. The Default Parameterless Constructor</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#parameterized-constructors" class="toc-link">3. Parameterized Constructors &amp; Overloading</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#constructor-chaining" class="toc-link">4. Constructor Chaining with this() and base()</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#static-constructors" class="toc-link">5. Static Constructors &amp; Thread-Safe Loading</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#private-constructors" class="toc-link">6. Private Constructors &amp; The Singleton Pattern</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#pitfalls" class="toc-link">7. Common Constructor Traps</a>
+      </li>
+    
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/search-index.js"></script>
+  <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

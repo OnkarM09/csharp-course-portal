@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 22: Collections (Lists, Dictionaries, Sets, Queues) — C# Masterclass</title>
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body id="top">
+
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <div class="header-left">
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+        <span class="sidebar-toggle-text">« Collapse</span>
+      </button>
+      <a href="../index.html" class="brand-link">
+        <span class="brand-icon">C#</span>
+        <span>Masterclass</span>
+      </a>
+      <span class="version-pill">.NET 9 / C# 13</span>
+    </div>
+
+    <div class="header-right">
+      <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
+        <span>📚 Course Index</span>
+      </a>
+
+      <button class="search-trigger-btn" aria-label="Search curriculum">
+        <span>🔍 Search topics...</span>
+        <kbd class="kbd-shortcut">Ctrl+K</kbd>
+      </button>
+
+      <button class="theme-toggle-btn" aria-label="Toggle dark/light theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="sidebar-backdrop"></div>
+
+  <!-- Documentation Layout -->
+  <div class="docs-wrapper">
+
+    <!-- Left Navigation Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-top-bar">
+        <span class="sidebar-top-title">Navigation</span>
+        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+          <span>Collapse</span>
+        </button>
+      </div>
+      <div class="sidebar-search-box">
+        <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
+          <span>🏠 Return to Dashboard</span>
+        </a>
+      </div>
+      
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 1</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-01.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">01</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Course Fundamentals &amp; .NET Architecture</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-02.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">02</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# Language Basics &amp; Syntax</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-03.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">03</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Development Environment, .NET CLI &amp; First Program</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 2</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-04.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">04</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">OOP Basics (Classes &amp; Objects)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-05.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">05</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Fields &amp; Access Modifiers</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-06.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">06</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Methods &amp; Parameters</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-07.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">07</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Type Conversion &amp; Casting</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-08.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">08</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Constructors (Basics &amp; Chaining)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-09.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">09</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Properties &amp; Indexers</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 3</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-10.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">10</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Inheritance, Hiding &amp; Overriding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-11.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">11</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Abstract Classes &amp; Interfaces</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-12.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">12</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Namespaces &amp; Code Organization</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-13.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">13</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Partial Classes, Static Classes &amp; Enums</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-14.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">14</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Structures (Structs) &amp; Value Semantics</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-15.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">15</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">System.Object &amp; Core Method Overrides</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 4</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-16.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">16</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Generics (Classes, Methods, Constraints)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-17.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">17</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Handling Null &amp; Nullable Value/Ref Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-18.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">18</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Extension Methods &amp; Pattern Matching</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-19.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">19</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Garbage Collection, Destructors &amp; IDisposable</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 5</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-20.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">20</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Delegates, Multicast &amp; Events</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-21.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">21</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Arrays (1D, Multi-Dimensional, Jagged)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-22.html" class="sidebar-link active">
+            <span class="sidebar-sec-num">22</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Collections (Lists, Dictionaries, Sets, Queues)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-23.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">23</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Anonymous Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-24.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">24</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tuples &amp; ValueTuples</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-25.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">25</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">LINQ (Language-Integrated Query)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 6</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-26.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">26</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">String Manipulation, DateTime &amp; Math</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-27.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">27</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">File I/O, Streams, Serialization &amp; Encoding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-28.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">28</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Exception Handling &amp; Defensive Programming</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-29.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">29</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Advanced Exception Patterns &amp; Diagnostics</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 7</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-31.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">31</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Threading &amp; Synchronization Primitives</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-32.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">32</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tasks &amp; Task Parallel Library (TPL)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-33.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">33</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Asynchronous Programming (Async &amp; Await)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 8</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">5</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-30.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">30</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-34.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">34</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 11 New Features (.NET 7)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-35.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">35</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 12 New Features (.NET 8)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-36.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">36</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 13 Innovations (.NET 9)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-37.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">37</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 14 &amp; Future Modern C# Roadmap</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+    </aside>
+
+    <!-- Main Content Container -->
+    <main class="docs-main-container">
+
+      <!-- Floating Expand Button when Sidebar is Collapsed -->
+      <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+        <span>» Expand Sidebar</span>
+      </button>
+
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs" aria-label="Breadcrumbs">
+        <a href="../index.html">Course Index</a>
+        <span class="crumb-sep">/</span>
+        <span>Module 5</span>
+        <span class="crumb-sep">/</span>
+        <span style="color: var(--text-main); font-weight: 600;">Section 22</span>
+      </nav>
+
+      <!-- Section Banner Header -->
+      <header class="section-banner">
+        <div class="section-meta-row">
+          <span class="module-badge">Module 5</span>
+          <span class="read-time-badge">⏱️ 35 min read</span>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <span class="tag-pill">List&lt;T&gt;</span> <span class="tag-pill">Dictionary&lt;TKey,TValue&gt;</span> <span class="tag-pill">HashSet&lt;T&gt;</span> <span class="tag-pill">Queue</span> <span class="tag-pill">Stack</span> <span class="tag-pill">Big-O</span>
+          </div>
+        </div>
+        <h1>Section 22: Collections (Lists, Dictionaries, Sets, Queues)</h1>
+        <p class="section-description">
+          Detailed architectural breakdown integrating comprehensive explanations, syntax reference matrices, compiler internals, and production C# code.
+        </p>
+      </header>
+
+      <!-- Body Content -->
+      <article class="docs-content">
+        
+    <h2 id="collections-architecture">1. The Collections Architecture & Interfaces</h2>
+    <p>
+      While arrays are fixed-size, <strong>collections</strong> are dynamically growing data structures designed to store, organize, and manipulate arbitrary quantities of items. All generic collections in <code>System.Collections.Generic</code> participate in a unified interface hierarchy:
+    </p>
+    <ul>
+      <li><code>IEnumerable&lt;T&gt;</code>: Base interface allowing forward iteration via <code>foreach</code>.</li>
+      <li><code>ICollection&lt;T&gt;</code>: Extends iteration with <code>Count</code>, <code>Add()</code>, <code>Remove()</code>, and <code>Contains()</code>.</li>
+      <li><code>IList&lt;T&gt;</code>: Adds indexed access (<code>this[int index]</code>) and insertion at specific indices.</li>
+      <li><code>IDictionary&lt;TKey, TValue&gt;</code>: Key-value mapped collection with fast hashed retrieval.</li>
+    </ul>
+
+    <h2 id="list-growth">2. List&lt;T&gt; Internal Array Doubling & Amortized O(1)</h2>
+    <p>
+      <code>List&lt;T&gt;</code> is backed internally by a contiguous array. When the array fills, <code>List&lt;T&gt;</code> allocates a new array of <strong>double the size</strong> and copies existing elements over:
+    </p>
+
+    
+    <div class="diagram-container">
+      <div class="diagram-title">📊 Diagram: List&lt;T&gt; Array Doubling Expansion</div>
+      <pre class="diagram-pre">Initial:   [Capacity: 4, Count: 4] -&gt; [A | B | C | D]
+Add item:  Capacity is full!
+Step 1:    Allocate new array on Heap of Capacity = 8
+Step 2:    Copy [A, B, C, D] to new buffer
+Step 3:    Insert [E] -&gt; [A | B | C | D | E | _ | _ | _]
+Step 4:    Old array of size 4 becomes GC garbage!</pre>
+    </div>
+  
+
+    
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <span>🟢 Best Practice & Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        If you know you are inserting 100,000 items, instantiate <code>var list = new List&lt;Customer&gt;(100_000);</code>. This eliminates 17 redundant array allocations and saves massive CPU copying and GC overhead!
+      </p>
+    
+      </div>
+    </div>
+  
+
+    <h2 id="dictionary-hashtable">3. Dictionary&lt;TKey, TValue&gt; & Hash Table Buckets</h2>
+    <p>
+      <code>Dictionary&lt;TKey, TValue&gt;</code> provides near-instantaneous <strong>O(1)</strong> lookups, insertions, and deletions using hash table buckets:
+    </p>
+    <ol>
+      <li>Computes <code>key.GetHashCode()</code>.</li>
+      <li>Calculates bucket index: <code>abs(hashCode) % bucketCount</code>.</li>
+      <li>Navigates to the bucket entry array to match exact key using <code>key.Equals(entry.Key)</code>.</li>
+    </ol>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Dictionary Operations</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>var userCache = new Dictionary&lt;int, string&gt;()
+{
+    { 101, &quot;Alice&quot; },
+    { 102, &quot;Bob&quot; }
+};
+
+// Safe lookup with TryGetValue (never throws KeyNotFoundException)
+if (userCache.TryGetValue(101, out string? username))
+{
+    Console.WriteLine($&quot;Found user: {username}&quot;);
+}</code></pre>
+    </div>
+  
+
+    <h2 id="hashset-sets">4. HashSet&lt;T&gt; & High-Speed Set Theory Math</h2>
+    <p>
+      A <code>HashSet&lt;T&gt;</code> stores unique elements with zero duplicates and provides high-speed mathematical set operations:
+    </p>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">HashSet Math Operations</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>var engineers = new HashSet&lt;string&gt; { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot; };
+var managers = new HashSet&lt;string&gt; { &quot;Charlie&quot;, &quot;Dave&quot; };
+
+// Set Intersection: who is BOTH an engineer and manager?
+var dualRoles = new HashSet&lt;string&gt;(engineers);
+dualRoles.IntersectWith(managers); // Contains only &quot;Charlie&quot;</code></pre>
+    </div>
+  
+
+    <h2 id="queue-stack">5. Queue&lt;T&gt; (FIFO) vs Stack&lt;T&gt; (LIFO)</h2>
+    <p>
+      <code>Queue&lt;T&gt;</code> operates on First-In-First-Out (FIFO) mechanics using <code>Enqueue()</code> and <code>Dequeue()</code>. <code>Stack&lt;T&gt;</code> operates on Last-In-First-Out (LIFO) mechanics using <code>Push()</code> and <code>Pop()</code>.
+    </p>
+
+    <h2 id="big-o-complexity">6. Big-O Complexity Comparison Matrix</h2>
+    
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Collection Type</th><th>Index Access</th><th>Add / Push</th><th>Insert at Middle</th><th>Search by Value</th><th>Remove</th></tr></thead>
+        <tbody><tr><td><code>List&lt;T&gt;</code></td><td><strong>O(1)</strong></td><td><strong>Amortized O(1)</strong></td><td>O(n) (Shifts memory)</td><td>O(n)</td><td>O(n)</td></tr><tr><td><code>Dictionary&lt;K, V&gt;</code></td><td>N/A</td><td><strong>O(1)</strong></td><td>N/A</td><td><strong>O(1) by Key</strong></td><td><strong>O(1)</strong></td></tr><tr><td><code>HashSet&lt;T&gt;</code></td><td>N/A</td><td><strong>O(1)</strong></td><td>N/A</td><td><strong>O(1) Contains</strong></td><td><strong>O(1)</strong></td></tr><tr><td><code>LinkedList&lt;T&gt;</code></td><td>O(n)</td><td><strong>O(1)</strong></td><td><strong>O(1) if node known</strong></td><td>O(n)</td><td><strong>O(1)</strong></td></tr><tr><td><code>Queue&lt;T&gt; / Stack&lt;T&gt;</code></td><td>N/A</td><td><strong>O(1)</strong></td><td>N/A</td><td>O(n)</td><td><strong>O(1)</strong></td></tr></tbody>
+      </table>
+    </div>
+  
+
+    <h2 id="pitfalls">7. Collection Traps & Modification Exceptions</h2>
+    
+    <div class="callout callout-warning">
+      <div class="callout-header">
+        <span>🟠 Compiler Trap & Common Gotcha</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        <strong>Error:</strong> Calling <code>list.Add()</code> or <code>list.Remove()</code> inside a <code>foreach</code> loop:
+      </p>
+      <pre><code>foreach (var item in list)
+{
+    if (item.IsExpired) list.Remove(item); // System.InvalidOperationException: Collection was modified!
+}</code></pre>
+      <p>
+        <strong>Fix:</strong> Use <code>list.RemoveAll(x => x.IsExpired);</code> or iterate backward using a traditional <code>for</code> loop.
+      </p>
+    
+      </div>
+    </div>
+  
+  
+      </article>
+
+      <!-- Bottom Navigation Prev / Next -->
+      <nav class="bottom-nav">
+        
+    <a href="section-21.html" class="nav-card prev">
+      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-title">Sec 21: Arrays (1D, Multi-Dimensional, Jagged)</span>
+    </a>
+  
+        
+    <a href="section-23.html" class="nav-card next">
+      <span class="nav-direction">Next Section →</span>
+      <span class="nav-title">Sec 23: Anonymous Types</span>
+    </a>
+  
+      </nav>
+
+      <!-- Section Footer -->
+      <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <span>C# Masterclass Static Documentation Portal</span>
+        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+      </footer>
+    </main>
+
+    <!-- Right Table of Contents (TOC) -->
+    <aside class="docs-toc">
+      <div class="toc-title">On This Page</div>
+      <ul class="toc-list">
+        
+      <li class="toc-item">
+        <a href="#collections-architecture" class="toc-link">1. The Collections Architecture &amp; Interfaces</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#list-growth" class="toc-link">2. List&lt;T&gt; Internal Array Doubling &amp; Amortized O(1)</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#dictionary-hashtable" class="toc-link">3. Dictionary&lt;TKey, TValue&gt; &amp; Hash Table Buckets</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#hashset-sets" class="toc-link">4. HashSet&lt;T&gt; &amp; High-Speed Set Theory Math</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#queue-stack" class="toc-link">5. Queue&lt;T&gt; (FIFO) vs Stack&lt;T&gt; (LIFO)</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#big-o-complexity" class="toc-link">6. Big-O Complexity Comparison Matrix</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#pitfalls" class="toc-link">7. Collection Traps &amp; Modification Exceptions</a>
+      </li>
+    
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/search-index.js"></script>
+  <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

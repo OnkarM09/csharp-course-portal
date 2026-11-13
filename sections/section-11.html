@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 11: Abstract Classes &amp; Interfaces — C# Masterclass</title>
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body id="top">
+
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <div class="header-left">
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+        <span class="sidebar-toggle-text">« Collapse</span>
+      </button>
+      <a href="../index.html" class="brand-link">
+        <span class="brand-icon">C#</span>
+        <span>Masterclass</span>
+      </a>
+      <span class="version-pill">.NET 9 / C# 13</span>
+    </div>
+
+    <div class="header-right">
+      <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
+        <span>📚 Course Index</span>
+      </a>
+
+      <button class="search-trigger-btn" aria-label="Search curriculum">
+        <span>🔍 Search topics...</span>
+        <kbd class="kbd-shortcut">Ctrl+K</kbd>
+      </button>
+
+      <button class="theme-toggle-btn" aria-label="Toggle dark/light theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="sidebar-backdrop"></div>
+
+  <!-- Documentation Layout -->
+  <div class="docs-wrapper">
+
+    <!-- Left Navigation Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-top-bar">
+        <span class="sidebar-top-title">Navigation</span>
+        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+          <span>Collapse</span>
+        </button>
+      </div>
+      <div class="sidebar-search-box">
+        <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
+          <span>🏠 Return to Dashboard</span>
+        </a>
+      </div>
+      
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 1</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-01.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">01</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Course Fundamentals &amp; .NET Architecture</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-02.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">02</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# Language Basics &amp; Syntax</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-03.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">03</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Development Environment, .NET CLI &amp; First Program</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 2</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-04.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">04</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">OOP Basics (Classes &amp; Objects)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-05.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">05</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Fields &amp; Access Modifiers</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-06.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">06</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Methods &amp; Parameters</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-07.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">07</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Type Conversion &amp; Casting</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-08.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">08</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Constructors (Basics &amp; Chaining)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-09.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">09</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Properties &amp; Indexers</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 3</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-10.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">10</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Inheritance, Hiding &amp; Overriding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-11.html" class="sidebar-link active">
+            <span class="sidebar-sec-num">11</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Abstract Classes &amp; Interfaces</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-12.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">12</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Namespaces &amp; Code Organization</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-13.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">13</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Partial Classes, Static Classes &amp; Enums</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-14.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">14</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Structures (Structs) &amp; Value Semantics</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-15.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">15</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">System.Object &amp; Core Method Overrides</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 4</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-16.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">16</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Generics (Classes, Methods, Constraints)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-17.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">17</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Handling Null &amp; Nullable Value/Ref Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-18.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">18</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Extension Methods &amp; Pattern Matching</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-19.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">19</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Garbage Collection, Destructors &amp; IDisposable</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 5</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-20.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">20</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Delegates, Multicast &amp; Events</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-21.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">21</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Arrays (1D, Multi-Dimensional, Jagged)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-22.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">22</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Collections (Lists, Dictionaries, Sets, Queues)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-23.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">23</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Anonymous Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-24.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">24</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tuples &amp; ValueTuples</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-25.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">25</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">LINQ (Language-Integrated Query)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 6</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-26.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">26</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">String Manipulation, DateTime &amp; Math</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-27.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">27</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">File I/O, Streams, Serialization &amp; Encoding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-28.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">28</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Exception Handling &amp; Defensive Programming</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-29.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">29</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Advanced Exception Patterns &amp; Diagnostics</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 7</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-31.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">31</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Threading &amp; Synchronization Primitives</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-32.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">32</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tasks &amp; Task Parallel Library (TPL)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-33.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">33</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Asynchronous Programming (Async &amp; Await)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 8</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">5</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-30.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">30</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-34.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">34</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 11 New Features (.NET 7)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-35.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">35</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 12 New Features (.NET 8)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-36.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">36</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 13 Innovations (.NET 9)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-37.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">37</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 14 &amp; Future Modern C# Roadmap</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+    </aside>
+
+    <!-- Main Content Container -->
+    <main class="docs-main-container">
+
+      <!-- Floating Expand Button when Sidebar is Collapsed -->
+      <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+        <span>» Expand Sidebar</span>
+      </button>
+
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs" aria-label="Breadcrumbs">
+        <a href="../index.html">Course Index</a>
+        <span class="crumb-sep">/</span>
+        <span>Module 3</span>
+        <span class="crumb-sep">/</span>
+        <span style="color: var(--text-main); font-weight: 600;">Section 11</span>
+      </nav>
+
+      <!-- Section Banner Header -->
+      <header class="section-banner">
+        <div class="section-meta-row">
+          <span class="module-badge">Module 3</span>
+          <span class="read-time-badge">⏱️ 28 min read</span>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <span class="tag-pill">Abstract Classes</span> <span class="tag-pill">Interfaces</span> <span class="tag-pill">Multiple Implementation</span> <span class="tag-pill">Contract Design</span>
+          </div>
+        </div>
+        <h1>Section 11: Abstract Classes &amp; Interfaces</h1>
+        <p class="section-description">
+          Detailed architectural breakdown integrating comprehensive explanations, syntax reference matrices, compiler internals, and production C# code.
+        </p>
+      </header>
+
+      <!-- Body Content -->
+      <article class="docs-content">
+        
+    <h2 id="abstraction-essence">1. The Essence of Abstraction</h2>
+    <p>
+      <strong>Abstraction</strong> is the discipline of hiding internal system complexity while exposing only the essential, high-level functional interface. It enables architects to separate <em>what</em> an object does from <em>how</em> it accomplishes it.
+    </p>
+
+    
+    <div class="callout callout-original">
+      <div class="callout-header">
+        <span>🔵 Core Concept (from Notes)</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        When you drive a car, you press down on the accelerator pedal to increase speed. You do not need to calculate cylinder fuel injection ratios, spark plug timing, or manifold air pressure. The pedal provides an <strong>abstract contract</strong>: apply pressure &rarr; vehicle accelerates.
+      </p>
+    
+      </div>
+    </div>
+  
+
+    <h2 id="abstract-classes">2. Abstract Classes & Abstract Methods</h2>
+    <p>
+      An <strong>abstract class</strong> cannot be directly instantiated with <code>new</code>. It serves as an incomplete base template designed to be extended by concrete sub-classes:
+    </p>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Abstract Class Implementation</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public abstract class PaymentProcessor
+{
+    // Concrete field and implemented helper method
+    public string MerchantId { get; init; }
+
+    public void LogTransaction(string txId) =&gt; 
+        Console.WriteLine($&quot;[AUDIT] Merchant {MerchantId} recorded Tx {txId}&quot;);
+
+    // Pure abstract method: MUST be implemented by any concrete child class
+    public abstract bool ProcessPayment(decimal amount, string currency);
+}
+
+public class StripePaymentProcessor : PaymentProcessor
+{
+    public override bool ProcessPayment(decimal amount, string currency)
+    {
+        Console.WriteLine($&quot;Charging {amount} {currency} via Stripe Gateway.&quot;);
+        LogTransaction(Guid.NewGuid().ToString(&quot;N&quot;));
+        return true;
+    }
+}</code></pre>
+    </div>
+  
+
+    <h2 id="interfaces-contracts">3. Interfaces: Pure Architectural Contracts</h2>
+    <p>
+      An <strong>interface</strong> defines a pure behavioral contract. A class or struct implementing an interface agrees to fulfill every member specified by that contract. While a C# class can inherit from only <em>one</em> base class, it can implement <em>multiple</em> interfaces:
+    </p>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Multiple Interface Implementation</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public interface IRepository&lt;T&gt;
+{
+    Task&lt;T?&gt; GetByIdAsync(int id);
+    Task&lt;IEnumerable&lt;T&gt;&gt; GetAllAsync();
+    Task AddAsync(T entity);
+}
+
+public interface IAuditable
+{
+    string CreatedBy { get; set; }
+    DateTime CreatedAtUtc { get; set; }
+}
+
+// Multiple interface implementation:
+public class CustomerRepository : IRepository&lt;Customer&gt;, IAuditable
+{
+    public string CreatedBy { get; set; } = &quot;System&quot;;
+    public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
+
+    public async Task&lt;Customer?&gt; GetByIdAsync(int id) { /* ... */ return null; }
+    public async Task&lt;IEnumerable&lt;Customer&gt;&gt; GetAllAsync() { /* ... */ return []; }
+    public async Task AddAsync(Customer entity) { /* ... */ }
+}</code></pre>
+    </div>
+  
+
+    <h2 id="abstract-vs-interface">4. Abstract Class vs Interface Comparison Matrix</h2>
+    
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Architectural Characteristic</th><th>Abstract Class</th><th>Interface</th></tr></thead>
+        <tbody><tr><td>Multiple Inheritance</td><td>No (Single base class inheritance only)</td><td><strong>Yes</strong> (A class can implement unlimited interfaces)</td></tr><tr><td>Instance State / Fields</td><td><strong>Yes</strong> (Can declare private, protected, and public instance fields)</td><td><strong>No</strong> (Cannot contain instance state or instance fields)</td></tr><tr><td>Access Modifiers</td><td>Full spectrum (<code>private, protected, internal, public</code>)</td><td>Traditionally all <code>public</code> (can have internal/private in modern DIM)</td></tr><tr><td>Constructors</td><td><strong>Yes</strong> (Can declare parameterized base constructors)</td><td><strong>No</strong> (Interfaces cannot have constructors)</td></tr><tr><td>Speed / Dispatch</td><td>Standard vtable dynamic dispatch (very fast)</td><td>Interface table (itable) lookup (minimal extra indirection)</td></tr><tr><td>Design Heuristic</td><td>Models core ontological identity (<em>"What the object IS"</em>)</td><td>Models peripheral capabilities (<em>"What the object CAN DO"</em>)</td></tr></tbody>
+      </table>
+    </div>
+  
+
+    <h2 id="explicit-implementation">5. Explicit Interface Implementation</h2>
+    <p>
+      When a class implements two interfaces that declare the exact same method signature, <strong>Explicit Interface Implementation</strong> resolves the conflict cleanly:
+    </p>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Explicit Interface Implementation</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public interface ISaveable { void Save(); }
+public interface IExportable { void Save(); }
+
+public class Document : ISaveable, IExportable
+{
+    // Explicit implementation: does NOT have a public access modifier!
+    void ISaveable.Save() =&gt; Console.WriteLine(&quot;Saving to local database.&quot;);
+    void IExportable.Save() =&gt; Console.WriteLine(&quot;Exporting file to disk.&quot;);
+}
+
+// Caller usage requires casting to the specific interface:
+var doc = new Document();
+// doc.Save(); // CS1061: 'Document' does not contain a definition for 'Save'
+
+((ISaveable)doc).Save();   // Prints: Saving to local database.
+((IExportable)doc).Save(); // Prints: Exporting file to disk.</code></pre>
+    </div>
+  
+
+    <h2 id="default-interface-methods">6. Modern Default Interface Methods (DIM)</h2>
+    <p>
+      Since C# 8, interfaces can provide default method implementations. This allows library authors to add new methods to an existing interface without breaking existing third-party implementers:
+    </p>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Default Interface Method</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public interface ILogger
+{
+    void Log(string message);
+
+    // Default interface method (DIM):
+    void LogError(Exception ex) =&gt; Log($&quot;[ERROR] {ex.Message}&quot;);
+}</code></pre>
+    </div>
+  
+
+    <h2 id="pitfalls">7. Common Abstraction Traps</h2>
+    
+    <div class="callout callout-warning">
+      <div class="callout-header">
+        <span>🟠 Compiler Trap & Common Gotcha</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        <strong>Trap:</strong> Default interface methods are <em>not</em> inherited by the implementing class's public interface.
+      </p>
+      <pre><code>ILogger logger = new ConsoleLogger();
+logger.LogError(new Exception()); // OK!
+
+ConsoleLogger concrete = new ConsoleLogger();
+concrete.LogError(new Exception()); // CS1061 Error! Must cast to ILogger!</code></pre>
+    
+      </div>
+    </div>
+  
+  
+      </article>
+
+      <!-- Bottom Navigation Prev / Next -->
+      <nav class="bottom-nav">
+        
+    <a href="section-10.html" class="nav-card prev">
+      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-title">Sec 10: Inheritance, Hiding &amp; Overriding</span>
+    </a>
+  
+        
+    <a href="section-12.html" class="nav-card next">
+      <span class="nav-direction">Next Section →</span>
+      <span class="nav-title">Sec 12: Namespaces &amp; Code Organization</span>
+    </a>
+  
+      </nav>
+
+      <!-- Section Footer -->
+      <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <span>C# Masterclass Static Documentation Portal</span>
+        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+      </footer>
+    </main>
+
+    <!-- Right Table of Contents (TOC) -->
+    <aside class="docs-toc">
+      <div class="toc-title">On This Page</div>
+      <ul class="toc-list">
+        
+      <li class="toc-item">
+        <a href="#abstraction-essence" class="toc-link">1. The Essence of Abstraction</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#abstract-classes" class="toc-link">2. Abstract Classes &amp; Abstract Methods</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#interfaces-contracts" class="toc-link">3. Interfaces: Pure Architectural Contracts</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#abstract-vs-interface" class="toc-link">4. Abstract Class vs Interface Comparison Matrix</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#explicit-implementation" class="toc-link">5. Explicit Interface Implementation</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#default-interface-methods" class="toc-link">6. Modern Default Interface Methods (DIM)</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#pitfalls" class="toc-link">7. Common Abstraction Traps</a>
+      </li>
+    
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/search-index.js"></script>
+  <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

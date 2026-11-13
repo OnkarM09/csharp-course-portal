@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 02: C# Language Basics &amp; Syntax — C# Masterclass</title>
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body id="top">
+
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <div class="header-left">
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+        <span class="sidebar-toggle-text">« Collapse</span>
+      </button>
+      <a href="../index.html" class="brand-link">
+        <span class="brand-icon">C#</span>
+        <span>Masterclass</span>
+      </a>
+      <span class="version-pill">.NET 9 / C# 13</span>
+    </div>
+
+    <div class="header-right">
+      <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
+        <span>📚 Course Index</span>
+      </a>
+
+      <button class="search-trigger-btn" aria-label="Search curriculum">
+        <span>🔍 Search topics...</span>
+        <kbd class="kbd-shortcut">Ctrl+K</kbd>
+      </button>
+
+      <button class="theme-toggle-btn" aria-label="Toggle dark/light theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="sidebar-backdrop"></div>
+
+  <!-- Documentation Layout -->
+  <div class="docs-wrapper">
+
+    <!-- Left Navigation Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-top-bar">
+        <span class="sidebar-top-title">Navigation</span>
+        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+          <span>Collapse</span>
+        </button>
+      </div>
+      <div class="sidebar-search-box">
+        <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
+          <span>🏠 Return to Dashboard</span>
+        </a>
+      </div>
+      
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 1</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-01.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">01</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Course Fundamentals &amp; .NET Architecture</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-02.html" class="sidebar-link active">
+            <span class="sidebar-sec-num">02</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# Language Basics &amp; Syntax</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-03.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">03</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Development Environment, .NET CLI &amp; First Program</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 2</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-04.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">04</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">OOP Basics (Classes &amp; Objects)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-05.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">05</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Fields &amp; Access Modifiers</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-06.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">06</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Methods &amp; Parameters</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-07.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">07</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Type Conversion &amp; Casting</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-08.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">08</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Constructors (Basics &amp; Chaining)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-09.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">09</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Properties &amp; Indexers</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 3</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-10.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">10</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Inheritance, Hiding &amp; Overriding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-11.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">11</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Abstract Classes &amp; Interfaces</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-12.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">12</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Namespaces &amp; Code Organization</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-13.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">13</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Partial Classes, Static Classes &amp; Enums</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-14.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">14</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Structures (Structs) &amp; Value Semantics</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-15.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">15</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">System.Object &amp; Core Method Overrides</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 4</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-16.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">16</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Generics (Classes, Methods, Constraints)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-17.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">17</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Handling Null &amp; Nullable Value/Ref Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-18.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">18</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Extension Methods &amp; Pattern Matching</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-19.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">19</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Garbage Collection, Destructors &amp; IDisposable</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 5</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-20.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">20</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Delegates, Multicast &amp; Events</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-21.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">21</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Arrays (1D, Multi-Dimensional, Jagged)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-22.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">22</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Collections (Lists, Dictionaries, Sets, Queues)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-23.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">23</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Anonymous Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-24.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">24</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tuples &amp; ValueTuples</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-25.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">25</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">LINQ (Language-Integrated Query)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 6</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-26.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">26</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">String Manipulation, DateTime &amp; Math</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-27.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">27</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">File I/O, Streams, Serialization &amp; Encoding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-28.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">28</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Exception Handling &amp; Defensive Programming</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-29.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">29</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Advanced Exception Patterns &amp; Diagnostics</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 7</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-31.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">31</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Threading &amp; Synchronization Primitives</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-32.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">32</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tasks &amp; Task Parallel Library (TPL)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-33.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">33</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Asynchronous Programming (Async &amp; Await)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 8</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">5</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-30.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">30</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-34.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">34</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 11 New Features (.NET 7)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-35.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">35</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 12 New Features (.NET 8)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-36.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">36</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 13 Innovations (.NET 9)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-37.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">37</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 14 &amp; Future Modern C# Roadmap</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+    </aside>
+
+    <!-- Main Content Container -->
+    <main class="docs-main-container">
+
+      <!-- Floating Expand Button when Sidebar is Collapsed -->
+      <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+        <span>» Expand Sidebar</span>
+      </button>
+
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs" aria-label="Breadcrumbs">
+        <a href="../index.html">Course Index</a>
+        <span class="crumb-sep">/</span>
+        <span>Module 1</span>
+        <span class="crumb-sep">/</span>
+        <span style="color: var(--text-main); font-weight: 600;">Section 02</span>
+      </nav>
+
+      <!-- Section Banner Header -->
+      <header class="section-banner">
+        <div class="section-meta-row">
+          <span class="module-badge">Module 1</span>
+          <span class="read-time-badge">⏱️ 25 min read</span>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <span class="tag-pill">Syntax</span> <span class="tag-pill">Variables</span> <span class="tag-pill">Data Types</span> <span class="tag-pill">Operators</span> <span class="tag-pill">Control Flow</span>
+          </div>
+        </div>
+        <h1>Section 02: C# Language Basics &amp; Syntax</h1>
+        <p class="section-description">
+          Detailed architectural breakdown integrating comprehensive explanations, syntax reference matrices, compiler internals, and production C# code.
+        </p>
+      </header>
+
+      <!-- Body Content -->
+      <article class="docs-content">
+        
+    <h2 id="primitives-cts">1. CTS Data Types & Value vs Reference Memory</h2>
+    <p>
+      C# is an uncompromisingly <strong>statically-typed</strong> language. Every variable, constant, and expression evaluates to a known type at compile time. The runtime verifies that data placed into memory adheres strictly to the layout rules dictated by the <strong>Common Type System (CTS)</strong>.
+    </p>
+
+    
+    <div class="callout callout-original">
+      <div class="callout-header">
+        <span>🔵 Core Concept (from Notes)</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        In dynamically typed languages, assigning text to a numeric variable often succeeds silently until runtime calculations explode in production. In C#, assigning a string literal to an <code>int</code> triggers an instant compilation block:
+      </p>
+      <pre><code>int age = "twenty"; // CS0029: Cannot implicitly convert type 'string' to 'int'</code></pre>
+      <p>
+        This compile-time safety acts as a vigilant quality control engineer, permanently preventing an entire class of runtime memory corruption bugs.
+      </p>
+    
+      </div>
+    </div>
+  
+
+    
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>C# Keyword</th><th>CTS Type Alias</th><th>Category</th><th>Bit-Width &amp; Size</th><th>Range / Representation</th></tr></thead>
+        <tbody><tr><td><code>byte</code> / <code>sbyte</code></td><td><code>System.Byte / SByte</code></td><td>Value (Integer)</td><td>8 bits (1 byte)</td><td><code>0 to 255</code> / <code>-128 to 127</code></td></tr><tr><td><code>short</code> / <code>ushort</code></td><td><code>System.Int16 / UInt16</code></td><td>Value (Integer)</td><td>16 bits (2 bytes)</td><td><code>-32,768 to 32,767</code> / <code>0 to 65,535</code></td></tr><tr><td><code>int</code> / <code>uint</code></td><td><code>System.Int32 / UInt32</code></td><td>Value (Integer)</td><td>32 bits (4 bytes)</td><td><code>-2.14B to +2.14B</code> / <code>0 to 4.29B</code></td></tr><tr><td><code>long</code> / <code>ulong</code></td><td><code>System.Int64 / UInt64</code></td><td>Value (Integer)</td><td>64 bits (8 bytes)</td><td><code>-9.22 × 10^18 to +9.22 × 10^18</code></td></tr><tr><td><code>float</code></td><td><code>System.Single</code></td><td>Value (IEEE Floating)</td><td>32 bits (4 bytes)</td><td>7 digits precision (~1.5 × 10^-45 to 3.4 × 10^38)</td></tr><tr><td><code>double</code></td><td><code>System.Double</code></td><td>Value (IEEE Floating)</td><td>64 bits (8 bytes)</td><td>15-17 digits precision (default scientific float)</td></tr><tr><td><code>decimal</code></td><td><code>System.Decimal</code></td><td>Value (Base-10 Fixed)</td><td>128 bits (16 bytes)</td><td>28-29 digits exact precision (essential for financial calculation)</td></tr><tr><td><code>bool</code></td><td><code>System.Boolean</code></td><td>Value (Logical)</td><td>8 bits (1 byte)</td><td><code>true</code> or <code>false</code></td></tr><tr><td><code>char</code></td><td><code>System.Char</code></td><td>Value (Unicode)</td><td>16 bits (2 bytes)</td><td>Single UTF-16 code unit (<code>U+0000 to U+FFFF</code>)</td></tr><tr><td><code>string</code></td><td><code>System.String</code></td><td>Reference (Heap)</td><td>Pointer + Length + Bytes</td><td>Sequential sequence of immutable UTF-16 characters</td></tr><tr><td><code>object</code></td><td><code>System.Object</code></td><td>Reference (Heap)</td><td>Pointer (4/8 bytes)</td><td>Root ultimate base type for all .NET types</td></tr></tbody>
+      </table>
+    </div>
+  
+
+    <h2 id="stack-heap-diagram">2. Memory Layout: Stack vs Heap Diagram</h2>
+    <p>
+      Understanding how values live in physical memory is crucial for high-performance C# engineering:
+    </p>
+
+    
+    <div class="diagram-container">
+      <div class="diagram-title">📊 Diagram: Stack Frame vs Managed Heap Memory Layout</div>
+      <pre class="diagram-pre">======================== STACK ========================       ================ MANAGED HEAP ================
+[Fast LIFO allocation; automatically reclaimed on exit]       [GC-managed dynamic lifetime memory space]
+
++-----------------------------------------------------+
+| Stack Frame: CalculateCart()                        |
+|                                                     |
+|  [int] itemCount = 3               (Direct Value)   |
+|  [decimal] total = 149.99m         (Direct Value)   |
+|                                                     |
+|  [Customer*] custRef -------------(Pointer: 0x8A40)-+-----&gt; +----------------------------------------+
+|                                                     |       | Heap Address: 0x8A40                   |
+|  [string] orderId ----------------(Pointer: 0x9B10)-+--+    | [Type MethodTable Pointer]  (8 bytes)  |
++-----------------------------------------------------+  |    | [SyncBlock Index]           (8 bytes)  |
+                                                         |    | [string] Name = &quot;Sarah Connor&quot;         |
+                                                         |    | [int] Id = 101                         |
+                                                         |    +----------------------------------------+
+                                                         |
+                                                         +--&gt; +----------------------------------------+
+                                                              | Heap Address: 0x9B10                   |
+                                                              | [Type MethodTable Pointer]  (8 bytes)  |
+                                                              | [SyncBlock Index]           (8 bytes)  |
+                                                              | [Length: 7] Payload: &quot;ORD-902&quot;         |
+                                                              +----------------------------------------+</pre>
+    </div>
+  
+
+    <h2 id="variables-scope">3. Variable Declarations, Constants & Scoping</h2>
+    <p>
+      In C#, variables must be declared before use. Variables declared within a method block <code>{ ... }</code> have local scope and cannot be accessed outside that block.
+    </p>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Variable Scoping &amp; Constants</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Explicit vs Type-Inferred local declaration
+int userAge = 28;                  // Explicit typing
+var accountBalance = 1500.50m;     // Compiler infers decimal! (STILL statically typed)
+
+// Compile-time constants vs Read-only values
+const double Pi = 3.141592653589793; // Evaluated at compile-time, inlined into IL
+readonly DateTime BootTime;          // Evaluated at runtime during initialization
+
+// Scope Demonstration
+{
+    int localScopeOnly = 42;
+    Console.WriteLine(localScopeOnly);
+}
+// Console.WriteLine(localScopeOnly); // CS0103: The name 'localScopeOnly' does not exist in current context</code></pre>
+    </div>
+  
+
+    <h2 id="operators-expressions">4. Operators & Precedence Matrix</h2>
+    
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Category</th><th>Operators</th><th>Associativity</th><th>Notes &amp; Special Semantics</th></tr></thead>
+        <tbody><tr><td>Primary</td><td><code>x.y, f(x), a[i], x++, x--, new, typeof, sizeof</code></td><td>Left to right</td><td>Highest evaluation precedence.</td></tr><tr><td>Unary</td><td><code>+x, -x, !x, ~x, ++x, --x, ^x</code></td><td>Right to left</td><td>Prefix increments and logical negations.</td></tr><tr><td>Multiplicative</td><td><code>*, /, %</code></td><td>Left to right</td><td>Integer division truncates decimals toward zero.</td></tr><tr><td>Additive</td><td><code>+, -</code></td><td>Left to right</td><td>String concatenation also uses <code>+</code>.</td></tr><tr><td>Relational</td><td><code>&lt;, &gt;, &lt;=, &gt;=, is, as</code></td><td>Left to right</td><td>Type testing with <code>is</code> evaluates safely.</td></tr><tr><td>Equality</td><td><code>==, !=</code></td><td>Left to right</td><td>Compares values for value types; compares references for reference types (unless overloaded).</td></tr><tr><td>Logical Null-Coalescing</td><td><code>??, ??=</code></td><td>Right to left</td><td>Returns left operand if non-null; otherwise right operand.</td></tr><tr><td>Assignment</td><td><code>=, +=, -=, *=, /=, %=</code></td><td>Right to left</td><td>Lowest precedence; evaluates expression on right before assigning.</td></tr></tbody>
+      </table>
+    </div>
+  
+
+    <h2 id="control-flow">5. Decision & Loop Control Structures</h2>
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Branching &amp; Looping Primitives</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int statusCode = 404;
+
+// 1. Classical Branching
+if (statusCode == 200)
+{
+    Console.WriteLine(&quot;OK&quot;);
+}
+else if (statusCode == 404)
+{
+    Console.WriteLine(&quot;Resource Not Found&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;Unhandled code&quot;);
+}
+
+// 2. High-Performance Loop Constructs
+int[] numbers = [10, 20, 30, 40, 50];
+
+// Standard For loop (indexed)
+for (int i = 0; i &lt; numbers.Length; i++)
+{
+    Console.WriteLine($&quot;Index {i}: {numbers[i]}&quot;);
+}
+
+// Foreach loop (clean iteration over IEnumerable)
+foreach (var num in numbers)
+{
+    if (num == 30) continue; // Skip to next iteration
+    Console.WriteLine($&quot;Value: {num}&quot;);
+}</code></pre>
+    </div>
+  
+
+    <h2 id="type-safety-rules">6. Static Typing & Roslyn Diagnostic Safety</h2>
+    <p>
+      Because C# is statically typed, using <code>var</code> does <strong>NOT</strong> introduce dynamic typing! The compiler determines the exact type from the right-hand initialization expression at compile time and writes the explicit type into the CIL metadata:
+    </p>
+
+    
+    <div class="callout callout-deepdive">
+      <div class="callout-header">
+        <span>🟣 Under the Hood / Compiler Lowering</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        When you write:
+      </p>
+      <pre><code>var message = "Hello World";</code></pre>
+      <p>
+        The Roslyn compiler emits identical CIL instructions as writing:
+      </p>
+      <pre><code>string message = "Hello World";</code></pre>
+      <p>
+        There is zero runtime type inspection, zero reflection overhead, and zero performance penalty.
+      </p>
+    
+      </div>
+    </div>
+  
+
+    <h2 id="pitfalls">7. Common Syntax Pitfalls</h2>
+    
+    <div class="callout callout-warning">
+      <div class="callout-header">
+        <span>🟠 Compiler Trap & Common Gotcha</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        <strong>Bug:</strong> Using <code>double price = 0.1; double tax = 0.2;</code> and expecting <code>price + tax == 0.3</code> to be true.
+      </p>
+      <p>
+        <strong>Reality:</strong> Base-2 IEEE 754 floating points cannot represent <code>0.1</code> or <code>0.2</code> exactly. The result is <code>0.30000000000000004</code>. For e-commerce, banking, taxes, and accounting, ALWAYS use <code>decimal</code> (e.g., <code>0.1m + 0.2m == 0.3m</code>).
+      </p>
+    
+      </div>
+    </div>
+  
+  
+      </article>
+
+      <!-- Bottom Navigation Prev / Next -->
+      <nav class="bottom-nav">
+        
+    <a href="section-01.html" class="nav-card prev">
+      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-title">Sec 01: Course Fundamentals &amp; .NET Architecture</span>
+    </a>
+  
+        
+    <a href="section-03.html" class="nav-card next">
+      <span class="nav-direction">Next Section →</span>
+      <span class="nav-title">Sec 03: Development Environment, .NET CLI &amp; First Program</span>
+    </a>
+  
+      </nav>
+
+      <!-- Section Footer -->
+      <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <span>C# Masterclass Static Documentation Portal</span>
+        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+      </footer>
+    </main>
+
+    <!-- Right Table of Contents (TOC) -->
+    <aside class="docs-toc">
+      <div class="toc-title">On This Page</div>
+      <ul class="toc-list">
+        
+      <li class="toc-item">
+        <a href="#primitives-cts" class="toc-link">1. CTS Data Types &amp; Value vs Reference Memory</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#stack-heap-diagram" class="toc-link">2. Memory Layout: Stack vs Heap Diagram</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#variables-scope" class="toc-link">3. Variable Declarations, Constants &amp; Scoping</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#operators-expressions" class="toc-link">4. Operators &amp; Precedence Matrix</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#control-flow" class="toc-link">5. Decision &amp; Loop Control Structures</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#type-safety-rules" class="toc-link">6. Static Typing &amp; Roslyn Diagnostic Safety</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#pitfalls" class="toc-link">7. Common Syntax Pitfalls</a>
+      </li>
+    
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/search-index.js"></script>
+  <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

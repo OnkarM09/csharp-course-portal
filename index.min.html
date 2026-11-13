@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C# Masterclass — Production Architecture & Documentation Portal</title>
+  <link rel="stylesheet" href="assets/css/docs.css">
+</head>
+<body>
+  <header class="top-header">
+    <div class="header-left">
+      <a href="index.html" class="brand-link">
+        <span class="brand-icon">C#</span>
+        <span>Masterclass Documentation</span>
+      </a>
+      <span class="version-pill">.NET 9 / C# 13</span>
+    </div>
+    <div class="header-right">
+      <button class="search-trigger-btn" aria-label="Search curriculum">
+        <span>🔍 Search topics, syntax, concepts...</span>
+        <kbd class="kbd-shortcut">Ctrl+K</kbd>
+      </button>
+      <button class="theme-toggle-btn" aria-label="Toggle dark/light theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
+      </button>
+    </div>
+  </header>
+  <main>
+    <section class="portal-hero">
+      <h1>C# Architecture & Language Masterclass</h1>
+      <p class="portal-hero-lead">
+        Comprehensive, production-grade documentation combining intuitive step-by-step conceptual depth,
+        under-the-hood compiler lowering, memory models, Cheat Sheet syntax matrices, and modern C# 9–14 paradigms.
+      </p>
+      <div style="margin-bottom: 2.5rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <button class="search-trigger-btn" style="padding: 10px 20px; font-size: 1rem; border-radius: 10px; background: var(--bg-surface-elevated); border-color: var(--accent-primary);">
+          <span>🔍 Open Global Topic Search</span>
+          <kbd class="kbd-shortcut">Ctrl+K</kbd>
+        </button>
+        <a href="sections/section-01.html" class="index-home-btn" style="padding: 10px 20px; font-size: 1rem; border-radius: 10px; background: var(--accent-primary); color: #0f172a; font-weight: 700;">
+          Start Section 01: Fundamentals →
+        </a>
+      </div>
+      <div class="portal-stats-row">
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Core Modules</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">37</div>
+          <div class="stat-label">In-Depth Sections</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">200+</div>
+          <div class="stat-label">Code Examples & Diagrams</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">Zero</div>
+          <div class="stat-label">Build Step Required</div>
+        </div>
+      </div>
+    </section>
+    <section class="modules-section">
+      <h2 class="section-group-heading">Curriculum Modules</h2>
+      <p class="section-group-sub">Explore the curriculum organized by architectural tiers and conceptual layers.</p>
+      <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-card-header">
+          <span class="module-badge" style="background: #3b82f622; color: #3b82f6; border: 1px solid #3b82f644;">
+            Module 1
+          </span>
+          <span class="tag-pill">3 Sections</span>
+        </div>
+        <h3 class="module-card-title">Foundations & Architecture</h3>
+        <p class="module-card-desc">.NET Architecture, CLR, JIT Compilation, BCL, and C# Language Fundamentals</p>
+        <ul class="module-sec-list">
+        <li class="module-sec-item">
+          <a href="sections/section-01.html">
+            <span class="sidebar-sec-num">Sec 01</span>
+            <span>Course Fundamentals & .NET Architecture</span>
+          </a>
+          <span class="read-time-badge">⏱️ 18 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-02.html">
+            <span class="sidebar-sec-num">Sec 02</span>
+            <span>C# Language Basics & Syntax</span>
+          </a>
+          <span class="read-time-badge">⏱️ 25 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-03.html">
+            <span class="sidebar-sec-num">Sec 03</span>
+            <span>Development Environment, .NET CLI & First Program</span>
+          </a>
+          <span class="read-time-badge">⏱️ 15 min</span>
+        </li>
+        </ul>
+      </div>
+      <div class="module-card">
+        <div class="module-card-header">
+          <span class="module-badge" style="background: #6366f122; color: #6366f1; border: 1px solid #6366f144;">
+            Module 2
+          </span>
+          <span class="tag-pill">6 Sections</span>
+        </div>
+        <h3 class="module-card-title">Object-Oriented Fundamentals</h3>
+        <p class="module-card-desc">Classes, Objects, Fields, Methods, Parameters, Type Conversion, Constructors, and Properties</p>
+        <ul class="module-sec-list">
+        <li class="module-sec-item">
+          <a href="sections/section-04.html">
+            <span class="sidebar-sec-num">Sec 04</span>
+            <span>OOP Basics (Classes & Objects)</span>
+          </a>
+          <span class="read-time-badge">⏱️ 15 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-05.html">
+            <span class="sidebar-sec-num">Sec 05</span>
+            <span>Fields & Access Modifiers</span>
+          </a>
+          <span class="read-time-badge">⏱️ 16 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-06.html">
+            <span class="sidebar-sec-num">Sec 06</span>
+            <span>Methods & Parameters</span>
+          </a>
+          <span class="read-time-badge">⏱️ 30 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-07.html">
+            <span class="sidebar-sec-num">Sec 07</span>
+            <span>Type Conversion & Casting</span>
+          </a>
+          <span class="read-time-badge">⏱️ 18 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-08.html">
+            <span class="sidebar-sec-num">Sec 08</span>
+            <span>Constructors (Basics & Chaining)</span>
+          </a>
+          <span class="read-time-badge">⏱️ 20 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-09.html">
+            <span class="sidebar-sec-num">Sec 09</span>
+            <span>Properties & Indexers</span>
+          </a>
+          <span class="read-time-badge">⏱️ 25 min</span>
+        </li>
+        </ul>
+      </div>
+      <div class="module-card">
+        <div class="module-card-header">
+          <span class="module-badge" style="background: #8b5cf622; color: #8b5cf6; border: 1px solid #8b5cf644;">
+            Module 3
+          </span>
+          <span class="tag-pill">6 Sections</span>
+        </div>
+        <h3 class="module-card-title">Advanced Class Design & Type System</h3>
+        <p class="module-card-desc">Inheritance, Polymorphism, Abstract Classes, Interfaces, Namespaces, Structs, and System.Object</p>
+        <ul class="module-sec-list">
+        <li class="module-sec-item">
+          <a href="sections/section-10.html">
+            <span class="sidebar-sec-num">Sec 10</span>
+            <span>Inheritance, Hiding & Overriding</span>
+          </a>
+          <span class="read-time-badge">⏱️ 24 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-11.html">
+            <span class="sidebar-sec-num">Sec 11</span>
+            <span>Abstract Classes & Interfaces</span>
+          </a>
+          <span class="read-time-badge">⏱️ 28 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-12.html">
+            <span class="sidebar-sec-num">Sec 12</span>
+            <span>Namespaces & Code Organization</span>
+          </a>
+          <span class="read-time-badge">⏱️ 14 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-13.html">
+            <span class="sidebar-sec-num">Sec 13</span>
+            <span>Partial Classes, Static Classes & Enums</span>
+          </a>
+          <span class="read-time-badge">⏱️ 20 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-14.html">
+            <span class="sidebar-sec-num">Sec 14</span>
+            <span>Structures (Structs) & Value Semantics</span>
+          </a>
+          <span class="read-time-badge">⏱️ 20 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-15.html">
+            <span class="sidebar-sec-num">Sec 15</span>
+            <span>System.Object & Core Method Overrides</span>
+          </a>
+          <span class="read-time-badge">⏱️ 18 min</span>
+        </li>
+        </ul>
+      </div>
+      <div class="module-card">
+        <div class="module-card-header">
+          <span class="module-badge" style="background: #ec489922; color: #ec4899; border: 1px solid #ec489944;">
+            Module 4
+          </span>
+          <span class="tag-pill">4 Sections</span>
+        </div>
+        <h3 class="module-card-title">Language Plumbing & Memory Management</h3>
+        <p class="module-card-desc">Generics, Null Handling, Extension Methods, Pattern Matching, Garbage Collection & IDisposable</p>
+        <ul class="module-sec-list">
+        <li class="module-sec-item">
+          <a href="sections/section-16.html">
+            <span class="sidebar-sec-num">Sec 16</span>
+            <span>Generics (Classes, Methods, Constraints)</span>
+          </a>
+          <span class="read-time-badge">⏱️ 25 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-17.html">
+            <span class="sidebar-sec-num">Sec 17</span>
+            <span>Handling Null & Nullable Value/Ref Types</span>
+          </a>
+          <span class="read-time-badge">⏱️ 18 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-18.html">
+            <span class="sidebar-sec-num">Sec 18</span>
+            <span>Extension Methods & Pattern Matching</span>
+          </a>
+          <span class="read-time-badge">⏱️ 24 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-19.html">
+            <span class="sidebar-sec-num">Sec 19</span>
+            <span>Garbage Collection, Destructors & IDisposable</span>
+          </a>
+          <span class="read-time-badge">⏱️ 26 min</span>
+        </li>
+        </ul>
+      </div>
+      <div class="module-card">
+        <div class="module-card-header">
+          <span class="module-badge" style="background: #f59e0b22; color: #f59e0b; border: 1px solid #f59e0b44;">
+            Module 5
+          </span>
+          <span class="tag-pill">6 Sections</span>
+        </div>
+        <h3 class="module-card-title">Functional Constructs & Collections</h3>
+        <p class="module-card-desc">Delegates, Events, Arrays, Collections, Anonymous Types, Tuples, and LINQ</p>
+        <ul class="module-sec-list">
+        <li class="module-sec-item">
+          <a href="sections/section-20.html">
+            <span class="sidebar-sec-num">Sec 20</span>
+            <span>Delegates, Multicast & Events</span>
+          </a>
+          <span class="read-time-badge">⏱️ 30 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-21.html">
+            <span class="sidebar-sec-num">Sec 21</span>
+            <span>Arrays (1D, Multi-Dimensional, Jagged)</span>
+          </a>
+          <span class="read-time-badge">⏱️ 24 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-22.html">
+            <span class="sidebar-sec-num">Sec 22</span>
+            <span>Collections (Lists, Dictionaries, Sets, Queues)</span>
+          </a>
+          <span class="read-time-badge">⏱️ 35 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-23.html">
+            <span class="sidebar-sec-num">Sec 23</span>
+            <span>Anonymous Types</span>
+          </a>
+          <span class="read-time-badge">⏱️ 15 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-24.html">
+            <span class="sidebar-sec-num">Sec 24</span>
+            <span>Tuples & ValueTuples</span>
+          </a>
+          <span class="read-time-badge">⏱️ 16 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-25.html">
+            <span class="sidebar-sec-num">Sec 25</span>
+            <span>LINQ (Language-Integrated Query)</span>
+          </a>
+          <span class="read-time-badge">⏱️ 30 min</span>
+        </li>
+        </ul>
+      </div>
+      <div class="module-card">
+        <div class="module-card-header">
+          <span class="module-badge" style="background: #10b98122; color: #10b981; border: 1px solid #10b98144;">
+            Module 6
+          </span>
+          <span class="tag-pill">4 Sections</span>
+        </div>
+        <h3 class="module-card-title">Base Class Library & Resilience</h3>
+        <p class="module-card-desc">String, DateTime, Math, File I/O, Serialization, Encoding, and Robust Exception Handling</p>
+        <ul class="module-sec-list">
+        <li class="module-sec-item">
+          <a href="sections/section-26.html">
+            <span class="sidebar-sec-num">Sec 26</span>
+            <span>String Manipulation, DateTime & Math</span>
+          </a>
+          <span class="read-time-badge">⏱️ 32 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-27.html">
+            <span class="sidebar-sec-num">Sec 27</span>
+            <span>File I/O, Streams, Serialization & Encoding</span>
+          </a>
+          <span class="read-time-badge">⏱️ 34 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-28.html">
+            <span class="sidebar-sec-num">Sec 28</span>
+            <span>Exception Handling & Defensive Programming</span>
+          </a>
+          <span class="read-time-badge">⏱️ 26 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-29.html">
+            <span class="sidebar-sec-num">Sec 29</span>
+            <span>Advanced Exception Patterns & Diagnostics</span>
+          </a>
+          <span class="read-time-badge">⏱️ 22 min</span>
+        </li>
+        </ul>
+      </div>
+      <div class="module-card">
+        <div class="module-card-header">
+          <span class="module-badge" style="background: #06b6d422; color: #06b6d4; border: 1px solid #06b6d444;">
+            Module 7
+          </span>
+          <span class="tag-pill">3 Sections</span>
+        </div>
+        <h3 class="module-card-title">Concurrency & Asynchronous Programming</h3>
+        <p class="module-card-desc">Threading, Synchronization, Task Parallel Library (TPL), and Async/Await Mechanics</p>
+        <ul class="module-sec-list">
+        <li class="module-sec-item">
+          <a href="sections/section-31.html">
+            <span class="sidebar-sec-num">Sec 31</span>
+            <span>Threading & Synchronization Primitives</span>
+          </a>
+          <span class="read-time-badge">⏱️ 35 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-32.html">
+            <span class="sidebar-sec-num">Sec 32</span>
+            <span>Tasks & Task Parallel Library (TPL)</span>
+          </a>
+          <span class="read-time-badge">⏱️ 40 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-33.html">
+            <span class="sidebar-sec-num">Sec 33</span>
+            <span>Asynchronous Programming (Async & Await)</span>
+          </a>
+          <span class="read-time-badge">⏱️ 35 min</span>
+        </li>
+        </ul>
+      </div>
+      <div class="module-card">
+        <div class="module-card-header">
+          <span class="module-badge" style="background: #f43f5e22; color: #f43f5e; border: 1px solid #f43f5e44;">
+            Module 8
+          </span>
+          <span class="tag-pill">5 Sections</span>
+        </div>
+        <h3 class="module-card-title">Modern C# Evolution</h3>
+        <p class="module-card-desc">Deep dive into C# 9, C# 10, C# 11, C# 12, and C# 13 / 14 Innovations</p>
+        <ul class="module-sec-list">
+        <li class="module-sec-item">
+          <a href="sections/section-30.html">
+            <span class="sidebar-sec-num">Sec 30</span>
+            <span>C# 9 & C# 10 Features (.NET 5 & 6)</span>
+          </a>
+          <span class="read-time-badge">⏱️ 35 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-34.html">
+            <span class="sidebar-sec-num">Sec 34</span>
+            <span>C# 11 New Features (.NET 7)</span>
+          </a>
+          <span class="read-time-badge">⏱️ 30 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-35.html">
+            <span class="sidebar-sec-num">Sec 35</span>
+            <span>C# 12 New Features (.NET 8)</span>
+          </a>
+          <span class="read-time-badge">⏱️ 25 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-36.html">
+            <span class="sidebar-sec-num">Sec 36</span>
+            <span>C# 13 Innovations (.NET 9)</span>
+          </a>
+          <span class="read-time-badge">⏱️ 22 min</span>
+        </li>
+        <li class="module-sec-item">
+          <a href="sections/section-37.html">
+            <span class="sidebar-sec-num">Sec 37</span>
+            <span>C# 14 & Future Modern C# Roadmap</span>
+          </a>
+          <span class="read-time-badge">⏱️ 20 min</span>
+        </li>
+        </ul>
+      </div>
+      </div>
+      <div style="margin-top: 4rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <h2 class="section-group-heading" style="margin-bottom: 0.25rem;">Complete Masterclass Directory</h2>
+            <p class="section-group-sub" style="margin-bottom: 0;">Instant access to all 37 sections in sequence.</p>
+          </div>
+          <div style="min-width: 260px;">
+            <input type="text" id="directoryFilter" class="sidebar-filter-input" placeholder="Filter sections by title or tag..." style="padding: 8px 14px; font-size: 0.9rem;" />
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table id="directoryTable">
+            <thead>
+              <tr>
+                <th style="width: 80px;">Sec #</th>
+                <th>Section Title & Focus Tags</th>
+                <th style="width: 140px;">Module</th>
+                <th style="width: 110px;">Read Time</th>
+                <th style="width: 140px; text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 01</td>
+        <td>
+          <a href="sections/section-01.html" style="font-weight: 600; font-size: 0.95rem;">Course Fundamentals & .NET Architecture</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">.NET 9</span> <span class="tag-pill">CLR</span> <span class="tag-pill">JIT</span> <span class="tag-pill">BCL</span> <span class="tag-pill">Architecture</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #3b82f618; color: #3b82f6;">Module 1</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 18 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-01.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 02</td>
+        <td>
+          <a href="sections/section-02.html" style="font-weight: 600; font-size: 0.95rem;">C# Language Basics & Syntax</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Syntax</span> <span class="tag-pill">Variables</span> <span class="tag-pill">Data Types</span> <span class="tag-pill">Operators</span> <span class="tag-pill">Control Flow</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #3b82f618; color: #3b82f6;">Module 1</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 25 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-02.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 03</td>
+        <td>
+          <a href="sections/section-03.html" style="font-weight: 600; font-size: 0.95rem;">Development Environment, .NET CLI & First Program</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">IDE</span> <span class="tag-pill">Visual Studio</span> <span class="tag-pill">dotnet CLI</span> <span class="tag-pill">Compilation</span> <span class="tag-pill">Debugging</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #3b82f618; color: #3b82f6;">Module 1</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 15 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-03.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 04</td>
+        <td>
+          <a href="sections/section-04.html" style="font-weight: 600; font-size: 0.95rem;">OOP Basics (Classes & Objects)</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">OOP</span> <span class="tag-pill">Classes</span> <span class="tag-pill">Objects</span> <span class="tag-pill">Instantiating</span> <span class="tag-pill">Memory Allocation</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #6366f118; color: #6366f1;">Module 2</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 15 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-04.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 05</td>
+        <td>
+          <a href="sections/section-05.html" style="font-weight: 600; font-size: 0.95rem;">Fields & Access Modifiers</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Fields</span> <span class="tag-pill">Access Modifiers</span> <span class="tag-pill">Encapsulation</span> <span class="tag-pill">State</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #6366f118; color: #6366f1;">Module 2</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 16 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-05.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 06</td>
+        <td>
+          <a href="sections/section-06.html" style="font-weight: 600; font-size: 0.95rem;">Methods & Parameters</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Methods</span> <span class="tag-pill">Parameters</span> <span class="tag-pill">ref</span> <span class="tag-pill">out</span> <span class="tag-pill">in</span> <span class="tag-pill">Params</span> <span class="tag-pill">Overloading</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #6366f118; color: #6366f1;">Module 2</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 30 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-06.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 07</td>
+        <td>
+          <a href="sections/section-07.html" style="font-weight: 600; font-size: 0.95rem;">Type Conversion & Casting</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Implicit Casting</span> <span class="tag-pill">Explicit Casting</span> <span class="tag-pill">Convert</span> <span class="tag-pill">Parse</span> <span class="tag-pill">TryParse</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #6366f118; color: #6366f1;">Module 2</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 18 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-07.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 08</td>
+        <td>
+          <a href="sections/section-08.html" style="font-weight: 600; font-size: 0.95rem;">Constructors (Basics & Chaining)</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Constructors</span> <span class="tag-pill">Initialization</span> <span class="tag-pill">Chaining</span> <span class="tag-pill">this()</span> <span class="tag-pill">base()</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #6366f118; color: #6366f1;">Module 2</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 20 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-08.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 09</td>
+        <td>
+          <a href="sections/section-09.html" style="font-weight: 600; font-size: 0.95rem;">Properties & Indexers</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Getters/Setters</span> <span class="tag-pill">Auto-Properties</span> <span class="tag-pill">Init-Only</span> <span class="tag-pill">Indexers</span> <span class="tag-pill">Encapsulation</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #6366f118; color: #6366f1;">Module 2</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 25 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-09.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 10</td>
+        <td>
+          <a href="sections/section-10.html" style="font-weight: 600; font-size: 0.95rem;">Inheritance, Hiding & Overriding</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Inheritance</span> <span class="tag-pill">virtual</span> <span class="tag-pill">override</span> <span class="tag-pill">new</span> <span class="tag-pill">base</span> <span class="tag-pill">Polymorphism</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #8b5cf618; color: #8b5cf6;">Module 3</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 24 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-10.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 11</td>
+        <td>
+          <a href="sections/section-11.html" style="font-weight: 600; font-size: 0.95rem;">Abstract Classes & Interfaces</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Abstract Classes</span> <span class="tag-pill">Interfaces</span> <span class="tag-pill">Multiple Implementation</span> <span class="tag-pill">Contract Design</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #8b5cf618; color: #8b5cf6;">Module 3</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 28 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-11.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 12</td>
+        <td>
+          <a href="sections/section-12.html" style="font-weight: 600; font-size: 0.95rem;">Namespaces & Code Organization</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Namespaces</span> <span class="tag-pill">using Directives</span> <span class="tag-pill">File-Scoped Namespaces</span> <span class="tag-pill">Global Usings</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #8b5cf618; color: #8b5cf6;">Module 3</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 14 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-12.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 13</td>
+        <td>
+          <a href="sections/section-13.html" style="font-weight: 600; font-size: 0.95rem;">Partial Classes, Static Classes & Enums</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">partial</span> <span class="tag-pill">static</span> <span class="tag-pill">Enumerations</span> <span class="tag-pill">Flags Attribute</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #8b5cf618; color: #8b5cf6;">Module 3</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 20 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-13.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 14</td>
+        <td>
+          <a href="sections/section-14.html" style="font-weight: 600; font-size: 0.95rem;">Structures (Structs) & Value Semantics</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">struct</span> <span class="tag-pill">Value Types</span> <span class="tag-pill">Stack Allocation</span> <span class="tag-pill">readonly struct</span> <span class="tag-pill">ref struct</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #8b5cf618; color: #8b5cf6;">Module 3</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 20 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-14.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 15</td>
+        <td>
+          <a href="sections/section-15.html" style="font-weight: 600; font-size: 0.95rem;">System.Object & Core Method Overrides</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">System.Object</span> <span class="tag-pill">ToString()</span> <span class="tag-pill">Equals()</span> <span class="tag-pill">GetHashCode()</span> <span class="tag-pill">GetType()</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #8b5cf618; color: #8b5cf6;">Module 3</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 18 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-15.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 16</td>
+        <td>
+          <a href="sections/section-16.html" style="font-weight: 600; font-size: 0.95rem;">Generics (Classes, Methods, Constraints)</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Generics</span> <span class="tag-pill">Type Safety</span> <span class="tag-pill">where Constraints</span> <span class="tag-pill">Generic Methods</span> <span class="tag-pill">Covariance</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #ec489918; color: #ec4899;">Module 4</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 25 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-16.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 17</td>
+        <td>
+          <a href="sections/section-17.html" style="font-weight: 600; font-size: 0.95rem;">Handling Null & Nullable Value/Ref Types</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Nullable<T></span> <span class="tag-pill">NRT</span> <span class="tag-pill">Null-Forgiving</span> <span class="tag-pill">Null-Coalescing</span> <span class="tag-pill">?. and ??</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #ec489918; color: #ec4899;">Module 4</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 18 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-17.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 18</td>
+        <td>
+          <a href="sections/section-18.html" style="font-weight: 600; font-size: 0.95rem;">Extension Methods & Pattern Matching</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">this Parameter</span> <span class="tag-pill">Extension Methods</span> <span class="tag-pill">is Expressions</span> <span class="tag-pill">Switch Expressions</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #ec489918; color: #ec4899;">Module 4</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 24 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-18.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 19</td>
+        <td>
+          <a href="sections/section-19.html" style="font-weight: 600; font-size: 0.95rem;">Garbage Collection, Destructors & IDisposable</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">GC Generations</span> <span class="tag-pill">Finalizers</span> <span class="tag-pill">IDisposable</span> <span class="tag-pill">Dispose Pattern</span> <span class="tag-pill">using statement</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #ec489918; color: #ec4899;">Module 4</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 26 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-19.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 20</td>
+        <td>
+          <a href="sections/section-20.html" style="font-weight: 600; font-size: 0.95rem;">Delegates, Multicast & Events</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">delegate</span> <span class="tag-pill">Multicast</span> <span class="tag-pill">Action</span> <span class="tag-pill">Func</span> <span class="tag-pill">Predicate</span> <span class="tag-pill">event</span> <span class="tag-pill">Event Handling</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #f59e0b18; color: #f59e0b;">Module 5</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 30 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-20.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 21</td>
+        <td>
+          <a href="sections/section-21.html" style="font-weight: 600; font-size: 0.95rem;">Arrays (1D, Multi-Dimensional, Jagged)</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Single-D Arrays</span> <span class="tag-pill">Multi-D Arrays</span> <span class="tag-pill">Jagged Arrays</span> <span class="tag-pill">Array Class Methods</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #f59e0b18; color: #f59e0b;">Module 5</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 24 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-21.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 22</td>
+        <td>
+          <a href="sections/section-22.html" style="font-weight: 600; font-size: 0.95rem;">Collections (Lists, Dictionaries, Sets, Queues)</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">List<T></span> <span class="tag-pill">Dictionary<TKey,TValue></span> <span class="tag-pill">HashSet<T></span> <span class="tag-pill">Queue</span> <span class="tag-pill">Stack</span> <span class="tag-pill">Big-O</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #f59e0b18; color: #f59e0b;">Module 5</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 35 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-22.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 23</td>
+        <td>
+          <a href="sections/section-23.html" style="font-weight: 600; font-size: 0.95rem;">Anonymous Types</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">var</span> <span class="tag-pill">Anonymous Types</span> <span class="tag-pill">Read-Only Properties</span> <span class="tag-pill">Compiler Generation</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #f59e0b18; color: #f59e0b;">Module 5</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 15 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-23.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 24</td>
+        <td>
+          <a href="sections/section-24.html" style="font-weight: 600; font-size: 0.95rem;">Tuples & ValueTuples</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">System.Tuple</span> <span class="tag-pill">ValueTuple</span> <span class="tag-pill">Named Elements</span> <span class="tag-pill">Deconstruction</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #f59e0b18; color: #f59e0b;">Module 5</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 16 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-24.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 25</td>
+        <td>
+          <a href="sections/section-25.html" style="font-weight: 600; font-size: 0.95rem;">LINQ (Language-Integrated Query)</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Query Syntax</span> <span class="tag-pill">Method Syntax</span> <span class="tag-pill">Deferred Execution</span> <span class="tag-pill">Select</span> <span class="tag-pill">Where</span> <span class="tag-pill">GroupBy</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #f59e0b18; color: #f59e0b;">Module 5</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 30 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-25.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 26</td>
+        <td>
+          <a href="sections/section-26.html" style="font-weight: 600; font-size: 0.95rem;">String Manipulation, DateTime & Math</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">StringBuilder</span> <span class="tag-pill">String Interpolation</span> <span class="tag-pill">DateTime</span> <span class="tag-pill">TimeSpan</span> <span class="tag-pill">System.Math</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #10b98118; color: #10b981;">Module 6</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 32 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-26.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 27</td>
+        <td>
+          <a href="sections/section-27.html" style="font-weight: 600; font-size: 0.95rem;">File I/O, Streams, Serialization & Encoding</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">File</span> <span class="tag-pill">Directory</span> <span class="tag-pill">FileStream</span> <span class="tag-pill">StreamReader/Writer</span> <span class="tag-pill">JSON Serialization</span> <span class="tag-pill">UTF8</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #10b98118; color: #10b981;">Module 6</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 34 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-27.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 28</td>
+        <td>
+          <a href="sections/section-28.html" style="font-weight: 600; font-size: 0.95rem;">Exception Handling & Defensive Programming</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">try-catch-finally</span> <span class="tag-pill">Custom Exceptions</span> <span class="tag-pill">Exception Filters</span> <span class="tag-pill">throw vs throw ex</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #10b98118; color: #10b981;">Module 6</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 26 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-28.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 29</td>
+        <td>
+          <a href="sections/section-29.html" style="font-weight: 600; font-size: 0.95rem;">Advanced Exception Patterns & Diagnostics</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">AggregateException</span> <span class="tag-pill">StackTrace</span> <span class="tag-pill">InnerException</span> <span class="tag-pill">AppDomain.UnhandledException</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #10b98118; color: #10b981;">Module 6</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 22 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-29.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 30</td>
+        <td>
+          <a href="sections/section-30.html" style="font-weight: 600; font-size: 0.95rem;">C# 9 & C# 10 Features (.NET 5 & 6)</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Records</span> <span class="tag-pill">init Accessors</span> <span class="tag-pill">Top-Level Statements</span> <span class="tag-pill">Target-Typed new</span> <span class="tag-pill">Global Usings</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #f43f5e18; color: #f43f5e;">Module 8</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 35 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-30.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 31</td>
+        <td>
+          <a href="sections/section-31.html" style="font-weight: 600; font-size: 0.95rem;">Threading & Synchronization Primitives</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Thread</span> <span class="tag-pill">Thread Safety</span> <span class="tag-pill">lock</span> <span class="tag-pill">Monitor</span> <span class="tag-pill">Mutex</span> <span class="tag-pill">SemaphoreSlim</span> <span class="tag-pill">Interlocked</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #06b6d418; color: #06b6d4;">Module 7</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 35 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-31.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 32</td>
+        <td>
+          <a href="sections/section-32.html" style="font-weight: 600; font-size: 0.95rem;">Tasks & Task Parallel Library (TPL)</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Task</span> <span class="tag-pill">Task<T></span> <span class="tag-pill">Task.Run</span> <span class="tag-pill">Parallel.For</span> <span class="tag-pill">PLINQ</span> <span class="tag-pill">CancellationToken</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #06b6d418; color: #06b6d4;">Module 7</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 40 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-32.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 33</td>
+        <td>
+          <a href="sections/section-33.html" style="font-weight: 600; font-size: 0.95rem;">Asynchronous Programming (Async & Await)</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">async</span> <span class="tag-pill">await</span> <span class="tag-pill">SynchronizationContext</span> <span class="tag-pill">Deadlocks</span> <span class="tag-pill">ConfigureAwait</span> <span class="tag-pill">ValueTask</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #06b6d418; color: #06b6d4;">Module 7</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 35 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-33.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 34</td>
+        <td>
+          <a href="sections/section-34.html" style="font-weight: 600; font-size: 0.95rem;">C# 11 New Features (.NET 7)</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Raw String Literals</span> <span class="tag-pill">Generic Math</span> <span class="tag-pill">Required Members</span> <span class="tag-pill">List Patterns</span> <span class="tag-pill">UTF-8 String Literals</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #f43f5e18; color: #f43f5e;">Module 8</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 30 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-34.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 35</td>
+        <td>
+          <a href="sections/section-35.html" style="font-weight: 600; font-size: 0.95rem;">C# 12 New Features (.NET 8)</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Primary Constructors</span> <span class="tag-pill">Collection Expressions</span> <span class="tag-pill">Inline Arrays</span> <span class="tag-pill">Default Lambda Params</span> <span class="tag-pill">Alias Any Type</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #f43f5e18; color: #f43f5e;">Module 8</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 25 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-35.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 36</td>
+        <td>
+          <a href="sections/section-36.html" style="font-weight: 600; font-size: 0.95rem;">C# 13 Innovations (.NET 9)</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">params Collections</span> <span class="tag-pill">New Lock Object</span> <span class="tag-pill">field Keyword Preview</span> <span class="tag-pill">Enhanced Escape Analysis</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #f43f5e18; color: #f43f5e;">Module 8</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 22 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-36.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 37</td>
+        <td>
+          <a href="sections/section-37.html" style="font-weight: 600; font-size: 0.95rem;">C# 14 & Future Modern C# Roadmap</a>
+          <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"><span class="tag-pill">Extensions Everything</span> <span class="tag-pill">Discriminated Unions</span> <span class="tag-pill">Null-Checked Types</span> <span class="tag-pill">Performance Evolution</span></div>
+        </td>
+        <td><span class="module-badge" style="background: #f43f5e18; color: #f43f5e;">Module 8</span></td>
+        <td style="white-space: nowrap; color: var(--text-dim);">⏱️ 20 min</td>
+        <td style="text-align: right;">
+          <a href="sections/section-37.html" class="index-home-btn" style="padding: 4px 10px; font-size: 0.8rem;">Read Section →</a>
+        </td>
+      </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer style="border-top: 1px solid var(--border-subtle); padding: 2rem 1.5rem; text-align: center; color: var(--text-dim); font-size: 0.85rem; background: var(--bg-surface);">
+    <p>C# Masterclass Offline Documentation Portal — Generated with full conceptual preservation and Cheat Sheet syntax integration.</p>
+    <p style="margin-top: 6px;">Zero build step required. Double-click any file to browse completely offline.</p>
+  </footer>
+  <script src="assets/js/search-index.js"></script>
+  <script src="assets/js/search-engine.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Quick filter for index table
+    document.getElementById('directoryFilter').addEventListener('input', function(e) {
+      const q = e.target.value.toLowerCase().trim();
+      const rows = document.querySelectorAll('#directoryTable tbody tr');
+      rows.forEach(r => {
+        const text = r.textContent.toLowerCase();
+        r.style.display = text.includes(q) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 16: Generics (Classes, Methods, Constraints) — C# Masterclass</title>
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body id="top">
+
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <div class="header-left">
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+        <span class="sidebar-toggle-text">« Collapse</span>
+      </button>
+      <a href="../index.html" class="brand-link">
+        <span class="brand-icon">C#</span>
+        <span>Masterclass</span>
+      </a>
+      <span class="version-pill">.NET 9 / C# 13</span>
+    </div>
+
+    <div class="header-right">
+      <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
+        <span>📚 Course Index</span>
+      </a>
+
+      <button class="search-trigger-btn" aria-label="Search curriculum">
+        <span>🔍 Search topics...</span>
+        <kbd class="kbd-shortcut">Ctrl+K</kbd>
+      </button>
+
+      <button class="theme-toggle-btn" aria-label="Toggle dark/light theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="sidebar-backdrop"></div>
+
+  <!-- Documentation Layout -->
+  <div class="docs-wrapper">
+
+    <!-- Left Navigation Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-top-bar">
+        <span class="sidebar-top-title">Navigation</span>
+        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+          <span>Collapse</span>
+        </button>
+      </div>
+      <div class="sidebar-search-box">
+        <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
+          <span>🏠 Return to Dashboard</span>
+        </a>
+      </div>
+      
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 1</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-01.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">01</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Course Fundamentals &amp; .NET Architecture</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-02.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">02</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# Language Basics &amp; Syntax</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-03.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">03</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Development Environment, .NET CLI &amp; First Program</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 2</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-04.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">04</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">OOP Basics (Classes &amp; Objects)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-05.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">05</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Fields &amp; Access Modifiers</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-06.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">06</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Methods &amp; Parameters</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-07.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">07</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Type Conversion &amp; Casting</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-08.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">08</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Constructors (Basics &amp; Chaining)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-09.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">09</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Properties &amp; Indexers</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 3</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-10.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">10</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Inheritance, Hiding &amp; Overriding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-11.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">11</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Abstract Classes &amp; Interfaces</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-12.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">12</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Namespaces &amp; Code Organization</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-13.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">13</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Partial Classes, Static Classes &amp; Enums</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-14.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">14</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Structures (Structs) &amp; Value Semantics</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-15.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">15</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">System.Object &amp; Core Method Overrides</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 4</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-16.html" class="sidebar-link active">
+            <span class="sidebar-sec-num">16</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Generics (Classes, Methods, Constraints)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-17.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">17</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Handling Null &amp; Nullable Value/Ref Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-18.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">18</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Extension Methods &amp; Pattern Matching</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-19.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">19</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Garbage Collection, Destructors &amp; IDisposable</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 5</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-20.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">20</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Delegates, Multicast &amp; Events</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-21.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">21</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Arrays (1D, Multi-Dimensional, Jagged)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-22.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">22</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Collections (Lists, Dictionaries, Sets, Queues)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-23.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">23</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Anonymous Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-24.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">24</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tuples &amp; ValueTuples</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-25.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">25</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">LINQ (Language-Integrated Query)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 6</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-26.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">26</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">String Manipulation, DateTime &amp; Math</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-27.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">27</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">File I/O, Streams, Serialization &amp; Encoding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-28.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">28</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Exception Handling &amp; Defensive Programming</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-29.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">29</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Advanced Exception Patterns &amp; Diagnostics</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 7</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-31.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">31</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Threading &amp; Synchronization Primitives</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-32.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">32</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tasks &amp; Task Parallel Library (TPL)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-33.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">33</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Asynchronous Programming (Async &amp; Await)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 8</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">5</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-30.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">30</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-34.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">34</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 11 New Features (.NET 7)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-35.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">35</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 12 New Features (.NET 8)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-36.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">36</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 13 Innovations (.NET 9)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-37.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">37</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 14 &amp; Future Modern C# Roadmap</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+    </aside>
+
+    <!-- Main Content Container -->
+    <main class="docs-main-container">
+
+      <!-- Floating Expand Button when Sidebar is Collapsed -->
+      <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+        <span>» Expand Sidebar</span>
+      </button>
+
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs" aria-label="Breadcrumbs">
+        <a href="../index.html">Course Index</a>
+        <span class="crumb-sep">/</span>
+        <span>Module 4</span>
+        <span class="crumb-sep">/</span>
+        <span style="color: var(--text-main); font-weight: 600;">Section 16</span>
+      </nav>
+
+      <!-- Section Banner Header -->
+      <header class="section-banner">
+        <div class="section-meta-row">
+          <span class="module-badge">Module 4</span>
+          <span class="read-time-badge">⏱️ 25 min read</span>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <span class="tag-pill">Generics</span> <span class="tag-pill">Type Safety</span> <span class="tag-pill">where Constraints</span> <span class="tag-pill">Generic Methods</span> <span class="tag-pill">Covariance</span>
+          </div>
+        </div>
+        <h1>Section 16: Generics (Classes, Methods, Constraints)</h1>
+        <p class="section-description">
+          Detailed architectural breakdown integrating comprehensive explanations, syntax reference matrices, compiler internals, and production C# code.
+        </p>
+      </header>
+
+      <!-- Body Content -->
+      <article class="docs-content">
+        
+    <h2 id="why-generics">1. The Problem Generics Solved: ArrayList vs Type Safety</h2>
+    <p>
+      In early .NET 1.x before Generics were introduced in C# 2.0, the only way to write reusable data structures was to cast everything to <code>System.Object</code> (as in the legacy <code>ArrayList</code> or <code>Hashtable</code>). This caused two catastrophic problems:
+    </p>
+
+    
+    <div class="callout callout-original">
+      <div class="callout-header">
+        <span>🔵 Core Concept (from Notes)</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <ol>
+        <li>
+          <strong>Massive Boxing Overhead:</strong> Storing value types (like <code>int</code>) in an <code>ArrayList</code> required boxing them onto the heap on every insert and unboxing on every read, devastating performance and generating millions of GC objects.
+        </li>
+        <li>
+          <strong>Total Loss of Type Safety:</strong> An <code>ArrayList</code> could hold integers, strings, and customers simultaneously:
+          <pre><code>ArrayList list = new ArrayList();
+list.Add(42);
+list.Add("Hello"); // Compiles cleanly!
+int val = (int)list[1]; // System.InvalidCastException at RUNTIME!</code></pre>
+        </li>
+      </ol>
+      <p>
+        Generics solved this permanently: you write the algorithm once using a placeholder type <code>T</code>, and the compiler enforces strict compile-time type safety with zero boxing overhead.
+      </p>
+    
+      </div>
+    </div>
+  
+
+    <h2 id="generic-classes">2. Generic Classes & The Type Parameter T</h2>
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Custom Generic Class</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// A high-performance, type-safe custom generic circular buffer
+public class CircularBuffer&lt;T&gt;
+{
+    private readonly T[] _buffer;
+    private int _head = 0;
+    private int _tail = 0;
+    private int _count = 0;
+
+    public int Capacity =&gt; _buffer.Length;
+    public int Count =&gt; _count;
+
+    public CircularBuffer(int capacity)
+    {
+        if (capacity &lt;= 0) throw new ArgumentOutOfRangeException(nameof(capacity));
+        _buffer = new T[capacity];
+    }
+
+    public void Enqueue(T item)
+    {
+        _buffer[_tail] = item;
+        _tail = (_tail + 1) % Capacity;
+        if (_count &lt; Capacity) _count++;
+        else _head = (_head + 1) % Capacity; // Overwrite oldest item
+    }
+
+    public T Dequeue()
+    {
+        if (_count == 0) throw new InvalidOperationException(&quot;Buffer is empty.&quot;);
+        T item = _buffer[_head];
+        _buffer[_head] = default!; // Clear reference for GC
+        _head = (_head + 1) % Capacity;
+        _count--;
+        return item;
+    }
+}</code></pre>
+    </div>
+  
+
+    <h2 id="generic-methods">3. Generic Methods & Type Inference</h2>
+    <p>
+      Methods can declare their own generic type parameters independently of the containing class. The compiler usually infers the type automatically:
+    </p>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Generic Method with Type Inference</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public static class ArrayUtilities
+{
+    // Generic swap method with pass-by-reference
+    public static void Swap&lt;T&gt;(ref T a, ref T b)
+    {
+        T temp = a;
+        a = b;
+        b = temp;
+    }
+}
+
+// Caller usage:
+int x = 10, y = 20;
+ArrayUtilities.Swap(ref x, ref y); // Compiler automatically infers T = int!</code></pre>
+    </div>
+  
+
+    <h2 id="generic-constraints-matrix">4. The Generic Constraints (where) Matrix</h2>
+    <p>
+      By default, <code>T</code> can be literally any type. Constraints restrict what types can be passed, allowing your method to invoke members on <code>T</code>:
+    </p>
+
+    
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Constraint Syntax</th><th>Type Restriction</th><th>Enables Inside Generic Body</th></tr></thead>
+        <tbody><tr><td><code>where T : struct</code></td><td>Must be a non-nullable <strong>Value Type</strong></td><td>Guarantees value semantics; stack allocation; cannot be null.</td></tr><tr><td><code>where T : class</code></td><td>Must be a <strong>Reference Type</strong></td><td>Allows comparison with <code>null</code>.</td></tr><tr><td><code>where T : new()</code></td><td>Must have a public <strong>parameterless constructor</strong></td><td>Enables calling <code>new T()</code> inside generic code!</td></tr><tr><td><code>where T : BaseClass</code></td><td>Must inherit from the specified base class</td><td>Direct access to all base class properties and methods.</td></tr><tr><td><code>where T : IComparable&lt;T&gt;</code></td><td>Must implement the specified interface</td><td>Direct access to interface contract members.</td></tr><tr><td><code>where T : notnull</code></td><td>Must be non-nullable (C# 8+)</td><td>Enforces null safety in modern NRT mode.</td></tr><tr><td><code>where T : unmanaged</code></td><td>Must be a struct containing no reference fields</td><td>Allows native memory pinning and raw pointer manipulation.</td></tr></tbody>
+      </table>
+    </div>
+  
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">Multiple Generic Constraints</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Combining multiple generic constraints
+public class EntityStore&lt;T&gt; 
+    where T : class, IComparable&lt;T&gt;, new()
+{
+    public T CreateDefaultSortedItem(T baseline)
+    {
+        T item = new T(); // Legal because of new()
+        if (item.CompareTo(baseline) &gt; 0) // Legal because of IComparable&lt;T&gt;
+        {
+            return item;
+        }
+        return baseline;
+    }
+}</code></pre>
+    </div>
+  
+
+    <h2 id="jit-specialization">5. CLR JIT Specialization: Value Types vs Reference Types</h2>
+    <p>
+      How does RyuJIT execute generic code without performance penalties?
+    </p>
+
+    
+    <div class="callout callout-deepdive">
+      <div class="callout-header">
+        <span>🟣 Under the Hood / Compiler Lowering</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <ul>
+        <li>
+          <strong>For Value Types (<code>List&lt;int&gt;, List&lt;double&gt;</code>):</strong> The JIT generates a <em>completely separate, dedicated native machine code copy</em> for each distinct value type. The memory slots are sized exactly to 4 bytes or 8 bytes with direct CPU instructions and zero boxing.
+        </li>
+        <li>
+          <strong>For Reference Types (<code>List&lt;string&gt;, List&lt;Customer&gt;</code>):</strong> Because all references in 64-bit .NET are identical 8-byte pointer addresses, the JIT shares a <em>single canonical native implementation</em> across all reference types, saving massive amounts of memory.
+        </li>
+      </ul>
+    
+      </div>
+    </div>
+  
+
+    <h2 id="covariance-contravariance">6. Covariance (out) and Contravariance (in)</h2>
+    <p>
+      Variance dictates how subtyping between more complex types relates to subtyping between their components:
+    </p>
+
+    
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Variance Type</th><th>Keyword</th><th>Direction</th><th>Standard Interface Example</th><th>Allows Assignment</th></tr></thead>
+        <tbody><tr><td><strong>Covariant</strong></td><td><code>out T</code></td><td>Output only (returns <code>T</code>)</td><td><code>IEnumerable&lt;out T&gt;</code></td><td><code>IEnumerable&lt;Animal&gt; a = new List&lt;Dog&gt;();</code> (Dog is an Animal)</td></tr><tr><td><strong>Contravariant</strong></td><td><code>in T</code></td><td>Input only (accepts <code>T</code> as param)</td><td><code>IComparable&lt;in T&gt;, Action&lt;in T&gt;</code></td><td><code>IComparable&lt;Dog&gt; comp = animalComparer;</code> (Can compare Dogs with general Animal logic)</td></tr><tr><td><strong>Invariant</strong></td><td>None</td><td>Both Input & Output</td><td><code>IList&lt;T&gt;, List&lt;T&gt;</code></td><td>Must match exact type: <code>List&lt;Animal&gt; != List&lt;Dog&gt;</code></td></tr></tbody>
+      </table>
+    </div>
+  
+
+    <h2 id="pitfalls">7. Common Generics Gotchas</h2>
+    
+    <div class="callout callout-warning">
+      <div class="callout-header">
+        <span>🟠 Compiler Trap & Common Gotcha</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        <strong>Error:</strong> Writing <code>if (a == b)</code> on an unconstrained <code>T</code> triggers compiler error <code>CS0019: Operator '==' cannot be applied to operands of type 'T' and 'T'</code>.
+      </p>
+      <p>
+        <strong>Fix:</strong> Use <code>EqualityComparer&lt;T&gt;.Default.Equals(a, b)</code> or constrain <code>where T : IEquatable&lt;T&gt;</code>.
+      </p>
+    
+      </div>
+    </div>
+  
+  
+      </article>
+
+      <!-- Bottom Navigation Prev / Next -->
+      <nav class="bottom-nav">
+        
+    <a href="section-15.html" class="nav-card prev">
+      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-title">Sec 15: System.Object &amp; Core Method Overrides</span>
+    </a>
+  
+        
+    <a href="section-17.html" class="nav-card next">
+      <span class="nav-direction">Next Section →</span>
+      <span class="nav-title">Sec 17: Handling Null &amp; Nullable Value/Ref Types</span>
+    </a>
+  
+      </nav>
+
+      <!-- Section Footer -->
+      <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <span>C# Masterclass Static Documentation Portal</span>
+        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+      </footer>
+    </main>
+
+    <!-- Right Table of Contents (TOC) -->
+    <aside class="docs-toc">
+      <div class="toc-title">On This Page</div>
+      <ul class="toc-list">
+        
+      <li class="toc-item">
+        <a href="#why-generics" class="toc-link">1. The Problem Generics Solved: ArrayList vs Type Safety</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#generic-classes" class="toc-link">2. Generic Classes &amp; The Type Parameter T</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#generic-methods" class="toc-link">3. Generic Methods &amp; Type Inference</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#generic-constraints-matrix" class="toc-link">4. The Generic Constraints (where) Matrix</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#jit-specialization" class="toc-link">5. CLR JIT Specialization: Value Types vs Reference Types</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#covariance-contravariance" class="toc-link">6. Covariance (out) and Contravariance (in)</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#pitfalls" class="toc-link">7. Common Generics Gotchas</a>
+      </li>
+    
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/search-index.js"></script>
+  <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

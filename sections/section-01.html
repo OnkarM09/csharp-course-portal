@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 01: Course Fundamentals &amp; .NET Architecture — C# Masterclass</title>
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body id="top">
+
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <div class="header-left">
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+        <span class="sidebar-toggle-text">« Collapse</span>
+      </button>
+      <a href="../index.html" class="brand-link">
+        <span class="brand-icon">C#</span>
+        <span>Masterclass</span>
+      </a>
+      <span class="version-pill">.NET 9 / C# 13</span>
+    </div>
+
+    <div class="header-right">
+      <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
+        <span>📚 Course Index</span>
+      </a>
+
+      <button class="search-trigger-btn" aria-label="Search curriculum">
+        <span>🔍 Search topics...</span>
+        <kbd class="kbd-shortcut">Ctrl+K</kbd>
+      </button>
+
+      <button class="theme-toggle-btn" aria-label="Toggle dark/light theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="sidebar-backdrop"></div>
+
+  <!-- Documentation Layout -->
+  <div class="docs-wrapper">
+
+    <!-- Left Navigation Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-top-bar">
+        <span class="sidebar-top-title">Navigation</span>
+        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+          <span>Collapse</span>
+        </button>
+      </div>
+      <div class="sidebar-search-box">
+        <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
+          <span>🏠 Return to Dashboard</span>
+        </a>
+      </div>
+      
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 1</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-01.html" class="sidebar-link active">
+            <span class="sidebar-sec-num">01</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Course Fundamentals &amp; .NET Architecture</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-02.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">02</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# Language Basics &amp; Syntax</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-03.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">03</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Development Environment, .NET CLI &amp; First Program</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 2</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-04.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">04</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">OOP Basics (Classes &amp; Objects)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-05.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">05</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Fields &amp; Access Modifiers</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-06.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">06</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Methods &amp; Parameters</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-07.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">07</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Type Conversion &amp; Casting</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-08.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">08</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Constructors (Basics &amp; Chaining)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-09.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">09</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Properties &amp; Indexers</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 3</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-10.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">10</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Inheritance, Hiding &amp; Overriding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-11.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">11</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Abstract Classes &amp; Interfaces</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-12.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">12</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Namespaces &amp; Code Organization</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-13.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">13</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Partial Classes, Static Classes &amp; Enums</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-14.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">14</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Structures (Structs) &amp; Value Semantics</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-15.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">15</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">System.Object &amp; Core Method Overrides</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 4</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-16.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">16</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Generics (Classes, Methods, Constraints)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-17.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">17</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Handling Null &amp; Nullable Value/Ref Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-18.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">18</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Extension Methods &amp; Pattern Matching</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-19.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">19</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Garbage Collection, Destructors &amp; IDisposable</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 5</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">6</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-20.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">20</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Delegates, Multicast &amp; Events</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-21.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">21</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Arrays (1D, Multi-Dimensional, Jagged)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-22.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">22</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Collections (Lists, Dictionaries, Sets, Queues)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-23.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">23</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Anonymous Types</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-24.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">24</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tuples &amp; ValueTuples</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-25.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">25</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">LINQ (Language-Integrated Query)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 6</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">4</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-26.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">26</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">String Manipulation, DateTime &amp; Math</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-27.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">27</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">File I/O, Streams, Serialization &amp; Encoding</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-28.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">28</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Exception Handling &amp; Defensive Programming</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-29.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">29</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Advanced Exception Patterns &amp; Diagnostics</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 7</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">3</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-31.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">31</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Threading &amp; Synchronization Primitives</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-32.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">32</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Tasks &amp; Task Parallel Library (TPL)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-33.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">33</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Asynchronous Programming (Async &amp; Await)</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">
+          <span>Module 8</span>
+          <span style="font-size: 0.68rem; opacity: 0.7;">5</span>
+        </div>
+        <ul class="sidebar-nav-list">
+          
+        <li class="sidebar-nav-item">
+          <a href="section-30.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">30</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-34.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">34</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 11 New Features (.NET 7)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-35.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">35</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 12 New Features (.NET 8)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-36.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">36</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 13 Innovations (.NET 9)</span>
+          </a>
+        </li>
+      
+        <li class="sidebar-nav-item">
+          <a href="section-37.html" class="sidebar-link ">
+            <span class="sidebar-sec-num">37</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">C# 14 &amp; Future Modern C# Roadmap</span>
+          </a>
+        </li>
+      
+        </ul>
+      </div>
+    
+    </aside>
+
+    <!-- Main Content Container -->
+    <main class="docs-main-container">
+
+      <!-- Floating Expand Button when Sidebar is Collapsed -->
+      <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+        <span>» Expand Sidebar</span>
+      </button>
+
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs" aria-label="Breadcrumbs">
+        <a href="../index.html">Course Index</a>
+        <span class="crumb-sep">/</span>
+        <span>Module 1</span>
+        <span class="crumb-sep">/</span>
+        <span style="color: var(--text-main); font-weight: 600;">Section 01</span>
+      </nav>
+
+      <!-- Section Banner Header -->
+      <header class="section-banner">
+        <div class="section-meta-row">
+          <span class="module-badge">Module 1</span>
+          <span class="read-time-badge">⏱️ 18 min read</span>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <span class="tag-pill">.NET 9</span> <span class="tag-pill">CLR</span> <span class="tag-pill">JIT</span> <span class="tag-pill">BCL</span> <span class="tag-pill">Architecture</span>
+          </div>
+        </div>
+        <h1>Section 01: Course Fundamentals &amp; .NET Architecture</h1>
+        <p class="section-description">
+          Detailed architectural breakdown integrating comprehensive explanations, syntax reference matrices, compiler internals, and production C# code.
+        </p>
+      </header>
+
+      <!-- Body Content -->
+      <article class="docs-content">
+        
+    <h2 id="dotnet-ecosystem">1. What is .NET & The Base Class Library (BCL)</h2>
+    <p>
+      When you decide to write a C# program, you are not just using the C# language in isolation. You are authoring software within an expansive, unified ecosystem called <strong>.NET</strong>. Think of .NET as a robust contract between you and the physical hardware: you agree to express your domain logic according to C# language rules, and in return, the platform handles immense low-level engineering complexities like memory layout, processor scheduling, architecture independence, and operating system API mediation.
+    </p>
+
+    
+    <div class="callout callout-original">
+      <div class="callout-header">
+        <span>🔵 Core Concept (from Notes)</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        Imagine being tasked with building an application that needs to display the exact local time or parse an incoming HTTP request. In lower-level unmanaged languages, this involves interacting with OS kernel clock APIs, converting epoch hardware counters, and formatting byte buffers.
+      </p>
+      <p>
+        In .NET, the <strong>Base Class Library (BCL)</strong> provides thousands of pre-tested, high-performance, battle-hardened primitives grouped logically into namespaces:
+      </p>
+      <ul>
+        <li><code>System.Math</code>: High-performance transcendental arithmetic, trigonometry, and floating-point manipulation.</li>
+        <li><code>System.Text</code> & <code>System.String</code>: UTF-16 and UTF-8 string allocations, memory-efficient span slices, and builders.</li>
+        <li><code>System.Collections.Generic</code>: Type-safe dynamically growing lists, hashed dictionaries, and queues.</li>
+        <li><code>System.IO</code>: Native file handle wrappers, buffered streams, and serialization pipelines.</li>
+      </ul>
+    
+      </div>
+    </div>
+  
+
+    <h2 id="clr-internals">2. The Common Language Runtime (CLR) & JIT Compilation</h2>
+    <p>
+      The <strong>Common Language Runtime (CLR)</strong> is the execution heart of .NET. Modern processors only understand architecture-specific machine code (such as x86-64, ARM64, or RISC-V). They cannot execute raw C# source code. The CLR bridges this fundamental gap via a two-stage compilation model.
+    </p>
+
+    <h3 id="two-stage-compilation">The Two-Stage Compilation Lifecycle</h3>
+    <ol>
+      <li>
+        <strong>Roslyn Compiler Stage:</strong> When you invoke <code>dotnet build</code> or compile in Visual Studio, the Roslyn C# compiler converts your high-level <code>.cs</code> files into <strong>Common Intermediate Language (CIL)</strong> (often abbreviated as IL or MSIL) and packages it into a portable assembly (<code>.dll</code> or <code>.exe</code>) alongside rich CLI metadata.
+      </li>
+      <li>
+        <strong>JIT Compilation Stage:</strong> When the application executes, the CLR's <strong>Just-In-Time (JIT) Compiler</strong> (RyuJIT) translates CIL instructions for each specific method into native machine instructions on demand—only when that method is invoked for the first time.
+      </li>
+      <li>
+        <strong>Native Code Caching:</strong> Once translated, the CLR caches the native instructions in memory. Subsequent calls execute the native instructions directly with zero translation overhead.
+      </li>
+    </ol>
+
+    
+    <div class="callout callout-deepdive">
+      <div class="callout-header">
+        <span>🟣 Under the Hood / Compiler Lowering</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        Modern .NET uses <strong>Tiered Compilation</strong>. On method startup, RyuJIT produces quick, unoptimized native code (<strong>Tier 0</strong>) so your application boots instantly. If the runtime detects that a method is called frequently ("hot path"), it recompiles that method in the background with aggressive loop unrolling, vectorization (SIMD), and inline optimizations (<strong>Tier 1 / PGO</strong> - Profile-Guided Optimization).
+      </p>
+    
+      </div>
+    </div>
+  
+
+    <h2 id="compilation-diagram">3. Architecture & Execution Pipeline</h2>
+    
+    <div class="diagram-container">
+      <div class="diagram-title">📊 Diagram: C# Source to Hardware Execution Lifecycle</div>
+      <pre class="diagram-pre">+-----------------------+
+|   C# Source Code      |  (Program.cs)
++-----------+-----------+
+            |
+            |  Roslyn Compiler (csc)
+            v
++-----------------------+
+|  .NET Assembly (.dll) |  Contains Common Intermediate Language (CIL)
+|  [CIL + CLI Metadata] |  Platform-Agnostic &amp; CPU-Agnostic
++-----------+-----------+
+            |
+            |  Application Launch / Invocation
+            v
++-----------------------------------------------------------+
+|               Common Language Runtime (CLR)               |
+|                                                           |
+|   +-------------------+          +--------------------+   |
+|   | JIT Compiler      | --------&gt;| Native Memory /    |   |
+|   | (RyuJIT Tier 0/1) |          | Native Code Cache  |   |
+|   +-------------------+          +---------+----------+   |
+|             ^                              |              |
+|   +---------+---------+                    |              |
+|   | Garbage Collector |                    |              |
+|   | Type Safety Engine|                    |              |
+|   | Thread Pool &amp; OS  |                    |              |
+|   +-------------------+                    |              |
++--------------------------------------------|--------------+
+                                             v
+                             +-------------------------------+
+                             | Native CPU Hardware (x64/ARM) |
+                             | Direct Machine Instructions   |
+                             +-------------------------------+</pre>
+    </div>
+  
+
+    <h2 id="framework-evolution">4. .NET Framework vs .NET Core vs Modern .NET</h2>
+    <p>
+      Understanding the historical trajectory of .NET clarifies how legacy enterprise applications relate to modern high-performance cloud services.
+    </p>
+
+    
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Platform Milestone</th><th>Active Era</th><th>Supported Operating Systems</th><th>Architecture &amp; Open Source Status</th><th>Key Role in Industry</th></tr></thead>
+        <tbody><tr><td><strong>.NET Framework</strong> (1.0 - 4.8.1)</td><td>2002 - 2019</td><td>Windows Only</td><td>Proprietary, monolithic Windows OS component</td><td>Legacy enterprise backbones (WPF, WCF, WebForms). In maintenance mode.</td></tr><tr><td><strong>.NET Core</strong> (1.0 - 3.1)</td><td>2016 - 2020</td><td>Windows, macOS, Linux</td><td>Open-source, modular NuGet-based rewrite</td><td>Broke OS lock-in; enabled Docker containers and microservices.</td></tr><tr><td><strong>Modern .NET</strong> (.NET 5 through .NET 9+)</td><td>2020 - Present</td><td>Cross-Platform (x64, ARM64)</td><td>Unified, single high-performance platform</td><td>Standard for all new modern enterprise, web, cloud, IoT, and AI development.</td></tr><tr><td><strong>LTS vs Current Releases</strong></td><td>Annual cadence</td><td>Cross-Platform</td><td>Even numbers = LTS (3 yrs); Odd = Standard (18 mos)</td><td>.NET 8 is LTS (Long Term Support); .NET 9 is latest high-performance track.</td></tr></tbody>
+      </table>
+    </div>
+  
+
+    <h2 id="bcl-namespaces">5. Core BCL Namespaces Reference Matrix</h2>
+    
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Namespace</th><th>Primary Primitives &amp; Abstractions</th><th>Common Practical Usage</th></tr></thead>
+        <tbody><tr><td><code>System</code></td><td><code>Object, String, Int32, Boolean, DateTime, Math, Console, Exception</code></td><td>Foundational primitive types and fundamental runtime facilities.</td></tr><tr><td><code>System.Collections.Generic</code></td><td><code>List&lt;T&gt;, Dictionary&lt;TKey,TValue&gt;, HashSet&lt;T&gt;, Queue&lt;T&gt;</code></td><td>Type-safe memory data structures with zero boxing overhead.</td></tr><tr><td><code>System.IO</code></td><td><code>File, Directory, Path, FileStream, MemoryStream, BinaryReader</code></td><td>High-throughput stream operations and filesystem manipulation.</td></tr><tr><td><code>System.Text.Json</code></td><td><code>JsonSerializer, JsonDocument, Utf8JsonReader</code></td><td>High-speed, zero-allocation UTF-8 JSON serialization.</td></tr><tr><td><code>System.Threading.Tasks</code></td><td><code>Task, Task&lt;TResult&gt;, Parallel, ValueTask</code></td><td>Task Parallel Library (TPL) for asynchronous and parallel workflows.</td></tr></tbody>
+      </table>
+    </div>
+  
+
+    <h2 id="clr-managed-services">6. Managed Code vs Unmanaged Code Services</h2>
+    <p>
+      Code that targets the CLR is termed <strong>Managed Code</strong>. It runs under the oversight of runtime subsystems that provide automated safety rails:
+    </p>
+    <ul>
+      <li><strong>Automatic Garbage Collection (GC):</strong> Eliminates manual <code>malloc()</code> and <code>free()</code> vulnerabilities, preventing dangling pointers and double frees.</li>
+      <li><strong>Strong Type Safety:</strong> Enforces memory boundaries; buffer overflows and illicit pointer casts are caught at runtime or compile-time.</li>
+      <li><strong>Cross-Language Interoperability:</strong> A class written in C# can inherit from an F# record or be consumed by VB.NET through the Common Type System (CTS).</li>
+      <li><strong>Structured Exception Handling:</strong> Propagates errors safely across call boundaries and stack frames.</li>
+    </ul>
+
+    
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C# Runtime Probe</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// A modern top-level C# program demonstrating BCL integration
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+
+Console.WriteLine(&quot;=== .NET Runtime Diagnostic Probe ===&quot;);
+Console.WriteLine($&quot;Framework Description : {RuntimeInformation.FrameworkDescription}&quot;);
+Console.WriteLine($&quot;OS Architecture       : {RuntimeInformation.OSArchitecture}&quot;);
+Console.WriteLine($&quot;Process Architecture  : {RuntimeInformation.ProcessArchitecture}&quot;);
+Console.WriteLine($&quot;Processor Count       : {Environment.ProcessorCount}&quot;);
+Console.WriteLine($&quot;System Page Size      : {Environment.SystemPageSize} bytes&quot;);
+
+// Measuring BCL high-precision stopwatch
+var sw = Stopwatch.StartNew();
+double sum = 0;
+for (int i = 1; i &lt;= 1_000_000; i++)
+{
+    sum += Math.Sqrt(i);
+}
+sw.Stop();
+
+Console.WriteLine($&quot;Computed sqrt sum: {sum:N2} in {sw.Elapsed.TotalMilliseconds:F3} ms&quot;);</code></pre>
+    </div>
+  
+
+    <h2 id="pitfalls">7. Common Architecture Gotchas & Traps</h2>
+    
+    <div class="callout callout-warning">
+      <div class="callout-header">
+        <span>🟠 Compiler Trap & Common Gotcha</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        <strong>Trap:</strong> Confusing CIL with interpreted bytecode (like classical Python or older Java VMs).
+      </p>
+      <p>
+        <strong>Reality:</strong> The CLR never "interprets" CIL line-by-line during normal execution. CIL is compiled into raw machine instructions by RyuJIT before execution. In modern .NET, JIT compiled code approaches or matches the execution speed of native C/C++ code due to aggressive hardware intrinsics and SIMD acceleration.
+      </p>
+    
+      </div>
+    </div>
+  
+    
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <span>🟢 Best Practice & Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        
+      <p>
+        In enterprise environments, select <strong>LTS (Long-Term Support)</strong> versions (.NET 6, .NET 8) for services requiring multi-year stability, and adopt annual STS/Current versions (.NET 7, .NET 9) when cutting-edge runtime throughput improvements are desired.
+      </p>
+    
+      </div>
+    </div>
+  
+  
+      </article>
+
+      <!-- Bottom Navigation Prev / Next -->
+      <nav class="bottom-nav">
+        <div></div>
+        
+    <a href="section-02.html" class="nav-card next">
+      <span class="nav-direction">Next Section →</span>
+      <span class="nav-title">Sec 02: C# Language Basics &amp; Syntax</span>
+    </a>
+  
+      </nav>
+
+      <!-- Section Footer -->
+      <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <span>C# Masterclass Static Documentation Portal</span>
+        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+      </footer>
+    </main>
+
+    <!-- Right Table of Contents (TOC) -->
+    <aside class="docs-toc">
+      <div class="toc-title">On This Page</div>
+      <ul class="toc-list">
+        
+      <li class="toc-item">
+        <a href="#dotnet-ecosystem" class="toc-link">1. What is .NET &amp; The Base Class Library</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#clr-internals" class="toc-link">2. CLR &amp; JIT Compilation Lifecycle</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#compilation-diagram" class="toc-link">3. Architecture &amp; Execution Pipeline</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#framework-evolution" class="toc-link">4. .NET Framework vs .NET Core vs Modern .NET</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#bcl-namespaces" class="toc-link">5. Core BCL Namespaces Reference Matrix</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#clr-managed-services" class="toc-link">6. Managed Code vs Unmanaged Code Services</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#pitfalls" class="toc-link">7. Common Architecture Gotchas &amp; Traps</a>
+      </li>
+    
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/search-index.js"></script>
+  <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
