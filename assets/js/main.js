@@ -15,8 +15,22 @@
     if (isCollapsed && window.innerWidth > 900) {
       document.body.classList.add('sidebar-collapsed');
       updateSidebarToggleBtn(true);
+    } else if (window.innerWidth <= 900) {
+      document.body.classList.remove('sidebar-collapsed');
     }
   }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 900) {
+      document.body.classList.remove('sidebar-collapsed');
+    } else {
+      const isCollapsed = localStorage.getItem(STORAGE_KEY_SIDEBAR) === 'true';
+      if (isCollapsed) {
+        document.body.classList.add('sidebar-collapsed');
+        updateSidebarToggleBtn(true);
+      }
+    }
+  });
 
   function toggleSidebarCollapsed() {
     const isNowCollapsed = document.body.classList.toggle('sidebar-collapsed');
@@ -67,7 +81,12 @@
     document.querySelectorAll('.sidebar-toggle-btn, .sidebar-collapse-btn, .expand-sidebar-pill').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        toggleSidebarCollapsed();
+        if (window.innerWidth <= 900) {
+          if (sidebar) sidebar.classList.remove('open');
+          if (backdrop) backdrop.classList.remove('open');
+        } else {
+          toggleSidebarCollapsed();
+        }
       });
     });
 
@@ -96,6 +115,16 @@
           backdrop.classList.remove('open');
         });
       }
+
+      // Close sidebar when tapping a nav link on mobile/tablet
+      sidebar.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 900) {
+            sidebar.classList.remove('open');
+            if (backdrop) backdrop.classList.remove('open');
+          }
+        });
+      });
     }
 
     // 3. Code Block Copy Functionality

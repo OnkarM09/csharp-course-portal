@@ -114,6 +114,8 @@ html {
   font-size: 15px;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 24px);
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -125,6 +127,8 @@ body {
   display: flex;
   flex-direction: column;
   transition: background-color 0.2s ease, color 0.2s ease;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 a {
@@ -691,6 +695,9 @@ body.sidebar-collapsed .docs-main-container {
   margin: 1.25rem 0 1.5rem 0;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .code-header {
@@ -738,6 +745,9 @@ pre {
   margin: 0;
   padding: 1rem 1.25rem;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  box-sizing: border-box;
   font-family: 'Fira Code', 'Cascadia Code', Consolas, Monaco, monospace;
   font-size: 0.88rem;
   line-height: 1.6;
@@ -776,6 +786,9 @@ p code, li code {
   padding: 1.25rem;
   margin: 1.5rem 0;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .diagram-title {
@@ -797,6 +810,8 @@ p code, li code {
   background: transparent;
   padding: 0;
   margin: 0;
+  white-space: pre;
+  max-width: 100%;
 }
 
 /* ==========================================================================
@@ -804,10 +819,14 @@ p code, li code {
    ========================================================================== */
 .table-responsive {
   width: 100%;
+  max-width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
   margin: 1.5rem 0;
   border: 1px solid var(--table-border);
   border-radius: 8px;
+  display: block;
 }
 
 table {
@@ -1253,31 +1272,137 @@ tr:hover td {
 }
 
 /* ==========================================================================
-   Responsive Breakpoints
+   Comprehensive Responsive Breakpoints (Tablet & Mobile Optimized)
    ========================================================================== */
+
+/* --- 1. Laptop / Small Desktop (<= 1200px) --- */
 @media (max-width: 1200px) {
   .docs-toc {
-    display: none;
+    display: none !important;
+  }
+  
+  .docs-main-container {
+    max-width: 100%;
+    padding: 2rem 2rem 4rem 2rem;
   }
 }
 
-@media (max-width: 900px) {
-  .nav-toggle-btn {
-    display: block;
+/* --- 2. Tablet Landscape & Intermediate (<= 1024px) --- */
+@media (max-width: 1024px) {
+  .top-header {
+    padding: 0 1.25rem;
   }
   
+  .kbd-shortcut {
+    display: none !important;
+  }
+  
+  .docs-main-container {
+    padding: 1.75rem 1.5rem 3.5rem 1.5rem;
+  }
+}
+
+/* --- 3. Tablet Portrait & Phablets (<= 900px) --- */
+@media (max-width: 900px) {
+  /* Header Layout */
+  .top-header {
+    padding: 0 1rem;
+    height: 56px;
+  }
+
+  .header-left {
+    gap: 0.6rem;
+  }
+
+  .header-right {
+    gap: 0.5rem;
+  }
+
+  /* Hamburger Toggle: Display */
+  .nav-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 5px 9px;
+    font-size: 1.15rem;
+    color: var(--text-main);
+    cursor: pointer;
+  }
+
+  /* Hide Desktop-only Collapsible Controls */
+  .sidebar-toggle-btn {
+    display: none !important;
+  }
+
+  .expand-sidebar-pill {
+    display: none !important;
+  }
+
+  .version-pill {
+    display: none !important;
+  }
+
+  /* Reset Desktop Sidebar-Collapsed overrides on Tablet/Mobile */
+  body.sidebar-collapsed .docs-sidebar {
+    display: block !important;
+    transform: translateX(-100%);
+  }
+  body.sidebar-collapsed .docs-sidebar.open {
+    transform: translateX(0) !important;
+  }
+  body.sidebar-collapsed .expand-sidebar-pill {
+    display: none !important;
+  }
+  body.sidebar-collapsed .docs-main-container {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Off-canvas Sliding Sidebar Drawer */
   .docs-sidebar {
     position: fixed;
     top: var(--header-height);
     left: 0;
-    z-index: 50;
+    width: min(300px, 85vw);
+    max-width: 85vw;
+    height: calc(100vh - var(--header-height));
+    z-index: 90;
     transform: translateX(-100%);
     box-shadow: var(--shadow-lg);
+    border-right: 1px solid var(--border-subtle);
+    padding: 1rem 1rem 2.5rem 1rem;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
   .docs-sidebar.open {
     transform: translateX(0);
   }
-  
+
+  .sidebar-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .sidebar-collapse-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+
+  /* Dark Backdrop for Sidebar */
   .sidebar-backdrop {
     display: none;
     position: fixed;
@@ -1285,30 +1410,446 @@ tr:hover td {
     left: 0;
     width: 100vw;
     height: calc(100vh - var(--header-height));
-    background: rgba(0,0,0,0.5);
-    z-index: 45;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 85;
   }
+
   .sidebar-backdrop.open {
     display: block;
   }
 
+  /* Main Container */
   .docs-main-container {
-    padding: 1.5rem 1rem 3rem 1rem;
+    padding: 1.5rem 1.25rem 3.5rem 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Bottom Navigation */
+  .bottom-nav {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
+  }
+
+  .nav-card.next {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  /* Portal Dashboard (Home Page) */
+  .portal-hero {
+    padding: 2.75rem 1rem 2rem 1rem;
   }
 
   .portal-hero h1 {
-    font-size: 2rem;
+    font-size: 2.15rem;
+  }
+
+  .portal-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .modules-section {
+    padding: 0 1.25rem 3.5rem 1.25rem;
+  }
+
+  .modules-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+/* --- 4. Mobile Devices (<= 640px) --- */
+@media (max-width: 640px) {
+  /* Header: Streamlined, Zero Overflow */
+  .top-header {
+    padding: 0 0.65rem;
+    height: 52px;
+  }
+
+  .header-left {
+    gap: 0.45rem;
+  }
+
+  .header-right {
+    gap: 0.35rem;
+  }
+
+  .brand-link {
+    font-size: 0.95rem;
+    gap: 0.35rem;
+  }
+
+  .brand-text {
+    display: none !important;
+  }
+
+  .brand-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .home-text {
+    display: none !important;
+  }
+
+  .index-home-btn {
+    padding: 6px 9px;
+    font-size: 0.95rem;
+  }
+
+  .search-text {
+    display: none !important;
+  }
+
+  .search-trigger-btn {
+    padding: 6px 10px;
+    font-size: 0.95rem;
+    min-width: 36px;
+    justify-content: center;
+  }
+
+  .theme-toggle-btn {
+    padding: 6px 8px;
+  }
+
+  .nav-toggle-btn {
+    padding: 4px 8px;
+    font-size: 1.1rem;
+  }
+
+  /* Main Container */
+  .docs-main-container {
+    padding: 1.15rem 0.85rem 3rem 0.85rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Breadcrumbs */
+  .breadcrumbs {
+    font-size: 0.76rem;
+    gap: 0.35rem;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  /* Section Header Banner */
+  .section-banner {
+    padding: 1.15rem 0.95rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .section-banner h1 {
+    font-size: 1.4rem;
+    line-height: 1.3;
+    margin-bottom: 0.45rem;
+    word-break: break-word;
+  }
+
+  .section-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .section-meta-row {
+    gap: 0.35rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .module-badge, .read-time-badge, .tag-pill {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
+
+  /* Headings & Text */
+  .docs-content h2 {
+    font-size: 1.25rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.35rem;
+    word-break: break-word;
+  }
+
+  .docs-content h3 {
+    font-size: 1.08rem;
+    margin-top: 1.35rem;
+    margin-bottom: 0.55rem;
+    word-break: break-word;
+  }
+
+  .docs-content h4 {
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    word-break: break-word;
+  }
+
+  .docs-content p, .docs-content li {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+
+  .docs-content ul, .docs-content ol {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Code Blocks */
+  .code-block-container {
+    margin: 1rem 0 1.25rem 0;
+    border-radius: 6px;
+  }
+
+  .code-header {
+    padding: 5px 10px;
+    font-size: 0.72rem;
+  }
+
+  pre {
+    padding: 0.75rem 0.85rem;
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+
+  /* Visual Diagrams */
+  .diagram-container {
+    padding: 0.85rem;
+    margin: 1.15rem 0;
+    border-radius: 6px;
+  }
+
+  .diagram-title {
+    font-size: 0.76rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .diagram-pre {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  /* Callout Boxes */
+  .callout {
+    padding: 0.85rem 0.95rem;
+    margin: 1.15rem 0;
+    border-radius: 6px;
+  }
+
+  .callout-header {
+    font-size: 0.85rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .callout-content {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  /* Tables */
+  .table-responsive {
+    margin: 1.15rem 0;
+    border-radius: 6px;
+  }
+
+  table {
+    min-width: 440px;
+    font-size: 0.82rem;
+  }
+
+  th, td {
+    padding: 8px 10px;
+  }
+
+  /* Bottom Navigation */
+  .bottom-nav {
+    margin-top: 2.25rem;
+    padding-top: 1.35rem;
+    gap: 0.75rem;
+  }
+
+  .nav-card {
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+  }
+
+  .nav-card-title {
+    font-size: 0.92rem;
+  }
+
+  /* Search Modal */
+  .search-modal-backdrop {
+    padding: 2vh 0.5rem 0 0.5rem;
+  }
+
+  .search-modal {
+    width: 100%;
+    max-height: 88vh;
+    border-radius: 10px;
+  }
+
+  .search-modal-header {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .search-modal-input {
+    font-size: 0.95rem;
+  }
+
+  .search-modal-results {
+    max-height: 65vh;
+    padding: 6px;
+  }
+
+  .search-result-item {
+    padding: 8px 10px;
+    border-radius: 6px;
+  }
+
+  .search-result-title {
+    font-size: 0.88rem;
+  }
+
+  .search-result-snippet {
+    font-size: 0.8rem;
+  }
+
+  .search-modal-footer {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    justify-content: center;
+  }
+
+  .search-modal-footer span:not(.search-status-text) {
+    display: none;
+  }
+
+  /* Portal Home Page */
+  .portal-hero {
+    padding: 2rem 0.65rem 1.5rem 0.65rem;
+  }
+
+  .portal-hero h1 {
+    font-size: 1.65rem;
+    line-height: 1.25;
+  }
+
+  .portal-hero-lead {
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.55;
+  }
+
+  .portal-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    padding: 0.85rem 0.5rem;
+  }
+
+  .stat-number {
+    font-size: 1.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+  }
+
+  .modules-section {
+    padding: 0 0.65rem 3rem 0.65rem;
+  }
+
+  .section-group-heading {
+    font-size: 1.3rem;
+  }
+
+  .section-group-sub {
+    font-size: 0.85rem;
   }
 
   .modules-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
-  .bottom-nav {
-    grid-template-columns: 1fr;
+  .module-card {
+    padding: 1.15rem;
+    border-radius: 10px;
   }
-  .nav-card.next {
-    text-align: left;
-    align-items: flex-start;
+
+  .module-card-title {
+    font-size: 1.05rem;
+  }
+
+  .module-card-desc {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .module-sec-item {
+    font-size: 0.82rem;
+  }
+}
+
+/* --- 5. Ultra-Small Devices (<= 360px) --- */
+@media (max-width: 360px) {
+  .top-header {
+    padding: 0 0.4rem;
+    height: 50px;
+  }
+
+  .header-left {
+    gap: 0.35rem;
+  }
+
+  .header-right {
+    gap: 0.25rem;
+  }
+
+  .brand-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .nav-toggle-btn {
+    padding: 4px 7px;
+    font-size: 1.05rem;
+  }
+
+  .index-home-btn,
+  .search-trigger-btn,
+  .theme-toggle-btn {
+    padding: 5px 7px;
+  }
+
+  .docs-main-container {
+    padding: 0.85rem 0.5rem 2.5rem 0.5rem;
+  }
+
+  .section-banner {
+    padding: 0.85rem 0.75rem;
+  }
+
+  .section-banner h1 {
+    font-size: 1.25rem;
+  }
+
+  .portal-hero h1 {
+    font-size: 1.4rem;
+  }
+
+  .portal-stats-row {
+    grid-template-columns: 1fr;
   }
 }
