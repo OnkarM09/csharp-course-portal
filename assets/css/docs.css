@@ -186,16 +186,17 @@ a:hover {
 }
 
 .brand-icon {
-  width: 28px;
-  height: 28px;
-  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-  border-radius: 6px;
-  display: flex;
+  width: 30px;
+  height: 30px;
+  background: url('../images/favicon.svg') no-repeat center center;
+  background-size: contain;
+  border-radius: 7px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
-  color: #0f172a;
-  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25);
+  text-indent: -9999px;
+  overflow: hidden;
 }
 
 .version-pill {
