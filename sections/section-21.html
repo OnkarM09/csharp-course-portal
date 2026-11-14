@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 21: Arrays (1D, Multi-Dimensional, Jagged) — C# Masterclass</title>
+  <title>Section 21: Arrays (1D, Multi-Dimensional, Jagged) &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 5</span>
-          <span class="read-time-badge">⏱️ 24 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>24 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">Single-D Arrays</span> <span class="tag-pill">Multi-D Arrays</span> <span class="tag-pill">Jagged Arrays</span> <span class="tag-pill">Array Class Methods</span>
           </div>
@@ -544,8 +550,7 @@ Console.WriteLine($&quot;The array contains {highScores.Length} scores.&quot;);<
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">string[] daysOfWeek = { &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;,
-&quot;Friday&quot;, &quot;Saturday&quot;, &quot;Sunday&quot; };
+      <pre><code class="language-csharp">string[] daysOfWeek = { &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;,&quot;Friday&quot;, &quot;Saturday&quot;, &quot;Sunday&quot; };
 Console.WriteLine(&quot;The days of the week are:&quot;);</code></pre>
     </div>
   
@@ -586,12 +591,14 @@ Console.WriteLine(&quot;The days of the week are:&quot;);</code></pre>
       </div>
       <pre><code class="language-csharp">int[] numbers = { 5, 10, 15, 20, 25 };
 int sum = 0;
-// 'number' will hold the value of each element in turn (5, then 10, then 15...).
+// 'number' will hold the value of each element in turn (5, then 10, then
+15...).
 foreach (int number in numbers)
 {
     sum += number;
     // The following line would cause a compiler error:
-    // number = 0; // ERROR! Cannot assign to 'number' because it is a 'foreach iteration variable'.
+    // number = 0; // ERROR! Cannot assign to 'number' because it is a
+    'foreach iteration variable'.
 }
 Console.WriteLine($&quot;The sum of the numbers is: {sum}&quot;); // Output: 75</code></pre>
     </div>
@@ -766,8 +773,7 @@ Console.WriteLine(&quot;Original array: &quot; + string.Join(&quot;, &quot;, use
         </button>
       </div>
       <pre><code class="language-csharp">// The elements are now null, but the array size is still 5.
-Console.WriteLine(&quot;Array after Clear: &quot; + string.Join(&quot;, &quot;, userNames));
-Console.WriteLine($&quot;Array length is still: {userNames.Length}&quot;);</code></pre>
+Console.WriteLine(&quot;Array after Clear: &quot; + string.Join(&quot;, &quot;, userNames));Console.WriteLine($&quot;Array length is still: {userNames.Length}&quot;);</code></pre>
     </div>
   
     <h3 id="sec-21-lec-8-system-array-clear-output">Output</h3>
@@ -827,15 +833,10 @@ Console.WriteLine(&quot;Resized array: &quot; + string.Join(&quot;, &quot;, numb
       </div>
       <pre><code class="language-csharp">// --- Sorting Numbers ---
 int[] numbers = { 5, 1, 9, 3, 7, 6 };
-Console.WriteLine(&quot;Original numbers: &quot; + string.Join(&quot;, &quot;, numbers));
-Array.Sort(numbers);
-Console.WriteLine(&quot;Sorted numbers: 	&quot; + string.Join(&quot;, &quot;, numbers));
-Console.WriteLine(&quot;--------------------&quot;);
+Console.WriteLine(&quot;Original numbers: &quot; + string.Join(&quot;, &quot;, numbers));Array.Sort(numbers);Console.WriteLine(&quot;Sorted numbers: 	&quot; + string.Join(&quot;, &quot;, numbers));Console.WriteLine(&quot;--------------------&quot;);
 // --- Sorting Strings ---
 string[] names = { &quot;Charlie&quot;, &quot;Alice&quot;, &quot;Eve&quot;, &quot;Bob&quot; };
-Console.WriteLine(&quot;Original names: &quot; + string.Join(&quot;, &quot;, names));
-Array.Sort(names);
-Console.WriteLine(&quot;Sorted names: 	&quot; + string.Join(&quot;, &quot;, names));</code></pre>
+Console.WriteLine(&quot;Original names: &quot; + string.Join(&quot;, &quot;, names));Array.Sort(names);Console.WriteLine(&quot;Sorted names: 	&quot; + string.Join(&quot;, &quot;, names));</code></pre>
     </div>
   
     <h3 id="sec-21-lec-10-system-array-sort-output">Output</h3>
@@ -857,9 +858,7 @@ Console.WriteLine(&quot;Sorted names: 	&quot; + string.Join(&quot;, &quot;, name
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">Console.WriteLine(&quot;Original letters: &quot; + string.Join(&quot;, &quot;, letters));
-Array.Reverse(letters);
-Console.WriteLine(&quot;Reversed letters: &quot; + string.Join(&quot;, &quot;, letters));</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(&quot;Original letters: &quot; + string.Join(&quot;, &quot;, letters));Array.Reverse(letters);Console.WriteLine(&quot;Reversed letters: &quot; + string.Join(&quot;, &quot;, letters));</code></pre>
     </div>
   
     <h3 id="sec-21-lec-11-system-array-reverse-output">Output</h3>
@@ -1029,10 +1028,12 @@ public class Program
     public static void Main(string[] args)
     {
         // STEP 1: Create the array.
-        // This allocates memory for THREE Student REFERENCES, all set to null.
+        // This allocates memory for THREE Student REFERENCES, all set to
+        null.
         // It does NOT create any Student objects.
         Student[] classroom = new Student[3];
-        // If you try this now, it will throw a NullReferenceException because classroom[0] is null.
+        // If you try this now, it will throw a NullReferenceException because
+        classroom[0] is null.
         // classroom[0].Name = &quot;Alice&quot;; // CRASH!
         // STEP 2: You MUST instantiate an object for each element.
         for (int i = 0; i &lt; classroom.Length; i++)
@@ -1084,13 +1085,12 @@ public class Program
         originalClassroom[1] = new Student { Name = &quot;Bob&quot; };
         // Clone() performs a shallow copy.
         Student[] clonedClassroom = (Student[])originalClassroom.Clone();
-        Console.WriteLine(&quot;--- Before any changes ---&quot;);
-        Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;);
-        Console.WriteLine($&quot;Cloned[0]: {clonedClassroom[0].Name}&quot;);
+        Console.WriteLine(&quot;--- Before any changes ---&quot;);Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;);Console.WriteLine($&quot;Cloned[0]: {clonedClassroom[0].Name}&quot;);
         // Now, change the name of the student in the CLONED array.
         clonedClassroom[0].Name = &quot;Alicia&quot;;
         Console.WriteLine(&quot;\n--- Changed name in CLONED array ---&quot;);
-        // Because both arrays contain references to the SAME student object,
+        // Because both arrays contain references to the SAME student
+        object,
         // the change is reflected in the ORIGINAL array as well.
         Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;); //
         Output: Alicia
@@ -1126,7 +1126,8 @@ public class Program
     public string Name;
     // A regular constructor
     public Student(string name) { this.Name = name; }
-    // A copy constructor that creates a new student from an existing one. public Student(Student other)
+    // A copy constructor that creates a new student from an existing one.
+    public Student(Student other)
     {
         this.Name = other.Name;
     }
@@ -1142,13 +1143,12 @@ public class Program
         Student[originalClassroom.Length];
         for (int i = 0; i &lt; originalClassroom.Length; i++)
         {
-            // For each element, create a NEW student object using the copy constructor.
+            // For each element, create a NEW student object using the copy
+            constructor.
             deepCopiedClassroom[i] = new Student(originalClassroom[i]);
         }
-        Console.WriteLine(&quot;--- Before any changes ---&quot;);
-        Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;);
-        Console.WriteLine($&quot;Deep Copy[0]:
-        {deepCopiedClassroom[0].Name}&quot;);
+        Console.WriteLine(&quot;--- Before any changes ---&quot;);Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;);
+        Console.WriteLine($&quot;Deep Copy[0]:{deepCopiedClassroom[0].Name}&quot;);
         // Now, change the name of the student in the DEEP COPIED array.
         deepCopiedClassroom[0].Name = &quot;Alicia&quot;;
         Console.WriteLine(&quot;\n--- Changed name in DEEP COPIED array ---&quot;);
@@ -1163,7 +1163,15 @@ public class Program
   
 
     <h2 id="sec-21-lec-17-imp-points-to-remember">Lecture 17: IMP Points to Remember</h2>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>Arrays are Reference Types, Fixed-Size, and Zero-Based. This is the foundational summary. The variable is a reference to a block of memory on the heap.</li>
       <li>for vs. foreach: Use for when you need the index or need to modify elements. Use foreach for simpler, safer, read-only iteration.</li>
       <li>Array.Resize is an Illusion: It does not actually resize the array in place. It creates a new array and copies the data, which can be a performance concern for large arrays. List&lt;T&gt; is the correct tool for dynamically sized collections.</li>
@@ -1173,12 +1181,15 @@ public class Program
       <li>An array of class objects (e.g., Student[10]) stores only the 10 references contiguously. The actual Student objects are located in separate blocks of memory scattered across the heap.</li>
     </ul>
 
+      </div>
+    </div>
+  
       </article>
 
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="21" aria-pressed="false">
@@ -1191,13 +1202,13 @@ public class Program
       <nav class="bottom-nav">
         
     <a href="section-20.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 20: Delegates, Multicast &amp; Events</span>
     </a>
   
         
     <a href="section-22.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 22: Collections (Lists, Dictionaries, Sets, Queues)</span>
     </a>
   
@@ -1206,7 +1217,7 @@ public class Program
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

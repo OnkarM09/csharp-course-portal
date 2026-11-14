@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 30: C# 9 &amp; C# 10 Features (.NET 5 &amp; 6) — C# Masterclass</title>
+  <title>Section 30: C# 9 &amp; C# 10 Features (.NET 5 &amp; 6) &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 8</span>
-          <span class="read-time-badge">⏱️ 35 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>35 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">Records</span> <span class="tag-pill">init Accessors</span> <span class="tag-pill">Top-Level Statements</span> <span class="tag-pill">Target-Typed new</span> <span class="tag-pill">Global Usings</span>
           </div>
@@ -501,7 +507,8 @@ Console.WriteLine($&quot;There are {args.Length} arguments.&quot;);</code></pre>
 
     <div class="callout callout-tip">
       <div class="callout-header">
-        <span>🟢 Best Practice & Architecture Tip</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
         
       </div>
       <div class="callout-content">
@@ -613,7 +620,8 @@ global using System.Collections.Generic;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// No need for 'using System.Linq;' or 'using System.Collections.Generic;' here.
+      <pre><code class="language-csharp">// No need for 'using System.Linq;' or 'using System.Collections.Generic;'
+here.
 public class ProductService
 {
     public List&lt;string&gt; GetProductNames(List&lt;Product&gt; products)
@@ -634,7 +642,8 @@ public class ProductService
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// No need for 'using System.Linq;' or 'using System.Collections.Generic;' here either.
+      <pre><code class="language-csharp">// No need for 'using System.Linq;' or 'using System.Collections.Generic;'
+here either.
 public class UserService
 {
     public int CountActiveUsers(List&lt;User&gt; users)
@@ -673,7 +682,8 @@ public class UserService
       <pre><code class="language-csharp">using System.Runtime.CompilerServices;
 class MyLibrary
 {
-    // This method will run automatically when the assembly is loaded. [ModuleInitializer]
+    // This method will run automatically when the assembly is loaded.
+    [ModuleInitializer]
     internal static void Initialize()
     {
         Console.WriteLine(&quot;MyLibrary module is initializing...&quot;);
@@ -720,7 +730,8 @@ class MyLibrary
       <pre><code class="language-csharp">{
     // The compiler trusts that 'firstName' and 'lastName' are not null.
     Console.WriteLine($&quot;First: {firstName.ToUpper()}&quot;);
-    // The compiler gives a WARNING on the next line because 'middleName' could be null.
+    // The compiler gives a WARNING on the next line because
+    'middleName' could be null.
     // Console.WriteLine($&quot;Middle initial: {middleName.First()}&quot;);
     // This is the correct, safe way to handle the nullable type.
     if (middleName != null)
@@ -753,7 +764,8 @@ class MyLibrary
       <pre><code class="language-csharp">{
     // This helper method throws an exception if the user is null.
     EnsureNotNull(user);
-    // Even after the check, the compiler still warns that 'user' may be null here.
+    // Even after the check, the compiler still warns that 'user' may be null
+    here.
     // We use the null-forgiving operator '!' to tell the compiler it's safe.
     Console.WriteLine($&quot;Processing user: {user!.Name}&quot;);
 }</code></pre>
@@ -858,7 +870,8 @@ public class UserManager
 Example
 public void ProcessValue(object value)
 {
-    // Use the type pattern to handle different data types gracefully. if (value is string s)
+    // Use the type pattern to handle different data types gracefully.
+    if (value is string s)
     {
         Console.WriteLine($&quot;Received a string with length: {s.Length}&quot;);
     }
@@ -935,11 +948,13 @@ public void ProcessOrder(object order)
 {
     switch (order)
     {
-        // This case ONLY matches if the object is an Order AND its Total is over 5000.
+        // This case ONLY matches if the object is an Order AND its Total is
+        over 5000.
         case Order o when o.Total &gt; 5000:
         Console.WriteLine(&quot;Applying high-value order protocol.&quot;);
         break;
-        // This case matches any other Order that didn't match the case above.
+        // This case matches any other Order that didn't match the case
+        above.
         case Order o:
         Console.WriteLine(&quot;Processing standard order.&quot;);
         break;
@@ -1124,7 +1139,8 @@ draw</code></pre>
 {
     public int X { get; set; }
     public int Y { get; set; }
-    // This method enables positional pattern matching. public void Deconstruct(out int x, out int y)
+    // This method enables positional pattern matching.
+    public void Deconstruct(out int x, out int y)
     {
         x = this.X;
         y = this.Y;
@@ -1212,7 +1228,8 @@ public decimal GetShippingRate(Order order) =&gt; order switch
     // 2. Properties only have a 'get' accessor.
     public int X { get { return _x; } }
     public int Y { get { return _y; } }
-    // 3. State is set only once, in the constructor. public Point(int x, int y)
+    // 3. State is set only once, in the constructor.
+    public Point(int x, int y)
     {
         _x = x;
         _y = y;
@@ -1261,7 +1278,8 @@ var observation = new WeatherObservation
 };
 // But after initialization, any attempt to change the properties
 // will result in a compiler error.
-// observation.TemperatureCelsius = 26.0; // ERROR! Init-only property can only be assigned in an object initializer...</code></pre>
+// observation.TemperatureCelsius = 26.0; // ERROR! Init-only property
+can only be assigned in an object initializer...</code></pre>
     </div>
   
 
@@ -1284,7 +1302,8 @@ var observation = new WeatherObservation
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// 'readonly' guarantees the entire struct is immutable. public readonly struct RgbColor
+      <pre><code class="language-csharp">// 'readonly' guarantees the entire struct is immutable.
+public readonly struct RgbColor
 {
     // All fields must also be readonly.
     public readonly byte R;
@@ -1323,7 +1342,8 @@ var observation = new WeatherObservation
 {
     public int X { get; set; }
     public int Y { get; set; }
-    // C# 10 allows this explicit parameterless constructor. public Point()
+    // C# 10 allows this explicit parameterless constructor.
+    public Point()
     {
         X = 1;
         Y = 1;
@@ -1380,8 +1400,7 @@ public record Person(string FirstName, string LastName);
 // --- In your Main method ---
 Person person1 = new Person(&quot;John&quot;, &quot;Doe&quot;);
 // 1. The generated ToString() is automatically used by WriteLine.
-Console.WriteLine(person1); // Output: Person { FirstName = John,
-LastName = Doe }
+Console.WriteLine(person1); // Output: Person { FirstName = John, LastName = Doe }
 // 2. The properties are init-only, making the object immutable.
 // person1.FirstName = &quot;Jane&quot;; // ERROR! Init-only property.</code></pre>
     </div>
@@ -1411,14 +1430,13 @@ LastName = Doe }
     public void PrintShippingLabel()
     {
         // We can use the nested record's properties here.
-        Console.WriteLine($&quot;--- SHIPPING LABEL for Order #{OrderId} ---&quot;);
-        Console.WriteLine(ShippingDestination.Street);
-        Console.WriteLine($&quot;{ShippingDestination.City},
-        {ShippingDestination.PostalCode}&quot;);
+        Console.WriteLine($&quot;--- SHIPPING LABEL for Order #{OrderId} ---&quot;);Console.WriteLine(ShippingDestination.Street);
+        Console.WriteLine($&quot;{ShippingDestination.City},{ShippingDestination.PostalCode}&quot;);
     }
 }
 // --- In your Main method ---
-// To create an instance, you must qualify it with the containing class name.</code></pre>
+// To create an instance, you must qualify it with the containing class
+name.</code></pre>
     </div>
   
 <p>&quot;12345&quot;);</p>
@@ -1462,20 +1480,19 @@ order.PrintShippingLabel();</code></pre>
       <pre><code class="language-csharp">// A record with a mutable collection property.
 public record BlogPost(string Title, List&lt;string&gt; Tags);
 // --- In your Main method ---
-var post = new BlogPost(&quot;My First Post&quot;, new List&lt;string&gt; { &quot;c#&quot;,
-&quot;learning&quot; });
+var post = new BlogPost(&quot;My First Post&quot;, new List&lt;string&gt; { &quot;c#&quot;,&quot;learning&quot; });
 Console.WriteLine(post);
-// Output: BlogPost { Title = My First Post, Tags =
-System.Collections.Generic.List`1[System.String] }
+// Output: BlogPost { Title = My First Post, Tags = System.Collections.Generic.List`1[System.String] }
 // This would be an error because 'Tags' is an init-only property.
 // post.Tags = new List&lt;string&gt;(); // ERROR!
-// BUT, we can still modify the *contents* of the list that the record points to.
+// BUT, we can still modify the *contents* of the list that the record points
+to.
 post.Tags.Add(&quot;new&quot;);
 // The original 'post' object has now been mutated.
 Console.WriteLine(post);
-// Output: BlogPost { Title = My First Post, Tags =
-System.Collections.Generic.List`1[System.String] }
-// (Note: The ToString() doesn't show list contents, but the list now has 3 items)</code></pre>
+// Output: BlogPost { Title = My First Post, Tags = System.Collections.Generic.List`1[System.String] }
+// (Note: The ToString() doesn't show list contents, but the list now has 3
+items)</code></pre>
     </div>
   
 
@@ -1517,8 +1534,7 @@ var p1 = new Person(&quot;John&quot;, &quot;Doe&quot;);</code></pre>
 // For regular classes, p1 == p2 would be FALSE.
 // For records, it's TRUE because their values are the same.
 Console.WriteLine($&quot;p1 == p2: {p1 == p2}&quot;); // Output: True
-Console.WriteLine($&quot;p1.Equals(p2): {p1.Equals(p2)}&quot;); // Output: True
-Console.WriteLine($&quot;p1 == p3: {p1 == p3}&quot;); // Output: False</code></pre>
+Console.WriteLine($&quot;p1.Equals(p2): {p1.Equals(p2)}&quot;); // Output: True Console.WriteLine($&quot;p1 == p3: {p1 == p3}&quot;); // Output: False</code></pre>
     </div>
   
 
@@ -1553,17 +1569,15 @@ Console.WriteLine($&quot;p1 == p3: {p1 == p3}&quot;); // Output: False</code></p
         </button>
       </div>
       <pre><code class="language-csharp">public record Book(string Title, string Author, int PublicationYear);
-// --- In your Main method ---
-var originalBook = new Book(&quot;The Hobbit&quot;, &quot;J.R.R. Tolkien&quot;, 1937);
+// --- In your Main method --- var originalBook = new Book(&quot;The Hobbit&quot;, &quot;J.R.R. Tolkien&quot;, 1937);
 // Let's create a new record for a &quot;revised edition&quot;.
-// It creates a copy of originalBook and then changes the PublicationYear.
+// It creates a copy of originalBook and then changes the
+PublicationYear.
 var revisedEdition = originalBook with { PublicationYear = 2007 };
 Console.WriteLine(originalBook);
-// Output: Book { Title = The Hobbit, Author = J.R.R. Tolkien,
-PublicationYear = 1937 }
+// Output: Book { Title = The Hobbit, Author = J.R.R. Tolkien, PublicationYear = 1937 }
 Console.WriteLine(revisedEdition);
-// Output: Book { Title = The Hobbit, Author = J.R.R. Tolkien,
-PublicationYear = 2007 }
+// Output: Book { Title = The Hobbit, Author = J.R.R. Tolkien, PublicationYear = 2007 }
 // The original object is unchanged.
 Console.WriteLine($&quot;Original year is still: {originalBook.PublicationYear}&quot;);</code></pre>
     </div>
@@ -1589,9 +1603,7 @@ Console.WriteLine($&quot;Original year is still: {originalBook.PublicationYear}&
 var person = new Person(&quot;John&quot;, &quot;Doe&quot;, 42);
 // Deconstruct the record's properties into new variables.
 var (fn, ln, age) = person;
-Console.WriteLine($&quot;The first name is {fn}&quot;);
-Console.WriteLine($&quot;The last name is {ln}&quot;);
-Console.WriteLine($&quot;The age is {age}&quot;);</code></pre>
+Console.WriteLine($&quot;The first name is {fn}&quot;);Console.WriteLine($&quot;The last name is {ln}&quot;);Console.WriteLine($&quot;The age is {age}&quot;);</code></pre>
     </div>
   
 
@@ -1613,7 +1625,8 @@ Console.WriteLine($&quot;The age is {age}&quot;);</code></pre>
       <pre><code class="language-csharp">public record Person(string FirstName, string LastName);
 // --- In your Main method ---
 var person = new Person(&quot;John&quot;, &quot;Doe&quot;);
-// Console.WriteLine automatically calls the .ToString() method on the object.
+// Console.WriteLine automatically calls the .ToString() method on the
+object.
 Console.WriteLine(person);
 Output: Person { FirstName = John, LastName = Doe }</code></pre>
     </div>
@@ -1647,10 +1660,10 @@ public record Employee(string FirstName, string LastName, int
 EmployeeId) : Person(FirstName, LastName);
 // --- In your Main method ---
 var employee = new Employee(&quot;Jane&quot;, &quot;Smith&quot;, 101);
-// The generated ToString() includes properties from both base and derived records.
+// The generated ToString() includes properties from both base and
+derived records.
 Console.WriteLine(employee);
-// Output: Employee { FirstName = Jane, LastName = Smith, EmployeeId
-= 101 }</code></pre>
+// Output: Employee { FirstName = Jane, LastName = Smith, EmployeeId = 101 }</code></pre>
     </div>
   
 
@@ -1671,9 +1684,11 @@ Console.WriteLine(employee);
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// Base record with a sealed ToString public record Person(string Name)
+      <pre><code class="language-csharp">// Base record with a sealed ToString
+public record Person(string Name)
 {
-    // This implementation is now final for all derived records. public sealed override string ToString()
+    // This implementation is now final for all derived records.
+    public sealed override string ToString()
     {
         return $&quot;Person: {Name}&quot;;
     }
@@ -1755,7 +1770,8 @@ Console.WriteLine(p1); // Output: Point { X = 10, Y = 20 }</code></pre>
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// In a top-level statement file (Program.cs) if (args.Length &gt; 0)
+      <pre><code class="language-csharp">// In a top-level statement file (Program.cs)
+if (args.Length &gt; 0)
 {
     string name = args[0];
     Console.WriteLine($&quot;Hello, {name}!&quot;);
@@ -1806,8 +1822,7 @@ string outputFile = null;</code></pre>
         outputFile = args[i + 1];
     }
 }
-Console.WriteLine($&quot;Input file is: {inputFile}&quot;);
-Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
+Console.WriteLine($&quot;Input file is: {inputFile}&quot;);Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
     </div>
   
 
@@ -1839,7 +1854,8 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
       <pre><code class="language-csharp">public void ProcessData(List&lt;int&gt; numbers)
 {
     int multiplier = 2;
-    // This lambda CANNOT be static because it captures 'multiplier' from the outer scope.
+    // This lambda CANNOT be static because it captures 'multiplier' from
+    the outer scope.
     var result1 = numbers.Select(n =&gt; n * multiplier);
     // This lambda CAN be static because it only uses its own parameter 'n'.
     var result2 = numbers.Select(static n =&gt; n * 2);
@@ -1866,8 +1882,7 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
 {
     private const string ApiBase = &quot;/api/v1&quot;;
     // This is valid because ApiBase is also a const.
-    public const string GetAllUsers = $&quot;{ApiBase}/users&quot;;
-    public const string GetUserById = $&quot;{GetAllUsers}/{{id}}&quot;;
+    public const string GetAllUsers = $&quot;{ApiBase}/users&quot;;public const string GetUserById = $&quot;{GetAllUsers}/{{id}}&quot;;
 }</code></pre>
     </div>
   
@@ -1901,7 +1916,8 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
 {
     // A required method for all implementers.
     void LogError(string message);
-    // A default interface method. Existing classes don't have to implement this.
+    // A default interface method. Existing classes don't have to implement
+    this.
     void LogInfo(string message)
     {
         // Call a private helper.
@@ -1962,8 +1978,7 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">Console.WriteLine($&quot;The last name is: {lastName}&quot;);
-Console.WriteLine($&quot;The second-to-last name is: {secondToLastName}&quot;);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;The last name is: {lastName}&quot;);Console.WriteLine($&quot;The second-to-last name is: {secondToLastName}&quot;);</code></pre>
     </div>
   
 
@@ -2029,7 +2044,7 @@ Console.WriteLine(&quot;Inner names: &quot; + string.Join(&quot;, &quot;, innerN
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="30" aria-pressed="false">
@@ -2042,13 +2057,13 @@ Console.WriteLine(&quot;Inner names: &quot; + string.Join(&quot;, &quot;, innerN
       <nav class="bottom-nav">
         
     <a href="section-29.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 29: Advanced Exception Patterns &amp; Diagnostics</span>
     </a>
   
         
     <a href="section-31.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 31: Threading &amp; Synchronization Primitives</span>
     </a>
   
@@ -2057,7 +2072,7 @@ Console.WriteLine(&quot;Inner names: &quot; + string.Join(&quot;, &quot;, innerN
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

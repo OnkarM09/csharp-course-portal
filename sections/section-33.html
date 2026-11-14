@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 33: Asynchronous Programming (Async &amp; Await) — C# Masterclass</title>
+  <title>Section 33: Asynchronous Programming (Async &amp; Await) &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 7</span>
-          <span class="read-time-badge">⏱️ 35 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>35 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">async</span> <span class="tag-pill">await</span> <span class="tag-pill">SynchronizationContext</span> <span class="tag-pill">Deadlocks</span> <span class="tag-pill">ConfigureAwait</span> <span class="tag-pill">ValueTask</span>
           </div>
@@ -517,10 +523,10 @@ using System.Threading.Tasks;</code></pre>
       </div>
       <pre><code class="language-csharp">public class CpuBoundExample
 {
-    // A synchronous, CPU-intensive method private static long CalculateFactorial(int n)
+    // A synchronous, CPU-intensive method
+    private static long CalculateFactorial(int n)
     {
-        Console.WriteLine($&quot;Calculating Factorial of {n} synchronously on
-        Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Calculating Factorial of {n} synchronously onThread ID: {Thread.CurrentThread.ManagedThreadId}&quot;);
         long result = 1;
         for (int i = 1; i &lt;= n; i++)
         {
@@ -528,40 +534,37 @@ using System.Threading.Tasks;</code></pre>
             // Simulate heavy computation
             Thread.Sleep(5);
         }
-        Console.WriteLine($&quot;Factorial of {n} finished on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Factorial of {n} finished on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
         return result;
     }
     // An async method that offloads the CPU-bound work
     public static async Task RunFactorialCalculations()
     {
-        Console.WriteLine($&quot;Main thread:
-        {Thread.CurrentThread.ManagedThreadId} - Starting calculations...&quot;);
-        Stopwatch sw = Stopwatch.StartNew();
+        Console.WriteLine($&quot;Main thread:{Thread.CurrentThread.ManagedThreadId} - Starting calculations...&quot;);Stopwatch sw = Stopwatch.StartNew();
         // Start the CPU-bound task using Task.Run
         // This offloads the calculation to a Thread Pool thread.
         Task&lt;long&gt; factorialTask = Task.Run(() =&gt; CalculateFactorial(15));
         // While the calculation is running, the main thread is NOT BLOCKED.
-        // It can continue to do other work. Console.WriteLine($&quot;Main thread:
+        // It can continue to do other work.
+        Console.WriteLine($&quot;Main thread:
         {Thread.CurrentThread.ManagedThreadId} - Doing other work while
         factorial computes...&quot;);
         for (int i = 0; i &lt; 5; i++)
         {
-            Console.WriteLine($&quot;Main thread:
-            {Thread.CurrentThread.ManagedThreadId} - Other work iteration {i}&quot;);
+            Console.WriteLine($&quot;Main thread:{Thread.CurrentThread.ManagedThreadId} - Other work iteration {i}&quot;);
             Thread.Sleep(50); // Simulate some small other work
         }
         // Await the result of the factorial calculation.
-        // The 'await' here will pause this async method until factorialTask completes.
-        // The thread that was running this method might be returned to the pool
+        // The 'await' here will pause this async method until factorialTask
+        completes.
+        // The thread that was running this method might be returned to the
+        pool
         // and resume later, potentially on a different thread.
         long result = await factorialTask;
         sw.Stop();
         Console.WriteLine($&quot;Factorial Result: {result}&quot;);
-        Console.WriteLine($&quot;Total elapsed time: {sw.ElapsedMilliseconds}
-        ms&quot;);
-        Console.WriteLine($&quot;Main thread:
-        {Thread.CurrentThread.ManagedThreadId} - All calculations finished.&quot;);
+        Console.WriteLine($&quot;Total elapsed time: {sw.ElapsedMilliseconds}ms&quot;);
+        Console.WriteLine($&quot;Main thread:{Thread.CurrentThread.ManagedThreadId} - All calculations finished.&quot;);
     }
     // Call this from Main:
     // public static async Task Main(string[] args)
@@ -593,14 +596,13 @@ using System.Diagnostics;
 public class FileIOExample
 {
     private const string TestFilePath = &quot;large_data.txt&quot;;
-    // Helper to create a large test file public static async Task CreateLargeTestFile()
+    // Helper to create a large test file
+    public static async Task CreateLargeTestFile()
     {
-        Console.WriteLine(&quot;Creating large test file...&quot;);
-        StringBuilder sb = new StringBuilder();
+        Console.WriteLine(&quot;Creating large test file...&quot;);StringBuilder sb = new StringBuilder();
         for (int i = 0; i &lt; 100_000; i++) // 100,000 lines
         {
-            sb.AppendLine($&quot;Line {i}: This is some sample text to make the file
-            large for testing asynchronous I/O operations.&quot;);
+            sb.AppendLine($&quot;Line {i}: This is some sample text to make the filelarge for testing asynchronous I/O operations.&quot;);
         }
         await File.WriteAllTextAsync(TestFilePath, sb.ToString());
         Console.WriteLine($&quot;Test file created: {TestFilePath}&quot;);
@@ -616,12 +618,9 @@ public class FileIOExample
         // The runtime performs the actual I/O.
         string content = await File.ReadAllTextAsync(TestFilePath);
         sw.Stop();
-        Console.WriteLine($&quot;Read {content.Length} characters
-        asynchronously.&quot;);
-        Console.WriteLine($&quot;File read finished on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
-        Console.WriteLine($&quot;Time taken for async read:
-        {sw.ElapsedMilliseconds} ms&quot;);
+        Console.WriteLine($&quot;Read {content.Length} charactersasynchronously.&quot;);
+        Console.WriteLine($&quot;File read finished on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Time taken for async read:{sw.ElapsedMilliseconds} ms&quot;);
         Console.WriteLine($&quot;Main thread:
         {Thread.CurrentThread.ManagedThreadId} - Doing more work after file
         read.&quot;);
@@ -657,29 +656,22 @@ public class ConcurrentOperationsExample
 {
     private static async Task&lt;int&gt; PerformOperationA()
     {
-        Console.WriteLine($&quot;Operation A started on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Operation A started on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
         await Task.Delay(3000); // Simulate I/O or other async wait
-        Console.WriteLine($&quot;Operation A finished on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Operation A finished on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
         return 10;
     }
     private static async Task&lt;string&gt; PerformOperationB()
     {
-        Console.WriteLine($&quot;Operation B started on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Operation B started on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
         await Task.Delay(2000); // Simulate I/O or other async wait
-        Console.WriteLine($&quot;Operation B finished on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
-        return &quot;Hello from B&quot;;
+        Console.WriteLine($&quot;Operation B finished on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);return &quot;Hello from B&quot;;
     }
     private static async Task&lt;bool&gt; PerformOperationC()
     {
-        Console.WriteLine($&quot;Operation C started on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Operation C started on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
         await Task.Delay(4000); // Simulate I/O or other async wait
-        Console.WriteLine($&quot;Operation C finished on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Operation C finished on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
         return true;
     }
     public static async Task RunConcurrentOperations()
@@ -692,11 +684,13 @@ public class ConcurrentOperationsExample
         Task&lt;int&gt; taskA = PerformOperationA();
         Task&lt;string&gt; taskB = PerformOperationB();
         Task&lt;bool&gt; taskC = PerformOperationC();
-        // While tasks are running, the current thread is free. Console.WriteLine($&quot;Main thread:
+        // While tasks are running, the current thread is free.
+        Console.WriteLine($&quot;Main thread:
         {Thread.CurrentThread.ManagedThreadId} - Doing other things while
         operations run...&quot;);
         Thread.Sleep(500); // Simulate some quick other work
-        // Await all tasks to complete. This doesn't block; it simply means the 'await Task.WhenAll'
+        // Await all tasks to complete. This doesn't block; it simply means the
+        'await Task.WhenAll'
         // will complete once the longest running task (Operation C) finishes.
         await Task.WhenAll(taskA, taskB, taskC);
         // Once all are complete, retrieve their results
@@ -704,12 +698,9 @@ public class ConcurrentOperationsExample
         string resultB = await taskB;
         bool resultC = await taskC;
         sw.Stop();
-        Console.WriteLine($&quot;\nAll operations completed. Results: A={resultA},
-        B={resultB}, C={resultC}&quot;);
-        Console.WriteLine($&quot;Total time for concurrent operations:
-        {sw.ElapsedMilliseconds} ms&quot;);
-        Console.WriteLine($&quot;Main thread:
-        {Thread.CurrentThread.ManagedThreadId} - All operations processed.&quot;);
+        Console.WriteLine($&quot;\nAll operations completed. Results: A={resultA},B={resultB}, C={resultC}&quot;);
+        Console.WriteLine($&quot;Total time for concurrent operations:{sw.ElapsedMilliseconds} ms&quot;);
+        Console.WriteLine($&quot;Main thread:{Thread.CurrentThread.ManagedThreadId} - All operations processed.&quot;);
     }
     // Call this from Main:
     // public static async Task Main(string[] args)
@@ -750,25 +741,23 @@ public class AsyncErrorHandlingExample1
     // An async method that might throw an exception
     public static async Task&lt;string&gt; GetDataAsync(bool throwError)
     {
-        Console.WriteLine($&quot;GetDataAsync started on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;GetDataAsync started on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
         await Task.Delay(1000); // Simulate network latency/work
         if (throwError)
         {
-            Console.WriteLine(&quot;GetDataAsync: Intentionally throwing an
-            exception.&quot;);
+            Console.WriteLine(&quot;GetDataAsync: Intentionally throwing anexception.&quot;);
             throw new InvalidOperationException(&quot;Failed to retrieve data from
             source.&quot;);
         }
-        Console.WriteLine(&quot;GetDataAsync finished successfully.&quot;);
-        return &quot;Successfully retrieved data.&quot;;
+        Console.WriteLine(&quot;GetDataAsync finished successfully.&quot;);return &quot;Successfully retrieved data.&quot;;
     }
     public static async Task RunBasicErrorHandling()
     {
         Console.WriteLine($&quot;Main thread:
         {Thread.CurrentThread.ManagedThreadId} - Running basic error handling
         demo.&quot;);
-        // Scenario 1: No error try
+        // Scenario 1: No error
+        try
         {
             string result = await GetDataAsync(false);
             Console.WriteLine($&quot;Scenario 1 Result: {result}&quot;);
@@ -778,21 +767,19 @@ public class AsyncErrorHandlingExample1
             Console.WriteLine($&quot;Scenario 1: Unexpected error: {ex.Message}&quot;);
         }
         Console.WriteLine(&quot;\n--- Next Scenario ---&quot;);
-        // Scenario 2: With error try
+        // Scenario 2: With error
+        try
         {
             string result = await GetDataAsync(true);
-            Console.WriteLine($&quot;Scenario 2 Result: {result} (This line should not
-            be reached)&quot;);
+            Console.WriteLine($&quot;Scenario 2 Result: {result} (This line should notbe reached)&quot;);
         }
         catch (InvalidOperationException ex)
         {
-            Console.WriteLine($&quot;Scenario 2: Caught expected error:
-            {ex.Message}&quot;);
+            Console.WriteLine($&quot;Scenario 2: Caught expected error:{ex.Message}&quot;);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($&quot;Scenario 2: Caught unexpected general error:
-            {ex.Message}&quot;);
+            Console.WriteLine($&quot;Scenario 2: Caught unexpected general error:{ex.Message}&quot;);
         }
         finally
         {
@@ -838,21 +825,15 @@ public class AsyncErrorHandlingExample2
 {
     private static async Task SimulateOperationA()
     {
-        Console.WriteLine(&quot;Operation A started. Will succeed.&quot;);
-        await Task.Delay(1000);
-        Console.WriteLine(&quot;Operation A completed.&quot;);
+        Console.WriteLine(&quot;Operation A started. Will succeed.&quot;);await Task.Delay(1000);Console.WriteLine(&quot;Operation A completed.&quot;);
     }
     private static async Task SimulateOperationB()
     {
-        Console.WriteLine(&quot;Operation B started. Will throw
-        TimeoutException.&quot;);
-        await Task.Delay(1500);
-        throw new TimeoutException(&quot;Operation B timed out.&quot;);
+        Console.WriteLine(&quot;Operation B started. Will throwTimeoutException.&quot;);await Task.Delay(1500);throw new TimeoutException(&quot;Operation B timed out.&quot;);
     }
     private static async Task SimulateOperationC()
     {
-        Console.WriteLine(&quot;Operation C started. Will throw
-        ArgumentException.&quot;);
+        Console.WriteLine(&quot;Operation C started. Will throwArgumentException.&quot;);
         await Task.Delay(500); // Might finish before B, but its exception will
         still be collected
         throw new ArgumentException(&quot;Invalid argument for Operation C.&quot;);
@@ -868,34 +849,26 @@ public class AsyncErrorHandlingExample2
         try
         {
             await Task.WhenAll(taskA, taskB, taskC);
-            Console.WriteLine(&quot;All operations completed successfully. (This line
-            should not be reached)&quot;);
+            Console.WriteLine(&quot;All operations completed successfully. (This lineshould not be reached)&quot;);
         }
         catch (AggregateException ex)
         {
-            Console.WriteLine($&quot;\nCaught AggregateException from
-            Task.WhenAll with {ex.InnerExceptions.Count} inner exceptions:&quot;);
+            Console.WriteLine($&quot;\nCaught AggregateException fromTask.WhenAll with {ex.InnerExceptions.Count} inner exceptions:&quot;);
             foreach (var innerEx in ex.InnerExceptions)
             {
-                Console.WriteLine($&quot; Inner Exception: {innerEx.GetType().Name} -
-                {innerEx.Message}&quot;);
+                Console.WriteLine($&quot; Inner Exception: {innerEx.GetType().Name} -{innerEx.Message}&quot;);
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($&quot;Caught unexpected general exception:
-            {ex.Message}&quot;);
+            Console.WriteLine($&quot;Caught unexpected general exception:{ex.Message}&quot;);
         }
         finally
         {
             Console.WriteLine(&quot;\nFinal status of individual tasks:&quot;);
-            Console.WriteLine($&quot; Task A Status: {taskA.Status} (Exception:
-            {taskA.Exception?.InnerException?.Message})&quot;);
-            Console.WriteLine($&quot; Task B Status: {taskB.Status} (Exception:
-            {taskB.Exception?.InnerException?.Message})&quot;);
-            Console.WriteLine($&quot; Task C Status: {taskC.Status} (Exception:
-            {taskC.Exception?.InnerException?.Message})&quot;);
-            Console.WriteLine(&quot;WhenAll error handling demo finished.&quot;);
+            Console.WriteLine($&quot; Task A Status: {taskA.Status} (Exception:{taskA.Exception?.InnerException?.Message})&quot;);
+            Console.WriteLine($&quot; Task B Status: {taskB.Status} (Exception:{taskB.Exception?.InnerException?.Message})&quot;);
+            Console.WriteLine($&quot; Task C Status: {taskC.Status} (Exception:{taskC.Exception?.InnerException?.Message})&quot;);Console.WriteLine(&quot;WhenAll error handling demo finished.&quot;);
         }
     }
     // Call this from Main:
@@ -927,12 +900,10 @@ public class AsyncErrorHandlingExample3
     {
         return Task.Run(async () =&gt;
         {
-            Console.WriteLine(&quot;GetNumberAsync: Starting operation...&quot;);
-            await Task.Delay(500);
+            Console.WriteLine(&quot;GetNumberAsync: Starting operation...&quot;);await Task.Delay(500);
             if (shouldFail)
             {
-                Console.WriteLine(&quot;GetNumberAsync: Throwing error.&quot;);
-                throw new DivideByZeroException(&quot;Simulated calculation error.&quot;);
+                Console.WriteLine(&quot;GetNumberAsync: Throwing error.&quot;);throw new DivideByZeroException(&quot;Simulated calculation error.&quot;);
             }
             Console.WriteLine(&quot;GetNumberAsync: Operation successful.&quot;);
             return 100;
@@ -940,61 +911,54 @@ public class AsyncErrorHandlingExample3
     }
     public static async Task RunContinuationChainErrorHandling()
     {
-        Console.WriteLine(&quot;Running continuation chain error handling
-        demo.&quot;);
-        // Scenario 1: Success path try
+        Console.WriteLine(&quot;Running continuation chain error handlingdemo.&quot;);
+        // Scenario 1: Success path
+        try
         {
             Task&lt;int&gt; numTask = GetNumberAsync(false);
             Task&lt;string&gt; processTask = numTask.ContinueWith(t =&gt;
             {
                 if (t.IsFaulted)
                 {
-                    Console.WriteLine($&quot;Continuation: Caught error from
-                    antecedent (success path): {t.Exception.InnerException.Message}&quot;);
-                    return &quot;Error in previous step&quot;;
+                    Console.WriteLine($&quot;Continuation: Caught error fromantecedent (success path): {t.Exception.InnerException.Message}&quot;);return &quot;Error in previous step&quot;;
                 }
-                return $&quot;Number is: {t.Result * 2}&quot;;
-            });
-            string finalResult = await processTask;
-            Console.WriteLine($&quot;Scenario 1 Final Result: {finalResult}&quot;);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($&quot;Scenario 1: Unexpected error in chain:
-            {ex.Message}&quot;);
-        }
-        Console.WriteLine(&quot;\n--- Next Scenario ---&quot;);
-        // Scenario 2: Error path try
-        {
-            Task&lt;int&gt; numTask = GetNumberAsync(true); // This task will fail
-            Task&lt;string&gt; processTask = numTask.ContinueWith(t =&gt;
+                return $&quot;Number is: {t.Result * 2}&quot;;});
+                string finalResult = await processTask;
+                Console.WriteLine($&quot;Scenario 1 Final Result: {finalResult}&quot;);
+            }
+            catch (Exception ex)
             {
-                if (t.IsFaulted)
+                Console.WriteLine($&quot;Scenario 1: Unexpected error in chain:{ex.Message}&quot;);
+            }
+            Console.WriteLine(&quot;\n--- Next Scenario ---&quot;);
+            // Scenario 2: Error path
+            try
+            {
+                Task&lt;int&gt; numTask = GetNumberAsync(true); // This task will fail
+                Task&lt;string&gt; processTask = numTask.ContinueWith(t =&gt;
                 {
-                    Console.WriteLine($&quot;Continuation: Caught error from
-                    antecedent (error path): {t.Exception.InnerException.Message}&quot;);
-                    return &quot;Error handled by continuation!&quot;; // Handle it here
+                    if (t.IsFaulted)
+                    {
+                        Console.WriteLine($&quot;Continuation: Caught error fromantecedent (error path): {t.Exception.InnerException.Message}&quot;);
+                        return &quot;Error handled by continuation!&quot;; // Handle it here
+                    }
+                    return $&quot;Number is: {t.Result * 2}&quot;;});
+                    string finalResult = await processTask; // Awaiting processTask will
+                    get its result, not re-throw antecedent's error if handled in continuation.
+                    Console.WriteLine($&quot;Scenario 2 Final Result: {finalResult}&quot;);
                 }
-                return $&quot;Number is: {t.Result * 2}&quot;;
-            });
-            string finalResult = await processTask; // Awaiting processTask will
-            get its result, not re-throw antecedent's error if handled in continuation.
-            Console.WriteLine($&quot;Scenario 2 Final Result: {finalResult}&quot;);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($&quot;Scenario 2: Unexpected error in chain (should
-            have been handled): {ex.Message}&quot;);
-        }
-        Console.WriteLine(&quot;\nContinuation chain error handling demo
-        finished.&quot;);
-    }
-    // Call this from Main:
-    // public static async Task Main(string[] args)
-    // {
-        // 	await RunContinuationChainErrorHandling();
-        // }
-    }</code></pre>
+                catch (Exception ex)
+                {
+                    Console.WriteLine($&quot;Scenario 2: Unexpected error in chain (shouldhave been handled): {ex.Message}&quot;);
+                }
+                Console.WriteLine(&quot;\nContinuation chain error handling demofinished.&quot;);
+            }
+            // Call this from Main:
+            // public static async Task Main(string[] args)
+            // {
+                // 	await RunContinuationChainErrorHandling();
+                // }
+            }</code></pre>
     </div>
   
 <p>Explanation: In ContinueWith, you have the flexibility to inspect the antecedent task's status (IsFaulted, Exception). If you handle the error within the ContinueWith delegate itself (as shown in Scenario 2 by returning a string like &quot;Error handled&quot;), then the processTask itself will not fault, and await processTask will not throw an exception. If the continuation itself throws an exception, then await processTask would catch it. Key Points for Error Handling:</p>
@@ -1083,31 +1047,23 @@ public class DebuggingAsyncExample
     private static async Task&lt;string&gt; SimulateLongRunningOperation(int id,
     bool shouldFail)
     {
-        Console.WriteLine($&quot;Operation {id} started on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Operation {id} started on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
         await Task.Delay(2000); // Simulate network call or long computation
-        Console.WriteLine($&quot;Operation {id} after first await on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Operation {id} after first await on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
         if (shouldFail)
         {
             Console.WriteLine($&quot;Operation {id} throwing exception.&quot;);
-            throw new FileNotFoundException($&quot;File for operation {id} not
-            found.&quot;);
+            throw new FileNotFoundException($&quot;File for operation {id} notfound.&quot;);
         }
         await Task.Delay(1000); // Another simulated wait
-        Console.WriteLine($&quot;Operation {id} finished on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
-        return $&quot;Result from Operation {id}&quot;;
+        Console.WriteLine($&quot;Operation {id} finished on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);return $&quot;Result from Operation {id}&quot;;
     }
     public static async Task RunDebuggingScenario()
     {
-        Console.WriteLine($&quot;Main method starting on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
-        Task&lt;string&gt; task1 = SimulateLongRunningOperation(1, false);
+        Console.WriteLine($&quot;Main method starting on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);Task&lt;string&gt; task1 = SimulateLongRunningOperation(1, false);
         Task&lt;string&gt; task2 = SimulateLongRunningOperation(2, true); // This
         one will fail
-        Console.WriteLine($&quot;Tasks initiated. Main method continues on
-        Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Tasks initiated. Main method continues onThread ID: {Thread.CurrentThread.ManagedThreadId}&quot;);
         try
         {
             await Task.WhenAll(task1, task2); // Set a breakpoint here
@@ -1115,12 +1071,10 @@ public class DebuggingAsyncExample
         }
         catch (AggregateException ex)
         {
-            Console.WriteLine($&quot;\nCaught AggregateException with
-            {ex.InnerExceptions.Count} inner exceptions:&quot;);
+            Console.WriteLine($&quot;\nCaught AggregateException with{ex.InnerExceptions.Count} inner exceptions:&quot;);
             foreach (var innerEx in ex.InnerExceptions)
             {
-                Console.WriteLine($&quot; Debugging: Inner Exception:
-                {innerEx.GetType().Name} - {innerEx.Message}&quot;);
+                Console.WriteLine($&quot; Debugging: Inner Exception:{innerEx.GetType().Name} - {innerEx.Message}&quot;);
             }
         }
         catch (Exception ex)
@@ -1128,10 +1082,8 @@ public class DebuggingAsyncExample
             Console.WriteLine($&quot;\nCaught general exception: {ex.Message}&quot;);
         }
         // After the catch, you can inspect task states
-        Console.WriteLine($&quot;\nFinal Status Task 1: {task1.Status}&quot;);
-        Console.WriteLine($&quot;Final Status Task 2: {task2.Status}&quot;);
-        Console.WriteLine($&quot;Main method finished on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;\nFinal Status Task 1: {task1.Status}&quot;);Console.WriteLine($&quot;Final Status Task 2: {task2.Status}&quot;);
+        Console.WriteLine($&quot;Main method finished on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
     }
     // Call from Main:
     // public static async Task Main(string[] args)
@@ -1194,88 +1146,211 @@ public class DebuggingAsyncExample
     <ol>
       <li>Purpose of Asynchronous Programming:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Responsiveness:</strong> Keeps user interfaces (UIs) fluid and interactive by not blocking the UI thread during long-running operations.</li>
       <li><strong>Scalability:</strong> For server-side applications, it allows a server to handle more concurrent requests by releasing threads back to the thread pool while waiting for I/O-bound operations to complete.</li>
       <li><strong>Efficiency:</strong> Maximizes resource utilization by not tying up threads unnecessarily.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>async and await are Keywords, not Threads:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>The async keyword simply marks a method that can contain await expressions. It tells the compiler to transform the method into a state machine.</li>
       <li>The await keyword is the &quot;non-blocking pause&quot; point. When await is encountered, if the awaited operation (a Task) is not yet complete, the async method yields control to its caller, and the thread is freed. It does not create a new thread.</li>
       <li><strong>Critical Concept:</strong> Asynchronous programming is about non- blocking operations, not necessarily parallel execution. Parallelism (multiple things at once) can be achieved within asynchronous programming (e.g., Task.WhenAll), but the core benefit of async/ await for I/O-bound work is thread liberation.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>async Method Return Types:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Most commonly:</strong> Task (for void-like operations) or Task&lt;TResult&gt; (for operations returning a value).</li>
       <li><strong>Rarely:</strong> void (only for top-level event handlers where the caller doesn't need to await completion). Avoid async void in general library code due to difficult exception handling and unawaitability.</li>
       <li><strong>Sometimes:</strong> ValueTask or ValueTask&lt;TResult&gt; for performance- critical scenarios where allocations need to be minimized, especially if the operation often completes synchronously.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Task.Run for CPU-Bound Work:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>If you have a synchronous, CPU-intensive operation that would block the current thread (e.g., UI thread), use Task.Run(() =&gt; YourCpuIntensiveMethod()) to offload it to a thread pool thread.</li>
       <li>Then, await the Task returned by Task.Run to get its result without blocking the calling async method.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>await for I/O-Bound Work:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>For operations that primarily involve waiting for external resources (network, disk, database), use the Async versions of methods (e.g., HttpClient.GetAsync, File.ReadAllTextAsync, SqlCommand.ExecuteReaderAsync).</li>
       <li>When you await these methods, the thread is released back to the thread pool (or SynchronizationContext) and is not consumed while the I/O operation is in progress. This is the primary driver of scalability.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>try-catch-finally Works Natively:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>Exception handling in async methods behaves much like synchronous code.</li>
       <li>When an awaited Task faults, the await expression re-throws the first inner exception of the AggregateException (the wrapper Task uses).</li>
-      <li>For multiple concurrent tasks awaited with Task.WhenAll, the catch block will receive a single AggregateException containing all exceptions from all faulted tasks.</li>
+      <li>For multiple concurrent tasks awaited with Task.WhenAll, the</li>
     </ul>
+
+      </div>
+    </div>
+  
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code class="language-csharp">catch block will receive a single AggregateException containing
+all exceptions from all faulted tasks.</code></pre>
+    </div>
+  
     <ol>
       <li>Cooperative Cancellation:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>Asynchronous operations using Tasks support cooperative cancellation via CancellationTokenSource and CancellationToken.</li>
       <li>Your async method must periodically check cancellationToken.IsCancellationRequested or call cancellationToken.ThrowIfCancellationRequested() to respond to cancellation.</li>
       <li>When an async method is canceled this way, awaiting it will throw an OperationCanceledException.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>SynchronizationContext and ConfigureAwait(false):</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>By default, when an async method awaits a Task and a SynchronizationContext is present (e.g., UI thread, ASP.NET Core request context), the continuation (the code after await) will attempt to resume on that same context. This is crucial for UI updates.</li>
       <li><strong>ConfigureAwait(false):</strong> When used (e.g., await someTask.ConfigureAwait(false)), it tells the runtime not to attempt to marshal the continuation back to the original SynchronizationContext.</li>
       <li><strong>When to use ConfigureAwait(false):</strong> In general-purpose libraries, where you don't care about the UI context, ConfigureAwait(false) can slightly improve performance by avoiding context switching and can help prevent deadlocks in certain scenarios (e.g., if a calling synchronous method blocks on the async method, and the async method tries to resume on the blocked thread).</li>
       <li><strong>When NOT to use ConfigureAwait(false):</strong> In UI event handlers or anywhere you need to interact with UI elements after an await (as the continuation might run on a different thread, causing cross- thread access exceptions).</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Debugging Async Code:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>Visual Studio's Tasks Window (Debug &gt; Windows &gt; Tasks) provides a crucial real-time overview of all active tasks, their status, and logical call stacks.</li>
       <li>The Parallel Stacks Window (Debug &gt; Windows &gt; Parallel Stacks) helps visualize the call stack across await boundaries.</li>
       <li>Understanding thread IDs (Thread.CurrentThread.ManagedThreadId) can help follow execution flow.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Avoid Mixing Blocking and Async Code (Async over Sync / Sync over Async):</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>&quot;Sync over Async&quot; (Bad): Calling task.Wait() or task.Result from a synchronous method (e.g., Main method) that is part of an asynchronous call chain can lead to deadlocks, especially in UI or ASP.NET contexts.</li>
       <li>&quot;Async over Sync&quot; (Bad): Wrapping synchronous I/O operations in Task.Run (e.g., Task.Run(() =&gt; File.ReadAllText(&quot;file.txt&quot;))). While it offloads, it still blocks a thread pool thread, negating the true scalability benefit of async I/O. Only do this if no Async equivalent exists for an I/O operation. By internalizing these points, you will be well-equipped to discuss, implement, and debug asynchronous patterns effectively in C#.</li>
     </ul>
 
+      </div>
+    </div>
+  
       </article>
 
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="33" aria-pressed="false">
@@ -1288,13 +1363,13 @@ public class DebuggingAsyncExample
       <nav class="bottom-nav">
         
     <a href="section-32.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 32: Tasks &amp; Task Parallel Library (TPL)</span>
     </a>
   
         
     <a href="section-34.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 34: C# 11 New Features (.NET 7)</span>
     </a>
   
@@ -1303,7 +1378,7 @@ public class DebuggingAsyncExample
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

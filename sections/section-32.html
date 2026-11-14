@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 32: Tasks &amp; Task Parallel Library (TPL) — C# Masterclass</title>
+  <title>Section 32: Tasks &amp; Task Parallel Library (TPL) &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 7</span>
-          <span class="read-time-badge">⏱️ 40 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>40 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">Task</span> <span class="tag-pill">Task&lt;T&gt;</span> <span class="tag-pill">Task.Run</span> <span class="tag-pill">Parallel.For</span> <span class="tag-pill">PLINQ</span> <span class="tag-pill">CancellationToken</span>
           </div>
@@ -604,22 +610,19 @@ WaitingToRun or Running quickly</code></pre>
       <pre><code class="language-csharp">// A task that doesn't return a value
 Task backgroundWork = Task.Run(() =&gt;
 {
-    Console.WriteLine(&quot;Task.Run: Doing some background
-    work...&quot;);
+    Console.WriteLine(&quot;Task.Run: Doing some backgroundwork...&quot;);
     Thread.Sleep(2000); // Simulate work
-    Console.WriteLine(&quot;Task.Run: Background work finished.&quot;);
-});
-// A task that returns a value
-Task&lt;int&gt; calculateSumTask = Task.Run(() =&gt;
-{
-    Console.WriteLine(&quot;Task.Run: Calculating sum...&quot;);
-    Thread.Sleep(1000);
-    return 10 + 20;
-});
-Console.WriteLine(&quot;Main thread continues...&quot;);
-// Wait for completion (for demonstration)
-backgroundWork.Wait();
-Console.WriteLine($&quot;Calculated Sum:</code></pre>
+    Console.WriteLine(&quot;Task.Run: Background work finished.&quot;);});
+    // A task that returns a value
+    Task&lt;int&gt; calculateSumTask = Task.Run(() =&gt;
+    {
+        Console.WriteLine(&quot;Task.Run: Calculating sum...&quot;);Thread.Sleep(1000);
+        return 10 + 20;
+    });
+    Console.WriteLine(&quot;Main thread continues...&quot;);
+    // Wait for completion (for demonstration)
+    backgroundWork.Wait();
+    Console.WriteLine($&quot;Calculated Sum:</code></pre>
     </div>
   
 <p>{calculateSumTask.Result}&quot;); // Accessing .Result blocks until task completes</p>
@@ -639,8 +642,7 @@ Console.WriteLine($&quot;Calculated Sum:</code></pre>
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">Console.WriteLine($&quot;Start delay at
-{DateTime.Now:HH:mm:ss}&quot;);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Start delay at{DateTime.Now:HH:mm:ss}&quot;);</code></pre>
     </div>
   
 <p>await Task.Delay(2000); // In an async method</p>
@@ -697,14 +699,7 @@ Console.WriteLine(&quot;Delay task initiated.&quot;);</code></pre>
         </button>
       </div>
       <pre><code class="language-csharp">Task task1 = Task.Run(() =&gt; { Thread.Sleep(3000);
-Console.WriteLine(&quot;Task 1 Done&quot;); });
-Task task2 = Task.Run(() =&gt; { Thread.Sleep(1000);
-Console.WriteLine(&quot;Task 2 Done&quot;); });
-Task task3 = Task.Run(() =&gt; { Thread.Sleep(2000);
-Console.WriteLine(&quot;Task 3 Done&quot;); });
-Console.WriteLine(&quot;Waiting for all tasks...&quot;);
-Task.WaitAll(task1, task2, task3);
-Console.WriteLine(&quot;All tasks completed.&quot;);</code></pre>
+Console.WriteLine(&quot;Task 1 Done&quot;); });Task task2 = Task.Run(() =&gt; { Thread.Sleep(1000);Console.WriteLine(&quot;Task 2 Done&quot;); });Task task3 = Task.Run(() =&gt; { Thread.Sleep(2000);Console.WriteLine(&quot;Task 3 Done&quot;); });Console.WriteLine(&quot;Waiting for all tasks...&quot;);Task.WaitAll(task1, task2, task3);Console.WriteLine(&quot;All tasks completed.&quot;);</code></pre>
     </div>
   
     <ul>
@@ -733,11 +728,10 @@ Task&lt;string&gt; downloadJson = Task.Run(() =&gt;
 { Thread.Sleep(6000); return &quot;JSON Downloaded&quot;; });
 Task[] tasks = { downloadImage, downloadText,
 downloadJson };
-Console.WriteLine(&quot;Waiting for any task to complete...&quot;);
-int completedIndex = Task.WaitAny(tasks);
-Console.WriteLine($&quot;First task to complete was at index
-{completedIndex}: {((Task&lt;string&gt;)tasks[completedIndex]).Result}&quot;);
-// You would still need to wait/check other tasks if you care about their completion or exceptions</code></pre>
+Console.WriteLine(&quot;Waiting for any task to complete...&quot;);int completedIndex = Task.WaitAny(tasks);
+Console.WriteLine($&quot;First task to complete was at index{completedIndex}: {((Task&lt;string&gt;)tasks[completedIndex]).Result}&quot;);
+// You would still need to wait/check other tasks if you care
+about their completion or exceptions</code></pre>
     </div>
   
     <ul>
@@ -771,16 +765,14 @@ Console.WriteLine($&quot;First task to complete was at index
     { Thread.Sleep(2000); return &quot;Text Downloaded&quot;; });
     Task&lt;string&gt; downloadJson = Task.Run(() =&gt;
     { Thread.Sleep(6000); return &quot;JSON Downloaded&quot;; });
-    Console.WriteLine(&quot;WhenAll: Initiating multiple
-    downloads...&quot;);
-    // Await the completion of all tasks await Task.WhenAll(downloadImage, downloadText,
-    downloadJson);
+    Console.WriteLine(&quot;WhenAll: Initiating multipledownloads...&quot;);
+    // Await the completion of all tasks
+    await Task.WhenAll(downloadImage, downloadText,downloadJson);
     Console.WriteLine(&quot;WhenAll: All downloads completed!&quot;);
-    Console.WriteLine(await downloadImage); // Access results
-    Console.WriteLine(await downloadText);
-    Console.WriteLine(await downloadJson);
+    Console.WriteLine(await downloadImage); // Access resultsConsole.WriteLine(await downloadText);Console.WriteLine(await downloadJson);
 }
-// Call SimulateMultipleDownloads().Wait() or await it from an async Main/caller</code></pre>
+// Call SimulateMultipleDownloads().Wait() or await it from an
+async Main/caller</code></pre>
     </div>
   
     <ul>
@@ -806,14 +798,14 @@ Console.WriteLine($&quot;First task to complete was at index
     Completed&quot;; });
     Task&lt;string&gt; fastDownload = Task.Run(() =&gt;
     { Thread.Sleep(2000); return &quot;Fast Download Completed&quot;; });
-    Console.WriteLine(&quot;WhenAny: Waiting for fastest
-    download...&quot;);
+    Console.WriteLine(&quot;WhenAny: Waiting for fastestdownload...&quot;);
     Task&lt;string&gt; completedTask = await
     Task.WhenAny(slowDownload, fastDownload);
-    Console.WriteLine($&quot;WhenAny: First download completed:
-    {await completedTask}&quot;);
-    // You can then await the remaining tasks if needed or simply let them finish
-    // await Task.WhenAll(slowDownload, fastDownload); // To ensure all are finished
+    Console.WriteLine($&quot;WhenAny: First download completed:{await completedTask}&quot;);
+    // You can then await the remaining tasks if needed or simply
+    let them finish
+    // await Task.WhenAll(slowDownload, fastDownload); // To
+    ensure all are finished
 }
 // Call SimulateFastestDownload().Wait() or await it</code></pre>
     </div>
@@ -915,9 +907,7 @@ creationOptions, TaskScheduler scheduler);
       </div>
       <pre><code class="language-csharp">async Task MyAsyncMethod()
 {
-    Console.WriteLine(&quot;Inside MyAsyncMethod&quot;);
-    await Task.Delay(100);
-    Console.WriteLine(&quot;MyAsyncMethod finished async part&quot;);
+    Console.WriteLine(&quot;Inside MyAsyncMethod&quot;);await Task.Delay(100);Console.WriteLine(&quot;MyAsyncMethod finished async part&quot;);
 }
 // Using Task.Run (recommended)
 Task runTask = Task.Run(async () =&gt; await MyAsyncMethod());
@@ -953,7 +943,8 @@ Console.WriteLine($&quot;Task.Factory.StartNew task status (outer):</code></pre>
         </button>
       </div>
       <pre><code class="language-csharp">Task unwrappedTask = startNewTask.Unwrap();
-// Or: await await startNewTask; Feature 	Task.Run 	Task.Factory.StartNew
+// Or: await await startNewTask;
+Feature 	Task.Run 	Task.Factory.StartNew
 Purpose Simple way to offload
 work to ThreadPool.
 Provides fine-grained
@@ -1063,32 +1054,27 @@ public class PerformanceMonitor
             {
                 sum += i;
             }
-            Console.WriteLine($&quot;CPU Task finished. Sum: {sum}&quot;);
-        });
-        // Simulate some I/O-bound work (non-blocking delay)
-        Task ioBoundTask = Task.Delay(3000); // Simulates waiting for
-        network/disk I/O
-        // Wait for both tasks to complete using WhenAll
-        await Task.WhenAll(cpuBoundTask, ioBoundTask);
-        stopwatch.Stop(); // Stop the stopwatch after all tasks are done
-        Console.WriteLine($&quot;\nAll tasks completed in:
-        {stopwatch.ElapsedMilliseconds} ms&quot;);
-        Console.WriteLine($&quot;Total Elapsed Time: {stopwatch.Elapsed}&quot;);
-        // Example: measuring a single synchronous operation
-        Stopwatch syncStopwatch = Stopwatch.StartNew();
-        Console.WriteLine(&quot;Starting synchronous operation...&quot;);
-        Thread.Sleep(1500); // Blocking call
-        Console.WriteLine(&quot;Synchronous operation finished.&quot;);
-        syncStopwatch.Stop();
-        Console.WriteLine($&quot;Synchronous operation took:
-        {syncStopwatch.ElapsedMilliseconds} ms&quot;);
-    }
-    // Call from Main or another async method:
-    // public static async Task Main(string[] args)
-    // {
-        // 	await MeasureTaskPerformance();
-        // }
-    }</code></pre>
+            Console.WriteLine($&quot;CPU Task finished. Sum: {sum}&quot;);});
+            // Simulate some I/O-bound work (non-blocking delay)
+            Task ioBoundTask = Task.Delay(3000); // Simulates waiting for
+            network/disk I/O
+            // Wait for both tasks to complete using WhenAll
+            await Task.WhenAll(cpuBoundTask, ioBoundTask);
+            stopwatch.Stop(); // Stop the stopwatch after all tasks are done
+            Console.WriteLine($&quot;\nAll tasks completed in:{stopwatch.ElapsedMilliseconds} ms&quot;);Console.WriteLine($&quot;Total Elapsed Time: {stopwatch.Elapsed}&quot;);
+            // Example: measuring a single synchronous operation
+            Stopwatch syncStopwatch = Stopwatch.StartNew();
+            Console.WriteLine(&quot;Starting synchronous operation...&quot;);
+            Thread.Sleep(1500); // Blocking call
+            Console.WriteLine(&quot;Synchronous operation finished.&quot;);syncStopwatch.Stop();
+            Console.WriteLine($&quot;Synchronous operation took:{syncStopwatch.ElapsedMilliseconds} ms&quot;);
+        }
+        // Call from Main or another async method:
+        // public static async Task Main(string[] args)
+        // {
+            // 	await MeasureTaskPerformance();
+            // }
+        }</code></pre>
     </div>
   
 <p>Interview Relevance:</p>
@@ -1137,10 +1123,7 @@ public class PerformanceMonitor
       </div>
       <pre><code class="language-csharp">Task&lt;string&gt; dataFetchTask = Task.Factory.StartNew(() =&gt;
 {
-    Console.WriteLine(&quot;Fetching data in a task...&quot;);
-    Thread.Sleep(3000);
-    return &quot;Some fetched data&quot;;
-});</code></pre>
+    Console.WriteLine(&quot;Fetching data in a task...&quot;);Thread.Sleep(3000);return &quot;Some fetched data&quot;;});</code></pre>
     </div>
   
     <ul>
@@ -1202,12 +1185,12 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
         </button>
       </div>
       <pre><code class="language-csharp">Console.WriteLine($&quot;Result: {result}&quot;);
-// Non-blocking way (preferred in async methods) async Task DemonstrateAwait()
+// Non-blocking way (preferred in async methods)
+async Task DemonstrateAwait()
 {
     Task&lt;int&gt; anotherSumTask = Task.Run(() =&gt;
     { Thread.Sleep(1000); return 200; });
-    Console.WriteLine(&quot;Waiting for result (non-blocking with
-    await)...&quot;);
+    Console.WriteLine(&quot;Waiting for result (non-blocking withawait)...&quot;);
     int anotherResult = await anotherSumTask; // This line yields
     control back to the caller
     Console.WriteLine($&quot;Another Result: {anotherResult}&quot;);
@@ -1255,8 +1238,7 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
     public DateTime LastLogin { get; set; }
     public override string ToString()
     {
-        return $&quot;User: {Name} (ID: {Id}), Email: {Email}, Last Login:
-        {LastLogin.ToShortDateString()}&quot;;
+        return $&quot;User: {Name} (ID: {Id}), Email: {Email}, Last Login:{LastLogin.ToShortDateString()}&quot;;
     }
 }</code></pre>
     </div>
@@ -1275,11 +1257,11 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
 {
     public static async Task&lt;UserData&gt; GetUserAsync(int userId)
     {
-        Console.WriteLine($&quot;Fetching user data for ID: {userId} on Thread
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Fetching user data for ID: {userId} on Thread{Thread.CurrentThread.ManagedThreadId}&quot;);
         // Simulate a network call or database query that takes time
         await Task.Delay(2500);
-        // Create and return a complex object return new UserData
+        // Create and return a complex object
+        return new UserData
         {
             Id = userId,
             Name = $&quot;User {userId}&quot;,
@@ -1289,8 +1271,7 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
     }
     public static async Task ProcessUsers()
     {
-        Console.WriteLine($&quot;Main thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;Main thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
         // Create multiple tasks, each returning a UserData object
         Task&lt;UserData&gt; user1Task = GetUserAsync(101);
         Task&lt;UserData&gt; user2Task = GetUserAsync(102);
@@ -1298,8 +1279,7 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
         Console.WriteLine(&quot;Tasks initiated. Main thread can do other work...&quot;);
         // Await all tasks to complete and collect their results
         // WhenAll is preferred over WaitAll for async operations
-        UserData[] users = await Task.WhenAll(user1Task, user2Task,
-        user3Task);
+        UserData[] users = await Task.WhenAll(user1Task, user2Task,user3Task);
         Console.WriteLine(&quot;\nAll user data fetched:&quot;);
         foreach (var user in users)
         {
@@ -1320,7 +1300,8 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
 
     <div class="callout callout-deepdive">
       <div class="callout-header">
-        <span>🟣 Under the Hood / Compiler Lowering</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        <span>Under the Hood / Compiler Lowering</span>
         
       </div>
       <div class="callout-content">
@@ -1380,11 +1361,11 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
         Console.WriteLine(&quot;Simulating a task that throws an exception...&quot;);
         Task badTask = Task.Run(() =&gt;
         {
-            Console.WriteLine(&quot;Task started. Throwing exception in 1 sec...&quot;);
-            Thread.Sleep(1000);
+            Console.WriteLine(&quot;Task started. Throwing exception in 1 sec...&quot;);Thread.Sleep(1000);
             throw new InvalidOperationException(&quot;Something went wrong in
             the task!&quot;);
-            // new DivideByZeroException(&quot;Cannot divide by zero here!&quot;); // If multiple, they'd be aggregated
+            // new DivideByZeroException(&quot;Cannot divide by zero here!&quot;); // If
+            multiple, they'd be aggregated
         });
         try
         {
@@ -1405,7 +1386,8 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
             // badTask.Exception.InnerExceptions.Count will be 1 here
         }
     }
-    // Example with multiple potential exceptions in one task (less common, usually one causes fault)
+    // Example with multiple potential exceptions in one task (less common,
+    usually one causes fault)
     public static async Task SimulateMultipleExceptionsInOneTask()
     {
         Task multipleErrorsTask = Task.Run(() =&gt;
@@ -1415,7 +1397,8 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
             ex) { exceptions.Add(ex); }
             try { throw new FormatException(&quot;Format error&quot;); } catch (Exception
             ex) { exceptions.Add(ex); }
-            // If you want to aggregate and throw from the task directly if (exceptions.Any())
+            // If you want to aggregate and throw from the task directly
+            if (exceptions.Any())
             {
                 throw new AggregateException(exceptions);
             }
@@ -1427,16 +1410,13 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
         catch (ArgumentNullException ex) // This will likely be caught first by
         `await`'s unwrapping
         {
-            Console.WriteLine($&quot;Caught first exception: {ex.Message}&quot;);
-            Console.WriteLine($&quot;Task status: {multipleErrorsTask.Status}&quot;);
-            // To see all: Console.WriteLine($&quot;All inner exceptions: {string.Join(&quot;, &quot;,
-            multipleErrorsTask.Exception.InnerExceptions.Select(e =&gt; e.Message))}&quot;);
+            Console.WriteLine($&quot;Caught first exception: {ex.Message}&quot;);Console.WriteLine($&quot;Task status: {multipleErrorsTask.Status}&quot;);
+            // To see all: Console.WriteLine($&quot;All inner exceptions: {string.Join(&quot;, &quot;,multipleErrorsTask.Exception.InnerExceptions.Select(e =&gt; e.Message))}&quot;);
         }
         catch (AggregateException ex) // If await somehow passes the
         AggregateException directly (less common with simple await)
         {
-            Console.WriteLine($&quot;Caught AggregateException with
-            {ex.InnerExceptions.Count} inner exceptions:&quot;);
+            Console.WriteLine($&quot;Caught AggregateException with{ex.InnerExceptions.Count} inner exceptions:&quot;);
             foreach (var innerEx in ex.InnerExceptions)
             {
                 Console.WriteLine($&quot;- {innerEx.Message}&quot;);
@@ -1467,12 +1447,13 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
     Console.WriteLine(&quot;\nHandling exceptions with Task.Wait()...&quot;);
     Task failingTask = Task.Run(() =&gt;
     {
-        Console.WriteLine(&quot;Failing task started. Throwing two exceptions...&quot;);
-        throw new InvalidOperationException(&quot;First error!&quot;);
+        Console.WriteLine(&quot;Failing task started. Throwing two exceptions...&quot;);throw new InvalidOperationException(&quot;First error!&quot;);
         // Code below this won't execute due to immediate throw,
         // but if there were multiple logical blocks with distinct errors,
-        // they might be collected if `Task.Factory.StartNew` with `LongRunning` was used carefully,
-        // or more commonly, multiple tasks could be aggregated with WhenAll.
+        // they might be collected if `Task.Factory.StartNew` with
+        `LongRunning` was used carefully,
+        // or more commonly, multiple tasks could be aggregated with
+        WhenAll.
     });
     try
     {
@@ -1480,12 +1461,10 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
     }
     catch (AggregateException ex)
     {
-        Console.WriteLine($&quot;Caught AggregateException with
-        {ex.InnerExceptions.Count} inner exceptions:&quot;);
+        Console.WriteLine($&quot;Caught AggregateException with{ex.InnerExceptions.Count} inner exceptions:&quot;);
         foreach (var innerEx in ex.InnerExceptions)
         {
-            Console.WriteLine($&quot; Inner Exception: {innerEx.GetType().Name} -
-            {innerEx.Message}&quot;);
+            Console.WriteLine($&quot; Inner Exception: {innerEx.GetType().Name} -{innerEx.Message}&quot;);
         }
     }
     finally
@@ -1514,43 +1493,33 @@ Task.WhenAll expression will throw a single AggregateException that</code></pre>
     Task goodTask = Task.Run(() =&gt;
     {
         Thread.Sleep(500);
-        Console.WriteLine(&quot;Good task completed.&quot;);
-    });
-    Task errorTask1 = Task.Run(() =&gt;
-    {
-        Thread.Sleep(1000);
-        Console.WriteLine(&quot;Error Task 1 throwing...&quot;);
-        throw new ArgumentException(&quot;Invalid input data!&quot;);
-    });
-    Task errorTask2 = Task.Run(() =&gt;
-    {
-        Thread.Sleep(1500);
-        Console.WriteLine(&quot;Error Task 2 throwing...&quot;);
-        throw new NullReferenceException(&quot;Object was null!&quot;);
-    });
-    try
-    {
-        await Task.WhenAll(goodTask, errorTask1, errorTask2);
-        Console.WriteLine(&quot;All tasks completed successfully (this won't be
-        reached if errors occur).&quot;);
-    }
-    catch (AggregateException ex)
-    {
-        Console.WriteLine($&quot;Caught AggregateException from WhenAll with
-        {ex.InnerExceptions.Count} inner exceptions:&quot;);
-        foreach (var innerEx in ex.InnerExceptions)
+        Console.WriteLine(&quot;Good task completed.&quot;);});
+        Task errorTask1 = Task.Run(() =&gt;
         {
-            Console.WriteLine($&quot; Inner Exception: {innerEx.GetType().Name} -
-            {innerEx.Message}&quot;);
-        }
-    }
-    finally
-    {
-        Console.WriteLine($&quot;Status of Good Task: {goodTask.Status}&quot;);
-        Console.WriteLine($&quot;Status of Error Task 1: {errorTask1.Status}&quot;);
-        Console.WriteLine($&quot;Status of Error Task 2: {errorTask2.Status}&quot;);
-    }
-}</code></pre>
+            Thread.Sleep(1000);
+            Console.WriteLine(&quot;Error Task 1 throwing...&quot;);throw new ArgumentException(&quot;Invalid input data!&quot;);});
+            Task errorTask2 = Task.Run(() =&gt;
+            {
+                Thread.Sleep(1500);
+                Console.WriteLine(&quot;Error Task 2 throwing...&quot;);throw new NullReferenceException(&quot;Object was null!&quot;);});
+                try
+                {
+                    await Task.WhenAll(goodTask, errorTask1, errorTask2);
+                    Console.WriteLine(&quot;All tasks completed successfully (this won't bereached if errors occur).&quot;);
+                }
+                catch (AggregateException ex)
+                {
+                    Console.WriteLine($&quot;Caught AggregateException from WhenAll with{ex.InnerExceptions.Count} inner exceptions:&quot;);
+                    foreach (var innerEx in ex.InnerExceptions)
+                    {
+                        Console.WriteLine($&quot; Inner Exception: {innerEx.GetType().Name} -{innerEx.Message}&quot;);
+                    }
+                }
+                finally
+                {
+                    Console.WriteLine($&quot;Status of Good Task: {goodTask.Status}&quot;);Console.WriteLine($&quot;Status of Error Task 1: {errorTask1.Status}&quot;);Console.WriteLine($&quot;Status of Error Task 2: {errorTask2.Status}&quot;);
+                }
+            }</code></pre>
     </div>
   
 <p>&quot; This is less common in modern async/await code but can be useful in specific scenarios, especially when you need to selectively handle certain exceptions and re-throw others. The Handle method takes a Func&lt;Exception, bool&gt; predicate. If the predicate returns true for an inner exception, that exception is considered handled. If,</p>
@@ -1566,8 +1535,7 @@ Task.WhenAll expression will throw a single AggregateException that</code></pre>
       </div>
       <pre><code class="language-csharp">public static void HandleExceptionsWithHandleMethod()
 {
-    Console.WriteLine(&quot;\nHandling exceptions with
-    AggregateException.Handle()...&quot;);
+    Console.WriteLine(&quot;\nHandling exceptions withAggregateException.Handle()...&quot;);
     Task multipleErrorTask = Task.Run(() =&gt;
     {
         List&lt;Exception&gt; exceptions = new List&lt;Exception&gt;();
@@ -1589,30 +1557,26 @@ Task.WhenAll expression will throw a single AggregateException that</code></pre>
         {
             if (innerEx is InvalidOperationException)
             {
-                Console.WriteLine($&quot;Handled InvalidOperationException:
-                {innerEx.Message}&quot;);
+                Console.WriteLine($&quot;Handled InvalidOperationException:{innerEx.Message}&quot;);
                 return true; // Mark as handled
             }
             else if (innerEx is DivideByZeroException)
             {
-                Console.WriteLine($&quot;Handled DivideByZeroException:
-                {innerEx.Message}. Logging instead of crashing.&quot;);
-                // Log this specific exception return true; // Mark as handled
+                Console.WriteLine($&quot;Handled DivideByZeroException:{innerEx.Message}. Logging instead of crashing.&quot;);
+                // Log this specific exception
+                return true; // Mark as handled
             }
             return false; // Let other exceptions propagate
         });
-        Console.WriteLine(&quot;Some exceptions might have been re-thrown if
-        not handled by predicate.&quot;);
+        Console.WriteLine(&quot;Some exceptions might have been re-thrown ifnot handled by predicate.&quot;);
     }
     catch (Exception ex)
     {
-        Console.WriteLine($&quot;Caught re-thrown exception after Handle:
-        {ex.Message}&quot;);
+        Console.WriteLine($&quot;Caught re-thrown exception after Handle:{ex.Message}&quot;);
     }
     finally
     {
-        Console.WriteLine($&quot;Task status after Handle:
-        {multipleErrorTask.Status}&quot;);
+        Console.WriteLine($&quot;Task status after Handle:{multipleErrorTask.Status}&quot;);
     }
 }</code></pre>
     </div>
@@ -1649,21 +1613,17 @@ Task.WhenAll expression will throw a single AggregateException that</code></pre>
     {
         Console.WriteLine(&quot;First task starting...&quot;);
         Thread.Sleep(2000); // Simulate work
-        Console.WriteLine(&quot;First task completed.&quot;);
-    });
-    // Schedule a continuation to run after firstTask completes
-    Task continuationTask = firstTask.ContinueWith(antecedentTask =&gt;
-    {
-        Console.WriteLine($&quot;Continuation started. Antecedent task status:
-        {antecedentTask.Status}&quot;);
-        Console.WriteLine(&quot;Continuation: Now doing some follow-up work.&quot;);
-    });
-    Console.WriteLine(&quot;Main thread continues immediately after
-    scheduling first task and continuation.&quot;);
-    // You might want to wait for the continuation to ensure all work is done for demo
-    continuationTask.Wait();
-    Console.WriteLine(&quot;Main: All tasks and continuations finished.&quot;);
-}</code></pre>
+        Console.WriteLine(&quot;First task completed.&quot;);});
+        // Schedule a continuation to run after firstTask completes
+        Task continuationTask = firstTask.ContinueWith(antecedentTask =&gt;
+        {
+            Console.WriteLine($&quot;Continuation started. Antecedent task status:{antecedentTask.Status}&quot;);Console.WriteLine(&quot;Continuation: Now doing some follow-up work.&quot;);});
+            Console.WriteLine(&quot;Main thread continues immediately afterscheduling first task and continuation.&quot;);
+            // You might want to wait for the continuation to ensure all work is done
+            for demo
+            continuationTask.Wait();
+            Console.WriteLine(&quot;Main: All tasks and continuations finished.&quot;);
+        }</code></pre>
     </div>
   
 <p>Accessing Results from Antecedent Task (Task&lt;TResult&gt;): If the antecedent task returns a value, the continuation delegate can receive</p>
@@ -1681,14 +1641,14 @@ public static void ContinuationWithResult()
 {
     Task&lt;int&gt; dataFetchTask = Task.Run(() =&gt;
     {
-        Console.WriteLine(&quot;Fetching data...&quot;);
-        Thread.Sleep(1500);
+        Console.WriteLine(&quot;Fetching data...&quot;);Thread.Sleep(1500);
         return 42; // The data
     });
     Task processDataTask = dataFetchTask.ContinueWith(antecedentTask
     =&gt;
     {
-        // Check if the antecedent completed successfully before accessing Result
+        // Check if the antecedent completed successfully before accessing
+        Result
         if (antecedentTask.Status == TaskStatus.RanToCompletion)
         {
             int data = antecedentTask.Result; // Access the result from the
@@ -1700,8 +1660,7 @@ public static void ContinuationWithResult()
         }
         else if (antecedentTask.IsFaulted)
         {
-            Console.WriteLine($&quot;Data fetch failed:
-            {antecedentTask.Exception.InnerException?.Message}&quot;);
+            Console.WriteLine($&quot;Data fetch failed:{antecedentTask.Exception.InnerException?.Message}&quot;);
         }
         else if (antecedentTask.IsCanceled)
         {
@@ -1732,9 +1691,7 @@ public static void ContinuationWithResult()
 {
     Task&lt;int&gt; operationTask = Task.Run(() =&gt;
     {
-        Console.WriteLine(&quot;Main operation starting...&quot;);
-        Thread.Sleep(1000);
-        Random rnd = new Random();
+        Console.WriteLine(&quot;Main operation starting...&quot;);Thread.Sleep(1000);Random rnd = new Random();
         int outcome = rnd.Next(1, 4); // 1: success, 2: fault, 3: cancel
         if (outcome == 1)
         {
@@ -1750,7 +1707,8 @@ public static void ContinuationWithResult()
         else // outcome == 3
         {
             Console.WriteLine(&quot;Main operation being canceled.&quot;);
-            // For a task to be truly canceled, it needs a CancellationToken DenyChildAttach
+            // For a task to be truly canceled, it needs a CancellationToken
+            DenyChildAttach
             Prevents the continuation from becoming a
             child task if the parent task is created with
             AttachedToParent. (Default for Task.Run
@@ -1778,45 +1736,40 @@ public static void ContinuationWithResult()
     // Continuation for successful completion
     Task successContinuation = operationTask.ContinueWith(antecedent =&gt;
     {
-        Console.WriteLine($&quot;\nSUCCESS Handler: Result =
-        {antecedent.Result}&quot;);
-    }, TaskContinuationOptions.OnlyOnRanToCompletion);
-    // Continuation for faulted state
-    Task faultContinuation = operationTask.ContinueWith(antecedent =&gt;
-    {
-        Console.WriteLine($&quot;\nFAULTED Handler: Exception =
-        {antecedent.Exception?.InnerException?.Message}&quot;);
-    }, TaskContinuationOptions.OnlyOnFaulted);
-    // Continuation for canceled state
-    Task canceledContinuation = operationTask.ContinueWith(antecedent
-    =&gt;
-    {
-        Console.WriteLine(&quot;\nCANCELED Handler: Operation was canceled.&quot;);
-    }, TaskContinuationOptions.OnlyOnCanceled);
-    // General continuation (e.g., for cleanup or logging regardless of outcome)
-    Task finalContinuation = operationTask.ContinueWith(antecedent =&gt;
-    {
-        Console.WriteLine($&quot;\nFINAL Handler: Antecedent status was
-        {antecedent.Status}&quot;);
-    }, TaskContinuationOptions.None); // This one will always run
-    try
-    {
-        // Wait for all specific continuations and the final one to ensure everything runs
-        Task.WhenAll(successContinuation, faultContinuation,
-        canceledContinuation, finalContinuation).Wait();
-    }
-    catch (AggregateException agEx)
-    {
-        // Handle exceptions from the continuations themselves if they throw.
-        // The antecedent's exception is observed by its specific handlers.
-        agEx.Handle(ex =&gt;
+        Console.WriteLine($&quot;\nSUCCESS Handler: Result ={antecedent.Result}&quot;);}, TaskContinuationOptions.OnlyOnRanToCompletion);
+        // Continuation for faulted state
+        Task faultContinuation = operationTask.ContinueWith(antecedent =&gt;
         {
-            Console.WriteLine($&quot;Exception in a continuation: {ex.Message}&quot;);
-            return true; // Mark as handled
-        });
-    }
-    Console.WriteLine(&quot;\nMain: All continuations processed (if applicable).&quot;);
-}</code></pre>
+            Console.WriteLine($&quot;\nFAULTED Handler: Exception ={antecedent.Exception?.InnerException?.Message}&quot;);}, TaskContinuationOptions.OnlyOnFaulted);
+            // Continuation for canceled state
+            Task canceledContinuation = operationTask.ContinueWith(antecedent
+            =&gt;
+            {
+                Console.WriteLine(&quot;\nCANCELED Handler: Operation was canceled.&quot;);}, TaskContinuationOptions.OnlyOnCanceled);
+                // General continuation (e.g., for cleanup or logging regardless of
+                outcome)
+                Task finalContinuation = operationTask.ContinueWith(antecedent =&gt;
+                {
+                    Console.WriteLine($&quot;\nFINAL Handler: Antecedent status was{antecedent.Status}&quot;);
+                }, TaskContinuationOptions.None); // This one will always run
+                try
+                {
+                    // Wait for all specific continuations and the final one to ensure
+                    everything runs
+                    Task.WhenAll(successContinuation, faultContinuation,canceledContinuation, finalContinuation).Wait();
+                }
+                catch (AggregateException agEx)
+                {
+                    // Handle exceptions from the continuations themselves if they throw.
+                    // The antecedent's exception is observed by its specific handlers.
+                    agEx.Handle(ex =&gt;
+                    {
+                        Console.WriteLine($&quot;Exception in a continuation: {ex.Message}&quot;);
+                        return true; // Mark as handled
+                    });
+                }
+                Console.WriteLine(&quot;\nMain: All continuations processed (if applicable).&quot;);
+            }</code></pre>
     </div>
   
 <p>Chain of Continuations (Sequential Workflow): You can chain multiple ContinueWith calls to create a sequence of operations.</p>
@@ -1833,36 +1786,27 @@ public static void ContinuationWithResult()
 {
     Task&lt;string&gt; fetchDataTask = Task.Run(() =&gt;
     {
-        Console.WriteLine(&quot;1. Fetching data...&quot;);
-        Thread.Sleep(1000);
-        return &quot;Raw Data from Server&quot;;
-    });
-    Task&lt;int&gt; processDataTask = fetchDataTask.ContinueWith(antecedent
-    =&gt;
-    {
-        Console.WriteLine($&quot;2. Processing data: {antecedent.Result}&quot;);
-        Thread.Sleep(500);
-        return antecedent.Result.Length; // Return processed result
-    }, TaskContinuationOptions.OnlyOnRanToCompletion); // Only process if
-    fetch was successful
-    Task displayResultTask = processDataTask.ContinueWith(antecedent =&gt;
-    {
-        if (antecedent.Status == TaskStatus.RanToCompletion)
+        Console.WriteLine(&quot;1. Fetching data...&quot;);Thread.Sleep(1000);return &quot;Raw Data from Server&quot;;});
+        Task&lt;int&gt; processDataTask = fetchDataTask.ContinueWith(antecedent
+        =&gt;
         {
-            Console.WriteLine($&quot;3. Displaying result: Processed length is
-            {antecedent.Result}&quot;);
-        }
-        else
+            Console.WriteLine($&quot;2. Processing data: {antecedent.Result}&quot;);Thread.Sleep(500);
+            return antecedent.Result.Length; // Return processed result
+        }, TaskContinuationOptions.OnlyOnRanToCompletion); // Only process if
+        fetch was successful
+        Task displayResultTask = processDataTask.ContinueWith(antecedent =&gt;
         {
-            Console.WriteLine($&quot;3. Could not display result. Processing task
-            status: {antecedent.Status}&quot;);
-        }
-    });
-    Console.WriteLine(&quot;Main: Chain initiated. Waiting for final display
-    task...&quot;);
-    displayResultTask.Wait();
-    Console.WriteLine(&quot;Main: Chain completed.&quot;);
-}</code></pre>
+            if (antecedent.Status == TaskStatus.RanToCompletion)
+            {
+                Console.WriteLine($&quot;3. Displaying result: Processed length is{antecedent.Result}&quot;);
+            }
+            else
+            {
+                Console.WriteLine($&quot;3. Could not display result. Processing taskstatus: {antecedent.Status}&quot;);
+            }
+        });
+        Console.WriteLine(&quot;Main: Chain initiated. Waiting for final displaytask...&quot;);displayResultTask.Wait();Console.WriteLine(&quot;Main: Chain completed.&quot;);
+    }</code></pre>
     </div>
   
 <p>Interview Focus for ContinueWith:</p>
@@ -1947,10 +1891,10 @@ cancellationToken)
 {
     for (int i = 0; i &lt; 100; i++)
     {
-        // Check for cancellation periodically if (cancellationToken.IsCancellationRequested)
+        // Check for cancellation periodically
+        if (cancellationToken.IsCancellationRequested)
         {
-            Console.WriteLine(&quot;Cancellation requested. Exiting loop
-            gracefully.&quot;);
+            Console.WriteLine(&quot;Cancellation requested. Exiting loopgracefully.&quot;);
             cancellationToken.ThrowIfCancellationRequested(); //
             Optional: to set task status to Canceled
         }
@@ -1987,15 +1931,15 @@ public class TaskCancellationDemo
     // The cancellable method
     public static void DoWork(CancellationToken cancellationToken)
     {
-        Console.WriteLine($&quot;DoWork started on Thread ID:
-        {Thread.CurrentThread.ManagedThreadId}&quot;);
+        Console.WriteLine($&quot;DoWork started on Thread ID:{Thread.CurrentThread.ManagedThreadId}&quot;);
         for (int i = 0; i &lt; 10; i++)
         {
-            // 1. Check if cancellation has been requested if (cancellationToken.IsCancellationRequested)
+            // 1. Check if cancellation has been requested
+            if (cancellationToken.IsCancellationRequested)
             {
-                Console.WriteLine(&quot;DoWork: Cancellation detected via
-                IsCancellationRequested.&quot;);
-                // 2. Throw OperationCanceledException to officially mark the task as Canceled
+                Console.WriteLine(&quot;DoWork: Cancellation detected viaIsCancellationRequested.&quot;);
+                // 2. Throw OperationCanceledException to officially mark the task
+                as Canceled
                 cancellationToken.ThrowIfCancellationRequested();
             }
             Console.WriteLine($&quot;DoWork: Step {i} executing...&quot;);
@@ -2011,7 +1955,8 @@ public class TaskCancellationDemo
         // Get the token from the source
         CancellationToken token = cts.Token;
         // Start a long-running task, passing the token
-        // The second 'token' argument ensures the Task knows about cancellation
+        // The second 'token' argument ensures the Task knows about
+        cancellation
         // even before it starts, and helps set its status to Canceled.
         Task workerTask = Task.Run(() =&gt; DoWork(token), token);
         // Schedule cancellation after a delay
@@ -2024,23 +1969,19 @@ public class TaskCancellationDemo
         {
             // Await the worker task
             await workerTask;
-            Console.WriteLine(&quot;\nWorker Task: Ran to completion (shouldn't
-            happen if canceled).&quot;);
+            Console.WriteLine(&quot;\nWorker Task: Ran to completion (shouldn'thappen if canceled).&quot;);
         }
         catch (OperationCanceledException)
         {
-            Console.WriteLine(&quot;\nWorker Task: Caught
-            OperationCanceledException. Task was canceled!&quot;);
+            Console.WriteLine(&quot;\nWorker Task: CaughtOperationCanceledException. Task was canceled!&quot;);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($&quot;\nWorker Task: Caught unexpected exception:
-            {ex.Message}&quot;);
+            Console.WriteLine($&quot;\nWorker Task: Caught unexpected exception:{ex.Message}&quot;);
         }
         finally
         {
-            Console.WriteLine($&quot;\nFinal Worker Task Status:
-            {workerTask.Status}&quot;);
+            Console.WriteLine($&quot;\nFinal Worker Task Status:{workerTask.Status}&quot;);
             // Ensure CTS is disposed, handled by 'using' statement
         }
         Console.WriteLine(&quot;Cancellation example finished.&quot;);
@@ -2105,8 +2046,7 @@ public class SyncFileIO
         }
         catch (Exception ex)
         {
-            Console.WriteLine($&quot;Error reading file synchronously:
-            {ex.Message}&quot;);
+            Console.WriteLine($&quot;Error reading file synchronously:{ex.Message}&quot;);
         }
     }
 }</code></pre>
@@ -2140,14 +2080,17 @@ public class AsyncFileIO
                 return;
             }
             // Use 'using' for IDisposable Stream
-            using StreamReader reader = new StreamReader(filePath,
-            Encoding.UTF8);
-            // This line starts the asynchronous read. The current thread (if it's a UI thread or ASP.NET thread)
+            using StreamReader reader = new StreamReader(filePath,Encoding.UTF8);
+            // This line starts the asynchronous read. The current thread (if it's a
+            UI thread or ASP.NET thread)
             // is FREED and returned to its pool.
-            // The method 'pauses' here and resumes execution after the I/O operation completes.
+            // The method 'pauses' here and resumes execution after the I/O
+            operation completes.
             string content = await reader.ReadToEndAsync();
-            // The code after 'await' will potentially resume on a different thread pool thread,
-            // or the original SynchronizationContext if one was captured (e.g., UI thread).
+            // The code after 'await' will potentially resume on a different thread
+            pool thread,
+            // or the original SynchronizationContext if one was captured (e.g.,
+            UI thread).
             Console.WriteLine($&quot;Asynchronous read finished. Read
             {content.Length} characters on Thread ID:
             {Thread.CurrentThread.ManagedThreadId} at
@@ -2155,8 +2098,7 @@ public class AsyncFileIO
         }
         catch (Exception ex)
         {
-            Console.WriteLine($&quot;Error reading file asynchronously:
-            {ex.Message}&quot;);
+            Console.WriteLine($&quot;Error reading file asynchronously:{ex.Message}&quot;);
         }
     }
     // Example of writing to a file asynchronously
@@ -2175,11 +2117,11 @@ public class AsyncFileIO
         }
         catch (Exception ex)
         {
-            Console.WriteLine($&quot;Error writing file asynchronously:
-            {ex.Message}&quot;);
+            Console.WriteLine($&quot;Error writing file asynchronously:{ex.Message}&quot;);
         }
     }
-    // Comprehensive example demonstrating both read and write public static async Task RunFileIOExample()
+    // Comprehensive example demonstrating both read and write
+    public static async Task RunFileIOExample()
     {
         string inputFilePath = &quot;input.txt&quot;;
         string outputFilePath = &quot;output.txt&quot;;
@@ -2188,33 +2130,23 @@ public class AsyncFileIO
         Console.WriteLine(&quot;Creating large input file...&quot;);
         for (int i = 0; i &lt; 100000; i++)
         {
-            largeContent += $&quot;Line {i}: This is some sample data for
-            asynchronous file I/O demonstration. &quot;;
+            largeContent += $&quot;Line {i}: This is some sample data forasynchronous file I/O demonstration. &quot;;
         }
         await File.WriteAllTextAsync(inputFilePath, largeContent);
-        Console.WriteLine($&quot;Input file created: {inputFilePath}
-        ({largeContent.Length} chars)&quot;);
-        Console.WriteLine(&quot;\n--- Starting Asynchronous File Operations ---&quot;);
-        Stopwatch stopwatch = Stopwatch.StartNew();
-        Task&lt;string&gt; readFileTask = ReadFileContentsAsync(inputFilePath);
+        Console.WriteLine($&quot;Input file created: {inputFilePath}({largeContent.Length} chars)&quot;);Console.WriteLine(&quot;\n--- Starting Asynchronous File Operations ---&quot;);Stopwatch stopwatch = Stopwatch.StartNew();Task&lt;string&gt; readFileTask = ReadFileContentsAsync(inputFilePath);
         Task writeFileTask = WriteFileContentsAsync(outputFilePath, &quot;This is
-        some new content to write asynchronously.\n&quot; + largeContent.Substring(0,
-        1000));
+        some new content to write asynchronously.\n&quot; + largeContent.Substring(0,1000));
         // You can do other work here while I/O tasks are running
-        Console.WriteLine(&quot;Main thread is free to do other work while I/O is in
-        progress.&quot;);
+        Console.WriteLine(&quot;Main thread is free to do other work while I/O is inprogress.&quot;);
         Thread.Sleep(500); // Simulate other work
         // Await the completion of all I/O tasks
         await Task.WhenAll(readFileTask, writeFileTask);
         stopwatch.Stop();
-        Console.WriteLine($&quot;\n--- All asynchronous file operations completed
-        in {stopwatch.ElapsedMilliseconds} ms ---&quot;);
+        Console.WriteLine($&quot;\n--- All asynchronous file operations completedin {stopwatch.ElapsedMilliseconds} ms ---&quot;);
         // Now read the content from the tasks
         string readContent = await readFileTask; // Result is available
         immediately, no blocking here
-        Console.WriteLine($&quot;Read back {readContent.Length} characters from
-        {inputFilePath}.&quot;);
-        Console.WriteLine($&quot;Content written to {outputFilePath}.&quot;);
+        Console.WriteLine($&quot;Read back {readContent.Length} characters from{inputFilePath}.&quot;);Console.WriteLine($&quot;Content written to {outputFilePath}.&quot;);
         // Clean up
         File.Delete(inputFilePath);
         File.Delete(outputFilePath);
@@ -2228,10 +2160,14 @@ public class AsyncFileIO
         {Thread.CurrentThread.ManagedThreadId} at
         {DateTime.Now:HH:mm:ss.fff}&quot;);
         using StreamReader reader = new StreamReader(filePath);
-        // Use ReadToEndAsync for large files. Pass the cancellation token if supported.
-        // Some ReadAsync overloads support cancellation, ReadToEndAsync does not directly,
-        // so cancellation must be handled at a higher level or by breaking the read into chunks.
-        // For simplicity, this example doesn't directly show cancellation within ReadToEndAsync
+        // Use ReadToEndAsync for large files. Pass the cancellation token if
+        supported.
+        // Some ReadAsync overloads support cancellation, ReadToEndAsync
+        does not directly,
+        // so cancellation must be handled at a higher level or by breaking the
+        read into chunks.
+        // For simplicity, this example doesn't directly show cancellation
+        within ReadToEndAsync
         // but it's crucial for real-world scenarios.
         string content = await reader.ReadToEndAsync();
         cancellationToken.ThrowIfCancellationRequested(); // Check after read
@@ -2281,100 +2217,224 @@ public class AsyncFileIO
     <ol>
       <li>Task vs. Thread:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>A Task represents a unit of work or an asynchronous operation. It's a higher-level abstraction.</li>
       <li>A Thread is a physical execution path within a process.</li>
       <li>Tasks typically execute on the .NET Thread Pool, meaning multiple tasks can share and reuse a smaller number of threads, improving efficiency. You rarely manage threads directly with TPL.</li>
       <li><strong>Interview Question:</strong> &quot;What's the difference between a Task and a Thread?&quot;</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>CPU-Bound vs. I/O-Bound Operations:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>CPU-Bound: Operations that spend most of their time actively using the CPU (e.g., heavy calculations, complex algorithms, image processing).</li>
       <li><strong>Solution:</strong> Use Task.Run() to offload CPU-bound work to a background thread pool thread, preventing the UI or main thread from blocking.</li>
       <li>I/O-Bound: Operations that spend most of their time waiting for external resources (e.g., reading/writing files, network requests, database queries).</li>
       <li><strong>Solution:</strong> Use async I/O methods (e.g., HttpClient.GetAsync(), Stream.ReadAsync()) with await. The thread is released back to the thread pool during the wait, allowing it to service other requests, vastly improving scalability and responsiveness.</li>
       <li><strong>Interview Question:</strong> &quot;When would you use Task.Run versus await an I/O operation? Provide examples.&quot;</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>async and await:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>These keywords are syntactic sugar built on top of the TPL's Task infrastructure.</li>
       <li>async marks a method as asynchronous, allowing the use of await inside it.</li>
       <li>await &quot;pauses&quot; the execution of the async method until the awaited</li>
     </ul>
-<p>awaited task completes, execution resumes in the async method, potentially on a different thread pool thread or the captured SynchronizationContext (e.g., UI thread).</p>
-    <ul>
+
+      </div>
+    </div>
+  <p>awaited task completes, execution resumes in the async method, potentially on a different thread pool thread or the captured SynchronizationContext (e.g., UI thread).</p>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Interview Question:</strong> &quot;Explain how async and await work under the hood. What does await do if the Task is not yet completed?&quot;</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Task.Run vs. Task.Factory.StartNew:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>Task.Run: The recommended, simpler choice for most scenarios. It uses safe defaults (e.g., DenyChildAttach) and correctly unwraps async delegates (i.e., Func&lt;Task&gt; returns a Task, not Task&lt;Task&gt;).</li>
       <li>Task.Factory.StartNew: Provides more granular control over TaskCreationOptions and TaskScheduler. It does not DenyChildAttach by default and does not unwrap async delegates automatically. Use it only when you explicitly need its advanced options and understand its nuances.</li>
       <li><strong>Interview Question:</strong> &quot;What are the key differences between Task.Run and Task.Factory.StartNew? When would you use one over the other?&quot;</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Blocking Operations (Wait, Result) vs. Non-Blocking (await, ContinueWith, WhenAll, WhenAny):</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Blocking:</strong> task.Wait(), task.WaitAll(), task.WaitAny(), task.Result (for Task&lt;TResult&gt;). These methods block the calling thread until the task(s) complete. Avoid in UI or critical server threads.</li>
       <li>Non-Blocking: await, Task.ContinueWith(), Task.WhenAll(), Task.WhenAny(). These methods allow the calling thread to continue doing other work.</li>
       <li><strong>Interview Question:</strong> &quot;Why should you generally avoid Task.Wait() or Task.Result in UI or web server applications?&quot;</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Exception Handling:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>Unhandled exceptions in tasks are wrapped in an AggregateException.</li>
       <li>Exceptions are &quot;observed&quot; when the task is awaited, waited upon, or its Exception property is accessed.</li>
       <li>When awaiting a single faulted task, the first inner exception is typically re-thrown.</li>
       <li>When awaiting Task.WhenAll() and multiple tasks fault, the resulting AggregateException will contain all inner exceptions from all faulted tasks.</li>
       <li><strong>Interview Question:</strong> &quot;How do you handle exceptions in Tasks? What is AggregateException?&quot;</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Task Cancellation:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Cooperative:</strong> Tasks must explicitly check for and respond to cancellation requests.</li>
       <li>Uses CancellationTokenSource (to issue the signal) and CancellationToken (passed to the cancellable operation).</li>
       <li>cancellationToken.IsCancellationRequested: To check the status.</li>
       <li>cancellationToken.ThrowIfCancellationRequested(): To throw an OperationCanceledException, which correctly sets the task's Status to Canceled.</li>
       <li><strong>Interview Question:</strong> &quot;Explain cooperative cancellation in Tasks. What are the key classes involved?&quot;</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Task&lt;TResult&gt;:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>Represents an asynchronous operation that produces a value of type TResult.</li>
       <li>Access the result using task.Result (blocking) or await task (non- blocking).</li>
       <li>Can return any valid C# type, including custom objects and collections.</li>
       <li><strong>Interview Question:</strong> &quot;How do you get a return value from an asynchronous operation using Tasks?&quot;</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Task.ContinueWith:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>Allows chaining tasks, defining actions that run after an antecedent task completes.</li>
       <li>Offers fine-grained control via TaskContinuationOptions (e.g., OnlyOnRanToCompletion, OnlyOnFaulted, OnlyOnCanceled), letting you react differently based on the antecedent's final state.</li>
       <li>While await is often preferred for linear chains, ContinueWith is powerful for complex workflows or conditional continuations.</li>
       <li><strong>Interview Question:</strong> &quot;When would you use Task.ContinueWith over await?&quot;</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Synchronization Context:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>In environments with a SynchronizationContext (e.g., UI applications like WPF/WinForms, ASP.NET Core), await tries to resume on the original context's thread after an await point. This is crucial for UI updates.</li>
       <li>In console applications or library code, there's typically no SynchronizationContext, so await often resumes on a thread pool thread.</li>
       <li><strong>ConfigureAwait(false):</strong> Can be used to prevent await from attempting to marshal the continuation back to the original SynchronizationContext, which can improve performance in library code by avoiding context switching overhead, but should not be used if UI updates are needed after the await.</li>
       <li><strong>Interview Question:</strong> &quot;What is SynchronizationContext, and how does it relate to async/await? What is ConfigureAwait(false) for?&quot; (This bridges to async/await deeply, but its foundation is TPL).</li>
     </ul>
 
+      </div>
+    </div>
+  
     <div class="diagram-container">
-      <div class="diagram-title">📊 Diagram: Task State Transition Lifecycle</div>
+      <div class="diagram-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+        <span>Diagram: Task State Transition Lifecycle</span>
+      </div>
       <pre class="diagram-pre">Created
      |  (Task.Start / Task.Run)
      v
@@ -2403,7 +2463,7 @@ WaitingForActivation ---&gt; WaitingToRun ---&gt; Running
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="32" aria-pressed="false">
@@ -2416,13 +2476,13 @@ WaitingForActivation ---&gt; WaitingToRun ---&gt; Running
       <nav class="bottom-nav">
         
     <a href="section-31.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 31: Threading &amp; Synchronization Primitives</span>
     </a>
   
         
     <a href="section-33.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 33: Asynchronous Programming (Async &amp; Await)</span>
     </a>
   
@@ -2431,7 +2491,7 @@ WaitingForActivation ---&gt; WaitingToRun ---&gt; Running
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

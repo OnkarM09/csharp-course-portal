@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 19: Garbage Collection, Destructors &amp; IDisposable — C# Masterclass</title>
+  <title>Section 19: Garbage Collection, Destructors &amp; IDisposable &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 4</span>
-          <span class="read-time-badge">⏱️ 26 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>26 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">GC Generations</span> <span class="tag-pill">Finalizers</span> <span class="tag-pill">IDisposable</span> <span class="tag-pill">Dispose Pattern</span> <span class="tag-pill">using statement</span>
           </div>
@@ -474,7 +480,8 @@
         </button>
       </div>
       <pre><code class="language-csharp">{
-    // Destructor (Finalizer) ~MyResourceHolder()
+    // Destructor (Finalizer)
+    ~MyResourceHolder()
     {
         // Cleanup code for unmanaged resources would go here.
         Console.WriteLine(&quot;Destructor is being called.&quot;);
@@ -555,7 +562,8 @@
         }
         _streamWriter.WriteLine($&quot;{DateTime.Now}: {message}&quot;);
     }
-    // The implementation of the IDisposable contract. public void Dispose()
+    // The implementation of the IDisposable contract.
+    public void Dispose()
     {
         if (!_isDisposed)
         {
@@ -593,7 +601,6 @@
       <pre><code class="language-csharp">// logger is only accessible inside these curly braces.</code></pre>
     </div>
   
-<p>using (FileLogger logger = new FileLogger(&quot;log.txt&quot;))</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -624,7 +631,8 @@
       <pre><code class="language-csharp">public void DoLogging() {
     using var logger = new FileLogger(&quot;log.txt&quot;);
     logger.Log(&quot;This is a message.&quot;);
-    // logger can be used throughout the rest of the method. if (true)
+    // logger can be used throughout the rest of the method.
+    if (true)
     {
         logger.Log(&quot;Another message.&quot;);
     }
@@ -648,7 +656,10 @@ method.</code></pre>
     </ul>
 
     <div class="diagram-container">
-      <div class="diagram-title">📊 Diagram: Garbage Collector Generations Lifecycle</div>
+      <div class="diagram-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+        <span>Diagram: Garbage Collector Generations Lifecycle</span>
+      </div>
       <pre class="diagram-pre">[ Gen 0 (Ephemeral) ] ---&gt; [ Gen 1 (Short-Lived) ] ---&gt; [ Gen 2 (Long-Lived) ]
   Short-lived objects        Surviving objects            Static objects, cache,
   (Strings, buffers)         from Gen 0 collection        singletons, AppDomain
@@ -663,7 +674,7 @@ method.</code></pre>
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="19" aria-pressed="false">
@@ -676,13 +687,13 @@ method.</code></pre>
       <nav class="bottom-nav">
         
     <a href="section-18.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 18: Extension Methods &amp; Pattern Matching</span>
     </a>
   
         
     <a href="section-20.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 20: Delegates, Multicast &amp; Events</span>
     </a>
   
@@ -691,7 +702,7 @@ method.</code></pre>
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

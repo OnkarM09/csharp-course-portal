@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 09: Properties &amp; Indexers — C# Masterclass</title>
+  <title>Section 09: Properties &amp; Indexers &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 2</span>
-          <span class="read-time-badge">⏱️ 25 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>25 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">Getters/Setters</span> <span class="tag-pill">Auto-Properties</span> <span class="tag-pill">Init-Only</span> <span class="tag-pill">Indexers</span> <span class="tag-pill">Encapsulation</span>
           </div>
@@ -462,11 +468,13 @@
       <pre><code class="language-csharp">public class Student
 {
     private string _name; // The private data
-    // &quot;Getter&quot; method public string GetName()
+    // &quot;Getter&quot; method
+    public string GetName()
     {
         return _name;
     }
-    // &quot;Setter&quot; method public void SetName(string name)
+    // &quot;Setter&quot; method
+    public void SetName(string name)
     {
         if (!string.IsNullOrEmpty(name))
         {
@@ -501,18 +509,22 @@
 {
     // 1. A private &quot;backing field&quot; to hold the data.
     private string _name;
-    // 2. A public property to control access to the backing field. public string Name
+    // 2. A public property to control access to the backing field.
+    public string Name
     {
-        // The 'get' accessor is executed when you read the property. get
+        // The 'get' accessor is executed when you read the property.
+        get
         {
             // It simply returns the value of the backing field.
             return _name;
         }
-        // The 'set' accessor is executed when you assign a value to the property.
+        // The 'set' accessor is executed when you assign a value to the
+        property.
         set
         {
             // 'value' is an implicit keyword holding the assigned value.
-            // We can add validation logic here to protect our data. if (string.IsNullOrEmpty(value))
+            // We can add validation logic here to protect our data.
+            if (string.IsNullOrEmpty(value))
             {
                 Console.WriteLine(&quot;Error: Name cannot be null or empty.&quot;);
             }
@@ -579,10 +591,13 @@ Console.WriteLine(currentName); // Output: John
         _lastName = lastName;
         DateOfBirth = dob;
     }
-    // Read-only property for a computed value using expression-bodied syntax.
-    // There is no backing field for this property; its value is computed on the fly.
+    // Read-only property for a computed value using expression-bodied
+    syntax.
+    // There is no backing field for this property; its value is computed on
+    the fly.
     public string FullName =&gt; $&quot;{_firstName} {_lastName}&quot;;
-    // Read-only property to calculate age. public int Age
+    // Read-only property to calculate age.
+    public int Age
     {
         get
         {
@@ -597,9 +612,9 @@ Console.WriteLine(currentName); // Output: John
 }
 // --- In your Main method ---
 Person p = new Person(&quot;Jane&quot;, &quot;Doe&quot;, new DateTime(1990, 5, 15));
-Console.WriteLine(p.FullName); // Output: Jane Doe
-Console.WriteLine($&quot;Age: {p.Age}&quot;);
-// The following line would cause a compiler error because FullName is read-only.
+Console.WriteLine(p.FullName); // Output: Jane DoeConsole.WriteLine($&quot;Age: {p.Age}&quot;);
+// The following line would cause a compiler error because FullName is
+read-only.
 // p.FullName = &quot;John Smith&quot;; // ERROR! Property or indexer</code></pre>
     </div>
   
@@ -624,20 +639,19 @@ Console.WriteLine($&quot;Age: {p.Age}&quot;);
       <pre><code class="language-csharp">public class PasswordManager
 {
     private string _hashedPassword;
-    // This is a write-only property. public string Password
+    // This is a write-only property.
+    public string Password
     {
         set
         {
             if (string.IsNullOrEmpty(value) || value.Length &lt; 8)
             {
-                Console.WriteLine(&quot;Error: Password must be at least 8
-                characters.&quot;);
+                Console.WriteLine(&quot;Error: Password must be at least 8characters.&quot;);
             }
             else
             {
                 // In a real app, you would use a strong hashing algorithm.
-                _hashedPassword = $&quot;HASHED({value})&quot;;
-                Console.WriteLine(&quot;Password has been set successfully.&quot;);
+                _hashedPassword = $&quot;HASHED({value})&quot;;Console.WriteLine(&quot;Password has been set successfully.&quot;);
             }
         }
     }
@@ -656,7 +670,8 @@ PasswordManager pm = new PasswordManager();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// The following line would cause a compiler error because there is no 'get' accessor.
+      <pre><code class="language-csharp">// The following line would cause a compiler error because there is no 'get'
+accessor.
 // string myPass = pm.Password; // ERROR! The property</code></pre>
     </div>
   
@@ -717,8 +732,7 @@ laptop.Id = 101;
 laptop.Name = &quot;SuperBook Pro&quot;;
 laptop.Price = 1299.99M;
 laptop.Sku = &quot;SBP-2025-BL&quot;;
-Console.WriteLine($&quot;Product: {laptop.Name} (ID: {laptop.Id}) costs
-{laptop.Price:C}&quot;);</code></pre>
+Console.WriteLine($&quot;Product: {laptop.Name} (ID: {laptop.Id}) costs{laptop.Price:C}&quot;);</code></pre>
     </div>
   
 
@@ -747,7 +761,8 @@ Console.WriteLine($&quot;Product: {laptop.Name} (ID: {laptop.Id}) costs
     this class.
     public string Name { get; set; }
     public decimal Price { get; set; }
-    // We can set the private setter in the constructor. public Product(int id)
+    // We can set the private setter in the constructor.
+    public Product(int id)
     {
         this.Id = id;
     }
@@ -771,7 +786,8 @@ Console.WriteLine($&quot;Created product with ID: {phone.Id}&quot;);
 
     <div class="callout callout-tip">
       <div class="callout-header">
-        <span>🟢 Best Practice & Architecture Tip</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
         
       </div>
       <div class="callout-content">
@@ -844,7 +860,15 @@ Console.WriteLine($&quot;Member Since: {newCustomer.MemberSince}&quot;); //</cod
       <li>The public { get; private set; } Pattern is a Cornerstone of Encapsulation This pattern is extremely common and powerful. It allows you to create properties that are publicly readable but can only be modified from within the class. This is the ideal way to handle properties like IDs, creation dates, or any state that should be immutable to the outside world after an object is created.</li>
       <li>Properties vs. Methods: A Guideline An interview question might be, &quot;When do you use a property versus a method?&quot; Here’s a good guideline:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>Use a Property if:</li>
       <li>The member represents a piece of data or an attribute of the object (e.g., Name, Color, Age).</li>
       <li>Getting the value is a fast, simple operation that does not have significant side effects.</li>
@@ -854,6 +878,9 @@ Console.WriteLine($&quot;Member Since: {newCustomer.MemberSince}&quot;); //</cod
       <li>The operation takes parameters. (Properties do not, but indexers do).</li>
     </ul>
 
+      </div>
+    </div>
+  
     <h2 id="sec-9-lec-8-intro-to-indexers-working-with-indexers">Lecture 8: Intro to Indexers &amp; Working with Indexers</h2>
     <h3 id="sec-9-lec-8-intro-to-indexers-working-with-indexers-introduction">Introduction</h3>
 <p>An indexer is a special type of class member that allows an object of your class to be accessed using the familiar square bracket [] notation, just like an array or a dictionary. Its purpose is to provide a more natural and intuitive syntax for accessing elements when your class logically represents a collection or list of items. Instead of writing myTeam.GetPlayer(0), an indexer allows you to write the much cleaner myTeam[0].</p>
@@ -886,9 +913,11 @@ public class Team
 {
     // The private backing collection.
     private List&lt;string&gt; _players = new List&lt;string&gt;();
-    // The indexer declaration. It takes an integer 'index'. public string this[int index]
+    // The indexer declaration. It takes an integer 'index'.
+    public string this[int index]
     {
-        // The 'get' accessor for reading a player's name. get
+        // The 'get' accessor for reading a player's name.
+        get
         {
             // Add validation to prevent errors.
             if (index &gt;= 0 &amp;&amp; index &lt; _players.Count)
@@ -898,7 +927,8 @@ public class Team
             // Return null or throw an exception if the index is out of bounds.
             return null;
         }
-        // The 'set' accessor for adding or updating a player's name. set
+        // The 'set' accessor for adding or updating a player's name.
+        set
         {
             if (index &gt;= 0 &amp;&amp; index &lt; _players.Count)
             {
@@ -961,11 +991,13 @@ public class Player
 public class Team
 {
     private List&lt;Player&gt; _players = new List&lt;Player&gt;();
-    // Method to add players to the team public void AddPlayer(Player player)
+    // Method to add players to the team
+    public void AddPlayer(Player player)
     {
         _players.Add(player);
     }
-    // --- Indexer Overload 1: Takes an integer index --- public Player this[int index]
+    // --- Indexer Overload 1: Takes an integer index ---
+    public Player this[int index]
     {
         get
         {
@@ -976,13 +1008,13 @@ public class Team
             return null;
         }
     }
-    // --- Indexer Overload 2: Takes a string name --- public Player this[string name]
+    // --- Indexer Overload 2: Takes a string name ---
+    public Player this[string name]
     {
         get
         {
             // Use LINQ to find the first player with a matching name.
-            return _players.FirstOrDefault(p =&gt; p.Name.Equals(name,
-            StringComparison.OrdinalIgnoreCase));
+            return _players.FirstOrDefault(p =&gt; p.Name.Equals(name,StringComparison.OrdinalIgnoreCase));
         }
     }
 }
@@ -992,8 +1024,7 @@ myTeam.AddPlayer(new Player { Name = &quot;Alice&quot;, JerseyNumber = 10 });
 myTeam.AddPlayer(new Player { Name = &quot;Bob&quot;, JerseyNumber = 7 });
 // Using the INT indexer
 Player firstPlayer = myTeam[0];
-Console.WriteLine($&quot;Player at index 0 is {firstPlayer.Name}, Jersey
-#{firstPlayer.JerseyNumber}&quot;);
+Console.WriteLine($&quot;Player at index 0 is {firstPlayer.Name}, Jersey#{firstPlayer.JerseyNumber}&quot;);
 // Using the STRING indexer
 Player bob = myTeam[&quot;Bob&quot;];
 Console.WriteLine($&quot;Looked up Bob by name. Jersey #{bob.JerseyNumber}&quot;);
@@ -1012,18 +1043,29 @@ Console.WriteLine($&quot;Is Charlie on the team? {charlie == null}&quot;);</code
       <li>Indexers Provide &quot;Array-Like&quot; Syntax The entire purpose of an indexer is to make an object that represents a collection more intuitive to use. It's syntactic sugar that makes your class feel like a built-in array or dictionary.</li>
       <li>Properties vs. Indexers: A Key Interview Topic Be prepared to clearly articulate the differences.</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Access:</strong> Properties are accessed by a static name known at compile time (myObject.Name). Indexers are accessed by a dynamic index or key whose value is often not known until run-time (myObject[key]).</li>
       <li><strong>Static Members:</strong> Properties can be declared as static (e.g., DateTime.Now). Indexers must always be instance members; they operate on a specific object.</li>
       <li><strong>Parameters:</strong> Properties do not take parameters in their call. Indexers always take at least one parameter (the index).</li>
     </ul>
 
+      </div>
+    </div>
+  
       </article>
 
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="9" aria-pressed="false">
@@ -1036,13 +1078,13 @@ Console.WriteLine($&quot;Is Charlie on the team? {charlie == null}&quot;);</code
       <nav class="bottom-nav">
         
     <a href="section-08.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 08: Constructors (Basics &amp; Chaining)</span>
     </a>
   
         
     <a href="section-10.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 10: Inheritance, Hiding &amp; Overriding</span>
     </a>
   
@@ -1051,7 +1093,7 @@ Console.WriteLine($&quot;Is Charlie on the team? {charlie == null}&quot;);</code
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

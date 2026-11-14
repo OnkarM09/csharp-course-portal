@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 29: Advanced Exception Patterns &amp; Diagnostics — C# Masterclass</title>
+  <title>Section 29: Advanced Exception Patterns &amp; Diagnostics &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 6</span>
-          <span class="read-time-badge">⏱️ 22 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>22 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">AggregateException</span> <span class="tag-pill">StackTrace</span> <span class="tag-pill">InnerException</span> <span class="tag-pill">AppDomain.UnhandledException</span>
           </div>
@@ -470,14 +476,45 @@
     </ol>
     <ul>
       <li>This is the error handler. If an exception is thrown inside the try block, the normal flow stops immediately, and the runtime looks for a matching catch block.</li>
-      <li>A catch block specifies the type of exception it can handle (e.g., catch (FormatException ex)). You can have multiple catch blocks to handle different types of exceptions.</li>
+      <li>A catch block specifies the type of exception it can handle (e.g.,</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code class="language-csharp">catch (FormatException ex)). You can have multiple catch blocks
+to handle different types of exceptions.</code></pre>
+    </div>
+  
+    <ul>
       <li>The ex variable holds the exception object, which you can use to log the error message and other details.</li>
     </ul>
     <ol>
       <li>The finally Block:</li>
     </ol>
     <ul>
-      <li>This block is always executed, regardless of what happened in the try and catch blocks. It will run if no exception occurred, if an exception was caught, or even if an exception was thrown but not caught.</li>
+      <li>This block is always executed, regardless of what happened in the</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code class="language-csharp">try and catch blocks. It will run if no exception occurred, if an
+exception was caught, or even if an exception was thrown but not
+caught.</code></pre>
+    </div>
+  
+    <ul>
       <li>Its purpose is cleanup. This is where you put code that absolutely must run to release resources, such as closing a file or a database connection.</li>
     </ul>
     <h3 id="sec-29-lec-3-try-catch-finally-example">Example</h3>
@@ -492,19 +529,14 @@
       </div>
       <pre><code class="language-csharp">public void ProcessUserInput()
 {
-    Console.WriteLine(&quot;Please enter a number:&quot;);
-    string input = Console.ReadLine();
+    Console.WriteLine(&quot;Please enter a number:&quot;);string input = Console.ReadLine();
     try
     {
-        Console.WriteLine(&quot;--&gt; Entering the 'try' block.&quot;);
-        int number = int.Parse(input);
-        Console.WriteLine($&quot;You entered the valid number: {number}&quot;);
+        Console.WriteLine(&quot;--&gt; Entering the 'try' block.&quot;);int number = int.Parse(input);Console.WriteLine($&quot;You entered the valid number: {number}&quot;);
     }
     catch (FormatException ex)
     {
-        Console.WriteLine(&quot;--&gt; Entering the 'catch' block.&quot;);
-        Console.WriteLine(&quot;Error: That was not a valid number.&quot;);
-        Console.WriteLine($&quot;Exception details: {ex.Message}&quot;);
+        Console.WriteLine(&quot;--&gt; Entering the 'catch' block.&quot;);Console.WriteLine(&quot;Error: That was not a valid number.&quot;);Console.WriteLine($&quot;Exception details: {ex.Message}&quot;);
     }
     finally
     {
@@ -531,7 +563,8 @@
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// --- Bad Practice: Using try-catch for validation --- try
+      <pre><code class="language-csharp">// --- Bad Practice: Using try-catch for validation ---
+try
 {
     int number = int.Parse(userInput);
 }
@@ -539,14 +572,14 @@ catch (FormatException)
 {
     Console.WriteLine(&quot;FormatException was caught!&quot;);
 }
-// --- Good Practice: Using TryParse --- if (int.TryParse(userInput, out int number))
+// --- Good Practice: Using TryParse ---
+if (int.TryParse(userInput, out int number))
 {
     // This won't run
 }
 else
 {
-    Console.WriteLine(&quot;TryParse gracefully handled the invalid input
-    without an exception.&quot;);
+    Console.WriteLine(&quot;TryParse gracefully handled the invalid inputwithout an exception.&quot;);
 }</code></pre>
     </div>
   
@@ -559,7 +592,7 @@ else
       <li>A common mistake is using &lt;= in a for loop condition: for (int i = 0; i &lt;= myArray.Length; i++). When i becomes equal to myArray.Length, this will throw the exception. The condition should be i &lt; myArray.Length. How to Handle It: Fix the Bug You should never catch an IndexOutOfRangeException. Catching it would be like putting a bandage on a deep wound without treating the cause. The presence of this exception indicates a flaw in your program's logic that needs to be found and fixed.</li>
     </ul>
     <h3 id="sec-29-lec-5-indexoutofrangeexception-example">Example</h3>
-<p>int[] numbers = { 10, 20, 30 }; // Length is 3. Valid indices are 0, 1, 2. try</p>
+<p>int[] numbers = { 10, 20, 30 }; // Length is 3. Valid indices are 0, 1, 2.</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -569,7 +602,8 @@ else
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">{
+      <pre><code class="language-csharp">try
+{
     // This attempts to access the element at index 3, which does not exist.
     int value = numbers[3];
 }
@@ -610,15 +644,26 @@ try
 catch (NullReferenceException ex)
 {
     Console.WriteLine($&quot;Caught an error: {ex.Message}&quot;);
-    Console.WriteLine(&quot;This happened because the 'person' variable was
-    null.&quot;);
+    Console.WriteLine(&quot;This happened because the 'person' variable wasnull.&quot;);
 }</code></pre>
     </div>
   
 
     <h2 id="sec-29-lec-7-overflowexception">Lecture 6: OverflowException</h2>
     <h3 id="sec-29-lec-7-overflowexception-introduction">Introduction</h3>
-<p>An OverflowException is the error that occurs when an arithmetic operation produces a result that is outside the allowable range of the destination data type. For example, the int data type has a maximum value of 2,147,483,647. If you try to add 1 to a variable holding this value, you will cause an overflow.</p>
+<p>An OverflowException is the error that occurs when an arithmetic operation produces a result that is outside the allowable range of the destination data type. For example, the int data type has a maximum value of 2,147,483,647. If you</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code class="language-csharp">try to add 1 to a variable holding this value, you will cause an overflow.</code></pre>
+    </div>
+  
     <h3 id="sec-29-lec-7-overflowexception-how-it-works">How It Works: checked and unchecked Contexts</h3>
 <p>This is a critical interview topic. By default, for performance reasons, integer arithmetic in C# is unchecked. MaxValue + 1) silently, without throwing an exception. To enable overflow checking, you must explicitly create a checked context.</p>
     <ul>
@@ -643,9 +688,11 @@ int resultUnchecked = a + 1;
 // The value wraps around to the smallest possible integer.
 Console.WriteLine($&quot;Unchecked result: {resultUnchecked}&quot;); // Output:
 -2147483648
-// --- Checked context --- try
+// --- Checked context ---
+try
 {
-    // This block will now throw an exception. checked
+    // This block will now throw an exception.
+    checked
     {
         int resultChecked = a + 1;
     }
@@ -669,7 +716,7 @@ catch (OverflowException ex)
       <li><strong>The as operator:</strong> Attempts to cast an object. If successful, it returns the casted object. If the cast is invalid, it returns null instead of throwing an exception. Dog myDog = myObject as Dog;</li>
     </ul>
     <h3 id="sec-29-lec-8-invalidcastexception-example">Example</h3>
-<p>object boxedInt = 123; // This is a boxed int. try</p>
+<p>object boxedInt = 123; // This is a boxed int.</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -679,7 +726,8 @@ catch (OverflowException ex)
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">{
+      <pre><code class="language-csharp">try
+{
     // This will fail. You cannot unbox an int directly to a long.
     long myLong = (long)boxedInt;
 }
@@ -713,17 +761,18 @@ Console.WriteLine($&quot;Correct conversion: {myCorrectLong}&quot;);</code></pre
         </button>
       </div>
       <pre><code class="language-csharp">Stack&lt;int&gt; myStack = new Stack&lt;int&gt;();
-// myStack is currently empty. try
+// myStack is currently empty.
+try
 {
     // This is an invalid operation on an empty stack.
     myStack.Pop();
 }
 catch (InvalidOperationException)
 {
-    Console.WriteLine(&quot;Caught InvalidOperationException from popping an
-    empty stack.&quot;);
+    Console.WriteLine(&quot;Caught InvalidOperationException from popping anempty stack.&quot;);
 }
-// The correct, defensive way to write this code: if (myStack.Count &gt; 0)
+// The correct, defensive way to write this code:
+if (myStack.Count &gt; 0)
 {
     myStack.Pop();
 }
@@ -785,7 +834,6 @@ else
     </div>
   
     <h3 id="sec-29-lec-11-innerexception-example">Example</h3>
-<p>try</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -795,7 +843,8 @@ else
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">{
+      <pre><code class="language-csharp">try
+{
     // This line will throw a FormatException.
     int.Parse(&quot;abc&quot;);
 }
@@ -865,7 +914,8 @@ catch (FormatException ex) // 'ex' holds the original error.
     {
         throw new ArgumentNullException(nameof(username));
     }
-    // A username also can't be empty or just whitespace. if (string.IsNullOrWhiteSpace(username))
+    // A username also can't be empty or just whitespace.
+    if (string.IsNullOrWhiteSpace(username))
     {
         // ArgumentException is perfect for this kind of validation failure.
         throw new ArgumentException(&quot;Username cannot be empty or
@@ -974,21 +1024,16 @@ public class BankAccount
         }
         catch (Exception ex)
         {
-            Console.WriteLine(&quot;--- EXCEPTION CAUGHT ---&quot;);
-            Console.WriteLine($&quot;Error Message: {ex.Message}&quot;);
-            Console.WriteLine(&quot;\n--- STACK TRACE ---&quot;);
-            Console.WriteLine(ex.StackTrace);
+            Console.WriteLine(&quot;--- EXCEPTION CAUGHT ---&quot;);Console.WriteLine($&quot;Error Message: {ex.Message}&quot;);Console.WriteLine(&quot;\n--- STACK TRACE ---&quot;);Console.WriteLine(ex.StackTrace);
         }
     }
     public static void MethodA()
     {
-        Console.WriteLine(&quot;Inside MethodA, about to call MethodB.&quot;);
-        MethodB();
+        Console.WriteLine(&quot;Inside MethodA, about to call MethodB.&quot;);MethodB();
     }
     public static void MethodB()
     {
-        Console.WriteLine(&quot;Inside MethodB, about to call MethodC.&quot;);
-        MethodC();
+        Console.WriteLine(&quot;Inside MethodB, about to call MethodC.&quot;);MethodC();
     }
     public static void MethodC()
     {
@@ -1027,17 +1072,13 @@ public class BankAccount
 {
     public static void LogException(Exception ex)
     {
-        Console.WriteLine(&quot;--- ERROR LOGGED ---&quot;);
-        Console.WriteLine($&quot;Timestamp: {DateTime.UtcNow}&quot;);
+        Console.WriteLine(&quot;--- ERROR LOGGED ---&quot;);Console.WriteLine($&quot;Timestamp: {DateTime.UtcNow}&quot;);
         // Use a loop to log the entire exception chain.
         Exception currentEx = ex;
         int level = 0;
         while (currentEx != null)
         {
-            Console.WriteLine($&quot;\nLevel {level}:&quot;);
-            Console.WriteLine($&quot; Type: {currentEx.GetType().FullName}&quot;);
-            Console.WriteLine($&quot; Message: {currentEx.Message}&quot;);
-            Console.WriteLine($&quot; StackTrace:\n{currentEx.StackTrace}&quot;);
+            Console.WriteLine($&quot;\nLevel {level}:&quot;);Console.WriteLine($&quot; Type: {currentEx.GetType().FullName}&quot;);Console.WriteLine($&quot; Message: {currentEx.Message}&quot;);Console.WriteLine($&quot; StackTrace:\n{currentEx.StackTrace}&quot;);
             currentEx = currentEx.InnerException;
             level++;
         }
@@ -1061,10 +1102,8 @@ public class BankAccount
 <p>Catching the generic Exception type should be done with caution and is generally only appropriate in specific places.</p>
     <ul>
       <li><strong>Good Use:</strong> At the highest level of your application (e.g., in Program.Main or a global error handler in a web app). Here, it acts as a final safety net to log any totally unexpected error and prevent the entire application from crashing.</li>
-      <li><strong>Bad Use:</strong> In lower-level business logic. In these areas, you should try to catch more specific exception types whenever possible. For example, if you are working with files, you should specifically catch (FileNotFoundException ex) or catch (IOException ex). Catching the generic Exception can hide bugs by accidentally catching and &quot;handling&quot; errors you weren't expecting and didn't actually know how to deal with properly. Best Practice: Always order your catch blocks from most specific to most general.</li>
+      <li><strong>Bad Use:</strong> In lower-level business logic. In these areas, you should try to</li>
     </ul>
-    <h3 id="sec-29-lec-17-system-exception-example">Example</h3>
-<p>try</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1074,7 +1113,22 @@ public class BankAccount
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">{
+      <pre><code class="language-csharp">catch more specific exception types whenever possible. For example, if</code></pre>
+    </div>
+  
+<p>you are working with files, you should specifically catch (FileNotFoundException ex) or catch (IOException ex). Catching the generic Exception can hide bugs by accidentally catching and &quot;handling&quot; errors you weren't expecting and didn't actually know how to deal with properly. Best Practice: Always order your catch blocks from most specific to most general.</p>
+    <h3 id="sec-29-lec-17-system-exception-example">Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code class="language-csharp">try
+{
     // ... code that could throw different errors ...
 }
 catch (ArgumentNullException ex) // Most specific
@@ -1094,17 +1148,42 @@ catch (Exception ex) // The final catch-all safety net
 
     <h2 id="sec-29-lec-18-catch-when-exception-filters">Lecture 17: Catch When / Exception Filters</h2>
     <h3 id="sec-29-lec-18-catch-when-exception-filters-introduction">Introduction</h3>
-<p>Exception filters, introduced in C# 6.0, allow you to add a conditional check to a catch block using the when keyword. This provides a more powerful and precise way to decide whether to handle an exception.</p>
+<p>Exception filters, introduced in C# 6.0, allow you to add a conditional check to a</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code class="language-csharp">catch block using the when keyword. This provides a more powerful and
+precise way to decide whether to handle an exception.</code></pre>
+    </div>
+  
     <h3 id="sec-29-lec-18-catch-when-exception-filters-how-it-works">How It Works</h3>
 <p>A catch block with a when clause will only execute if both the exception type matches and the boolean condition in the when clause evaluates to true.</p>
     <h3 id="sec-29-lec-18-catch-when-exception-filters-syntax">Syntax</h3>
-<p>catch (ExceptionType ex) when (condition) Why It's Better Than if Inside catch This is the key insight and a great interview point.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code class="language-csharp">catch (ExceptionType ex) when (condition)</code></pre>
+    </div>
+  
+<p>Why It's Better Than if Inside catch This is the key insight and a great interview point.</p>
     <ul>
       <li>If you use an if statement inside a catch block, the exception is considered handled the moment execution enters the catch block. The stack unwinding stops. If your if condition is false, the exception is effectively &quot;swallowed&quot; unless you manually re-throw it.</li>
       <li>With when, the condition is evaluated before the stack unwinding stops. If the when condition is false, the runtime continues searching up the call stack for another suitable catch block. This is better for logging and debugging because you don't &quot;handle&quot; an exception you aren't prepared for, allowing a more appropriate handler further up the stack to deal with it.</li>
     </ul>
     <h3 id="sec-29-lec-18-catch-when-exception-filters-example">Example</h3>
-<p>Let's say we only want to handle a specific type of web error, like a timeout, but let other web errors propagate. try</p>
+<p>Let's say we only want to handle a specific type of web error, like a timeout, but let other web errors propagate.</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1114,15 +1193,16 @@ catch (Exception ex) // The final catch-all safety net
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">{
+      <pre><code class="language-csharp">try
+{
     // ... code that makes a web request ...
-    // For this example, we'll just throw it manually. throw new WebException(&quot;The request timed out.&quot;,
-    WebExceptionStatus.Timeout);
+    // For this example, we'll just throw it manually.
+    throw new WebException(&quot;The request timed out.&quot;,WebExceptionStatus.Timeout);
 }
 // This catch block will ONLY execute if the exception is a WebException</code></pre>
     </div>
   
-<p>AND its status is Timeout. catch (WebException ex) when (ex.Status == WebExceptionStatus.Timeout)</p>
+<p>AND its status is Timeout.</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1132,10 +1212,13 @@ catch (Exception ex) // The final catch-all safety net
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">{
+      <pre><code class="language-csharp">catch (WebException ex) when (ex.Status ==
+WebExceptionStatus.Timeout)
+{
     Console.WriteLine(&quot;Caught a timeout error specifically. Retrying...&quot;);
 }
-// Any other WebException (like NameResolutionFailure) would NOT be caught here.
+// Any other WebException (like NameResolutionFailure) would NOT be
+caught here.
 catch (WebException ex)
 {
     Console.WriteLine($&quot;Caught a different web error: {ex.Status}&quot;);
@@ -1149,7 +1232,22 @@ catch (WebException ex)
       <li><strong>Prevent Exceptions When Possible:</strong> Defensive coding is better than reactive coding. Use int.TryParse instead of catching a FormatException. Check for null instead of catching a NullReferenceException.</li>
       <li><strong>Catch Specific Exceptions First:</strong> Always order your catch blocks from the most specific type to the most general (Exception) type.</li>
       <li>Don't &quot;Swallow&quot; Exceptions: An empty catch block (catch { }) is dangerous. It hides problems. At a minimum, always log the exception you catch so you have a record that something went wrong.</li>
-      <li><strong>Preserve the Stack Trace:</strong> This is a critical interview topic. When you catch an exception (ex) and need to re-throw it, you must use throw; by itself.</li>
+      <li><strong>Preserve the Stack Trace:</strong> This is a critical interview topic. When you</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code class="language-csharp">catch an exception (ex) and need to re-throw it, you must use throw; by
+itself.</code></pre>
+    </div>
+  
+    <ul>
       <li>throw;: Preserves the original stack trace, so you know where the error truly originated.</li>
       <li>throw ex;: This resets the stack trace to the current line, effectively destroying the original point of failure. You should almost never do this.</li>
       <li><strong>Clean Up with finally:</strong> Use the finally block (or the using statement for IDisposable objects) to guarantee that critical cleanup code (like releasing file handles or database connections) is always executed, whether an exception occurred or not.</li>
@@ -1171,7 +1269,7 @@ catch (WebException ex)
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="29" aria-pressed="false">
@@ -1184,13 +1282,13 @@ catch (WebException ex)
       <nav class="bottom-nav">
         
     <a href="section-28.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 28: Exception Handling &amp; Defensive Programming</span>
     </a>
   
         
     <a href="section-30.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 30: C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)</span>
     </a>
   
@@ -1199,7 +1297,7 @@ catch (WebException ex)
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

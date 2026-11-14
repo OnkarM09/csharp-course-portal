@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 20: Delegates, Multicast &amp; Events — C# Masterclass</title>
+  <title>Section 20: Delegates, Multicast &amp; Events &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 5</span>
-          <span class="read-time-badge">⏱️ 30 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>30 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">delegate</span> <span class="tag-pill">Multicast</span> <span class="tag-pill">Action</span> <span class="tag-pill">Func</span> <span class="tag-pill">Predicate</span> <span class="tag-pill">event</span> <span class="tag-pill">Event Handling</span>
           </div>
@@ -490,7 +496,8 @@
 public delegate int MathOperation(int a, int b);
 public class Calculator
 {
-    // 2. Define methods that match the delegate's signature. public int Add(int x, int y)
+    // 2. Define methods that match the delegate's signature.
+    public int Add(int x, int y)
     {
         Console.WriteLine(&quot;Add method called.&quot;);
         return x + y;
@@ -619,13 +626,16 @@ public class Stock
     private decimal _price;
     // 1. A private delegate instance to hold the subscribers.
     private PriceChangedHandler _priceChanged;
-    // 2. The public event wrapper. public event PriceChangedHandler PriceChanged
+    // 2. The public event wrapper.
+    public event PriceChangedHandler PriceChanged
     {
-        // 3. The 'add' accessor is called when a subscriber uses += add
+        // 3. The 'add' accessor is called when a subscriber uses +=
+        add
         {
             _priceChanged += value;
         }
-        // 3. The 'remove' accessor is called when a subscriber uses -= remove
+        // 3. The 'remove' accessor is called when a subscriber uses -=
+        remove
         {
             _priceChanged -= value;
         }
@@ -702,12 +712,12 @@ public class Stock
         _price = startingPrice;
     }
 }
-// A subscriber class public class StockMonitor
+// A subscriber class
+public class StockMonitor
 {
     public void OnPriceChanged(decimal oldPrice, decimal newPrice)
     {
-        Console.WriteLine($&quot;Stock price changed from {oldPrice:C} to
-        {newPrice:C}&quot;);
+        Console.WriteLine($&quot;Stock price changed from {oldPrice:C} to{newPrice:C}&quot;);
     }
 }
 // --- In your Main method ---
@@ -715,7 +725,8 @@ Stock tesla = new Stock(&quot;TSLA&quot;, 900);
 StockMonitor monitor = new StockMonitor();
 // Subscribe the monitor's method to the event using +=
 tesla.PriceChanged += monitor.OnPriceChanged;
-// This assignment will trigger the event and call the subscriber's method.
+// This assignment will trigger the event and call the subscriber's
+method.
 tesla.Price = 925;</code></pre>
     </div>
   
@@ -845,7 +856,8 @@ myButton.Click += (sender, e) =&gt;
       </div>
       <pre><code class="language-csharp">List&lt;int&gt; numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 // --- Using an inline lambda expression with Count() ---
-// The Count method accepts a delegate that takes an int and returns a bool.
+// The Count method accepts a delegate that takes an int and returns a
+bool.
 // We provide the logic for that delegate directly as a lambda expression.
 int evenCount = numbers.Count(n =&gt; n % 2 == 0);
 // The expression &quot;n =&gt; n % 2 == 0&quot; is read as:
@@ -854,8 +866,7 @@ Console.WriteLine($&quot;There are {evenCount} even numbers.&quot;); // Output: 
 // --- Using an inline lambda expression with Where() ---
 // The Where method filters a collection based on a condition.
 var evenNumbers = numbers.Where(n =&gt; n % 2 == 0);
-Console.WriteLine(&quot;The even numbers are: &quot; + string.Join(&quot;, &quot;,
-evenNumbers));</code></pre>
+Console.WriteLine(&quot;The even numbers are: &quot; + string.Join(&quot;, &quot;,evenNumbers));</code></pre>
     </div>
   
 
@@ -885,7 +896,8 @@ evenNumbers));</code></pre>
 // It is functionally identical to our custom MathOperation delegate.
 Func&lt;int, int, int&gt; addOperation = (x, y) =&gt; x + y;
 Console.WriteLine($&quot;Result: {addOperation(20, 22)}&quot;); // Output: 42
-// This Func represents a method that takes no parameters and returns a string.
+// This Func represents a method that takes no parameters and returns a
+string.
 Func&lt;string&gt; getGreeting = () =&gt; &quot;Hello, World!&quot;;
 Console.WriteLine(getGreeting());</code></pre>
     </div>
@@ -913,16 +925,14 @@ Console.WriteLine(getGreeting());</code></pre>
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// This Action represents any method that takes a single string and returns void.
-Action&lt;string&gt; logToConsole = (message) =&gt; Console.WriteLine($&quot;LOG:
-{message}&quot;);
-logToConsole(&quot;Application has started.&quot;);
-// This Action represents a method with no parameters and no return value.
+      <pre><code class="language-csharp">// This Action represents any method that takes a single string and
+returns void.
+Action&lt;string&gt; logToConsole = (message) =&gt; Console.WriteLine($&quot;LOG:{message}&quot;);logToConsole(&quot;Application has started.&quot;);
+// This Action represents a method with no parameters and no return
+value.
 Action showMenu = () =&gt;
 {
-    Console.WriteLine(&quot;1. Start Game&quot;);
-    Console.WriteLine(&quot;2. Load Game&quot;);
-    Console.WriteLine(&quot;3. Exit&quot;);
+    Console.WriteLine(&quot;1. Start Game&quot;);Console.WriteLine(&quot;2. Load Game&quot;);Console.WriteLine(&quot;3. Exit&quot;);
 };
 showMenu();</code></pre>
     </div>
@@ -946,7 +956,8 @@ showMenu();</code></pre>
       <pre><code class="language-csharp">// Our list of data
 List&lt;int&gt; numbers = new List&lt;int&gt; { 10, 45, 52, 88, 95, 23 };
 // --- Using a named method ---
-// 1. Define a method that matches the Predicate&lt;int&gt; signature. public bool IsGreaterThan50(int number)
+// 1. Define a method that matches the Predicate&lt;int&gt; signature.
+public bool IsGreaterThan50(int number)
 {
     return number &gt; 50;
 }
@@ -1018,7 +1029,8 @@ foreach (int num in highNumbersLambda)
         NewPrice = newPrice;
     }
 }
-// 2. The publisher class. public class Stock
+// 2. The publisher class.
+public class Stock
 {
     private decimal _price;
     // 3. The event is now of the standard generic type.
@@ -1033,8 +1045,7 @@ foreach (int num in highNumbersLambda)
                 decimal oldPrice = _price;
                 _price = value;
                 // 4. Raise the event by calling the Invoke method.
-                OnPriceChanged(new PriceChangedEventArgs(oldPrice,
-                _price));
+                OnPriceChanged(new PriceChangedEventArgs(oldPrice,_price));
             }
         }
     }
@@ -1051,8 +1062,7 @@ public void Stock_PriceChanged(object sender, PriceChangedEventArgs
 e)
 {
     Stock stockThatChanged = (Stock)sender; // We can get the sender
-    Console.WriteLine($&quot;Price changed from {e.OldPrice:C} to
-    {e.NewPrice:C}&quot;);
+    Console.WriteLine($&quot;Price changed from {e.OldPrice:C} to{e.NewPrice:C}&quot;);
 }</code></pre>
     </div>
   
@@ -1090,7 +1100,8 @@ Expression&lt;Func&lt;User, bool&gt;&gt;. Entity Framework then inspects the</co
 
     <div class="callout callout-tip">
       <div class="callout-header">
-        <span>🟢 Best Practice & Architecture Tip</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
         
       </div>
       <div class="callout-content">
@@ -1150,7 +1161,8 @@ Expression&lt;Func&lt;User, bool&gt;&gt;. Entity Framework then inspects the</co
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// --- Traditional switch statement --- public string GetGrade(int score)
+      <pre><code class="language-csharp">// --- Traditional switch statement ---
+public string GetGrade(int score)
 {
     switch (score)
     {
@@ -1186,7 +1198,10 @@ public string GetGradeModern(int score) =&gt; score switch
     </ul>
 
     <div class="diagram-container">
-      <div class="diagram-title">📊 Diagram: Multicast Delegate Invocation List</div>
+      <div class="diagram-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+        <span>Diagram: Multicast Delegate Invocation List</span>
+      </div>
       <pre class="diagram-pre">Delegate Instance: Action&lt;string&gt;
 +------------------------------------------+
 | Target: null / Object Reference          |
@@ -1204,7 +1219,7 @@ public string GetGradeModern(int score) =&gt; score switch
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="20" aria-pressed="false">
@@ -1217,13 +1232,13 @@ public string GetGradeModern(int score) =&gt; score switch
       <nav class="bottom-nav">
         
     <a href="section-19.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 19: Garbage Collection, Destructors &amp; IDisposable</span>
     </a>
   
         
     <a href="section-21.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 21: Arrays (1D, Multi-Dimensional, Jagged)</span>
     </a>
   
@@ -1232,7 +1247,7 @@ public string GetGradeModern(int score) =&gt; score switch
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

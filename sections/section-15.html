@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 15: System.Object &amp; Core Method Overrides — C# Masterclass</title>
+  <title>Section 15: System.Object &amp; Core Method Overrides &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 3</span>
-          <span class="read-time-badge">⏱️ 18 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>18 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">System.Object</span> <span class="tag-pill">ToString()</span> <span class="tag-pill">Equals()</span> <span class="tag-pill">GetHashCode()</span> <span class="tag-pill">GetType()</span>
           </div>
@@ -488,7 +494,8 @@
 {
     public string Model { get; set; }
     public int Year { get; set; }
-    // Override ToString() to provide a useful description. public override string ToString()
+    // Override ToString() to provide a useful description.
+    public override string ToString()
     {
         return $&quot;{Year} {Model}&quot;;
     }
@@ -565,7 +572,8 @@ Console.WriteLine(p1.Equals(p3)); // Output: False</code></pre>
       </div>
       <pre><code class="language-csharp">public class Point // Continuing from above
 {
-    // ... X and Y properties and Equals method ... public override int GetHashCode()
+    // ... X and Y properties and Equals method ...
+    public override int GetHashCode()
     {
         // A modern, simple, and effective way to combine hash codes.
         return HashCode.Combine(X, Y);
@@ -627,8 +635,7 @@ object o = i;
 // - A new object box was allocated on the heap.
 // - The value 123 was copied from the stack into the heap box.
 // - The variable 'o' now holds the memory address of that box.
-// The most common historical example was with non-generic collections.
-System.Collections.ArrayList list = new System.Collections.ArrayList();</code></pre>
+// The most common historical example was with non-generic collections. System.Collections.ArrayList list = new System.Collections.ArrayList();</code></pre>
     </div>
   
 <p>list.Add(456); // Boxing occurs here! 456 is put in a box on the heap.</p>
@@ -665,7 +672,7 @@ Console.WriteLine($&quot;Unboxed value: {j}&quot;);
 // --- Example of a FAILED unboxing ---</code></pre>
     </div>
   
-<p>object anotherObject = 456; // Boxed int try</p>
+<p>object anotherObject = 456; // Boxed int</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -675,7 +682,8 @@ Console.WriteLine($&quot;Unboxed value: {j}&quot;);
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">{
+      <pre><code class="language-csharp">try
+{
     // This will FAIL. You cannot unbox to a different type, even if
     // the conversion would normally be safe (like int to long).
     // You must unbox to the exact original type first.
@@ -691,7 +699,15 @@ catch (InvalidCastException ex)
 <p>long correctLong = (int)anotherObject; // 1. Unbox to int, 2. Implicitly cast int to long.</p>
 
     <h2 id="sec-15-lec-5-imp-points-to-remember">Lecture 5: IMP Points to Remember</h2>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Object is the Universal Ancestor:</strong> Every type in .NET derives from System.Object. This creates a unified type system where any variable can be treated as an object, enabling a powerful form of polymorphism.</li>
       <li>Override ToString() for Meaningful Debugging: It is a fundamental best practice to override the ToString() method in all your custom classes. A good ToString() implementation significantly simplifies logging and debugging by providing a clear, human-readable representation of an object's state.</li>
       <li>The Equals() and GetHashCode() Contract: This is a critical interview topic. If you override Equals() to provide value-based equality, you MUST also override GetHashCode(). The rule is simple: two objects that are considered equal must return the same hash code. Failing to do this will break the functionality of hash-based collections like Dictionary&lt;TKey, TValue&gt; and HashSet&lt;T&gt;.</li>
@@ -699,12 +715,15 @@ catch (InvalidCastException ex)
       <li>Understanding GetType() vs. is: myObject.GetType() == typeof(MyClass) checks if an object is of an exact type. The is operator (myObject is MyBaseClass) is more flexible; it checks for compatibility within an inheritance hierarchy (it returns true if the object is of that type OR any of its derived types). Knowing this distinction shows a deeper understanding of runtime type checking.</li>
     </ul>
 
+      </div>
+    </div>
+  
       </article>
 
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="15" aria-pressed="false">
@@ -717,13 +736,13 @@ catch (InvalidCastException ex)
       <nav class="bottom-nav">
         
     <a href="section-14.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 14: Structures (Structs) &amp; Value Semantics</span>
     </a>
   
         
     <a href="section-16.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 16: Generics (Classes, Methods, Constraints)</span>
     </a>
   
@@ -732,7 +751,7 @@ catch (InvalidCastException ex)
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

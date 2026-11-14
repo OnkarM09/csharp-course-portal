@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 03: Development Environment, .NET CLI &amp; First Program — C# Masterclass</title>
+  <title>Section 03: Development Environment, .NET CLI &amp; First Program &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 1</span>
-          <span class="read-time-badge">⏱️ 15 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>15 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">IDE</span> <span class="tag-pill">Visual Studio</span> <span class="tag-pill">dotnet CLI</span> <span class="tag-pill">Compilation</span> <span class="tag-pill">Debugging</span>
           </div>
@@ -488,8 +494,20 @@
       <li><strong>Error List:</strong> This window (typically at the bottom) is your personal quality inspector. If you make a mistake, a detailed error message will appear in this list instantly, often telling you the exact file and line number where the problem exists.</li>
       <li><strong>The Debugger:</strong> Your Most Powerful Tool The Debugger allows you to pause your program at any point and inspect what's happening.</li>
       <li><strong>Breakpoints:</strong> You can click in the margin next to a line of code to set a breakpoint. When you run your program, it will pause execution completely when it hits that line.</li>
-      <li><strong>Inspection:</strong> While paused, you can hover your mouse over any variable to see the value it contains at that exact moment. This is how you find logical errors. You can then step through your code line-by- line to see exactly how values change and pinpoint where things went wrong. Mastering the debugger is the fastest way to solve problems in your code. Introduction to C# C# (pronounced &quot;C Sharp&quot;) is the modern, powerful, and versatile programming language you will be learning. Its single most important characteristic is that it is statically-typed. This means that when you create a variable (a named storage location), you must declare the type of data it will hold. If you create a variable to hold a number, you can only ever put numbers in it. If you try to put text in it, the C# compiler will immediately show you an error before you even run the program. This compile- time checking is like having a vigilant assistant who proofreads your work, catching a massive category of bugs for you automatically.</li>
+      <li><strong>Inspection:</strong> While paused, you can hover your mouse over any variable to see the value it contains at that exact moment. This is how you find logical errors. You can then step through your code line-by- line to see exactly how values change and pinpoint where things went wrong. Mastering the debugger is the fastest way to solve problems in your code. Introduction to C# C# (pronounced &quot;C Sharp&quot;) is the modern, powerful, and versatile programming language you will be learning. Its single most important characteristic is that it is statically-typed. This means that when you create a variable (a named storage location), you must declare the type of data it will hold. If you create a variable to hold a number, you can only ever put numbers in it. If you try to put text in it, the C# compiler will immediately show you an error before you even run the program. This compile- time checking is like having a vigilant assistant who proofreads your work,</li>
     </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code class="language-csharp">catching a massive category of bugs for you automatically.</code></pre>
+    </div>
+  
     <h3 id="sec-3-lec-1-welcome-to-your-first-step-into-the-world-of--the-building-blocks">The Building Blocks: Class, Object, Fields, and Methods</h3>
 <p>Object-Oriented Programming (OOP) is the paradigm C# is built on. It's a way of structuring your code around the concepts of &quot;blueprints&quot; and &quot;objects.&quot;</p>
     <ol>
@@ -554,7 +572,7 @@
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="3" aria-pressed="false">
@@ -567,13 +585,13 @@
       <nav class="bottom-nav">
         
     <a href="section-02.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 02: C# Language Basics &amp; Syntax</span>
     </a>
   
         
     <a href="section-04.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 04: OOP Basics (Classes &amp; Objects)</span>
     </a>
   
@@ -582,7 +600,7 @@
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

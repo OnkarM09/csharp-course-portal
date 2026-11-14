@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 26: String Manipulation, DateTime &amp; Math — C# Masterclass</title>
+  <title>Section 26: String Manipulation, DateTime &amp; Math &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 6</span>
-          <span class="read-time-badge">⏱️ 32 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>32 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">StringBuilder</span> <span class="tag-pill">String Interpolation</span> <span class="tag-pill">DateTime</span> <span class="tag-pill">TimeSpan</span> <span class="tag-pill">System.Math</span>
           </div>
@@ -582,8 +588,7 @@ if (userInput.ToUpper() == dbValue.ToUpper())
 }
 // Remember to capture the result of the conversion
 string lowerCaseVersion = userInput.ToLower();
-Console.WriteLine($&quot;Lowercase version: {lowerCaseVersion}&quot;);
-Console.WriteLine($&quot;Original userInput is still unchanged: {userInput}&quot;);</code></pre>
+Console.WriteLine($&quot;Lowercase version: {lowerCaseVersion}&quot;);Console.WriteLine($&quot;Original userInput is still unchanged: {userInput}&quot;);</code></pre>
     </div>
   
 
@@ -642,9 +647,7 @@ Console.WriteLine($&quot;Extracted ID: {id}&quot;); // Output: 12345</code></pre
       </div>
       <pre><code class="language-csharp">// Replace all occurrences of the word &quot;incomplete&quot;.
 string correctedText = reportText.Replace(&quot;incomplete&quot;, &quot;preliminary&quot;);
-Console.WriteLine($&quot;Original: {reportText}&quot;);
-Console.WriteLine($&quot;Corrected: {correctedText}&quot;);
-string filePath = &quot;C:\\Users\\MyUser\\Documents&quot;;
+Console.WriteLine($&quot;Original: {reportText}&quot;);Console.WriteLine($&quot;Corrected: {correctedText}&quot;);string filePath = &quot;C:\\Users\\MyUser\\Documents&quot;;
 // A common use is to normalize directory separators.
 string webPath = filePath.Replace('\\', '/');
 Console.WriteLine($&quot;Web-friendly path: {webPath}&quot;);</code></pre>
@@ -721,7 +724,8 @@ decimal price = 24.99m;
       </div>
       <pre><code class="language-csharp">public void ProcessUsername(string username)
 {
-    // Use IsNullOrEmpty as a &quot;guard clause&quot; at the beginning of the method.
+    // Use IsNullOrEmpty as a &quot;guard clause&quot; at the beginning of the
+    method.
     if (String.IsNullOrEmpty(username))
     {
         Console.WriteLine(&quot;Username cannot be empty. Process halted.&quot;);
@@ -768,8 +772,7 @@ foreach (string part in dataParts)
 // Example with multiple delimiters and removing empty entries
 string tags = &quot;c#; programming,.net; guide&quot;;
 char[] tagDelimiters = { ';', ',', '.' };
-string[] cleanTags = tags.Split(tagDelimiters,
-StringSplitOptions.RemoveEmptyEntries);
+string[] cleanTags = tags.Split(tagDelimiters,StringSplitOptions.RemoveEmptyEntries);
 Console.WriteLine(&quot;\nClean tags: &quot; + String.Join(&quot;, &quot;, cleanTags));</code></pre>
     </div>
   
@@ -890,8 +893,7 @@ False
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">bool areEqualCulture = String.Equals(s1, s2,
-StringComparison.CurrentCulture);
+      <pre><code class="language-csharp">bool areEqualCulture = String.Equals(s1, s2,StringComparison.CurrentCulture);
 Console.WriteLine($&quot;Current Culture comparison: {areEqualCulture}&quot;); //</code></pre>
     </div>
   
@@ -949,12 +951,11 @@ Console.WriteLine(fullPath); // Output: C:\Users\JohnDoe\Documents</code></pre>
 string s2 = &quot;Banana&quot;;
 string s3 = &quot;Apple&quot;;
 int result1 = s1.CompareTo(s2);
-// &quot;Apple&quot; comes before &quot;Banana&quot;, so the result will be a negative number.
-Console.WriteLine($&quot;Comparing '{s1}' to '{s2}': {result1}&quot;);
-int result2 = s2.CompareTo(s1);
+// &quot;Apple&quot; comes before &quot;Banana&quot;, so the result will be a negative
+number.
+Console.WriteLine($&quot;Comparing '{s1}' to '{s2}': {result1}&quot;);int result2 = s2.CompareTo(s1);
 // &quot;Banana&quot; comes after &quot;Apple&quot;, so the result will be a positive number.
-Console.WriteLine($&quot;Comparing '{s2}' to '{s1}': {result2}&quot;);
-int result3 = s1.CompareTo(s3);
+Console.WriteLine($&quot;Comparing '{s2}' to '{s1}': {result2}&quot;);int result3 = s1.CompareTo(s3);
 // The strings are equal.
 Console.WriteLine($&quot;Comparing '{s1}' to '{s3}': {result3}&quot;); // Output: 0</code></pre>
     </div>
@@ -1034,7 +1035,8 @@ False
 
     <div class="callout callout-tip">
       <div class="callout-header">
-        <span>🟢 Best Practice & Architecture Tip</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
         
       </div>
       <div class="callout-content">
@@ -1426,8 +1428,20 @@ vowelCount, out int consonantCount)
     </div>
   
     <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
-<p>9: Find the First Non-Repeated Character Task: Find the first character in a string that does not repeat itself anywhere else in the string. Logic: This often requires two passes. The first pass populates a frequency map (like a Dictionary&lt;char, int&gt;).</p>
-<p>The second pass iterates through the original string again and returns the first character it finds that has a count of 1 in the frequency map. public char? FindFirstNonRepeatedChar(string input)</p>
+<p>9: Find the First Non-Repeated Character Task: Find the first character in a string that does not repeat itself anywhere</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code class="language-csharp">else in the string.</code></pre>
+    </div>
+  
+<p>Logic: This often requires two passes. The first pass populates a frequency map (like a Dictionary&lt;char, int&gt;). The second pass iterates through the original string again and returns the first character it finds that has a count of 1 in the frequency map. public char? FindFirstNonRepeatedChar(string input)</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1559,7 +1573,8 @@ vowelCount, out int consonantCount)
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// Note: This is a simplified version. A full implementation is much more complex.
+      <pre><code class="language-csharp">// Note: This is a simplified version. A full implementation is much more
+complex.
 public int Atoi(string s)
 {
     if (string.IsNullOrEmpty(s)) return 0;
@@ -1677,8 +1692,7 @@ public int Atoi(string s)
     // 	s += i; // Creates 10,000 temporary string objects! Very slow.
     // }
     // Efficient way using StringBuilder
-    Console.WriteLine(&quot;Building a long string efficiently...&quot;);
-    StringBuilder sb = new StringBuilder();</code></pre>
+    Console.WriteLine(&quot;Building a long string efficiently...&quot;);StringBuilder sb = new StringBuilder();</code></pre>
     </div>
   
 
@@ -1706,8 +1720,7 @@ public int Atoi(string s)
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">Console.WriteLine(&quot;Done. The final string is very long.&quot;);
-// Console.WriteLine(finalResult);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(&quot;Done. The final string is very long.&quot;);// Console.WriteLine(finalResult);</code></pre>
     </div>
   
 
@@ -1737,13 +1750,10 @@ public int Atoi(string s)
       </div>
       <pre><code class="language-csharp">DateTime now = DateTime.Now;
 // Standard formats
-Console.WriteLine($&quot;Short date (d): {now.ToString(&quot;d&quot;)}&quot;);
-Console.WriteLine($&quot;Long date (D): {now.ToString(&quot;D&quot;)}&quot;);
-Console.WriteLine($&quot;Full (G): {now.ToString(&quot;G&quot;)}&quot;);
+Console.WriteLine($&quot;Short date (d): {now.ToString(&quot;d&quot;)}&quot;);Console.WriteLine($&quot;Long date (D): {now.ToString(&quot;D&quot;)}&quot;);Console.WriteLine($&quot;Full (G): {now.ToString(&quot;G&quot;)}&quot;);
 // Custom format for logging or APIs
 Console.WriteLine($&quot;ISO 8601 Style (s): {now.ToString(&quot;s&quot;)}&quot;);
-Console.WriteLine($&quot;Custom yyyy-MM-dd: {now.ToString(&quot;yyyy-MM-dd
-HH:mm:ss&quot;)}&quot;);</code></pre>
+Console.WriteLine($&quot;Custom yyyy-MM-dd: {now.ToString(&quot;yyyy-MM-ddHH:mm:ss&quot;)}&quot;);</code></pre>
     </div>
   
 
@@ -1769,10 +1779,8 @@ HH:mm:ss&quot;)}&quot;);</code></pre>
       <pre><code class="language-csharp">DateTime projectStartDate = new DateTime(2025, 1, 15);
 DateTime projectEndDate = new DateTime(2025, 7, 12);
 TimeSpan projectDuration = projectEndDate - projectStartDate;
-Console.WriteLine($&quot;The project has been running for
-{projectDuration.Days} days.&quot;);
-Console.WriteLine($&quot;Which is {projectDuration.TotalHours} hours in
-total.&quot;);
+Console.WriteLine($&quot;The project has been running for{projectDuration.Days} days.&quot;);
+Console.WriteLine($&quot;Which is {projectDuration.TotalHours} hours intotal.&quot;);
 Date Addition
 You cannot add two DateTime objects together. Instead, you add a TimeSpan</code></pre>
     </div>
@@ -1803,9 +1811,7 @@ DateTime nextWeek = today.AddDays(7);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">Console.WriteLine($&quot;Today is: {today:d}&quot;);
-Console.WriteLine($&quot;One week from now will be: {nextWeek:d}&quot;);
-Console.WriteLine($&quot;One month ago was: {lastMonth:d}&quot;);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Today is: {today:d}&quot;);Console.WriteLine($&quot;One week from now will be: {nextWeek:d}&quot;);Console.WriteLine($&quot;One month ago was: {lastMonth:d}&quot;);</code></pre>
     </div>
   
 
@@ -1869,8 +1875,7 @@ Console.WriteLine($&quot;One month ago was: {lastMonth:d}&quot;);</code></pre>
         </button>
       </div>
       <pre><code class="language-csharp">Console.WriteLine(&quot;Is′phone1′avalidphonenumber?
-Regex.IsMatch(phone1,pattern)&quot;);Console.WriteLine(&quot;Is '{phone2}' a
-valid phone number? {Regex.IsMatch(phone2, pattern)}&quot;);</code></pre>
+Regex.IsMatch(phone1,pattern)&quot;);Console.WriteLine(&quot;Is '{phone2}' avalid phone number? {Regex.IsMatch(phone2, pattern)}&quot;);</code></pre>
     </div>
   
     <ul>
@@ -1898,7 +1903,7 @@ Key: {key}, Value: {value}&quot;); }</code></pre>
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="26" aria-pressed="false">
@@ -1911,13 +1916,13 @@ Key: {key}, Value: {value}&quot;); }</code></pre>
       <nav class="bottom-nav">
         
     <a href="section-25.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 25: LINQ (Language-Integrated Query)</span>
     </a>
   
         
     <a href="section-27.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 27: File I/O, Streams, Serialization &amp; Encoding</span>
     </a>
   
@@ -1926,7 +1931,7 @@ Key: {key}, Value: {value}&quot;); }</code></pre>
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

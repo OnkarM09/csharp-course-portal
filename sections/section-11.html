@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 11: Abstract Classes &amp; Interfaces — C# Masterclass</title>
+  <title>Section 11: Abstract Classes &amp; Interfaces &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 3</span>
-          <span class="read-time-badge">⏱️ 28 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>28 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">Abstract Classes</span> <span class="tag-pill">Interfaces</span> <span class="tag-pill">Multiple Implementation</span> <span class="tag-pill">Contract Design</span>
           </div>
@@ -477,22 +483,26 @@
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// This class cannot be instantiated directly. It's a conceptual blueprint. public abstract class Shape
+      <pre><code class="language-csharp">// This class cannot be instantiated directly. It's a conceptual blueprint.
+public abstract class Shape
 {
     // 1. Can have fields and properties with implementation.
     // This is common logic shared by all shapes.
     public string Color { get; set; }
-    // 2. Can have a constructor, which is called by derived classes. public Shape(string color)
+    // 2. Can have a constructor, which is called by derived classes.
+    public Shape(string color)
     {
         this.Color = color;
         Console.WriteLine(&quot;Shape constructor called.&quot;);
     }
-    // 3. Can have regular, concrete methods. public void DisplayColor()
+    // 3. Can have regular, concrete methods.
+    public void DisplayColor()
     {
         Console.WriteLine($&quot;The color of this shape is {Color}.&quot;);
     }
     // 4. Can have abstract members (the contract).
-    // This method has no body and must be implemented by derived classes.
+    // This method has no body and must be implemented by derived
+    classes.
     public abstract double CalculateArea();
 }</code></pre>
     </div>
@@ -528,7 +538,8 @@
         this.Radius = radius;
     }
     // We MUST provide an implementation for the abstract method.
-    // We use the 'override' keyword. public override double CalculateArea()
+    // We use the 'override' keyword.
+    public override double CalculateArea()
     {
         return Math.PI * Radius * Radius;
     }
@@ -552,7 +563,8 @@
         this.Width = width;
         this.Height = height;
     }
-    // Provide the specific implementation for a rectangle's area. public override double CalculateArea()
+    // Provide the specific implementation for a rectangle's area.
+    public override double CalculateArea()
     {
         return Width * Height;
     }
@@ -612,7 +624,8 @@ Rectangle myRectangle = new Rectangle(&quot;Blue&quot;, 5, 10);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// The interface defines the &quot;what&quot; (the contract), not the &quot;how&quot;. public interface ISaveable
+      <pre><code class="language-csharp">// The interface defines the &quot;what&quot; (the contract), not the &quot;how&quot;.
+public interface ISaveable
 {
     void Save(); // No body, no access modifier.
 }
@@ -630,7 +643,8 @@ Rectangle myRectangle = new Rectangle(&quot;Blue&quot;, 5, 10);</code></pre>
       </div>
       <pre><code class="language-csharp">{
     public string Text { get; set; }
-    // It MUST provide a public implementation of the Save method. public void Save()
+    // It MUST provide a public implementation of the Save method.
+    public void Save()
     {
         Console.WriteLine(&quot;Saving document to a .txt file...&quot;);
     }
@@ -649,7 +663,8 @@ Rectangle myRectangle = new Rectangle(&quot;Blue&quot;, 5, 10);</code></pre>
       </div>
       <pre><code class="language-csharp">{
     public int Level { get; set; }
-    // It provides its own specific implementation of Save. public void Save()
+    // It provides its own specific implementation of Save.
+    public void Save()
     {
         Console.WriteLine(&quot;Saving player progress to the cloud...&quot;);
     }
@@ -717,7 +732,8 @@ Rectangle myRectangle = new Rectangle(&quot;Blue&quot;, 5, 10);</code></pre>
 public class ProgressManager
 {
     // This method works with ANY object that implements ISaveable.
-    // It is decoupled from the concrete Document and PlayerProgress classes.
+    // It is decoupled from the concrete Document and PlayerProgress
+    classes.
     public void SaveAll(List&lt;ISaveable&gt; itemsToSave)
     {
         Console.WriteLine(&quot;\n--- Starting Save All Operation ---&quot;);
@@ -764,7 +780,8 @@ manager.SaveAll(saveableItems);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// --- The Contracts (Interfaces) --- public interface IPhone
+      <pre><code class="language-csharp">// --- The Contracts (Interfaces) ---
+public interface IPhone
 {
     void MakeCall(string number);
 }
@@ -776,7 +793,8 @@ public interface IGps
 {
     string GetCurrentLocation();
 }
-// --- The Base Class --- public class ElectronicDevice
+// --- The Base Class ---
+public class ElectronicDevice
 {
     public int BatteryLevel { get; protected set; } = 100;
 }
@@ -794,17 +812,20 @@ public interface IGps
         </button>
       </div>
       <pre><code class="language-csharp">{
-    // Implementation for IPhone contract public void MakeCall(string number)
+    // Implementation for IPhone contract
+    public void MakeCall(string number)
     {
         Console.WriteLine($&quot;Calling {number}...&quot;);
         BatteryLevel -= 5;
     }
-    // Implementation for ICamera contract public void TakePhoto()
+    // Implementation for ICamera contract
+    public void TakePhoto()
     {
         Console.WriteLine(&quot;Taking a photo...&quot;);
         BatteryLevel -= 2;
     }
-    // Implementation for IGps contract public string GetCurrentLocation()
+    // Implementation for IGps contract
+    public string GetCurrentLocation()
     {
         Console.WriteLine(&quot;Finding current location...&quot;);
         BatteryLevel -= 3;
@@ -832,11 +853,13 @@ public interface IGps
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// 1. The base contract: anything readable. public interface IReadable
+      <pre><code class="language-csharp">// 1. The base contract: anything readable.
+public interface IReadable
 {
     string Read(int id);
 }
-// 2. A contract for anything writeable. public interface IWriteable
+// 2. A contract for anything writeable.
+public interface IWriteable
 {
     void Write(string data);
 }
@@ -934,20 +957,24 @@ public interface IDatabaseLogger
       </div>
       <pre><code class="language-csharp">{
     // Explicit implementation for IFileLogger.
-    // Note: No 'public' access modifier. void IFileLogger.Log(string message)
+    // Note: No 'public' access modifier.
+    void IFileLogger.Log(string message)
     {
         Console.WriteLine($&quot;Writing to file: {message}&quot;);
     }
-    // Explicit implementation for IDatabaseLogger. void IDatabaseLogger.Log(string message)
+    // Explicit implementation for IDatabaseLogger.
+    void IDatabaseLogger.Log(string message)
     {
         Console.WriteLine($&quot;Writing to database: {message}&quot;);
     }
 }
 // --- In your Main method ---
 ReportGenerator report = new ReportGenerator();
-// This would cause a compiler error because Log is not a public member of the class.
+// This would cause a compiler error because Log is not a public member of
+the class.
 // report.Log(&quot;My message&quot;); // ERROR!
-// To call the methods, you must first cast the object to the specific interface.
+// To call the methods, you must first cast the object to the specific
+interface.
 IFileLogger fileLogger = report;</code></pre>
     </div>
   
@@ -970,7 +997,15 @@ IFileLogger fileLogger = report;</code></pre>
     <h3 id="sec-11-lec-10-imp-points-to-remember-introduction">Introduction</h3>
 <p>This lecture summarizes the most critical, practical, and interview-worthy points about abstract classes and interfaces. The ability to articulate their differences is a hallmark of a proficient C# developer. Abstract Class vs.</p>
 <p>Interface: The Core Interview Question This is one of the most common C# OOP interview questions. You must be able to compare them clearly.</p>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>Core Purpose:</li>
       <li><strong>Abstract Class:</strong> To provide a common base for a group of closely related classes. It models an &quot;is-a&quot; relationship (a Dog is an Animal).</li>
       <li><strong>Interface:</strong> To define a common capability or contract that can be implemented by unrelated classes. It models a &quot;can-do&quot; relationship (a Car and a Document can both be ISaveable).</li>
@@ -987,12 +1022,15 @@ IFileLogger fileLogger = report;</code></pre>
       <li>A virtual method has an implementation in the base class, and derived classes can optionally override it if they need to provide a more specific behavior. Interfaces are Contracts for Decoupling The primary power of interfaces is decoupling. When your code depends on an interface (ILogger) instead of a concrete class (FileLogger), you can easily swap out the implementation (e.g., change to a DatabaseLogger) without changing the code that uses it. This makes your applications more flexible, modular, and easier to test.</li>
     </ul>
 
+      </div>
+    </div>
+  
       </article>
 
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="11" aria-pressed="false">
@@ -1005,13 +1043,13 @@ IFileLogger fileLogger = report;</code></pre>
       <nav class="bottom-nav">
         
     <a href="section-10.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 10: Inheritance, Hiding &amp; Overriding</span>
     </a>
   
         
     <a href="section-12.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 12: Namespaces &amp; Code Organization</span>
     </a>
   
@@ -1020,7 +1058,7 @@ IFileLogger fileLogger = report;</code></pre>
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

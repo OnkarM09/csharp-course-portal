@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 27: File I/O, Streams, Serialization &amp; Encoding — C# Masterclass</title>
+  <title>Section 27: File I/O, Streams, Serialization &amp; Encoding &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 6</span>
-          <span class="read-time-badge">⏱️ 34 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>34 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">File</span> <span class="tag-pill">Directory</span> <span class="tag-pill">FileStream</span> <span class="tag-pill">StreamReader/Writer</span> <span class="tag-pill">JSON Serialization</span> <span class="tag-pill">UTF8</span>
           </div>
@@ -679,7 +685,8 @@ string initialContent = &quot;Log started at &quot; + DateTime.Now + &quot;\n&qu
 File.WriteAllText(filePath, initialContent);
 Console.WriteLine(&quot;Initial log created.&quot;);
 // --- Appending to a file ---
-// AppendAllText adds to the end of the file. If the file doesn't exist, it creates it.
+// AppendAllText adds to the end of the file. If the file doesn't exist, it
+creates it.
 string nextEntry = &quot;User 'Alice' logged in.\n&quot;;
 File.AppendAllText(filePath, nextEntry);
 Console.WriteLine(&quot;New entry appended.&quot;);</code></pre>
@@ -711,7 +718,8 @@ if (File.Exists(filePath))
 {
     string[] fileLines = File.ReadAllLines(filePath);
     Console.WriteLine($&quot;File has {fileLines.Length} lines.&quot;);
-    // We can now process each line individually. foreach (string line in fileLines)
+    // We can now process each line individually.
+    foreach (string line in fileLines)
     {
         if (line.Contains(&quot;Alice&quot;))
         {
@@ -754,13 +762,11 @@ if (File.Exists(filePath))
       <pre><code class="language-csharp">string filePath = &quot;MyLog.txt&quot;;
 // Create a FileInfo object. No disk access happens here yet.
 FileInfo fileInfo = new FileInfo(filePath);
-// Now, let's check its properties. The first property access will perform the security check.
+// Now, let's check its properties. The first property access will perform the
+security check.
 if (fileInfo.Exists)
 {
-    Console.WriteLine($&quot;File Name: {fileInfo.Name}&quot;);
-    Console.WriteLine($&quot;Full Path: {fileInfo.FullName}&quot;);
-    Console.WriteLine($&quot;Size: {fileInfo.Length} bytes&quot;);
-    Console.WriteLine($&quot;Last Modified: {fileInfo.LastWriteTime}&quot;);
+    Console.WriteLine($&quot;File Name: {fileInfo.Name}&quot;);Console.WriteLine($&quot;Full Path: {fileInfo.FullName}&quot;);Console.WriteLine($&quot;Size: {fileInfo.Length} bytes&quot;);Console.WriteLine($&quot;Last Modified: {fileInfo.LastWriteTime}&quot;);
     // Perform an action
     // fileInfo.CopyTo(&quot;MyLog_Backup.txt&quot;);
 }
@@ -809,8 +815,7 @@ Console.WriteLine($&quot;Checking for directory: {newDirPath}&quot;);</code></pr
         </button>
       </div>
       <pre><code class="language-csharp">{
-    Console.WriteLine(&quot;Directory does not exist. Creating it...&quot;);
-    Directory.CreateDirectory(newDirPath);
+    Console.WriteLine(&quot;Directory does not exist. Creating it...&quot;);Directory.CreateDirectory(newDirPath);
 }
 // Now it exists. Let's get files from the current folder to demonstrate.</code></pre>
     </div>
@@ -827,8 +832,7 @@ Console.WriteLine($&quot;Checking for directory: {newDirPath}&quot;);</code></pr
       </div>
       <pre><code class="language-csharp">Console.WriteLine($&quot;\nFound {filesInCurrentFolder.Length} files here.&quot;);
 // Clean up
-Console.WriteLine($&quot;\nDeleting directory: {newDirPath}&quot;);
-Directory.Delete(newDirPath);</code></pre>
+Console.WriteLine($&quot;\nDeleting directory: {newDirPath}&quot;);Directory.Delete(newDirPath);</code></pre>
     </div>
   
 
@@ -851,14 +855,13 @@ Directory.Delete(newDirPath);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// Note: The '@' symbol creates a verbatim string literal, so we don't need to escape backslashes.
+      <pre><code class="language-csharp">// Note: The '@' symbol creates a verbatim string literal, so we don't need
+to escape backslashes.
 string projectPath = @&quot;C:\Users\MyUser\Documents\MyProject&quot;;
 DirectoryInfo dirInfo = new DirectoryInfo(projectPath);
 if (dirInfo.Exists)
 {
-    Console.WriteLine($&quot;Full Name: {dirInfo.FullName}&quot;);
-    Console.WriteLine($&quot;Parent Directory: {dirInfo.Parent.Name}&quot;);
-    Console.WriteLine(&quot;\n--- C# Files in this directory ---&quot;);
+    Console.WriteLine($&quot;Full Name: {dirInfo.FullName}&quot;);Console.WriteLine($&quot;Parent Directory: {dirInfo.Parent.Name}&quot;);Console.WriteLine(&quot;\n--- C# Files in this directory ---&quot;);
     // GetFiles() on a DirectoryInfo object returns an array of FileInfo objects.
     FileInfo[] csFiles = dirInfo.GetFiles(&quot;*.cs&quot;); // Use a search pattern
     foreach (FileInfo file in csFiles)
@@ -898,16 +901,11 @@ DriveInfo[] allDrives = DriveInfo.GetDrives();
 Console.WriteLine(&quot;--- Available Drives ---&quot;);
 foreach (DriveInfo d in allDrives)
 {
-    Console.WriteLine($&quot;Drive {d.Name}&quot;);
-    Console.WriteLine($&quot; 	Drive type: {d.DriveType}&quot;);
+    Console.WriteLine($&quot;Drive {d.Name}&quot;);Console.WriteLine($&quot; 	Drive type: {d.DriveType}&quot;);
     // Only get more info if the drive is ready.
     if (d.IsReady == true)
     {
-        Console.WriteLine($&quot; 	Volume label: {d.VolumeLabel}&quot;);
-        long totalSizeGB = d.TotalSize / (1024 * 1024 * 1024);
-        long freeSpaceGB = d.TotalFreeSpace / (1024 * 1024 * 1024);
-        Console.WriteLine($&quot; 	Total size: {totalSizeGB} GB&quot;);
-        Console.WriteLine($&quot; 	Available space: {freeSpaceGB} GB&quot;);
+        Console.WriteLine($&quot; 	Volume label: {d.VolumeLabel}&quot;);long totalSizeGB = d.TotalSize / (1024 * 1024 * 1024);long freeSpaceGB = d.TotalFreeSpace / (1024 * 1024 * 1024);Console.WriteLine($&quot; 	Total size: {totalSizeGB} GB&quot;);Console.WriteLine($&quot; 	Available space: {freeSpaceGB} GB&quot;);
     }
 }</code></pre>
     </div>
@@ -949,19 +947,15 @@ foreach (DriveInfo d in allDrives)
       </div>
       <pre><code class="language-csharp">string filePath = &quot;my_app_data.log&quot;;
 // --- Writing with StreamWriter ---
-// The using declaration ensures fs and writer are closed/disposed properly.
-using var fsWrite = new FileStream(filePath, FileMode.Create,
-FileAccess.Write);
+// The using declaration ensures fs and writer are closed/disposed
+properly.
+using var fsWrite = new FileStream(filePath, FileMode.Create,FileAccess.Write);
 using var writer = new StreamWriter(fsWrite);
-Console.WriteLine(&quot;Writing data to file...&quot;);
-writer.WriteLine(&quot;Log Entry 1: Application Start&quot;);
-writer.WriteLine(&quot;Log Entry 2: User 'Alice' logged in.&quot;);
-writer.WriteLine(&quot;Log Entry 3: Data processed.&quot;);
+Console.WriteLine(&quot;Writing data to file...&quot;);writer.WriteLine(&quot;Log Entry 1: Application Start&quot;);writer.WriteLine(&quot;Log Entry 2: User 'Alice' logged in.&quot;);writer.WriteLine(&quot;Log Entry 3: Data processed.&quot;);
 // The writer may buffer data; it gets flushed to the file when disposed.
 // --- Reading with StreamReader ---
 Console.WriteLine(&quot;\nReading data from file...&quot;);
-using var fsRead = new FileStream(filePath, FileMode.Open,
-FileAccess.Read);
+using var fsRead = new FileStream(filePath, FileMode.Open,FileAccess.Read);
 using var reader = new StreamReader(fsRead);
 string line;
 // The ReadLine() method returns null when it reaches the end of the file.
@@ -1008,10 +1002,7 @@ double health = 95.5;
 using (var fs = new FileStream(filePath, FileMode.Create))
 using (var writer = new BinaryWriter(fs))
 {
-    Console.WriteLine(&quot;Writing binary data...&quot;);
-    writer.Write(playerName);
-    writer.Write(level);
-    writer.Write(health);
+    Console.WriteLine(&quot;Writing binary data...&quot;);writer.Write(playerName);writer.Write(level);writer.Write(health);
 }
 // --- Reading binary data ---
 using (var fs = new FileStream(filePath, FileMode.Open))
@@ -1022,8 +1013,7 @@ using (var reader = new BinaryReader(fs))
     string readName = reader.ReadString();
     int readLevel = reader.ReadInt32();
     double readHealth = reader.ReadDouble();
-    Console.WriteLine($&quot;Name: {readName}, Level: {readLevel}, Health:
-    {readHealth}&quot;);
+    Console.WriteLine($&quot;Name: {readName}, Level: {readLevel}, Health:{readHealth}&quot;);
 }</code></pre>
     </div>
   
@@ -1047,7 +1037,8 @@ using (var reader = new BinaryReader(fs))
 
     <div class="callout callout-tip">
       <div class="callout-header">
-        <span>🟢 Best Practice & Architecture Tip</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
         
       </div>
       <div class="callout-content">
@@ -1103,12 +1094,10 @@ User user = new User { Id = 101, Username = &quot;alice&quot;, IsActive = true }
 // 1. Serialize the object to a JSON string
 string jsonString = JsonSerializer.Serialize(user, new JsonSerializerOptions
 { WriteIndented = true });
-Console.WriteLine(&quot;--- Serialized JSON ---&quot;);
-Console.WriteLine(jsonString);
+Console.WriteLine(&quot;--- Serialized JSON ---&quot;);Console.WriteLine(jsonString);
 // 2. Deserialize the JSON string back into a new object
 User newUser = JsonSerializer.Deserialize&lt;User&gt;(jsonString);
-Console.WriteLine(&quot;\n--- Deserialized Object ---&quot;);
-Console.WriteLine($&quot;ID: {newUser.Id}, Username: {newUser.Username}&quot;);</code></pre>
+Console.WriteLine(&quot;\n--- Deserialized Object ---&quot;);Console.WriteLine($&quot;ID: {newUser.Id}, Username: {newUser.Username}&quot;);</code></pre>
     </div>
   
     <h3 id="sec-27-lec-21-json-serialization-output">Output</h3>
@@ -1123,9 +1112,7 @@ Console.WriteLine($&quot;ID: {newUser.Id}, Username: {newUser.Username}&quot;);<
         </button>
       </div>
       <pre><code class="language-csharp">{
-    &quot;Id&quot;: 101,
-    &quot;Username&quot;: &quot;alice&quot;,
-    &quot;IsActive&quot;: true
+    &quot;Id&quot;: 101,&quot;Username&quot;: &quot;alice&quot;,&quot;IsActive&quot;: true
 }
 --- Deserialized Object ---</code></pre>
     </div>
@@ -1173,8 +1160,7 @@ using (var writer = new StringWriter())
 {
     serializer.Serialize(writer, user);
     string xmlString = writer.ToString();
-    Console.WriteLine(&quot;--- Serialized XML ---&quot;);
-    Console.WriteLine(xmlString);
+    Console.WriteLine(&quot;--- Serialized XML ---&quot;);Console.WriteLine(xmlString);
 }</code></pre>
     </div>
   
@@ -1187,7 +1173,7 @@ using (var writer = new StringWriter())
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="27" aria-pressed="false">
@@ -1200,13 +1186,13 @@ using (var writer = new StringWriter())
       <nav class="bottom-nav">
         
     <a href="section-26.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 26: String Manipulation, DateTime &amp; Math</span>
     </a>
   
         
     <a href="section-28.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 28: Exception Handling &amp; Defensive Programming</span>
     </a>
   
@@ -1215,7 +1201,7 @@ using (var writer = new StringWriter())
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

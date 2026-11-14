@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 34: C# 11 New Features (.NET 7) — C# Masterclass</title>
+  <title>Section 34: C# 11 New Features (.NET 7) &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 8</span>
-          <span class="read-time-badge">⏱️ 30 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>30 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">Raw String Literals</span> <span class="tag-pill">Generic Math</span> <span class="tag-pill">Required Members</span> <span class="tag-pill">List Patterns</span> <span class="tag-pill">UTF-8 String Literals</span>
           </div>
@@ -476,8 +482,7 @@
         </button>
       </div>
       <pre><code class="language-csharp">string json2 = @&quot;{
-    &quot;&quot;name&quot;&quot;: &quot;&quot;Bob&quot;&quot;,
-    &quot;&quot;age&quot;&quot;: 25
+    &quot;&quot;name&quot;&quot;: &quot;&quot;Bob&quot;&quot;,&quot;&quot;age&quot;&quot;: 25
 }&quot;; // Requires doubling internal quotes</code></pre>
     </div>
   
@@ -532,11 +537,8 @@
         </button>
       </div>
       <pre><code class="language-csharp">{
-    &quot;name&quot;: &quot;Charlie&quot;,
-    &quot;occupation&quot;: &quot;Developer&quot;,
-    &quot;details&quot;: {
-        &quot;level&quot;: &quot;Senior&quot;,
-        &quot;technologies&quot;: [&quot;C#&quot;, &quot;Azure&quot;, &quot;SQL&quot;]
+    &quot;name&quot;: &quot;Charlie&quot;,&quot;occupation&quot;: &quot;Developer&quot;,&quot;details&quot;: {
+        &quot;level&quot;: &quot;Senior&quot;,&quot;technologies&quot;: [&quot;C#&quot;, &quot;Azure&quot;, &quot;SQL&quot;]
     }
 }
 &quot;&quot;&quot;;
@@ -571,8 +573,7 @@ doubled {{ and }}</code></pre>
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">Console.WriteLine(&quot;\n--- Interpolation 1 ---&quot;);
-Console.WriteLine(greeting1);
+      <pre><code class="language-csharp">Console.WriteLine(&quot;\n--- Interpolation 1 ---&quot;);Console.WriteLine(greeting1);
 // Using more '$' to indicate more braces for interpolation
 // If you use $$$&quot;&quot;, then {expr} is literal, {{expr}} interpolates, {{{expr}}} literal
 // This example uses two $, so {{name}} is interpolated.</code></pre>
@@ -588,13 +589,10 @@ Console.WriteLine(greeting1);
         </button>
       </div>
       <pre><code class="language-csharp">{
-    &quot;UserName&quot;: &quot;{{name}}&quot;,
-    &quot;UserAge&quot;: {{age}},
-    &quot;CreatedAt&quot;: &quot;{{DateTime.UtcNow:yyyy-MM-ddTHH:mm:ssZ}}&quot;
+    &quot;UserName&quot;: &quot;{{name}}&quot;,&quot;UserAge&quot;: {{age}},&quot;CreatedAt&quot;: &quot;{{DateTime.UtcNow:yyyy-MM-ddTHH:mm:ssZ}}&quot;
 }
 &quot;&quot;&quot;;
-Console.WriteLine(&quot;\n--- Interpolation 2 ---&quot;);
-Console.WriteLine(template);</code></pre>
+Console.WriteLine(&quot;\n--- Interpolation 2 ---&quot;);Console.WriteLine(template);</code></pre>
     </div>
   
     <h3 id="sec-34-lec-2-raw-string-literals-example">Example</h3>
@@ -634,8 +632,7 @@ Console.WriteLine(template);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">Console.WriteLine(&quot;\n--- Delimiter Length Adjustment ---&quot;);
-Console.WriteLine(codeSnippet);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(&quot;\n--- Delimiter Length Adjustment ---&quot;);Console.WriteLine(codeSnippet);</code></pre>
     </div>
   
 <p>Benefits:</p>
@@ -756,8 +753,7 @@ Console.WriteLine(codeSnippet);</code></pre>
       </div>
       <pre><code class="language-csharp">record Point(int X, int Y);
 record Shape(string Type, Point[] Vertices);
-Shape square = new(&quot;Square&quot;, new Point[] { new(0,0), new(1,0),
-new(1,1), new(0,1) });</code></pre>
+Shape square = new(&quot;Square&quot;, new Point[] { new(0,0), new(1,0),new(1,1), new(0,1) });</code></pre>
     </div>
   
 
@@ -836,8 +832,7 @@ new(1,1), new(0,1) });</code></pre>
     }
     else if (args is [var command, ..]) // Starts with a command, ignore rest
     {
-        Console.WriteLine($&quot;Unrecognized command: {command}. Try
-        'help'.&quot;);
+        Console.WriteLine($&quot;Unrecognized command: {command}. Try'help'.&quot;);
     }
     else
     {
@@ -888,8 +883,7 @@ new(1,1), new(0,1) });</code></pre>
 full&quot; });
 // AnalyzeLogEntry(new string[] { &quot;2023-01-01T10:05:00&quot;, &quot;WARN&quot;, &quot;Low
 memory&quot;, &quot;details&quot; });
-// AnalyzeLogEntry(new string[] { &quot;2023-01-01T10:10:00&quot;, &quot;INFO&quot;,
-&quot;Application started&quot; });
+// AnalyzeLogEntry(new string[] { &quot;2023-01-01T10:10:00&quot;, &quot;INFO&quot;,&quot;Application started&quot; });
 // AnalyzeLogEntry(new string[] { &quot;2023-01-01T10:15:00&quot;, &quot;DEBUG&quot;, &quot;Debug
 message&quot; });</code></pre>
     </div>
@@ -907,13 +901,12 @@ message&quot; });</code></pre>
       </div>
       <pre><code class="language-csharp">public static void ProcessPacketHeader(byte[] header)
 {
-    Console.WriteLine($&quot;\nProcessing packet header: [{string.Join(&quot;, &quot;,
-    header)}]&quot;);
-    // Packet starts with 0xAA, followed by 0xBB, then payload length, then data...
+    Console.WriteLine($&quot;\nProcessing packet header: [{string.Join(&quot;, &quot;,header)}]&quot;);
+    // Packet starts with 0xAA, followed by 0xBB, then payload length, then
+    data...
     if (header is [0xAA, 0xBB, var payloadLength, .. var payload])
     {
-        Console.WriteLine($&quot;Valid packet! Payload Length: {payloadLength},
-        Payload Data: [{string.Join(&quot;, &quot;, payload)}]&quot;);
+        Console.WriteLine($&quot;Valid packet! Payload Length: {payloadLength},Payload Data: [{string.Join(&quot;, &quot;, payload)}]&quot;);
         // Further processing of payload...
     }
     else if (header is [0xAA, 0xBB, ..] &amp;&amp; header.Length &lt; 3)
@@ -926,9 +919,9 @@ message&quot; });</code></pre>
     }
 }
 // Usage:
-// ProcessPacketHeader(new byte[] { 0xAA, 0xBB, 0x05, 0x01, 0x02, 0x03,
-0x04, 0x05 });
-// ProcessPacketHeader(new byte[] { 0xAA, 0xBB, 0x02 }); // Incomplete header
+// ProcessPacketHeader(new byte[] { 0xAA, 0xBB, 0x05, 0x01, 0x02, 0x03,0x04, 0x05 });
+// ProcessPacketHeader(new byte[] { 0xAA, 0xBB, 0x02 }); // Incomplete
+header
 // ProcessPacketHeader(new byte[] { 0x11, 0x22, 0x33 }); // Invalid start</code></pre>
     </div>
   
@@ -963,7 +956,8 @@ message&quot; });</code></pre>
         </button>
       </div>
       <pre><code class="language-csharp">int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-// Match sequences that start with 1, end with 10, and have anything in between.</code></pre>
+// Match sequences that start with 1, end with 10, and have anything in
+between.</code></pre>
     </div>
   
 
@@ -976,8 +970,7 @@ message&quot; });</code></pre>
         </button>
       </div>
       <pre><code class="language-csharp">{
-    Console.WriteLine(&quot;[1, .., 10] matches: Array starts with 1 and ends with
-    10.&quot;);
+    Console.WriteLine(&quot;[1, .., 10] matches: Array starts with 1 and ends with10.&quot;);
 }
 // Match sequences that start with 1 and 2, and have anything afterwards.</code></pre>
     </div>
@@ -994,7 +987,8 @@ message&quot; });</code></pre>
       <pre><code class="language-csharp">{
     Console.WriteLine(&quot;[1, 2, ..] matches: Array starts with 1 and 2.&quot;);
 }
-// Match sequences that end with 9 and 10, and have anything before them.</code></pre>
+// Match sequences that end with 9 and 10, and have anything before
+them.</code></pre>
     </div>
   
 
@@ -1038,8 +1032,7 @@ int[] empty = { };</code></pre>
         </button>
       </div>
       <pre><code class="language-csharp">{
-    Console.WriteLine(&quot;[..] also matches: Empty array (zero elements in
-    slice).&quot;);
+    Console.WriteLine(&quot;[..] also matches: Empty array (zero elements inslice).&quot;);
 }
 // Example with a short array that still matches a slice
 int[] shortNumbers = { 5, 6 };</code></pre>
@@ -1085,10 +1078,7 @@ int[] shortNumbers = { 5, 6 };</code></pre>
         </button>
       </div>
       <pre><code class="language-csharp">{
-    Console.WriteLine($&quot;\nPath breakdown:&quot;);
-    Console.WriteLine($&quot; Root: user&quot;);
-    Console.WriteLine($&quot; User Path Segments: [{string.Join(&quot;, &quot;, userPath)}]&quot;);
-    Console.WriteLine($&quot; File Name: {fileName}&quot;);
+    Console.WriteLine($&quot;\nPath breakdown:&quot;);Console.WriteLine($&quot; Root: user&quot;);Console.WriteLine($&quot; User Path Segments: [{string.Join(&quot;, &quot;, userPath)}]&quot;);Console.WriteLine($&quot; File Name: {fileName}&quot;);
 }
 // For pathSegments: userPath will be {&quot;documents&quot;, &quot;reports&quot;, &quot;Q3&quot;} and</code></pre>
     </div>
@@ -1116,15 +1106,12 @@ int[] shortNumbers = { 5, 6 };</code></pre>
         </button>
       </div>
       <pre><code class="language-csharp">{
-    Console.WriteLine($&quot;\nPath breakdown (just user):&quot;);
-    Console.WriteLine($&quot; Root: user&quot;);
-    Console.WriteLine($&quot; User Path Segments: [{string.Join(&quot;, &quot;, userPath)}]&quot;);
+    Console.WriteLine($&quot;\nPath breakdown (just user):&quot;);Console.WriteLine($&quot; Root: user&quot;);Console.WriteLine($&quot; User Path Segments: [{string.Join(&quot;, &quot;, userPath)}]&quot;);
     // userPath will be empty array here
     Console.WriteLine($&quot; File Name: {fileName}&quot;);
 }
 // Example: Capturing leading and trailing elements, and a middle slice
-string[] logLine = { &quot;INFO&quot;, &quot;2023-01-01&quot;, &quot;10:00:00&quot;, &quot;User&quot;, &quot;logged&quot;, &quot;in&quot;,
-&quot;from&quot;, &quot;192.168.1.1&quot; };</code></pre>
+string[] logLine = { &quot;INFO&quot;, &quot;2023-01-01&quot;, &quot;10:00:00&quot;, &quot;User&quot;, &quot;logged&quot;, &quot;in&quot;,&quot;from&quot;, &quot;192.168.1.1&quot; };</code></pre>
     </div>
   
 <p>if (logLine is [var level, var date, var time, .. var messageParts, var ipAddress])</p>
@@ -1138,12 +1125,7 @@ string[] logLine = { &quot;INFO&quot;, &quot;2023-01-01&quot;, &quot;10:00:00&qu
         </button>
       </div>
       <pre><code class="language-csharp">{
-    Console.WriteLine($&quot;\nLog Entry:&quot;);
-    Console.WriteLine($&quot; Level: {level}&quot;);
-    Console.WriteLine($&quot; Date: {date}&quot;);
-    Console.WriteLine($&quot; Time: {time}&quot;);
-    Console.WriteLine($&quot; Message: {string.Join(&quot; &quot;, messageParts)}&quot;);
-    Console.WriteLine($&quot; IP Address: {ipAddress}&quot;);
+    Console.WriteLine($&quot;\nLog Entry:&quot;);Console.WriteLine($&quot; Level: {level}&quot;);Console.WriteLine($&quot; Date: {date}&quot;);Console.WriteLine($&quot; Time: {time}&quot;);Console.WriteLine($&quot; Message: {string.Join(&quot; &quot;, messageParts)}&quot;);Console.WriteLine($&quot; IP Address: {ipAddress}&quot;);
 }</code></pre>
     </div>
   
@@ -1261,26 +1243,20 @@ public static void ProcessOrder(Order order)
     if (order is { CustomerName: var customer, TotalAmount: var amount,
     Status: &quot;Pending&quot; })
     {
-        Console.WriteLine($&quot;Order {order.OrderId} for '{customer}' is Pending.
-        Total: {amount:C}&quot;);
+        Console.WriteLine($&quot;Order {order.OrderId} for '{customer}' is Pending.Total: {amount:C}&quot;);
     }
     else if (order is { OrderDate: var date, Status: var currentStatus })
     {
-        Console.WriteLine($&quot;Order {order.OrderId} placed on
-        {date.ToShortDateString()} has status: {currentStatus}&quot;);
+        Console.WriteLine($&quot;Order {order.OrderId} placed on{date.ToShortDateString()} has status: {currentStatus}&quot;);
     }
     else
     {
-        Console.WriteLine($&quot;Order {order.OrderId} has unknown status or
-        properties.&quot;);
+        Console.WriteLine($&quot;Order {order.OrderId} has unknown status orproperties.&quot;);
     }
 }
 // Usage:
-// ProcessOrder(new Order { OrderId = 1, CustomerName = &quot;Alice&quot;,
-TotalAmount = 150.00m, OrderDate = DateTime.Now, Status = &quot;Pending&quot; });
-// ProcessOrder(new Order { OrderId = 2, CustomerName = &quot;Bob&quot;,
-TotalAmount = 200.00m, OrderDate = DateTime.Now.AddDays(-5), Status
-= &quot;Shipped&quot; });</code></pre>
+// ProcessOrder(new Order { OrderId = 1, CustomerName = &quot;Alice&quot;, TotalAmount = 150.00m, OrderDate = DateTime.Now, Status = &quot;Pending&quot; });
+// ProcessOrder(new Order { OrderId = 2, CustomerName = &quot;Bob&quot;, TotalAmount = 200.00m, OrderDate = DateTime.Now.AddDays(-5), Status = &quot;Shipped&quot; });</code></pre>
     </div>
   
     <h3 id="sec-34-lec-5-var-pattern-example">Example</h3>
@@ -1312,23 +1288,24 @@ TotalAmount = 200.00m, OrderDate = DateTime.Now.AddDays(-5), Status
         break;
         case var x: // Var pattern (unconditional, captures anything)
         // This case will always match if none of the above match.
-        // 'x' will be of type object. Console.WriteLine($&quot;Captured unknown type:
-        {x?.GetType().Name ?? &quot;null&quot;} with value: {x}&quot;);
+        // 'x' will be of type object.
+        Console.WriteLine($&quot;Captured unknown type:{x?.GetType().Name ?? &quot;null&quot;} with value: {x}&quot;);
         break;
     }
 }
 public static void ProcessCoordinates(object point)
 {
-    // Using var pattern in positional record patterns (already available pre- C# 11)
+    // Using var pattern in positional record patterns (already available pre-
+    C# 11)
     if (point is (var xCoord, var yCoord)) // Assumes point is a record with two
     positional parameters
     {
         Console.WriteLine($&quot;Point coordinates: ({xCoord}, {yCoord})&quot;);
     }
-    // Using var pattern in a list pattern (new in C# 11 for lists) if (point is int[] [var first, .., var last])
+    // Using var pattern in a list pattern (new in C# 11 for lists)
+    if (point is int[] [var first, .., var last])
     {
-        Console.WriteLine($&quot;Integer array starts with {first} and ends with
-        {last}.&quot;);
+        Console.WriteLine($&quot;Integer array starts with {first} and ends with{last}.&quot;);
     }
 }
 // Usage:
@@ -1383,7 +1360,8 @@ public static void ProcessCoordinates(object point)
         </button>
       </div>
       <pre><code class="language-csharp">using System;
-// This helper class is only visible within DataProcessor.cs file class DataBatch
+// This helper class is only visible within DataProcessor.cs
+file class DataBatch
 {
     public int Id { get; init; }
     public string[] Data { get; init; }
@@ -1396,7 +1374,8 @@ public static void ProcessCoordinates(object point)
         }
     }
 }
-// This helper interface is also file-local file interface IFileLocalLogger
+// This helper interface is also file-local
+file interface IFileLocalLogger
 {
     void Log(string message);
 }
@@ -1457,8 +1436,7 @@ public class AnotherService
         // var batch = new DataBatch { Id = 3, Data = new[] { &quot;item5&quot; } };
         // Compiler Error: 'IFileLocalLogger' is inaccessible.
         // IFileLocalLogger logger = new ConsoleFileLogger();
-        Console.WriteLine(&quot;AnotherService is doing something unrelated to
-        DataProcessor's internal types.&quot;);
+        Console.WriteLine(&quot;AnotherService is doing something unrelated toDataProcessor's internal types.&quot;);
     }
 }
 In AnotherService.cs, attempting to use DataBatch or IFileLocalLogger will
@@ -1547,14 +1525,14 @@ result in a compile-time error, clearly demonstrating their file-local scope.</c
     error if Email/RegDate aren't set here.
     {
         Username = username; // Initializes Username
-        // Compiler error if Email and RegistrationDate are not initialized here or via object initializer
+        // Compiler error if Email and RegistrationDate are not initialized here
+        or via object initializer
     }
     public User() { } // Empty constructor, requires object initializer for all
     'required' members
     public void PrintInfo()
     {
-        Console.WriteLine($&quot;Username: {Username}, Email: {Email}, RegDate:
-        {RegistrationDate.ToShortDateString()}&quot;);
+        Console.WriteLine($&quot;Username: {Username}, Email: {Email}, RegDate:{RegistrationDate.ToShortDateString()}&quot;);
     }
 }
 public static class RequiredMembersDemo
@@ -1576,19 +1554,19 @@ public static class RequiredMembersDemo
             RegistrationDate = DateTime.Today.AddDays(-7)
         };
         user2.PrintInfo();
-        // Compile-time Error: CS9035 - 'User.Email' and 'User.RegistrationDate' are required.
+        // Compile-time Error: CS9035 - 'User.Email' and
+        'User.RegistrationDate' are required.
         // User invalidUser = new User();
         // Compile-time Error: CS9035 - 'User.RegistrationDate' is required.
         // User invalidUser2 = new User { Username = &quot;Charlie&quot;, Email =
         &quot;charlie@example.com&quot; };
         Console.WriteLine(&quot;\nRequired Members Demo Finished.&quot;);
     }
-}
-// Call from Main:
-// public static void Main(string[] args)
-// {
-    // 	RequiredMembersDemo.RunExamples();
-    // }</code></pre>
+    // Call from Main:
+    // public static void Main(string[] args)
+    // {
+        // 	RequiredMembersDemo.RunExamples();
+        // }</code></pre>
     </div>
   
     <h3 id="sec-34-lec-7-required-members-example">Example</h3>
@@ -1652,7 +1630,8 @@ public static class RequiredStructDemo
       </div>
       <pre><code class="language-csharp">{
     public required double Radius { get; init; }
-    // Constructor must initialize *all* required members (BaseShape.ShapeType and Circle.Radius)
+    // Constructor must initialize *all* required members
+    (BaseShape.ShapeType and Circle.Radius)
     public Circle(string type, double radius)
     {
         ShapeType = type; // Initializes required member from BaseShape
@@ -1671,7 +1650,8 @@ public static class RequiredInheritanceDemo
         Circle c1 = new Circle(&quot;Round&quot;, 10.5)
         {
             // Even if ShapeType and Radius are set in constructor,
-            // they can also be set in object initializer IF they have 'set' or 'init' accessors.
+            // they can also be set in object initializer IF they have 'set' or 'init'
+            accessors.
         };
         c1.PrintInfo();
         // Valid: Using object initializer for all required members
@@ -1683,8 +1663,7 @@ public static class RequiredInheritanceDemo
         c2.PrintInfo();
         // Compile-time Error: CS9035 - 'Circle.Radius' is required.
         // Circle invalidCircle = new Circle { ShapeType = &quot;Square&quot; };
-        Console.WriteLine(&quot;\nRequired Members Inheritance Demo
-        Finished.&quot;);
+        Console.WriteLine(&quot;\nRequired Members Inheritance DemoFinished.&quot;);
     }
 }</code></pre>
     </div>
@@ -1726,7 +1705,8 @@ public static class RequiredInheritanceDemo
     public int Y;
     public int Z;
     public string Label; // Reference type field
-    // In C# 11, this is now valid! public Point3D()
+    // In C# 11, this is now valid!
+    public Point3D()
     {
         // X, Y, Z will be 0, Label will be null if not explicitly set here
         X = 1; // Only explicitly initializing X
@@ -1734,8 +1714,7 @@ public static class RequiredInheritanceDemo
     }
     public void PrintCoords()
     {
-        Console.WriteLine($&quot;Point3D: X={X}, Y={Y}, Z={Z}, Label='{Label ??
-        &quot;null&quot;}'&quot;);
+        Console.WriteLine($&quot;Point3D: X={X}, Y={Y}, Z={Z}, Label='{Label ??&quot;null&quot;}'&quot;);
     }
 }
 public static class AutoDefaultStructsDemo
@@ -1788,7 +1767,8 @@ public static class AutoDefaultStructsDemo
     public required string FirstName { get; set; } // Required
     public required string LastName { get; set; } // Required
     public int Age; // Not required
-    // Valid constructor: explicitly initializes required members, Age defaults to 0
+    // Valid constructor: explicitly initializes required members, Age defaults
+    to 0
     public Person(string firstName, string lastName)
     {
         FirstName = firstName;
@@ -1826,8 +1806,7 @@ public static class AutoDefaultAndRequiredStructsDemo
         p3.PrintInfo();
         // Compile-time Error: CS9035 - 'Person.FirstName' is required.
         // Person invalidPerson = new Person();
-        Console.WriteLine(&quot;\n--- Auto Default &amp; Required Structs Demo
-        Finished ---&quot;);
+        Console.WriteLine(&quot;\n--- Auto Default &amp; Required Structs DemoFinished ---&quot;);
     }
 }
 // Call from Main:
@@ -1914,7 +1893,8 @@ public static class AutoDefaultAndRequiredStructsDemo
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// A ref struct that uses a ref field to represent a &quot;view&quot; into an array public ref struct CustomSlice&lt;T&gt;
+      <pre><code class="language-csharp">// A ref struct that uses a ref field to represent a &quot;view&quot; into an array
+public ref struct CustomSlice&lt;T&gt;
 {
     // A ref field that points to the first element of the underlying array/span.
     // This allows CustomSlice to hold a reference without copying the data.
@@ -1934,7 +1914,8 @@ public static class AutoDefaultAndRequiredStructsDemo
         // to get the true starting ref efficiently.
         // For demonstration, assume we can directly reference into an array.
         // In reality, arrayStart would be the actual array, and we'd offset it.
-        // This simplified version assumes arrayStart is already the beginning of the desired slice.
+        // This simplified version assumes arrayStart is already the beginning
+        of the desired slice.
         _start = ref arrayStart; // Directly assign the passed-in reference.
         Length = length;
     }
@@ -1948,15 +1929,20 @@ public static class AutoDefaultAndRequiredStructsDemo
             }
             // Add index offset to the starting reference.
             // This is a conceptual representation. In real C#/.NET,
-            // this usually involves unsafe code or highly optimized internal methods.
-            // For example, using System.Runtime.CompilerServices.Unsafe.Add.
+            // this usually involves unsafe code or highly optimized internal
+            methods.
+            // For example, using
+            System.Runtime.CompilerServices.Unsafe.Add.
             // For a managed 'ref T' to behave like an array, you'd typically need
-            // to work with arrays directly, or use Span&lt;T&gt; provided by the runtime.
+            // to work with arrays directly, or use Span&lt;T&gt; provided by the
+            runtime.
             // This example is illustrative of the 'ref' field concept.
             return ref _start; // Simplified: just returns the start. A real indexer
             would offset.
-            // A realistic ref field usage is when _start is a ref to element 0
-            // and the indexer does ref _start[index] (if _start were a ref to an array).
+            // A realistic ref field usage is when _start is a ref to
+            element 0
+            // and the indexer does ref _start[index] (if _start were a ref
+            to an array).
             // Or using unsafe: return ref Unsafe.Add(ref _start, index);
         }
     }
@@ -1980,9 +1966,7 @@ public static class RefFieldsDemo
         // Modify value through the ref field indirectly (conceptually)
         // This actually modifies the original array data.
         slice._start = 99; // This would change data[2] to 99
-        Console.WriteLine($&quot;Original array after modification: [{string.Join(&quot;, &quot;,
-        data)}]&quot;);
-        Console.WriteLine(&quot;\n--- Ref Fields Demo Finished ---&quot;);
+        Console.WriteLine($&quot;Original array after modification: [{string.Join(&quot;, &quot;,data)}]&quot;);Console.WriteLine(&quot;\n--- Ref Fields Demo Finished ---&quot;);
     }
 }
 // Call from Main:
@@ -2007,69 +1991,154 @@ public static class RefFieldsDemo
     <ol>
       <li>Raw String Literals:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Purpose:</strong> Simplify multiline strings, strings with special characters (quotes, backslashes), and embedded code (JSON, XML, SQL).</li>
       <li><strong>Syntax:</strong> Started and ended with at least three double-quotes (&quot;&quot;&quot;).</li>
       <li><strong>Key Benefit:</strong> No escaping needed. Indentation relative to the closing delimiter is automatically removed. Supports enhanced interpolation with more $ signs.</li>
       <li><strong>Remember:</strong> Makes code much more readable and reduces errors when dealing with complex string content.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>List Pattern:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Purpose:</strong> Allows pattern matching against elements in sequences (arrays, lists, IEnumerable).</li>
       <li><strong>Syntax:</strong> Uses square brackets [] to define patterns for elements.</li>
       <li><strong>Key Components:</strong> Can match specific values, use _ (discard) for any single element, and .. (slice) for zero or more elements.</li>
       <li><strong>Remember:</strong> Great for deconstructing and checking the structure of collections in a concise and declarative way.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Slice Pattern (..):</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Purpose:</strong> Used within List Patterns to match zero or more elements in a sequence.</li>
       <li><strong>Syntax:</strong> Two dots ...</li>
       <li><strong>Key Behavior:</strong> Can be used to ignore elements ([1, .., 5]) or capture a sub-sequence ([1, .. var middle, 5]).</li>
       <li><strong>Remember:</strong> Only one .. allowed per list pattern. Essential for flexible sequence matching.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Var Pattern (in Property Patterns):</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Purpose:</strong> Allows using var within property patterns to infer the property's type and assign its value to a new variable.</li>
       <li><strong>Syntax:</strong> MyObject is { PropertyName: var variableName }.</li>
       <li><strong>Key Benefit:</strong> Reduces boilerplate and improves readability in property pattern matching by removing the need for explicit type declarations.</li>
       <li><strong>Remember:</strong> A small but helpful syntactic sugar for more concise pattern matching.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>File Local Types:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Purpose:</strong> Declare types (classes, structs, interfaces, enums, records) that are only visible within the single .cs file where they are defined.</li>
       <li><strong>Syntax:</strong> Use the file access modifier (e.g., file class MyHelper).</li>
       <li><strong>Key Benefit:</strong> Prevents naming conflicts in large projects, improves encapsulation, and cleans up IntelliSense by hiding internal helper types.</li>
       <li><strong>Remember:</strong> Provides a scope narrower than internal but broader than private nested types.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Required Members:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Purpose:</strong> Enforce that specific properties or fields of a class or struct must be initialized during object creation.</li>
       <li><strong>Syntax:</strong> Use the required keyword (e.g., public required string Name { get; set; }).</li>
       <li><strong>Key Benefit:</strong> Compile-time safety that prevents uninitialized data, makes API contracts clearer, and reduces runtime errors.</li>
       <li><strong>Remember:</strong> Initialization must happen via a constructor or an object initializer. Inherited requirements are also enforced.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Auto Default Structs:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Purpose:</strong> Relax definite assignment rules for structs, allowing uninitialized fields in constructors to be automatically set to their default values (zero-initialized).</li>
       <li><strong>Key Benefit:</strong> Reduces boilerplate in struct constructors, makes structs more flexible, and allows explicit parameterless constructors.</li>
       <li><strong>Remember:</strong> Simplifies struct definitions and aligns default initialization behavior more closely with classes.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Ref Fields:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Purpose:</strong> Allows fields within ref struct types to be references (ref) to other memory locations.</li>
       <li><strong>Syntax:</strong> public ref int MyRefField;.</li>
       <li><strong>Key Context:</strong> Only applicable within ref structs (stack-only types).</li>
@@ -2077,6 +2146,28 @@ public static class RefFieldsDemo
       <li><strong>Remember:</strong> A very advanced, low-level feature primarily for performance-critical scenarios. Requires strict adherence to ref safety rules to prevent memory issues. Most application developers will consume APIs that use these internally, rather than directly implementing them. C# 11 reinforces the language's strengths in both high-level productivity and low-level performance, offering tools for a wide range of programming challenges.</li>
     </ul>
 
+      </div>
+    </div>
+  
+    <div class="diagram-container">
+      <div class="diagram-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+        <span>Diagram: ref struct and ref Field Memory Layout (CustomSlice&lt;T&gt;)</span>
+      </div>
+      <pre class="diagram-pre">[ Managed Heap Memory: int[] data array ]
++--------+--------+--------+--------+--------+
+|   10   |   20   |   30   |   40   |   50   |
++--------+--------+--------+--------+--------+
+                      ^
+                      |  ref T _start (Interior pointer tracked by GC)
++---------------------|----------------------+
+| CustomSlice&lt;int&gt; (ref struct on Stack)     |
+| - ref int _start    |                      |
+| - int Length = 3    (Elements 30, 40, 50)  |
+| Zero heap allocation, zero GC compaction overhead |
++--------------------------------------------+</pre>
+    </div>
+  
       <h2 id="sec-34-comparison-table">Managed References (ref / ref struct) vs. Unmanaged Pointers (*) Comparison</h2>
       <p>Comparison between modern C# type-safe managed memory semantics and unmanaged pointers:</p>
       
@@ -2093,7 +2184,7 @@ public static class RefFieldsDemo
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="34" aria-pressed="false">
@@ -2106,13 +2197,13 @@ public static class RefFieldsDemo
       <nav class="bottom-nav">
         
     <a href="section-33.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 33: Asynchronous Programming (Async &amp; Await)</span>
     </a>
   
         
     <a href="section-35.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 35: C# 12 New Features (.NET 8)</span>
     </a>
   
@@ -2121,7 +2212,7 @@ public static class RefFieldsDemo
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

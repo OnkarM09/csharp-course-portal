@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 31: Threading &amp; Synchronization Primitives — C# Masterclass</title>
+  <title>Section 31: Threading &amp; Synchronization Primitives &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 7</span>
-          <span class="read-time-badge">⏱️ 35 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>35 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">Thread</span> <span class="tag-pill">Thread Safety</span> <span class="tag-pill">lock</span> <span class="tag-pill">Monitor</span> <span class="tag-pill">Mutex</span> <span class="tag-pill">SemaphoreSlim</span> <span class="tag-pill">Interlocked</span>
           </div>
@@ -514,10 +520,7 @@
       <pre><code class="language-csharp">{
     static void Main(string[] args)
     {
-        Console.WriteLine(&quot;Main thread started. Starting sequential tasks...&quot;);
-        HeavyTaskA();
-        HeavyTaskB();
-        Console.WriteLine(&quot;Main thread finished.&quot;);
+        Console.WriteLine(&quot;Main thread started. Starting sequential tasks...&quot;);HeavyTaskA();HeavyTaskB();Console.WriteLine(&quot;Main thread finished.&quot;);
     }
     static void HeavyTaskA()
     {
@@ -609,7 +612,8 @@ Main thread finished.</code></pre>
     static void Main(string[] args)
     {
         Console.WriteLine(&quot;Main thread started.&quot;);
-        // Create new Thread objects, pointing them to the methods to execute.
+        // Create new Thread objects, pointing them to the methods to
+        execute.
         Thread threadA = new Thread(HeavyTaskA);
         Thread threadB = new Thread(HeavyTaskB);
         // Set thread names for better debugging output.
@@ -663,11 +667,7 @@ Main thread finished.</code></pre>
       <pre><code class="language-csharp">{
     static void Main(string[] args)
     {
-        Console.WriteLine(&quot;Main thread: Starting background tasks...&quot;);
-        Thread threadA = new Thread(HeavyTaskA);
-        Thread threadB = new Thread(HeavyTaskB);
-        threadA.Start();
-        threadB.Start();
+        Console.WriteLine(&quot;Main thread: Starting background tasks...&quot;);Thread threadA = new Thread(HeavyTaskA);Thread threadB = new Thread(HeavyTaskB);threadA.Start();threadB.Start();
         // The 'Join' method blocks the Main thread here.
         // It will not proceed past this line until 'threadA' has finished.
         threadA.Join();
@@ -675,8 +675,7 @@ Main thread finished.</code></pre>
         // Similarly, wait for threadB to finish.
         threadB.Join();
         Console.WriteLine(&quot;Main thread: Task B has completed.&quot;);
-        Console.WriteLine(&quot;Main thread: All background tasks are finished.
-        Program exiting.&quot;);
+        Console.WriteLine(&quot;Main thread: All background tasks are finished.Program exiting.&quot;);
     }
     // ... HeavyTaskA and HeavyTaskB methods ...
 }</code></pre>
@@ -695,10 +694,30 @@ Main thread finished.</code></pre>
       <li>AboveNormal</li>
       <li>Highest The OS scheduler uses this priority as a factor when deciding which thread to run next. A thread with a Highest priority is more likely to get more frequent and/or longer time slices than a thread with a Lowest priority. Why and When to Use It (With Extreme Caution) Best Practice: You should almost never change a thread's priority from Normal. Manually managing thread priorities is very difficult and can lead to serious problems:</li>
       <li><strong>Starvation:</strong> If you set a thread's priority too high, it might consume so much CPU time that it &quot;starves&quot; other important threads, including operating system threads, making the entire system unresponsive.</li>
-      <li><strong>Priority Inversion:</strong> A complex scenario where a low-priority thread holds a lock that a high-priority thread needs, but the low-priority thread never gets scheduled to run and release the lock, effectively blocking the high- priority thread forever. Instead of tweaking priorities, it is always better to design a correct and efficient concurrent architecture using proper synchronization mechanisms. Interview Perspective</li>
-      <li><strong>Question:</strong> &quot;When should you change a thread's priority?&quot;</li>
-      <li><strong>Ideal Answer:</strong> &quot;In general, you should avoid changing thread priorities. The OS scheduler is very sophisticated and is usually better at managing thread execution than manual adjustments. Changing priorities can lead to issues like thread starvation and priority inversion, which can destabilize an application. It's better to focus on writing efficient, non-blocking code and using proper synchronization than to rely on priority tweaks.&quot;</li>
+      <li><strong>Priority Inversion:</strong> A complex scenario where a low-priority thread holds a</li>
     </ul>
+<p>gets scheduled to run and release the lock, effectively blocking the high- priority thread forever. Instead of tweaking priorities, it is always better to design a correct and efficient concurrent architecture using proper synchronization mechanisms.</p>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
+  <li>Question: &quot;When should you change a thread's priority?&quot;</li>
+  <li>Ideal Answer: &quot;In general, you should avoid changing thread priorities.</li>
+</ul>
+  <p>The OS scheduler is very sophisticated and is usually better at managing</p>
+  <p>thread execution than manual adjustments. Changing priorities can lead</p>
+  <p>to issues like thread starvation and priority inversion, which can destabilize</p>
+  <p>an application. It's better to focus on writing efficient, non-blocking code</p>
+  <p>and using proper synchronization than to rely on priority tweaks.&quot;</p>
+
+      </div>
+    </div>
+  
 
     <h2 id="sec-31-lec-10-thread-interrupt">Lecture 10: Thread.Interrupt</h2>
     <h3 id="sec-31-lec-10-thread-interrupt-introduction">Introduction</h3>
@@ -730,16 +749,13 @@ Main thread finished.</code></pre>
     }
     catch (ThreadInterruptedException)
     {
-        Console.WriteLine(&quot;Worker thread: My sleep was interrupted!
-        Cleaning up and exiting.&quot;);
+        Console.WriteLine(&quot;Worker thread: My sleep was interrupted!Cleaning up and exiting.&quot;);
     }
 }
 // --- In your Main method ---
 Thread workerThread = new Thread(Worker);
 workerThread.Start();
-Console.WriteLine(&quot;Main thread: Waiting for 2 seconds before interrupting
-worker.&quot;);
-Thread.Sleep(2000);
+Console.WriteLine(&quot;Main thread: Waiting for 2 seconds before interruptingworker.&quot;);Thread.Sleep(2000);
 // Main thread interrupts the sleeping worker thread.
 workerThread.Interrupt();</code></pre>
     </div>
@@ -821,7 +837,8 @@ workerThread.Start(5);</code></pre>
     // Data for the thread is stored as strongly-typed properties.
     public int Iterations { get; set; }
     public string Message { get; set; }
-    // The work method has access to the instance's properties. public void Run()
+    // The work method has access to the instance's properties.
+    public void Run()
     {
         for (int i = 0; i &lt; Iterations; i++)
         {
@@ -873,7 +890,8 @@ public class Downloader
         _url = url;
         _callback = callback;
     }
-    // This method will be run on a new thread. public void Download()
+    // This method will be run on a new thread.
+    public void Download()
     {
         Console.WriteLine($&quot;Downloading from {_url}...&quot;);
         Thread.Sleep(3000); // Simulate a 3-second download.
@@ -887,8 +905,7 @@ public class Program
     // 4. This is the method the main thread provides as the callback.
     public static void OnDownloadFinished(string content)
     {
-        Console.WriteLine($&quot;Callback executed! Download finished. Content:
-        '{content}'&quot;);
+        Console.WriteLine($&quot;Callback executed! Download finished. Content:'{content}'&quot;);
     }
     public static void Main(string[] args)
     {
@@ -944,8 +961,7 @@ public class Program
         {
             t.Join(); // Wait for both threads to finish
         }
-        Console.WriteLine($&quot;Expected result: 2,000,000&quot;);
-        Console.WriteLine($&quot;Actual result: 	{sharedCounter}&quot;);
+        Console.WriteLine($&quot;Expected result: 2,000,000&quot;);Console.WriteLine($&quot;Actual result: 	{sharedCounter}&quot;);
     }
     static void IncrementCounter()
     {
@@ -993,11 +1009,13 @@ public class Program
     static int sharedCounter = 0;
     // The private object used as the lock &quot;key&quot;.
     private static readonly object counterLock = new object();
-    // ... Main method is the same ... static void IncrementCounter()
+    // ... Main method is the same ...
+    static void IncrementCounter()
     {
         for (int i = 0; i &lt; 1000000; i++)
         {
-            // This try...finally block is essential for safety. try
+            // This try...finally block is essential for safety.
+            try
             {
                 // Acquire the lock. Only one thread can pass this line at a time.
                 Monitor.Enter(counterLock);
@@ -1020,7 +1038,7 @@ public class Program
     <h3 id="sec-31-lec-18-lock-introduction">Introduction</h3>
 <p>The lock keyword is a much cleaner, safer, and the preferred C# language feature for achieving mutual exclusion. It simplifies the process of acquiring and releasing a lock on a shared resource.</p>
     <h3 id="sec-31-lec-18-lock-how-it-works">How It Works: Syntactic Sugar</h3>
-<p>This is the key insight for interviews. The lock statement is just syntactic sugar for the Monitor.Enter and Monitor.Exit pattern wrapped in a try...finally block. When you write this: lock (counterLock)</p>
+<p>This is the key insight for interviews. The lock statement is just syntactic sugar for the Monitor.Enter and Monitor.Exit pattern wrapped in a try...finally block. When you write this:</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1030,13 +1048,14 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">{
+      <pre><code class="language-csharp">lock (counterLock)
+{
     // Critical section code...
     sharedCounter++;
 }</code></pre>
     </div>
   
-<p>The C# compiler automatically generates this for you: Monitor.Enter(counterLock); try</p>
+<p>The C# compiler automatically generates this for you: Monitor.Enter(counterLock);</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1046,7 +1065,8 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">{
+      <pre><code class="language-csharp">try
+{
     // Critical section code...
     sharedCounter++;
 }
@@ -1075,11 +1095,13 @@ finally
       <pre><code class="language-csharp">{
     static int sharedCounter = 0;
     private static readonly object counterLock = new object();
-    // ... Main method is the same ... static void IncrementCounter()
+    // ... Main method is the same ...
+    static void IncrementCounter()
     {
         for (int i = 0; i &lt; 1000000; i++)
         {
-            // Use the much cleaner and safer lock statement. lock (counterLock)
+            // Use the much cleaner and safer lock statement.
+            lock (counterLock)
             {
                 // This is the critical section. Only one thread
                 // can be inside this block at any given time.
@@ -1122,7 +1144,8 @@ finally
     static ManualResetEvent gate = new ManualResetEvent(false);
     static void Main(string[] args)
     {
-        // Start worker threads. They will immediately block on gate.WaitOne().
+        // Start worker threads. They will immediately block on
+        gate.WaitOne().
         new Thread(Worker).Start(&quot;Worker 1&quot;);
         new Thread(Worker).Start(&quot;Worker 2&quot;);
         new Thread(Worker).Start(&quot;Worker 3&quot;);
@@ -1201,7 +1224,7 @@ finally
       <li>If the condition isn't met, it calls Monitor.Wait(lockObject). This method does two things atomically: it temporarily releases the lock and puts the current thread into a special waiting queue for that lock. Releasing the lock is crucial, as it allows other threads (like the producer) to enter the critical section.</li>
       <li>Another &quot;producer&quot; thread acquires the same lock. It does some work (e.g., adds an item to the queue).</li>
       <li>The producer then calls Monitor.Pulse(lockObject) to wake up one waiting thread, or Monitor.PulseAll(lockObject) to wake up all waiting threads.</li>
-      <li>The woken-up consumer thread does not run immediately. It is moved from the waiting queue to the &quot;ready&quot; queue. It must now re-acquire the lock before it can proceed from the point where it called Wait.</li>
+      <li>The woken-up consumer thread does not run immediately. It is moved from the waiting queue to the &quot;ready&quot; queue. It must now re-acquire the</li>
     </ol>
     <h3 id="sec-31-lec-21-wait-and-pulse-when-to-use-it">When to Use It</h3>
 <p>For building complex, custom producer-consumer queues or other synchronization patterns where threads need to wait for state changes inside a critical section. In modern C#, higher-level abstractions like BlockingCollection&lt;T&gt; are often a better and safer choice for these scenarios.</p>
@@ -1228,9 +1251,7 @@ finally
         {
             lock (_lock)
             {
-                string task = $&quot;Task {i + 1}&quot;;
-                _tasks.Enqueue(task);
-                Console.WriteLine($&quot;Produced: {task}&quot;);
+                string task = $&quot;Task {i + 1}&quot;;_tasks.Enqueue(task);Console.WriteLine($&quot;Produced: {task}&quot;);
                 // Pulse the waiting consumer thread to let it know there's work.
                 Monitor.Pulse(_lock);
             }
@@ -1323,14 +1344,10 @@ string[] linesToProcess = { &quot;line1&quot;, &quot;line2&quot;, &quot;line3&qu
 // Create tasks to simulate concurrent processing
 Task task1 = Task.Run(() =&gt;
 {
-    processedLines.Add($&quot;Worker 1 processed: {linesToProcess[0]}&quot;);
-    processedLines.Add($&quot;Worker 1 processed: {linesToProcess[1]}&quot;);
-});
-Task task2 = Task.Run(() =&gt;
-{
-    processedLines.Add($&quot;Worker 2 processed: {linesToProcess[2]}&quot;);
-    processedLines.Add($&quot;Worker 2 processed: {linesToProcess[3]}&quot;);
-});</code></pre>
+    processedLines.Add($&quot;Worker 1 processed: {linesToProcess[0]}&quot;);processedLines.Add($&quot;Worker 1 processed: {linesToProcess[1]}&quot;);});
+    Task task2 = Task.Run(() =&gt;
+    {
+        processedLines.Add($&quot;Worker 2 processed: {linesToProcess[2]}&quot;);processedLines.Add($&quot;Worker 2 processed: {linesToProcess[3]}&quot;);});</code></pre>
     </div>
   
 <p>Task.WaitAll(task1, task2); // Wait for tasks to finish</p>
@@ -1428,8 +1445,7 @@ static void AccessDatabase(object id)
         </button>
       </div>
       <pre><code class="language-csharp">// A named Mutex can be shared across processes.
-private static Mutex singleInstanceMutex = new Mutex(true,
-&quot;MyUniqueAppName123&quot;);
+private static Mutex singleInstanceMutex = new Mutex(true,&quot;MyUniqueAppName123&quot;);
 // In Main:
 // Try to acquire the mutex. The '0' means don't wait.
 bool isNewInstance = singleInstanceMutex.WaitOne(0, false);</code></pre>
@@ -1445,8 +1461,7 @@ bool isNewInstance = singleInstanceMutex.WaitOne(0, false);</code></pre>
         </button>
       </div>
       <pre><code class="language-csharp">{
-    Console.WriteLine(&quot;Another instance of this application is already
-    running. Exiting.&quot;);
+    Console.WriteLine(&quot;Another instance of this application is alreadyrunning. Exiting.&quot;);
     return;
 }
 // ... run application logic ...
@@ -1477,12 +1492,11 @@ singleInstanceMutex.ReleaseMutex();</code></pre>
       </div>
       <pre><code class="language-csharp">{
     // This code will be executed on a thread pool thread.
-    Console.WriteLine(&quot;Hello from the thread pool!&quot;);
-});
-Task.Run() uses the thread pool behind the scenes but provides a much richer,
-more powerful, and easier-to-use API. It returns a Task object that allows you to
-wait for completion, get return values, and handle exceptions in a structured
-way.</code></pre>
+    Console.WriteLine(&quot;Hello from the thread pool!&quot;);});
+    Task.Run() uses the thread pool behind the scenes but provides a much richer,
+    more powerful, and easier-to-use API. It returns a Task object that allows you to
+    wait for completion, get return values, and handle exceptions in a structured
+    way.</code></pre>
     </div>
   
 
@@ -1512,27 +1526,28 @@ way.</code></pre>
 static CountdownEvent countdown = new CountdownEvent(3);
 static void Main(string[] args)
 {
-    Console.WriteLine(&quot;Main: Starting 3 workers.&quot;);
-    new Thread(() =&gt; Worker(&quot;Worker 1&quot;, 2000)).Start();
-    new Thread(() =&gt; Worker(&quot;Worker 2&quot;, 3000)).Start();
-    new Thread(() =&gt; Worker(&quot;Worker 3&quot;, 4000)).Start();
-    Console.WriteLine(&quot;Main: Waiting for all workers to complete...&quot;);
+    Console.WriteLine(&quot;Main: Starting 3 workers.&quot;);new Thread(() =&gt; Worker(&quot;Worker 1&quot;, 2000)).Start();new Thread(() =&gt; Worker(&quot;Worker 2&quot;, 3000)).Start();new Thread(() =&gt; Worker(&quot;Worker 3&quot;, 4000)).Start();Console.WriteLine(&quot;Main: Waiting for all workers to complete...&quot;);
     countdown.Wait(); // Blocks here until the count reaches zero.
-    Console.WriteLine(&quot;Main: All workers have completed. Proceeding with
-    final task.&quot;);
+    Console.WriteLine(&quot;Main: All workers have completed. Proceeding withfinal task.&quot;);
 }
 static void Worker(string id, int sleepTime)
 {
-    Console.WriteLine($&quot;{id} is starting work.&quot;);
-    Thread.Sleep(sleepTime);
-    Console.WriteLine($&quot;{id} has finished work.&quot;);
+    Console.WriteLine($&quot;{id} is starting work.&quot;);Thread.Sleep(sleepTime);Console.WriteLine($&quot;{id} has finished work.&quot;);
     countdown.Signal(); // Decrement the counter.
 }</code></pre>
     </div>
   
 
     <h2 id="sec-31-lec-29-points-to-remember">Lecture 29: Points to Remember</h2>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li>Shared Resources Lead to Race Conditions: This is the core problem of multithreading. Unsynchronized access to shared data will lead to corruption.</li>
       <li>lock is Your Primary Tool for Mutual Exclusion: For protecting a critical section of code to prevent race conditions, the lock statement is your standard, safe, and go-to solution.</li>
       <li><strong>Signaling with Events:</strong> Use ManualResetEvent to signal a one-time event to many threads simultaneously. Use AutoResetEvent to release waiting threads one by one. Use CountdownEvent to wait for a fixed number of tasks to complete.</li>
@@ -1541,8 +1556,14 @@ static void Worker(string id, int sleepTime)
       <li>Task.Run is the Modern Way to Use the Thread Pool: In modern C#, always use Task.Run() to execute work on a background thread. It is a higher-level, more powerful, and safer abstraction than using the ThreadPool directly.</li>
     </ul>
 
+      </div>
+    </div>
+  
     <div class="diagram-container">
-      <div class="diagram-title">📊 Diagram: Thread Pool Worker Queue Scheduling</div>
+      <div class="diagram-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+        <span>Diagram: Thread Pool Worker Queue Scheduling</span>
+      </div>
       <pre class="diagram-pre">Global Work Queue
 +-------------------------------------------------------+
 | Task 1 | Task 2 | Task 3 | Task 4 | Task 5 | Task 6   |
@@ -1559,7 +1580,7 @@ static void Worker(string id, int sleepTime)
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="31" aria-pressed="false">
@@ -1572,13 +1593,13 @@ static void Worker(string id, int sleepTime)
       <nav class="bottom-nav">
         
     <a href="section-30.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 30: C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)</span>
     </a>
   
         
     <a href="section-32.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 32: Tasks &amp; Task Parallel Library (TPL)</span>
     </a>
   
@@ -1587,7 +1608,7 @@ static void Worker(string id, int sleepTime)
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 

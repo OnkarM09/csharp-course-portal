@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 35: C# 12 New Features (.NET 8) — C# Masterclass</title>
+  <title>Section 35: C# 12 New Features (.NET 8) &mdash; C# Masterclass</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../assets/css/docs.css">
@@ -15,10 +15,12 @@
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
-      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
+      <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
       <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        <span class="sidebar-toggle-text">« Collapse</span>
+        <span class="sidebar-toggle-text">&laquo; Collapse</span>
       </button>
       <a href="../index.html" class="brand-link">
         <span class="brand-icon">C#</span>
@@ -29,12 +31,12 @@
 
     <div class="header-right">
       <a href="../index.html" class="index-home-btn" title="Back to Curriculum Dashboard">
-        <span class="home-icon">📚</span>
+        <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         <span class="home-text">Course Index</span>
       </a>
 
       <button class="search-trigger-btn" aria-label="Search curriculum">
-        <span class="search-icon">🔍</span>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="search-text">Search topics...</span>
         <kbd class="kbd-shortcut">Ctrl+K</kbd>
       </button>
@@ -63,8 +65,9 @@
         <input type="text" class="sidebar-filter-input" placeholder="Filter sections..." aria-label="Filter sidebar sections" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600;">
-          <span>🏠 Return to Dashboard</span>
+        <a href="../index.html" class="sidebar-link" style="color: var(--accent-primary); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Return to Dashboard</span>
         </a>
       </div>
       
@@ -415,7 +418,7 @@
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
-        <span>» Expand Sidebar</span>
+        <span>&raquo; Expand Sidebar</span>
       </button>
 
       <!-- Breadcrumbs -->
@@ -431,7 +434,10 @@
       <header class="section-banner">
         <div class="section-meta-row">
           <span class="module-badge">Module 8</span>
-          <span class="read-time-badge">⏱️ 25 min read</span>
+          <span class="read-time-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>25 min read</span>
+          </span>
           <div style="display: flex; gap: 4px; flex-wrap: wrap;">
             <span class="tag-pill">Primary Constructors</span> <span class="tag-pill">Collection Expressions</span> <span class="tag-pill">Inline Arrays</span> <span class="tag-pill">Default Lambda Params</span> <span class="tag-pill">Alias Any Type</span>
           </div>
@@ -458,7 +464,8 @@
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// Pre-C# 12 class constructor public class OldUser
+      <pre><code class="language-csharp">// Pre-C# 12 class constructor
+public class OldUser
 {
     public string Name { get; }
     public int Age { get; }
@@ -482,7 +489,8 @@
           Copy
         </button>
       </div>
-      <pre><code class="language-csharp">// C# 12 primary constructor for class public class NewUser(string name, int age)
+      <pre><code class="language-csharp">// C# 12 primary constructor for class
+public class NewUser(string name, int age)
 {
     public string Name { get; } = name; // Initialize properties using primary
     constructor parameters
@@ -560,21 +568,17 @@
     public void UpdateReading(double newReading)
     {
         CurrentReading = newReading;
-        Console.WriteLine($&quot;Sensor at {Location} updated to
-        {CurrentReading}°C&quot;);
+        Console.WriteLine($&quot;Sensor at {Location} updated to{CurrentReading}°C&quot;);
     }
     public string GetStatus()
     {
         // Primary constructor parameters are in scope here
-        return $&quot;Sensor at '{location}' is active with reading {CurrentReading}
-        °C.&quot;;
+        return $&quot;Sensor at '{location}' is active with reading {CurrentReading}°C.&quot;;
     }
 }
 // Usage:
 // var livingRoomSensor = new TemperatureSensor(&quot;Living Room&quot;, 22.5);
-// Console.WriteLine(livingRoomSensor.GetStatus());
-// livingRoomSensor.UpdateReading(23.1);
-// Console.WriteLine(livingRoomSensor.GetStatus());</code></pre>
+// Console.WriteLine(livingRoomSensor.GetStatus());// livingRoomSensor.UpdateReading(23.1);// Console.WriteLine(livingRoomSensor.GetStatus());</code></pre>
     </div>
   
     <h3 id="sec-35-lec-1-primary-constructors-in-classes-example">Example</h3>
@@ -601,22 +605,21 @@
     {
         CreatedDate = createdDate;
     }
-    // You can add an explicit parameterless constructor, but it MUST chain to the primary
+    // You can add an explicit parameterless constructor, but it MUST chain
+    to the primary
     public Product() : this(0, &quot;Unknown&quot;, 0m)
     {
         CreatedDate = DateTime.MinValue;
     }
     public void DisplayProduct()
     {
-        Console.WriteLine($&quot;Product ID: {Id}, Name: {Name}, Price: {Price:C},
-        Created: {CreatedDate:d}&quot;);
+        Console.WriteLine($&quot;Product ID: {Id}, Name: {Name}, Price: {Price:C},Created: {CreatedDate:d}&quot;);
     }
 }
 // Usage:
 // var laptop = new Product(1, &quot;Laptop&quot;, 1200.00m);
 // laptop.DisplayProduct(); // CreatedDate will be default(DateTime)
-// var monitor = new Product(2, &quot;Monitor&quot;, 300.00m,
-DateTime.Now.AddDays(-30));
+// var monitor = new Product(2, &quot;Monitor&quot;, 300.00m,DateTime.Now.AddDays(-30));
 // monitor.DisplayProduct();
 // var defaultProduct = new Product();
 // defaultProduct.DisplayProduct();</code></pre>
@@ -781,16 +784,13 @@ using System.Collections.Generic;</code></pre>
         // Creating a HashSet
         HashSet&lt;int&gt; uniqueNumbers = [1, 2, 3, 2, 4]; // Set will contain {1, 2, 3,
         4}
-        Console.WriteLine($&quot;Unique Numbers: [{string.Join(&quot;, &quot;,
-        uniqueNumbers)}]&quot;);
-        Console.WriteLine(&quot;\n--- Collection Expressions Demo Finished ---&quot;);
+        Console.WriteLine($&quot;Unique Numbers: [{string.Join(&quot;, &quot;,uniqueNumbers)}]&quot;);Console.WriteLine(&quot;\n--- Collection Expressions Demo Finished ---&quot;);
     }
-}
-// Call from Main:
-// public static void Main(string[] args)
-// {
-    // 	CollectionExpressionsDemo.RunExamples();
-    // }</code></pre>
+    // Call from Main:
+    // public static void Main(string[] args)
+    // {
+        // 	CollectionExpressionsDemo.RunExamples();
+        // }</code></pre>
     </div>
   
     <h3 id="sec-35-lec-2-collection-expressions-example">Example</h3>
@@ -832,9 +832,7 @@ using System.Collections.Generic;</code></pre>
 // int[] arrayA = [10, 20];
 // int[] arrayB = [30, 40];
 // int[] merged = processor.MergeArrays(arrayA, arrayB);
-// Console.WriteLine($&quot;Merged Array: [{string.Join(&quot;, &quot;, merged)}]&quot;);
-// ReadOnlySpan&lt;byte&gt; packet = processor.GetReadOnlyDataPacket();
-// Console.WriteLine($&quot;Data Packet: [{string.Join(&quot;, &quot;, packet.ToArray())}]&quot;);</code></pre>
+// Console.WriteLine($&quot;Merged Array: [{string.Join(&quot;, &quot;, merged)}]&quot;);// ReadOnlySpan&lt;byte&gt; packet = processor.GetReadOnlyDataPacket();// Console.WriteLine($&quot;Data Packet: [{string.Join(&quot;, &quot;, packet.ToArray())}]&quot;);</code></pre>
     </div>
   
 <p>Benefits:</p>
@@ -899,11 +897,9 @@ var greet = (string name = &quot;Guest&quot;) =&gt; Console.WriteLine($&quot;Hel
 {
     public static void RunExamples()
     {
-        Console.WriteLine(&quot;--- Default Parameters in Lambda Expressions
-        Demo ---&quot;);
+        Console.WriteLine(&quot;--- Default Parameters in Lambda ExpressionsDemo ---&quot;);
         // Basic example: Default for a string parameter
-        var greet = (string name = &quot;World&quot;) =&gt; Console.WriteLine($&quot;Hello,
-        {name}!&quot;);
+        var greet = (string name = &quot;World&quot;) =&gt; Console.WriteLine($&quot;Hello,{name}!&quot;);
         greet(); 	// Uses default: &quot;World&quot;
         greet(&quot;Alice&quot;); // Uses provided value: &quot;Alice&quot;
         // Example with multiple parameters, some with defaults
@@ -916,11 +912,8 @@ var greet = (string name = &quot;Guest&quot;) =&gt; Console.WriteLine($&quot;Hel
         a=10, b=20, c=30 -&gt; 60
         // Explicit delegate type with default parameter
         Func&lt;string, string, string&gt; formatMessage = (string msg, string prefix
-        = &quot;[LOG]&quot;) =&gt; $&quot;{prefix} {msg}&quot;;
-        Console.WriteLine($&quot;\n{formatMessage(&quot;User logged in.&quot;)}&quot;);
-        Console.WriteLine($&quot;{formatMessage(&quot;Error occurred.&quot;, &quot;[ERROR]&quot;)}&quot;);
-        Console.WriteLine(&quot;\n--- Default Parameters in Lambda Expressions
-        Demo Finished ---&quot;);
+        = &quot;[LOG]&quot;) =&gt; $&quot;{prefix} {msg}&quot;;Console.WriteLine($&quot;\n{formatMessage(&quot;User logged in.&quot;)}&quot;);Console.WriteLine($&quot;{formatMessage(&quot;Error occurred.&quot;, &quot;[ERROR]&quot;)}&quot;);
+        Console.WriteLine(&quot;\n--- Default Parameters in Lambda ExpressionsDemo Finished ---&quot;);
     }
 }
 // Call from Main:
@@ -956,7 +949,8 @@ public class DataProcessor
     }
     public void SimulateProcessingWithoutStatus(int count)
     {
-        // When invoking, can rely on the default parameter of the event handler
+        // When invoking, can rely on the default parameter of the event
+        handler
         DataProcessed?.Invoke(count);
     }
 }
@@ -964,9 +958,7 @@ public static class EventHandlingDemo
 {
     public static void RunExample()
     {
-        Console.WriteLine(&quot;\n--- Event Handling with Lambda Default Params
-        Demo ---&quot;);
-        var processor = new DataProcessor();
+        Console.WriteLine(&quot;\n--- Event Handling with Lambda Default ParamsDemo ---&quot;);var processor = new DataProcessor();
         // Assign a lambda with a default parameter as an event handler
         processor.DataProcessed += (dataCount, status = &quot;Processed&quot;) =&gt;
         {
@@ -977,8 +969,7 @@ public static class EventHandlingDemo
         processor.SimulateProcessing(50, &quot;Failed&quot;); 	// Invokes with &quot;Failed&quot;
         processor.SimulateProcessingWithoutStatus(200); // Invokes with
         &quot;Processed&quot; from the lambda's default
-        Console.WriteLine(&quot;\n--- Event Handling with Lambda Default Params
-        Demo Finished ---&quot;);
+        Console.WriteLine(&quot;\n--- Event Handling with Lambda Default ParamsDemo Finished ---&quot;);
     }
 }
 // Call from Main:
@@ -1038,8 +1029,7 @@ public static (string Name, int Age, bool IsStudent) GetPersonData()
 public static void ProcessPerson((string Name, int Age, bool IsStudent)
 person)
 {
-    Console.WriteLine($&quot;Name: {person.Name}, Age: {person.Age}, Student:
-    {person.IsStudent}&quot;);
+    Console.WriteLine($&quot;Name: {person.Name}, Age: {person.Age}, Student:{person.IsStudent}&quot;);
 }</code></pre>
     </div>
   
@@ -1118,10 +1108,8 @@ public class OrderProcessor
         ProductDetail product = GetProductDetails(101);
         InventoryStatus inventory = CheckInventory(101);
         Console.WriteLine($&quot;\n--- Order Information ---&quot;);
-        Console.WriteLine($&quot;Product: {product.Name} (ID: {product.Id}, Price:
-        {product.Price:C})&quot;);
-        Console.WriteLine($&quot;Inventory: {inventory.Quantity} units at
-        {inventory.Location}, last updated {inventory.LastUpdated:g}&quot;);
+        Console.WriteLine($&quot;Product: {product.Name} (ID: {product.Id}, Price:{product.Price:C})&quot;);
+        Console.WriteLine($&quot;Inventory: {inventory.Quantity} units at{inventory.Location}, last updated {inventory.LastUpdated:g}&quot;);
     }
 }
 // Call from Main:
@@ -1167,9 +1155,7 @@ public class ConfigurationManager
     }
     public void ShowConfiguration()
     {
-        Console.WriteLine(&quot;\n--- Configuration Details ---&quot;);
-        Grid featureGrid = GetFeatureToggleGrid();
-        Console.WriteLine(&quot;Feature Grid:&quot;);
+        Console.WriteLine(&quot;\n--- Configuration Details ---&quot;);Grid featureGrid = GetFeatureToggleGrid();Console.WriteLine(&quot;Feature Grid:&quot;);
         for (int i = 0; i &lt; featureGrid.GetLength(0); i++)
         {
             for (int j = 0; j &lt; featureGrid.GetLength(1); j++)
@@ -1179,9 +1165,7 @@ public class ConfigurationManager
             Console.WriteLine();
         }
         UserPermissions permissions = GetCurrentUserPermissions();
-        Console.WriteLine($&quot;\nUser Permissions: [{string.Join(&quot;, &quot;,
-        permissions)}]&quot;);
-        Console.WriteLine(&quot;\nLive Sensor Data:&quot;);
+        Console.WriteLine($&quot;\nUser Permissions: [{string.Join(&quot;, &quot;,permissions)}]&quot;);Console.WriteLine(&quot;\nLive Sensor Data:&quot;);
         foreach (var data in GetLiveSensorData())
         {
             Console.WriteLine($&quot;- {data.Timestamp:HH:mm:ss}: {data.Value}°C&quot;);
@@ -1214,8 +1198,7 @@ public unsafe class UnsafeOperations
         fixed (byte* pBuffer = buffer)
         {
             UnmanagedBufferPtr bufferPtr = pBuffer;
-            Console.WriteLine($&quot;\nProcessing raw buffer at address:
-            {(long)bufferPtr:X}&quot;);
+            Console.WriteLine($&quot;\nProcessing raw buffer at address:{(long)bufferPtr:X}&quot;);
             // Use bufferPtr for direct memory manipulation
             bufferPtr[0] = 0xFF;
             Console.WriteLine($&quot;First byte set to: {buffer[0]:X}&quot;);
@@ -1229,8 +1212,7 @@ public unsafe class UnsafeOperations
             ImageDimensionsPtr dimsPtr = pDimensions;
             dimsPtr[0] = 640; // width
             dimsPtr[1] = 480; // height
-            Console.WriteLine($&quot;Image dimensions set to: {dimensions[0]}
-            x{dimensions[1]}&quot;);
+            Console.WriteLine($&quot;Image dimensions set to: {dimensions[0]}x{dimensions[1]}&quot;);
         }
     }
 }
@@ -1256,47 +1238,91 @@ public unsafe class UnsafeOperations
     <ol>
       <li>Primary Constructors in Classes:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Purpose:</strong> Provides a concise syntax for declaring constructor parameters directly in a class definition.</li>
       <li><strong>Syntax:</strong> public class MyClass(string param1, int param2) { /* ... */ }</li>
       <li><strong>Key Behavior:</strong> Parameters are in scope throughout the entire class body (properties, methods, other constructors). They do not automatically create public properties; you must explicitly define and initialize properties/fields. Secondary constructors must chain to the primary constructor using this(...).</li>
       <li><strong>Remember:</strong> Reduces boilerplate, promotes immutability, and aligns class syntax with records, but be mindful that properties are not automatically generated.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Collection Expressions:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Purpose:</strong> A unified and concise syntax for creating and initializing various collection types.</li>
       <li><strong>Syntax:</strong> Uses square brackets [] for elements.</li>
       <li>Key Feature (.. Spread Element): Allows inlining elements from existing collections ([.. existingCollection, newItem]).</li>
       <li>Target-Typed: The compiler infers the collection type from the context (often defaulting to an array if no specific type is given).</li>
       <li><strong>Remember:</strong> Significantly improves readability and reduces verbosity for creating arrays, lists, spans, and other enumerable types, especially when combining them.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Default Parameters in Lambda Expressions:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Purpose:</strong> Enables specifying default values for parameters directly within lambda expressions.</li>
       <li><strong>Syntax:</strong> (int a, int b = 10) =&gt; a + b;</li>
       <li><strong>Key Behavior:</strong> Parameters with defaults must appear after all required parameters. Default values must be compile-time constants.</li>
       <li><strong>Remember:</strong> Makes lambdas more flexible, reduces the need for overloads or internal conditional logic, and aligns lambda syntax with regular method parameter syntax.</li>
     </ul>
-    <ol>
+
+      </div>
+    </div>
+      <ol>
       <li>Alias Any Type:</li>
     </ol>
-    <ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path></svg>
+        <span>Best Practice &amp; Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
       <li><strong>Purpose:</strong> Extends the using alias directive to allow aliasing of any type, including complex tuple types, array types, and pointer types.</li>
       <li><strong>Syntax:</strong> using MyAlias = (int Id, string Name);</li>
       <li><strong>Key Benefit:</strong> Greatly improves code readability and reduces verbosity for frequently used complex type signatures. Simplifies maintenance if complex type definitions change.</li>
       <li><strong>Remember:</strong> The alias is file-scoped and declared at the top of the file. C# 12 focuses on streamlining common coding patterns, making the language more expressive and concise for everyday tasks, while also providing targeted enhancements for specialized high-performance needs.</li>
     </ul>
 
+      </div>
+    </div>
+  
       </article>
 
       <!-- Section Completion Tracker -->
       <div class="completion-bar">
         <div class="completion-info">
-          <span style="font-size: 1.2rem;">🎓</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent-primary);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
           <span>Finished studying this section? Track your progress across the curriculum:</span>
         </div>
         <button class="completion-btn" id="completionBtn" data-section="35" aria-pressed="false">
@@ -1309,13 +1335,13 @@ public unsafe class UnsafeOperations
       <nav class="bottom-nav">
         
     <a href="section-34.html" class="nav-card prev">
-      <span class="nav-direction">← Previous Section</span>
+      <span class="nav-direction">&larr; Previous Section</span>
       <span class="nav-title">Sec 34: C# 11 New Features (.NET 7)</span>
     </a>
   
         
     <a href="section-36.html" class="nav-card next">
-      <span class="nav-direction">Next Section →</span>
+      <span class="nav-direction">Next Section &rarr;</span>
       <span class="nav-title">Sec 36: C# 13 Innovations (.NET 9)</span>
     </a>
   
@@ -1324,7 +1350,7 @@ public unsafe class UnsafeOperations
       <!-- Section Footer -->
       <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <span>C# Masterclass Static Documentation Portal</span>
-        <a href="#top" style="color: var(--text-muted);">↑ Back to top</a>
+        <a href="#top" style="color: var(--text-muted);">&uarr; Back to top</a>
       </footer>
     </main>
 
