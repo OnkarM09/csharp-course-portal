@@ -443,169 +443,185 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="delegates-intro">1. What Are Delegates: Type-Safe Function Pointers</h2>
-    <p>
-      In C#, a <strong>delegate</strong> is a reference type that holds a reference to a method with a specific signature and return type. Unlike unmanaged C/C++ function pointers, delegates are 100% <strong>type-safe</strong> and secure: the compiler and CLR guarantee that a delegate can only hold pointers to methods matching its contract.
-    </p>
+    <h2 id="sec-20-lec-1-events">Events</h2>
 
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Basic Delegate Declaration &amp; Invocation</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>// 1. Declare a delegate type definition
-public delegate void LogCallback(string message);
-
-public class Logger
-{
-    // 2. A method matching the delegate signature
-    public static void ConsoleLog(string msg) =&gt; Console.WriteLine($&quot;[CONSOLE] {msg}&quot;);
-}
-
-// 3. Instantiating and invoking the delegate
-LogCallback logger = Logger.ConsoleLog;
-logger(&quot;Application booted successfully.&quot;); // Direct invocation</code></pre>
-    </div>
-  
-
-    <h2 id="multicast-delegates">2. Multicast Delegates & Invocation Lists</h2>
-    <p>
-      All C# delegates are implicitly <strong>multicast</strong> (deriving from <code>System.MulticastDelegate</code>). A single delegate instance can hold an internal array of function pointers (the <em>Invocation List</em>) and trigger them sequentially using <code>+=</code> and <code>-=</code>:
-    </p>
-
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Multicast Invocation List</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>public class MulticastDemo
-{
-    public static void Step1(string s) =&gt; Console.WriteLine($&quot;Step 1: {s}&quot;);
-    public static void Step2(string s) =&gt; Console.WriteLine($&quot;Step 2: {s}&quot;);
-
-    public static void Run()
-    {
-        LogCallback pipeline = Step1;
-        pipeline += Step2; // Appends Step2 to invocation list
-
-        pipeline(&quot;Executing pipeline&quot;); // Runs Step1, then Step2!
-
-        pipeline -= Step1; // Removes Step1
-    }
-}</code></pre>
-    </div>
-  
-
-    <h2 id="built-in-delegates">3. Generic BCL Delegates: Action, Func, Predicate</h2>
-    <p>
-      Instead of declaring custom delegate types for every method, modern .NET provides three ubiquitous generic delegate families:
-    </p>
-
-    
-    <div class="table-responsive">
-      <table>
-        <thead><tr><th>Delegate Family</th><th>Signature Form</th><th>Return Type</th><th>Architectural Role</th></tr></thead>
-        <tbody><tr><td><code>Action</code>, <code>Action&lt;T1..T16&gt;</code></td><td><code>void Action(T1, T2...)</code></td><td><code>void</code></td><td>Represents an operation that performs side effects without returning a value.</td></tr><tr><td><code>Func&lt;TResult&gt;</code>, <code>Func&lt;T1..T16, TResult&gt;</code></td><td><code>TResult Func(T1, T2...)</code></td><td><code>TResult</code> (Last type parameter)</td><td>Represents a function that computes and returns a result value.</td></tr><tr><td><code>Predicate&lt;T&gt;</code></td><td><code>bool Predicate(T obj)</code></td><td><code>bool</code></td><td>Represents a filter or condition matching an object.</td></tr></tbody>
-      </table>
-    </div>
-  
-
-    <h2 id="lambdas-anonymous">4. Anonymous Methods & Lambda Expressions</h2>
-    <p>
-      Lambda expressions provide clean, inline syntax for authoring delegate callbacks:
-    </p>
-
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Lambda Expressions</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>// Func taking two integers and returning an integer
-Func&lt;int, int, int&gt; adder = (a, b) =&gt; a + b;
-Console.WriteLine(adder(10, 20)); // 30
-
-// Predicate checking if a string starts with &quot;A&quot;
-Predicate&lt;string&gt; startsWithA = s =&gt; s.StartsWith(&quot;A&quot;, StringComparison.OrdinalIgnoreCase);
-Console.WriteLine(startsWithA(&quot;Apple&quot;)); // True</code></pre>
-    </div>
-  
-
-    <h2 id="events-pubsub">5. The event Keyword & Publisher/Subscriber Pattern</h2>
-    <p>
-      While a public delegate field allows any external code to overwrite it (<code>publisher.Callback = null;</code>) or invoke it arbitrarily, the <code>event</code> keyword wraps the delegate in an encapsulation boundary:
-    </p>
+    <h2 id="sec-20-lec-2-intro-to-delegates">Lecture 1: Intro to Delegates</h2>
+    <h3>Introduction</h3>
+    <p>A delegate is a special and powerful type in C# that acts as a type-safe function pointer. Unlike regular data types that hold data, a delegate variable holds a reference to one or more methods. The key feature is that a delegate is type-safe: it can only hold references to methods that have a matching signature (the same return type and the same parameter types). Delegates are the foundation for many advanced C# features, including event handling, callbacks, and LINQ. They allow you to treat methods as first-class citizens—meaning you can pass a method as an argument to another method, store it in a variable, and call it later. This enables a much more flexible and decoupled software architecture. How It Works: Defining a Delegate Type You define a delegate using the delegate keyword. This line of code does not create a method itself; it creates a new type, a blueprint for a reference that can point to other methods. Syntax: access_modifier delegate return_type DelegateName(parameter_list); Example: Let's define a delegate type that can hold a reference to any method that takes two integers as input and returns an integer. public delegate int MathOperation(int a, int b); This creates a new type named MathOperation. We can now declare variables of this type, just like we would with int or string. Why and When to Use It Use a delegate when you want to make a piece of your code extensible or when you need to decouple components.</p>
     <ul>
-      <li>External consumers can <strong>ONLY subscribe (+=) and unsubscribe (-=)</strong>.</li>
-      <li>External code <strong>CANNOT</strong> invoke the event or overwrite the subscriber list.</li>
+      <li>Callbacks: You can pass a delegate to a long-running method. When the method is finished, it &quot;calls back&quot; to your delegate to notify you that the work is done.</li>
+      <li>Pluggable Methods: You can write a method that accepts a delegate as a parameter, allowing the caller to &quot;plug in&quot; their own logic (e.g., a custom sorting algorithm).</li>
+      <li>Event Handling: Delegates are the underlying mechanism for events, allowing one object to notify other objects that something has happened.</li>
     </ul>
 
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Standard Event Pattern</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>public class StockPriceChangedEventArgs : EventArgs
-{
-    public string Symbol { get; }
-    public decimal NewPrice { get; }
+    <h2 id="sec-20-lec-3-single-cast-delegates">Lecture 2: Single Cast Delegates</h2>
+    <h3>Introduction</h3>
+    <p>A single-cast delegate is a delegate that holds a reference to exactly one method. When you invoke it, that single method is executed. This is the simplest form of delegate usage. How It Works: The Four Steps Using a single-cast delegate involves four distinct steps:</p>
+    <ol>
+      <li>Define the Delegate Type: Create the blueprint for the method signature.</li>
+      <li>Define a Matching Method: Create one or more methods that have the exact same return type and parameter list as the delegate.</li>
+      <li>Instantiate the Delegate: Create an object of the delegate type, passing the name of your matching method to its constructor. This &quot;wires up&quot; the delegate to point to your method.</li>
+      <li>Invoke the Delegate: Call the delegate variable as if it were a method itself. Example Let's use the MathOperation delegate we defined earlier. // 1. Define the delegate type (already done). public delegate int MathOperation(int a, int b); public class Calculator { // 2. Define methods that match the delegate's signature. public int Add(int x, int y) { Console.WriteLine(&quot;Add method called.&quot;); return x + y; } public int Subtract(int x, int y) { Console.WriteLine(&quot;Subtract method called.&quot;); return x - y; } } // --- In your Main method --- Calculator calc = new Calculator(); // 3. Instantiate the delegate to point to the 'Add' method. MathOperation op = new MathOperation(calc.Add); // 4. Invoke the delegate. This will execute the calc.Add method. int result = op(10, 5); Console.WriteLine($&quot;Result: {result}&quot;); // Output: Result: 15 // You can re-assign the delegate to point to a different method. op = new MathOperation(calc.Subtract); result = op(10, 5); Console.WriteLine($&quot;Result: {result}&quot;); // Output: Result: 5</li>
+    </ol>
 
-    public StockPriceChangedEventArgs(string symbol, decimal newPrice)
-    {
-        Symbol = symbol;
-        NewPrice = newPrice;
-    }
-}
+    <h2 id="sec-20-lec-4-multi-cast-delegates">Lecture 3: Multi Cast Delegates</h2>
+    <h3>Introduction</h3>
+    <p>A multicast delegate is a delegate that holds references to multiple methods in an internal list, called an invocation list. When you invoke a multicast delegate, all the methods in its list are called in the order they were added. All delegate types in C# are implicitly multicast-capable. How It Works: The +, +=, -, and -= Operators You don't use a special type for multicast delegates; you build them by combining single-cast delegates.</p>
+    <ul>
+      <li>+ or += (Subscribe): These operators are used to add a method reference to the delegate's invocation list.</li>
+      <li>or -= (Unsubscribe): These operators are used to remove a method reference from the list. Important Note on Return Values This is a critical interview point. If a multicast delegate has a non-void return type (e.g., int), and you invoke it, multiple methods will run and each will return a value. What is the final result of the invocation? The answer is: it is the return value of the last method in the invocation list. All previous return values are discarded. For this reason, multicast delegates are most commonly used with methods that have a void return type. Example Let's create a logging system where a single message can be sent to multiple destinations (the console and a file). // A delegate for logging methods. 'void' is ideal for multicast. public delegate void LogAction(string message); public class Logger { public void LogToConsole(string msg) { Console.WriteLine($&quot;CONSOLE LOG: {msg}&quot;); } public void LogToFile(string msg) { // In a real app, this would write to a file. Console.WriteLine($&quot;FILE LOG: {msg}&quot;); } } // --- In your Main method --- Logger logger = new Logger(); // Start with an empty delegate. LogAction loggers = null; // Use += to subscribe the first method. loggers += logger.LogToConsole; // Use += again to subscribe the second method. loggers += logger.LogToFile; // Now, invoking 'loggers' will call BOTH methods. loggers(&quot;System is starting up.&quot;); Console.WriteLine(&quot;\n--- Removing Console Logger ---&quot;); // Use -= to unsubscribe a method. loggers -= logger.LogToConsole; // Now, invoking 'loggers' will only call the remaining method. loggers(&quot;System is shutting down.&quot;); Output: CONSOLE LOG: System is starting up. FILE LOG: System is starting up. --- Removing Console Logger --- FILE LOG: System is shutting down.</li>
+    </ul>
 
-public class StockTicker
-{
-    // Standard event declaration
-    public event EventHandler&lt;StockPriceChangedEventArgs&gt;? PriceChanged;
+    <h2 id="sec-20-lec-5-events">Lecture 4: Events</h2>
+    <h3>Introduction</h3>
+    <p>An event is a mechanism that enables a class (the publisher) to provide notifications to other classes (the subscribers) when something interesting happens. Events are a specialized language feature that uses delegates to manage subscriptions in a safe and encapsulated way. The Problem Events Solve: Encapsulation Why not just use a public multicast delegate? public class BadPublisher { public LogAction SomethingHappened; } This is a terrible idea for two reasons:</p>
+    <ol>
+      <li>No Encapsulation: Any external class can completely wipe out all existing subscribers by writing myPublisher.SomethingHappened = null;.</li>
+      <li>No Control: Any external class can directly invoke the delegate (myPublisher.SomethingHappened(&quot;Fake event&quot;);), pretending to be the publisher. The event keyword solves these problems. It creates a wrapper around the delegate, exposing only the safe += (subscribe) and -= (unsubscribe) operations to the public. Only the publishing class itself is allowed to invoke the event. How It Works: The Full Implementation This shows what the compiler does behind the scenes and is useful when you need custom subscription logic.</li>
+      <li>You declare a private delegate field to hold the subscribers.</li>
+      <li>You declare a public event using the event keyword.</li>
+      <li>You implement the add and remove accessors for the event, which simply use += and -= on your private delegate field. Example Let's create a Stock class that raises an event whenever its price changes. // A delegate for the event handler. public delegate void PriceChangedHandler(decimal oldPrice, decimal newPrice); public class Stock { private string _symbol; private decimal _price; // 1. A private delegate instance to hold the subscribers. private PriceChangedHandler _priceChanged; // 2. The public event wrapper. public event PriceChangedHandler PriceChanged { // 3. The 'add' accessor is called when a subscriber uses += add { _priceChanged += value; } // 3. The 'remove' accessor is called when a subscriber uses -= remove { _priceChanged -= value; } } public decimal Price { get { return _price; } set { if (_price != value) { decimal oldPrice = _price; _price = value; // 4. Raise the event ONLY from within this class. // Check for null to ensure there are subscribers. _priceChanged?.Invoke(oldPrice, _price); } } } public Stock(string symbol, decimal startingPrice) { _symbol = symbol; _price = startingPrice; } }</li>
+    </ol>
 
-    public void UpdatePrice(string symbol, decimal price)
-    {
-        // Thread-safe null-conditional invocation
-        PriceChanged?.Invoke(this, new StockPriceChangedEventArgs(symbol, price));
-    }
-}</code></pre>
+    <h2 id="sec-20-lec-6-auto-implemented-events">Lecture 5: Auto-Implemented Events</h2>
+    <h3>Introduction</h3>
+    <p>Just as auto-properties simplify property declaration, auto-implemented events provide a concise syntax for declaring an event without needing to manually write the add/remove logic or the private delegate field. How It Works: Compiler Magic When you use the auto-implemented event syntax, the C# compiler does the work for you. When you write this: public event PriceChangedHandler PriceChanged; The compiler automatically generates this behind the scenes:</p>
+    <ol>
+      <li>A private, compiler-generated delegate field to hold the subscribers.</li>
+      <li>The full add and remove accessor implementations that safely add and remove subscribers from that hidden field. When to Use It This is the standard and default way to declare events in modern C#. You should always use this concise syntax unless you need to add custom, specialized logic to the subscription or unsubscription process (which is extremely rare). Example: Refactoring the Stock Class Let's simplify our Stock class using an auto-implemented event. public delegate void PriceChangedHandler(decimal oldPrice, decimal newPrice); public class Stock { private string _symbol; private decimal _price; // Much cleaner! The compiler creates the backing delegate field for us. public event PriceChangedHandler PriceChanged; public decimal Price { get { return _price; } set { if (_price != value) { decimal oldPrice = _price; _price = value; // We still raise the event the same way. PriceChanged?.Invoke(oldPrice, _price); } } } public Stock(string symbol, decimal startingPrice) { _symbol = symbol; _price = startingPrice; } } // A subscriber class public class StockMonitor { public void OnPriceChanged(decimal oldPrice, decimal newPrice) { Console.WriteLine($&quot;Stock price changed from {oldPrice:C} to {newPrice:C}&quot;); } } // --- In your Main method --- Stock tesla = new Stock(&quot;TSLA&quot;, 900); StockMonitor monitor = new StockMonitor(); // Subscribe the monitor's method to the event using += tesla.PriceChanged += monitor.OnPriceChanged; // This assignment will trigger the event and call the subscriber's method. tesla.Price = 925;</li>
+    </ol>
+
+    <h2 id="sec-20-lec-7-anonymous-methods">Lecture 6: Anonymous Methods</h2>
+    <h3>Introduction</h3>
+    <p>Anonymous methods were introduced in C# 2.0 as a way to write an &quot;inline&quot; block of code directly where a delegate instance is expected. It allows you to define a method's implementation without having to formally declare it with a name in your class. It's a way to attach a small, one-off piece of logic to a delegate or event. How It Works: The delegate Keyword as an Expression You create an anonymous method using the delegate keyword, followed by an optional parameter list and a method body in curly braces. Syntax: delegate (parameter_list) { ... method body ... } You assign this entire expression to a delegate variable or use it to subscribe to an event. Why and When to Use It Anonymous methods were created to reduce the &quot;ceremony&quot; of event handling. Before them, even for a trivial, one-line event handler, you had to create a full, named method in your class. Anonymous methods allowed you to place that logic right where it was needed. Important Note: While it's important to recognize this syntax in older C# codebases, anonymous methods have been almost entirely superseded by the more concise and powerful Lambda Expressions (covered in the next lecture) in modern C# development. Example Here is how you might see it used in older UI code. // Assume we have a button in a UI application. Button myButton = new Button(); // Using an anonymous method to handle the Click event. myButton.Click += delegate (object sender, EventArgs e) { MessageBox.Show(&quot;Button was clicked!&quot;); };</p>
+
+    <h2 id="sec-20-lec-8-lambda-expressions">Lecture 7: Lambda Expressions</h2>
+    <h3>Introduction</h3>
+    <p>Lambda expressions, introduced in C# 3.0, are a much more concise, expressive, and powerful syntax for creating anonymous functions. They are the heart of functional programming in C# and are the preferred modern way to write inline code wherever a delegate is required. They have largely replaced anonymous methods for all new development. How It Works: The Lambda Operator =&gt; The core of a lambda expression is the lambda operator =&gt;, which is read as &quot;goes to&quot;. It separates the input parameters on the left from the expression or statement block on the right. Syntax: (input_parameters) =&gt; expression_or_statement_block Key Features:</p>
+    <ul>
+      <li>Type Inference: The compiler can almost always infer the types of the input parameters, so you usually don't need to write them. (int x, int y) can just be written as (x, y).</li>
+      <li>Expression Lambdas: For a single-line lambda that returns a value, you can omit the curly braces {} and the return keyword. The compiler handles it for you. This makes them extremely concise.</li>
+      <li>Statement Lambdas: For lambdas with multiple lines of code, you use curly braces just like a regular method body. Example: Refactoring with Lambdas Let's refactor our previous delegate and anonymous method examples. // 1. For a MathOperation delegate public delegate int MathOperation(int a, int b); // Old way: new MathOperation(Add); // Lambda way: The compiler understands that a and b are ints. MathOperation add = (a, b) =&gt; a + b; // Single-line expression lambda Console.WriteLine(add(10, 5)); // Output: 15 // 2. For the button click event handler // The compiler infers that sender is an object and e is EventArgs. myButton.Click += (sender, e) =&gt; { // Multi-line statement lambda MessageBox.Show(&quot;Button clicked! (from a lambda)&quot;); // You can have more lines of code here. };</li>
+    </ul>
+
+    <h2 id="sec-20-lec-9-inline-lambda-expressions">Lecture 8: Inline Lambda Expressions</h2>
+    <h3>Introduction</h3>
+    <p>While you can assign a lambda expression to a delegate variable, their true power is realized when they are used inline, passed directly as an argument to a method that accepts a delegate. This is the most common pattern you will see in modern C#, especially with LINQ. How It Works Many methods in the .NET framework, particularly LINQ extension methods, are designed to take a delegate as a parameter to allow the caller to inject custom logic. Instead of defining a named method or even a separate delegate variable, you can write the lambda expression directly inside the method call's parentheses. When to Use It This is the standard pattern for working with LINQ. Methods like .Where(), .Count(), .Select(), .OrderBy(), etc., all take delegates (usually Func or Action) to perform their work. Example: Using LINQ Let's find all the even numbers in a list and count how many there are. List&lt;int&gt; numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }; // --- Using an inline lambda expression with Count() --- // The Count method accepts a delegate that takes an int and returns a bool. // We provide the logic for that delegate directly as a lambda expression. int evenCount = numbers.Count(n =&gt; n % 2 == 0); // The expression &quot;n =&gt; n % 2 == 0&quot; is read as: // &quot;Given a number n, return true if n divided by 2 has a remainder of 0.&quot; Console.WriteLine($&quot;There are {evenCount} even numbers.&quot;); // Output: 5 // --- Using an inline lambda expression with Where() --- // The Where method filters a collection based on a condition. var evenNumbers = numbers.Where(n =&gt; n % 2 == 0); Console.WriteLine(&quot;The even numbers are: &quot; + string.Join(&quot;, &quot;, evenNumbers));</p>
+
+    <h2 id="sec-20-lec-10-func">Lecture 9: Func</h2>
+    <h3>Introduction</h3>
+    <p>Func is a built-in, generic delegate type provided by the .NET framework. Its purpose is to represent a method that takes zero or more input parameters and always returns a value. Using Func saves you from having to define your own custom delegate type for methods that return a value. How It Works: Signature The Func delegate has multiple overloaded forms. The key rule is that the last generic type parameter is always the return type.</p>
+    <ul>
+      <li>Func&lt;TResult&gt;: Represents a method that takes 0 parameters and returns a value of type TResult.</li>
+      <li>Func&lt;T, TResult&gt;: Represents a method that takes 1 parameter of type T and returns a value of type TResult.</li>
+      <li>Func&lt;T1, T2, TResult&gt;: Represents a method that takes 2 parameters of types T1 and T2, and returns a value of type TResult.</li>
+      <li>...and so on, up to 16 input parameters. Example Instead of defining public delegate int MathOperation(int a, int b);, we can just use the built-in Func. // This Func represents a method that takes two ints and returns an int. // It is functionally identical to our custom MathOperation delegate. Func&lt;int, int, int&gt; addOperation = (x, y) =&gt; x + y; Console.WriteLine($&quot;Result: {addOperation(20, 22)}&quot;); // Output: 42 // This Func represents a method that takes no parameters and returns a string. Func&lt;string&gt; getGreeting = () =&gt; &quot;Hello, World!&quot;; Console.WriteLine(getGreeting());</li>
+    </ul>
+
+    <h2 id="sec-20-lec-11-action">Lecture 10: Action</h2>
+    <h3>Introduction</h3>
+    <p>Action is another built-in, generic delegate type. It is the counterpart to Func. Its purpose is to represent a method that takes zero or more input parameters but does not return a value (i.e., its return type is void). How It Works: Signature Like Func, Action has multiple overloaded forms. Since it never returns a value, all its generic type parameters represent input parameters.</p>
+    <ul>
+      <li>Action: Represents a method that takes 0 parameters and returns void.</li>
+      <li>Action&lt;T&gt;: Represents a method that takes 1 parameter of type T and returns void.</li>
+      <li>Action&lt;T1, T2&gt;: Represents a method that takes 2 parameters of types T1 and T2, and returns void.</li>
+      <li>...and so on, up to 16 input parameters. Example Instead of defining public delegate void LogAction(string message);, we can use the built-in Action. // This Action represents any method that takes a single string and returns void. Action&lt;string&gt; logToConsole = (message) =&gt; Console.WriteLine($&quot;LOG: {message}&quot;); logToConsole(&quot;Application has started.&quot;); // This Action represents a method with no parameters and no return value. Action showMenu = () =&gt; { Console.WriteLine(&quot;1. Start Game&quot;); Console.WriteLine(&quot;2. Load Game&quot;); Console.WriteLine(&quot;3. Exit&quot;); }; showMenu();</li>
+    </ul>
+
+    <h2 id="sec-20-lec-12-predicate">Lecture 11: Predicate</h2>
+    <h3>Introduction</h3>
+    <p>A Predicate is a specialized, built-in generic delegate type provided by the .NET framework. Its specific purpose is to represent a method that takes a single input parameter and returns a bool. The name &quot;predicate&quot; comes from formal logic, where it means a statement about a subject that can be evaluated as either true or false. In programming, a predicate is used to test if an item meets a certain condition. How It Works The Predicate&lt;T&gt; delegate is functionally equivalent to Func&lt;T, bool&gt;. It's simply a more descriptive name for this very common scenario. Signature: public delegate bool Predicate&lt;in T&gt;(T obj); It takes one parameter of type T and must return a bool. Why and When to Use It Use a Predicate&lt;T&gt; when the sole purpose of your delegate is to test a condition. It makes the code more self-documenting because the name Predicate clearly communicates that a test is being performed. Many built- in .NET methods that filter or search collections specifically accept a Predicate&lt;T&gt;. Common Examples The List&lt;T&gt;.FindAll() method is a perfect example. It takes a Predicate&lt;T&gt; and returns a new list containing all the elements that pass the test (i.e., for which the predicate returns true). // Our list of data List&lt;int&gt; numbers = new List&lt;int&gt; { 10, 45, 52, 88, 95, 23 }; // --- Using a named method --- // 1. Define a method that matches the Predicate&lt;int&gt; signature. public bool IsGreaterThan50(int number) { return number &gt; 50; } // 2. Create a predicate instance pointing to that method. Predicate&lt;int&gt; predicate = IsGreaterThan50; List&lt;int&gt; highNumbers = numbers.FindAll(predicate); // --- Using a Lambda Expression (Modern and Preferred) --- // Pass the predicate's logic directly as a lambda. // This is much more concise. List&lt;int&gt; highNumbersLambda = numbers.FindAll(n =&gt; n &gt; 50); Console.WriteLine(&quot;Numbers greater than 50:&quot;); foreach (int num in highNumbersLambda) { Console.WriteLine(num); // Output: 52, 88, 95 }</p>
+
+    <h2 id="sec-20-lec-13-eventhandler">Lecture 12: EventHandler</h2>
+    <h3>Introduction</h3>
+    <p>EventHandler and its generic counterpart, EventHandler, are the standard, official delegate types that should be used for all events in the .NET framework. By adhering to this standard, you ensure that your custom events are predictable and can be easily consumed by other developers and integrated with UI frameworks that expect this pattern. How It Works: The Standard Event Signature This pattern defines a very specific method signature that all event handlers should follow: void MethodName(object sender, EventArgs e)</p>
+    <ul>
+      <li>object sender: This parameter always holds a reference to the object that raised the event. This allows the subscriber to know where the event came from and, if necessary, to interact with the publisher object (e.g., to get more information from it).</li>
+      <li>EventArgs e: This parameter is an object that contains event data. The base EventArgs class is empty and is used when an event doesn't need to pass any extra information. For events that do need to pass data, you create a custom class that inherits from EventArgs. The Generic EventHandler&lt;TEventArgs&gt; This is the modern, type-safe version. TEventArgs must be a type that inherits from EventArgs. This approach is better because it avoids the need for the subscriber to cast the e parameter to get the custom event data. Example: The Stock Class Revisited Let's refactor our Stock class to use this standard pattern. // 1. Create a custom class for our event data, inheriting from EventArgs. public class PriceChangedEventArgs : EventArgs { public decimal OldPrice { get; } public decimal NewPrice { get; } public PriceChangedEventArgs(decimal oldPrice, decimal newPrice) { OldPrice = oldPrice; NewPrice = newPrice; } } // 2. The publisher class. public class Stock { private decimal _price; // 3. The event is now of the standard generic type. public event EventHandler&lt;PriceChangedEventArgs&gt; PriceChanged; public decimal Price { get { return _price; } set { if (_price != value) { decimal oldPrice = _price; _price = value; // 4. Raise the event by calling the Invoke method. OnPriceChanged(new PriceChangedEventArgs(oldPrice, _price)); } } } // Helper method to raise the event protected virtual void OnPriceChanged(PriceChangedEventArgs e) { PriceChanged?.Invoke(this, e); // 'this' is the sender } public Stock(decimal startingPrice) { _price = startingPrice; } } // --- In the subscriber --- // The event handler method now matches the standard signature. public void Stock_PriceChanged(object sender, PriceChangedEventArgs e) { Stock stockThatChanged = (Stock)sender; // We can get the sender Console.WriteLine($&quot;Price changed from {e.OldPrice:C} to {e.NewPrice:C}&quot;); }</li>
+    </ul>
+
+    <h2 id="sec-20-lec-14-expression-trees">Lecture 13: Expression Trees</h2>
+    <h3>Introduction</h3>
+    <p>This is an advanced but powerful topic. An Expression Tree is a special data structure that represents code as data. When you assign a lambda expression to a delegate type like Func, the compiler converts it into executable IL code. However, when you assign the same lambda expression to a variable of type Expression&lt;Func&lt;...&gt;&gt;, the compiler does something completely different: it translates the lambda into a tree-like object structure where each node represents a part of the code—an operation, a parameter, a constant, etc. How It Works Consider this lambda: x =&gt; x &gt; 5.</p>
+    <ul>
+      <li>As a Func&lt;int, bool&gt;: It becomes compiled, executable code that takes an integer and returns true or false.</li>
+      <li>As an Expression&lt;Func&lt;int, bool&gt;&gt;: It becomes a data structure that looks something like this:</li>
+      <li>Root Node: A &quot;GreaterThan&quot; binary expression.</li>
+      <li>Left Child: A &quot;ParameterExpression&quot; named &quot;x&quot;.</li>
+      <li>Right Child: A &quot;ConstantExpression&quot; with the value 5. Why and When to Use It The primary use case is for libraries that need to analyze, inspect, and translate code into another language or format. The most famous real-world example is LINQ to SQL and Entity Framework Core. When you write a query like: var users = dbContext.Users.Where(u =&gt; u.Age &gt; 18); The .Where() method does not take a Func&lt;User, bool&gt;. It takes an Expression&lt;Func&lt;User, bool&gt;&gt;. Entity Framework then inspects the expression tree for u =&gt; u.Age &gt; 18, translates it into the SQL string &quot;WHERE Age &gt; 18&quot;, and sends that SQL query to the database server. This allows you to write database queries in C# instead of raw SQL. Interview Perspective</li>
+      <li>Question: &quot;What is an Expression Tree and why is it used?&quot;</li>
+      <li>Ideal Answer: &quot;An expression tree is a data structure that represents code as data. Instead of compiling a lambda into executable code, the compiler converts it into an object model that can be inspected and traversed. This is primarily used by libraries like Entity Framework Core to translate C# LINQ queries into another language, such as SQL, which can then be executed on a database.&quot;</li>
+    </ul>
+
+    <h2 id="sec-20-lec-15-expression-bodied-members">Lecture 14: Expression-Bodied Members</h2>
+    <h3>Introduction</h3>
+    <p>Expression-bodied members are a concise C# syntax feature that allows you to define the body of a method, property, constructor, or other member using a lambda-like =&gt; syntax. This is purely syntactic sugar for members that consist of only a single statement or expression. How It Works It provides a shorter, more readable alternative to using a full block body { ... } for simple members. Common Examples</p>
+    <ul>
+      <li>Methods:</li>
+      <li>Before: public int Add(int a, int b) { return a + b; }</li>
+      <li>After: public int Add(int a, int b) =&gt; a + b;</li>
+      <li>Read-Only Properties:</li>
+      <li>Before: public string FullName { get { return $&quot;{FirstName} {LastName}&quot;; } }</li>
+      <li>After: public string FullName =&gt; $&quot;{FirstName} {LastName}&quot;;</li>
+      <li>Constructors (C# 7.0+):</li>
+      <li>Before: public Person(string name) { this.Name = name; }</li>
+      <li>After: public Person(string name) =&gt; this.Name = name;</li>
+      <li>ToString() Overrides:</li>
+      <li>Before: public override string ToString() { return Name; }</li>
+      <li>After: public override string ToString() =&gt; Name; Best Practice: Use expression-bodied members whenever a method or property body is a single, clear line of code. It reduces verbosity and can make classes easier to read at a glance.</li>
+    </ul>
+
+    <h2 id="sec-20-lec-16-switch-expression">Lecture 15: Switch Expression</h2>
+    <h3>Introduction</h3>
+    <p>A switch expression, introduced in C# 8.0, is a modern, concise, and expression-based alternative to the traditional switch statement. Since it is an expression, it must always produce a value. How It Works: Syntax The new syntax is much more compact:</p>
+    <ul>
+      <li>It starts with the variable being switched on, followed by the switch keyword.</li>
+      <li>It uses curly braces { ... } to contain the arms.</li>
+      <li>Each arm is a pattern =&gt; result, (a pattern, a lambda arrow, the result for that pattern, and a comma).</li>
+      <li>The _ (discard pattern) is used as the default case and is required if the compiler cannot prove that all possible inputs are handled. Why and When to Use It Use a switch expression when you need to get a single value based on a series of pattern matches. It is far cleaner than a traditional switch statement where every case block contains a return statement. Example: Refactoring a Grade Calculator // --- Traditional switch statement --- public string GetGrade(int score) { switch (score) { case &gt;= 90: return &quot;A&quot;; case &gt;= 80: return &quot;B&quot;; case &gt;= 70: return &quot;C&quot;; default: return &quot;F&quot;; } } // --- Modern switch expression --- public string GetGradeModern(int score) =&gt; score switch { &gt;= 90 =&gt; &quot;A&quot;, &gt;= 80 =&gt; &quot;B&quot;, &gt;= 70 =&gt; &quot;C&quot;, _ =&gt; &quot;F&quot; // The discard pattern handles the default case. };</li>
+    </ul>
+
+    <h2 id="sec-20-lec-17-things-to-remember">Lecture 16: Things to Remember</h2>
+    <ul>
+      <li>Delegates are Type-Safe Function Pointers: This is the foundation. They allow you to treat methods as variables, enabling powerful callback and event-driven architectures.</li>
+      <li>Events are Encapsulated Delegates: The event keyword is a crucial wrapper around a delegate. It restricts access to only += (subscribe) and -= (unsubscribe) from the outside, while only allowing the publishing class to invoke the event.</li>
+      <li>Lambdas are the Modern Standard: For any inline, anonymous function, lambda expressions (=&gt;) are the preferred, concise, and powerful syntax. They have largely replaced the older anonymous method syntax.</li>
+      <li>Use Func, Action, and Predicate: Don't define your own custom delegates if you don't have to. These three built-in generic delegates cover over 99% of common use cases and are universally understood by other C# developers.</li>
+      <li>The Standard Event Pattern (EventHandler&lt;T&gt;): When creating custom events, always use the EventHandler or generic EventHandler&lt;TEventArgs&gt; delegate types. This ensures your components are consistent with the rest of the .NET framework.</li>
+      <li>Expressions vs. Statements: Modern C# features like Expression-Bodied Members and Switch Expressions are part of a trend in the language to favor expressions (which produce a value) over statements (which perform an action). This often leads to more concise, readable, and functional-style code.</li>
+    </ul>
+
+    <div class="diagram-container">
+      <div class="diagram-title">📊 Diagram: Multicast Delegate Invocation List</div>
+      <pre class="diagram-pre">Delegate Instance: Action&lt;string&gt;
++------------------------------------------+
+| Target: null / Object Reference          |
+| Method: Pointer to Target Method         |
+| _invocationList: Array of Delegates      |
++------------------------------------------+
+       |
+       +---&gt; [0] Logger.LogToConsole()
+       +---&gt; [1] Logger.LogToFile()
+       +---&gt; [2] EventDispatcher.SendTelemetry()</pre>
     </div>
   
+    <h2 id="sec-20-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
+    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
+  <ul>
+  <li>PAGE 1 ---</li>
+  <li>PAGE 2 ---</li>
+  <li>PAGE 3 ---</li>
+  <li>PAGE 4 ---</li>
+  <li>Raise the event in Publishder class if (EventName != null)    EventName(arg1, arg2, ...);  4. Create Event Handler Method in Subscriber class class Subscriber {   public ReturnType EventHandlerMethodName(param1, param2, ...)   {     Method body here   } }  5. Subscribe to the Event (Inside or outside the subscriber class) EventName += EventHandlerMethodName;   Rules of Events • The event should be created based on the delegate. That means, the event accepts the methods that are having specific parameters and return type, defined in the delegate. • An event can have multiple subscribers. • A subscriber can subscribe multiple events from multiple publishers. • Events are basically signals to inform to other classes, that some important thing happened in the publisher class. • Events are special kind of &quot;multi-cast delegates&quot;, which can be raised only within the same class, in which they are created. • Events can be static, virtual, sealed and abstract. • Events will not be raised (throws exception), if there is no at least one subscriber. • Events can be defined in interfaces. • It's not a good idea to return value in events.</li>
+  <li>PAGE 5 ---</li>
+  <li>PAGE 6 ---</li>
+  <li>PAGE 7 ---</li>
+  <li>PAGE 8 ---</li>
+  <li>PAGE 9 ---</li>
+  <li>PAGE 10 ---</li>
+  <li>PAGE 11 ---</li>
+</ul>
 
-    <h2 id="pitfalls">6. Delegate Traps & Memory Leaks</h2>
-    
-    <div class="callout callout-warning">
-      <div class="callout-header">
-        <span>🟠 Compiler Trap & Common Gotcha</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        <strong>Trap:</strong> If one handler in a multicast delegate throws an unhandled exception, subsequent handlers in the invocation list are <strong>never executed</strong>!
-      </p>
-      <p>
-        <strong>Fix:</strong> For critical pipelines, iterate over <code>delegateInstance.GetInvocationList()</code> manually and invoke each subscriber inside a <code>try-catch</code> block.
-      </p>
-    
-      </div>
-    </div>
-  
-  
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -637,27 +653,75 @@ public class StockTicker
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#delegates-intro" class="toc-link">1. What Are Delegates: Type-Safe Function Pointers</a>
+        <a href="#sec-20-lec-1-events" class="toc-link">Events</a>
       </li>
     
       <li class="toc-item">
-        <a href="#multicast-delegates" class="toc-link">2. Multicast Delegates &amp; Invocation Lists</a>
+        <a href="#sec-20-lec-2-intro-to-delegates" class="toc-link">Lecture 1: Intro to Delegates</a>
       </li>
     
       <li class="toc-item">
-        <a href="#built-in-delegates" class="toc-link">3. Generic BCL Delegates: Action, Func, Predicate</a>
+        <a href="#sec-20-lec-3-single-cast-delegates" class="toc-link">Lecture 2: Single Cast Delegates</a>
       </li>
     
       <li class="toc-item">
-        <a href="#lambdas-anonymous" class="toc-link">4. Anonymous Methods &amp; Lambda Expressions</a>
+        <a href="#sec-20-lec-4-multi-cast-delegates" class="toc-link">Lecture 3: Multi Cast Delegates</a>
       </li>
     
       <li class="toc-item">
-        <a href="#events-pubsub" class="toc-link">5. The event Keyword &amp; Publisher/Subscriber Pattern</a>
+        <a href="#sec-20-lec-5-events" class="toc-link">Lecture 4: Events</a>
       </li>
     
       <li class="toc-item">
-        <a href="#pitfalls" class="toc-link">6. Delegate Traps &amp; Memory Leaks</a>
+        <a href="#sec-20-lec-6-auto-implemented-events" class="toc-link">Lecture 5: Auto-Implemented Events</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-20-lec-7-anonymous-methods" class="toc-link">Lecture 6: Anonymous Methods</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-20-lec-8-lambda-expressions" class="toc-link">Lecture 7: Lambda Expressions</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-20-lec-9-inline-lambda-expressions" class="toc-link">Lecture 8: Inline Lambda Expressions</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-20-lec-10-func" class="toc-link">Lecture 9: Func</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-20-lec-11-action" class="toc-link">Lecture 10: Action</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-20-lec-12-predicate" class="toc-link">Lecture 11: Predicate</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-20-lec-13-eventhandler" class="toc-link">Lecture 12: EventHandler</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-20-lec-14-expression-trees" class="toc-link">Lecture 13: Expression Trees</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-20-lec-15-expression-bodied-members" class="toc-link">Lecture 14: Expression-Bodied Members</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-20-lec-16-switch-expression" class="toc-link">Lecture 15: Switch Expression</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-20-lec-17-things-to-remember" class="toc-link">Lecture 16: Things to Remember</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-20-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

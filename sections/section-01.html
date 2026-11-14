@@ -443,213 +443,170 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="dotnet-ecosystem">1. What is .NET & The Base Class Library (BCL)</h2>
-    <p>
-      When you decide to write a C# program, you are not just using the C# language in isolation. You are authoring software within an expansive, unified ecosystem called <strong>.NET</strong>. Think of .NET as a robust contract between you and the physical hardware: you agree to express your domain logic according to C# language rules, and in return, the platform handles immense low-level engineering complexities like memory layout, processor scheduling, architecture independence, and operating system API mediation.
-    </p>
-
-    
-    <div class="callout callout-original">
-      <div class="callout-header">
-        <span>🔵 Core Concept (from Notes)</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        Imagine being tasked with building an application that needs to display the exact local time or parse an incoming HTTP request. In lower-level unmanaged languages, this involves interacting with OS kernel clock APIs, converting epoch hardware counters, and formatting byte buffers.
-      </p>
-      <p>
-        In .NET, the <strong>Base Class Library (BCL)</strong> provides thousands of pre-tested, high-performance, battle-hardened primitives grouped logically into namespaces:
-      </p>
-      <ul>
-        <li><code>System.Math</code>: High-performance transcendental arithmetic, trigonometry, and floating-point manipulation.</li>
-        <li><code>System.Text</code> & <code>System.String</code>: UTF-16 and UTF-8 string allocations, memory-efficient span slices, and builders.</li>
-        <li><code>System.Collections.Generic</code>: Type-safe dynamically growing lists, hashed dictionaries, and queues.</li>
-        <li><code>System.IO</code>: Native file handle wrappers, buffered streams, and serialization pipelines.</li>
-      </ul>
-    
-      </div>
-    </div>
-  
-
-    <h2 id="clr-internals">2. The Common Language Runtime (CLR) & JIT Compilation</h2>
-    <p>
-      The <strong>Common Language Runtime (CLR)</strong> is the execution heart of .NET. Modern processors only understand architecture-specific machine code (such as x86-64, ARM64, or RISC-V). They cannot execute raw C# source code. The CLR bridges this fundamental gap via a two-stage compilation model.
-    </p>
-
-    <h3 id="two-stage-compilation">The Two-Stage Compilation Lifecycle</h3>
+    <h2 id="sec-1-lec-1-introduction-to-net">Introduction to .NET</h2>
+    <p>When you decide to write a C# program, you are not just using the C# language by itself. You are using it within a powerful ecosystem called .NET. For a developer, .NET is the most important asset you have. Think of .NET as a contract between you and the computer. You agree to write code according to the rules of C#, and in return, the .NET platform provides a staggering amount of power and safety, handling the most complex tasks for you. This power comes in two main forms:</p>
     <ol>
-      <li>
-        <strong>Roslyn Compiler Stage:</strong> When you invoke <code>dotnet build</code> or compile in Visual Studio, the Roslyn C# compiler converts your high-level <code>.cs</code> files into <strong>Common Intermediate Language (CIL)</strong> (often abbreviated as IL or MSIL) and packages it into a portable assembly (<code>.dll</code> or <code>.exe</code>) alongside rich CLI metadata.
-      </li>
-      <li>
-        <strong>JIT Compilation Stage:</strong> When the application executes, the CLR's <strong>Just-In-Time (JIT) Compiler</strong> (RyuJIT) translates CIL instructions for each specific method into native machine instructions on demand—only when that method is invoked for the first time.
-      </li>
-      <li>
-        <strong>Native Code Caching:</strong> Once translated, the CLR caches the native instructions in memory. Subsequent calls execute the native instructions directly with zero translation overhead.
-      </li>
+      <li>The Base Class Library (BCL): Your Giant Toolbox of Pre-built Code Imagine being asked to build an application that needs to display the current date. This seemingly simple task involves asking the computer's operating system for its internal clock, getting the raw data, and then formatting it correctly. This is complex. Instead of you having to write this difficult code, the .NET BCL provides a pre-built &quot;tool&quot; for it. You simply write one line of C# to ask the BCL's DateTime tool for the current time, and it does all the hard work for you. The BCL is a gigantic library containing thousands of such tools, all organized neatly into namespaces. It contains tested, reliable code for: ◦ 	Mathematics: You don't need to write logic for finding a square root. You just use the tools in the System.Math namespace. ◦ 	Text Manipulation: Joining, splitting, or searching through text is made simple by the string and System.Text tools. ◦ 	Data Structures: The System.Collections.Generic namespace gives you powerful tools like List for managing collections of items that can grow and shrink automatically. ◦ 	File and Network Operations: The BCL provides robust tools to read files or download content from a website, handling the complexity behind the scenes.</li>
+      <li>This lets you focus on solving your unique problem, rather than re-solving common problems that Microsoft's engineers have already perfected.</li>
+      <li>The Runtime: Your Code's Guardian and Manager The other half of .NET is the runtime environment that executes your code, called the Common Language Runtime (CLR). It acts as the engine of your application.</li>
     </ol>
 
-    
-    <div class="callout callout-deepdive">
-      <div class="callout-header">
-        <span>🟣 Under the Hood / Compiler Lowering</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        Modern .NET uses <strong>Tiered Compilation</strong>. On method startup, RyuJIT produces quick, unoptimized native code (<strong>Tier 0</strong>) so your application boots instantly. If the runtime detects that a method is called frequently ("hot path"), it recompiles that method in the background with aggressive loop unrolling, vectorization (SIMD), and inline optimizations (<strong>Tier 1 / PGO</strong> - Profile-Guided Optimization).
-      </p>
-    
-      </div>
-    </div>
-  
+    <h2 id="sec-1-lec-2-clr-common-language-runtime">CLR (Common Language Runtime)</h2>
+    <p>The CLR is the heart of the .NET platform. It’s a sophisticated program that manages your C# application while it's running. It acts as a protective bubble, a translator, and a manager. A computer's processor only understands its own native machine code; it does not understand C#. The CLR's primary job is to bridge this gap.</p>
 
-    <h2 id="compilation-diagram">3. Architecture & Execution Pipeline</h2>
-    
-    <div class="diagram-container">
-      <div class="diagram-title">📊 Diagram: C# Source to Hardware Execution Lifecycle</div>
-      <pre class="diagram-pre">+-----------------------+
-|   C# Source Code      |  (Program.cs)
-+-----------+-----------+
-            |
-            |  Roslyn Compiler (csc)
-            v
-+-----------------------+
-|  .NET Assembly (.dll) |  Contains Common Intermediate Language (CIL)
-|  [CIL + CLI Metadata] |  Platform-Agnostic &amp; CPU-Agnostic
-+-----------+-----------+
-            |
-            |  Application Launch / Invocation
-            v
-+-----------------------------------------------------------+
-|               Common Language Runtime (CLR)               |
-|                                                           |
-|   +-------------------+          +--------------------+   |
-|   | JIT Compiler      | --------&gt;| Native Memory /    |   |
-|   | (RyuJIT Tier 0/1) |          | Native Code Cache  |   |
-|   +-------------------+          +---------+----------+   |
-|             ^                              |              |
-|   +---------+---------+                    |              |
-|   | Garbage Collector |                    |              |
-|   | Type Safety Engine|                    |              |
-|   | Thread Pool &amp; OS  |                    |              |
-|   +-------------------+                    |              |
-+--------------------------------------------|--------------+
-                                             v
-                             +-------------------------------+
-                             | Native CPU Hardware (x64/ARM) |
-                             | Direct Machine Instructions   |
-                             +-------------------------------+</pre>
-    </div>
-  
+    <h2 id="sec-1-lec-3-the-translation-process-jit-compilation">The Translation Process (JIT Compilation)</h2>
+    <ol>
+      <li>The Intermediate Step (CIL): Your C# source code is first compiled into Common Intermediate Language (CIL). CIL is not tied to any specific operating system or processor. It’s a universal, platform-agnostic language. Your compiled program file (a .dll or .exe) is a container for this CIL code.</li>
+      <li>The &quot;Just-In-Time&quot; (JIT) Compilation: When you run your program and a method is called for the very first time, the CLR's JIT Compiler translates the CIL for that specific method into the native machine code for the processor it's currently running on.</li>
+      <li>Efficiency and Caching: This &quot;Just-In-Time&quot; approach is highly efficient because it only translates code that is actually needed. After translating a method once, the CLR caches the resulting native code. The next time the method is called, the CLR skips the translation and executes the super-fast native code directly.</li>
+    </ol>
 
-    <h2 id="framework-evolution">4. .NET Framework vs .NET Core vs Modern .NET</h2>
-    <p>
-      Understanding the historical trajectory of .NET clarifies how legacy enterprise applications relate to modern high-performance cloud services.
-    </p>
-
-    
-    <div class="table-responsive">
-      <table>
-        <thead><tr><th>Platform Milestone</th><th>Active Era</th><th>Supported Operating Systems</th><th>Architecture &amp; Open Source Status</th><th>Key Role in Industry</th></tr></thead>
-        <tbody><tr><td><strong>.NET Framework</strong> (1.0 - 4.8.1)</td><td>2002 - 2019</td><td>Windows Only</td><td>Proprietary, monolithic Windows OS component</td><td>Legacy enterprise backbones (WPF, WCF, WebForms). In maintenance mode.</td></tr><tr><td><strong>.NET Core</strong> (1.0 - 3.1)</td><td>2016 - 2020</td><td>Windows, macOS, Linux</td><td>Open-source, modular NuGet-based rewrite</td><td>Broke OS lock-in; enabled Docker containers and microservices.</td></tr><tr><td><strong>Modern .NET</strong> (.NET 5 through .NET 9+)</td><td>2020 - Present</td><td>Cross-Platform (x64, ARM64)</td><td>Unified, single high-performance platform</td><td>Standard for all new modern enterprise, web, cloud, IoT, and AI development.</td></tr><tr><td><strong>LTS vs Current Releases</strong></td><td>Annual cadence</td><td>Cross-Platform</td><td>Even numbers = LTS (3 yrs); Odd = Standard (18 mos)</td><td>.NET 8 is LTS (Long Term Support); .NET 9 is latest high-performance track.</td></tr></tbody>
-      </table>
-    </div>
-  
-
-    <h2 id="bcl-namespaces">5. Core BCL Namespaces Reference Matrix</h2>
-    
-    <div class="table-responsive">
-      <table>
-        <thead><tr><th>Namespace</th><th>Primary Primitives &amp; Abstractions</th><th>Common Practical Usage</th></tr></thead>
-        <tbody><tr><td><code>System</code></td><td><code>Object, String, Int32, Boolean, DateTime, Math, Console, Exception</code></td><td>Foundational primitive types and fundamental runtime facilities.</td></tr><tr><td><code>System.Collections.Generic</code></td><td><code>List&lt;T&gt;, Dictionary&lt;TKey,TValue&gt;, HashSet&lt;T&gt;, Queue&lt;T&gt;</code></td><td>Type-safe memory data structures with zero boxing overhead.</td></tr><tr><td><code>System.IO</code></td><td><code>File, Directory, Path, FileStream, MemoryStream, BinaryReader</code></td><td>High-throughput stream operations and filesystem manipulation.</td></tr><tr><td><code>System.Text.Json</code></td><td><code>JsonSerializer, JsonDocument, Utf8JsonReader</code></td><td>High-speed, zero-allocation UTF-8 JSON serialization.</td></tr><tr><td><code>System.Threading.Tasks</code></td><td><code>Task, Task&lt;TResult&gt;, Parallel, ValueTask</code></td><td>Task Parallel Library (TPL) for asynchronous and parallel workflows.</td></tr></tbody>
-      </table>
-    </div>
-  
-
-    <h2 id="clr-managed-services">6. Managed Code vs Unmanaged Code Services</h2>
-    <p>
-      Code that targets the CLR is termed <strong>Managed Code</strong>. It runs under the oversight of runtime subsystems that provide automated safety rails:
-    </p>
+    <h2 id="sec-1-lec-4-the-other-jobs-of-the-clr-your-free-safety-ne">The Other Jobs of the CLR: Your Free Safety Net</h2>
+    <p>Besides translation, the CLR provides critical services that make C# development safer and more productive:</p>
     <ul>
-      <li><strong>Automatic Garbage Collection (GC):</strong> Eliminates manual <code>malloc()</code> and <code>free()</code> vulnerabilities, preventing dangling pointers and double frees.</li>
-      <li><strong>Strong Type Safety:</strong> Enforces memory boundaries; buffer overflows and illicit pointer casts are caught at runtime or compile-time.</li>
-      <li><strong>Cross-Language Interoperability:</strong> A class written in C# can inherit from an F# record or be consumed by VB.NET through the Common Type System (CTS).</li>
-      <li><strong>Structured Exception Handling:</strong> Propagates errors safely across call boundaries and stack frames.</li>
+      <li>Memory Management: The CLR automatically handles allocating memory for your objects and, crucially, cleaning it up when you're done (a process called Garbage Collection). This prevents a major source of bugs common in older languages.</li>
+      <li>Security Enforcement: The CLR acts like a security guard, preventing your code from doing inherently dangerous things, like accessing another program's memory.</li>
+      <li>Exception Handling: It provides a structured way to handle errors that occur while your program is running, preventing your application from simply crashing.</li>
     </ul>
 
-    
+    <h2 id="sec-1-lec-5-net-framework-architecture">.NET Framework Architecture</h2>
+    <p>To understand modern .NET, it helps to know the structure of its predecessor, the classic .NET Framework. Think of its architecture as a layered cake, where each layer builds upon the one below it.</p>
+    <ul>
+      <li>Layer 1: The Foundation - Common Language Runtime (CLR) At the very bottom is the CLR, sitting directly on top of the Windows Operating System and acting as the fundamental execution engine.</li>
+      <li>Layer 2: The Core Structure - Base Class Library (BCL) The next layer is the BCL, providing the fundamental &quot;building materials&quot; like file I/O and data collections that all applications use.</li>
+      <li>Layer 3: The Specialized Frameworks On top of the BCL, the .NET Framework provided several powerful, specialized frameworks for building specific kinds of applications on Windows:</li>
+      <li>ASP.NET: For building web applications and websites.</li>
+      <li>Windows Presentation Foundation (WPF) &amp; Windows Forms: For building desktop applications with graphical user interfaces.</li>
+      <li>ADO.NET: For connecting to and working with databases. The key takeaway is that the .NET Framework was a monolithic, tightly integrated system designed specifically for Windows. Modern .NET has evolved from this architecture to be more modular and cross-platform.</li>
+    </ul>
+
+    <h2 id="sec-1-lec-6-versions-of-net-framework-and-net-core">Versions of .NET Framework and .NET Core</h2>
+    <p>The history of .NET is a tale of two platforms: the original, Windows-only framework and the modern, cross-platform successor.</p>
+    <ul>
+      <li>.NET Framework (The Legacy Platform)</li>
+      <li>Versions: Ranged from 1.0 (2002) to the final version, 4.8 (2019).</li>
+      <li>Platform: Windows only.</li>
+      <li>Status: It is now in maintenance mode. It receives security updates, but no new features are being added. You will still find it in many established enterprise applications.</li>
+      <li>.NET Core and modern .NET (The Successor)</li>
+      <li>The Rewrite: Microsoft created .NET Core from the ground up to be open-source, high-performance, and cross-platform (working on Windows, macOS, and Linux). Its versions ran from 1.0 to 3.1.</li>
+      <li>The Unification: Starting with .NET 5 (released in 2020), Microsoft dropped the &quot;Core&quot; and &quot;Framework&quot; branding to create a single, unified platform going forward. All new development happens on this platform.</li>
+      <li>Current Versions: Releases are now annual: .NET 6, .NET 7, .NET 8, and so on. Even-numbered versions (like .NET 8) are designated LTS (Long-Term Support), meaning they are guaranteed support for three years, making them the best choice for new projects.</li>
+    </ul>
+
+    <h2 id="sec-1-lec-7-introduction-to-visual-studio">Introduction to Visual Studio</h2>
+    <p>Visual Studio is a world-class Integrated Development Environment (IDE). It is your command center for writing, managing, and debugging C# code. Getting comfortable in this environment is key to your productivity.</p>
+    <ul>
+      <li>The Code Editor: This is the &quot;smart&quot; text editor where you'll write your code. Its most powerful feature is IntelliSense, which actively helps you as you type by providing auto-completion, parameter info, and lists of available actions (methods) on your objects. It's a discovery tool as much as a writing tool.</li>
+      <li>Solution Explorer: This window (typically on the right) is your project's table of contents. It shows you every file and folder that makes up your application. This is how you navigate your project.</li>
+      <li>Error List: This window (typically at the bottom) is your personal quality inspector. If you make a mistake, a detailed error message will appear in this list instantly, often telling you the exact file and line number where the problem exists.</li>
+      <li>The Debugger: Your Most Powerful Tool The Debugger allows you to pause your program at any point and inspect what's happening.</li>
+      <li>Breakpoints: You can click in the margin next to a line of code to set a breakpoint. When you run your program, it will pause execution completely when it hits that line.</li>
+      <li>Inspection: While paused, you can hover your mouse over any variable to see the value it contains at that exact moment. This is how you find logical errors. You can then step through your code line-by- line to see exactly how values change and pinpoint where things went wrong. Mastering the debugger is the fastest way to solve problems in your code.</li>
+    </ul>
+
+    <h2 id="sec-1-lec-8-introduction-to-c">Introduction to C#</h2>
+
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">C# Runtime Probe</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>// A modern top-level C# program demonstrating BCL integration
-using System;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-
-Console.WriteLine(&quot;=== .NET Runtime Diagnostic Probe ===&quot;);
-Console.WriteLine($&quot;Framework Description : {RuntimeInformation.FrameworkDescription}&quot;);
-Console.WriteLine($&quot;OS Architecture       : {RuntimeInformation.OSArchitecture}&quot;);
-Console.WriteLine($&quot;Process Architecture  : {RuntimeInformation.ProcessArchitecture}&quot;);
-Console.WriteLine($&quot;Processor Count       : {Environment.ProcessorCount}&quot;);
-Console.WriteLine($&quot;System Page Size      : {Environment.SystemPageSize} bytes&quot;);
-
-// Measuring BCL high-precision stopwatch
-var sw = Stopwatch.StartNew();
-double sum = 0;
-for (int i = 1; i &lt;= 1_000_000; i++)
-{
-    sum += Math.Sqrt(i);
-}
-sw.Stop();
-
-Console.WriteLine($&quot;Computed sqrt sum: {sum:N2} in {sw.Elapsed.TotalMilliseconds:F3} ms&quot;);</code></pre>
+      <pre><code>language you will be learning. Its single most important characteristic is that it is
+statically-typed.
+This means that when you create a variable (a named storage location), you must
+declare the type of data it will hold. If you create a variable to hold a number, you
+can only ever put numbers in it. If you try to put text in it, the C# compiler will
+immediately show you an error before you even run the program. This compile-
+time checking is like having a vigilant assistant who proofreads your work,
+catching a massive category of bugs for you automatically.</code></pre>
     </div>
   
 
-    <h2 id="pitfalls">7. Common Architecture Gotchas & Traps</h2>
-    
-    <div class="callout callout-warning">
-      <div class="callout-header">
-        <span>🟠 Compiler Trap & Common Gotcha</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        <strong>Trap:</strong> Confusing CIL with interpreted bytecode (like classical Python or older Java VMs).
-      </p>
-      <p>
-        <strong>Reality:</strong> The CLR never "interprets" CIL line-by-line during normal execution. CIL is compiled into raw machine instructions by RyuJIT before execution. In modern .NET, JIT compiled code approaches or matches the execution speed of native C/C++ code due to aggressive hardware intrinsics and SIMD acceleration.
-      </p>
-    
-      </div>
+    <h2 id="sec-1-lec-9-the-building-blocks-class-object-fields-and-m">The Building Blocks: Class, Object, Fields, and Methods</h2>
+    <p>Object-Oriented Programming (OOP) is the paradigm C# is built on. It's a way of structuring your code around the concepts of &quot;blueprints&quot; and &quot;objects.&quot;</p>
+    <ol>
+      <li>Creating the Blueprint (The Class) You, the programmer, write a class. A class is a text file that acts as the blueprint. Inside the class, you define its components: ◦ 	Fields: These are variables that hold the state or data of each individual object created from the class (e.g., color, model, currentSpeed). ◦ 	Methods: These are blocks of code that define the actions an object can perform (e.g., Accelerate(), Brake()).</li>
+      <li>Building Real Things from the Blueprint (Objects) In your main program, you use the new keyword to create an object, which is a real instance of the class constructed in the computer's memory. You can create as many objects as you want from a single class blueprint.</li>
+      <li>Interacting with Objects Each object you create is independent. If you create car1 and car2 from the Car class, setting the color field of car1 to &quot;Red&quot; has no effect on car2. Calling the Accelerate() method on car2 only changes the currentSpeed field of car2. This allows you to model complex, real-world systems in a clean and organized way.</li>
+    </ol>
+
+    <h2 id="sec-1-lec-10-introduction-to-namespaces">Introduction to Namespaces</h2>
+    <p>A namespace is a way to organize code and prevent naming conflicts. In a large application, you might have hundreds of classes, and some could have the same name. Namespaces group related classes together, like putting files into folders. Imagine you have two classes named Logger, one for writing to a file and one for writing to a database. You could place them in different namespaces:</p>
+    <ul>
+      <li>MyProject.FileLogging.Logger</li>
+      <li>MyProject.DatabaseLogging.Logger Their full names are now unique. At the top of a code file, you can add a using directive (e.g., using MyProject.FileLogging;) to tell the compiler which &quot;folder&quot; of classes you intend to use.</li>
+    </ul>
+
+    <h2 id="sec-1-lec-11-the-grammar-of-code-c-language-tokens">The Grammar of Code: C# Language Tokens</h2>
+    <p>Every C# instruction is composed of smaller pieces called tokens. Let's analyze a single line of code: int userAge = 30; This line contains five distinct tokens:</p>
+    <ol>
+      <li>int: A Keyword that specifies a data type for an integer number.</li>
+      <li>userAge: An Identifier, the name you chose for your variable.</li>
+      <li>=: An Operator used to assign a value.</li>
+      <li>30: A Literal, a fixed value written directly in the code.</li>
+      <li>;: A Punctuator used to mark the end of the statement. Recognizing these helps you read code and decipher compiler errors.</li>
+    </ol>
+
+    <h2 id="sec-1-lec-12-the-evolution-of-a-language-versions-of-c">The Evolution of a Language: Versions of C#</h2>
+    <p>The C# language is constantly evolving. Each new version gives developers better tools to write more expressive, concise, and safer code.</p>
+    <ul>
+      <li>C# 1.0: The basic, object-oriented language.</li>
+      <li>C# 2.0: Introduced Generics, a cornerstone feature for creating type-safe, reusable collections.</li>
+      <li>C# 3.0: A landmark release that brought us LINQ, a feature that dramatically simplified querying data.</li>
+      <li>C# 5.0: Another landmark that introduced async and await, which made writing responsive, non-blocking applications far easier.</li>
+      <li>C# 6.0 and beyond: More recent versions have focused on developer productivity, adding dozens of features to let you achieve the same results with less code. As a new developer, you get the benefit of two decades of language refinement from day one.</li>
+    </ul>
+
+    <h2 id="sec-1-lec-13-professional-habits-c-naming-conventions">Professional Habits: C# Naming Conventions</h2>
+    <p>Following a consistent naming style is not required by the compiler, but it is essential for writing professional, readable code.</p>
+    <ol>
+      <li>PascalCase: Capitalize the first letter of every word. Use for &quot;big&quot; or &quot;public&quot; things. ◦ 	Class names: ClientManager, UserPermissions ◦ 	Method names: GetData, CalculateFinalScore</li>
+      <li>camelCase: The first letter is lowercase; the first letter of every following word is capitalized. Use for &quot;local&quot; or &quot;private&quot; things. ◦ 	Local variables (inside a method): int itemCounter = 0; ◦ 	Method parameters (inputs to a method): public void SetAge(int newAge) Adopting these conventions from the very beginning is one of the best habits you can form.</li>
+    </ol>
+
+    <div class="diagram-container">
+      <div class="diagram-title">📊 Diagram: .NET Execution &amp; JIT Compilation Pipeline</div>
+      <pre class="diagram-pre">+-----------------------------+
+|    C# Source Code (.cs)     |
++-----------------------------+
+              | Roslyn Compiler (csc)
+              v
++-----------------------------+
+| Common Intermediate Language|  (CIL / MSIL bytecode stored in .dll/.exe)
+|          + Metadata         |
++-----------------------------+
+              |
+              | JIT Compiler (RyuJIT)
+              v
++-----------------------------+
+| Native CPU Machine Code     |  (x86-64 / ARM64 optimized machine instructions)
++-----------------------------+
+              |
+              v (Execution inside CLR Managed Environment)
++-----------------------------+
+| Execution with GC, Safety   |
++-----------------------------+</pre>
     </div>
   
-    
-    <div class="callout callout-tip">
-      <div class="callout-header">
-        <span>🟢 Best Practice & Architecture Tip</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        In enterprise environments, select <strong>LTS (Long-Term Support)</strong> versions (.NET 6, .NET 8) for services requiring multi-year stability, and adopt annual STS/Current versions (.NET 7, .NET 9) when cutting-edge runtime throughput improvements are desired.
-      </p>
-    
-      </div>
-    </div>
-  
-  
+    <h2 id="sec-1-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
+    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
+  <ul>
+  <li>PAGE 1 ---</li>
+  <li>PAGE 2 ---</li>
+  <li>PAGE 3 ---</li>
+  <li>PAGE 4 ---</li>
+  <li>PAGE 5 ---</li>
+  <li>PAGE 6 ---</li>
+  <li>PAGE 7 ---</li>
+  <li>PAGE 8 ---</li>
+  <li>PAGE 9 ---</li>
+  <li>PAGE 10 ---</li>
+  <li>PAGE 11 ---</li>
+</ul>
+
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -676,31 +633,59 @@ Console.WriteLine($&quot;Computed sqrt sum: {sum:N2} in {sw.Elapsed.TotalMillise
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#dotnet-ecosystem" class="toc-link">1. What is .NET &amp; The Base Class Library</a>
+        <a href="#sec-1-lec-1-introduction-to-net" class="toc-link">Introduction to .NET</a>
       </li>
     
       <li class="toc-item">
-        <a href="#clr-internals" class="toc-link">2. CLR &amp; JIT Compilation Lifecycle</a>
+        <a href="#sec-1-lec-2-clr-common-language-runtime" class="toc-link">CLR (Common Language Runtime)</a>
       </li>
     
       <li class="toc-item">
-        <a href="#compilation-diagram" class="toc-link">3. Architecture &amp; Execution Pipeline</a>
+        <a href="#sec-1-lec-3-the-translation-process-jit-compilation" class="toc-link">The Translation Process (JIT Compilation)</a>
       </li>
     
       <li class="toc-item">
-        <a href="#framework-evolution" class="toc-link">4. .NET Framework vs .NET Core vs Modern .NET</a>
+        <a href="#sec-1-lec-4-the-other-jobs-of-the-clr-your-free-safety-ne" class="toc-link">The Other Jobs of the CLR: Your Free Safety Net</a>
       </li>
     
       <li class="toc-item">
-        <a href="#bcl-namespaces" class="toc-link">5. Core BCL Namespaces Reference Matrix</a>
+        <a href="#sec-1-lec-5-net-framework-architecture" class="toc-link">.NET Framework Architecture</a>
       </li>
     
       <li class="toc-item">
-        <a href="#clr-managed-services" class="toc-link">6. Managed Code vs Unmanaged Code Services</a>
+        <a href="#sec-1-lec-6-versions-of-net-framework-and-net-core" class="toc-link">Versions of .NET Framework and .NET Core</a>
       </li>
     
       <li class="toc-item">
-        <a href="#pitfalls" class="toc-link">7. Common Architecture Gotchas &amp; Traps</a>
+        <a href="#sec-1-lec-7-introduction-to-visual-studio" class="toc-link">Introduction to Visual Studio</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-1-lec-8-introduction-to-c" class="toc-link">Introduction to C#</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-1-lec-9-the-building-blocks-class-object-fields-and-m" class="toc-link">The Building Blocks: Class, Object, Fields, and </a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-1-lec-10-introduction-to-namespaces" class="toc-link">Introduction to Namespaces</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-1-lec-11-the-grammar-of-code-c-language-tokens" class="toc-link">The Grammar of Code: C# Language Tokens</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-1-lec-12-the-evolution-of-a-language-versions-of-c" class="toc-link">The Evolution of a Language: Versions of C#</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-1-lec-13-professional-habits-c-naming-conventions" class="toc-link">Professional Habits: C# Naming Conventions</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-1-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

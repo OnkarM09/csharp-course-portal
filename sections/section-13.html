@@ -443,125 +443,240 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="partial-classes">1. Partial Classes & Source Generation</h2>
-    <p>
-      The <code>partial</code> keyword allows the declaration of a single class, struct, or interface to be split across multiple physical <code>.cs</code> files. At compile time, the Roslyn compiler merges all partial segments into a single unified type:
-    </p>
+    <h2 id="sec-13-lec-1-classes-enumerations">Classes, 	Enumerations</h2>
 
-    
-    <div class="callout callout-original">
-      <div class="callout-header">
-        <span>🔵 Core Concept (from Notes)</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        Partial classes were introduced to solve the problem of visual designer tool code generation (e.g., WPF XAML, WinForms designer, Entity Framework EDMX, and modern Roslyn Source Generators). Machine-generated code lives safely in one file (e.g. <code>UserForm.Designer.cs</code>), while your human domain code lives in another (<code>UserForm.cs</code>), preventing automated tooling from wiping out your custom code!
-      </p>
-    
-      </div>
-    </div>
-  
-
-    <h2 id="partial-methods">2. Partial Methods & Compiler Stripping</h2>
-    <p>
-      A partial class can declare a <strong>partial method</strong> signature in one file and optionally implement it in another. If the implementation is omitted, the compiler completely eliminates the declaration and all calling code with <em>zero runtime footprint</em>!
-    </p>
-
-    <h2 id="static-classes">3. Static Classes & Stateless Utility Toolboxes</h2>
-    <p>
-      A class marked <code>static</code> acts as a pure utility toolbox (like <code>System.Math</code>). Strict compiler rules apply:
-    </p>
+    <h2 id="sec-13-lec-2-partial-classes">Lecture 1: Partial Classes</h2>
+    <h3>Introduction</h3>
+    <p>A partial class is a special feature in C# that allows the definition of a single class to be split across multiple physical .cs files. When you compile your application, the C# compiler finds all the separate parts of the partial class and combines them into a single, complete class. This is purely a compile-time feature; at run-time, there is no difference between a regular class and a partial class. How It Works: The partial Keyword To create a partial class, you use the partial keyword just before the class keyword in each file where a part of the class is defined. All parts must:</p>
     <ul>
-      <li>Cannot be instantiated using <code>new</code> (compiler error CS0712).</li>
-      <li>Cannot be inherited or inherit from anything other than <code>System.Object</code>.</li>
-      <li>Must contain <strong>only</strong> static members (fields, properties, methods).</li>
-      <li>Cannot contain instance constructors.</li>
+      <li>Use the partial keyword.</li>
+      <li>Have the exact same class name.</li>
+      <li>Be in the same namespace.</li>
+      <li>Be in the same project (assembly). The compiler will merge all members—fields, properties, methods, etc.—from all partial files into the final class definition. Why and When to Use It 1. 	Working with Source Generators (Primary Use Case): This is the most important and common use of partial classes in modern C#. Many .NET frameworks (like ASP.NET Core, WPF, WinForms) use code generation tools. These tools automatically generate code based on your definitions (e.g., from a UI design or a web endpoint). They place this machine-generated code in one part of a partial class (e.g., MyPage.g.cs). This allows you, the developer, to write your own logic in a separate file for the same class (e.g., MyPage.cs). This separation is crucial because it means you can freely modify your code without worrying that the code generator will overwrite your changes when it runs again. 2. 	Managing Very Large Classes: In some legacy systems or extremely large classes, the partial keyword can be used to split the class into multiple files for better organization. For example, a massive class could have its fields and properties in one file, its public methods in another, and its private helper methods in a third.</li>
+      <li>Best Practice Note: While this is possible, a class that is so large it needs to be split often indicates a violation of the Single Responsibility Principle. It's usually a sign that the class is doing too much and should be refactored into several smaller, more focused classes. Example Let's split a User class definition across two files. File 1: User.Data.cs</li>
     </ul>
 
-    <h2 id="enumerations-basics">4. Enumerations: Type-Safe Integral Constants</h2>
-    <p>
-      An <code>enum</code> defines a strongly typed set of named integral constants:
-    </p>
-
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Explicit Underlying Type Enum</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>public enum OrderStatus : byte
+      <pre><code>namespace MyWebApp
 {
-    Pending = 1,
-    Processing = 2,
-    Shipped = 3,
-    Delivered = 4,
-    Cancelled = 99
+// The first part of the User class, focusing on data.
+public partial class User
+{
+public int Id { get; set; }
+public string Username { get; set; }
+public string Email { get; set; }
 }
-
-OrderStatus status = OrderStatus.Processing;
-Console.WriteLine($&quot;Status: {status} (Numeric: {(byte)status})&quot;);</code></pre>
+}
+File 2: User.Logic.cs
+C#
+namespace MyWebApp
+{
+// The second part of the User class, focusing on behavior.
+public partial class User
+{
+public void SendWelcomeEmail()
+{
+// This method can access the 'Email' property defined in the other
+file.
+Console.WriteLine($&quot;Sending welcome email to {this.Email}...&quot;);
+}
+}
+}
+At compile time, these two parts are combined into a single User class that has all
+four members.</code></pre>
     </div>
   
 
-    <h2 id="flags-attribute">5. Bitwise Flag Enumerations ([Flags])</h2>
-    <p>
-      When an enum represents combinations of options, decorate it with <code>[Flags]</code> and assign values as powers of 2 (1, 2, 4, 8, 16...):
-    </p>
+    <h2 id="sec-13-lec-3-partial-methods">Lecture 2: Partial Methods</h2>
+    <h3>Introduction</h3>
+    <p>A partial method is a special kind of method whose definition can be separated from its implementation. The signature (the declaration) of the method can be defined in one part of a partial class, and the implementation (the method body) can be optionally provided in another part of the same partial class. How It Works &amp; The &quot;Magic&quot; of Unimplemented Methods A partial method is declared with the partial keyword, must have a void return type, and is implicitly private. File 1 (e.g., a generated file): The Declaration</p>
 
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Bitwise Flags Enum</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>[Flags]
-public enum FilePermissions
+      <pre><code>public partial class MyComponent
 {
-    None = 0,
-    Read = 1 &lt;&lt; 0,       // 1
-    Write = 1 &lt;&lt; 1,      // 2
-    Execute = 1 &lt;&lt; 2,    // 4
-    All = Read | Write | Execute // 7
+// This defines the SIGNATURE of the partial method. It's a &quot;hook&quot;.
+partial void OnNameChanged(string newName);
+public void SetName(string name)
+{
+// ... logic to set the name ...
+// The generator can safely CALL the partial method.
+OnNameChanged(name);
 }
-
-// Combining permissions with bitwise OR (|)
-var userPerms = FilePermissions.Read | FilePermissions.Write;
-
-// Checking permissions with HasFlag or bitwise AND (&amp;)
-bool canWrite = userPerms.HasFlag(FilePermissions.Write);
-Console.WriteLine($&quot;Can write: {canWrite}&quot;); // True</code></pre>
+}
+The key feature: If no other part of the MyComponent class provides an
+implementation for OnNameChanged, the C# compiler completely removes the
+method declaration AND all calls to it. The call OnNameChanged(name); is
+erased from the final compiled code. This means there is zero performance
+overhead for an unimplemented partial method.
+Why and When to Use It
+This feature is used almost exclusively by source generators. The generator
+defines a partial method as an &quot;optional hook&quot; that the developer can choose to
+implement. It allows the generated code to provide customizable entry points
+without forcing the developer to implement them if they are not needed.
+Example: Implementing the Partial Method
+File 2 (e.g., your handwritten file): The Optional Implementation
+C#
+public partial class MyComponent
+{
+// We provide the IMPLEMENTATION for the partial method here.
+// Because this exists, the compiler will keep the call in SetName().
+partial void OnNameChanged(string newName)
+{
+Console.WriteLine($&quot;Notification: Name was changed to '{newName}'.&quot;);
+}
+}</code></pre>
     </div>
   
 
-    <h2 id="pitfalls">6. Enum & Static Class Gotchas</h2>
-    
-    <div class="callout callout-warning">
-      <div class="callout-header">
-        <span>🟠 Compiler Trap & Common Gotcha</span>
-        
+    <h2 id="sec-13-lec-4-static-classes">Lecture 3: Static Classes</h2>
+    <h3>Introduction</h3>
+    <p>A static class is a class that cannot be instantiated and cannot be inherited. It can only contain static members (fields, properties, and methods). It acts as a simple container for a group of related utility functions or constants that do not depend on any object state. How It Works: A Compile-Time Construct Marking a class as static is primarily a way of telling the compiler to enforce two strict rules:</p>
+    <ol>
+      <li>All members of this class must also be declared as static. The compiler will give an error if you try to declare an instance member inside a static class.</li>
+      <li>No one can create an instance of this class using the new keyword, and no other class can inherit from it. You don't need to create an object; you access the members directly through the class name. Why and When to Use It Use a static class when you have a collection of helper or utility methods that are logically related but do not need to be associated with a specific object's state. Real-World Examples from the .NET Framework</li>
+    </ol>
+    <ul>
+      <li>System.Math: Contains methods for mathematical operations like Sqrt(), Max(), Sin(). You don't need a Math object to calculate a square root.</li>
+      <li>System.Console: Contains methods for interacting with the console window like WriteLine() and ReadKey().</li>
+      <li>System.IO.File: Contains utility methods for working with files like ReadAllText() and Exists(). Example: A Custom Utility Class</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
       </div>
-      <div class="callout-content">
-        
-      <p>
-        <strong>Trap:</strong> Assuming an enum variable always contains one of its declared members!
-      </p>
-      <pre><code>OrderStatus status = (OrderStatus)888; // Compiles and runs without error!</code></pre>
-      <p>
-        <strong>Fix:</strong> In defensive code, use <code>Enum.IsDefined(typeof(OrderStatus), status)</code> before processing unknown values.
-      </p>
-    
-      </div>
+      <pre><code>// 'static' ensures this class cannot be instantiated.
+public static class UnitConverter
+{
+private const double KmsInAMile = 1.60934;
+// All members must also be static.
+public static double KilometersToMiles(double km)
+{
+return km / KmsInAMile;
+}
+public static double MilesToKilometers(double miles)
+{
+return miles * KmsInAMile;
+}
+}
+// --- In your Main method ---
+// You call the methods directly on the class.
+double miles = UnitConverter.KilometersToMiles(10);
+Console.WriteLine($&quot;10km is approximately {miles:F2} miles.&quot;);</code></pre>
     </div>
   
+
+    <h2 id="sec-13-lec-5-enumerations">Lecture 4: Enumerations</h2>
+    <h3>Introduction</h3>
+    <p>An enumeration, or enum, is a special value type that allows you to define a set of named integral constants. It provides a way to create a distinct type that represents a fixed set of related values, making your code more readable, maintainable, and type-safe. Why and When to Use It The primary purpose of an enum is to avoid &quot;magic numbers&quot; and improve code readability. Instead of writing code like if (userStatus == 2), which is meaningless without context, you can write if (status == UserStatus.Suspended). This is self-documenting and far less error-prone. It restricts a variable to a known set of allowed values, preventing bugs where an invalid integer might be assigned. How It Works: Underlying Values By default, an enum's underlying data type is int. The compiler assigns values to the members starting from 0 and incrementing by one.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public enum DayOfWeek // Starts at 0
+{
+Sunday, 	// 0
+Monday, 	// 1
+Tuesday, 	// 2
+Wednesday, // 3
+Thursday, 	// 4
+Friday, 	// 5
+Saturday 	// 6
+}
+You can customize this behavior:
+1. 	Change the starting number:
+C#
+public enum Month { January = 1, February = 2, /* ... */ }
+2. 	Change the underlying type (to byte, long, etc.):
+C#
+public enum ErrorCode : ushort { NotFound = 404, ServerError =
+500 }
+Example
+C#
+public enum ShippingStatus
+{
+Ordered,
+Processing,
+Shipped,
+InTransit,
+Delivered
+}
+public class Order
+{
+public int OrderId { get; set; }
+public ShippingStatus Status { get; set; }
+}
+public class ShippingService
+{
+public void ProcessOrder(Order order)
+{
+// Using an enum in a switch statement is very clean and readable.
+switch (order.Status)
+{
+case ShippingStatus.Ordered:
+Console.WriteLine(&quot;Processing the order...&quot;);
+order.Status = ShippingStatus.Processing;
+break;
+case ShippingStatus.Processing:
+Console.WriteLine(&quot;Shipping the order...&quot;);
+order.Status = ShippingStatus.Shipped;
+break;
+// ... other cases
+}
+}
+}</code></pre>
+    </div>
   
+
+    <h2 id="sec-13-lec-6-imp-points-to-remember">Lecture 5: IMP Points to Remember</h2>
+    <ul>
+      <li>partial is a Compile-Time Feature: This is the most important takeaway. Partial classes and methods are a tool for organizing source code in different files. The compiler &quot;stitches&quot; them together into one single class before the program runs. At run-time, the CLR has no concept of a &quot;partial class.&quot;</li>
+      <li>The Primary Use of partial is Code Generation: In modern C#, the main reason you'll encounter partial classes is when working with frameworks that automatically generate code (like ASP.NET Core, WPF, Entity Framework). It provides a clean separation between machine-generated code and developer-written code.</li>
+      <li>A static class is a Sealed, Abstract Container: Thinking of it this way can be helpful. It's &quot;abstract&quot; in that you can't create an instance, and it's &quot;sealed&quot; in that you can't inherit from it. Its sole purpose is to hold a group of static members.</li>
+      <li>static class vs. Singleton Pattern: This is a good interview topic.</li>
+      <li>A static class cannot be instantiated at all. It exists only as a single container for its members. It cannot implement interfaces.</li>
+      <li>The Singleton Pattern is a design pattern where a regular class is engineered to ensure only one instance of it is ever created. That single instance is an object that can be passed around, can implement interfaces, and can be inherited from (if not sealed).</li>
+      <li>enum for Type Safety and Readability: Always use an enum over integer or string constants when you have a variable that should be restricted to a small, fixed set of named values. It prevents bugs and makes the code self- documenting.</li>
+      <li>Casting enums: You can explicitly cast an integer to an enum type and vice-versa. This can be useful when interoperating with databases or APIs that store the enum as a number. ShippingStatus status = (ShippingStatus)2; // status is now 'Shipped'. int statusValue = (int)ShippingStatus.Shipped; // statusValue is 2.</li>
+    </ul>
+
+    <h2 id="sec-13-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
+    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
+  <ul>
+  <li>PAGE 1 ---</li>
+  <li>PAGE 2 ---</li>
+  <li>PAGE 3 ---</li>
+  <li>PAGE 4 ---</li>
+  <li>PAGE 5 ---</li>
+</ul>
+<h4>Comparison Table: Class [vs] Static Class</h4>
+<ul>
+  <li>PAGE 6 ---</li>
+</ul>
+
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -593,27 +708,31 @@ Console.WriteLine($&quot;Can write: {canWrite}&quot;); // True</code></pre>
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#partial-classes" class="toc-link">1. Partial Classes &amp; Source Generation</a>
+        <a href="#sec-13-lec-1-classes-enumerations" class="toc-link">Classes, 	Enumerations</a>
       </li>
     
       <li class="toc-item">
-        <a href="#partial-methods" class="toc-link">2. Partial Methods &amp; Compiler Stripping</a>
+        <a href="#sec-13-lec-2-partial-classes" class="toc-link">Lecture 1: Partial Classes</a>
       </li>
     
       <li class="toc-item">
-        <a href="#static-classes" class="toc-link">3. Static Classes &amp; Stateless Utility Toolboxes</a>
+        <a href="#sec-13-lec-3-partial-methods" class="toc-link">Lecture 2: Partial Methods</a>
       </li>
     
       <li class="toc-item">
-        <a href="#enumerations-basics" class="toc-link">4. Enumerations: Type-Safe Integral Constants</a>
+        <a href="#sec-13-lec-4-static-classes" class="toc-link">Lecture 3: Static Classes</a>
       </li>
     
       <li class="toc-item">
-        <a href="#flags-attribute" class="toc-link">5. Bitwise Flag Enumerations ([Flags])</a>
+        <a href="#sec-13-lec-5-enumerations" class="toc-link">Lecture 4: Enumerations</a>
       </li>
     
       <li class="toc-item">
-        <a href="#pitfalls" class="toc-link">6. Enum &amp; Static Class Gotchas</a>
+        <a href="#sec-13-lec-6-imp-points-to-remember" class="toc-link">Lecture 5: IMP Points to Remember</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-13-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

@@ -443,175 +443,225 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="billion-dollar-mistake">1. What is Null: The Billion-Dollar Problem</h2>
-    <p>
-      In C#, <code>null</code> represents the absence of a value. When a reference variable is <code>null</code>, its stack slot contains the address <code>0x00000000</code>—it points to no object on the managed heap. Attempting to dereference a null pointer to read a field or invoke a method triggers a catastrophic runtime crash: <code>System.NullReferenceException</code>.
-    </p>
+    <h2 id="sec-17-lec-1-what-is-null">Lecture 1: What is null</h2>
+    <h3>Introduction</h3>
+    <p>In C#, null is a special literal that represents the absence of a value. It is used with reference types (like string, object, or any class instance) to signify that a variable does not point to any object in memory on the heap. It means the reference is empty or non-existent. By default, any variable of a reference type that has not been assigned an object is initialized to null. Understanding how to handle null is one of the most critical skills for a C# developer, as it is the source of the most common run-time error in .NET programming. How It Works: The NullReferenceException The danger of null is that it leads to the dreaded NullReferenceException. This exception occurs at run-time when you try to access a member (a method, property, or field) on a variable that is currently null. You are essentially trying to press a button on a remote control that doesn't exist. The C# compiler cannot always detect this situation, so the program compiles fine but crashes when it runs. Example Let's look at a simple scenario that causes this error.</p>
 
-    
-    <div class="callout callout-original">
-      <div class="callout-header">
-        <span>🔵 Core Concept (from Notes)</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        Sir Tony Hoare, who invented the null reference in 1965 for ALGOL W, famously apologized for it at a 2009 conference, calling it his <em>"billion-dollar mistake"</em> due to the countless vulnerabilities, crashes, and software downtime caused by null dereferencing over fifty years.
-      </p>
-      <p>
-        Modern C# provides a formidable defense system: Nullable Value Types, Null-Conditional operators, and compile-time Nullable Reference Types (NRT).
-      </p>
-    
-      </div>
-    </div>
-  
-
-    <h2 id="nullable-value-types">2. Nullable Value Types (Nullable&lt;T&gt; / T?)</h2>
-    <p>
-      By default, value types (<code>int, double, bool, DateTime</code>) can never be null. In database operations or API requests, however, a numeric column or field might be optional or unassigned. C# provides <code>Nullable&lt;T&gt;</code>, concisely aliased as <code>T?</code>:
-    </p>
-
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Nullable Value Types</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>// Declaring a nullable integer
-int? age = null;
-
-if (age.HasValue)
+      <pre><code>public class Program
 {
-    Console.WriteLine($&quot;Age is: {age.Value}&quot;);
+public static void Main(string[] args)
+{
+// 'name' is a reference type (string). We explicitly set it to null.
+// This is the same as if it were an uninitialized class field.
+string name = null;
+// This line looks fine to the compiler. It only knows that 'name' is a
+string,
+// and strings have a 'Length' property.
+Console.WriteLine(&quot;The length of the name is: &quot; + name.Length);
+// When this code runs, the .NET runtime tries to find the object that
+'name'
+// points to. Since it points to nothing (null), the program cannot
+// get a 'Length' property from nothing, and it crashes immediately
+// by throwing a NullReferenceException.
+}
+}
+Best Practices &amp; Interview Perspective
+Defensive Programming: The key to avoiding this exception is &quot;defensive
+programming.&quot; Before you use an object, especially one coming from a method
+parameter or a class field, always consider checking if it's null.
+C#
+if (name != null)
+{
+Console.WriteLine(name.Length);
 }
 else
 {
-    Console.WriteLine(&quot;Age was not provided.&quot;);
+Console.WriteLine(&quot;Name is not provided.&quot;);
+}</code></pre>
+    </div>
+  
+    <ul>
+      <li>Question: &quot;What is a NullReferenceException and what causes it?&quot;</li>
+      <li>Ideal Answer: &quot;A NullReferenceException is a run-time error that occurs when you try to access a member—like a method or property—on a variable that holds a null reference. It means the variable isn't pointing to an actual object instance in memory, so the operation cannot be performed.&quot;</li>
+    </ul>
+
+    <h2 id="sec-17-lec-2-nullable-types">Lecture 2: Nullable Types</h2>
+    <h3>Introduction</h3>
+    <p>By default, value types (int, double, bool, struct, etc.) cannot be null. This is because they are not references; a variable of a value type always contains the value itself. An int variable always contains a number, even if it's just 0. However, there are many real-world scenarios where a value type might logically be &quot;missing&quot; or &quot;undefined.&quot; For example, in a database, a Price or DateOfBirth column might allow NULL values. To represent this in C#, the language provides nullable value types. How It Works: The ? Syntax and Nullable&lt;T&gt; You make a value type nullable by adding a question mark (?) after its name. Syntax: int?, double?, bool? This shorthand is an alias for a special generic struct called System.Nullable&lt;T&gt;. So, int? is just a cleaner way of writing Nullable&lt;int&gt;. This struct wraps your value type and adds two important properties:</p>
+    <ol>
+      <li>HasValue: A bool property that is true if the variable holds an actual value and false if it is null.</li>
+      <li>Value: A property of type T that gets the underlying value. You should only access this property after checking that HasValue is true, otherwise you will get an InvalidOperationException. Example</li>
+    </ol>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class SurveyResponse
+{
+// A rating might be optional, so we use a nullable int.
+public int? Rating { get; set; }
 }
-
-// Or using pattern matching (cleaner and safer):
-if (age is int actualAge)
+public class Program
 {
-    Console.WriteLine($&quot;Age extracted: {actualAge}&quot;);
-}</code></pre>
+public static void Main(string[] args)
+{
+SurveyResponse response1 = new SurveyResponse();
+response1.Rating = 5; // Assign a value.
+SurveyResponse response2 = new SurveyResponse();
+response2.Rating = null; // Represents a missing value.
+PrintRating(response1);
+PrintRating(response2);
+}
+public static void PrintRating(SurveyResponse response)
+{
+// ALWAYS check HasValue before accessing .Value
+if (response.Rating.HasValue)
+{
+Console.WriteLine($&quot;Rating provided: {response.Rating.Value}&quot;);
+}
+else
+{
+Console.WriteLine(&quot;No rating was provided.&quot;);
+}
+}
+}
+Output:
+Rating provided: 5
+No rating was provided.</code></pre>
     </div>
   
 
-    <h2 id="null-operators">3. Modern Null Operators: ?., ??, and ??=</h2>
-    <p>
-      C# eliminates nested <code>if (x != null)</code> checks through expressive operators:
-    </p>
+    <h2 id="sec-17-lec-3-null-coalescing-operator">Lecture 3: Null Coalescing Operator (??)</h2>
+    <h3>Introduction</h3>
+    <p>The null coalescing operator ?? is a concise binary operator used to provide a default value for a nullable type or a reference type if it is null. It's a clean and highly readable shortcut for a common type of if check. How It Works The operator works on two operands: A ?? B</p>
+    <ol>
+      <li>It evaluates the left-hand operand (A).</li>
+      <li>If A is not null, the expression returns the value of A.</li>
+      <li>If A is null, the expression returns the value of the right-hand operand (B). When to Use It Use this operator whenever you want to use a variable's value but fall back to a default value if the variable is null. It makes your code much shorter and more expressive. Example Let's say we want to get a user's nickname to display, but if they haven't set one, we should use their full name as a fallback.</li>
+    </ol>
 
-    
-    <div class="table-responsive">
-      <table>
-        <thead><tr><th>Operator Name</th><th>Syntax</th><th>Behavior &amp; Evaluation Rule</th></tr></thead>
-        <tbody><tr><td><strong>Null-Conditional</strong></td><td><code>target?.Member</code></td><td>If <code>target</code> is null, short-circuits and returns null without throwing; otherwise invokes member.</td></tr><tr><td><strong>Null-Conditional Index</strong></td><td><code>array?[index]</code></td><td>If <code>array</code> is null, returns null without attempting to index.</td></tr><tr><td><strong>Null-Coalescing</strong></td><td><code>a ?? b</code></td><td>Returns <code>a</code> if it is not null; otherwise evaluates and returns default value <code>b</code>.</td></tr><tr><td><strong>Null-Coalescing Assignment</strong></td><td><code>a ??= b</code></td><td>Assigns the value of <code>b</code> to <code>a</code> only if <code>a</code> is currently null (C# 8+).</td></tr></tbody>
-      </table>
-    </div>
-  
-
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Null Operators in Action</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>public class OrderProcessor
+      <pre><code>public class User
 {
-    private List&lt;string&gt;? _logEntries;
-
-    public void ProcessOrder(Customer? customer)
-    {
-        // 1. Null-Conditional safe navigation
-        string? city = customer?.Address?.City;
-
-        // 2. Null-Coalescing fallback
-        string shippingCity = city ?? &quot;Unknown Warehouse&quot;;
-
-        // 3. Null-Coalescing assignment (lazy initialization)
-        _logEntries ??= new List&lt;string&gt;();
-        _logEntries.Add($&quot;Processed order for city: {shippingCity}&quot;);
-    }
-}</code></pre>
+public string FullName { get; set; }
+public string Nickname { get; set; } // This can be null
+}
+// --- In your Main method ---
+User user1 = new User { FullName = &quot;John Doe&quot;, Nickname = &quot;Johnny&quot; };
+User user2 = new User { FullName = &quot;Jane Smith&quot;, Nickname = null };
+// The old way using an if statement:
+string displayName1;
+if (user1.Nickname != null)
+{
+displayName1 = user1.Nickname;
+}
+else
+{
+displayName1 = user1.FullName;
+}
+Console.WriteLine($&quot;Welcome, {displayName1}&quot;); // Output: Welcome,
+Johnny
+// The modern, concise way using the ?? operator:
+string displayName2 = user2.Nickname ?? user2.FullName;
+Console.WriteLine($&quot;Welcome, {displayName2}&quot;); // Output: Welcome, Jane
+Smith</code></pre>
     </div>
   
 
-    <h2 id="nullable-reference-types">4. C# 8+ Nullable Reference Types (NRT)</h2>
-    <p>
-      When <code>&lt;Nullable&gt;enable&lt;/Nullable&gt;</code> is configured in your <code>.csproj</code>, the Roslyn compiler distinguishes between reference types that are allowed to be null and those that are not:
-    </p>
+    <h2 id="sec-17-lec-4-null-propagation-operator">Lecture 4: Null Propagation Operator (?.)</h2>
+    <h3>Introduction</h3>
+    <p>The null propagation operator ?. (also known as the null-conditional operator) is a modern C# feature designed to make navigating object chains with potential null values much safer and more concise. It helps you avoid writing deeply nested if statements just to check for null at each step. How It Works When you use ?. to access a member (a property or method), C# first checks if the object on the left of the ?. is null.</p>
+    <ul>
+      <li>If it is null, the entire expression immediately short-circuits and returns null. It never attempts to access the member on the right, thus avoiding a NullReferenceException.</li>
+      <li>If it is not null, it proceeds to access the member as usual. This operator can be chained. If any part of the chain A?.B?.C is null, the entire expression gracefully evaluates to null. There is also a version for accessing indexers, called the null-conditional indexer (?[]). Example Consider a common scenario where you need to get a customer's postal code. The customer might be null, or their address might be null.</li>
+    </ul>
 
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Nullable Reference Types</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>// Non-nullable reference: MUST NOT BE NULL!
-string firstName = &quot;John&quot;;
-// firstName = null; // Warning CS8625: Cannot convert null literal to non-nullable reference type!
-
-// Nullable reference: explicitly declared that null is expected
-string? middleName = null; // OK!
-
-Console.WriteLine(firstName.Length); // 100% Safe, zero warnings!
-// Console.WriteLine(middleName.Length); // Warning CS8602: Dereference of a possibly null reference!</code></pre>
-    </div>
-  
-
-    <h2 id="null-forgiving">5. The Null-Forgiving Operator (!)</h2>
-    <p>
-      The null-forgiving operator (<code>!</code>) tells the compiler: <em>"Trust me, I know this reference is not null at this exact moment—suppress the warning."</em>
-    </p>
-
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Null-Forgiving Operator</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>public class Dto
+      <pre><code>public class Address { public string PostalCode { get; set; } }
+public class Customer { public Address ShippingAddress { get; set; } }
+public class Program
 {
-    // Property initialized by EF Core or JSON deserializer at runtime
-    public string Sku { get; set; } = null!;
+public static void Main(string[] args)
+{
+Customer customerWithAddress = new Customer
+{
+ShippingAddress = new Address { PostalCode = &quot;501505&quot; }
+};
+Customer customerWithoutAddress = new Customer
+{ ShippingAddress = null };
+Customer nullCustomer = null;
+// --- The Old Way: Nested if checks (&quot;pyramid of doom&quot;) ---
+if (customerWithAddress != null)
+{
+if (customerWithAddress.ShippingAddress != null)
+{
+Console.WriteLine(customerWithAddress.ShippingAddress.PostalCode);
+}
+}
+// --- The Modern, Safe, and Concise Way ---
+// Using the null propagation operator.
+string postal1 = customerWithAddress?.ShippingAddress?.PostalCode;
+string postal2 =
+customerWithoutAddress?.ShippingAddress?.PostalCode;
+string postal3 = nullCustomer?.ShippingAddress?.PostalCode;
+// We can use the null coalescing operator to provide a default.
+Console.WriteLine($&quot;Postal Code 1: {postal1 ?? &quot;Not Found&quot;}&quot;); //
+Output: 501505
+Console.WriteLine($&quot;Postal Code 2: {postal2 ?? &quot;Not Found&quot;}&quot;); //
+Output: Not Found
+Console.WriteLine($&quot;Postal Code 3: {postal3 ?? &quot;Not Found&quot;}&quot;); //
+Output: Not Found
+}
 }</code></pre>
     </div>
   
 
-    <h2 id="pitfalls">6. Defensive Coding Patterns & Null Traps</h2>
-    
-    <div class="callout callout-warning">
-      <div class="callout-header">
-        <span>🟠 Compiler Trap & Common Gotcha</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        <strong>Trap:</strong> Using <code>!</code> to silence compiler warnings without ensuring the value is truly non-null. The <code>!</code> operator has <em>zero runtime effect</em>—if the variable is null, your code will still crash with <code>NullReferenceException</code> at runtime!
-      </p>
-      <p>
-        <strong>Fix:</strong> Use modern argument validation: <code>ArgumentNullException.ThrowIfNull(param);</code>.
-      </p>
-    
-      </div>
-    </div>
-  
-  
+    <h2 id="sec-17-lec-5-imp-points-to-remember">Lecture 5: IMP Points to Remember</h2>
+    <ul>
+      <li>null is for Reference Types: Remember that null means a reference variable points to nothing. Value types cannot be null unless you explicitly make them nullable.</li>
+      <li>NullReferenceException is The Developer's Responsibility: This was famously called the &quot;billion-dollar mistake&quot; by its inventor. Modern C# features are designed to help you avoid it. Always be defensive and check for null, especially with data from external sources.</li>
+      <li>Use Nullable Types (int?, bool?) for Optional Values: When a value type logically might not have a value (e.g., data from a database that can be NULL, an optional survey answer), use a nullable type. Always check the .HasValue property before accessing the .Value property to avoid an InvalidOperationException.</li>
+      <li>Prefer ?? and ?. for Conciseness and Safety: These operators are not just shortcuts; they lead to significantly cleaner, more readable, and safer code than manual if (x != null) checks. Embrace them in all modern C# code. They are a sign of a developer who knows the language well.</li>
+      <li>Nullable Reference Types (Advanced Interview Point): In C# 8.0 and later, you can enable a project-level feature called &quot;Nullable Reference Types.&quot; When enabled, the compiler's behavior flips:</li>
+      <li>A standard string variable is considered non-nullable and the compiler will warn you if you try to assign null to it.</li>
+      <li>To declare a reference type that is allowed to be null, you must use the ? syntax, just like with value types: string?.</li>
+      <li>Why it matters: This feature helps you eliminate NullReferenceException errors at compile-time instead of waiting for them to crash your program at run-time. Mentioning your awareness of this modern feature demonstrates that you are up-to- date with C# best practices for writing robust code.</li>
+    </ul>
+
+    <h2 id="sec-17-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
+    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
+  <ul>
+  <li>PAGE 1 ---</li>
+  <li>PAGE 2 ---</li>
+</ul>
+
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -643,27 +693,27 @@ Console.WriteLine(firstName.Length); // 100% Safe, zero warnings!
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#billion-dollar-mistake" class="toc-link">1. What is Null: The Billion-Dollar Problem</a>
+        <a href="#sec-17-lec-1-what-is-null" class="toc-link">Lecture 1: What is null</a>
       </li>
     
       <li class="toc-item">
-        <a href="#nullable-value-types" class="toc-link">2. Nullable Value Types (Nullable&lt;T&gt; / T?)</a>
+        <a href="#sec-17-lec-2-nullable-types" class="toc-link">Lecture 2: Nullable Types</a>
       </li>
     
       <li class="toc-item">
-        <a href="#null-operators" class="toc-link">3. Modern Null Operators: ?., ??, and ??=</a>
+        <a href="#sec-17-lec-3-null-coalescing-operator" class="toc-link">Lecture 3: Null Coalescing Operator (??)</a>
       </li>
     
       <li class="toc-item">
-        <a href="#nullable-reference-types" class="toc-link">4. C# 8+ Nullable Reference Types (NRT)</a>
+        <a href="#sec-17-lec-4-null-propagation-operator" class="toc-link">Lecture 4: Null Propagation Operator (?.)</a>
       </li>
     
       <li class="toc-item">
-        <a href="#null-forgiving" class="toc-link">5. The Null-Forgiving Operator (!)</a>
+        <a href="#sec-17-lec-5-imp-points-to-remember" class="toc-link">Lecture 5: IMP Points to Remember</a>
       </li>
     
       <li class="toc-item">
-        <a href="#pitfalls" class="toc-link">6. Defensive Coding Patterns &amp; Null Traps</a>
+        <a href="#sec-17-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

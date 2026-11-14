@@ -443,208 +443,593 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="primitives-cts">1. CTS Data Types & Value vs Reference Memory</h2>
-    <p>
-      C# is an uncompromisingly <strong>statically-typed</strong> language. Every variable, constant, and expression evaluates to a known type at compile time. The runtime verifies that data placed into memory adheres strictly to the layout rules dictated by the <strong>Common Type System (CTS)</strong>.
-    </p>
+    <h2 id="sec-2-lec-1-installing-visual-studio">Lecture 1: Installing Visual Studio</h2>
+    <h3>Introduction</h3>
+    <p>Visual Studio is the professional Integrated Development Environment (IDE) that you'll use for C# development. Think of it as your complete workshop, containing not just a text editor, but all the specialized tools you need to build, debug, and manage your applications efficiently.</p>
+    <h3>How it Works &amp; Best Practices</h3>
+    <p>When you install Visual Studio, you select Workloads, which are bundles of tools for specific development types. The &quot;.NET desktop development&quot; workload is essential for our purposes, as it includes the C# compiler, the .NET Framework, and project templates.</p>
 
-    
-    <div class="callout callout-original">
+    <div class="callout callout-tip">
       <div class="callout-header">
-        <span>🔵 Core Concept (from Notes)</span>
+        <span>🟢 Best Practice & Architecture Tip</span>
         
       </div>
       <div class="callout-content">
-        
-      <p>
-        In dynamically typed languages, assigning text to a numeric variable often succeeds silently until runtime calculations explode in production. In C#, assigning a string literal to an <code>int</code> triggers an instant compilation block:
-      </p>
-      <pre><code>int age = "twenty"; // CS0029: Cannot implicitly convert type 'string' to 'int'</code></pre>
-      <p>
-        This compile-time safety acts as a vigilant quality control engineer, permanently preventing an entire class of runtime memory corruption bugs.
-      </p>
-    
+        <p>If an interviewer asks about your favorite Visual Studio features, you should</p><p>highlight the Debugger and IntelliSense.</p><ul><li>The Debugger: Explain that it's your primary tool for troubleshooting. It</li></ul><p>allows you to set breakpoints to pause execution, step through code line-</p><p>by-line, and inspect the state of variables.</p><ul><li>IntelliSense: Describe it as intelligent code completion that suggests code,</li></ul><p>checks for errors as you type, and helps you discover the features of the C#</p><p>language.</p>
       </div>
     </div>
   
 
-    
-    <div class="table-responsive">
-      <table>
-        <thead><tr><th>C# Keyword</th><th>CTS Type Alias</th><th>Category</th><th>Bit-Width &amp; Size</th><th>Range / Representation</th></tr></thead>
-        <tbody><tr><td><code>byte</code> / <code>sbyte</code></td><td><code>System.Byte / SByte</code></td><td>Value (Integer)</td><td>8 bits (1 byte)</td><td><code>0 to 255</code> / <code>-128 to 127</code></td></tr><tr><td><code>short</code> / <code>ushort</code></td><td><code>System.Int16 / UInt16</code></td><td>Value (Integer)</td><td>16 bits (2 bytes)</td><td><code>-32,768 to 32,767</code> / <code>0 to 65,535</code></td></tr><tr><td><code>int</code> / <code>uint</code></td><td><code>System.Int32 / UInt32</code></td><td>Value (Integer)</td><td>32 bits (4 bytes)</td><td><code>-2.14B to +2.14B</code> / <code>0 to 4.29B</code></td></tr><tr><td><code>long</code> / <code>ulong</code></td><td><code>System.Int64 / UInt64</code></td><td>Value (Integer)</td><td>64 bits (8 bytes)</td><td><code>-9.22 × 10^18 to +9.22 × 10^18</code></td></tr><tr><td><code>float</code></td><td><code>System.Single</code></td><td>Value (IEEE Floating)</td><td>32 bits (4 bytes)</td><td>7 digits precision (~1.5 × 10^-45 to 3.4 × 10^38)</td></tr><tr><td><code>double</code></td><td><code>System.Double</code></td><td>Value (IEEE Floating)</td><td>64 bits (8 bytes)</td><td>15-17 digits precision (default scientific float)</td></tr><tr><td><code>decimal</code></td><td><code>System.Decimal</code></td><td>Value (Base-10 Fixed)</td><td>128 bits (16 bytes)</td><td>28-29 digits exact precision (essential for financial calculation)</td></tr><tr><td><code>bool</code></td><td><code>System.Boolean</code></td><td>Value (Logical)</td><td>8 bits (1 byte)</td><td><code>true</code> or <code>false</code></td></tr><tr><td><code>char</code></td><td><code>System.Char</code></td><td>Value (Unicode)</td><td>16 bits (2 bytes)</td><td>Single UTF-16 code unit (<code>U+0000 to U+FFFF</code>)</td></tr><tr><td><code>string</code></td><td><code>System.String</code></td><td>Reference (Heap)</td><td>Pointer + Length + Bytes</td><td>Sequential sequence of immutable UTF-16 characters</td></tr><tr><td><code>object</code></td><td><code>System.Object</code></td><td>Reference (Heap)</td><td>Pointer (4/8 bytes)</td><td>Root ultimate base type for all .NET types</td></tr></tbody>
-      </table>
-    </div>
-  
+    <h2 id="sec-2-lec-2-creating-your-first-c-application">Lecture 2: Creating Your First C# Application</h2>
+    <h3>Introduction</h3>
+    <p>The &quot;Hello, World!&quot; application is a fundamental first step. It confirms your environment is set up correctly and introduces you to the basic structure of a C# program. When creating your project, be sure to select the &quot;Console App (.NET Framework)&quot; template.</p>
+    <h3>How it Works: The Structure of a Program</h3>
+    <p>The code Visual Studio generates resides in a file named Program.cs.</p>
 
-    <h2 id="stack-heap-diagram">2. Memory Layout: Stack vs Heap Diagram</h2>
-    <p>
-      Understanding how values live in physical memory is crucial for high-performance C# engineering:
-    </p>
-
-    
-    <div class="diagram-container">
-      <div class="diagram-title">📊 Diagram: Stack Frame vs Managed Heap Memory Layout</div>
-      <pre class="diagram-pre">======================== STACK ========================       ================ MANAGED HEAP ================
-[Fast LIFO allocation; automatically reclaimed on exit]       [GC-managed dynamic lifetime memory space]
-
-+-----------------------------------------------------+
-| Stack Frame: CalculateCart()                        |
-|                                                     |
-|  [int] itemCount = 3               (Direct Value)   |
-|  [decimal] total = 149.99m         (Direct Value)   |
-|                                                     |
-|  [Customer*] custRef -------------(Pointer: 0x8A40)-+-----&gt; +----------------------------------------+
-|                                                     |       | Heap Address: 0x8A40                   |
-|  [string] orderId ----------------(Pointer: 0x9B10)-+--+    | [Type MethodTable Pointer]  (8 bytes)  |
-+-----------------------------------------------------+  |    | [SyncBlock Index]           (8 bytes)  |
-                                                         |    | [string] Name = &quot;Sarah Connor&quot;         |
-                                                         |    | [int] Id = 101                         |
-                                                         |    +----------------------------------------+
-                                                         |
-                                                         +--&gt; +----------------------------------------+
-                                                              | Heap Address: 0x9B10                   |
-                                                              | [Type MethodTable Pointer]  (8 bytes)  |
-                                                              | [SyncBlock Index]           (8 bytes)  |
-                                                              | [Length: 7] Payload: &quot;ORD-902&quot;         |
-                                                              +----------------------------------------+</pre>
-    </div>
-  
-
-    <h2 id="variables-scope">3. Variable Declarations, Constants & Scoping</h2>
-    <p>
-      In C#, variables must be declared before use. Variables declared within a method block <code>{ ... }</code> have local scope and cannot be accessed outside that block.
-    </p>
-
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Variable Scoping &amp; Constants</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>// Explicit vs Type-Inferred local declaration
-int userAge = 28;                  // Explicit typing
-var accountBalance = 1500.50m;     // Compiler infers decimal! (STILL statically typed)
-
-// Compile-time constants vs Read-only values
-const double Pi = 3.141592653589793; // Evaluated at compile-time, inlined into IL
-readonly DateTime BootTime;          // Evaluated at runtime during initialization
-
-// Scope Demonstration
+      <pre><code>namespace HelloWorld
 {
-    int localScopeOnly = 42;
-    Console.WriteLine(localScopeOnly);
+class Program
+{
+static void Main(string[] args)
+{
+Console.WriteLine(&quot;Hello, World!&quot;);
 }
-// Console.WriteLine(localScopeOnly); // CS0103: The name 'localScopeOnly' does not exist in current context</code></pre>
+}
+}</code></pre>
     </div>
   
+    <ul>
+      <li>namespace: An organizer for your code, like a folder.</li>
+      <li>class Program: A container for your methods and data.</li>
+      <li>static void Main(string[] args): This is the Entry Point. When you run your program, the .NET runtime looks for this specific method to begin execution. Interview Perspective</li>
+      <li>&quot;Explain this line: static void Main(string[] args)&quot;: This is a very common interview question.</li>
+      <li>static: The method is called on the Program class itself, not on an object created from it.</li>
+      <li>void: The method does not return any value.</li>
+      <li>Main: The conventional name for the entry point.</li>
+      <li>string[] args: The parameter that accepts command-line arguments as an array of strings.</li>
+    </ul>
 
-    <h2 id="operators-expressions">4. Operators & Precedence Matrix</h2>
-    
-    <div class="table-responsive">
-      <table>
-        <thead><tr><th>Category</th><th>Operators</th><th>Associativity</th><th>Notes &amp; Special Semantics</th></tr></thead>
-        <tbody><tr><td>Primary</td><td><code>x.y, f(x), a[i], x++, x--, new, typeof, sizeof</code></td><td>Left to right</td><td>Highest evaluation precedence.</td></tr><tr><td>Unary</td><td><code>+x, -x, !x, ~x, ++x, --x, ^x</code></td><td>Right to left</td><td>Prefix increments and logical negations.</td></tr><tr><td>Multiplicative</td><td><code>*, /, %</code></td><td>Left to right</td><td>Integer division truncates decimals toward zero.</td></tr><tr><td>Additive</td><td><code>+, -</code></td><td>Left to right</td><td>String concatenation also uses <code>+</code>.</td></tr><tr><td>Relational</td><td><code>&lt;, &gt;, &lt;=, &gt;=, is, as</code></td><td>Left to right</td><td>Type testing with <code>is</code> evaluates safely.</td></tr><tr><td>Equality</td><td><code>==, !=</code></td><td>Left to right</td><td>Compares values for value types; compares references for reference types (unless overloaded).</td></tr><tr><td>Logical Null-Coalescing</td><td><code>??, ??=</code></td><td>Right to left</td><td>Returns left operand if non-null; otherwise right operand.</td></tr><tr><td>Assignment</td><td><code>=, +=, -=, *=, /=, %=</code></td><td>Right to left</td><td>Lowest precedence; evaluates expression on right before assigning.</td></tr></tbody>
-      </table>
-    </div>
-  
+    <h2 id="sec-2-lec-3-the-system-console-class">Lecture 3: The System.Console Class</h2>
+    <h3>Introduction</h3>
+    <p>The Console class is your primary tool for interacting with the text-based console window. It provides fundamental methods for input and output. Common Methods</p>
+    <ul>
+      <li>Console.WriteLine(string value): Prints the specified text to the console, followed by a new line character.</li>
+      <li>Console.Write(string value): Prints the text but leaves the cursor on the same line.</li>
+      <li>Console.ReadLine(): Reads a full line of text entered by the user and returns it as a string.</li>
+      <li>Console.ReadKey(): Waits for a single keypress.</li>
+      <li>Console.Clear(): Clears all text from the console window. Interview Perspective</li>
+      <li>Write vs. WriteLine: WriteLine moves to the next line after printing; Write does not.</li>
+      <li>Input Handling: A frequent question is, &quot;If you ask a user for their age, how do you store it?&quot; The key is knowing that Console.ReadLine() always returns a string. You must explicitly convert this string to a number using a method like int.Parse().</li>
+    </ul>
 
-    <h2 id="control-flow">5. Decision & Loop Control Structures</h2>
-    
+    <h2 id="sec-2-lec-4-variables">Lecture 4: Variables</h2>
+    <h3>Introduction</h3>
+    <p>A variable is a named placeholder in memory used to store a value that your program can manipulate.</p>
+    <h3>How it Works: Scope and Memory</h3>
+    <p>When you declare a variable of a primitive type inside a method, its value is stored on the stack, a very fast region of memory. The variable's lifetime is tied to its scope, which is the code block {...} where it is declared. Best Practices &amp; Interview Perspective</p>
+    <ul>
+      <li>Naming: Always use camelCase (userAge, firstName) for local variables.</li>
+      <li>Scope: Be prepared for questions like, &quot;If I declare a variable inside an if block, can I use it in the else block?&quot; The answer is no, because they are separate scopes.</li>
+    </ul>
+
+    <h2 id="sec-2-lec-5-primitive-types">Lecture 5: Primitive Types</h2>
+    <h3>Introduction</h3>
+    <p>Primitive types are the fundamental data building blocks. C# is a statically-typed language, so you must declare the type of a variable before you use it. Integer Types (Whole Numbers) These types store whole numbers without decimal points. The main difference is their size and whether they can store negative values.</p>
+    <ul>
+      <li>sbyte: 8-bit signed integer (-128 to 127).</li>
+      <li>byte: 8-bit unsigned integer (0 to 255). Use when a value can't be negative, like for raw data from a file or network stream.</li>
+      <li>short: 16-bit signed integer (-32,768 to 32,767).</li>
+      <li>ushort: 16-bit unsigned integer (0 to 65,535).</li>
+      <li>int: 32-bit signed integer (-2.1 billion to 2.1 billion). This is the default and most common integer type. Use it unless you have a specific reason not to.</li>
+      <li>uint: 32-bit unsigned integer (0 to 4.2 billion).</li>
+      <li>long: 64-bit signed integer (a very large range). Use when int is not large enough. To specify a long literal, use the L suffix: long bigNumber = 9000000000L;.</li>
+      <li>ulong: 64-bit unsigned integer. Floating-Point Types (Decimal Numbers) These types store numbers with decimal points. The choice involves a trade-off between range, precision, and performance.</li>
+      <li>float: 32-bit single-precision (approx. 6-9 digits of precision). Use when you need a decimal but don't require high precision, like in graphics programming. Use the F suffix: float height = 1.88F;.</li>
+      <li>double: 64-bit double-precision (approx. 15-17 digits of precision). This is the default and most common floating-point type, used for scientific and general calculations.</li>
+      <li>decimal: 128-bit high-precision (28-29 digits of precision). This type is slower than double but eliminates the small rounding errors inherent in binary floating-point types. You must use decimal for any financial or monetary calculations. Use the M suffix: decimal accountBalance = 100.05M;. Other Primitive Types</li>
+      <li>char: Represents a single 16-bit Unicode character. The value is enclosed in single quotes: char grade = 'A';.</li>
+      <li>bool: Represents a logical value, either true or false.</li>
+    </ul>
+
+    <h2 id="sec-2-lec-6-operators">Lecture 6: Operators</h2>
+    <h3>Introduction</h3>
+    <p>Operators are special symbols that perform operations on variables and values (operands). Arithmetic Operators</p>
+    <ul>
+      <li>+ (Addition): Adds two operands. int sum = 10 + 5; // 15</li>
+      <li>(Subtraction): Subtracts the right operand from the left. int diff = 10 - 5; // 5</li>
+      <li>* (Multiplication): Multiplies two operands. int prod = 10 * 5; // 50</li>
+      <li>/ (Division): Divides the left operand by the right. Its behavior depends on the operand types.</li>
+      <li>Integer Division: If both operands are integers, the result is an integer, and the decimal part is truncated (discarded). int result = 10 / 4; // result is 2</li>
+      <li>Floating-Point Division: If at least one operand is a floating-point type, the result is a floating-point type. double result = 10.0 / 4; // result is 2.5</li>
+      <li>% (Modulus): Returns the remainder of an integer division. int remainder = 10 % 3; // remainder is 1. Useful for checking if a number is even (num % 2 == 0). Assignment Operators</li>
+      <li>= (Simple Assignment): Assigns the value of the right operand to the left operand. int x = 10;</li>
+      <li>+=, -=, *=, /=, %= (Compound Assignment): Performs an operation and an assignment in one step. x += 5; is syntactic sugar for x = x + 5;. Comparison Operators These compare two operands and always return a bool (true or false).</li>
+      <li>== (Equal to): bool areEqual = (name == &quot;John&quot;);</li>
+      <li>!= (Not equal to): bool areNotEqual = (age != 30);</li>
+      <li>&gt;, &lt;, &gt;=, &lt;= (Greater than, Less than, etc.): bool isAdult = (age &gt;= 18); Logical Operators These are used to combine bool expressions.</li>
+      <li>&amp;&amp; (Logical AND): Returns true only if both operands are true.</li>
+      <li>|| (Logical OR): Returns true if at least one operand is true.</li>
+      <li>! (Logical NOT): Inverts the value of a bool. !true is false. Ternary Operator</li>
+      <li>?: (Conditional Operator): A shortcut for a simple if-else statement. string message = (score &gt;= 50) ? &quot;Pass&quot; : &quot;Fail&quot;; Interview Perspective: Data Types and Assignments</li>
+      <li>Literals: You can assign values in different formats. Interviewers might check this knowledge.</li>
+      <li>Hexadecimal: int hex = 0x2A; // 42 in decimal</li>
+      <li>Binary: int bin = 0b00101010; // 42 in decimal</li>
+      <li>Type Casting and Data Loss: This is a critical interview topic.</li>
+      <li>Implicit Casting (Safe): A conversion from a smaller type to a larger type where no data can be lost. C# does this automatically. int i = 100; double d = i; // d is 100.0</li>
+      <li>Explicit Casting (Unsafe): A conversion from a larger type to a smaller type where data might be lost. You must tell the compiler you're aware of the risk by using a cast (type). double d = 9.78; int i = (int)d; // i is 9. The decimal part is lost. An interviewer will expect you to explain this concept of potential data loss.</li>
+    </ul>
+
+    <h2 id="sec-2-lec-7-if-and-its-forms">Lecture 7: if and its forms</h2>
+    <p>Simple if Statement When to Use: When you want to execute a block of code only if a single condition is true, and do nothing otherwise.</p>
+    <h3>How it Works: The boolean expression inside the parentheses is evaluated. If it's</h3>
+    <p>true, the code block inside the curly braces is executed. If it's false, the block is skipped. Example:</p>
+
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Branching &amp; Looping Primitives</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>int statusCode = 404;
-
-// 1. Classical Branching
-if (statusCode == 200)
+      <pre><code>int currentStock = 12;
+if (currentStock &lt; 10)
 {
-    Console.WriteLine(&quot;OK&quot;);
+Console.WriteLine(&quot;Warning: Stock is low. Time to re-order.&quot;);
 }
-else if (statusCode == 404)
+if-else Statement
+When to Use: When you have a single condition but need to execute one block of
+code if it's true and a different block if it's false.</code></pre>
+    </div>
+  
+    <h3>How it Works: If the condition is true, the first block (if) is executed. If it's false,</h3>
+    <p>the second block (else) is executed. One of the two blocks will always execute. Example:</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int userAge = 17;
+if (userAge &gt;= 18)
 {
-    Console.WriteLine(&quot;Resource Not Found&quot;);
+Console.WriteLine(&quot;Access granted to the restricted area.&quot;);
 }
 else
 {
-    Console.WriteLine(&quot;Unhandled code&quot;);
+Console.WriteLine(&quot;Access denied. You must be 18 or older.&quot;);
 }
+if-else if Ladder
+When to Use: When you have multiple related conditions to check in sequence.</code></pre>
+    </div>
+  
+    <h3>How it Works: The conditions are evaluated from top to bottom. The code block</h3>
+    <p>for the first condition that evaluates to true is executed, and all subsequent else if and else blocks are skipped. The final else is optional and acts as a catch-all if none of the preceding conditions are true. Example:</p>
 
-// 2. High-Performance Loop Constructs
-int[] numbers = [10, 20, 30, 40, 50];
-
-// Standard For loop (indexed)
-for (int i = 0; i &lt; numbers.Length; i++)
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>double score = 85.5;
+if (score &gt;= 90)
 {
-    Console.WriteLine($&quot;Index {i}: {numbers[i]}&quot;);
+Console.WriteLine(&quot;Grade: A&quot;);
 }
-
-// Foreach loop (clean iteration over IEnumerable)
-foreach (var num in numbers)
+else if (score &gt;= 80)
 {
-    if (num == 30) continue; // Skip to next iteration
-    Console.WriteLine($&quot;Value: {num}&quot;);
+Console.WriteLine(&quot;Grade: B&quot;);
+}
+else if (score &gt;= 70)
+{
+Console.WriteLine(&quot;Grade: C&quot;);
+}
+else
+{
+Console.WriteLine(&quot;Grade: F&quot;);
+}
+Nested if Statements
+When to Use: When a condition can only be checked if another, outer condition is
+already true.</code></pre>
+    </div>
+  
+    <h3>How it Works: The inner if statement is only evaluated if the outer if statement's</h3>
+    <p>condition is true. Example:</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>bool hasTicket = true;
+bool isVip = false;
+if (hasTicket)
+{
+Console.WriteLine(&quot;Welcome! Please proceed.&quot;);
+if (isVip)
+{
+Console.WriteLine(&quot;Please enjoy the VIP lounge.&quot;);
+}
+}
+else
+{
+Console.WriteLine(&quot;You need a ticket to enter.&quot;);
+}
+Best Practice: Avoid nesting if statements too deeply (more than 2 or 3 levels) as
+it can make the code very difficult to read and understand.</code></pre>
+    </div>
+  
+
+    <h2 id="sec-2-lec-8-switch-case">Lecture 8: switch-case</h2>
+    <h3>When to Use It: A switch is a cleaner, often more readable, alternative to a long if-</h3>
+    <p>else if ladder when you are checking a single variable against a series of specific, constant values.</p>
+    <h3>How it Works: The value of the variable in the switch() is compared to the value of</h3>
+    <p>each case. When a match is found, the code in that case block is executed until a break statement is hit. The break causes execution to jump out of the switch block. The default case is executed if no other cases match. Example:</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string userRole = &quot;admin&quot;;
+switch (userRole.ToLower()) // Good practice to normalize string input
+{
+case &quot;admin&quot;:
+Console.WriteLine(&quot;You have full access.&quot;);
+break;
+case &quot;editor&quot;:
+Console.WriteLine(&quot;You can create and edit content.&quot;);
+break;
+case &quot;viewer&quot;:
+Console.WriteLine(&quot;You can only view content.&quot;);
+break;
+default:
+Console.WriteLine(&quot;Unknown role. Access denied.&quot;);
+break;
 }</code></pre>
     </div>
   
 
-    <h2 id="type-safety-rules">6. Static Typing & Roslyn Diagnostic Safety</h2>
-    <p>
-      Because C# is statically typed, using <code>var</code> does <strong>NOT</strong> introduce dynamic typing! The compiler determines the exact type from the right-hand initialization expression at compile time and writes the explicit type into the CIL metadata:
-    </p>
+    <h2 id="sec-2-lec-9-while-loop">Lecture 9: while Loop</h2>
+    <h3>When to Use It: When you need to loop based on a condition, and you do not</h3>
+    <p>know the exact number of iterations beforehand.</p>
+    <h3>How it Works: The boolean condition is evaluated before each potential iteration.</h3>
+    <p>If true, the loop body executes. This process repeats until the condition becomes false. If the condition is false to begin with, the loop body never executes. Examples:</p>
+    <ul>
+      <li>Counter-Controlled Loop:</li>
+    </ul>
 
-    
-    <div class="callout callout-deepdive">
-      <div class="callout-header">
-        <span>🟣 Under the Hood / Compiler Lowering</span>
-        
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
       </div>
-      <div class="callout-content">
-        
-      <p>
-        When you write:
-      </p>
-      <pre><code>var message = "Hello World";</code></pre>
-      <p>
-        The Roslyn compiler emits identical CIL instructions as writing:
-      </p>
-      <pre><code>string message = "Hello World";</code></pre>
-      <p>
-        There is zero runtime type inspection, zero reflection overhead, and zero performance penalty.
-      </p>
-    
+      <pre><code>int ticketsLeft = 5;</code></pre>
+    </div>
+  
+    <ul>
+      <li>while (ticketsLeft &gt; 0)</li>
+      <li>{</li>
+      <li>Console.WriteLine($&quot;Selling a ticket... {ticketsLeft} tickets remaining.&quot;);</li>
+      <li>ticketsLeft--; // This change is crucial to prevent an infinite loop</li>
+      <li>}</li>
+      <li>Console.WriteLine(&quot;All tickets sold!&quot;);</li>
+      <li></li>
+      <li>Sentinel-Controlled Loop (waiting for user input):</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
       </div>
+      <pre><code>string command = &quot;&quot;;</code></pre>
+    </div>
+  
+    <ul>
+      <li>while (command != &quot;quit&quot;)</li>
+      <li>{</li>
+      <li>Console.Write(&quot;Enter a command ('help', 'run', 'quit'): &quot;);</li>
+      <li>command = Console.ReadLine();</li>
+      <li>// ... process the command ...</li>
+      <li>}</li>
+      <li></li>
+    </ul>
+
+    <h2 id="sec-2-lec-10-do-while-loop">Lecture 10: do-while Loop</h2>
+    <h3>When to Use It: In the specific scenario where you need to guarantee the loop</h3>
+    <p>body executes at least once.</p>
+    <h3>How it Works: The loop body executes first, and then the boolean condition is</h3>
+    <p>evaluated. If true, the loop repeats. Example (the classic use case: input validation):</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int age;
+do
+{
+Console.Write(&quot;Please enter your age (must be 18 or older): &quot;);
+// This code must run at least once to get the input
+string input = Console.ReadLine();
+age = int.Parse(input);
+if (age &lt; 18)
+{
+Console.WriteLine(&quot;Invalid age. Please try again.&quot;);
+}
+} while (age &lt; 18); // Check the condition after the first run
+Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
     </div>
   
 
-    <h2 id="pitfalls">7. Common Syntax Pitfalls</h2>
-    
-    <div class="callout callout-warning">
-      <div class="callout-header">
-        <span>🟠 Compiler Trap & Common Gotcha</span>
-        
+    <h2 id="sec-2-lec-11-for-loop">Lecture 11: for Loop</h2>
+    <h3>When to Use It: When you know the number of iterations before the loop starts.</h3>
+    <h3>How it Works: for (initializer; condition; iterator)</h3>
+    <ol>
+      <li>The initializer runs once at the beginning.</li>
+      <li>The condition is checked before each iteration.</li>
+      <li>The loop body executes if the condition is true.</li>
+      <li>The iterator runs after each iteration. Common Examples:</li>
+    </ol>
+    <ul>
+      <li>Incrementing from 0 to n-1 (for arrays):</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
       </div>
-      <div class="callout-content">
-        
-      <p>
-        <strong>Bug:</strong> Using <code>double price = 0.1; double tax = 0.2;</code> and expecting <code>price + tax == 0.3</code> to be true.
-      </p>
-      <p>
-        <strong>Reality:</strong> Base-2 IEEE 754 floating points cannot represent <code>0.1</code> or <code>0.2</code> exactly. The result is <code>0.30000000000000004</code>. For e-commerce, banking, taxes, and accounting, ALWAYS use <code>decimal</code> (e.g., <code>0.1m + 0.2m == 0.3m</code>).
-      </p>
-    
-      </div>
+      <pre><code>string[] shoppingList = { &quot;Apples&quot;, &quot;Bananas&quot;, &quot;Carrots&quot; };</code></pre>
     </div>
   
+    <ul>
+      <li>for (int i = 0; i &lt; shoppingList.Length; i++)</li>
+      <li>{</li>
+      <li>Console.WriteLine($&quot;Item {i + 1}: {shoppingList[i]}&quot;);</li>
+      <li>}</li>
+      <li></li>
+      <li>Decrementing Loop (rocket launch):</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>for (int i = 10; i &gt; 0; i--)</code></pre>
+    </div>
   
+    <ul>
+      <li>{</li>
+      <li>Console.WriteLine($&quot;{i}...&quot;);</li>
+      <li>}</li>
+      <li>Console.WriteLine(&quot;Liftoff!&quot;);</li>
+      <li></li>
+      <li>Loop that skips numbers (even numbers):</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>for (int i = 2; i &lt;= 10; i += 2)</code></pre>
+    </div>
+  
+    <ul>
+      <li>{</li>
+      <li>Console.WriteLine(i);</li>
+      <li>}</li>
+      <li></li>
+    </ul>
+
+    <h2 id="sec-2-lec-12-break-and-continue">Lecture 12: break and continue</h2>
+    <p>When to Use Them: To manually alter the flow of a loop from within its body.</p>
+    <ul>
+      <li>break: Use when you need to exit the loop immediately, regardless of the loop's condition. For example, if you find the item you're searching for.</li>
+      <li>continue: Use when you want to skip the current item and move directly to the next iteration. For example, to ignore invalid data in a list. Example:</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Find the first multiple of 7, but ignore numbers less than 20.
+for (int i = 1; i &lt;= 100; i++)
+{
+if (i &lt; 20)
+{
+continue; // Skip this number and go to the next i
+}
+if (i % 7 == 0)
+{
+Console.WriteLine($&quot;Found the first multiple of 7 greater than 20: {i}&quot;);
+break; // Found it, exit the loop completely
+}
+}</code></pre>
+    </div>
+  
+
+    <h2 id="sec-2-lec-13-nested-for-loops">Lecture 13: Nested for Loops</h2>
+    <h3>When to Use It: Whenever you need to work with a two-dimensional structure, like</h3>
+    <p>a grid, a multiplication table, or a game board.</p>
+    <h3>How it Works: The inner loop completes its entire run for every single iteration of</h3>
+    <p>the outer loop. Example (Multiplication Table):</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Outer loop for the first number in the multiplication
+for (int i = 1; i &lt;= 5; i++)
+{
+// Inner loop for the second number
+for (int j = 1; j &lt;= 5; j++)
+{
+// Use Write to keep everything on the same line for this row
+Console.Write($&quot;{i * j}\t&quot;); // \t adds a tab for spacing
+}
+// After the inner loop finishes, move to the next line for the next row
+Console.WriteLine();
+}</code></pre>
+    </div>
+  
+
+    <h2 id="sec-2-lec-14-goto">Lecture 14: goto</h2>
+    <p>Introduction and Warning: The goto statement provides an unconditional jump to a label. While it is part of the language, its use is extremely discouraged in modern programming. It creates &quot;spaghetti code&quot; that is difficult to read and maintain. Structured control flow (if, switch, loops) is always the superior choice. An interviewer will expect you to know this and to advocate against using goto.</p>
+
+    <h2 id="sec-2-lec-15-pattern-printing-using-nested-for-loops">Lecture 15: Pattern Printing using Nested for Loops</h2>
+    <p>Introduction: This is a classic exercise to demonstrate your command of nested loops and algorithmic thinking. Example 1: Right-Angled Triangle</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int size = 5;
+for (int row = 1; row &lt;= size; row++)
+{
+for (int col = 1; col &lt;= row; col++)
+{
+Console.Write(&quot;*&quot;);
+}
+Console.WriteLine();
+}</code></pre>
+    </div>
+  
+    <h3>How it Works: The outer loop controls the rows. The inner loop's condition col</h3>
+    <p>&lt;= row is the key; it prints a number of stars equal to the current row number. Example 2: Inverted Right-Angled Triangle</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int size = 5;
+for (int row = size; row &gt;= 1; row--)
+{
+for (int col = 1; col &lt;= row; col++)
+{
+Console.Write(&quot;*&quot;);
+}
+Console.WriteLine();
+}</code></pre>
+    </div>
+  
+    <h3>How it Works: The logic is reversed. The outer loop counts down from size. The</h3>
+    <p>inner loop still prints a number of stars equal to the current row value, which is now decreasing. Example 3: Pyramid This is a more advanced pattern that requires a third loop for spacing.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int size = 5;
+for (int row = 1; row &lt;= size; row++)
+{
+// Loop for leading spaces
+for (int space = 1; space &lt;= size - row; space++)
+{
+Console.Write(&quot; &quot;);
+}
+// Loop for the stars
+for (int star = 1; star &lt;= (2 * row) - 1; star++)
+{
+Console.Write(&quot;*&quot;);
+}
+Console.WriteLine();
+}</code></pre>
+    </div>
+  
+    <h3>How it Works:</h3>
+    <ol>
+      <li>Outer Loop: Controls the row number.</li>
+      <li>Space Loop: For each row, it prints size - row spaces. On row 1, it prints 4 spaces; on row 5, it prints 0 spaces. This centers the pattern.</li>
+      <li>Star Loop: Prints (2 * row) - 1 stars. On row 1, it prints 1 star; on row 2, it prints 3; on row 3, it prints 5, creating the pyramid shape.</li>
+    </ol>
+
+    <h2 id="sec-2-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
+    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
+  <ul>
+  <li>PAGE 1 ---</li>
+  <li>PAGE 2 ---</li>
+  <li>PAGE 3 ---</li>
+  <li>PAGE 4 ---</li>
+  <li>PAGE 5 ---</li>
+  <li>Default value: 0 • MinValue Command: byte.MinValue • MaxValue Command: byte.MaxValue  short: • 16-bit signed integer • Size: 2 bytes • Range: -32,768 to 32,767 • Default value: 0 • MinValue Command: short.MinValue • MaxValue Command: short.MaxValue  ushort: • 16-bit un-signed integer • Size: 2 bytes • Range: 0 to 65,535 • Default value: 0 • MinValue Command: ushort.MinValue • MaxValue Command: ushort.MaxValue  int: • 32-bit signed integer • Size: 4 bytes • Range: -2,147,483,648 to 2,147,483,647 • Default value: 0 • MinValue Command: int.MinValue • MaxValue Command: int.MaxValue • By default, integer literals between -2,147,483,648 to 2,147,483,647 are treated as &quot;int&quot; data type.</li>
+  <li>PAGE 6 ---</li>
+  <li>PAGE 7 ---</li>
+  <li>PAGE 8 ---</li>
+  <li>By default, floating-point literals in the specified range are treated as &quot;double&quot; data type.  decimal: • 128-bit signed floating-point number • Size: 16 bytes • Range: -79228162514264337593543950335 to 79228162514264337593543950335 • &quot;MINUS seventy-nine octillion two hundred twenty-eight septillion one hundred sixty-two sextillion five hundred fourteen quintillion two hundred sixty-four quadrillion three hundred thirty-seven trillion five hundred ninety-three billion five hundred fourty-three million nine hundred fifty thousand three hundred thirty-five&quot; to &quot;seventy-nine octillion two hundred twenty-eight septillion one hundred sixty-two sextillion five hundred fourteen quintillion two hundred sixty-four quadrillion three hundred thirty-seven trillion five hundred ninety-three billion five hundred fourty-three million nine hundred fifty thousand three hundred thirty-five&quot; • Precision: 28 digits • Default value: 0M • Min and Max: double.MinValue, double.MaxValue  char: • 16-bit Single Unicode character • Character literal should be written in single quotes only. Ex: 'A' • Size: 2 bytes • Range: 0 to 137,994 (Unicode codes that represent characters) • Unicode is superset of ASCII. • ASCII = 0 to 255 (English language characters only) • Unicode = ASCII + Other natural language characters • Default value: \0</li>
+  <li>PAGE 9 ---</li>
+  <li>PAGE 10 ---</li>
+  <li>PAGE 11 ---</li>
+  <li>PAGE 12 ---</li>
+  <li>PAGE 13 ---</li>
+  <li>PAGE 14 ---</li>
+  <li>PAGE 15 ---</li>
+  <li>PAGE 16 ---</li>
+  <li>PAGE 17 ---</li>
+  <li>PAGE 18 ---</li>
+</ul>
+
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -676,31 +1061,67 @@ foreach (var num in numbers)
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#primitives-cts" class="toc-link">1. CTS Data Types &amp; Value vs Reference Memory</a>
+        <a href="#sec-2-lec-1-installing-visual-studio" class="toc-link">Lecture 1: Installing Visual Studio</a>
       </li>
     
       <li class="toc-item">
-        <a href="#stack-heap-diagram" class="toc-link">2. Memory Layout: Stack vs Heap Diagram</a>
+        <a href="#sec-2-lec-2-creating-your-first-c-application" class="toc-link">Lecture 2: Creating Your First C# Application</a>
       </li>
     
       <li class="toc-item">
-        <a href="#variables-scope" class="toc-link">3. Variable Declarations, Constants &amp; Scoping</a>
+        <a href="#sec-2-lec-3-the-system-console-class" class="toc-link">Lecture 3: The System.Console Class</a>
       </li>
     
       <li class="toc-item">
-        <a href="#operators-expressions" class="toc-link">4. Operators &amp; Precedence Matrix</a>
+        <a href="#sec-2-lec-4-variables" class="toc-link">Lecture 4: Variables</a>
       </li>
     
       <li class="toc-item">
-        <a href="#control-flow" class="toc-link">5. Decision &amp; Loop Control Structures</a>
+        <a href="#sec-2-lec-5-primitive-types" class="toc-link">Lecture 5: Primitive Types</a>
       </li>
     
       <li class="toc-item">
-        <a href="#type-safety-rules" class="toc-link">6. Static Typing &amp; Roslyn Diagnostic Safety</a>
+        <a href="#sec-2-lec-6-operators" class="toc-link">Lecture 6: Operators</a>
       </li>
     
       <li class="toc-item">
-        <a href="#pitfalls" class="toc-link">7. Common Syntax Pitfalls</a>
+        <a href="#sec-2-lec-7-if-and-its-forms" class="toc-link">Lecture 7: if and its forms</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-2-lec-8-switch-case" class="toc-link">Lecture 8: switch-case</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-2-lec-9-while-loop" class="toc-link">Lecture 9: while Loop</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-2-lec-10-do-while-loop" class="toc-link">Lecture 10: do-while Loop</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-2-lec-11-for-loop" class="toc-link">Lecture 11: for Loop</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-2-lec-12-break-and-continue" class="toc-link">Lecture 12: break and continue</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-2-lec-13-nested-for-loops" class="toc-link">Lecture 13: Nested for Loops</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-2-lec-14-goto" class="toc-link">Lecture 14: goto</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-2-lec-15-pattern-printing-using-nested-for-loops" class="toc-link">Lecture 15: Pattern Printing using Nested for Lo</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-2-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

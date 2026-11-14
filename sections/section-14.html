@@ -443,139 +443,311 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="struct-value-semantics">1. Structs vs Classes: Value vs Reference Semantics</h2>
-    <p>
-      A <strong>struct</strong> (structure) is a composite data type that has <strong>value semantics</strong>. While classes are allocated on the managed heap and accessed via reference pointers, structs are allocated inline wherever they are declared (directly on the stack for local variables, or embedded inside the heap object if declared as a class field).
-    </p>
+    <h2 id="sec-14-lec-1-intro-and-working-with-structs">Lecture 1: Intro and Working with Structs</h2>
+    <h3>Introduction</h3>
+    <p>A struct (short for structure) is a composite data type that allows you to group a set of related variables under a single name. The single most important characteristic of a struct is that it is a value type. This fundamentally distinguishes it from a class, which is a reference type. This difference dictates how structs are stored in memory, how they are passed between methods, and how they behave during assignment. Structs are typically used for creating small, lightweight objects that logically represent a single value, such as a coordinate point, a color, or a pair of related numbers. How It Works: Value Type Semantics and Memory Because a struct is a value type, a variable of a struct type holds the actual data itself, not a reference (or pointer) to the data.</p>
+    <ul>
+      <li>Memory Allocation: Structs are almost always allocated on the stack, a region of memory that is very fast and efficient. When a method call finishes, any structs created within it are instantly deallocated as the stack frame is popped. This avoids the overhead of garbage collection that comes with class objects on the heap.</li>
+      <li>Assignment Behavior: When you assign one struct variable to another, you are creating a complete copy of the data. Each variable will have its own independent instance. Example: Demonstrating Copy-on-Assignment Let's create a simple Point struct to see this behavior in action.</li>
+    </ul>
 
-    
-    <div class="table-responsive">
-      <table>
-        <thead><tr><th>Dimension</th><th>Class (Reference Type)</th><th>Struct (Value Type)</th></tr></thead>
-        <tbody><tr><td>Memory Location</td><td>Always on the <strong>Managed Heap</strong></td><td><strong>Inline</strong> (Stack for locals; inside parent object if field)</td></tr><tr><td>Assignment Behavior</td><td><strong>Copies the reference pointer</strong> (both variables point to same instance)</td><td><strong>Copies all fields bit-for-bit</strong> (independent new clone)</td></tr><tr><td>Inheritance</td><td>Supports inheritance hierarchies from classes</td><td>Cannot inherit from other structs/classes (implements interfaces only)</td></tr><tr><td>Garbage Collection</td><td>Requires GC to allocate and reclaim</td><td>Zero GC overhead; popped instantly when stack frame exits</td></tr><tr><td>Default Value</td><td><code>null</code></td><td>All fields zeroed (<code>0, false, null</code>)</td></tr></tbody>
-      </table>
-    </div>
-  
-
-    <h2 id="stack-allocation-diagram">2. Memory Layout: Inlined Structs on Stack</h2>
-    
-    <div class="diagram-container">
-      <div class="diagram-title">📊 Diagram: Class Reference vs Struct Inline Allocation</div>
-      <pre class="diagram-pre">STACK FRAME:
-+-------------------------------------------------------------+
-| PointClass pRef --------(Pointer: 0x9000)---+               |
-|                                             |               |
-| PointStruct pVal: [X: 10, Y: 20]            | (INLINE STACK)|
-+---------------------------------------------|---------------+
-                                              v
-                                   MANAGED HEAP:
-                                   +--------------------------+
-                                   | Address: 0x9000          |
-                                   | [MethodTable Pointer]    |
-                                   | [SyncBlock Index]        |
-                                   | X: 10, Y: 20             |
-                                   +--------------------------+</pre>
-    </div>
-  
-
-    <h2 id="copy-by-value">3. Copy-on-Assignment & Mutation Behavior</h2>
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Copy-by-Value Behavior</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>public struct GeoPoint
+      <pre><code>public struct Point
 {
-    public double Latitude;
-    public double Longitude;
-
-    public GeoPoint(double lat, double lon) { Latitude = lat; Longitude = lon; }
+// By default, fields in a struct should be public for easy access,
+// as structs are primarily simple data containers.
+public int X;
+public int Y;
 }
-
-GeoPoint p1 = new GeoPoint(40.7128, -74.0060);
-GeoPoint p2 = p1; // COMPLETE COPY OF MEMORY BITS!
-
-p2.Latitude = 51.5074; // Mutating p2 has ZERO effect on p1!
-
-Console.WriteLine(p1.Latitude); // Still 40.7128!</code></pre>
+public class Program
+{
+public static void Main(string[] args)
+{
+// point1 holds its own X and Y values directly.
+Point point1 = new Point();
+point1.X = 10;
+point1.Y = 20;
+// When we assign point1 to point2, a complete COPY of the data is
+made.
+// point2 is now a new, independent instance with the same values.
+Point point2 = point1;
+Console.WriteLine($&quot;Before change: point1=({point1.X}, {point1.Y}),
+point2=({point2.X}, {point2.Y})&quot;);
+// Now, let's change the X value of the FIRST point.
+point1.X = 99;
+Console.WriteLine(&quot;\n--- Changed point1.X to 99 ---&quot;);
+// The change only affects point1. point2 is completely unaffected
+// because it is a separate copy.
+Console.WriteLine($&quot;After change: point1=({point1.X}, {point1.Y}),
+point2=({point2.X}, {point2.Y})&quot;);
+}
+}
+Output:
+Before change: point1=(10, 20), point2=(10, 20)
+--- Changed point1.X to 99 ---
+After change: point1=(99, 20), point2=(10, 20)</code></pre>
     </div>
   
 
-    <h2 id="readonly-structs">4. readonly struct & Defensive Copy Prevention</h2>
-    <p>
-      When a mutable struct is passed as an <code>in</code> parameter or marked <code>readonly</code>, the compiler creates hidden <em>defensive copies</em> on every member access to prevent mutation. Marking the struct <code>readonly struct</code> tells Roslyn all fields are immutable, completely eliminating defensive copy overhead:
-    </p>
+    <h2 id="sec-14-lec-2-structures-with-constructors">Lecture 2: Structures with Constructors</h2>
+    <h3>Introduction</h3>
+    <p>Like classes, structs can declare constructors to initialize their fields. Using a constructor is the preferred way to create a struct instance and ensure it starts in a valid and predictable state, rather than setting each field manually after creation. How It Works &amp; Rules There are specific rules for struct constructors that differ from class constructors:</p>
+    <ol>
+      <li>Parameterized Constructors: You can define constructors that take parameters. Within a parameterized constructor, you must initialize all instance fields of the struct. The C# compiler enforces this rule to ensure the struct is fully initialized.</li>
+      <li>The Implicit Parameterless Constructor: Every struct always has a built-in, parameterless constructor that initializes all its fields to their system default values (0, false, null). You cannot delete or override this default behavior.</li>
+      <li>Explicit Parameterless Constructors (C# 10+): In modern C# (version 10 and later), you are now allowed to explicitly declare your own public, parameterless constructor to provide different default initialization logic. However, the implicit one still exists behind the scenes. Example Let's enhance our Point struct with a constructor to make initialization cleaner.</li>
+    </ol>
 
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">readonly struct</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>public readonly struct Vector3D
+      <pre><code>public struct Point
 {
-    public double X { get; }
-    public double Y { get; }
-    public double Z { get; }
-
-    public Vector3D(double x, double y, double z) =&gt; (X, Y, Z) = (x, y, z);
-
-    public double MagnitudeSq =&gt; (X * X) + (Y * Y) + (Z * Z);
+public int X;
+public int Y;
+// A public, parameterized constructor.
+public Point(int x, int y)
+{
+// We MUST initialize all fields inside this constructor.
+// If we commented out either line, we would get a compiler error.
+this.X = x;
+this.Y = y;
+}
+public void Display()
+{
+Console.WriteLine($&quot;({X}, {Y})&quot;);
+}
+}
+public class Program
+{
+public static void Main(string[] args)
+{
+// 1. Create a point using the default parameterless constructor.
+// X and Y will both be initialized to 0.
+Point origin = new Point();
+Console.Write(&quot;Origin point: &quot;);
+origin.Display(); // Output: (0, 0)
+// 2. Create a point using our custom parameterized constructor.
+Point p1 = new Point(15, 25);
+Console.Write(&quot;Custom point: &quot;);
+p1.Display(); // Output: (15, 25)
+}
 }</code></pre>
     </div>
   
 
-    <h2 id="ref-structs">5. ref struct & Span&lt;T&gt; Stack-Only Guarantees</h2>
-    <p>
-      A <code>ref struct</code> is strictly enforced by the compiler to reside <strong>only on the execution stack</strong>. It can never be boxed, cannot be stored in a class field, cannot be used in async state machines, and cannot be captured in lambdas. This guarantees high-speed zero-allocation operations like <code>Span&lt;T&gt;</code> and <code>ReadOnlySpan&lt;T&gt;</code>:
-    </p>
+    <h2 id="sec-14-lec-3-structures-vs-classes">Lecture 3: Structures vs. Classes</h2>
+    <h3>Introduction</h3>
+    <p>Knowing when to use a struct versus a class is a critical skill for any C# developer. This is one of the most fundamental and frequently asked interview questions because the choice has significant implications for memory management, performance, and program behavior. The core difference is that structs are value types and classes are reference types. Detailed Comparison</p>
+    <ul>
+      <li>Type &amp; Memory:</li>
+      <li>Class: A reference type. The object itself is created on the heap (a large pool of memory managed by the garbage collector). The variable holds only a small reference (or pointer) to the object's memory location.</li>
+      <li>Struct: A value type. The object is typically created on the stack (a fast, temporary memory region for method calls). The variable holds the actual data of the object directly.</li>
+      <li>Assignment Behavior:</li>
+      <li>Class: Assigning a class variable to another copies the reference. Both variables then point to the same single object.</li>
+      <li>Struct: Assigning a struct variable to another copies the entire data. This creates a new, independent instance.</li>
+      <li>Passing to Methods:</li>
+      <li>Class: When you pass a class object to a method, a copy of the reference is passed. The method can modify the state of the original object.</li>
+      <li>Struct: When you pass a struct to a method, a copy of the entire struct is passed. The method works on the copy; changes inside the method do not affect the original struct.</li>
+      <li>Inheritance:</li>
+      <li>Class: Fully supports single inheritance. A class can inherit from another class.</li>
+      <li>Struct: Does not support inheritance. A struct cannot inherit from another struct or class (except implicitly from System.ValueType).</li>
+      <li>Default Value:</li>
+      <li>Class: The default value of a class variable is null (it references nothing).</li>
+      <li>Struct: The default value is an instance of the struct with all its fields set to their own default values (0, false, etc.). A struct can never be null. Practical Example: The Method Pass-Through Test This example clearly demonstrates the fundamental difference in behavior when passing a class versus a struct to a method.</li>
+    </ul>
 
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">ref struct</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>public ref struct StackBuffer
+      <pre><code>// The class (reference type)
+public class ClassPoint { public int X; }
+// The struct (value type)
+public struct StructPoint { public int X; }
+public class Program
 {
-    public Span&lt;byte&gt; Buffer;
-    public int Length;
-}</code></pre>
+// This method attempts to change the X value of whatever it receives.
+public static void TryToChangeValue(ClassPoint cp, StructPoint sp)
+{
+cp.X = 100;
+sp.X = 100;
+}
+public static void Main(string[] args)
+{
+ClassPoint myClassPoint = new ClassPoint();
+myClassPoint.X = 10;
+StructPoint myStructPoint = new StructPoint();
+myStructPoint.X = 10;
+Console.WriteLine($&quot;Before method call: ClassPoint.X =
+{myClassPoint.X}, StructPoint.X = {myStructPoint.X}&quot;);
+// Pass both to the method.
+TryToChangeValue(myClassPoint, myStructPoint);
+Console.WriteLine($&quot;After method call: 	ClassPoint.X =
+{myClassPoint.X}, StructPoint.X = {myStructPoint.X}&quot;);
+}
+}
+Output:
+Before method call: ClassPoint.X = 10, StructPoint.X = 10
+After method call: 	ClassPoint.X = 100, StructPoint.X = 10
+Conclusion: The change to the ClassPoint persisted because the method received
+a reference to the original object. The change to the StructPoint was lost because
+the method only operated on a temporary copy.</code></pre>
     </div>
   
 
-    <h2 id="pitfalls">6. Struct Gotchas & Boxing Overhead</h2>
-    
-    <div class="callout callout-warning">
+    <div class="callout callout-tip">
       <div class="callout-header">
-        <span>🟠 Compiler Trap & Common Gotcha</span>
+        <span>🟢 Best Practice & Architecture Tip</span>
         
       </div>
       <div class="callout-content">
-        
-      <p>
-        <strong>Trap:</strong> Casting a struct to an interface or <code>object</code>:
-      </p>
-      <pre><code>GeoPoint p = new GeoPoint(1, 2);
-object boxed = p; // BOXING! Allocates a new object on the Heap!</code></pre>
-      <p>
-        <strong>Consequence:</strong> Destroys the zero-allocation performance benefit of structs and generates GC garbage.
-      </p>
-    
+        <ul><li>Ideal Answer: &quot;You should use a class by default. You should only consider</li></ul><p>using a struct when the type meets several criteria: it logically represents a</p><p>single value (like a number or a coordinate), it is small (typically under 16</p><p>bytes), it is immutable (won't change after creation), and it will not be</p><p>frequently 'boxed' or unboxed.&quot;</p>
       </div>
     </div>
   
+
+    <h2 id="sec-14-lec-4-readonly-structures">Lecture 4: Readonly Structures</h2>
+    <h3>Introduction</h3>
+    <p>A readonly struct is a special type of structure that is declared as immutable. This means that once an instance of the struct is created, its state can never be changed for its entire lifetime. This provides a strong compile-time guarantee of immutability. How It Works When you add the readonly modifier to a struct declaration, the C# compiler enforces two rules:</p>
+    <ol>
+      <li>All instance fields within the struct must also be declared as readonly.</li>
+      <li>Because all fields are readonly, they can only be assigned values either at their declaration or within the struct's constructor. This creates a powerful guarantee that the struct is truly a &quot;snapshot&quot; of data that cannot be altered. Why and When to Use It Use a readonly struct when you want to create small, lightweight, data-centric types that are guaranteed to be immutable. This is extremely useful for:</li>
+    </ol>
+    <ul>
+      <li>Creating predictable and safe code, especially in multi-threaded applications, as immutable types are inherently thread-safe.</li>
+      <li>Preventing accidental modification of data.</li>
+      <li>Clearly communicating the design intent that an object is just a &quot;value&quot; and should not have its state changed. Example A Color or RgbValue is a perfect candidate for a readonly struct.</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public readonly struct RgbColor
+{
+// All fields MUST be readonly.
+public readonly byte R;
+public readonly byte G;
+public readonly byte B;
+public RgbColor(byte r, byte g, byte b)
+{
+// Values can only be set here, in the constructor.
+this.R = r;
+this.G = g;
+this.B = b;
+}
+public void ChangeRed(byte newRed)
+{
+// The following line would cause a compiler error because R is
+readonly.
+// this.R = newRed; // ERROR! Cannot assign to 'R' because it is a
+readonly field.
+}
+}
+// --- In your Main method ---
+RgbColor myColor = new RgbColor(255, 165, 0); // Orange
+// 'myColor' is now immutable. Its state cannot be changed.</code></pre>
+    </div>
   
+
+    <h2 id="sec-14-lec-5-primitive-types-are-structures">Lecture 5: Primitive Types are Structures</h2>
+    <h3>Introduction</h3>
+    <p>This lecture reveals a fundamental truth about C#'s type system that clarifies much of the behavior we've seen so far. Most of the basic types that we think of as built-in keywords are, in fact, just convenient C# aliases for struct types defined in the .NET System namespace. How It Works: Keywords as Aliases Here is a list of some of the most common primitive types and the structs they represent:</p>
+    <ul>
+      <li>int is an alias for System.Int32</li>
+      <li>double is an alias for System.Double</li>
+      <li>bool is an alias for System.Boolean</li>
+      <li>char is an alias for System.Char</li>
+      <li>long is an alias for System.Int64</li>
+      <li>decimal is an alias for System.Decimal The Implication Because these fundamental types are structs, they are all value types. This single fact explains their core behavior:</li>
+      <li>They are stored on the stack, making them fast.</li>
+      <li>When you assign one int variable to another, the value is copied.</li>
+      <li>When you pass an int to a method, a copy of the value is passed.</li>
+      <li>They cannot be null (because they are not references). Since they are fully-featured structs, they even have methods you can call on them.</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int myNumber = 123;
+// We are calling the ToString() method on the System.Int32 struct.
+string myString = myNumber.ToString();
+// You can even call methods on a literal value!
+Console.WriteLine(123.ToString());</code></pre>
+    </div>
+  
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <span>🟢 Best Practice & Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul><li>Question: &quot;Is int in C# a primitive type or an object?&quot;</li><li>Ideal Answer: &quot;In C#, int is an alias for the System.Int32 struct. Because</li></ul><p>it's a struct, it is a value type. However, since all structs in .NET implicitly</p><p>inherit from System.ValueType, which in turn inherits from</p><p>System.Object, it can be treated like an object when needed (a process</p><p>called boxing), giving it methods like ToString().&quot;</p>
+      </div>
+    </div>
+  
+
+    <h2 id="sec-14-lec-6-imp-points-to-remember">Lecture 6: IMP Points to Remember</h2>
+    <ul>
+      <li>Structs are Value Types, Classes are Reference Types: This is the most important distinction. It dictates how they are stored in memory (stack vs. heap), how they behave on assignment (copy vs. reference), and how they are passed to methods.</li>
+      <li>Structs for Performance: Because structs are typically allocated on the stack, they do not create &quot;garbage&quot; that the garbage collector needs to clean up. For applications that create and destroy millions of small objects, using structs can lead to significant performance improvements.</li>
+      <li>Copying Behavior is a Double-Edged Sword: The fact that structs are copied on assignment prevents one part of your code from unexpectedly changing a value used by another part. However, if you expect reference behavior, it can be a source of bugs. Always be conscious of this when passing structs to methods.</li>
+      <li>Choose class by Default: This is the official Microsoft recommendation. The C# language and runtime are highly optimized for classes. You should only choose to use a struct when you have a specific, performance-related reason and the type you are creating fits the criteria: it's small, logically represents a single value, and is preferably immutable.</li>
+      <li>Embrace Immutability with readonly struct: readonly struct is a powerful feature for creating safe, predictable value types. When a type has no reason to change its state after creation, making it a readonly struct is an excellent design choice.</li>
+      <li>All The &quot;Primitives&quot; are Structs: Remembering that int, double, bool, etc., are all structs under the hood provides a unified mental model for understanding C#'s type system.</li>
+    </ul>
+
+    <div class="diagram-container">
+      <div class="diagram-title">📊 Diagram: Value Type (Struct) vs Reference Type (Class)</div>
+      <pre class="diagram-pre">[ Stack Memory ]                          [ Managed Heap Memory ]
++-------------------------+               
+| PointStruct p1 (X=10,Y=20)              
+| Allocated directly on   |               
+| the execution frame     |               
++-------------------------+               +--------------------------------------+
+| PointClass p2 (Pointer) |--------------&gt;| PointClass Instance (Heap Allocated) |
++-------------------------+               +--------------------------------------+</pre>
+    </div>
+  
+    <h2 id="sec-14-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
+    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
+  <ul>
+  <li>PAGE 1 ---</li>
+  <li>PAGE 2 ---</li>
+  <li>PAGE 3 ---</li>
+  <li>PAGE 4 ---</li>
+  <li>Classes supports to initialize &quot;non-static fields“, in declaration. 11. Classes support &quot;protected&quot; and &quot;protected internal&quot; access modifiers. 12. Class's reference variables support to assign &quot;null&quot;.   Comparison Table - Class (vs) Structure</li>
+  <li>PAGE 5 ---</li>
+  <li>PAGE 6 ---</li>
+</ul>
+
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -607,27 +779,31 @@ object boxed = p; // BOXING! Allocates a new object on the Heap!</code></pre>
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#struct-value-semantics" class="toc-link">1. Structs vs Classes: Value vs Reference Semantics</a>
+        <a href="#sec-14-lec-1-intro-and-working-with-structs" class="toc-link">Lecture 1: Intro and Working with Structs</a>
       </li>
     
       <li class="toc-item">
-        <a href="#stack-allocation-diagram" class="toc-link">2. Memory Layout: Inlined Structs on Stack</a>
+        <a href="#sec-14-lec-2-structures-with-constructors" class="toc-link">Lecture 2: Structures with Constructors</a>
       </li>
     
       <li class="toc-item">
-        <a href="#copy-by-value" class="toc-link">3. Copy-on-Assignment &amp; Mutation Behavior</a>
+        <a href="#sec-14-lec-3-structures-vs-classes" class="toc-link">Lecture 3: Structures vs. Classes</a>
       </li>
     
       <li class="toc-item">
-        <a href="#readonly-structs" class="toc-link">4. readonly struct &amp; Defensive Copy Prevention</a>
+        <a href="#sec-14-lec-4-readonly-structures" class="toc-link">Lecture 4: Readonly Structures</a>
       </li>
     
       <li class="toc-item">
-        <a href="#ref-structs" class="toc-link">5. ref struct &amp; Span&lt;T&gt; Stack-Only Guarantees</a>
+        <a href="#sec-14-lec-5-primitive-types-are-structures" class="toc-link">Lecture 5: Primitive Types are Structures</a>
       </li>
     
       <li class="toc-item">
-        <a href="#pitfalls" class="toc-link">6. Struct Gotchas &amp; Boxing Overhead</a>
+        <a href="#sec-14-lec-6-imp-points-to-remember" class="toc-link">Lecture 6: IMP Points to Remember</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-14-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

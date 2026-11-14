@@ -443,114 +443,57 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="params-collections">1. Enhanced params Collections (Span & List)</h2>
-    <p>
-      Historically, <code>params</code> was restricted strictly to single-dimensional arrays (<code>params int[]</code>), forcing heap array allocations on every call. In C# 13 (.NET 9), <code>params</code> can be applied to <code>ReadOnlySpan&lt;T&gt;</code>, <code>Span&lt;T&gt;</code>, <code>IEnumerable&lt;T&gt;</code>, and <code>List&lt;T&gt;</code>:
-    </p>
-
-    
+      <h2 id="sec-36-params-collections">1. Enhanced params Collections in C# 13 (.NET 9)</h2>
+      <p>Prior to C# 13, the <code>params</code> keyword was strictly limited to array types (<code>params T[]</code>), forcing heap array allocations at every invocation. C# 13 generalizes <code>params</code> to any collection type, including stack-allocated spans:</p>
+      
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">params ReadOnlySpan in C# 13</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>// In C# 13: params with ReadOnlySpan = ZERO HEAP ALLOCATIONS!
-public static int CalculateFastSum(params ReadOnlySpan&lt;int&gt; numbers)
+      <pre><code>// Zero-allocation invocation with ReadOnlySpan&lt;T&gt;:
+public void LogMessages(params ReadOnlySpan&lt;string&gt; messages)
 {
-    int sum = 0;
-    foreach (var n in numbers) sum += n;
-    return sum;
+    foreach (var msg in messages)
+    {
+        Console.WriteLine(msg);
+    }
 }
 
-// Caller usage: Stack buffer allocated with 0 GC overhead!
-int total = CalculateFastSum(10, 20, 30, 40);</code></pre>
+// Invocations allocate ZERO heap memory!
+LogMessages(&quot;Init&quot;, &quot;Processing&quot;, &quot;Complete&quot;);</code></pre>
     </div>
   
 
-    <h2 id="new-lock-object">2. The Dedicated System.Threading.Lock Object</h2>
-    <p>
-      For over two decades, C# synchronization required locking on arbitrary objects (<code>new object()</code>). .NET 9 introduces a dedicated <code>System.Threading.Lock</code> object with native RAII scope semantics:
-    </p>
-
-    
+      <h2 id="sec-36-system-threading-lock">2. Dedicated System.Threading.Lock Primitive</h2>
+      <p>.NET 9 and C# 13 introduce <code>System.Threading.Lock</code>, replacing arbitrary <code>object</code> synchronization with a lightweight, high-performance locking primitive:</p>
+      
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">System.Threading.Lock in .NET 9</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>using System.Threading;
-
-public class HighPerformanceVault
+      <pre><code>public class AccountService
 {
-    // Dedicated modern Lock object
     private readonly Lock _gate = new();
 
-    public void SecureAccess()
+    public void Transfer(decimal amount)
     {
-        // Compiler lowers to _gate.EnterScope() with zero syncblock overhead!
-        lock (_gate)
+        lock (_gate) // Uses optimized Scope struct with EnterScope()
         {
-            Console.WriteLine(&quot;Protected work executing inside modern .NET 9 Lock.&quot;);
+            // Thread-safe critical region
         }
     }
 }</code></pre>
     </div>
   
-
-    <h2 id="field-keyword">3. Semi-Auto Properties & The field Keyword Preview</h2>
-    <p>
-      In C# 13 preview, the <code>field</code> contextual keyword eliminates declaring explicit private backing fields when only one accessor needs validation:
-    </p>
-
     
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">field Keyword Preview</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>public class Product
-{
-    // Semi-auto property: 'field' refers to the compiler backing field!
-    public string Name
-    {
-        get =&gt; field;
-        set =&gt; field = string.IsNullOrWhiteSpace(value) ? throw new ArgumentException() : value.Trim();
-    }
-}</code></pre>
-    </div>
-  
-
-    <h2 id="ref-struct-anti-escape">4. Enhanced Ref Structs & Anti-Escape Rules</h2>
-    <p>
-      C# 13 allows <code>ref struct</code> types to implement generic interfaces and participate in generic methods using the <code>allows ref struct</code> anti-constraint, enabling zero-copy abstractions in modern high-throughput libraries.
-    </p>
-
-    <h2 id="pitfalls">5. C# 13 Migration & Compatibility</h2>
-    
-    <div class="callout callout-tip">
-      <div class="callout-header">
-        <span>🟢 Best Practice & Architecture Tip</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        When upgrading performance-critical libraries to .NET 9, overload existing <code>params T[]</code> methods with <code>params ReadOnlySpan&lt;T&gt;</code>. Callers targeting .NET 9 will automatically bind to the zero-allocation span overload without any source code changes!
-      </p>
-    
-      </div>
-    </div>
-  
-  
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -582,23 +525,11 @@ public class HighPerformanceVault
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#params-collections" class="toc-link">1. Enhanced params Collections (Span &amp; List)</a>
+        <a href="#sec-36-params-collections" class="toc-link">1. Enhanced params Collections</a>
       </li>
     
       <li class="toc-item">
-        <a href="#new-lock-object" class="toc-link">2. The Dedicated System.Threading.Lock Object</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#field-keyword" class="toc-link">3. Semi-Auto Properties &amp; The field Keyword Preview</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#ref-struct-anti-escape" class="toc-link">4. Enhanced Ref Structs &amp; Anti-Escape Rules</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#pitfalls" class="toc-link">5. C# 13 Migration &amp; Compatibility</a>
+        <a href="#sec-36-system-threading-lock" class="toc-link">2. New System.Threading.Lock</a>
       </li>
     
       </ul>

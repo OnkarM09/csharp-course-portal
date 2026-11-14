@@ -443,135 +443,49 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="anonymous-concept">1. What Are Anonymous Types & Ephemeral DTOs</h2>
-    <p>
-      An <strong>anonymous type</strong> provides a clean, concise way to encapsulate a set of read-only properties into a single object without having to explicitly define a formal class first. They are declared using the <code>new { ... }</code> syntax with <code>var</code>:
-    </p>
+    <h2 id="sec-23-lec-1-anonymous-types">Lecture 1: Anonymous Types</h2>
+    <h3>Introduction</h3>
+    <p>An anonymous type is a feature in C# that allows you to create a simple object to hold a set of read-only properties without having to explicitly define a full class first. It's a convenient, on-the-fly way to create a temporary data structure. The compiler generates a class for you behind the scenes, but this class is &quot;anonymous&quot; because it has no name that you can use in your code. How It Works: Compiler Generation The var keyword is essential when working with anonymous types. Because you don't know the name of the class the compiler is about to create, you need var to hold a reference to the object. When you write this: var user = new { Name = &quot;Alice&quot;, Age = 30 }; The C# compiler does this behind the scenes:</p>
+    <ol>
+      <li>It invents a unique, &quot;unspeakable&quot; internal name for a new class, something like &lt;&gt;f__AnonymousType0. It generates the actual class definition with read-only properties matching what you provided: internal class &lt;&gt;f__AnonymousType0 { public string Name { get; } public int Age { get; } public &lt;&gt;f__AnonymousType0(string name, int age) { this.Name = name; this.Age = age; } // It also auto-generates Equals, GetHashCode, and ToString! }</li>
+      <li>It then replaces your original line with: &lt;&gt;f__AnonymousType0 user = new &lt;&gt;f__AnonymousType0(&quot;Alice&quot;, 30); Because you can't type that mangled name, var is the only practical way to declare the variable. Key Characteristics</li>
+    </ol>
+    <ul>
+      <li>Read-Only: All properties of an anonymous type are read-only. Once created, the object is immutable.</li>
+      <li>Type Inference: The compiler infers the property names and types from the initialization syntax.</li>
+      <li>Reference Type: The generated type is a class (a reference type) that inherits directly from System.Object.</li>
+      <li>Compiler Optimization: If you create two anonymous types in the same assembly that have the same properties with the same types in the same order, the compiler is smart enough to reuse the same generated class definition. Why and When to Use It The primary use case is for holding temporary, intermediate data, especially in LINQ queries. When you use a .Select() clause to project data from a larger object into a smaller, temporary shape, an anonymous type is perfect. Example var product = new { Name = &quot;Laptop&quot;, Price = 1200.50M, IsAvailable = true }; Console.WriteLine($&quot;Product Name: {product.Name}&quot;); Console.WriteLine($&quot;Price: {product.Price:C}&quot;); // The following line would cause a compiler error because the properties are read-only. // product.Name = &quot;Desktop&quot;; // ERROR!</li>
+    </ul>
 
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Anonymous Type Syntax</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>var userSummary = new 
-{ 
-    Id = 101, 
-    Username = &quot;octocat&quot;, 
-    IsActive = true,
-    LoginTime = DateTime.UtcNow 
-};
+    <h2 id="sec-23-lec-2-nested-anonymous-types">Lecture 2: Nested Anonymous Types</h2>
+    <h3>Introduction</h3>
+    <p>An anonymous type is not limited to holding only primitive types. One of its properties can be another anonymous type, allowing you to create simple, nested, hierarchical data structures on the fly. How It Works This works naturally because the compiler infers a property's type from the value it is assigned. If you assign a new anonymous type object as a property value, the compiler will generate the necessary nested class structure for you. Example Let's create an anonymous type for a user that includes a nested Address object. var userProfile = new { UserId = 101, Username = &quot;jane.doe&quot;, ContactInfo = new // This is a nested anonymous type { Email = &quot;jane.doe@example.com&quot;, PhoneNumber = &quot;555-1234&quot; }, IsActive = true }; // You can access the nested properties using standard dot notation. Console.WriteLine($&quot;Username: {userProfile.Username}&quot;); Console.WriteLine($&quot;Email: {userProfile.ContactInfo.Email}&quot;); // The nested object itself can be accessed. var contact = userProfile.ContactInfo; Console.WriteLine($&quot;Phone: {contact.PhoneNumber}&quot;);</p>
 
-Console.WriteLine($&quot;User: {userSummary.Username}, Active: {userSummary.IsActive}&quot;);</code></pre>
-    </div>
-  
+    <h2 id="sec-23-lec-3-anonymous-arrays">Lecture 3: Anonymous Arrays</h2>
+    <h3>Introduction</h3>
+    <p>An anonymous array is an array whose element type is implicitly inferred by the compiler from the elements you place inside the array initializer. It's a convenient shorthand that saves you from having to specify the type explicitly. How It Works You create an anonymous array using the new[] { ... } syntax, without putting a type name before the square brackets. The compiler will look at all the elements in the initializer and determine the best common type for them. Rules</p>
+    <ol>
+      <li>All elements in an anonymous array initializer must be of the same type, or be implicitly convertible to a single common type. ◦ 	new[] { 1, 5, 10 } creates an int[]. ◦ 	new[] { 1, 2.5, 3 } creates a double[] because int can be safely converted to double. ◦ 	new[] { 1, &quot;hello&quot; } will cause a compiler error because there is no common type between int and string.</li>
+      <li>You can create an array of anonymous types. The compiler will check that all anonymous objects in the initializer have the same property names and types. Example // Compiler infers this is an int[] array. var numbers = new[] { 2, 4, 6, 8 }; // Create an array of anonymous types. var products = new[] { new { Name = &quot;Apple&quot;, Category = &quot;Fruit&quot; }, new { Name = &quot;Broccoli&quot;, Category = &quot;Vegetable&quot; }, new { Name = &quot;Orange&quot;, Category = &quot;Fruit&quot; } }; // We can now iterate over this strongly-typed anonymous array. foreach (var product in products) { Console.WriteLine($&quot;{product.Name} is in the {product.Category} category.&quot;); }</li>
+    </ol>
 
-    <h2 id="compiler-lowering">2. Under the Hood: Roslyn Synthetic Class Generation</h2>
-    
-    <div class="callout callout-deepdive">
-      <div class="callout-header">
-        <span>🟣 Under the Hood / Compiler Lowering</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        When you write <code>new { Id = 101, Username = "octocat" }</code>, the compiler automatically generates a hidden internal generic class:
-      </p>
-      <pre><code>[CompilerGenerated]
-internal sealed class &lt;&gt;f__AnonymousType0&lt;&lt;Id&gt;j__TPar, &lt;Username&gt;j__TPar&gt;
-{
-    private readonly &lt;Id&gt;j__TPar &lt;Id&gt;i__Field;
-    private readonly &lt;Username&gt;j__TPar &lt;Username&gt;i__Field;
+    <h2 id="sec-23-lec-4-points-to-remember">Lecture 4: Points to Remember</h2>
+    <ul>
+      <li>Temporary, Read-Only Data Containers: This is the core purpose of anonymous types. They are designed for creating simple, immutable data structures for immediate, local use. They are not a replacement for defining proper class or struct types for your application's business model.</li>
+      <li>LINQ's Best Friend: The most important real-world use case for anonymous types is in the Select clause of LINQ queries. They are perfect for projecting the results of a query into a new, flat shape without having to define a new class for every possible query result. // Example with LINQ var productNamesAndPrices = productList.Select(p =&gt; new { p.Name, p.Price });</li>
+      <li>Local Scope: Because you cannot write down the name of an anonymous type, their use is effectively limited to the local scope of the method where they are created. You cannot, for example, have a method that returns an anonymous type in a strongly-typed way (you would have to return object or dynamic, which loses the benefit of type safety and IntelliSense).</li>
+      <li>var is Essential: Reinforce that the var keyword is almost always used to hold a reference to an anonymous type object because you don't know the compiler-generated class name to write it down yourself. It is the key that unlocks the feature.</li>
+    </ul>
 
-    public &lt;Id&gt;j__TPar Id => &lt;Id&gt;i__Field;
-    public &lt;Username&gt;j__TPar Username => &lt;Username&gt;i__Field;
+    <h2 id="sec-23-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
+    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
+  <ul>
+  <li>PAGE 1 ---</li>
+  <li>PAGE 2 ---</li>
+  <li>Anonymous types can't casted to any other type, except into System.Object type. • You can't create a field, property, event or return type of a method, parameter type as of anonymous type. • It is recommended to use the anonymous objects within the same method, in which they are created. You can pass anonymous type object to method as parameter as 'System.Object' type; but it's not recommended.    Nested Anonymous Types You can nest an anonymous object into another. Then two anonymous types will be created.     Anonymous Arrays You can create 'array of anonymous objects' or 'implicitly typed array' with group of anonymous objects. All objects must contain same set of properties.</li>
+  <li>PAGE 3 ---</li>
+</ul>
 
-    public override bool Equals(object value) { /* ... */ }
-    public override int GetHashCode() { /* ... */ }
-    public override string ToString() { /* ... */ }
-}</code></pre>
-      <p>
-        If two anonymous types in the same assembly share the exact same property names and types in the exact same order, the compiler reuses the exact same synthetic class!
-      </p>
-    
-      </div>
-    </div>
-  
-
-    <h2 id="immutability-equality">3. Read-Only Immutability & Value Equality</h2>
-    <p>
-      Properties on anonymous types are strictly <strong>read-only</strong>. Furthermore, the compiler overrides <code>Equals()</code> and <code>GetHashCode()</code> to provide <strong>value-based equality</strong>:
-    </p>
-
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Anonymous Type Value Equality</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>var p1 = new { Sku = &quot;SKU-99&quot;, Price = 19.99m };
-var p2 = new { Sku = &quot;SKU-99&quot;, Price = 19.99m };
-
-// Value equality evaluates to TRUE even though they are distinct heap objects!
-Console.WriteLine(p1.Equals(p2)); // True
-Console.WriteLine(p1 == p2);      // False (== performs reference equality for classes)</code></pre>
-    </div>
-  
-
-    <h2 id="linq-projection">4. LINQ Select Projections with Anonymous Types</h2>
-    <p>
-      Anonymous types shine brightest when projecting database columns or large domain entities in LINQ queries:
-    </p>
-
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">LINQ Projection</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>var activeOrders = dbContext.Orders
-    .Where(o =&gt; o.IsPending)
-    .Select(o =&gt; new 
-    {
-        o.OrderId,
-        CustomerName = o.Customer.FullName,
-        ItemCount = o.Items.Count
-    })
-    .ToList();</code></pre>
-    </div>
-  
-
-    <h2 id="pitfalls">5. Limitations & Method Boundary Traps</h2>
-    
-    <div class="callout callout-warning">
-      <div class="callout-header">
-        <span>🟠 Compiler Trap & Common Gotcha</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        <strong>Limitation:</strong> You cannot declare a method return type as an anonymous type:
-      </p>
-      <pre><code>public var GetCustomer() { ... } // ILLEGAL in C#!</code></pre>
-      <p>
-        Returning an anonymous type forces the return type to be <code>object</code>, stripping all property IntelliSense. For public API boundaries, use modern C# <strong>Tuples</strong> or <strong>Records</strong> instead.
-      </p>
-    
-      </div>
-    </div>
-  
-  
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -603,23 +517,23 @@ Console.WriteLine(p1 == p2);      // False (== performs reference equality for c
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#anonymous-concept" class="toc-link">1. What Are Anonymous Types &amp; Ephemeral DTOs</a>
+        <a href="#sec-23-lec-1-anonymous-types" class="toc-link">Lecture 1: Anonymous Types</a>
       </li>
     
       <li class="toc-item">
-        <a href="#compiler-lowering" class="toc-link">2. Under the Hood: Roslyn Synthetic Class Generation</a>
+        <a href="#sec-23-lec-2-nested-anonymous-types" class="toc-link">Lecture 2: Nested Anonymous Types</a>
       </li>
     
       <li class="toc-item">
-        <a href="#immutability-equality" class="toc-link">3. Read-Only Immutability &amp; Value Equality</a>
+        <a href="#sec-23-lec-3-anonymous-arrays" class="toc-link">Lecture 3: Anonymous Arrays</a>
       </li>
     
       <li class="toc-item">
-        <a href="#linq-projection" class="toc-link">4. LINQ Select Projections with Anonymous Types</a>
+        <a href="#sec-23-lec-4-points-to-remember" class="toc-link">Lecture 4: Points to Remember</a>
       </li>
     
       <li class="toc-item">
-        <a href="#pitfalls" class="toc-link">5. Limitations &amp; Method Boundary Traps</a>
+        <a href="#sec-23-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

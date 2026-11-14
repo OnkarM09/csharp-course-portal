@@ -443,181 +443,216 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="conversion-categories">1. Conversion Categories: Implicit vs Explicit</h2>
-    <p>
-      Because C# is strictly typed, converting a variable from one data type to another requires clear rules regarding safety and data preservation:
-    </p>
+    <h2 id="sec-7-lec-1-overview-of-type-conversion">Lecture 1: Overview of Type Conversion</h2>
+    <h3>Introduction</h3>
+    <p>Type conversion, also known as type casting, is the process of converting a variable from one data type to another. This is a fundamental and frequent requirement in programming. You often receive data in one format but need it in another to perform operations. For instance, you might get a user's age as string text from a console input, but you need to convert it to an int to perform mathematical calculations with it. C# is a statically-typed language, meaning the compiler must know the type of every variable. Type conversion is the mechanism that allows us to work within this system flexibly. Categories of Conversion There are two fundamental categories of conversion in C#, defined by whether the conversion is considered &quot;safe&quot; or &quot;unsafe.&quot;</p>
+    <ol>
+      <li>Implicit Conversions (Safe Conversions): These are conversions that are guaranteed to succeed without any loss of data. The C# compiler knows they are safe and performs them automatically for you without requiring any special syntax. This happens when you convert from a &quot;smaller,&quot; less precise type to a &quot;larger,&quot; more precise type.</li>
+      <li>Explicit Conversions (Unsafe Conversions): These are conversions where there is a potential risk of losing information or throwing an exception. Because the conversion is not guaranteed to succeed, the C# compiler requires you to explicitly state your intent to perform the conversion. This is you telling the compiler, &quot;I understand the risk, but I want to do this anyway.&quot; This is achieved through three primary methods: ◦ 	Casting: Using the (type) operator. ◦ 	Parsing: Using helper methods like int.Parse() to convert strings. ◦ 	Helper Classes: Using the System.Convert class for more controlled conversions. We will explore each of these in detail in the following lectures.</li>
+    </ol>
 
-    
-    <div class="table-responsive">
-      <table>
-        <thead><tr><th>Conversion Category</th><th>Direction / Operation</th><th>Safety &amp; Data Loss</th><th>Syntax Required</th><th>Example</th></tr></thead>
-        <tbody><tr><td><strong>Implicit Conversion</strong></td><td>Narrower type &rarr; Broader type (Widening)</td><td>Guaranteed 100% safe; no loss of magnitude</td><td>None; handled automatically by compiler</td><td><code>int small = 42; long big = small;</code></td></tr><tr><td><strong>Explicit Cast</strong></td><td>Broader type &rarr; Narrower type (Narrowing)</td><td>Unsafe; truncation or integer overflow possible</td><td>Explicit cast operator <code>(targetType)</code></td><td><code>double d = 9.99; int i = (int)d; // i is 9</code></td></tr><tr><td><strong>Helper Methods</strong></td><td>Unrelated types (e.g. string to int)</td><td>Throws exceptions if format invalid</td><td><code>Convert.ToInt32(), int.Parse()</code></td><td><code>int val = int.Parse("123");</code></td></tr><tr><td><strong>Defensive Parsing</strong></td><td>String to primitive without throwing</td><td>100% safe; returns boolean status</td><td><code>int.TryParse(str, out val)</code></td><td><code>int.TryParse("42", out int val);</code></td></tr></tbody>
-      </table>
-    </div>
-  
+    <h2 id="sec-7-lec-2-implicit-casting">Lecture 2: Implicit Casting</h2>
+    <h3>Introduction</h3>
+    <p>Implicit casting is the simplest form of type conversion. It is performed automatically by the C# compiler when it can verify that the conversion is guaranteed to be safe and that no data will be lost. It's often called a widening conversion because you are moving a value into a data type that has a wider range or greater precision. How It Works The compiler allows this to happen automatically because the destination type can fully represent every possible value of the source type. For example, the long data type has a much larger range than the int data type. Therefore, any possible int value can fit comfortably inside a long without any risk of overflow. The compiler recognizes this and performs the conversion without requiring any special syntax from you. When to Use It You don't &quot;choose&quot; to use it; it simply happens whenever you assign a variable of a smaller compatible type to a variable of a larger type. Common Examples</p>
+    <ul>
+      <li>int to long:</li>
+    </ul>
 
-    <h2 id="widening-narrowing-diagram">2. Numeric Widening vs Narrowing Diagram</h2>
-    
-    <div class="diagram-container">
-      <div class="diagram-title">📊 Diagram: Numeric Hierarchy: Safe Widening vs Potentially Truncating Narrowing</div>
-      <pre class="diagram-pre">SAFE IMPLICIT WIDENING (No data loss):
-byte (8-bit) ---&gt; short (16-bit) ---&gt; int (32-bit) ---&gt; long (64-bit) ---&gt; decimal / double
-[0..255]          [-32k..+32k]        [-2.1B..+2.1B]    [-9 Quint..+9 Quint]
-
-POTENTIALLY DESTRUCTIVE EXPLICIT CAST (Narrowing):
-long (64-bit) ---(cast)---&gt; int (32-bit) ---(cast)---&gt; byte (8-bit)
-(If value exceeds 255, bits are chopped or OverflowException is thrown!)</pre>
-    </div>
-  
-
-    <h2 id="checked-unchecked">3. Overflow Handling: checked vs unchecked</h2>
-    <p>
-      By default in C#, integer arithmetic that overflows wraps around silently without throwing an exception:
-    </p>
-
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">checked vs unchecked Arithmetic</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>int max = int.MaxValue; // 2,147,483,647
-
-// Silent overflow (default behavior in unchecked context):
-int wrapped = max + 1;
-Console.WriteLine(wrapped); // Outputs: -2147483648 ! (Wraps around to MinValue)
-
-// Enforcing overflow safety with 'checked':
-try
-{
-    checked
-    {
-        int safeVal = max + 1; // Throws System.OverflowException!
-    }
-}
-catch (OverflowException ex)
-{
-    Console.WriteLine($&quot;Caught overflow protection: {ex.Message}&quot;);
-}</code></pre>
+      <pre><code>int numberOfUsers = 50000;
+long bigNumberOfUsers = numberOfUsers; // Implicitly cast. No data loss
+possible.
+Console.WriteLine(bigNumberOfUsers);</code></pre>
     </div>
   
+    <ul>
+      <li>int to double: An int is a whole number, while a double can hold decimals. This is safe because every whole number can be represented as a number with a .0 decimal part. s int itemCount = 12; double itemCountAsDouble = itemCount; // Implicitly cast. The value becomes 12.0. Console.WriteLine(itemCountAsDouble); ```</li>
+      <li>float to double: A double has greater precision (more decimal places) than a float, so this is also a safe, widening conversion.</li>
+    </ul>
 
-    <h2 id="convert-class">4. System.Convert Helper Class</h2>
-    <p>
-      The <code>System.Convert</code> class converts between base CTS data types and rounds floating points to the nearest even integer (Banker's Rounding):
-    </p>
-
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">System.Convert Usage</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>string textVal = &quot;12345&quot;;
-int convertedInt = Convert.ToInt32(textVal);
-
-double floatVal = 4.6;
-int roundedInt = Convert.ToInt32(floatVal); // Rounds to 5 (Banker's rounding)
-
-// Convert handles null gracefully by returning 0
-string nullStr = null;
-int fromNull = Convert.ToInt32(nullStr); // Returns 0, does NOT throw!</code></pre>
+      <pre><code>float price = 49.95F;
+double morePrecisePrice = price; // Implicitly cast.
+Console.WriteLine(morePrecisePrice);</code></pre>
     </div>
   
 
-    <h2 id="parse-tryparse">5. String Parsing: Parse() vs TryParse() Pattern</h2>
-    <p>
-      Converting user-supplied strings into numbers is a ubiquitous programming task. There is a profound performance and resilience difference between <code>Parse</code> and <code>TryParse</code>:
-    </p>
-
-    
-    <div class="table-responsive">
-      <table>
-        <thead><tr><th>Approach</th><th>Syntax</th><th>On Valid Input</th><th>On Malformed Input</th><th>Performance Profile</th></tr></thead>
-        <tbody><tr><td><code>int.Parse</code></td><td><code>int.Parse(str)</code></td><td>Returns integer</td><td>Throws <code>FormatException</code> or <code>ArgumentNullException</code></td><td>Costly on error (stack unwinding)</td></tr><tr><td><code>int.TryParse</code></td><td><code>int.TryParse(str, out int val)</code></td><td>Returns <code>true</code>, outputs value</td><td>Returns <code>false</code>, outputs <code>0</code></td><td>Ultra-fast (zero exceptions thrown)</td></tr></tbody>
-      </table>
-    </div>
-  
-
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Robust TryParse Pattern</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>// The Industry-Standard Defensive Parsing Pattern
-string rawInput = &quot;450&quot;;
-
-if (int.TryParse(rawInput, out int parsedSpeed))
-{
-    Console.WriteLine($&quot;Successfully parsed vehicle speed: {parsedSpeed} km/h&quot;);
-}
-else
-{
-    Console.WriteLine(&quot;Invalid numeric speed provided.&quot;);
-}</code></pre>
-    </div>
-  
-
-    <h2 id="user-defined-conversions">6. User-Defined explicit and implicit Operators</h2>
-    <p>
-      You can define custom conversion operators between your custom domain classes using <code>implicit operator</code> and <code>explicit operator</code>:
-    </p>
-
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Custom Conversion Operators</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>public readonly struct Currency
-{
-    public decimal Amount { get; }
-
-    public Currency(decimal amount) =&gt; Amount = amount;
-
-    // Implicit conversion from decimal to Currency (safe)
-    public static implicit operator Currency(decimal d) =&gt; new Currency(d);
-
-    // Explicit conversion from Currency to double (loss of exact decimal precision)
-    public static explicit operator double(Currency c) =&gt; (double)c.Amount;
-}</code></pre>
-    </div>
-  
-
-    <h2 id="pitfalls">7. Common Casting Traps</h2>
-    
-    <div class="callout callout-warning">
+    <div class="callout callout-tip">
       <div class="callout-header">
-        <span>🟠 Compiler Trap & Common Gotcha</span>
+        <span>🟢 Best Practice & Architecture Tip</span>
         
       </div>
       <div class="callout-content">
-        
-      <p>
-        <strong>Trap:</strong> Writing <code>int val = int.Parse(null);</code> throws <code>ArgumentNullException</code>, whereas <code>int val = (int)objectRef;</code> throws <code>NullReferenceException</code> if <code>objectRef</code> is null.
-      </p>
-      <p>
-        <strong>Best Practice:</strong> Always validate strings with <code>!string.IsNullOrWhiteSpace()</code> or use <code>TryParse</code>. For reference casting, use the safe <code>is</code> pattern: <code>if (obj is Customer c) { ... }</code>.
-      </p>
-    
+        <ul><li>Question: &quot;Why can you assign an int to a double variable directly, but not</li></ul><p>the other way around?&quot;</p><ul><li>Ideal Answer: &quot;You can assign an int to a double because it's an implicit,</li></ul><p>widening conversion. Every possible integer value can be safely represented</p><p>as a double without any loss of data, so the compiler performs it</p><p>automatically for convenience and safety. The other way around requires an</p><p>explicit cast because you could lose the fractional part of the double, which</p><p>is a form of data loss that the programmer must explicitly acknowledge.&quot;</p>
       </div>
     </div>
   
+
+    <h2 id="sec-7-lec-3-explicit-casting">Lecture 3: Explicit Casting</h2>
+    <h3>Introduction</h3>
+    <p>Explicit casting is a conversion that you must manually request from the compiler. You do this when you are converting from a &quot;larger&quot; type to a &quot;smaller&quot; type, a process known as a narrowing conversion. This action is potentially unsafe because it can result in data loss or, in more complex scenarios, throw an exception at run-time. How It Works: The Cast Operator (type) You perform an explicit cast by placing the destination data type in parentheses before the variable you want to convert. By doing this, you are effectively telling the compiler: &quot;I am aware that this conversion might lose data, but I accept the risk and I am taking responsibility for the result.&quot; Common Scenarios and Data Loss</p>
+    <ol>
+      <li>Floating-Point to Integer (Truncation): When you cast a double or float to an integer type like int, the entire fractional part is truncated (chopped off). It is not rounded.</li>
+    </ol>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>double myDouble = 9.99;
+int myInt = (int)myDouble; // You MUST use the (int) cast operator.
+Console.WriteLine(myInt); 	// Output: 9. The .99 is completely lost.
+2. 	Larger Integer to Smaller Integer (Overflow Risk): When you cast a larger
+integer type (like long) to a smaller one (like int), if the value is within the
+smaller type's range, it works fine. However, if the value is too large, an
+overflow will occur, resulting in a completely different and seemingly
+random number as the bits are reinterpreted.
+C#
+long myLong = 100;
+int myIntFromLong = (int)myLong; // This is safe.
+Console.WriteLine(myIntFromLong); // Output: 100
+long veryLargeLong = 3000000000L; // This is larger than
+int.MaxValue
+// The following line would result in an overflow and an incorrect
+value.
+// int overflowedInt = (int)veryLargeLong;
+InvalidCastException
+In the context of object-oriented programming, if you try to cast an object to a
+type that it is not compatible with, the program will compile, but it will throw an
+InvalidCastException at run-time.</code></pre>
+    </div>
   
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <span>🟢 Best Practice & Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul><li>Question: &quot;What will be the result of the following code: double d = 9.99;</li></ul><p>int i = (int)d;?&quot;</p><ul><li>Ideal Answer: &quot;The value of i will be 9. Explicitly casting a double to an int</li></ul><p>performs truncation, not rounding. The decimal part is completely</p><p>discarded.&quot; This is a very common question to check if you understand the</p><p>data loss mechanism.</p>
+      </div>
+    </div>
+  
+
+    <h2 id="sec-7-lec-4-parse">Lecture 4: Parse</h2>
+    <h3>Introduction</h3>
+    <p>Parsing is the specific process of converting the string representation of a value into its actual data type. This is extremely common because data from external sources—user input, text files, web responses—almost always arrives as a string. Every primitive type in C# (int, double, bool, etc.) provides a static Parse method to handle this. How It Works The Parse method takes a string as input and attempts to interpret it as a value of its type. For example, int.Parse() expects a string containing only digits (and possibly a leading minus sign). The Risk: FormatException The Parse method is &quot;optimistic.&quot; It assumes the string will be in a valid format. If it is not, the method will fail by throwing a FormatException. If this exception is not handled (with a try-catch block, a more advanced topic), your entire application will crash. When to Use It You should only use Parse when you are absolutely certain that the string source is reliable and will always contain a valid value. For example, reading from a configuration file that you control, or after you have already validated the string through other means. You should never use Parse on direct user input. Common Examples</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string numberString = &quot;123&quot;;
+int parsedInt = int.Parse(numberString); // Works perfectly. parsedInt is
+123.
+string boolString = &quot;true&quot;;
+bool parsedBool = bool.Parse(boolString); // Works perfectly. parsedBool is
+true.
+string invalidNumberString = &quot;123a&quot;;
+// The following line will THROW a FormatException and crash the program
+if not handled.
+// int errorInt = int.Parse(invalidNumberString);</code></pre>
+    </div>
+  
+
+    <h2 id="sec-7-lec-5-tryparse">Lecture 5: TryParse</h2>
+    <h3>Introduction</h3>
+    <p>The TryParse method is the safe, robust, and preferred alternative to Parse for converting strings, especially when dealing with unreliable data like user input. Instead of throwing an exception upon failure, it gracefully returns a bool indicating whether the conversion succeeded or not. How It Works: The out Parameter The TryParse method has a very distinct signature, typically bool TryParse(string s, out T result), where T is the type.</p>
+    <ol>
+      <li>It attempts to parse the input string s.</li>
+      <li>If the conversion is successful, it returns true and places the converted value into the result variable (which is passed using the out keyword).</li>
+      <li>If the conversion fails, it returns false and places the default value for the type (e.g., 0 for an int) into the result variable.</li>
+      <li>Crucially, no exception is ever thrown, allowing you to handle failures elegantly with a simple if statement. When to Use It Almost always. This should be your default choice for converting strings from any external source (user input, files, network data). It allows you to build robust applications that don't crash due to invalid input. Common Example: Handling User Input</li>
+    </ol>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.Write(&quot;Please enter your age: &quot;);
+string userInput = Console.ReadLine();
+// We use the modern 'out variable' declaration here.
+if (int.TryParse(userInput, out int age))
+{
+// This block only executes if the conversion was successful.
+Console.WriteLine($&quot;Success! You will be {age + 1} on your next
+birthday.&quot;);
+}
+else
+{
+// This block executes if the user typed something invalid, like &quot;abc&quot;.
+Console.WriteLine(&quot;That is not a valid age. Please enter numbers only.&quot;);
+}</code></pre>
+    </div>
+  
+
+    <h2 id="sec-7-lec-6-conversion-methods-the-convert-class">Lecture 6: Conversion Methods (The Convert Class)</h2>
+    <h3>Introduction</h3>
+    <p>C# provides a dedicated static helper class, System.Convert, which contains a rich set of methods for converting between the base data types. It offers more flexibility and different behaviors compared to casting or parsing. How It Works The Convert class provides a consistent set of methods, such as Convert.ToInt32(), Convert.ToDouble(), Convert.ToString(), and Convert.ToBoolean(). ToInt32 is the method for converting to a standard int. Key Differences and Behaviors</p>
+    <ol>
+      <li>Rounding vs. Truncation (Critical Difference): ◦ 	Explicit casting (int) truncates (chops off) the decimal. (int)9.7 is 9. ◦ 	The Convert class performs rounding to the nearest even integer (also known as &quot;Banker's Rounding&quot;). Convert.ToInt32(9.7) is 10. Convert.ToInt32(8.5) is 8, while Convert.ToInt32(9.5) is 10.</li>
+      <li>C# double d = 9.7; int castedInt = (int)d; 	// Result: 9 int convertedInt = Convert.ToInt32(d); // Result: 10</li>
+      <li>Null Handling: ◦ 	int.Parse(null) will throw an exception. ◦ 	Convert.ToInt32(null) will gracefully return 0. When to Use It</li>
+    </ol>
+    <ul>
+      <li>When you are converting between different non-string types (like double to int) and you prefer rounding behavior over truncation.</li>
+      <li>When you are converting from an object type and need to handle null values gracefully without a try-catch block. Interview Perspective</li>
+      <li>Question: &quot;What are the main differences between casting a double to an int using (int) versus using Convert.ToInt32()?&quot;</li>
+      <li>Ideal Answer: &quot;There are two key differences. First is the conversion behavior: (int) truncates the decimal portion, while Convert.ToInt32() performs rounding to the nearest even integer. Second is null handling: Convert.ToInt32(null) returns 0, whereas an explicit cast from a null object would throw an exception. Convert is generally more robust for handling varied data types.&quot;</li>
+    </ul>
+
+    <h2 id="sec-7-lec-7-imp-points-to-remember">Lecture 7: IMP Points to remember</h2>
+    <ul>
+      <li>Safety First: Always Prefer TryParse: When converting strings, especially from external sources like user input, TryParse should be your default choice. It prevents your application from crashing due to FormatException and leads to cleaner code than using try-catch blocks for validation.</li>
+      <li>Data Loss is The Developer's Responsibility: When you use an explicit cast (type), you are telling the compiler you are aware of and accept the risk of data loss. You must understand how that data is lost (e.g., truncation vs. overflow).</li>
+      <li>Know The Difference: Cast, Parse, Convert:</li>
+      <li>Cast (int): Fastest. Truncates decimals. Throws InvalidCastException. Use for converting between compatible numeric types when performance is critical and you want truncation.</li>
+      <li>Parse(): Converts a valid string to a type. Throws FormatException on failure. Use only when the input string is guaranteed to be valid.</li>
+      <li>Convert class: Most flexible. Rounds decimals. Handles null. Slightly slower. Use when you need rounding or need to handle a wider variety of source types gracefully.</li>
+      <li>Know Your Exceptions: Understanding which action causes which exception is crucial for debugging and interviews.</li>
+      <li>InvalidCastException: Trying to cast between incompatible reference types or a null object.</li>
+      <li>FormatException: Using Parse() on a string with an invalid format.</li>
+      <li>OverflowException: Casting a value that is too large to fit into the destination type's range.</li>
+      <li>ArgumentNullException: Passing null to a method that doesn't accept it, like int.Parse(null).</li>
+    </ul>
+
+    <h2 id="sec-7-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
+    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
+  <ul>
+  <li>PAGE 1 ---</li>
+  <li>PAGE 2 ---</li>
+  <li>PAGE 3 ---</li>
+  <li>PAGE 4 ---</li>
+  <li>PAGE 5 ---</li>
+  <li>PAGE 6 ---</li>
+</ul>
+
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -649,31 +684,35 @@ else
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#conversion-categories" class="toc-link">1. Conversion Categories: Implicit vs Explicit</a>
+        <a href="#sec-7-lec-1-overview-of-type-conversion" class="toc-link">Lecture 1: Overview of Type Conversion</a>
       </li>
     
       <li class="toc-item">
-        <a href="#widening-narrowing-diagram" class="toc-link">2. Numeric Widening vs Narrowing Diagram</a>
+        <a href="#sec-7-lec-2-implicit-casting" class="toc-link">Lecture 2: Implicit Casting</a>
       </li>
     
       <li class="toc-item">
-        <a href="#checked-unchecked" class="toc-link">3. Overflow Handling: checked vs unchecked</a>
+        <a href="#sec-7-lec-3-explicit-casting" class="toc-link">Lecture 3: Explicit Casting</a>
       </li>
     
       <li class="toc-item">
-        <a href="#convert-class" class="toc-link">4. System.Convert Helper Class</a>
+        <a href="#sec-7-lec-4-parse" class="toc-link">Lecture 4: Parse</a>
       </li>
     
       <li class="toc-item">
-        <a href="#parse-tryparse" class="toc-link">5. String Parsing: Parse() vs TryParse() Pattern</a>
+        <a href="#sec-7-lec-5-tryparse" class="toc-link">Lecture 5: TryParse</a>
       </li>
     
       <li class="toc-item">
-        <a href="#user-defined-conversions" class="toc-link">6. User-Defined explicit and implicit Operators</a>
+        <a href="#sec-7-lec-6-conversion-methods-the-convert-class" class="toc-link">Lecture 6: Conversion Methods (The Convert Class</a>
       </li>
     
       <li class="toc-item">
-        <a href="#pitfalls" class="toc-link">7. Common Casting Traps</a>
+        <a href="#sec-7-lec-7-imp-points-to-remember" class="toc-link">Lecture 7: IMP Points to remember</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-7-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

@@ -443,102 +443,31 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="future-vision">1. The Vision: Cloud-Native, High-Throughput & Native AOT</h2>
-    <p>
-      The ongoing evolution of C# is guided by three architectural pillars:
-    </p>
-    <ol>
-      <li><strong>Zero-Overhead Abstractions:</strong> Delivering developer elegance without sacrificing runtime execution speed or memory footprint.</li>
-      <li><strong>Native Ahead-Of-Time (AOT) Compilation:</strong> Compiling directly to native machine binaries with zero JIT compiler at runtime, enabling sub-millisecond container cold starts.</li>
-      <li><strong>Type-Driven Safety:</strong> Expanding pattern matching, null safety, and algebraic types to catch defects at compile time.</li>
-    </ol>
-
-    <h2 id="extensions-everything">2. Extensions Everything (Properties & Static Members)</h2>
-    <p>
-      While extension methods can only be instance methods today, the <strong>Extensions Everything</strong> proposal expands extensions to properties, indexers, static methods, and operators:
-    </p>
-
-    
+      <h2 id="sec-37-field-keyword">1. The field Keyword in Semi-Auto Properties</h2>
+      <p>C# 14 introduces the contextual keyword <code>field</code> to access compiler-generated backing fields without boilerplate manual field definitions:</p>
+      
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Proposed Extensions Everything</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>// Proposed syntax for Future Extensions Everything:
-extension StringExtensions for string
+      <pre><code>public class Employee
 {
-    // Extension Property!
-    public bool IsEmpty =&gt; string.IsNullOrEmpty(this);
-
-    // Extension Static Factory Method!
-    public static string CreateSlug(string input) =&gt; input.ToLower().Replace(&quot; &quot;, &quot;-&quot;);
+    public string Name
+    {
+        get =&gt; field;
+        set =&gt; field = value ?? throw new ArgumentNullException(nameof(value));
+    } = &quot;Anonymous&quot;;
 }</code></pre>
     </div>
   
 
-    <h2 id="discriminated-unions">3. Discriminated Unions & Algebraic Data Types</h2>
-    <p>
-      <strong>Discriminated Unions (Sum Types)</strong> represent a value that can be one of several distinct, strictly bounded types. They allow exhaustive pattern matching where the compiler guarantees that every possible case is handled:
-    </p>
-
+      <h2 id="sec-37-extension-types">2. Extension Everything & Extension Types</h2>
+      <p>The C# design team is expanding extensions beyond static methods with the <code>this</code> modifier into full extension types capable of declaring extension properties, indexers, static methods, and operators.</p>
     
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Conceptual Discriminated Union</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>// Conceptual Discriminated Union representation:
-public enum class Result&lt;T&gt;
-{
-    Success(T Data),
-    Failure(string ErrorMessage, int ErrorCode)
-}
-
-// Compiler enforces that Success AND Failure are both handled!
-var output = result switch
-{
-    Result.Success(var data)    =&gt; $&quot;Data received: {data}&quot;,
-    Result.Failure(var err, _)  =&gt; $&quot;Error encountered: {err}&quot;
-};</code></pre>
-    </div>
-  
-
-    <h2 id="native-aot-roadmap">4. Native AOT & Instant Microservice Cold Starts</h2>
-    <p>
-      In <strong>Native AOT</strong> mode, the .NET SDK compiles C# directly into a single self-contained OS binary (<code>app.exe</code> or Linux ELF executable) with zero external .NET runtime installation required. Startup time drops to <strong>under 10 milliseconds</strong> with an idle memory footprint of just 15MB, ideal for serverless cloud functions (AWS Lambda, Azure Functions) and containerized Kubernetes clusters.
-    </p>
-
-    <h2 id="curriculum-summary">5. Complete Masterclass Curriculum Retrospective</h2>
-    <p>
-      Congratulations! You have navigated the entire architectural expanse of the C# language across 37 comprehensive sections:
-    </p>
-    <ul>
-      <li><strong>Foundations (Sec 1–3):</strong> CLR runtime, JIT compilation, memory models, and tooling.</li>
-      <li><strong>OOP Architecture (Sec 4–9):</strong> Classes, fields, encapsulation, methods, parameters, constructors, and properties.</li>
-      <li><strong>Type Plumbing (Sec 10–15):</strong> Polymorphism, abstract classes, interfaces, structs, and <code>System.Object</code>.</li>
-      <li><strong>Language Mechanics (Sec 16–19):</strong> Generics, null safety, extension methods, pattern matching, and GC disposal.</li>
-      <li><strong>Data & Functional (Sec 20–25):</strong> Delegates, events, arrays, collections, tuples, and LINQ.</li>
-      <li><strong>BCL & Resilience (Sec 26–29):</strong> Strings, temporal APIs, streams, serialization, and defensive exception handling.</li>
-      <li><strong>Concurrency (Sec 31–33):</strong> Threading, synchronization locks, Task Parallel Library, and Async/Await state machines.</li>
-      <li><strong>Modern C# (Sec 30, 34–37):</strong> Records, required members, generic math, collection expressions, C# 13, and future roadmaps.</li>
-    </ul>
-
-    <div style="margin: 2rem 0; padding: 1.5rem; border-radius: 10px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(129, 140, 248, 0.2) 100%); border: 1px solid var(--accent-primary); text-align: center;">
-      <h3 style="margin-top: 0; color: var(--accent-primary);">🎓 Curriculum Complete</h3>
-      <p style="margin-bottom: 1rem; color: var(--text-main);">
-        You now possess production-grade architectural mastery of C# and modern .NET. Use the Course Index and Global Search as your permanent offline reference manual!
-      </p>
-      <a href="../index.html" class="index-home-btn" style="background: var(--accent-primary); color: #0f172a; font-weight: 700; padding: 8px 16px;">
-        Return to Portal Dashboard →
-      </a>
-    </div>
-  
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -565,23 +494,11 @@ var output = result switch
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#future-vision" class="toc-link">1. The Vision: Cloud-Native, High-Throughput &amp; Native AOT</a>
+        <a href="#sec-37-field-keyword" class="toc-link">1. Semi-Auto Properties &amp; field Keyword</a>
       </li>
     
       <li class="toc-item">
-        <a href="#extensions-everything" class="toc-link">2. Extensions Everything (Properties &amp; Static Members)</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#discriminated-unions" class="toc-link">3. Discriminated Unions &amp; Algebraic Data Types</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#native-aot-roadmap" class="toc-link">4. Native AOT &amp; Instant Microservice Cold Starts</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#curriculum-summary" class="toc-link">5. Complete Masterclass Curriculum Retrospective</a>
+        <a href="#sec-37-extension-types" class="toc-link">2. Extension Types &amp; Extension Everything</a>
       </li>
     
       </ul>

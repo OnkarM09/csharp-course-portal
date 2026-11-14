@@ -443,115 +443,219 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="namespaces-role">1. Role of Namespaces & Name Conflict Prevention</h2>
-    <p>
-      A <strong>namespace</strong> is an architectural scoping container used to organize classes, structs, and interfaces into logical hierarchies. It acts like a folder structure in an operating system, preventing naming collisions when two libraries define types with identical names (e.g. <code>System.Windows.Shapes.Path</code> vs <code>System.IO.Path</code>).
-    </p>
+    <h2 id="sec-12-lec-1-intro-to-namespaces">Lecture 1: Intro to Namespaces</h2>
+    <h3>Introduction</h3>
+    <p>A namespace is a fundamental organizational mechanism in C# used to group related types (like classes, interfaces, and structs) under a single, hierarchical name. Its primary purposes are to manage complexity in large applications and, most importantly, to prevent naming conflicts. Think of namespaces like a folder system on your computer. You can have two different files named Report.txt without any issues, as long as they reside in different folders (e.g., C:\Work\Report.txt and C:\Home\Report.txt). Similarly, in C#, you can have two different classes named Logger as long as they are in different namespaces (e.g., MyCompany.Logging.Logger and ThirdParty.Analytics.Logger). Without namespaces, it would be impossible to combine code from different teams or libraries without the risk of class names clashing. How It Works: Fully Qualified Names Every type in the .NET ecosystem has a fully qualified name, which includes its full namespace path followed by the type name. For example, the string type we use is actually a shorthand for its fully qualified name: System.String. When you are working within a specific namespace, you can access other types in that same namespace directly. However, to access a type located in a different namespace, you must use its fully qualified name. Example Let's create two separate namespaces in the same project to see how this works.</p>
 
-    <h2 id="using-directives">2. using Directives & Namespace Aliasing</h2>
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Namespace Aliasing</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>// Standard namespace import
-using System.Text.Json;
-
-// Namespace aliasing to resolve explicit naming collision
-using ExcelPoint = OfficeOpenXml.Drawing.Chart.ChartPoint;
-using DrawingPoint = System.Drawing.Point;
-
-public class CoordinateMapper
+      <pre><code>// --- File 1: Defines a utility class in its own namespace ---
+namespace MyProject.Utilities
 {
-    public void Map(ExcelPoint ep, DrawingPoint dp)
-    {
-        Console.WriteLine($&quot;Mapped X={dp.X} to Chart={ep.XValue}&quot;);
-    }
-}</code></pre>
-    </div>
-  
-
-    <h2 id="file-scoped-namespaces">3. Modern File-Scoped Namespaces (C# 10)</h2>
-    <p>
-      Traditional C# required surrounding entire file contents in namespace braces, causing needless horizontal indentation. C# 10 introduces <strong>file-scoped namespaces</strong>:
-    </p>
-
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">File-Scoped Namespace Comparison</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>// Traditional C# 1-9 (Braced Namespace)
-namespace Enterprise.Billing.Services
+public class TextHelper
 {
-    public class InvoiceGenerator
-    {
-        // Indented 8 spaces
-    }
+public void SayHello()
+{
+// We can use 'Console' directly here because its fully qualified
+// name, System.Console, is globally available.
+System.Console.WriteLine(&quot;Hello from the TextHelper!&quot;);
 }
-
-// ==========================================
-// Modern C# 10+ (File-Scoped Namespace)
-namespace Enterprise.Billing.Services;
-
-public class ModernInvoiceGenerator
+}
+}
+// --- File 2: The main program, in a different namespace ---
+namespace MyProject.MainApplication
 {
-    // Clean zero-indentation!
+class Program
+{
+static void Main(string[] args)
+{
+// To use the TextHelper class, which is in a different namespace,
+// we MUST use its fully qualified name.
+MyProject.Utilities.TextHelper helper = new
+MyProject.Utilities.TextHelper();
+helper.SayHello();
+}
+}
 }</code></pre>
     </div>
   
 
-    <h2 id="global-usings">4. Global Usings & Clean Architecture</h2>
-    <p>
-      By prefixing a using directive with <code>global</code>, that namespace is automatically imported across <em>every single C# file</em> in the entire project. This is commonly stored in a central <code>Usings.cs</code> file:
-    </p>
+    <h2 id="sec-12-lec-2-nested-namespaces">Lecture 2: Nested Namespaces</h2>
+    <h3>Introduction</h3>
+    <p>To create an even more granular and logical organization, namespaces can be nested inside other namespaces. This allows you to create a clear hierarchy that mirrors the structure of your application or company. How It Works You create a nested namespace using the dot (.) notation. For example, the namespace MyCompany.Billing.Invoicing implies a hierarchy: Invoicing is part of the Billing system, which belongs to MyCompany. This is just like having a folder named Invoicing inside a folder named Billing. This deep organization is essential for very large enterprise applications where thousands of classes must be managed. Example Let's expand on our previous example with a nested namespace structure.</p>
 
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Usings.cs</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>// Usings.cs - Project-wide global imports
-global using System;
-global using System.Collections.Generic;
-global using System.IO;
-global using System.Linq;
-global using System.Threading.Tasks;</code></pre>
+      <pre><code>namespace MyCompany.BusinessLogic.Billing
+{
+// This class lives inside a nested namespace.
+public class InvoiceGenerator
+{
+public void CreateInvoice()
+{
+System.Console.WriteLine(&quot;Invoice created successfully.&quot;);
+}
+}
+}
+namespace MyCompany.MainApp
+{
+class Program
+{
+static void Main(string[] args)
+{
+// To access the class in the nested namespace, we must provide
+the
+// entire path from the top-level namespace down.
+MyCompany.BusinessLogic.Billing.InvoiceGenerator generator =
+new MyCompany.BusinessLogic.Billing.InvoiceGenerator();
+generator.CreateInvoice();
+}
+}
+}</code></pre>
     </div>
   
 
-    <h2 id="pitfalls">5. Namespace Collision Traps</h2>
-    
-    <div class="callout callout-warning">
-      <div class="callout-header">
-        <span>🟠 Compiler Trap & Common Gotcha</span>
-        
+    <h2 id="sec-12-lec-3-importing-namespaces">Lecture 3: Importing Namespaces</h2>
+    <h3>Introduction</h3>
+    <p>Typing the fully qualified name for every class you use is tedious and makes code difficult to read. The using directive is the C# feature that solves this problem. By placing a using directive at the top of your code file, you are telling the compiler, &quot;For this file, I will be frequently using types from the specified namespace, so please recognize them by their short names.&quot; How It Works When the compiler encounters a type name in your code (like List or Logger), it first checks if that type is defined in the current namespace. If not, it then searches through all the namespaces that you have imported with using directives at the top of the file. As soon as it finds a match, it resolves the type. This removes the need for you to write the fully qualified name everywhere. Example Let's refactor our previous example to be much cleaner using the using directive.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
       </div>
-      <div class="callout-content">
-        
-      <p>
-        <strong>Error:</strong> Importing two namespaces that define the same type (e.g., <code>using System.Diagnostics; using System.Threading;</code> both have <code>Timer</code>). Writing <code>Timer t = new Timer();</code> triggers <code>CS0104: 'Timer' is an ambiguous reference</code>.
-      </p>
-      <p>
-        <strong>Fix:</strong> Disambiguate using fully qualified names or declare an alias: <code>using ThreadingTimer = System.Threading.Timer;</code>.
-      </p>
-    
-      </div>
+      <pre><code>// --- The other class files remain the same ---
+// --- In our main program file ---
+// We import the namespaces at the top of the file.
+using System;
+using MyProject.Utilities;
+using MyCompany.BusinessLogic.Billing;
+namespace MyProject.MainApplication
+{
+class Program
+{
+static void Main(string[] args)
+{
+// Now the code is much cleaner. The compiler knows where to find
+// these types because of the 'using' directives above.
+Console.WriteLine(&quot;Application starting...&quot;);
+TextHelper helper = new TextHelper();
+helper.SayHello();
+InvoiceGenerator generator = new InvoiceGenerator();
+generator.CreateInvoice();
+}
+}
+}
+Best Practice: Always place your using directives at the very top of your .cs file,
+before the namespace declaration.</code></pre>
     </div>
   
+
+    <h2 id="sec-12-lec-4-using-alias">Lecture 4: Using Alias</h2>
+    <h3>Introduction</h3>
+    <p>A using alias is a special form of the using directive that creates a new, often shorter, name for a specific type. It does not import an entire namespace, but instead creates an alias for a single class, struct, or other type. Why and When to Use It</p>
+    <ol>
+      <li>To Resolve Naming Conflicts (Primary Use Case): This is the most important reason. If you import two different namespaces that both contain a class with the same name, the compiler won't know which one you mean. This ambiguity results in a compile-time error. An alias allows you to create a unique name for one or both of the conflicting types.</li>
+      <li>To Shorten Long Generic Type Names: If you frequently use a very long and complex generic type, you can create a simple alias for it to make your code much more readable. Syntax using AliasName = Fully.Qualified.Namespace.TypeName; Example: Resolving a Naming Conflict The .NET framework has two different Timer classes in two different namespaces. Let's see how to use both in the same file without conflict.</li>
+    </ol>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Create an alias for each Timer class to resolve the name clash.
+using SystemTimersTimer = System.Timers.Timer;
+using SystemThreadingTimer = System.Threading.Timer;
+public class TimerManager
+{
+public void StartTimers()
+{
+// Now we can use the unique alias names without ambiguity.
+SystemTimersTimer myServiceTimer = new SystemTimersTimer(1000);
+myServiceTimer.Start();
+Console.WriteLine(&quot;System.Timers.Timer started.&quot;);
+// The 'state' and 'dueTime' parameters are just for the example.
+SystemThreadingTimer myThreadingTimer = new
+SystemThreadingTimer(_ =&gt; {}, null, 0, 2000);
+Console.WriteLine(&quot;System.Threading.Timer started.&quot;);
+}
+}</code></pre>
+    </div>
   
+
+    <h2 id="sec-12-lec-5-using-static">Lecture 5: using static</h2>
+    <h3>Introduction</h3>
+    <p>The using static directive is a feature that allows you to import the static members (methods, properties, and fields) of a single class directly into the current scope. This allows you to call those static methods without having to prefix them with the class name. How It Works When you write using static System.Math; at the top of your file, the compiler becomes aware of all the public static members of the Math class. When it later sees a method call like Sqrt(25), it will search the imported static classes and find that Sqrt is a static method of Math, resolving the call correctly. Why and When to Use It Use this feature sparingly to improve readability when you are making frequent calls to the static members of a single class within a file.</p>
+    <ul>
+      <li>Good Candidates: System.Math in a class with heavy calculations, System.Console in a simple console application, or a custom Constants class you've written.</li>
+      <li>Caution: Overusing using static can sometimes make code less clear, as it might not be immediately obvious where a method like Log() or Calculate() is coming from if its class name is omitted. Example</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Import all static members from the Console and Math classes.
+using static System.Console;
+using static System.Math;
+class Program
+{
+static void Main(string[] args)
+{
+// We can now call WriteLine, PI, and Sqrt directly
+// without prefixing them with Console or Math.
+double radius = 10;
+double area = PI * Pow(radius, 2); // Pow is also from System.Math
+WriteLine($&quot;The area of a circle with radius {radius} is {area:F2}.&quot;);
+double root = Sqrt(144);
+WriteLine($&quot;The square root of 144 is {root}.&quot;);
+}
+}</code></pre>
+    </div>
+  
+
+    <h2 id="sec-12-lec-6-imp-points-to-remember">Lecture 6: IMP Points to Remember</h2>
+    <ul>
+      <li>Primary Purpose: Organization and Conflict Avoidance: This is the core takeaway. Namespaces are C#'s primary tool for keeping large projects organized and for preventing class name collisions when you use multiple libraries.</li>
+      <li>Every .NET Type Lives in a Namespace: Remember that nothing exists in a &quot;global&quot; space. Even the simplest string is just a C# alias for the System.String class. int is an alias for System.Int32. Understanding this helps you see the .NET framework as one giant, well-organized library.</li>
+      <li>using Directive vs. using Alias:</li>
+      <li>A using directive (using System.Collections.Generic;) imports all types from a namespace, allowing you to use them by their short names.</li>
+      <li>A using alias (using UserList = System.Collections.Generic.List&lt;MyApp.User&gt;;) creates a new, convenient name for a single, specific type. Use it to resolve conflicts or simplify long type names.</li>
+      <li>File-Scoped Namespaces (Modern C#): In C# 10 and later, you can declare a namespace for an entire file without curly braces: namespace MyCompany.MyProject;. This reduces nesting and cleans up your files.</li>
+      <li>global using (Modern C#): Also introduced in C# 10, the global using directive allows you to define a using statement in one file (often a dedicated GlobalUsings.cs file) that applies to your entire project. This is extremely useful for importing commonly used namespaces like System, System.Linq, or System.Collections.Generic across all your files without having to repeat the directives in every single file.</li>
+    </ul>
+
+    <h2 id="sec-12-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
+    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
+  <ul>
+  <li>PAGE 1 ---</li>
+  <li>PAGE 2 ---</li>
+  <li>PAGE 3 ---</li>
+</ul>
+
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -583,23 +687,31 @@ global using System.Threading.Tasks;</code></pre>
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#namespaces-role" class="toc-link">1. Role of Namespaces &amp; Name Conflict Prevention</a>
+        <a href="#sec-12-lec-1-intro-to-namespaces" class="toc-link">Lecture 1: Intro to Namespaces</a>
       </li>
     
       <li class="toc-item">
-        <a href="#using-directives" class="toc-link">2. using Directives &amp; Namespace Aliasing</a>
+        <a href="#sec-12-lec-2-nested-namespaces" class="toc-link">Lecture 2: Nested Namespaces</a>
       </li>
     
       <li class="toc-item">
-        <a href="#file-scoped-namespaces" class="toc-link">3. Modern File-Scoped Namespaces (C# 10)</a>
+        <a href="#sec-12-lec-3-importing-namespaces" class="toc-link">Lecture 3: Importing Namespaces</a>
       </li>
     
       <li class="toc-item">
-        <a href="#global-usings" class="toc-link">4. Global Usings &amp; Clean Architecture</a>
+        <a href="#sec-12-lec-4-using-alias" class="toc-link">Lecture 4: Using Alias</a>
       </li>
     
       <li class="toc-item">
-        <a href="#pitfalls" class="toc-link">5. Namespace Collision Traps</a>
+        <a href="#sec-12-lec-5-using-static" class="toc-link">Lecture 5: using static</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-12-lec-6-imp-points-to-remember" class="toc-link">Lecture 6: IMP Points to Remember</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-12-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

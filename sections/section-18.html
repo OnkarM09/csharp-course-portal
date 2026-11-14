@@ -443,164 +443,279 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="extension-methods-concept">1. What Are Extension Methods & Syntactic Sugar</h2>
-    <p>
-      <strong>Extension methods</strong> allow you to inject new methods into existing types (including BCL classes like <code>string, DateTime</code>, or interfaces like <code>IEnumerable&lt;T&gt;</code>) without creating a derived subclass or modifying the original compiled library:
-    </p>
+    <h2 id="sec-18-lec-1-methods-and-pattern">Methods and Pattern</h2>
+    <p>Matching</p>
 
-    
-    <div class="callout callout-original">
-      <div class="callout-header">
-        <span>🔵 Core Concept (from Notes)</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        To the developer writing code with IntelliSense, an extension method looks and feels like a regular instance method called directly on the object (<code>"my text".ToSlug()</code>).
-      </p>
-      <p>
-        Under the hood, however, it is pure compiler syntactic sugar: the Roslyn compiler lowers the call into a standard static method invocation: <code>StringExtensions.ToSlug("my text")</code>.
-      </p>
-    
-      </div>
-    </div>
-  
-
-    <h2 id="authoring-extensions">2. Authoring Extension Methods (static class & this)</h2>
-    <p>
-      To declare an extension method, follow these three rules:
-    </p>
+    <h2 id="sec-18-lec-2-extension-methods">Lecture 1: Extension Methods</h2>
+    <h3>Introduction</h3>
+    <p>Extension methods are a powerful C# feature that allow you to &quot;add&quot; new methods to existing types without creating a new derived type, recompiling, or otherwise modifying the original type's source code. This is particularly useful for extending types that you don't own, like classes from the .NET Framework (e.g., string, DateTime) or classes from third-party libraries. They provide the illusion of being instance methods, but are actually a form of syntactic sugar for calling a static method. How It Works: The static and this Keywords To create an extension method, you must follow three strict rules:</p>
     <ol>
-      <li>The containing class must be <code>static</code>.</li>
-      <li>The method itself must be <code>static</code>.</li>
-      <li>The first parameter must be prefixed with the <code>this</code> modifier, denoting the target type being extended.</li>
+      <li>The method must be defined in a static class.</li>
+      <li>The method itself must be static.</li>
+      <li>The first parameter of the method must be marked with the this keyword, followed by the name of the type it extends. The this parameter is what the compiler uses to link the method to the type. When you call the method, you do not provide an argument for this first parameter; it is automatically populated with the instance on which the method was called. When to Use It &amp; Real-World Examples The most prominent real-world example of extension methods is LINQ (Language-Integrated Query). Every LINQ method you use on a collection —.Where(), .Select(), .OrderBy(), .ToList()—is an extension method on the IEnumerable&lt;T&gt; interface. Use extension methods to create reusable helper or utility functions that are logically tied to a specific type. Example Let's say we frequently need to count the number of words in a string. Instead of writing a separate utility function everywhere, we can extend the string type itself.</li>
     </ol>
 
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Authoring &amp; Invoking Extension Methods</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>namespace Enterprise.Extensions;
-
-public static class StringUtilitiesExtensions
+      <pre><code>// 1. Must be a static class.
+public static class StringExtensions
 {
-    // Extends System.String
-    public static string ToSlug(this string input)
-    {
-        if (string.IsNullOrWhiteSpace(input)) return string.Empty;
-        return input.ToLowerInvariant().Replace(&quot; &quot;, &quot;-&quot;);
-    }
-
-    // Extends System.DateTime
-    public static bool IsWeekend(this DateTime date) =&gt;
-        date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday;
+// 2. Must be a static method.
+// 3. 'this string str' indicates this method extends the string type.
+public static int WordCount(this string str)
+{
+if (string.IsNullOrEmpty(str))
+{
+return 0;
 }
-
-// Caller usage:
-using Enterprise.Extensions;
-
-string title = &quot;C Sharp Architecture Masterclass&quot;;
-Console.WriteLine(title.ToSlug()); // &quot;c-sharp-architecture-masterclass&quot;
-
-DateTime now = DateTime.Now;
-Console.WriteLine($&quot;Is today weekend? {now.IsWeekend()}&quot;);</code></pre>
+// The 'str' parameter will be the string instance the method is called
+on.
+return str.Split(new char[] { ' ', '.', '?' },
+StringSplitOptions.RemoveEmptyEntries).Length;
+}
+}
+// --- In your Main method ---
+string mySentence = &quot;This is a sample sentence for testing.&quot;;
+// Now we can call WordCount as if it were a built-in instance method of
+the string class!
+int count = mySentence.WordCount();
+Console.WriteLine($&quot;The sentence is: '{mySentence}'&quot;);
+Console.WriteLine($&quot;The word count is: {count}&quot;); // Output: 8</code></pre>
     </div>
   
 
-    <h2 id="pattern-matching-evolution">3. Pattern Matching Evolution in C#</h2>
-    <p>
-      Pattern matching allows you to inspect the shape, type, and values of data structures cleanly:
-    </p>
-
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Type Pattern with Variable Binding</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>// 1. Declaration &amp; Type Pattern with 'is'
-object data = 150.75m;
-
-if (data is decimal balance &amp;&amp; balance &gt; 100m)
-{
-    Console.WriteLine($&quot;Account has healthy balance: {balance:C}&quot;);
-}</code></pre>
-    </div>
-  
-
-    <h2 id="switch-expressions">4. Modern Switch Expressions</h2>
-    <p>
-      The traditional <code>switch</code> statement is imperative and ceremonial. Modern C# provides expression-based pattern matching (<code>switch expressions</code>):
-    </p>
-
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Property Pattern Matching in Switch Expression</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>public decimal CalculateDiscount(Customer customer) =&gt; customer switch
-{
-    { IsVip: true, TotalPurchases: &gt; 5000m } =&gt; 0.25m,  // 25% VIP High-Spender
-    { IsVip: true }                         =&gt; 0.15m,  // 15% VIP
-    { TotalPurchases: &gt; 1000m }             =&gt; 0.05m,  // 5% Regular High-Spender
-    null                                    =&gt; throw new ArgumentNullException(nameof(customer)),
-    _                                       =&gt; 0.00m   // Default discard pattern
-};</code></pre>
-    </div>
-  
-
-    <h2 id="advanced-patterns">5. Property, Positional & Relational Patterns</h2>
-    
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">Relational and Logical Patterns</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>// Relational &amp; Logical Patterns (and, or, not)
-public static string CategorizeTemperature(int temp) =&gt; temp switch
-{
-    &lt; 0                  =&gt; &quot;Freezing&quot;,
-    &gt;= 0 and &lt; 15        =&gt; &quot;Cold&quot;,
-    &gt;= 15 and &lt;= 25      =&gt; &quot;Comfortable&quot;,
-    &gt; 25 and not &gt;= 40   =&gt; &quot;Warm&quot;,
-    _                    =&gt; &quot;Extreme Heat&quot;
-};</code></pre>
-    </div>
-  
-
-    <h2 id="pitfalls">6. Extension Method & Pattern Traps</h2>
-    
-    <div class="callout callout-warning">
+    <div class="callout callout-tip">
       <div class="callout-header">
-        <span>🟠 Compiler Trap & Common Gotcha</span>
+        <span>🟢 Best Practice & Architecture Tip</span>
         
       </div>
       <div class="callout-content">
-        
-      <p>
-        <strong>Trap:</strong> If a class introduces an instance method with the exact same name and signature as your extension method, the compiler <strong>silently binds to the instance method</strong>! Your extension method will no longer be called, without producing any compile errors.
-      </p>
-    
+        <ul><li>Question: &quot;Can an extension method access private members of the</li></ul><p>type it extends?&quot;</p><ul><li>Ideal Answer: &quot;No. An extension method is just syntactic sugar for</li></ul><p>calling a static method and passing the instance as the first parameter. It</p><p>does not have any special access to the type's private or protected</p><p>members. It can only work with the public interface of the type it</p><p>extends.&quot;</p>
       </div>
     </div>
   
+
+    <h2 id="sec-18-lec-3-pattern-matching">Lecture 2: Pattern Matching</h2>
+    <h3>Introduction</h3>
+    <p>Pattern matching is a powerful set of features in modern C# that provides a more sophisticated and readable way to check if a variable conforms to a certain &quot;shape&quot; or &quot;pattern,&quot; and to extract information from it if it does. It significantly enhances the capabilities of if statements and, most notably, switch statements and expressions, turning them into highly advanced control flow tools. How It Works: Common Patterns Pattern matching introduces several new patterns you can use in conditional logic.</p>
+    <ul>
+      <li>Type Pattern (is Type variableName) This pattern both checks the run-time type of an object and, if the check is successful, assigns the object to a new variable of that specific type.</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>object myValue = &quot;Hello World&quot;;
+if (myValue is string str) // Checks if myValue is a string, and if so, assigns
+it to 'str'
+{
+Console.WriteLine($&quot;It's a string with length: {str.Length}&quot;);
+}
+Property Pattern ({ PropertyName: pattern }) This pattern allows you to
+check the values of an object's properties. It's most powerful inside a switch
+expression.
+C#
+public class Car { public int PassengerCount { get; set; } }
+Car myCar = new Car { PassengerCount = 4 };
+string message = myCar switch
+{
+{ PassengerCount: 0 } =&gt; &quot;It's empty.&quot;,
+{ PassengerCount: 1 } =&gt; &quot;It's a solo ride.&quot;,
+{ PassengerCount: 2 } =&gt; &quot;A couple's trip.&quot;,
+_ =&gt; &quot;It's a group.&quot;
+};
+Relational Patterns (&lt;, &gt;, &lt;=, &gt;=) These allow switch statements to work with
+ranges, not just constant values.
+C#
+int score = 85;
+string grade = score switch
+{
+&gt;= 90 =&gt; &quot;A&quot;,
+&gt;= 80 =&gt; &quot;B&quot;,
+&gt;= 70 =&gt; &quot;C&quot;,
+_ =&gt; &quot;F&quot;
+};
+Logical Patterns (and, or, not) These allow you to combine other patterns for
+more complex conditions.
+C#
+string GetWeatherReport(double temp, bool isRaining) =&gt; (temp,
+isRaining) switch
+{
+(&gt; 30.0, false) =&gt; &quot;Hot and sunny.&quot;,
+(&gt; 20.0, true) =&gt; &quot;Warm and rainy.&quot;,
+(&lt; 10.0, _ ) and (_, true) =&gt; &quot;Cold and rainy.&quot;, // _ is a discard pattern
+_ =&gt; &quot;Moderate weather.&quot;
+};</code></pre>
+    </div>
   
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <span>🟢 Best Practice & Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul><li>Question: &quot;How has pattern matching changed the switch statement in</li></ul><p>modern C#?&quot;</p><ul><li>Ideal Answer: &quot;Pattern matching has transformed the switch statement</li></ul><p>from a simple control structure that only worked with constant integral</p><p>values into a highly expressive tool. With modern pattern matching, a</p><p>switch can branch on an object's type, the values of its properties, and</p><p>numeric ranges using relational and logical patterns, which makes it a</p><p>much cleaner alternative to complex if-else if chains.&quot;</p>
+      </div>
+    </div>
+  
+
+    <h2 id="sec-18-lec-4-implicitly-typed-variables-var">Lecture 3: Implicitly Typed Variables (var)</h2>
+    <h3>Introduction</h3>
+    <p>The var keyword, introduced in C# 3.0, lets you declare a local variable without explicitly specifying its data type. The compiler infers the type for you based on the value you use to initialize the variable. How It Works: Compile-Time Type Inference This is the most critical concept to understand: var does not create a dynamically typed variable. C# remains a statically-typed language. The var keyword is purely a compile-time feature. The compiler looks at the expression on the right-hand side of the assignment and determines its type. It then replaces the var keyword with that explicit type in the Intermediate Language (IL).</p>
+    <ul>
+      <li>When you write: var name = &quot;John&quot;;</li>
+      <li>The compiler generates the same code as if you had written: string name = &quot;John&quot;; Once the type is inferred and compiled, it is locked in. You cannot later assign a value of a different type to that variable. Rules and Best Practices</li>
+      <li>Rule: A var variable must be initialized at the time of its declaration so the compiler can infer its type. var x; is a compiler error.</li>
+      <li>Rule: var can only be used for local variables inside a method. It cannot be used for fields or method parameters.</li>
+      <li>Best Practice - When to Use var: Use it when the type of the variable is obvious from the right-hand side of the assignment. This reduces code clutter and improves readability.</li>
+      <li>var user = new User(); (Good: type is clearly User)</li>
+      <li>var names = new List&lt;string&gt;(); (Good: type is clearly List&lt;string&gt;)</li>
+      <li>var name = GetName(); (Good, if GetName() clearly returns a string)</li>
+      <li>Best Practice - When to Avoid var: Avoid it when the type is not immediately clear, as this can harm readability.</li>
+      <li>var amount = 20; (Is this an int, double, decimal? Be explicit: decimal amount = 20M;)</li>
+      <li>var result = ProcessData(); (What does ProcessData return? Better to be explicit: ProcessResult result = ProcessData();) Interview Perspective</li>
+      <li>Question: &quot;Does the var keyword make C# a dynamic language?&quot;</li>
+      <li>Ideal Answer: &quot;No, absolutely not. var is a feature for compile-time type inference. The variable is still strongly and statically typed; the compiler just figures out the type for you based on the initialization value. Once compiled, there is no difference between a variable declared with var and one declared with an explicit type name.&quot;</li>
+    </ul>
+
+    <h2 id="sec-18-lec-5-dynamically-typed-variables-dynamic">Lecture 4: Dynamically Typed Variables (dynamic)</h2>
+    <h3>Introduction</h3>
+    <p>The dynamic keyword, introduced in C# 4.0, allows you to create variables that bypass static type checking at compile-time. It fundamentally changes how the compiler treats the variable. How It Works: Run-Time Resolution When you declare a variable as dynamic, you are telling the compiler: &quot;Trust me. Don't check anything I do with this variable right now. We will figure it out at run-time.&quot; All calls to methods, properties, or operators on a dynamic variable are packaged up and resolved only when the program is actually running. If the member you tried to call exists at run-time, the code works. If it does not exist, the program will crash with a RuntimeBinderException. Why and When to Use It You should use dynamic with great caution as it sacrifices the core benefit of C#'s static type safety. Its main valid use cases are for interoperability:</p>
+    <ul>
+      <li>Working with Dynamic Languages: Interacting with libraries from languages like Python or IronRuby.</li>
+      <li>Working with the DOM in HTML: Manipulating HTML elements in certain web contexts.</li>
+      <li>Parsing Dynamic Data Formats: Working with data like JSON where the structure might not be known ahead of time.</li>
+      <li>COM Interop: Interacting with older COM components. var vs. dynamic: The Core Interview Question This is a fundamental question to test your understanding of C#'s type system.</li>
+      <li>var (Implicitly Typed)</li>
+      <li>Typing: Statically typed.</li>
+      <li>When Checked: Type is determined and checked by the compiler at compile-time.</li>
+      <li>IntelliSense: Full IntelliSense and compile-time error checking.</li>
+      <li>Errors: Produces compile-time errors if you call a non-existent method.</li>
+      <li>Example: var x = 10; x = &quot;hello&quot;; // COMPILE-TIME ERROR</li>
+      <li>dynamic (Dynamically Typed)</li>
+      <li>Typing: Dynamically typed.</li>
+      <li>When Checked: Type is resolved by the runtime at run-time.</li>
+      <li>IntelliSense: No IntelliSense support for its members.</li>
+      <li>Errors: Bypasses the compiler and throws a run-time exception if you call a non-existent method.</li>
+      <li>Example: dynamic x = 10; x = &quot;hello&quot;; // NO ERROR. The type of x changes at runtime. Example</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// The compiler knows x is an int.
+var x = 10;
+// Console.WriteLine(x.ToUpper()); // Compile-time error: 'int' does not
+contain a definition for 'ToUpper'
+// The compiler knows nothing about what y can do. It trusts you.
+dynamic y = 10;
+// This next line compiles fine, but will CRASH at runtime because the
+integer 10
+// does not have a ToUpper() method.
+try
+{
+Console.WriteLine(y.ToUpper());
+}
+catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException ex)
+{
+Console.WriteLine(&quot;RUNTIME ERROR: &quot; + ex.Message);
+}
+// This is valid, because the type of y can change at runtime.
+y = &quot;hello&quot;;
+Console.WriteLine(y.ToUpper()); // This works now. Output: HELLO</code></pre>
+    </div>
+  
+
+    <h2 id="sec-18-lec-6-inner-classes-nested-classes">Lecture 5: Inner Classes (Nested Classes)</h2>
+    <h3>Introduction</h3>
+    <p>An inner class, more formally known as a nested class, is a class that is declared within the scope of another containing class. It is a way to group classes that are tightly coupled and to control their visibility. How It Works A nested class is a member of its containing class. This has two key implications:</p>
+    <ol>
+      <li>Access: A nested class has access to all members of its containing class, including private fields and methods. This is because it is considered part of the containing class's implementation.</li>
+      <li>Visibility: The nested class itself can have an access modifier (public, private, etc.). If you declare a nested class as private, it is completely hidden from the outside world and can only be used by the containing class. Why and When to Use It Use a nested class when a class logically only makes sense in the context of its containing class and is not intended for general public use. It's a tool for better organization and encapsulation. The most classic real-world example is the relationship between a LinkedList and its Node. The concept of a Node (which holds a value and a pointer to the next node) is an implementation detail of the linked list. No outside code should ever need to create or work with a Node directly. By making the Node class a private nested class inside the LinkedList, you hide this implementation detail completely. Example: LinkedList and Node</li>
+    </ol>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class MyLinkedList&lt;T&gt;
+{
+// A private nested class. It is only visible and usable
+// by the MyLinkedList&lt;T&gt; class.
+private class Node
+{
+public T Value { get; set; }
+public Node Next { get; set; } // Can access other Node objects
+public Node(T value)
+{
+this.Value = value;
+}
+}
+// The containing class has a field that is an instance of the nested
+class.
+private Node _head;
+public void Add(T value)
+{
+Node newNode = new Node(value); // We can create Node objects
+here.
+if (_head == null)
+{
+_head = newNode;
+}
+else
+{
+Node current = _head;
+while (current.Next != null)
+{
+current = current.Next;
+}
+current.Next = newNode;
+}
+}
+}
+// --- In your Main method ---
+MyLinkedList&lt;int&gt; list = new MyLinkedList&lt;int&gt;();
+list.Add(1);
+list.Add(2);
+// The following line would cause a compiler error because the Node
+class
+// is private and nested inside MyLinkedList.
+// MyLinkedList&lt;int&gt;.Node myNode = new MyLinkedList&lt;int&gt;.Node(3); //
+ERROR! Inaccessible.</code></pre>
+    </div>
+  
+
+    <h2 id="sec-18-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
+    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
+  <ul>
+  <li>PAGE 1 ---</li>
+  <li>PAGE 2 ---</li>
+  <li>The parameter (with 'this' keyword) represents the current object, just like &quot;this&quot; keyword in the instance methods. • Extension method can have any no. of additional parameters, where the &quot;this&quot; keyword parameter is must. • Extension method does not support method overriding. That means, extension method's signature can't be same as any existing method. • You can also add extension methods to sealed class. • 'Extension Methods' concept can't be used to create fields, properties, or events. • The static class of extension method can't be inner class. • The namespace in which the static class of extension method is created, must be imported in order to call the extension method as non-static method.   Pattern Matching It allows you to declare a variable, while checking the data type (class) of a reference variable, and automatically type-casts the reference variable into the specified data type (class).   Advantage: Simplified syntax to perform multiple checks of data types and type-casts.   Implicitly-Typed Variables The variables that are declared with 'var' keyword are called as 'implicitly-typed variables' (a.k.a type-inference). Implicitly-typed variables are declared without specifying the 'type' explicitly; so that the C# compiler automatically identifies the appropriate data type at compilation-time, based on the value assigned at the time of declaration.  Syntax: var variableName = value;</li>
+  <li>PAGE 3 ---</li>
+  <li>PAGE 4 ---</li>
+</ul>
+
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -632,27 +747,31 @@ public static string CategorizeTemperature(int temp) =&gt; temp switch
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#extension-methods-concept" class="toc-link">1. What Are Extension Methods &amp; Syntactic Sugar</a>
+        <a href="#sec-18-lec-1-methods-and-pattern" class="toc-link">Methods and Pattern</a>
       </li>
     
       <li class="toc-item">
-        <a href="#authoring-extensions" class="toc-link">2. Authoring Extension Methods (static class &amp; this)</a>
+        <a href="#sec-18-lec-2-extension-methods" class="toc-link">Lecture 1: Extension Methods</a>
       </li>
     
       <li class="toc-item">
-        <a href="#pattern-matching-evolution" class="toc-link">3. Pattern Matching Evolution in C#</a>
+        <a href="#sec-18-lec-3-pattern-matching" class="toc-link">Lecture 2: Pattern Matching</a>
       </li>
     
       <li class="toc-item">
-        <a href="#switch-expressions" class="toc-link">4. Modern Switch Expressions</a>
+        <a href="#sec-18-lec-4-implicitly-typed-variables-var" class="toc-link">Lecture 3: Implicitly Typed Variables (var)</a>
       </li>
     
       <li class="toc-item">
-        <a href="#advanced-patterns" class="toc-link">5. Property, Positional &amp; Relational Patterns</a>
+        <a href="#sec-18-lec-5-dynamically-typed-variables-dynamic" class="toc-link">Lecture 4: Dynamically Typed Variables (dynamic)</a>
       </li>
     
       <li class="toc-item">
-        <a href="#pitfalls" class="toc-link">6. Extension Method &amp; Pattern Traps</a>
+        <a href="#sec-18-lec-6-inner-classes-nested-classes" class="toc-link">Lecture 5: Inner Classes (Nested Classes)</a>
+      </li>
+    
+      <li class="toc-item">
+        <a href="#sec-18-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

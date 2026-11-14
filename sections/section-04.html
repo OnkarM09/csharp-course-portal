@@ -443,171 +443,191 @@
       <!-- Body Content -->
       <article class="docs-content">
         
-    <h2 id="procedural-vs-oop">1. Procedural vs Object-Oriented Paradigm</h2>
-    <p>
-      Before Object-Oriented Programming (OOP), the dominant development model was <strong>procedural programming</strong>. In procedural systems, an application is structured as a series of sequential subroutines or functions operating upon detached global or shared data structures. While straightforward for tiny scripts, procedural architectures inevitably suffer from severe friction as codebases scale:
-    </p>
+    <h2 id="sec-4-lec-1-understanding-oop-fundamentals">Lecture 1: Understanding OOP Fundamentals</h2>
+    <h3>Introduction</h3>
+    <p>Object-Oriented Programming (OOP) is a fundamental shift in how we think about and structure our programs. Before OOP, the dominant style was procedural programming, where a program was essentially a long list of instructions or functions that acted upon data. This works for small programs, but as applications grow in size and complexity, it becomes incredibly difficult to manage. Changes in one part of the code can unpredictably break other parts, leading to what is often called &quot;spaghetti code.&quot; OOP was created to solve this problem of complexity. The core idea is simple yet powerful: instead of separating data and the operations that act on that data, we bundle them together into conceptual &quot;objects.&quot; We stop thinking about our program as a sequence of steps and start thinking about it as a collection of interacting objects, where each object models a distinct entity from the problem we're trying to solve. The Core Idea: Modeling the World An &quot;object&quot; in programming represents a person, place, thing, or even an abstract concept. Think about a simple e-commerce application. A procedural approach might have separate variables for product names, prices, and inventory counts, and separate functions to update inventory or calculate totals. An OOP approach would model this differently:</p>
+    <ul>
+      <li>We would create a Product object. This single object would contain its own data: its name, its price, and its stockLevel.</li>
+      <li>It would also contain its own behavior: methods like Purchase(quantity) or IsInStock().</li>
+      <li>Similarly, we would have a Customer object with its own data (name, address) and behavior (PlaceOrder()).</li>
+      <li>We could have a ShoppingCart object with its own data (a list of products) and behavior (AddItem(), CalculateTotal(). The program then becomes a simulation of these objects interacting: a Customer object PlaceOrder(), which might involve a ShoppingCart object that checks if each Product object IsInStock() before finalizing the purchase. The Three Core Concepts of an Object Every object in OOP has three key characteristics: 1. 	Identity: Each object is a unique entity, distinct from all other objects, even if they are of the same type and have the same data. When we create two different Product objects, they occupy different spaces in memory. 2. 	State: This is the data or attributes that describe an object at any given moment. A Car object's state would include its current color, currentSpeed, and fuelLevel. The state is stored in fields (variables) within the object. 3. 	Behavior: This is what an object can do. The behavior of a Car object would be defined by its methods, such as Accelerate(), Brake(), and Refuel(). These methods are typically used to modify the object's internal state. Interview Perspective</li>
+      <li>Question: &quot;Can you explain what Object-Oriented Programming is at a high level?&quot;</li>
+      <li>Ideal Answer: &quot;OOP is a programming paradigm that organizes software design around data, or 'objects,' rather than functions and logic. It's a way of managing complexity by bundling data (state) and the methods that operate on that data (behavior) into a single unit. Instead of a top-down procedural approach, an OOP application is modeled as a collection of interacting objects, which often represent real-world entities. This makes the code more modular, reusable, and easier to maintain as it grows.&quot;</li>
+    </ul>
 
-    
-    <div class="callout callout-original">
-      <div class="callout-header">
-        <span>🔵 Core Concept (from Notes)</span>
-        
-      </div>
-      <div class="callout-content">
-        
-      <p>
-        In procedural systems, because functions across the entire codebase directly touch and modify the same data records, modifying a single field often triggers unpredictable cascading bugs across unrelated modules—a phenomenon known as <em>spaghetti code</em>.
-      </p>
-      <p>
-        OOP solves this foundational problem by binding data (<strong>state / fields</strong>) and the operations acting on that data (<strong>behavior / methods</strong>) together into self-governing conceptual units called <strong>objects</strong>. The outside world cannot arbitrarily manipulate the object's internal memory; it must send messages through controlled public interfaces.
-      </p>
-    
-      </div>
-    </div>
-  
+    <h2 id="sec-4-lec-2-creating-classes-objects">Lecture 2: Creating Classes &amp; Objects</h2>
+    <h3>Introduction</h3>
+    <p>Now that we understand the concept of an &quot;object,&quot; we need a way to define what our objects will look like and how they will behave. This is the role of a class. A class is the blueprint, the template, or the design for an object. An object is the actual concrete instance that is built from that blueprint. You can have one Car class (the blueprint), but you can use it to build thousands of individual Car objects, each with its own unique state (one might be a red Ferrari, another a blue Ford). Defining a Class A class is defined using the class keyword, followed by the name of the class (which should be in PascalCase). Inside the curly braces {}, we define its members: fields and methods.</p>
 
-    <h2 id="class-blueprint">2. The Class as an Architectural Blueprint</h2>
-    <p>
-      A <strong>class</strong> is the architectural schematic or template written by the software engineer in source code. It specifies what data fields an object will hold and what operations it can execute. A class does not occupy memory for instance data until it is instantiated:
-    </p>
-
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">BankAccount Class Definition</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>// Defining an architectural blueprint for a Bank Account
-public class BankAccount
+      <pre><code>// This is the blueprint for all Car objects.
+public class Car
 {
-    // Fields: State / Attributes
-    public string AccountNumber;
-    public string AccountHolder;
-    public decimal CurrentBalance;
-
-    // Methods: Behavior / Actions
-    public void Deposit(decimal amount)
-    {
-        if (amount &lt;= 0)
-        {
-            Console.WriteLine(&quot;Deposit amount must be positive.&quot;);
-            return;
-        }
-        CurrentBalance += amount;
-        Console.WriteLine($&quot;Deposited {amount:C}. New Balance: {CurrentBalance:C}&quot;);
-    }
-
-    public void Withdraw(decimal amount)
-    {
-        if (amount &gt; CurrentBalance)
-        {
-            Console.WriteLine(&quot;Insufficient funds for withdrawal.&quot;);
-            return;
-        }
-        CurrentBalance -= amount;
-        Console.WriteLine($&quot;Withdrew {amount:C}. Remaining: {CurrentBalance:C}&quot;);
-    }
-}</code></pre>
+// 1. Fields: These are variables that store the state of an object.
+// By convention, we make fields private to protect them (Encapsulation).
+// The underscore prefix (_) is a common naming convention for private
+fields.
+private string _color;
+private string _model;
+private int _currentSpeed;
+// 2. Methods: These are functions that define the object's behavior.
+// We make them public so other parts of our code can use them.
+public void Accelerate()
+{
+// This method modifies the object's internal state.
+_currentSpeed += 10;
+Console.WriteLine($&quot;Accelerating. Current speed: {_currentSpeed} km/
+h&quot;);
+}
+public void Brake()
+{
+if (_currentSpeed &gt; 0)
+{
+_currentSpeed -= 5;
+Console.WriteLine($&quot;Braking. Current speed: {_currentSpeed} km/
+h&quot;);
+}
+}
+// A method to provide controlled access to a private field's value.
+public string GetColor()
+{
+return _color;
+}
+// A method to provide controlled modification of a private field's value.
+public void SetColor(string newColor)
+{
+// We could add validation here if we wanted.
+_color = newColor;
+}
+}
+Creating an Object (Instantiation)
+Once you have the class (blueprint), you can create objects from it. This process is
+called instantiation. We use the new keyword to do this.
+C#
+// The Main method where our program runs
+static void Main(string[] args)
+{
+// 1. Declaration: Declare a variable that can hold a reference to a Car
+object.
+Car myFirstCar;
+// 2. Instantiation: Use the 'new' keyword to create a new Car object in
+memory
+// 	and assign its memory address to our variable.
+myFirstCar = new Car();
+// Or, more commonly, do it all in one line:
+Car mySecondCar = new Car();
+// Now we have two distinct Car objects in memory.
+}
+Accessing Members
+You interact with an object's public members using the dot operator (.).
+C#
+// Continuing in the Main method...
+// Use the public methods to set the state of the first car.
+myFirstCar.SetColor(&quot;Red&quot;);
+// Call methods to change its behavior.
+myFirstCar.Accelerate(); // Output: Accelerating. Current speed: 10 km/h
+myFirstCar.Accelerate(); // Output: Accelerating. Current speed: 20 km/h
+myFirstCar.Brake(); 	// Output: Braking. Current speed: 15 km/h
+// Now, interact with the second car. It is completely separate.
+mySecondCar.SetColor(&quot;Blue&quot;);
+mySecondCar.Accelerate(); // Output: Accelerating. Current speed: 10 km/h
+// Getting the color of the first car does not affect the second.
+Console.WriteLine($&quot;My first car's color is: {myFirstCar.GetColor()}&quot;); 	//
+Output: Red
+Console.WriteLine($&quot;My second car's color is: {mySecondCar.GetColor()}&quot;); //
+Output: Blue
+// IMPORTANT: You cannot access private fields directly from outside the
+class.
+// The following line would cause a compiler error:
+// myFirstCar._currentSpeed = 100; // ERROR! '_currentSpeed' is
+inaccessible.</code></pre>
     </div>
   
 
-    <h2 id="instantiation-new">3. Instantiating Objects with the "new" Operator</h2>
-    <p>
-      When you invoke <code>new BankAccount()</code>, the CLR performs four discrete low-level operations:
-    </p>
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <span>🟢 Best Practice & Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul><li>Question: &quot;What is the difference between a class and an object?&quot;</li><li>Ideal Answer: &quot;A class is a blueprint or template that defines the properties</li></ul><p>and behaviors for a type of thing. It exists at compile-time and doesn't</p><p>occupy memory itself. An object is a concrete instance of a class, created at</p><p>run-time. It's the actual thing that occupies memory and has its own state.</p><p>You can create many objects from a single class, just like you can build</p><p>many houses from one blueprint.&quot;</p>
+      </div>
+    </div>
+  
+
+    <h2 id="sec-4-lec-3-imp-points-to-remember-about-classes-and-obje">Lecture 3: IMP Points to remember about Classes and Objects</h2>
+    <h3>Introduction</h3>
+    <p>Understanding a few crucial, behind-the-scenes concepts about classes and objects is vital. These points are frequently the subject of interview questions because they test for a deeper understanding beyond just the basic syntax.</p>
     <ol>
-      <li><strong>Calculates Size:</strong> Computes the exact byte footprint required for all instance fields plus internal object overhead (Type Handle + SyncBlock Index).</li>
-      <li><strong>Allocates Heap Memory:</strong> Claims contiguous bytes on the CLR Managed Heap and zeroes the memory (defaulting numbers to 0, references to null).</li>
-      <li><strong>Initializes Object Header:</strong> Writes the pointer to the class's <em>MethodTable</em> (used for dynamic dispatch and runtime type identification).</li>
-      <li><strong>Returns Reference Pointer:</strong> Returns the memory address of the newly allocated heap block to the stack variable.</li>
+      <li>A Class is a Reference Type This is the single most important concept to understand at this stage. When you create a variable of a class type, the variable does not hold the object itself. Instead, it holds a reference—which is essentially the memory address—to where the object is stored. The actual object lives on a region of memory called the heap. How It Works &amp; Why It Matters: Because the variable holds a reference, not the object, you can have multiple variables referencing the same object.</li>
     </ol>
 
-    <h2 id="memory-allocation-diagram">4. Memory Allocation: Object Heap Payload</h2>
-    
-    <div class="diagram-container">
-      <div class="diagram-title">📊 Diagram: Object Reference on Stack vs Heap Instance Payload</div>
-      <pre class="diagram-pre">STACK FRAME (Main)                               MANAGED HEAP (Gen 0)
-+------------------------------------+          +--------------------------------------------+
-| Variable: account1                 |          | Address: 0x00A4F820                        |
-| Type: BankAccount                  |          | +----------------------------------------+ |
-| Value: [0x00A4F820] (Pointer) ----+---------&gt;| | Type MethodTable Pointer (8 bytes)     | |
-+------------------------------------+          | | SyncBlock Index          (8 bytes)     | |
-| Variable: account2                 |          | | AccountNumber: &quot;ACC-101&quot; (String Ref)  | |
-| Type: BankAccount                  |          | | AccountHolder: &quot;Alice&quot;   (String Ref)  | |
-| Value: [0x00A4F890] (Pointer) ----+----+     | | CurrentBalance: 2500.00m (16 bytes)    | |
-+------------------------------------+    |     +--------------------------------------------+
-                                          |
-                                          |     +--------------------------------------------+
-                                          +----&gt;| Address: 0x00A4F890                        |
-                                                | [Type MethodTable Pointer] (8 bytes)       |
-                                                | [SyncBlock Index]          (8 bytes)       |
-                                                | AccountNumber: &quot;ACC-102&quot;                   |
-                                                | AccountHolder: &quot;Bob&quot;                       |
-                                                | CurrentBalance: 500.00m                    |
-                                                +--------------------------------------------+</pre>
-    </div>
-  
-
-    <h2 id="multiple-instances">5. Object Isolation & Multiple Instances</h2>
-    <p>
-      Every object instantiated from a class is entirely isolated from other instances. Modifying <code>account1.CurrentBalance</code> has zero impact on <code>account2.CurrentBalance</code>:
-    </p>
-
-    
     <div class="code-block-container">
       <div class="code-header">
-        <span class="code-lang-label">Object Isolation in Action</span>
+        <span class="code-lang-label">C#</span>
         <button class="copy-btn" aria-label="Copy code">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           Copy
         </button>
       </div>
-      <pre><code>var acc1 = new BankAccount();
-acc1.AccountNumber = &quot;ACC-101&quot;;
-acc1.AccountHolder = &quot;Alice&quot;;
-acc1.Deposit(1000m);
-
-var acc2 = new BankAccount();
-acc2.AccountNumber = &quot;ACC-102&quot;;
-acc2.AccountHolder = &quot;Bob&quot;;
-acc2.Deposit(250m);
-
-Console.WriteLine($&quot;Acc 1 Balance: {acc1.CurrentBalance:C}&quot;); // $1,000.00
-Console.WriteLine($&quot;Acc 2 Balance: {acc2.CurrentBalance:C}&quot;); // $250.00</code></pre>
+      <pre><code>// We create ONE car object in memory.
+// carA holds the memory address of this object.
+Car carA = new Car();
+carA.SetColor(&quot;Green&quot;);
+// We declare a new variable, carB.
+// We then copy the VALUE of carA into carB.
+// The value of carA is the memory address, NOT the object itself.
+// Now, both carA and carB point to the EXACT SAME object in memory.
+Car carB = carA;
+Console.WriteLine($&quot;Car A color: {carA.GetColor()}&quot;); // Output: Green
+Console.WriteLine($&quot;Car B color: {carB.GetColor()}&quot;); // Output: Green
+// Now, let's change the color using the carB reference.
+carB.SetColor(&quot;Yellow&quot;);
+Console.WriteLine(&quot;--- Color changed via carB ---&quot;);
+// Because both variables point to the same object, the change is
+// reflected when we access the object through carA as well.
+Console.WriteLine($&quot;Car A color: {carA.GetColor()}&quot;); // Output: Yellow
+Console.WriteLine($&quot;Car B color: {carB.GetColor()}&quot;); // Output: Yellow</code></pre>
     </div>
   
 
-    <h2 id="garbage-collection-intro">6. Object Lifetime & CLR Garbage Collection</h2>
-    <p>
-      In C#, you never call <code>free()</code> or <code>delete</code>. When an object on the heap no longer has any active references pointing to it from running stack frames, static variables, or CPU registers, it becomes eligible for automatic <strong>Garbage Collection (GC)</strong>. The GC reclaims the heap memory automatically in the background.
-    </p>
-
-    <h2 id="pitfalls">7. Common OOP Gotchas</h2>
-    
-    <div class="callout callout-warning">
+    <div class="callout callout-tip">
       <div class="callout-header">
-        <span>🟠 Compiler Trap & Common Gotcha</span>
+        <span>🟢 Best Practice & Architecture Tip</span>
         
       </div>
       <div class="callout-content">
-        
-      <p>
-        <strong>Bug:</strong> Declaring a class reference without initializing it:
-      </p>
-      <pre><code>BankAccount account;
-account.Deposit(100); // System.NullReferenceException: Object reference not set to an instance of an object</code></pre>
-      <p>
-        <strong>Fix:</strong> The stack variable holds <code>null</code> (address 0x00). You must allocate the instance using <code>new BankAccount()</code> before invoking methods or assigning fields.
-      </p>
-    
+        <ul><li>Question: &quot;What happens when you assign one object variable to another?</li></ul><p>Does it create a copy of the object?&quot;</p><ul><li>Ideal Answer: &quot;No, it does not create a copy of the object. Since a class is a</li></ul><p>reference type, the variable holds a reference to the object's location in</p><p>memory. When you assign one variable to another, you are only copying the</p><p>reference. Both variables will then point to the same single object on the</p><p>heap. Any changes made to the object through one variable will be visible</p><p>through the other.&quot;</p><ul><li>The new Keyword Deconstructed</li></ul><p>The new keyword is more than just a piece of syntax; it performs three distinct</p><p>operations in order:</p><ul><li>Memory Allocation: It allocates a block of memory on the heap large</li></ul><p>enough to hold all the fields defined in the class.</p><ul><li>Constructor Execution: It calls a special method on the class called a</li></ul><p>constructor (more on this in a later section). The constructor's job is to</p><p>initialize the object's fields to a valid starting state.</p><ul><li>Return Reference: After the object is initialized, the new operator returns</li></ul><p>the memory address (the reference) of the newly created object, which is</p><p>then stored in your variable.</p><ul><li>Members of a Class</li></ul><p>So far we have seen two types of members: fields and methods. However, a class</p><p>can contain several other kinds of members, which you will learn about later. It's</p><p>good to be aware of the terminology:</p><ul><li>Fields: Variables that store the object's state.</li><li>Methods: Functions that define the object's behavior.</li><li>Properties: A more advanced way to expose data that combines the</li></ul><p>simplicity of a field with the control of a method (often used instead of</p><p>Get... and Set... methods).</p><ul><li>Constructors: Special methods used to initialize a new object when it's</li></ul><p>created.</p><ul><li>Events: A mechanism for an object to provide notifications to other objects.</li><li>And more... (like finalizers, indexers, and nested types).</li></ul>
       </div>
     </div>
   
+
+    <div class="diagram-container">
+      <div class="diagram-title">📊 Diagram: Class Blueprint vs Object Memory Layout</div>
+      <pre class="diagram-pre">[ Stack Memory ]                          [ Managed Heap Memory ]
++-------------------------+               +--------------------------------------+
+| Car myCar (Reference)   |--------------&gt;| Object Header (Type Handle + Sync)   |
+| 8 bytes memory pointer  |               | string _color = &quot;Midnight Blue&quot;      |
++-------------------------+               | int _currentSpeed = 65               |
+                                          +--------------------------------------+</pre>
+    </div>
   
+    <h2 id="sec-4-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
+    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
+  <ul>
+  <li>PAGE 1 ---</li>
+  <li>PAGE 2 ---</li>
+  <li>PAGE 3 ---</li>
+  <li>PAGE 4 ---</li>
+</ul>
+
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -639,31 +659,19 @@ account.Deposit(100); // System.NullReferenceException: Object reference not set
       <ul class="toc-list">
         
       <li class="toc-item">
-        <a href="#procedural-vs-oop" class="toc-link">1. Procedural vs Object-Oriented Paradigm</a>
+        <a href="#sec-4-lec-1-understanding-oop-fundamentals" class="toc-link">Lecture 1: Understanding OOP Fundamentals</a>
       </li>
     
       <li class="toc-item">
-        <a href="#class-blueprint" class="toc-link">2. The Class as an Architectural Blueprint</a>
+        <a href="#sec-4-lec-2-creating-classes-objects" class="toc-link">Lecture 2: Creating Classes &amp; Objects</a>
       </li>
     
       <li class="toc-item">
-        <a href="#instantiation-new" class="toc-link">3. Instantiating Objects with the &quot;new&quot; Operator</a>
+        <a href="#sec-4-lec-3-imp-points-to-remember-about-classes-and-obje" class="toc-link">Lecture 3: IMP Points to remember about Classes </a>
       </li>
     
       <li class="toc-item">
-        <a href="#memory-allocation-diagram" class="toc-link">4. Memory Allocation: Object Heap Payload</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#multiple-instances" class="toc-link">5. Object Isolation &amp; Multiple Instances</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#garbage-collection-intro" class="toc-link">6. Object Lifetime &amp; CLR Garbage Collection</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#pitfalls" class="toc-link">7. Common OOP Gotchas</a>
+        <a href="#sec-4-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>
