@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="../assets/css/docs.css">
 </head>
 <body id="top">
+  <!-- Skip to Main Content (Accessibility) -->
+  <a href="#mainContent" class="skip-to-content">Skip to main content</a>
 
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
       <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
-      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
         <span class="sidebar-toggle-text">« Collapse</span>
       </button>
@@ -49,12 +51,12 @@
   <div class="docs-wrapper">
 
     <!-- Left Navigation Sidebar -->
-    <aside class="docs-sidebar">
+    <aside class="docs-sidebar" aria-label="Course Navigation">
       <div class="sidebar-top-bar">
-        <span class="sidebar-top-title">Navigation</span>
-        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
-          <span>Collapse</span>
+        <span class="sidebar-top-title">Course Outline</span>
+        <button class="sidebar-close-btn mobile-only-btn" id="sidebarCloseBtn" title="Close Sidebar" aria-label="Close navigation sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
         </button>
       </div>
       <div class="sidebar-search-box">
@@ -408,7 +410,7 @@
     </aside>
 
     <!-- Main Content Container -->
-    <main class="docs-main-container">
+    <main class="docs-main-container" id="mainContent" tabindex="-1">
 
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
@@ -492,7 +494,7 @@
 
     <h2 id="sec-31-lec-5-single-threaded-app">Lecture 5: Single-Threaded App</h2>
     <h3>Introduction</h3>
-    <p>A single-threaded application executes all its tasks sequentially, one after the other, on the Main Thread. No task can begin until the previous task has completely finished. This is the simplest programming model to understand and debug, as the flow of execution is linear and predictable. However, it is not suitable for applications that need to remain responsive while performing long- running work. Execution Analysis In a single-threaded model, if TaskA takes 5 seconds and TaskB takes 5 seconds, the total execution time will be 10 seconds. The Main method will call HeavyTaskA() and will block—it will wait at that line of code without proceeding—until HeavyTaskA returns. Only then will it proceed to call HeavyTaskB(). Example This example demonstrates the sequential nature of a single-threaded program. Notice in the output how Task B started. does not appear until after Task A finished. is printed. class Program { static void Main(string[] args) { Console.WriteLine(&quot;Main thread started. Starting sequential tasks...&quot;); HeavyTaskA(); HeavyTaskB(); Console.WriteLine(&quot;Main thread finished.&quot;); } static void HeavyTaskA() { Console.WriteLine(&quot; Task A started.&quot;); for (int i = 1; i &lt;= 5; i++) { Console.WriteLine(&quot; 	Task A is working...&quot;); Thread.Sleep(500); // Simulate 0.5 seconds of work } Console.WriteLine(&quot; Task A finished.&quot;); } static void HeavyTaskB() { Console.WriteLine(&quot; Task B started.&quot;); for (int i = 1; i &lt;= 5; i++) { Console.WriteLine(&quot; 	Task B is working...&quot;); Thread.Sleep(500); // Simulate 0.5 seconds of work } Console.WriteLine(&quot; Task B finished.&quot;); } } Simplified Output: Main thread started. Starting sequential tasks... Task A started. Task A is working... ... (repeats 5 times) ... Task A finished. Task B started. Task B is working... ... (repeats 5 times) ... Task B finished. Main thread finished.</p>
+    <p>A single-threaded application executes all its tasks sequentially, one after the other, on the Main Thread. No task can begin until the previous task has completely finished. This is the simplest programming model to understand and debug, as the flow of execution is linear and predictable. However, it is not suitable for applications that need to remain responsive while performing long- running work. Execution Analysis In a single-threaded model, if TaskA takes 5 seconds and TaskB takes 5 seconds, the total execution time will be 10 seconds. The Main method will call HeavyTaskA() and will block—it will wait at that line of code without proceeding—until HeavyTaskA returns. Only then will it proceed to call HeavyTaskB(). Example This example demonstrates the sequential nature of a single-threaded program. Notice in the output how Task B started. does not appear until after Task A finished. is printed. class Program { static void Main(string[] args) { Console.WriteLine(&quot;Main thread started. Starting sequential tasks...&quot;); HeavyTaskA(); HeavyTaskB(); Console.WriteLine(&quot;Main thread finished.&quot;); } static void HeavyTaskA() { Console.WriteLine(&quot; Task A started.&quot;); for (int i = 1; i &lt;= 5; i++) { Console.WriteLine(&quot; Task A is working...&quot;); Thread.Sleep(500); // Simulate 0.5 seconds of work } Console.WriteLine(&quot; Task A finished.&quot;); } static void HeavyTaskB() { Console.WriteLine(&quot; Task B started.&quot;); for (int i = 1; i &lt;= 5; i++) { Console.WriteLine(&quot; Task B is working...&quot;); Thread.Sleep(500); // Simulate 0.5 seconds of work } Console.WriteLine(&quot; Task B finished.&quot;); } } Simplified Output: Main thread started. Starting sequential tasks... Task A started. Task A is working... ... (repeats 5 times) ... Task A finished. Task B started. Task B is working... ... (repeats 5 times) ... Task B finished. Main thread finished.</p>
 
     <h2 id="sec-31-lec-6-multiple-threads">Lecture 6: Multiple Threads</h2>
     <h3>Introduction</h3>
@@ -591,7 +593,7 @@
       <li>Thread B reads the value 10.</li>
       <li>Thread B adds 1 (result is 11) and writes 11 back to memory. The counter is now 11.</li>
       <li>The OS switches back to Thread A. Thread A still has the old value 10 that it read earlier.</li>
-      <li>Thread A adds 1 (result is 11) and writes 11 back to memory. The counter should be 12, but because Thread A's work was based on stale data, its result overwrote Thread B's result. One of the increments was lost. Example: Demonstrating a Race Condition This code starts two threads that each increment a shared counter 1,000,000 times. The expected final result is 2,000,000, but the actual result will almost always be less due to race conditions. class Program { static int sharedCounter = 0; static void Main(string[] args) { List&lt;Thread&gt; threads = new List&lt;Thread&gt;(); for (int i = 0; i &lt; 2; i++) // Create 2 threads { Thread t = new Thread(IncrementCounter); threads.Add(t); t.Start(); } foreach (Thread t in threads) { t.Join(); // Wait for both threads to finish } Console.WriteLine($&quot;Expected result: 2,000,000&quot;); Console.WriteLine($&quot;Actual result: 	{sharedCounter}&quot;); } static void IncrementCounter() { for (int i = 0; i &lt; 1000000; i++) { // This is the CRITICAL SECTION where the race condition occurs. sharedCounter++; } } }</li>
+      <li>Thread A adds 1 (result is 11) and writes 11 back to memory. The counter should be 12, but because Thread A's work was based on stale data, its result overwrote Thread B's result. One of the increments was lost. Example: Demonstrating a Race Condition This code starts two threads that each increment a shared counter 1,000,000 times. The expected final result is 2,000,000, but the actual result will almost always be less due to race conditions. class Program { static int sharedCounter = 0; static void Main(string[] args) { List&lt;Thread&gt; threads = new List&lt;Thread&gt;(); for (int i = 0; i &lt; 2; i++) // Create 2 threads { Thread t = new Thread(IncrementCounter); threads.Add(t); t.Start(); } foreach (Thread t in threads) { t.Join(); // Wait for both threads to finish } Console.WriteLine($&quot;Expected result: 2,000,000&quot;); Console.WriteLine($&quot;Actual result: {sharedCounter}&quot;); } static void IncrementCounter() { for (int i = 0; i &lt; 1000000; i++) { // This is the CRITICAL SECTION where the race condition occurs. sharedCounter++; } } }</li>
     </ol>
 
     <h2 id="sec-31-lec-16-thread-synchronization">Lecture 16: Thread Synchronization</h2>
@@ -636,7 +638,7 @@
 
     <h2 id="sec-31-lec-20-autoresetevent">Lecture 20: AutoResetEvent</h2>
     <h3>Introduction</h3>
-    <p>An AutoResetEvent is another gate-like synchronization primitive, very similar to ManualResetEvent. It also has WaitOne() and Set() methods and can be in a signaled or non-signaled state. However, it has one critical difference in behavior. How It Works: The Automatic Reset This is the key distinction. When a thread is waiting on an AutoResetEvent and another thread calls Set() to open the gate, it allows only one waiting thread to pass through. Immediately after letting that single thread proceed, the gate automatically resets back to the closed (non-signaled) state. Think of it like a subway turnstile: it unlocks to let one person through, and then immediately locks again. A ManualResetEvent is like a main gate that, once opened, lets everyone rush through until it's manually closed. Why and When to Use It Use an AutoResetEvent when you want to release waiting threads one at a time in a controlled, sequential manner. It's often used in producer-consumer scenarios where one thread produces a piece of data and then signals exactly one consumer thread to wake up and process it. Example: A Simple Ping-Pong Let's create two threads that take turns &quot;pinging&quot; and &quot;ponging&quot; each other. class Program { // Two gates. 'pingGate' starts open, 'pongGate' starts closed. static AutoResetEvent pingGate = new AutoResetEvent(true); static AutoResetEvent pongGate = new AutoResetEvent(false); static void Main(string[] args) { new Thread(Ping).Start(); new Thread(Pong).Start(); } static void Ping() { for (int i = 0; i &lt; 5; i++) { pingGate.WaitOne(); // Wait for my turn (starts open). Console.WriteLine(&quot;Ping!&quot;); pongGate.Set(); // Open the gate for Pong's turn. } } static void Pong() { for (int i = 0; i &lt; 5; i++) { pongGate.WaitOne(); // Wait for my turn (starts closed). Console.WriteLine(&quot; 	Pong!&quot;); pingGate.Set(); // Open the gate for Ping's turn. } } }</p>
+    <p>An AutoResetEvent is another gate-like synchronization primitive, very similar to ManualResetEvent. It also has WaitOne() and Set() methods and can be in a signaled or non-signaled state. However, it has one critical difference in behavior. How It Works: The Automatic Reset This is the key distinction. When a thread is waiting on an AutoResetEvent and another thread calls Set() to open the gate, it allows only one waiting thread to pass through. Immediately after letting that single thread proceed, the gate automatically resets back to the closed (non-signaled) state. Think of it like a subway turnstile: it unlocks to let one person through, and then immediately locks again. A ManualResetEvent is like a main gate that, once opened, lets everyone rush through until it's manually closed. Why and When to Use It Use an AutoResetEvent when you want to release waiting threads one at a time in a controlled, sequential manner. It's often used in producer-consumer scenarios where one thread produces a piece of data and then signals exactly one consumer thread to wake up and process it. Example: A Simple Ping-Pong Let's create two threads that take turns &quot;pinging&quot; and &quot;ponging&quot; each other. class Program { // Two gates. 'pingGate' starts open, 'pongGate' starts closed. static AutoResetEvent pingGate = new AutoResetEvent(true); static AutoResetEvent pongGate = new AutoResetEvent(false); static void Main(string[] args) { new Thread(Ping).Start(); new Thread(Pong).Start(); } static void Ping() { for (int i = 0; i &lt; 5; i++) { pingGate.WaitOne(); // Wait for my turn (starts open). Console.WriteLine(&quot;Ping!&quot;); pongGate.Set(); // Open the gate for Pong's turn. } } static void Pong() { for (int i = 0; i &lt; 5; i++) { pongGate.WaitOne(); // Wait for my turn (starts closed). Console.WriteLine(&quot; Pong!&quot;); pingGate.Set(); // Open the gate for Ping's turn. } } }</p>
 
     <h2 id="sec-31-lec-21-wait-and-pulse">Lecture 21: Wait and Pulse</h2>
     <h3>Introduction</h3>
@@ -647,7 +649,7 @@
       <li>If the condition isn't met, it calls Monitor.Wait(lockObject). This method does two things atomically: it temporarily releases the lock and puts the current thread into a special waiting queue for that lock. Releasing the lock is crucial, as it allows other threads (like the producer) to enter the critical section.</li>
       <li>Another &quot;producer&quot; thread acquires the same lock. It does some work (e.g., adds an item to the queue).</li>
       <li>The producer then calls Monitor.Pulse(lockObject) to wake up one waiting thread, or Monitor.PulseAll(lockObject) to wake up all waiting threads.</li>
-      <li>The woken-up consumer thread does not run immediately. It is moved from the waiting queue to the &quot;ready&quot; queue. It must now re-acquire the lock before it can proceed from the point where it called Wait. When to Use It For building complex, custom producer-consumer queues or other synchronization patterns where threads need to wait for state changes inside a critical section. In modern C#, higher-level abstractions like BlockingCollection&lt;T&gt; are often a better and safer choice for these scenarios. Example: A Simple Producer-Consumer Queue class Program { static Queue&lt;string&gt; _tasks = new Queue&lt;string&gt;(); static readonly object _lock = new object(); static void Main(string[] args) { new Thread(Consumer).Start(); Thread.Sleep(1000); // Give the consumer time to start and wait. // Producer adds tasks for (int i = 0; i &lt; 5; i++) { lock (_lock) { string task = $&quot;Task {i + 1}&quot;; _tasks.Enqueue(task); Console.WriteLine($&quot;Produced: {task}&quot;); // Pulse the waiting consumer thread to let it know there's work. Monitor.Pulse(_lock); } Thread.Sleep(500); } } static void Consumer() { while (true) { lock (_lock) { // If the queue is empty, release the lock and wait. while (_tasks.Count == 0) { Console.WriteLine(&quot;Consumer is waiting...&quot;); Monitor.Wait(_lock); // Releases the lock until pulsed. } string task = _tasks.Dequeue(); Console.WriteLine($&quot; 	Consumed: {task}&quot;); } Thread.Sleep(1000); } } }</li>
+      <li>The woken-up consumer thread does not run immediately. It is moved from the waiting queue to the &quot;ready&quot; queue. It must now re-acquire the lock before it can proceed from the point where it called Wait. When to Use It For building complex, custom producer-consumer queues or other synchronization patterns where threads need to wait for state changes inside a critical section. In modern C#, higher-level abstractions like BlockingCollection&lt;T&gt; are often a better and safer choice for these scenarios. Example: A Simple Producer-Consumer Queue class Program { static Queue&lt;string&gt; _tasks = new Queue&lt;string&gt;(); static readonly object _lock = new object(); static void Main(string[] args) { new Thread(Consumer).Start(); Thread.Sleep(1000); // Give the consumer time to start and wait. // Producer adds tasks for (int i = 0; i &lt; 5; i++) { lock (_lock) { string task = $&quot;Task {i + 1}&quot;; _tasks.Enqueue(task); Console.WriteLine($&quot;Produced: {task}&quot;); // Pulse the waiting consumer thread to let it know there's work. Monitor.Pulse(_lock); } Thread.Sleep(500); } } static void Consumer() { while (true) { lock (_lock) { // If the queue is empty, release the lock and wait. while (_tasks.Count == 0) { Console.WriteLine(&quot;Consumer is waiting...&quot;); Monitor.Wait(_lock); // Releases the lock until pulsed. } string task = _tasks.Dequeue(); Console.WriteLine($&quot; Consumed: {task}&quot;); } Thread.Sleep(1000); } } }</li>
     </ol>
 
     <h2 id="sec-31-lec-22-monitor-with-manualresetevent">Lecture 22: Monitor with ManualResetEvent</h2>
@@ -698,7 +700,7 @@
     <p>A Mutex (short for Mutual Exclusion) is a synchronization primitive that is very similar to a lock, as it is used to ensure that only one thread can access a resource at a time. However, it has one critical difference. The Key Difference: System-Wide vs. Process-Local This is a very important interview topic.</p>
     <ul>
       <li>A lock (Monitor) is local to a single process. It can only be used to synchronize threads within your own running application.</li>
-      <li>A Mutex is a system-wide or cross-process synchronization primitive. This means a Mutex can be given a name, and it can be used to synchronize threads across multiple, different running applications. When to Use It 1. 	Cross-Process Synchronization: When you need to protect a shared resource that is accessible by multiple separate processes, such as a specific file on disk that only one application should be writing to at a time. 2. 	Enforcing a Single Instance Application: A very common use case is to ensure that only one instance of your application can run at a time. On startup, the application tries to acquire a named Mutex. If it succeeds, it knows it's the first instance. If it fails, it means another instance already holds the Mutex, and the new instance can then exit. Example: Basic Usage Pattern // A named Mutex can be shared across processes. private static Mutex singleInstanceMutex = new Mutex(true, &quot;MyUniqueAppName123&quot;); // In Main: // Try to acquire the mutex. The '0' means don't wait. bool isNewInstance = singleInstanceMutex.WaitOne(0, false); if (!isNewInstance) { Console.WriteLine(&quot;Another instance of this application is already running. Exiting.&quot;); return; } // ... run application logic ... // Release the mutex on exit. singleInstanceMutex.ReleaseMutex();</li>
+      <li>A Mutex is a system-wide or cross-process synchronization primitive. This means a Mutex can be given a name, and it can be used to synchronize threads across multiple, different running applications. When to Use It 1. Cross-Process Synchronization: When you need to protect a shared resource that is accessible by multiple separate processes, such as a specific file on disk that only one application should be writing to at a time. 2. Enforcing a Single Instance Application: A very common use case is to ensure that only one instance of your application can run at a time. On startup, the application tries to acquire a named Mutex. If it succeeds, it knows it's the first instance. If it fails, it means another instance already holds the Mutex, and the new instance can then exit. Example: Basic Usage Pattern // A named Mutex can be shared across processes. private static Mutex singleInstanceMutex = new Mutex(true, &quot;MyUniqueAppName123&quot;); // In Main: // Try to acquire the mutex. The '0' means don't wait. bool isNewInstance = singleInstanceMutex.WaitOne(0, false); if (!isNewInstance) { Console.WriteLine(&quot;Another instance of this application is already running. Exiting.&quot;); return; } // ... run application logic ... // Release the mutex on exit. singleInstanceMutex.ReleaseMutex();</li>
     </ul>
 
     <h2 id="sec-31-lec-27-thread-pool">Lecture 27: Thread Pool</h2>
@@ -743,29 +745,6 @@
 (Work Stealing Algo)   (Work Stealing Algo)   (Work Stealing Algo)</pre>
     </div>
   
-    <h2 id="sec-31-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
-    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
-  <ul>
-  <li>PAGE 1 ---</li>
-  <li>PAGE 2 ---</li>
-  <li>PAGE 3 ---</li>
-  <li>PAGE 4 ---</li>
-  <li>PAGE 5 ---</li>
-  <li>PAGE 6 ---</li>
-  <li>PAGE 7 ---</li>
-  <li>PAGE 8 ---</li>
-  <li>PAGE 9 ---</li>
-  <li>PAGE 10 ---</li>
-  <li>PAGE 11 ---</li>
-  <li>PAGE 12 ---</li>
-  <li>PAGE 13 ---</li>
-  <li>PAGE 14 ---</li>
-  <li>PAGE 15 ---</li>
-  <li>PAGE 16 ---</li>
-  <li>PAGE 17 ---</li>
-  <li>PAGE 18 ---</li>
-</ul>
-
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -910,10 +889,6 @@
     
       <li class="toc-item">
         <a href="#sec-31-lec-29-points-to-remember" class="toc-link">Lecture 29: Points to Remember</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-31-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

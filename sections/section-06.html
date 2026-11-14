@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="../assets/css/docs.css">
 </head>
 <body id="top">
+  <!-- Skip to Main Content (Accessibility) -->
+  <a href="#mainContent" class="skip-to-content">Skip to main content</a>
 
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
       <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
-      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
         <span class="sidebar-toggle-text">« Collapse</span>
       </button>
@@ -49,12 +51,12 @@
   <div class="docs-wrapper">
 
     <!-- Left Navigation Sidebar -->
-    <aside class="docs-sidebar">
+    <aside class="docs-sidebar" aria-label="Course Navigation">
       <div class="sidebar-top-bar">
-        <span class="sidebar-top-title">Navigation</span>
-        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
-          <span>Collapse</span>
+        <span class="sidebar-top-title">Course Outline</span>
+        <button class="sidebar-close-btn mobile-only-btn" id="sidebarCloseBtn" title="Close Sidebar" aria-label="Close navigation sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
         </button>
       </div>
       <div class="sidebar-search-box">
@@ -408,7 +410,7 @@
     </aside>
 
     <!-- Main Content Container -->
-    <main class="docs-main-container">
+    <main class="docs-main-container" id="mainContent" tabindex="-1">
 
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
@@ -561,7 +563,7 @@ Console.WriteLine($&quot;Player healed {healAmount}. Current health:
     <p>It's crucial to understand the difference between variables that receive data (parameters) and variables that are created temporarily inside a method (local variables). Both are essential for a method to perform its task.</p>
     <ul>
       <li>Parameters: These are the variables defined in a method's signature (inside the parentheses). They act as placeholders for the data that will be passed into the method when it is called from outside.</li>
-      <li>Local Variables: These are variables declared inside the body of a method. They are used for temporary storage, calculations, and holding intermediate results needed to perform the method's task. How They Work: A Deep Dive into the Call Stack and Stack Frames The lifetime and memory of parameters and local variables are managed by a memory structure called the call stack. Understanding this process is key to understanding how methods work internally. Let's trace a simple method call: int finalResult = Add(5, 10); 1. 	Pushing the Stack Frame: When Add(5, 10) is called, the program execution pauses, and the .NET runtime creates a new stack frame for the Add method and pushes it onto the top of the call stack. This stack frame is a dedicated, temporary block of memory just for this specific method call. 2. 	Populating Parameters: The values passed in the call (5 and 10) are copied into the parameter variables (a and b) inside the newly created stack frame. 3. 	Creating Local Variables: As the method executes, any local variables it declares (like sum in the example below) are also created within this same stack frame. 4. 	Execution: The method performs its calculations using its parameters and local variables, all of which reside in its stack frame. 5. 	Returning and Popping: When the method hits the return statement, the return value is prepared. Then, the method's entire stack frame is popped off (removed) from the call stack. 6. 	Destruction: The moment the stack frame is popped, all of its parameters and local variables are instantly destroyed, and their memory is automatically reclaimed. This is why they are temporary and have a scope limited only to the method they are in. 7. 	Resuming Execution: The return value is passed back to the calling code, and execution resumes where it left off. Example</li>
+      <li>Local Variables: These are variables declared inside the body of a method. They are used for temporary storage, calculations, and holding intermediate results needed to perform the method's task. How They Work: A Deep Dive into the Call Stack and Stack Frames The lifetime and memory of parameters and local variables are managed by a memory structure called the call stack. Understanding this process is key to understanding how methods work internally. Let's trace a simple method call: int finalResult = Add(5, 10); 1. Pushing the Stack Frame: When Add(5, 10) is called, the program execution pauses, and the .NET runtime creates a new stack frame for the Add method and pushes it onto the top of the call stack. This stack frame is a dedicated, temporary block of memory just for this specific method call. 2. Populating Parameters: The values passed in the call (5 and 10) are copied into the parameter variables (a and b) inside the newly created stack frame. 3. Creating Local Variables: As the method executes, any local variables it declares (like sum in the example below) are also created within this same stack frame. 4. Execution: The method performs its calculations using its parameters and local variables, all of which reside in its stack frame. 5. Returning and Popping: When the method hits the return statement, the return value is prepared. Then, the method's entire stack frame is popped off (removed) from the call stack. 6. Destruction: The moment the stack frame is popped, all of its parameters and local variables are instantly destroyed, and their memory is automatically reclaimed. This is why they are temporary and have a scope limited only to the method they are in. 7. Resuming Execution: The return value is passed back to the calling code, and execution resumes where it left off. Example</li>
     </ul>
 
     <div class="code-block-container">
@@ -907,9 +909,9 @@ return a + b;
 }
 // --- In your Main method ---
 Calculator calc = new Calculator();
-calc.Add(5, 10); 	// Calls Overload 1
-calc.Add(5, 10, 15); 	// Calls Overload 2
-calc.Add(5.5, 10.2); 	// Calls Overload 3
+calc.Add(5, 10);  // Calls Overload 1
+calc.Add(5, 10, 15);  // Calls Overload 2
+calc.Add(5.5, 10.2);  // Calls Overload 3
 // Overload resolution with implicit conversion:
 calc.Add(5, 10.2); // Calls Overload 3, because the int '5' can be safely
 converted to a double.
@@ -958,11 +960,11 @@ Console.WriteLine($&quot;User '{username}' created with email: {email}&quot;);
 {
 public static void Swap(ref int a, ref int b)
 {
-Console.WriteLine($&quot; 	INSIDE METHOD (Before): a={a}, b={b}&quot;);
+Console.WriteLine($&quot;  INSIDE METHOD (Before): a={a}, b={b}&quot;);
 int temp = a;
 a = b;
 b = temp;
-Console.WriteLine($&quot; 	INSIDE METHOD (After): a={a}, b={b}&quot;);
+Console.WriteLine($&quot;  INSIDE METHOD (After): a={a}, b={b}&quot;);
 }
 }
 // --- In your Main method ---
@@ -1174,14 +1176,14 @@ return total;
 // --- In your Main method ---
 Calculator calc = new Calculator();
 // You can call it with any number of arguments.
-int sum1 = calc.Sum(1, 2, 3); 	// Processing 3 numbers. sum1 is 6
-int sum2 = calc.Sum(10, 20, 30, 40, 50); 	// Processing 5 numbers.
+int sum1 = calc.Sum(1, 2, 3);  // Processing 3 numbers. sum1 is 6
+int sum2 = calc.Sum(10, 20, 30, 40, 50);  // Processing 5 numbers.
 sum2 is 150
-int sum3 = calc.Sum(5); 	// Processing 1 number. sum3 is 5
-int sum4 = calc.Sum(); 	// Processing 0 numbers. sum4 is 0
+int sum3 = calc.Sum(5);  // Processing 1 number. sum3 is 5
+int sum4 = calc.Sum();  // Processing 0 numbers. sum4 is 0
 // You can also pass a pre-existing array.
 int[] myNumbers = { 1, 1, 2, 3, 5, 8 };
-int sum5 = calc.Sum(myNumbers); 	// Processing 6 numbers. sum5
+int sum5 = calc.Sum(myNumbers);  // Processing 6 numbers. sum5
 is 20
 Example 2: A simple logger
 C#
@@ -1343,30 +1345,18 @@ results) would be far more efficient.</code></pre>
     <p>This lecture summarizes the most critical, practical, and interview-worthy points about working with methods in C#.</p>
     <ol>
       <li>Methods Define Behavior and Enforce Encapsulation Methods are the &quot;verbs&quot; of your classes. They are the primary way you provide functionality and act as essential gatekeepers to protect your object's private data from invalid changes.</li>
-      <li>Instance vs. Static is a Core Concept ◦ 	Instance methods belong to an object, operate on its specific data (fields), and have access to the this reference. ◦ 	Static methods belong to the class as a whole, cannot access instance data or this, and are used for utility functions or factories.</li>
-      <li>Understand Argument Passing Thoroughly ◦ 	By default, value types (int, struct) are passed by value (a copy is made). ◦ 	By default, reference types (class objects) are passed by reference (specifically, a copy of the reference is made). Changes to the object's state persist, but reassigning the parameter to a new object does not affect the original variable. ◦ 	The ref and out keywords override this default behavior to pass a direct pointer to the original variable's memory.</li>
-      <li>ref vs. out is a Classic Interview Question Be ready to articulate the difference precisely: ◦ 	Initialization: A ref argument must be initialized by the caller. An out argument does not need to be. ◦ 	Assignment: The method can optionally change a ref parameter. The method must assign a value to an out parameter before it returns. ◦ 	Intent: Use ref when the method needs to both read and write to a variable. Use out when the method's primary purpose is to produce or return a value through that parameter.</li>
-      <li>Overloading and Optional Parameters Create Flexible APIs Use method overloading and optional/named parameters thoughtfully to create APIs that are easy to use, intuitive, and require less effort from the developer calling your code. It's a hallmark of a well-designed class.</li>
+      <li>Instance vs. Static is a Core Concept</li>
     </ol>
-
-    <h2 id="sec-6-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
-    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
-  <ul>
-  <li>PAGE 1 ---</li>
-  <li>PAGE 2 ---</li>
-  <li>PAGE 3 ---</li>
-  <li>PAGE 4 ---</li>
-  <li>PAGE 5 ---</li>
-  <li>PAGE 6 ---</li>
-  <li>PAGE 7 ---</li>
-  <li>PAGE 8 ---</li>
-  <li>PAGE 9 ---</li>
-  <li>PAGE 10 ---</li>
-  <li>PAGE 11 ---</li>
-  <li>PAGE 12 ---</li>
-  <li>PAGE 13 ---</li>
-  <li>PAGE 14 ---</li>
-</ul>
+    <ul>
+      <li>Instance methods belong to an object, operate on its specific data (fields), and have access to the this reference.</li>
+      <li>Static methods belong to the class as a whole, cannot access instance data or this, and are used for utility functions or factories. 3. Understand Argument Passing Thoroughly</li>
+      <li>By default, value types (int, struct) are passed by value (a copy is made).</li>
+      <li>By default, reference types (class objects) are passed by reference (specifically, a copy of the reference is made). Changes to the object's state persist, but reassigning the parameter to a new object does not affect the original variable.</li>
+      <li>The ref and out keywords override this default behavior to pass a direct pointer to the original variable's memory. 4. ref vs. out is a Classic Interview Question Be ready to articulate the difference precisely:</li>
+      <li>Initialization: A ref argument must be initialized by the caller. An out argument does not need to be.</li>
+      <li>Assignment: The method can optionally change a ref parameter. The method must assign a value to an out parameter before it returns.</li>
+      <li>Intent: Use ref when the method needs to both read and write to a variable. Use out when the method's primary purpose is to produce or return a value through that parameter. 5. Overloading and Optional Parameters Create Flexible APIs Use method overloading and optional/named parameters thoughtfully to create APIs that are easy to use, intuitive, and require less effort from the developer calling your code. It's a hallmark of a well-designed class.</li>
+    </ul>
 
       </article>
 
@@ -1476,10 +1466,6 @@ results) would be far more efficient.</code></pre>
     
       <li class="toc-item">
         <a href="#sec-6-lec-20-imp-points-to-remember-about-methods" class="toc-link">Lecture 20: IMP points to remember about methods</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-6-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

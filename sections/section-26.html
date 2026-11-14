@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="../assets/css/docs.css">
 </head>
 <body id="top">
+  <!-- Skip to Main Content (Accessibility) -->
+  <a href="#mainContent" class="skip-to-content">Skip to main content</a>
 
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
       <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
-      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
         <span class="sidebar-toggle-text">« Collapse</span>
       </button>
@@ -49,12 +51,12 @@
   <div class="docs-wrapper">
 
     <!-- Left Navigation Sidebar -->
-    <aside class="docs-sidebar">
+    <aside class="docs-sidebar" aria-label="Course Navigation">
       <div class="sidebar-top-bar">
-        <span class="sidebar-top-title">Navigation</span>
-        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
-          <span>Collapse</span>
+        <span class="sidebar-top-title">Course Outline</span>
+        <button class="sidebar-close-btn mobile-only-btn" id="sidebarCloseBtn" title="Close Sidebar" aria-label="Close navigation sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
         </button>
       </div>
       <div class="sidebar-search-box">
@@ -408,7 +410,7 @@
     </aside>
 
     <!-- Main Content Container -->
-    <main class="docs-main-container">
+    <main class="docs-main-container" id="mainContent" tabindex="-1">
 
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
@@ -501,7 +503,7 @@
 
     <h2 id="sec-26-lec-9-isnullorempty">Lecture 8: IsNullOrEmpty</h2>
     <h3>Introduction</h3>
-    <p>String.IsNullOrEmpty is a static utility method that provides a convenient and safe way to check if a string is either null or an empty string (&quot;&quot;). It combines two common checks into a single, highly readable method call. How It Works This method is a simple shortcut for the common condition: if (myString == null || myString == &quot;&quot;). By using IsNullOrEmpty, you first guard against a NullReferenceException (by checking for null) and then check if the string has any characters. When to Use It This should be your standard way to check for empty or non-existent string data, especially when validating method parameters or user input. It prevents NullReferenceException errors and makes your code's intent clearer than writing out the full || condition. Example public void ProcessUsername(string username) { // Use IsNullOrEmpty as a &quot;guard clause&quot; at the beginning of the method. if (String.IsNullOrEmpty(username)) { Console.WriteLine(&quot;Username cannot be empty. Process halted.&quot;); return; } Console.WriteLine($&quot;Processing user: {username}&quot;); // ... continue with processing ... } // --- In your Main method --- ProcessUsername(&quot;JohnDoe&quot;); // Output: Processing user: JohnDoe ProcessUsername(&quot;&quot;); 	// Output: Username cannot be empty. Process halted. ProcessUsername(null); 	// Output: Username cannot be empty. Process halted.</p>
+    <p>String.IsNullOrEmpty is a static utility method that provides a convenient and safe way to check if a string is either null or an empty string (&quot;&quot;). It combines two common checks into a single, highly readable method call. How It Works This method is a simple shortcut for the common condition: if (myString == null || myString == &quot;&quot;). By using IsNullOrEmpty, you first guard against a NullReferenceException (by checking for null) and then check if the string has any characters. When to Use It This should be your standard way to check for empty or non-existent string data, especially when validating method parameters or user input. It prevents NullReferenceException errors and makes your code's intent clearer than writing out the full || condition. Example public void ProcessUsername(string username) { // Use IsNullOrEmpty as a &quot;guard clause&quot; at the beginning of the method. if (String.IsNullOrEmpty(username)) { Console.WriteLine(&quot;Username cannot be empty. Process halted.&quot;); return; } Console.WriteLine($&quot;Processing user: {username}&quot;); // ... continue with processing ... } // --- In your Main method --- ProcessUsername(&quot;JohnDoe&quot;); // Output: Processing user: JohnDoe ProcessUsername(&quot;&quot;); // Output: Username cannot be empty. Process halted. ProcessUsername(null); // Output: Username cannot be empty. Process halted.</p>
 
     <h2 id="sec-26-lec-10-split">Lecture 9: Split</h2>
     <h3>Introduction</h3>
@@ -512,7 +514,7 @@
     <p>The Trim() method is an instance method used to create a new string by removing all leading and trailing whitespace characters from the original string. How It Works &quot;Whitespace&quot; includes common characters like spaces, tabs (\t), and newlines (\n). The Trim() method does not affect whitespace within the middle of the string. It has two variations:</p>
     <ul>
       <li>TrimStart(): Removes whitespace only from the beginning of the string.</li>
-      <li>TrimEnd(): Removes whitespace only from the end of thestring. Like all string methods, it is immutable and returns a new string. When to Use It It is essential for cleaning up user input before processing or saving it. Users frequently add accidental leading or trailing spaces when typing. Trim() ensures that these extra spaces don't cause issues in comparisons, database lookups, or file paths. Example string rawUserInput = &quot; 	John Doe 	&quot;; Console.WriteLine($&quot;Raw: '{rawUserInput}'&quot;); // Use Trim to clean up the input. string cleanedInput = rawUserInput.Trim(); Console.WriteLine($&quot;Cleaned: '{cleanedInput}'&quot;); // Using TrimStart and TrimEnd string messyPath = &quot; 	C:\\MyFiles\\ 	&quot;; string cleanStart = messyPath.TrimStart(); // &quot;C:\\MyFiles\\ 	&quot; string cleanEnd = messyPath.TrimEnd(); 	// &quot; 	C:\\MyFiles\\&quot;</li>
+      <li>TrimEnd(): Removes whitespace only from the end of thestring. Like all string methods, it is immutable and returns a new string. When to Use It It is essential for cleaning up user input before processing or saving it. Users frequently add accidental leading or trailing spaces when typing. Trim() ensures that these extra spaces don't cause issues in comparisons, database lookups, or file paths. Example string rawUserInput = &quot; John Doe &quot;; Console.WriteLine($&quot;Raw: '{rawUserInput}'&quot;); // Use Trim to clean up the input. string cleanedInput = rawUserInput.Trim(); Console.WriteLine($&quot;Cleaned: '{cleanedInput}'&quot;); // Using TrimStart and TrimEnd string messyPath = &quot; C:\\MyFiles\\ &quot;; string cleanStart = messyPath.TrimStart(); // &quot;C:\\MyFiles\\ &quot; string cleanEnd = messyPath.TrimEnd(); // &quot; C:\\MyFiles\\&quot;</li>
     </ul>
 
     <h2 id="sec-26-lec-12-tochararray">Lecture 11: ToCharArray</h2>
@@ -579,7 +581,7 @@
     <ul>
       <li>null</li>
       <li>An empty string (&quot;&quot;)</li>
-      <li>Consists only of whitespace characters (spaces, tabs, newlines, etc.). This is what makes it more powerful than IsNullOrEmpty, which would return false for a string like &quot; &quot;. When to Use It This should be your preferred method for validating user input or any string that should contain actual content. It correctly handles cases where a user might enter just spaces into a required text field. Example string s1 = null; string s2 = &quot;&quot;; string s3 = &quot; 	\t 	&quot;; // Just whitespace string s4 = &quot;Hello&quot;; Console.WriteLine($&quot;s1 is null or whitespace? {String.IsNullOrWhiteSpace(s1)}&quot;); // True Console.WriteLine($&quot;s2 is null or whitespace? {String.IsNullOrWhiteSpace(s2)}&quot;); // True Console.WriteLine($&quot;s3 is null or whitespace? {String.IsNullOrWhiteSpace(s3)}&quot;); // True Console.WriteLine($&quot;s4 is null or whitespace? {String.IsNullOrWhiteSpace(s4)}&quot;); // False</li>
+      <li>Consists only of whitespace characters (spaces, tabs, newlines, etc.). This is what makes it more powerful than IsNullOrEmpty, which would return false for a string like &quot; &quot;. When to Use It This should be your preferred method for validating user input or any string that should contain actual content. It correctly handles cases where a user might enter just spaces into a required text field. Example string s1 = null; string s2 = &quot;&quot;; string s3 = &quot; \t &quot;; // Just whitespace string s4 = &quot;Hello&quot;; Console.WriteLine($&quot;s1 is null or whitespace? {String.IsNullOrWhiteSpace(s1)}&quot;); // True Console.WriteLine($&quot;s2 is null or whitespace? {String.IsNullOrWhiteSpace(s2)}&quot;); // True Console.WriteLine($&quot;s3 is null or whitespace? {String.IsNullOrWhiteSpace(s3)}&quot;); // True Console.WriteLine($&quot;s4 is null or whitespace? {String.IsNullOrWhiteSpace(s4)}&quot;); // False</li>
     </ul>
 
     <h2 id="sec-26-lec-20-strings-with-for-loop">Lecture 19: Strings with For Loop</h2>
@@ -599,7 +601,7 @@
       <li>Insert(index, value): Inserts text at a specific position.</li>
       <li>Remove(startIndex, length): Removes a specified number of characters.</li>
       <li>Replace(oldValue, newValue): Replaces all occurrences of a string with another.</li>
-      <li>ToString(): This is the final step. It converts the mutable StringBuilder content into a regular, immutable string. Example: Efficient String Concatenation // Inefficient way using string concatenation // string s = &quot;&quot;; // for (int i = 0; i &lt; 10000; i++) // { // 	s += i; // Creates 10,000 temporary string objects! Very slow. // } // Efficient way using StringBuilder Console.WriteLine(&quot;Building a long string efficiently...&quot;); StringBuilder sb = new StringBuilder(); for (int i = 0; i &lt; 10000; i++) { sb.Append(i); // Modifies the internal buffer. Very fast. sb.Append(&quot;, &quot;); } string finalResult = sb.ToString(); // Create the final string only once. Console.WriteLine(&quot;Done. The final string is very long.&quot;); // Console.WriteLine(finalResult);</li>
+      <li>ToString(): This is the final step. It converts the mutable StringBuilder content into a regular, immutable string. Example: Efficient String Concatenation // Inefficient way using string concatenation // string s = &quot;&quot;; // for (int i = 0; i &lt; 10000; i++) // { // s += i; // Creates 10,000 temporary string objects! Very slow. // } // Efficient way using StringBuilder Console.WriteLine(&quot;Building a long string efficiently...&quot;); StringBuilder sb = new StringBuilder(); for (int i = 0; i &lt; 10000; i++) { sb.Append(i); // Modifies the internal buffer. Very fast. sb.Append(&quot;, &quot;); } string finalResult = sb.ToString(); // Create the final string only once. Console.WriteLine(&quot;Done. The final string is very long.&quot;); // Console.WriteLine(finalResult);</li>
     </ul>
 
     <h2 id="sec-26-lec-22-datetime">Lecture 21: DateTime</h2>
@@ -677,31 +679,6 @@
       <li>Example 2: Extracting a Key and Value</li>
       <li>Task: Extract the key and value from a string like &quot;ApiKey=xyz123;&quot;. string input = &quot;ApiKey=xyz123;&quot;; string pattern = @&quot;^(? Match match = Regex.Match(input, pattern); if (match.Success) { string key = match.Groups[&quot;key&quot;].Value; string value = match.Groups[&quot;value&quot;].Value; Console.WriteLine($&quot;\nFound Key: {key}, Value: {value}&quot;); }</li>
     </ul>
-
-    <h2 id="sec-26-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
-    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
-  <ul>
-  <li>PAGE 1 ---</li>
-  <li>PAGE 2 ---</li>
-  <li>PAGE 3 ---</li>
-  <li>bool Equals( string otherString ) Returns a Boolean value that indicates whether the current string and the specified otherString are equal or not (each character will be compared)  10. bool StartsWith( string otherString) Returns a Boolean value that indicates whether the current string beings with the specified otherString.  11. bool EndsWith( string otherString ) Returns a Boolean value that indicates whether the current string ends with the specified otherString.  12. bool Contains( string otherString) Returns a Boolean value that indicates whether the current string contains the specified otherString anywhere.  13. int IndexOf( string otherString, int startIndex ) Returns index of the first character of the specified otherString, where the otherString exists in the current string. Searching process starts from the specified startIndex. The startIndex is optional. In case if the specified otherString doesn't exist in the current string, the method returns -1.  14. int LastIndexOf( string otherString, int startIndex) It is same as IndexOf(); but searching process takes place from Right-To-Left direction, staring from the startIndex.  15. static bool IsNullOrEmpty( string value) It determines whether the given string value is null or empty (&quot;&quot;).  16. static bool IsNullOrWhiteSpace( string value) It determines whether the given string value is null or white space (&quot; &quot;).  17. static string Format( string format, object arg0, object arg1, …) Returns the string after substituting the specified argument values at specified placeholders.</li>
-  <li>PAGE 4 ---</li>
-  <li>PAGE 5 ---</li>
-  <li>PAGE 6 ---</li>
-  <li>PAGE 7 ---</li>
-  <li>string ToString() Returns the current value of string builder as a string object.   When to use 'String' • When you would like to make less number of changes to the string. • When you perform limited number of concatenation operations. • When you want to perform extensive search operations using methods such as IndexOf, Contains, StartsWith etc.  When to use 'String Builder' • When you would like to unknown number of / extensive number of changes to a string (Eg: making changes / concatenations to string through a loop). • When you perform less number of search operations on strings.</li>
-  <li>PAGE 8 ---</li>
-  <li>PAGE 9 ---</li>
-  <li>PAGE 10 ---</li>
-  <li>DayOfWeek DayOfWeek { get; } It returns the day of week - Sunday to Saturday (0 to 6) based on current date &amp; time value.  9. static DateTime Now { get; } It returns an instance of DateTime structure that represents the current system date &amp; time.   DateTime Methods 1. string ToString() It returns the date &amp; time value in the default date format, based on current Windows settings.  2. string ToString(string format) It returns the date &amp; time value in the specified format.  3. string ToShortDateString() It returns the date value in the default short date format, based on current Windows settings. Eg: MM/dd/yyyy | 12/31/2030  4. string ToLongDateString() It returns the date value in the default long date format, based on current Windows settings. Eg: dd MMMM yyyy | 31 December 2030  5. string ToShortTimeString() It returns the date value in the default short time format, based on current Windows settings. Eg: hh:mm tt | 11:59 pm  6. string ToLongTimeString() It returns the date value in the default long time format, based on current Windows settings. Eg: hh:mm:ss tt | 11:59:59 pm</li>
-  <li>PAGE 11 ---</li>
-  <li>static int DaysInMonth(int year, int month) It returns number of days in the specified month in the specified year.  8. static DateTime Parse(string value) It creates and returns a new instance of DateTime structure, based on the given date string. It uses the system default date format or &quot;yyyy-MM-dd hh:mm:ss.fff tt&quot; format. Eg: &quot;2030-12-31 11:59:59.999 pm&quot;  9. static DateTime ParseExact(string value, string format, IFormatProvider provider, DateTimeStyle style) It creates and returns a new instance of DateTime structure, by converting (parsing) the given string value into DateTime instance, which is in the specified format.  10. int CompareTo(DateTime value) It returns: -1: This instance value is earlier than value. 0: This instance value is equal to value. 1: This instance value is later than value.  11. TimeSpan Subtract(DateTime value) It returns an instance of TimeSpan structure, that represents date difference between the current instance and given date value.  12. DateTime AddDays(double value) It creates and returns a new instance of DateTime structure, after adding specified days (+ve or -ve) to the current date &amp; time value.  13. DateTime AddMonths(double value) It creates and returns a new instance of DateTime structure, after adding specified months (+ve or -ve) to the current date &amp; time value.</li>
-  <li>PAGE 12 ---</li>
-  <li>DateTime AddYears(double value) It creates and returns a new instance of DateTime structure, after adding specified years (+ve or -ve) to the current date &amp; time value.  15. DateTime AddHours(double value) It creates and returns a new instance of DateTime structure, after adding specified hours (+ve or -ve) to the current date &amp; time value.  16. DateTime AddMinutes(double value) It creates and returns a new instance of DateTime structure, after adding specified minutes (+ve or -ve) to the current date &amp; time value.  17. DateTime AddSeconds(double value) It creates and returns a new instance of DateTime structure, after adding specified seconds (+ve or -ve) to the current date &amp; time value.  18. DateTime AddMilliseconds(double value) It creates and returns a new instance of DateTime structure, after adding specified milliseconds to the current date &amp; time value.    Math The System.Math is a static class that provides built-in methods for perform common mathematical operations with numbers.  Example: Math.Pow(2, 3) //returns the value of 2 power 3</li>
-  <li>PAGE 13 ---</li>
-  <li>PAGE 14 ---</li>
-  <li>static int Sign(double value) It returns: -1: if the value is a negative value 0: if the value is equal to 0 1: if the value is a positive value  9. static double Abs(double value) It returns the positive value of given number.  10. static int DivRem(int val1, int val2, out int result) It returns the quotient value of val1/val2; and provides the remainder value as 'result' out parameter.  11. static double Sqrt(double value) It returns square root value of given number.    Regular Expressions Regular Expression is a pattern that contains set of conditions of a string value. Example:       ^[a-zA-Z ]*$       - for alphabets and spaces on The 'Regex' class represents regular expression to check whether the string value matches with specified pattern or not. Useful for validations.  Regex Regex referenceVariable = new Regex( “Your Pattern Here”);  referenceVariable.IsMatch( value ); //returns true or false</li>
-</ul>
 
       </article>
 
@@ -831,10 +808,6 @@
     
       <li class="toc-item">
         <a href="#sec-26-lec-25-regular-expressions" class="toc-link">Lecture 24: Regular Expressions</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-26-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

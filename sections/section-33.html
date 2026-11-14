@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="../assets/css/docs.css">
 </head>
 <body id="top">
+  <!-- Skip to Main Content (Accessibility) -->
+  <a href="#mainContent" class="skip-to-content">Skip to main content</a>
 
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
       <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
-      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
         <span class="sidebar-toggle-text">« Collapse</span>
       </button>
@@ -49,12 +51,12 @@
   <div class="docs-wrapper">
 
     <!-- Left Navigation Sidebar -->
-    <aside class="docs-sidebar">
+    <aside class="docs-sidebar" aria-label="Course Navigation">
       <div class="sidebar-top-bar">
-        <span class="sidebar-top-title">Navigation</span>
-        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
-          <span>Collapse</span>
+        <span class="sidebar-top-title">Course Outline</span>
+        <button class="sidebar-close-btn mobile-only-btn" id="sidebarCloseBtn" title="Close Sidebar" aria-label="Close navigation sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
         </button>
       </div>
       <div class="sidebar-search-box">
@@ -408,7 +410,7 @@
     </aside>
 
     <!-- Main Content Container -->
-    <main class="docs-main-container">
+    <main class="docs-main-container" id="mainContent" tabindex="-1">
 
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
@@ -448,7 +450,7 @@
     <h2 id="sec-33-lec-2-1-introduction-to-asynchronous">1. Introduction to Asynchronous</h2>
     <p>Programming Asynchronous programming is a paradigm that allows a program to initiate a long-running operation and then continue executing other tasks without waiting for the long-running operation to complete. Once the operation finishes, the program is notified, and it can then process the result. This approach is fundamental for building responsive and scalable applications in modern computing. The Need for Asynchronous Programming: Imagine a desktop application where clicking a button initiates a complex calculation or a large file download. If this operation is performed synchronously (blocking), the entire application's user interface would freeze until the operation finishes. This leads to a poor user experience, as the application appears unresponsive. Similarly, in server-side applications, if each incoming request blocks a thread while waiting for an I/O operation (like a database query or a call to an external service), the server can quickly run out of available threads, becoming unresponsive and unable to handle more concurrent users. Asynchronous programming addresses these issues by allowing the application to perform useful work (or serve other requests) while waiting for an operation to complete, rather than sitting idle. Comparison with Threading and Tasks: To truly appreciate asynchronous programming with async and await, it's helpful to compare it with the earlier mechanisms for concurrency and asynchrony in C#: traditional threading and the Task Parallel Library (TPL) directly. The Evolution Towards async and await:</p>
     <ul>
-      <li>Initial Concurrency: Early C# used raw Thread objects. This was powerful but fraught with difficulties: race conditions, deadlocks, complex error handling, and resource overhead. Feature / Mechanism Traditional Threading (Thread class) Tasks (TPL - Task.Run, ContinueWith) Async/Await (built on TPL Tasks) Abstraction Level Low-level. Direct thread management. Higher-level. Unit of work abstraction. Highest-level. Flow control abstraction. Complexity High: Manual thread lifecycle, complex synchronization, error propagation. Moderate: Easier than raw threads, but still requires managing continuations, exceptions. Low: Syntactic sugar for non-blocking operations, resembling synchronous code. Primary Use Case Highly specialized scenarios (e.g., custom schedulers, deep OS interaction). Building complex task graphs, parallel processing (CPU- bound work), or when await isn't suitable. Most common for non- blocking I/O-bound operations and offloading CPU-bound work. Blocking Behavior Often blocks calling thread if not managed carefully (e.g., Thread.Join()). Task.Wait(), Task.Result are blocking. ContinueWith is non- blocking. await is explicitly non- blocking. The thread is released during waits. Thread Usage Explicitly creates new OS threads (resource heavy). Uses Thread Pool threads by default. Efficient reuse. Uses Thread Pool threads for CPU-bound parts; releases threads during I/O waits. Synchronization Context No built-in awareness. Manual marshalling to UI thread needed. Can use TaskScheduler.FromCurrentSy nchronizationContext with ContinueWith. Automatically captures and restores SynchronizationContext (e.g., UI thread) by default after await. Error Handling Manual, tricky. Unhandled exceptions can crash process. Exceptions aggregated in AggregateException. Must be &quot;observed.&quot; Simple try-catch blocks work like synchronous code. AggregateException is unwrapped by await. Cancellation Manual flags and Thread.Abort() (deprecated/unsafe). Cooperative model using CancellationTokenSource/ CancellationToken. Integrated with CancellationToken pattern. await can observe cancellation. Readability 	Poor for complex flows. Better, but still involves lambdas and explicit continuations. Excellent. Code flow is linear and intuitive, similar to synchronous code.</li>
+      <li>Initial Concurrency: Early C# used raw Thread objects. This was powerful but fraught with difficulties: race conditions, deadlocks, complex error handling, and resource overhead. Feature / Mechanism Traditional Threading (Thread class) Tasks (TPL - Task.Run, ContinueWith) Async/Await (built on TPL Tasks) Abstraction Level Low-level. Direct thread management. Higher-level. Unit of work abstraction. Highest-level. Flow control abstraction. Complexity High: Manual thread lifecycle, complex synchronization, error propagation. Moderate: Easier than raw threads, but still requires managing continuations, exceptions. Low: Syntactic sugar for non-blocking operations, resembling synchronous code. Primary Use Case Highly specialized scenarios (e.g., custom schedulers, deep OS interaction). Building complex task graphs, parallel processing (CPU- bound work), or when await isn't suitable. Most common for non- blocking I/O-bound operations and offloading CPU-bound work. Blocking Behavior Often blocks calling thread if not managed carefully (e.g., Thread.Join()). Task.Wait(), Task.Result are blocking. ContinueWith is non- blocking. await is explicitly non- blocking. The thread is released during waits. Thread Usage Explicitly creates new OS threads (resource heavy). Uses Thread Pool threads by default. Efficient reuse. Uses Thread Pool threads for CPU-bound parts; releases threads during I/O waits. Synchronization Context No built-in awareness. Manual marshalling to UI thread needed. Can use TaskScheduler.FromCurrentSy nchronizationContext with ContinueWith. Automatically captures and restores SynchronizationContext (e.g., UI thread) by default after await. Error Handling Manual, tricky. Unhandled exceptions can crash process. Exceptions aggregated in AggregateException. Must be &quot;observed.&quot; Simple try-catch blocks work like synchronous code. AggregateException is unwrapped by await. Cancellation Manual flags and Thread.Abort() (deprecated/unsafe). Cooperative model using CancellationTokenSource/ CancellationToken. Integrated with CancellationToken pattern. await can observe cancellation. Readability Poor for complex flows. Better, but still involves lambdas and explicit continuations. Excellent. Code flow is linear and intuitive, similar to synchronous code.</li>
       <li>The Thread Pool: The .NET Thread Pool offered a more efficient way to manage threads, reusing them for short-lived tasks. However, explicit interaction could still be cumbersome.</li>
       <li>Asynchronous Programming Model (APM) and Event-Based Asynchronous Pattern (EAP): These were earlier patterns for asynchronous operations in .NET (e.g., BeginInvoke/EndInvoke, BackgroundWorker). They relied heavily on callbacks, leading to &quot;callback hell&quot; (deeply nested, hard-to-read code).</li>
       <li>Task Parallel Library (TPL): Introduced in .NET 4, TPL provided the Task class as a superior abstraction for representing asynchronous operations. It leveraged the Thread Pool and offered features like continuations (ContinueWith), error aggregation (AggregateException), and cancellation. TPL significantly improved asynchronous programming, but composing complex sequences of operations could still be verbose.</li>
@@ -469,43 +471,43 @@
       <li>Non-Blocking &quot;Pause&quot;: When the await keyword is encountered, if the awaited task is not yet complete:</li>
     </ul>
 
-    <h2 id="sec-33-lec-4-1-the-async-method-yields-control-back-to-its">1. 	The async method yields control back to its caller.</h2>
+    <h2 id="sec-33-lec-4-1-the-async-method-yields-control-back-to-its">1.  The async method yields control back to its caller.</h2>
 
-    <h2 id="sec-33-lec-5-2-the-thread-that-was-executing-the-async-met">2. 	The thread that was executing the async method is returned to its</h2>
+    <h2 id="sec-33-lec-5-2-the-thread-that-was-executing-the-async-met">2.  The thread that was executing the async method is returned to its</h2>
     <p>pool (for I/O-bound operations) or is freed to do other work (for CPU- bound operations that use Task.Run).</p>
 
-    <h2 id="sec-33-lec-6-3-a-continuation-is-scheduled-to-resume-the-a">3. 	A &quot;continuation&quot; is scheduled to resume the async method from</h2>
+    <h2 id="sec-33-lec-6-3-a-continuation-is-scheduled-to-resume-the-a">3.  A &quot;continuation&quot; is scheduled to resume the async method from</h2>
     <p>the point of await once the awaited task completes.</p>
 
-    <h2 id="sec-33-lec-7-4-if-a-synchronizationcontext-was-captured-at">4. 	If a SynchronizationContext was captured at the point of await</h2>
+    <h2 id="sec-33-lec-7-4-if-a-synchronizationcontext-was-captured-at">4.  If a SynchronizationContext was captured at the point of await</h2>
     <p>(e.g., in a UI application), the continuation will try to resume on that same context (e.g., the UI thread). Otherwise (e.g., in a console app or library), it will typically resume on an arbitrary thread pool thread.</p>
     <ul>
       <li>Resumption: When the awaited task completes:</li>
     </ul>
 
-    <h2 id="sec-33-lec-8-1-if-it-completed-successfully-rantocompletio">1. 	If it completed successfully (RanToCompletion), the await</h2>
+    <h2 id="sec-33-lec-8-1-if-it-completed-successfully-rantocompletio">1.  If it completed successfully (RanToCompletion), the await</h2>
     <p>expression evaluates to the result of the Task&lt;TResult&gt; (or void for a non-generic Task).</p>
 
-    <h2 id="sec-33-lec-9-2-if-it-faulted-faulted-the-await-expression-">2. 	If it faulted (Faulted), the await expression re-throws the task's</h2>
+    <h2 id="sec-33-lec-9-2-if-it-faulted-faulted-the-await-expression-">2.  If it faulted (Faulted), the await expression re-throws the task's</h2>
     <p>exception (unwrapping the AggregateException to its first inner exception).</p>
 
-    <h2 id="sec-33-lec-10-3-if-it-was-canceled-canceled-the-await-expre">3. 	If it was canceled (Canceled), the await expression re-throws an</h2>
+    <h2 id="sec-33-lec-10-3-if-it-was-canceled-canceled-the-await-expre">3.  If it was canceled (Canceled), the await expression re-throws an</h2>
     <p>OperationCanceledException.</p>
     <ul>
-      <li>No Blocking: The crucial point is that await does not block the calling thread. This is the fundamental difference from Task.Wait() or Task.Result. Real-World Examples: Let's explore several practical examples focusing on CPU-bound work and file I/ O within a standard console application. Example 1: Offloading CPU-Bound Work with Task.Run Imagine a complex calculation that would freeze your application if run synchronously. using System; using System.Threading; using System.Threading.Tasks; using System.Diagnostics; // For Stopwatch public class CpuBoundExample { // A synchronous, CPU-intensive method private static long CalculateFactorial(int n) { Console.WriteLine($&quot;Calculating Factorial of {n} synchronously on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); long result = 1; for (int i = 1; i &lt;= n; i++) { result *= i; // Simulate heavy computation Thread.Sleep(5); } Console.WriteLine($&quot;Factorial of {n} finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); return result; } // An async method that offloads the CPU-bound work public static async Task RunFactorialCalculations() { Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Starting calculations...&quot;); Stopwatch sw = Stopwatch.StartNew(); // Start the CPU-bound task using Task.Run // This offloads the calculation to a Thread Pool thread. Task&lt;long&gt; factorialTask = Task.Run(() =&gt; CalculateFactorial(15)); // While the calculation is running, the main thread is NOT BLOCKED. // It can continue to do other work. Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Doing other work while factorial computes...&quot;); for (int i = 0; i &lt; 5; i++) { Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Other work iteration {i}&quot;); Thread.Sleep(50); // Simulate some small other work } // Await the result of the factorial calculation. // The 'await' here will pause this async method until factorialTask completes. // The thread that was running this method might be returned to the pool // and resume later, potentially on a different thread. long result = await factorialTask; sw.Stop(); Console.WriteLine($&quot;Factorial Result: {result}&quot;); Console.WriteLine($&quot;Total elapsed time: {sw.ElapsedMilliseconds} ms&quot;); Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - All calculations finished.&quot;); } // Call this from Main: // public static async Task Main(string[] args) // { // 	await RunFactorialCalculations(); // } } Explanation: Task.Run takes our CalculateFactorial method and executes it on a thread pool thread. The await keyword then ensures that RunFactorialCalculations (which is an async method) doesn't block while waiting for factorialTask to complete. This allows the &quot;Main thread&quot; to print its messages and simulate other work concurrently. Example 2: Asynchronous File I/O (File.ReadAllTextAsync) Reading a large file can be an I/O-bound operation. Using async I/O methods keeps your application responsive. using System; using System.IO; using System.Text; using System.Threading.Tasks; using System.Diagnostics; public class FileIOExample { private const string TestFilePath = &quot;large_data.txt&quot;; // Helper to create a large test file public static async Task CreateLargeTestFile() { Console.WriteLine(&quot;Creating large test file...&quot;); StringBuilder sb = new StringBuilder(); for (int i = 0; i &lt; 100_000; i++) // 100,000 lines { sb.AppendLine($&quot;Line {i}: This is some sample text to make the file large for testing asynchronous I/O operations.&quot;); } await File.WriteAllTextAsync(TestFilePath, sb.ToString()); Console.WriteLine($&quot;Test file created: {TestFilePath}&quot;); } public static async Task ReadFileAsynchronously() { await CreateLargeTestFile(); // Ensure file exists Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Starting asynchronous file read...&quot;); Stopwatch sw = Stopwatch.StartNew(); // This is an I/O-bound operation. 'await' releases the current thread. // The runtime performs the actual I/O. string content = await File.ReadAllTextAsync(TestFilePath); sw.Stop(); Console.WriteLine($&quot;Read {content.Length} characters asynchronously.&quot;); Console.WriteLine($&quot;File read finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); Console.WriteLine($&quot;Time taken for async read: {sw.ElapsedMilliseconds} ms&quot;); Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Doing more work after file read.&quot;); // Clean up File.Delete(TestFilePath); } // Call this from Main: // public static async Task Main(string[] args) // { // 	await ReadFileAsynchronously(); // } } Explanation: File.ReadAllTextAsync is an async I/O method. When await File.ReadAllTextAsync(TestFilePath) is hit, if the data is not immediately available (e.g., because it's on disk), the current thread is returned to the thread pool. It doesn't block. When the file read completes, a thread from the thread pool picks up the async method's continuation and executes the remaining code. This is crucial for keeping applications responsive during I/O operations. Example 3: Concurrent Asynchronous Operations with Task.WhenAll Often, you need to perform several independent asynchronous operations and wait for all of them to complete. Task.WhenAll is perfect for this. using System; using System.Threading.Tasks; using System.Diagnostics; using System.Threading; public class ConcurrentOperationsExample { private static async Task&lt;int&gt; PerformOperationA() { Console.WriteLine($&quot;Operation A started on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); await Task.Delay(3000); // Simulate I/O or other async wait Console.WriteLine($&quot;Operation A finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); return 10; } private static async Task&lt;string&gt; PerformOperationB() { Console.WriteLine($&quot;Operation B started on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); await Task.Delay(2000); // Simulate I/O or other async wait Console.WriteLine($&quot;Operation B finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); return &quot;Hello from B&quot;; } private static async Task&lt;bool&gt; PerformOperationC() { Console.WriteLine($&quot;Operation C started on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); await Task.Delay(4000); // Simulate I/O or other async wait Console.WriteLine($&quot;Operation C finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); return true; } public static async Task RunConcurrentOperations() { Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Starting concurrent operations...&quot;); Stopwatch sw = Stopwatch.StartNew(); // Start all operations concurrently Task&lt;int&gt; taskA = PerformOperationA(); Task&lt;string&gt; taskB = PerformOperationB(); Task&lt;bool&gt; taskC = PerformOperationC(); // While tasks are running, the current thread is free. Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Doing other things while operations run...&quot;); Thread.Sleep(500); // Simulate some quick other work // Await all tasks to complete. This doesn't block; it simply means the 'await Task.WhenAll' // will complete once the longest running task (Operation C) finishes. await Task.WhenAll(taskA, taskB, taskC); // Once all are complete, retrieve their results int resultA = await taskA; string resultB = await taskB; bool resultC = await taskC; sw.Stop(); Console.WriteLine($&quot;\nAll operations completed. Results: A={resultA}, B={resultB}, C={resultC}&quot;); Console.WriteLine($&quot;Total time for concurrent operations: {sw.ElapsedMilliseconds} ms&quot;); Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - All operations processed.&quot;); } // Call this from Main: // public static async Task Main(string[] args) // { // 	await ConcurrentOperationsExample.RunConcurrentOperations(); // } } Explanation: Task.WhenAll creates a single Task that completes only when all the provided tasks have completed. By awaiting this Task.WhenAll, we efficiently wait for all concurrent operations to finish without blocking the calling thread. The total time taken will be approximately the duration of the longest-running task, demonstrating true concurrency. These examples illustrate how async and await fundamentally change the way you write responsive and efficient C# applications, especially for I/O-bound operations and offloading CPU-bound computations.</li>
+      <li>No Blocking: The crucial point is that await does not block the calling thread. This is the fundamental difference from Task.Wait() or Task.Result. Real-World Examples: Let's explore several practical examples focusing on CPU-bound work and file I/ O within a standard console application. Example 1: Offloading CPU-Bound Work with Task.Run Imagine a complex calculation that would freeze your application if run synchronously. using System; using System.Threading; using System.Threading.Tasks; using System.Diagnostics; // For Stopwatch public class CpuBoundExample { // A synchronous, CPU-intensive method private static long CalculateFactorial(int n) { Console.WriteLine($&quot;Calculating Factorial of {n} synchronously on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); long result = 1; for (int i = 1; i &lt;= n; i++) { result *= i; // Simulate heavy computation Thread.Sleep(5); } Console.WriteLine($&quot;Factorial of {n} finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); return result; } // An async method that offloads the CPU-bound work public static async Task RunFactorialCalculations() { Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Starting calculations...&quot;); Stopwatch sw = Stopwatch.StartNew(); // Start the CPU-bound task using Task.Run // This offloads the calculation to a Thread Pool thread. Task&lt;long&gt; factorialTask = Task.Run(() =&gt; CalculateFactorial(15)); // While the calculation is running, the main thread is NOT BLOCKED. // It can continue to do other work. Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Doing other work while factorial computes...&quot;); for (int i = 0; i &lt; 5; i++) { Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Other work iteration {i}&quot;); Thread.Sleep(50); // Simulate some small other work } // Await the result of the factorial calculation. // The 'await' here will pause this async method until factorialTask completes. // The thread that was running this method might be returned to the pool // and resume later, potentially on a different thread. long result = await factorialTask; sw.Stop(); Console.WriteLine($&quot;Factorial Result: {result}&quot;); Console.WriteLine($&quot;Total elapsed time: {sw.ElapsedMilliseconds} ms&quot;); Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - All calculations finished.&quot;); } // Call this from Main: // public static async Task Main(string[] args) // { // await RunFactorialCalculations(); // } } Explanation: Task.Run takes our CalculateFactorial method and executes it on a thread pool thread. The await keyword then ensures that RunFactorialCalculations (which is an async method) doesn't block while waiting for factorialTask to complete. This allows the &quot;Main thread&quot; to print its messages and simulate other work concurrently. Example 2: Asynchronous File I/O (File.ReadAllTextAsync) Reading a large file can be an I/O-bound operation. Using async I/O methods keeps your application responsive. using System; using System.IO; using System.Text; using System.Threading.Tasks; using System.Diagnostics; public class FileIOExample { private const string TestFilePath = &quot;large_data.txt&quot;; // Helper to create a large test file public static async Task CreateLargeTestFile() { Console.WriteLine(&quot;Creating large test file...&quot;); StringBuilder sb = new StringBuilder(); for (int i = 0; i &lt; 100_000; i++) // 100,000 lines { sb.AppendLine($&quot;Line {i}: This is some sample text to make the file large for testing asynchronous I/O operations.&quot;); } await File.WriteAllTextAsync(TestFilePath, sb.ToString()); Console.WriteLine($&quot;Test file created: {TestFilePath}&quot;); } public static async Task ReadFileAsynchronously() { await CreateLargeTestFile(); // Ensure file exists Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Starting asynchronous file read...&quot;); Stopwatch sw = Stopwatch.StartNew(); // This is an I/O-bound operation. 'await' releases the current thread. // The runtime performs the actual I/O. string content = await File.ReadAllTextAsync(TestFilePath); sw.Stop(); Console.WriteLine($&quot;Read {content.Length} characters asynchronously.&quot;); Console.WriteLine($&quot;File read finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); Console.WriteLine($&quot;Time taken for async read: {sw.ElapsedMilliseconds} ms&quot;); Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Doing more work after file read.&quot;); // Clean up File.Delete(TestFilePath); } // Call this from Main: // public static async Task Main(string[] args) // { // await ReadFileAsynchronously(); // } } Explanation: File.ReadAllTextAsync is an async I/O method. When await File.ReadAllTextAsync(TestFilePath) is hit, if the data is not immediately available (e.g., because it's on disk), the current thread is returned to the thread pool. It doesn't block. When the file read completes, a thread from the thread pool picks up the async method's continuation and executes the remaining code. This is crucial for keeping applications responsive during I/O operations. Example 3: Concurrent Asynchronous Operations with Task.WhenAll Often, you need to perform several independent asynchronous operations and wait for all of them to complete. Task.WhenAll is perfect for this. using System; using System.Threading.Tasks; using System.Diagnostics; using System.Threading; public class ConcurrentOperationsExample { private static async Task&lt;int&gt; PerformOperationA() { Console.WriteLine($&quot;Operation A started on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); await Task.Delay(3000); // Simulate I/O or other async wait Console.WriteLine($&quot;Operation A finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); return 10; } private static async Task&lt;string&gt; PerformOperationB() { Console.WriteLine($&quot;Operation B started on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); await Task.Delay(2000); // Simulate I/O or other async wait Console.WriteLine($&quot;Operation B finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); return &quot;Hello from B&quot;; } private static async Task&lt;bool&gt; PerformOperationC() { Console.WriteLine($&quot;Operation C started on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); await Task.Delay(4000); // Simulate I/O or other async wait Console.WriteLine($&quot;Operation C finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); return true; } public static async Task RunConcurrentOperations() { Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Starting concurrent operations...&quot;); Stopwatch sw = Stopwatch.StartNew(); // Start all operations concurrently Task&lt;int&gt; taskA = PerformOperationA(); Task&lt;string&gt; taskB = PerformOperationB(); Task&lt;bool&gt; taskC = PerformOperationC(); // While tasks are running, the current thread is free. Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Doing other things while operations run...&quot;); Thread.Sleep(500); // Simulate some quick other work // Await all tasks to complete. This doesn't block; it simply means the 'await Task.WhenAll' // will complete once the longest running task (Operation C) finishes. await Task.WhenAll(taskA, taskB, taskC); // Once all are complete, retrieve their results int resultA = await taskA; string resultB = await taskB; bool resultC = await taskC; sw.Stop(); Console.WriteLine($&quot;\nAll operations completed. Results: A={resultA}, B={resultB}, C={resultC}&quot;); Console.WriteLine($&quot;Total time for concurrent operations: {sw.ElapsedMilliseconds} ms&quot;); Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - All operations processed.&quot;); } // Call this from Main: // public static async Task Main(string[] args) // { // await ConcurrentOperationsExample.RunConcurrentOperations(); // } } Explanation: Task.WhenAll creates a single Task that completes only when all the provided tasks have completed. By awaiting this Task.WhenAll, we efficiently wait for all concurrent operations to finish without blocking the calling thread. The total time taken will be approximately the duration of the longest-running task, demonstrating true concurrency. These examples illustrate how async and await fundamentally change the way you write responsive and efficient C# applications, especially for I/O-bound operations and offloading CPU-bound computations.</li>
     </ul>
 
     <h2 id="sec-33-lec-11-3-error-handling-in-async-methods">3. Error Handling in Async Methods</h2>
     <p>Error handling in async methods is significantly simplified compared to traditional threading or even direct TPL ContinueWith chains. Thanks to the await keyword, you can use standard try-catch-finally blocks, much like you would in synchronous code. The compiler-generated state machine handles the complexities of propagating exceptions across await points. How Exceptions are Propagated:</p>
 
-    <h2 id="sec-33-lec-12-1-task-faults-when-an-unhandled-exception-occ">1. 	Task Faults: When an unhandled exception occurs within a Task that is</h2>
+    <h2 id="sec-33-lec-12-1-task-faults-when-an-unhandled-exception-occ">1.  Task Faults: When an unhandled exception occurs within a Task that is</h2>
     <p>being awaited, that task's Status changes to TaskStatus.Faulted. The exception (or multiple exceptions if using Task.WhenAll) is captured within an AggregateException internally by the Task.</p>
 
-    <h2 id="sec-33-lec-13-2-await-unwraps-when-the-await-expression-is-">2. 	await Unwraps: When the await expression is reached, and the awaited</h2>
+    <h2 id="sec-33-lec-13-2-await-unwraps-when-the-await-expression-is-">2.  await Unwraps: When the await expression is reached, and the awaited</h2>
     <p>task has faulted, the await keyword effectively unwraps the AggregateException and re-throws the first inner exception of that AggregateException.</p>
 
-    <h2 id="sec-33-lec-14-3-standard-try-catch-this-re-thrown-exception">3. 	Standard try-catch: This re-thrown exception can then be caught by a</h2>
-    <p>standard try-catch block surrounding the await call. Example 1: Basic Error Handling with try-catch using System; using System.Threading.Tasks; using System.Threading; public class AsyncErrorHandlingExample1 { // An async method that might throw an exception public static async Task&lt;string&gt; GetDataAsync(bool throwError) { Console.WriteLine($&quot;GetDataAsync started on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); await Task.Delay(1000); // Simulate network latency/work if (throwError) { Console.WriteLine(&quot;GetDataAsync: Intentionally throwing an exception.&quot;); throw new InvalidOperationException(&quot;Failed to retrieve data from source.&quot;); } Console.WriteLine(&quot;GetDataAsync finished successfully.&quot;); return &quot;Successfully retrieved data.&quot;; } public static async Task RunBasicErrorHandling() { Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Running basic error handling demo.&quot;); // Scenario 1: No error try { string result = await GetDataAsync(false); Console.WriteLine($&quot;Scenario 1 Result: {result}&quot;); } catch (Exception ex) { Console.WriteLine($&quot;Scenario 1: Unexpected error: {ex.Message}&quot;); } Console.WriteLine(&quot;\n--- Next Scenario ---&quot;); // Scenario 2: With error try { string result = await GetDataAsync(true); Console.WriteLine($&quot;Scenario 2 Result: {result} (This line should not be reached)&quot;); } catch (InvalidOperationException ex) { Console.WriteLine($&quot;Scenario 2: Caught expected error: {ex.Message}&quot;); } catch (Exception ex) { Console.WriteLine($&quot;Scenario 2: Caught unexpected general error: {ex.Message}&quot;); } finally { Console.WriteLine(&quot;Scenario 2: Finally block executed.&quot;); } Console.WriteLine(&quot;\nBasic error handling demo finished.&quot;); } // Call this from Main: // public static async Task Main(string[] args) // { // 	await RunBasicErrorHandling(); // } } Explanation: When GetDataAsync(true) throws InvalidOperationException, the await expression captures it and re-throws it within the try block of RunBasicErrorHandling, allowing it to be caught by the appropriate catch block. The finally block executes regardless of whether an exception occurred. Example 2: Handling Exceptions from Multiple Concurrent Tasks (Task.WhenAll) When you await Task.WhenAll(task1, task2, ...), if any of the awaited tasks fault, the await Task.WhenAll expression will throw a single AggregateException that contains all the exceptions from all the faulted tasks. You must catch AggregateException and iterate through its InnerExceptions collection. using System; using System.Linq; // For .Select using System.Threading.Tasks; using System.Threading; public class AsyncErrorHandlingExample2 { private static async Task SimulateOperationA() { Console.WriteLine(&quot;Operation A started. Will succeed.&quot;); await Task.Delay(1000); Console.WriteLine(&quot;Operation A completed.&quot;); } private static async Task SimulateOperationB() { Console.WriteLine(&quot;Operation B started. Will throw TimeoutException.&quot;); await Task.Delay(1500); throw new TimeoutException(&quot;Operation B timed out.&quot;); } private static async Task SimulateOperationC() { Console.WriteLine(&quot;Operation C started. Will throw ArgumentException.&quot;); await Task.Delay(500); // Might finish before B, but its exception will still be collected throw new ArgumentException(&quot;Invalid argument for Operation C.&quot;); } public static async Task RunWhenAllErrorHandling() { Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Running WhenAll error handling demo.&quot;); Task taskA = SimulateOperationA(); Task taskB = SimulateOperationB(); Task taskC = SimulateOperationC(); try { await Task.WhenAll(taskA, taskB, taskC); Console.WriteLine(&quot;All operations completed successfully. (This line should not be reached)&quot;); } catch (AggregateException ex) { Console.WriteLine($&quot;\nCaught AggregateException from Task.WhenAll with {ex.InnerExceptions.Count} inner exceptions:&quot;); foreach (var innerEx in ex.InnerExceptions) { Console.WriteLine($&quot; Inner Exception: {innerEx.GetType().Name} - {innerEx.Message}&quot;); } } catch (Exception ex) { Console.WriteLine($&quot;Caught unexpected general exception: {ex.Message}&quot;); } finally { Console.WriteLine(&quot;\nFinal status of individual tasks:&quot;); Console.WriteLine($&quot; Task A Status: {taskA.Status} (Exception: {taskA.Exception?.InnerException?.Message})&quot;); Console.WriteLine($&quot; Task B Status: {taskB.Status} (Exception: {taskB.Exception?.InnerException?.Message})&quot;); Console.WriteLine($&quot; Task C Status: {taskC.Status} (Exception: {taskC.Exception?.InnerException?.Message})&quot;); Console.WriteLine(&quot;WhenAll error handling demo finished.&quot;); } } // Call this from Main: // public static async Task Main(string[] args) // { // 	await RunWhenAllErrorHandling(); // } } Explanation: Even though SimulateOperationC throws an exception earlier, Task.WhenAll waits for all tasks to complete their execution (either successfully, faulted, or canceled) before propagating any exceptions. When it propagates, it aggregates all exceptions from all faulted tasks into a single AggregateException. This ensures you don't miss any errors from concurrent operations. Example 3: Exception Handling in a Continuation Chain (with ContinueWith and await) While await simplifies most chains, sometimes you explicitly use ContinueWith for conditional execution. Exceptions still propagate. using System; using System.Threading.Tasks; using System.Threading; public class AsyncErrorHandlingExample3 { private static Task&lt;int&gt; GetNumberAsync(bool shouldFail) { return Task.Run(async () =&gt; { Console.WriteLine(&quot;GetNumberAsync: Starting operation...&quot;); await Task.Delay(500); if (shouldFail) { Console.WriteLine(&quot;GetNumberAsync: Throwing error.&quot;); throw new DivideByZeroException(&quot;Simulated calculation error.&quot;); } Console.WriteLine(&quot;GetNumberAsync: Operation successful.&quot;); return 100; }); } public static async Task RunContinuationChainErrorHandling() { Console.WriteLine(&quot;Running continuation chain error handling demo.&quot;); // Scenario 1: Success path try { Task&lt;int&gt; numTask = GetNumberAsync(false); Task&lt;string&gt; processTask = numTask.ContinueWith(t =&gt; { if (t.IsFaulted) { Console.WriteLine($&quot;Continuation: Caught error from antecedent (success path): {t.Exception.InnerException.Message}&quot;); return &quot;Error in previous step&quot;; } return $&quot;Number is: {t.Result * 2}&quot;; }); string finalResult = await processTask; Console.WriteLine($&quot;Scenario 1 Final Result: {finalResult}&quot;); } catch (Exception ex) { Console.WriteLine($&quot;Scenario 1: Unexpected error in chain: {ex.Message}&quot;); } Console.WriteLine(&quot;\n--- Next Scenario ---&quot;); // Scenario 2: Error path try { Task&lt;int&gt; numTask = GetNumberAsync(true); // This task will fail Task&lt;string&gt; processTask = numTask.ContinueWith(t =&gt; { if (t.IsFaulted) { Console.WriteLine($&quot;Continuation: Caught error from antecedent (error path): {t.Exception.InnerException.Message}&quot;); return &quot;Error handled by continuation!&quot;; // Handle it here } return $&quot;Number is: {t.Result * 2}&quot;; }); string finalResult = await processTask; // Awaiting processTask will get its result, not re-throw antecedent's error if handled in continuation. Console.WriteLine($&quot;Scenario 2 Final Result: {finalResult}&quot;); } catch (Exception ex) { Console.WriteLine($&quot;Scenario 2: Unexpected error in chain (should have been handled): {ex.Message}&quot;); } Console.WriteLine(&quot;\nContinuation chain error handling demo finished.&quot;); } // Call this from Main: // public static async Task Main(string[] args) // { // 	await RunContinuationChainErrorHandling(); // } } Explanation: In ContinueWith, you have the flexibility to inspect the antecedent task's status (IsFaulted, Exception). If you handle the error within the ContinueWith delegate itself (as shown in Scenario 2 by returning a string like &quot;Error handled&quot;), then the processTask itself will not fault, and await processTask will not throw an exception. If the continuation itself throws an exception, then await processTask would catch it. Key Points for Error Handling:</p>
+    <h2 id="sec-33-lec-14-3-standard-try-catch-this-re-thrown-exception">3.  Standard try-catch: This re-thrown exception can then be caught by a</h2>
+    <p>standard try-catch block surrounding the await call. Example 1: Basic Error Handling with try-catch using System; using System.Threading.Tasks; using System.Threading; public class AsyncErrorHandlingExample1 { // An async method that might throw an exception public static async Task&lt;string&gt; GetDataAsync(bool throwError) { Console.WriteLine($&quot;GetDataAsync started on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); await Task.Delay(1000); // Simulate network latency/work if (throwError) { Console.WriteLine(&quot;GetDataAsync: Intentionally throwing an exception.&quot;); throw new InvalidOperationException(&quot;Failed to retrieve data from source.&quot;); } Console.WriteLine(&quot;GetDataAsync finished successfully.&quot;); return &quot;Successfully retrieved data.&quot;; } public static async Task RunBasicErrorHandling() { Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Running basic error handling demo.&quot;); // Scenario 1: No error try { string result = await GetDataAsync(false); Console.WriteLine($&quot;Scenario 1 Result: {result}&quot;); } catch (Exception ex) { Console.WriteLine($&quot;Scenario 1: Unexpected error: {ex.Message}&quot;); } Console.WriteLine(&quot;\n--- Next Scenario ---&quot;); // Scenario 2: With error try { string result = await GetDataAsync(true); Console.WriteLine($&quot;Scenario 2 Result: {result} (This line should not be reached)&quot;); } catch (InvalidOperationException ex) { Console.WriteLine($&quot;Scenario 2: Caught expected error: {ex.Message}&quot;); } catch (Exception ex) { Console.WriteLine($&quot;Scenario 2: Caught unexpected general error: {ex.Message}&quot;); } finally { Console.WriteLine(&quot;Scenario 2: Finally block executed.&quot;); } Console.WriteLine(&quot;\nBasic error handling demo finished.&quot;); } // Call this from Main: // public static async Task Main(string[] args) // { // await RunBasicErrorHandling(); // } } Explanation: When GetDataAsync(true) throws InvalidOperationException, the await expression captures it and re-throws it within the try block of RunBasicErrorHandling, allowing it to be caught by the appropriate catch block. The finally block executes regardless of whether an exception occurred. Example 2: Handling Exceptions from Multiple Concurrent Tasks (Task.WhenAll) When you await Task.WhenAll(task1, task2, ...), if any of the awaited tasks fault, the await Task.WhenAll expression will throw a single AggregateException that contains all the exceptions from all the faulted tasks. You must catch AggregateException and iterate through its InnerExceptions collection. using System; using System.Linq; // For .Select using System.Threading.Tasks; using System.Threading; public class AsyncErrorHandlingExample2 { private static async Task SimulateOperationA() { Console.WriteLine(&quot;Operation A started. Will succeed.&quot;); await Task.Delay(1000); Console.WriteLine(&quot;Operation A completed.&quot;); } private static async Task SimulateOperationB() { Console.WriteLine(&quot;Operation B started. Will throw TimeoutException.&quot;); await Task.Delay(1500); throw new TimeoutException(&quot;Operation B timed out.&quot;); } private static async Task SimulateOperationC() { Console.WriteLine(&quot;Operation C started. Will throw ArgumentException.&quot;); await Task.Delay(500); // Might finish before B, but its exception will still be collected throw new ArgumentException(&quot;Invalid argument for Operation C.&quot;); } public static async Task RunWhenAllErrorHandling() { Console.WriteLine($&quot;Main thread: {Thread.CurrentThread.ManagedThreadId} - Running WhenAll error handling demo.&quot;); Task taskA = SimulateOperationA(); Task taskB = SimulateOperationB(); Task taskC = SimulateOperationC(); try { await Task.WhenAll(taskA, taskB, taskC); Console.WriteLine(&quot;All operations completed successfully. (This line should not be reached)&quot;); } catch (AggregateException ex) { Console.WriteLine($&quot;\nCaught AggregateException from Task.WhenAll with {ex.InnerExceptions.Count} inner exceptions:&quot;); foreach (var innerEx in ex.InnerExceptions) { Console.WriteLine($&quot; Inner Exception: {innerEx.GetType().Name} - {innerEx.Message}&quot;); } } catch (Exception ex) { Console.WriteLine($&quot;Caught unexpected general exception: {ex.Message}&quot;); } finally { Console.WriteLine(&quot;\nFinal status of individual tasks:&quot;); Console.WriteLine($&quot; Task A Status: {taskA.Status} (Exception: {taskA.Exception?.InnerException?.Message})&quot;); Console.WriteLine($&quot; Task B Status: {taskB.Status} (Exception: {taskB.Exception?.InnerException?.Message})&quot;); Console.WriteLine($&quot; Task C Status: {taskC.Status} (Exception: {taskC.Exception?.InnerException?.Message})&quot;); Console.WriteLine(&quot;WhenAll error handling demo finished.&quot;); } } // Call this from Main: // public static async Task Main(string[] args) // { // await RunWhenAllErrorHandling(); // } } Explanation: Even though SimulateOperationC throws an exception earlier, Task.WhenAll waits for all tasks to complete their execution (either successfully, faulted, or canceled) before propagating any exceptions. When it propagates, it aggregates all exceptions from all faulted tasks into a single AggregateException. This ensures you don't miss any errors from concurrent operations. Example 3: Exception Handling in a Continuation Chain (with ContinueWith and await) While await simplifies most chains, sometimes you explicitly use ContinueWith for conditional execution. Exceptions still propagate. using System; using System.Threading.Tasks; using System.Threading; public class AsyncErrorHandlingExample3 { private static Task&lt;int&gt; GetNumberAsync(bool shouldFail) { return Task.Run(async () =&gt; { Console.WriteLine(&quot;GetNumberAsync: Starting operation...&quot;); await Task.Delay(500); if (shouldFail) { Console.WriteLine(&quot;GetNumberAsync: Throwing error.&quot;); throw new DivideByZeroException(&quot;Simulated calculation error.&quot;); } Console.WriteLine(&quot;GetNumberAsync: Operation successful.&quot;); return 100; }); } public static async Task RunContinuationChainErrorHandling() { Console.WriteLine(&quot;Running continuation chain error handling demo.&quot;); // Scenario 1: Success path try { Task&lt;int&gt; numTask = GetNumberAsync(false); Task&lt;string&gt; processTask = numTask.ContinueWith(t =&gt; { if (t.IsFaulted) { Console.WriteLine($&quot;Continuation: Caught error from antecedent (success path): {t.Exception.InnerException.Message}&quot;); return &quot;Error in previous step&quot;; } return $&quot;Number is: {t.Result * 2}&quot;; }); string finalResult = await processTask; Console.WriteLine($&quot;Scenario 1 Final Result: {finalResult}&quot;); } catch (Exception ex) { Console.WriteLine($&quot;Scenario 1: Unexpected error in chain: {ex.Message}&quot;); } Console.WriteLine(&quot;\n--- Next Scenario ---&quot;); // Scenario 2: Error path try { Task&lt;int&gt; numTask = GetNumberAsync(true); // This task will fail Task&lt;string&gt; processTask = numTask.ContinueWith(t =&gt; { if (t.IsFaulted) { Console.WriteLine($&quot;Continuation: Caught error from antecedent (error path): {t.Exception.InnerException.Message}&quot;); return &quot;Error handled by continuation!&quot;; // Handle it here } return $&quot;Number is: {t.Result * 2}&quot;; }); string finalResult = await processTask; // Awaiting processTask will get its result, not re-throw antecedent's error if handled in continuation. Console.WriteLine($&quot;Scenario 2 Final Result: {finalResult}&quot;); } catch (Exception ex) { Console.WriteLine($&quot;Scenario 2: Unexpected error in chain (should have been handled): {ex.Message}&quot;); } Console.WriteLine(&quot;\nContinuation chain error handling demo finished.&quot;); } // Call this from Main: // public static async Task Main(string[] args) // { // await RunContinuationChainErrorHandling(); // } } Explanation: In ContinueWith, you have the flexibility to inspect the antecedent task's status (IsFaulted, Exception). If you handle the error within the ContinueWith delegate itself (as shown in Scenario 2 by returning a string like &quot;Error handled&quot;), then the processTask itself will not fault, and await processTask will not throw an exception. If the continuation itself throws an exception, then await processTask would catch it. Key Points for Error Handling:</p>
     <ul>
       <li>try-catch-finally works naturally: async methods integrate seamlessly with standard exception handling constructs.</li>
       <li>await unwraps AggregateException: This is a crucial detail for interview questions. await simplifies error handling by re-throwing the first inner exception, making it feel like synchronous code.</li>
@@ -524,7 +526,7 @@
       <li>Exception Propagation: While try-catch simplifies handling, understanding when and where an AggregateException is unwrapped can still require careful attention. Visual Studio Debugging Features for Async: Visual Studio (especially 2017 and later) offers powerful features that greatly assist in debugging async methods:</li>
     </ul>
 
-    <h2 id="sec-33-lec-16-1-tasks-window-debug-windows-tasks">1. 	Tasks Window (Debug &gt; Windows &gt; Tasks):</h2>
+    <h2 id="sec-33-lec-16-1-tasks-window-debug-windows-tasks">1.  Tasks Window (Debug &gt; Windows &gt; Tasks):</h2>
     <ul>
       <li>Purpose: This is arguably the most important tool for debugging asynchronous code. It provides a real-time view of all active Task objects in your application.</li>
       <li>Information Displayed:</li>
@@ -541,7 +543,7 @@
       <li>When to Use: Whenever you suspect a task isn't starting, completing, or is getting stuck. It helps visualize the state of your asynchronous operations.</li>
     </ul>
 
-    <h2 id="sec-33-lec-17-2-parallel-stacks-window-debug-windows-parall">2. 	Parallel Stacks Window (Debug &gt; Windows &gt; Parallel Stacks):</h2>
+    <h2 id="sec-33-lec-17-2-parallel-stacks-window-debug-windows-parall">2.  Parallel Stacks Window (Debug &gt; Windows &gt; Parallel Stacks):</h2>
     <ul>
       <li>Purpose: Shows all threads in your application and their current call stacks, including async method state machines.</li>
       <li>Async Call Stacks: This window is particularly helpful because it can reconstruct the logical call stack for async methods across await points, even if the underlying physical thread has changed. It shows where an async method was suspended and what it was awaiting.</li>
@@ -549,33 +551,33 @@
       <li>When to Use: To understand the concurrent execution paths, identify potential deadlocks (by seeing threads waiting on each other), and trace the flow of async methods across await calls.</li>
     </ul>
 
-    <h2 id="sec-33-lec-18-3-breakpoints">3. 	Breakpoints:</h2>
+    <h2 id="sec-33-lec-18-3-breakpoints">3.  Breakpoints:</h2>
     <ul>
       <li>Standard Breakpoints: Set breakpoints as usual within your async methods. When execution hits an await and yields, the debugger will &quot;leave&quot; that method. When the continuation resumes, the debugger will &quot;re-enter&quot; at the point after the await.</li>
       <li>Conditional Breakpoints: Use them to break only when specific conditions are met (e.g., task.IsFaulted, or a certain variable value).</li>
       <li>Hit Count Breakpoints: Break only after a certain number of iterations, useful in loops within tasks.</li>
     </ul>
 
-    <h2 id="sec-33-lec-19-4-immediate-window-watch-window">4. 	Immediate Window/Watch Window:</h2>
+    <h2 id="sec-33-lec-19-4-immediate-window-watch-window">4.  Immediate Window/Watch Window:</h2>
     <ul>
       <li>You can inspect the Status, IsCompleted, IsFaulted, IsCanceled, and Exception properties of Task objects to check their state.</li>
       <li>Example: If myTask is a Task, type myTask.Status or myTask.Exception in the Immediate Window.</li>
     </ul>
 
-    <h2 id="sec-33-lec-20-5-thread-currentthread-managedthreadid">5. 	Thread.CurrentThread.ManagedThreadId:</h2>
+    <h2 id="sec-33-lec-20-5-thread-currentthread-managedthreadid">5.  Thread.CurrentThread.ManagedThreadId:</h2>
     <ul>
-      <li>Sprinkle Console.WriteLine($&quot;Current Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); throughout your async methods. This helps you observe thread hopping, which is normal and expected behavior for asynchronous operations, particularly I/O-bound ones. This can help confirm that await is indeed releasing the thread. Example: Debugging Scenario Let's use an example where we intentionally introduce a delay and an error to demonstrate debugging. using System; using System.Threading; using System.Threading.Tasks; using System.IO; public class DebuggingAsyncExample { private static async Task&lt;string&gt; SimulateLongRunningOperation(int id, bool shouldFail) { Console.WriteLine($&quot;Operation {id} started on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); await Task.Delay(2000); // Simulate network call or long computation Console.WriteLine($&quot;Operation {id} after first await on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); if (shouldFail) { Console.WriteLine($&quot;Operation {id} throwing exception.&quot;); throw new FileNotFoundException($&quot;File for operation {id} not found.&quot;); } await Task.Delay(1000); // Another simulated wait Console.WriteLine($&quot;Operation {id} finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); return $&quot;Result from Operation {id}&quot;; } public static async Task RunDebuggingScenario() { Console.WriteLine($&quot;Main method starting on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); Task&lt;string&gt; task1 = SimulateLongRunningOperation(1, false); Task&lt;string&gt; task2 = SimulateLongRunningOperation(2, true); // This one will fail Console.WriteLine($&quot;Tasks initiated. Main method continues on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); try { await Task.WhenAll(task1, task2); // Set a breakpoint here Console.WriteLine(&quot;All tasks completed successfully.&quot;); } catch (AggregateException ex) { Console.WriteLine($&quot;\nCaught AggregateException with {ex.InnerExceptions.Count} inner exceptions:&quot;); foreach (var innerEx in ex.InnerExceptions) { Console.WriteLine($&quot; Debugging: Inner Exception: {innerEx.GetType().Name} - {innerEx.Message}&quot;); } } catch (Exception ex) { Console.WriteLine($&quot;\nCaught general exception: {ex.Message}&quot;); } // After the catch, you can inspect task states Console.WriteLine($&quot;\nFinal Status Task 1: {task1.Status}&quot;); Console.WriteLine($&quot;Final Status Task 2: {task2.Status}&quot;); Console.WriteLine($&quot;Main method finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); } // Call from Main: // public static async Task Main(string[] args) // { // 	await RunDebuggingScenario(); // } } Debugging Steps for the Example:</li>
+      <li>Sprinkle Console.WriteLine($&quot;Current Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); throughout your async methods. This helps you observe thread hopping, which is normal and expected behavior for asynchronous operations, particularly I/O-bound ones. This can help confirm that await is indeed releasing the thread. Example: Debugging Scenario Let's use an example where we intentionally introduce a delay and an error to demonstrate debugging. using System; using System.Threading; using System.Threading.Tasks; using System.IO; public class DebuggingAsyncExample { private static async Task&lt;string&gt; SimulateLongRunningOperation(int id, bool shouldFail) { Console.WriteLine($&quot;Operation {id} started on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); await Task.Delay(2000); // Simulate network call or long computation Console.WriteLine($&quot;Operation {id} after first await on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); if (shouldFail) { Console.WriteLine($&quot;Operation {id} throwing exception.&quot;); throw new FileNotFoundException($&quot;File for operation {id} not found.&quot;); } await Task.Delay(1000); // Another simulated wait Console.WriteLine($&quot;Operation {id} finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); return $&quot;Result from Operation {id}&quot;; } public static async Task RunDebuggingScenario() { Console.WriteLine($&quot;Main method starting on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); Task&lt;string&gt; task1 = SimulateLongRunningOperation(1, false); Task&lt;string&gt; task2 = SimulateLongRunningOperation(2, true); // This one will fail Console.WriteLine($&quot;Tasks initiated. Main method continues on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); try { await Task.WhenAll(task1, task2); // Set a breakpoint here Console.WriteLine(&quot;All tasks completed successfully.&quot;); } catch (AggregateException ex) { Console.WriteLine($&quot;\nCaught AggregateException with {ex.InnerExceptions.Count} inner exceptions:&quot;); foreach (var innerEx in ex.InnerExceptions) { Console.WriteLine($&quot; Debugging: Inner Exception: {innerEx.GetType().Name} - {innerEx.Message}&quot;); } } catch (Exception ex) { Console.WriteLine($&quot;\nCaught general exception: {ex.Message}&quot;); } // After the catch, you can inspect task states Console.WriteLine($&quot;\nFinal Status Task 1: {task1.Status}&quot;); Console.WriteLine($&quot;Final Status Task 2: {task2.Status}&quot;); Console.WriteLine($&quot;Main method finished on Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); } // Call from Main: // public static async Task Main(string[] args) // { // await RunDebuggingScenario(); // } } Debugging Steps for the Example:</li>
     </ul>
 
-    <h2 id="sec-33-lec-21-1-set-breakpoints">1. 	Set Breakpoints:</h2>
+    <h2 id="sec-33-lec-21-1-set-breakpoints">1.  Set Breakpoints:</h2>
     <ul>
       <li>Set a breakpoint at await Task.WhenAll(task1, task2);.</li>
       <li>Set breakpoints inside SimulateLongRunningOperation at await Task.Delay(2000); and throw new FileNotFoundException(...).</li>
     </ul>
 
-    <h2 id="sec-33-lec-22-2-start-debugging-run-the-application-in-debu">2. 	Start Debugging: Run the application in debug mode (F5).</h2>
+    <h2 id="sec-33-lec-22-2-start-debugging-run-the-application-in-debu">2.  Start Debugging: Run the application in debug mode (F5).</h2>
 
-    <h2 id="sec-33-lec-23-3-observe-execution-flow">3. 	Observe Execution Flow:</h2>
+    <h2 id="sec-33-lec-23-3-observe-execution-flow">3.  Observe Execution Flow:</h2>
     <ul>
       <li>You'll hit the first breakpoint in RunDebuggingScenario. Notice the Main thread ID.</li>
       <li>Step over task1 and task2 initiations. Both SimulateLongRunningOperation methods will start on thread pool threads (check console output for thread IDs).</li>
@@ -585,7 +587,7 @@
       <li>After the exception, execution will jump back to the catch (AggregateException ex) block in RunDebuggingScenario.</li>
     </ul>
 
-    <h2 id="sec-33-lec-24-4-use-debugging-windows">4. 	Use Debugging Windows:</h2>
+    <h2 id="sec-33-lec-24-4-use-debugging-windows">4.  Use Debugging Windows:</h2>
     <ul>
       <li>Tasks Window: Open it (Debug &gt; Windows &gt; Tasks). You'll see task1 and task2 listed. Observe their Status changing (e.g., WaitingForActivation -&gt; Running -&gt; WaitingForChildrenToComplete (for internal Task.Delay) -&gt; RanToCompletion for task1, Faulted for task2). You can click &quot;Go to Code&quot; to see where they are paused or executing.</li>
       <li>Parallel Stacks Window: Open it (Debug &gt; Windows &gt; Parallel Stacks). You'll see multiple threads. Expand the logical call stacks for SimulateLongRunningOperation methods. Even after await, you can see the logical caller that awaited it.</li>
@@ -600,54 +602,54 @@
     <h2 id="sec-33-lec-25-5-points-to-remember">5. Points to Remember</h2>
     <p>To solidify your understanding of asynchronous programming in C# with async and await, here are the crucial points to remember, especially for interviews and practical application development:</p>
 
-    <h2 id="sec-33-lec-26-1-purpose-of-asynchronous-programming">1. 	Purpose of Asynchronous Programming:</h2>
+    <h2 id="sec-33-lec-26-1-purpose-of-asynchronous-programming">1.  Purpose of Asynchronous Programming:</h2>
     <ul>
       <li>Responsiveness: Keeps user interfaces (UIs) fluid and interactive by not blocking the UI thread during long-running operations.</li>
       <li>Scalability: For server-side applications, it allows a server to handle more concurrent requests by releasing threads back to the thread pool while waiting for I/O-bound operations to complete.</li>
       <li>Efficiency: Maximizes resource utilization by not tying up threads unnecessarily.</li>
     </ul>
 
-    <h2 id="sec-33-lec-27-2-async-and-await-are-keywords-not-threads">2. 	async and await are Keywords, not Threads:</h2>
+    <h2 id="sec-33-lec-27-2-async-and-await-are-keywords-not-threads">2.  async and await are Keywords, not Threads:</h2>
     <ul>
       <li>The async keyword simply marks a method that can contain await expressions. It tells the compiler to transform the method into a state machine.</li>
       <li>The await keyword is the &quot;non-blocking pause&quot; point. When await is encountered, if the awaited operation (a Task) is not yet complete, the async method yields control to its caller, and the thread is freed. It does not create a new thread.</li>
       <li>Critical Concept: Asynchronous programming is about non- blocking operations, not necessarily parallel execution. Parallelism (multiple things at once) can be achieved within asynchronous programming (e.g., Task.WhenAll), but the core benefit of async/ await for I/O-bound work is thread liberation.</li>
     </ul>
 
-    <h2 id="sec-33-lec-28-3-async-method-return-types">3. 	async Method Return Types:</h2>
+    <h2 id="sec-33-lec-28-3-async-method-return-types">3.  async Method Return Types:</h2>
     <ul>
       <li>Most commonly: Task (for void-like operations) or Task&lt;TResult&gt; (for operations returning a value).</li>
       <li>Rarely: void (only for top-level event handlers where the caller doesn't need to await completion). Avoid async void in general library code due to difficult exception handling and unawaitability.</li>
       <li>Sometimes: ValueTask or ValueTask&lt;TResult&gt; for performance- critical scenarios where allocations need to be minimized, especially if the operation often completes synchronously.</li>
     </ul>
 
-    <h2 id="sec-33-lec-29-4-task-run-for-cpu-bound-work">4. 	Task.Run for CPU-Bound Work:</h2>
+    <h2 id="sec-33-lec-29-4-task-run-for-cpu-bound-work">4.  Task.Run for CPU-Bound Work:</h2>
     <ul>
       <li>If you have a synchronous, CPU-intensive operation that would block the current thread (e.g., UI thread), use Task.Run(() =&gt; YourCpuIntensiveMethod()) to offload it to a thread pool thread.</li>
       <li>Then, await the Task returned by Task.Run to get its result without blocking the calling async method.</li>
     </ul>
 
-    <h2 id="sec-33-lec-30-5-await-for-i-o-bound-work">5. 	await for I/O-Bound Work:</h2>
+    <h2 id="sec-33-lec-30-5-await-for-i-o-bound-work">5.  await for I/O-Bound Work:</h2>
     <ul>
       <li>For operations that primarily involve waiting for external resources (network, disk, database), use the Async versions of methods (e.g., HttpClient.GetAsync, File.ReadAllTextAsync, SqlCommand.ExecuteReaderAsync).</li>
       <li>When you await these methods, the thread is released back to the thread pool (or SynchronizationContext) and is not consumed while the I/O operation is in progress. This is the primary driver of scalability.</li>
     </ul>
 
-    <h2 id="sec-33-lec-31-6-try-catch-finally-works-natively">6. 	try-catch-finally Works Natively:</h2>
+    <h2 id="sec-33-lec-31-6-try-catch-finally-works-natively">6.  try-catch-finally Works Natively:</h2>
     <ul>
       <li>Exception handling in async methods behaves much like synchronous code.</li>
       <li>When an awaited Task faults, the await expression re-throws the first inner exception of the AggregateException (the wrapper Task uses).</li>
       <li>For multiple concurrent tasks awaited with Task.WhenAll, the catch block will receive a single AggregateException containing all exceptions from all faulted tasks.</li>
     </ul>
 
-    <h2 id="sec-33-lec-32-7-cooperative-cancellation">7. 	Cooperative Cancellation:</h2>
+    <h2 id="sec-33-lec-32-7-cooperative-cancellation">7.  Cooperative Cancellation:</h2>
     <ul>
       <li>Asynchronous operations using Tasks support cooperative cancellation via CancellationTokenSource and CancellationToken.</li>
       <li>Your async method must periodically check cancellationToken.IsCancellationRequested or call cancellationToken.ThrowIfCancellationRequested() to respond to cancellation.</li>
       <li>When an async method is canceled this way, awaiting it will throw an OperationCanceledException.</li>
     </ul>
 
-    <h2 id="sec-33-lec-33-8-synchronizationcontext-and-configureawait-f">8. 	SynchronizationContext and ConfigureAwait(false):</h2>
+    <h2 id="sec-33-lec-33-8-synchronizationcontext-and-configureawait-f">8.  SynchronizationContext and ConfigureAwait(false):</h2>
     <ul>
       <li>By default, when an async method awaits a Task and a SynchronizationContext is present (e.g., UI thread, ASP.NET Core request context), the continuation (the code after await) will attempt to resume on that same context. This is crucial for UI updates.</li>
       <li>ConfigureAwait(false): When used (e.g., await someTask.ConfigureAwait(false)), it tells the runtime not to attempt to marshal the continuation back to the original SynchronizationContext.</li>
@@ -655,7 +657,7 @@
       <li>When NOT to use ConfigureAwait(false): In UI event handlers or anywhere you need to interact with UI elements after an await (as the continuation might run on a different thread, causing cross- thread access exceptions).</li>
     </ul>
 
-    <h2 id="sec-33-lec-34-9-debugging-async-code">9. 	Debugging Async Code:</h2>
+    <h2 id="sec-33-lec-34-9-debugging-async-code">9.  Debugging Async Code:</h2>
     <ul>
       <li>Visual Studio's Tasks Window (Debug &gt; Windows &gt; Tasks) provides a crucial real-time overview of all active tasks, their status, and logical call stacks.</li>
       <li>The Parallel Stacks Window (Debug &gt; Windows &gt; Parallel Stacks) helps visualize the call stack across await boundaries.</li>
@@ -668,17 +670,6 @@
       <li>&quot;Sync over Async&quot; (Bad): Calling task.Wait() or task.Result from a synchronous method (e.g., Main method) that is part of an asynchronous call chain can lead to deadlocks, especially in UI or ASP.NET contexts.</li>
       <li>&quot;Async over Sync&quot; (Bad): Wrapping synchronous I/O operations in Task.Run (e.g., Task.Run(() =&gt; File.ReadAllText(&quot;file.txt&quot;))). While it offloads, it still blocks a thread pool thread, negating the true scalability benefit of async I/O. Only do this if no Async equivalent exists for an I/O operation. By internalizing these points, you will be well-equipped to discuss, implement, and debug asynchronous patterns effectively in C#.</li>
     </ul>
-
-    <h2 id="sec-33-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
-    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
-  <ul>
-  <li>PAGE 1 ---</li>
-  <li>PAGE 2 ---</li>
-  <li>PAGE 3 ---</li>
-  <li>Continuation While the awaited task is running asynchronously (e.g., making a network request or reading a file or a database call), the current thread is freed up to perform other work. The method doesn't block, making your program responsive.  3. Completion Notification When the awaited task completes, whether successfully or with an exception, the runtime captures the result or exception information and the caller method resumes execution at the point where it was suspended, and assigns the return value of the asynchronous method at the place where the asynchronous method was called; and then it continues execution of the caller method.  4. Error Handling If the awaited task throws an exception, that exception is propagated up the call stack, allowing you to handle errors using standard exception handling mechanisms Writing 'async' and 'await’ code in better way Caller Method public async Task CallerMethod() {   await MethodAsync(); //Invoke the asynchronous method;   … //and also wait until the asynchronous method completes (without blocking the thread) }  Asynchronous Method public async Task&lt;TResult&gt; MethodAsync(parameters) {   …   return some_value; //sets the returned value into Task.Result property }  Caller Method TResult result = await MethodAsync(); //sets the Task.Result into &quot;result&quot; variable … //continue execution.</li>
-  <li>PAGE 4 ---</li>
-  <li>PAGE 5 ---</li>
-</ul>
 
       </article>
 
@@ -723,31 +714,31 @@
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-4-1-the-async-method-yields-control-back-to-its" class="toc-link">1. 	The async method yields control back to its </a>
+        <a href="#sec-33-lec-4-1-the-async-method-yields-control-back-to-its" class="toc-link">1.  The async method yields control back to its </a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-5-2-the-thread-that-was-executing-the-async-met" class="toc-link">2. 	The thread that was executing the async meth</a>
+        <a href="#sec-33-lec-5-2-the-thread-that-was-executing-the-async-met" class="toc-link">2.  The thread that was executing the async meth</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-6-3-a-continuation-is-scheduled-to-resume-the-a" class="toc-link">3. 	A &quot;continuation&quot; is scheduled to resume the </a>
+        <a href="#sec-33-lec-6-3-a-continuation-is-scheduled-to-resume-the-a" class="toc-link">3.  A &quot;continuation&quot; is scheduled to resume the </a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-7-4-if-a-synchronizationcontext-was-captured-at" class="toc-link">4. 	If a SynchronizationContext was captured at </a>
+        <a href="#sec-33-lec-7-4-if-a-synchronizationcontext-was-captured-at" class="toc-link">4.  If a SynchronizationContext was captured at </a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-8-1-if-it-completed-successfully-rantocompletio" class="toc-link">1. 	If it completed successfully (RanToCompletio</a>
+        <a href="#sec-33-lec-8-1-if-it-completed-successfully-rantocompletio" class="toc-link">1.  If it completed successfully (RanToCompletio</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-9-2-if-it-faulted-faulted-the-await-expression-" class="toc-link">2. 	If it faulted (Faulted), the await expressio</a>
+        <a href="#sec-33-lec-9-2-if-it-faulted-faulted-the-await-expression-" class="toc-link">2.  If it faulted (Faulted), the await expressio</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-10-3-if-it-was-canceled-canceled-the-await-expre" class="toc-link">3. 	If it was canceled (Canceled), the await exp</a>
+        <a href="#sec-33-lec-10-3-if-it-was-canceled-canceled-the-await-expre" class="toc-link">3.  If it was canceled (Canceled), the await exp</a>
       </li>
     
       <li class="toc-item">
@@ -755,15 +746,15 @@
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-12-1-task-faults-when-an-unhandled-exception-occ" class="toc-link">1. 	Task Faults: When an unhandled exception occ</a>
+        <a href="#sec-33-lec-12-1-task-faults-when-an-unhandled-exception-occ" class="toc-link">1.  Task Faults: When an unhandled exception occ</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-13-2-await-unwraps-when-the-await-expression-is-" class="toc-link">2. 	await Unwraps: When the await expression is </a>
+        <a href="#sec-33-lec-13-2-await-unwraps-when-the-await-expression-is-" class="toc-link">2.  await Unwraps: When the await expression is </a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-14-3-standard-try-catch-this-re-thrown-exception" class="toc-link">3. 	Standard try-catch: This re-thrown exception</a>
+        <a href="#sec-33-lec-14-3-standard-try-catch-this-re-thrown-exception" class="toc-link">3.  Standard try-catch: This re-thrown exception</a>
       </li>
     
       <li class="toc-item">
@@ -771,39 +762,39 @@
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-16-1-tasks-window-debug-windows-tasks" class="toc-link">1. 	Tasks Window (Debug &gt; Windows &gt; Tasks):</a>
+        <a href="#sec-33-lec-16-1-tasks-window-debug-windows-tasks" class="toc-link">1.  Tasks Window (Debug &gt; Windows &gt; Tasks):</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-17-2-parallel-stacks-window-debug-windows-parall" class="toc-link">2. 	Parallel Stacks Window (Debug &gt; Windows &gt; Pa</a>
+        <a href="#sec-33-lec-17-2-parallel-stacks-window-debug-windows-parall" class="toc-link">2.  Parallel Stacks Window (Debug &gt; Windows &gt; Pa</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-18-3-breakpoints" class="toc-link">3. 	Breakpoints:</a>
+        <a href="#sec-33-lec-18-3-breakpoints" class="toc-link">3.  Breakpoints:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-19-4-immediate-window-watch-window" class="toc-link">4. 	Immediate Window/Watch Window:</a>
+        <a href="#sec-33-lec-19-4-immediate-window-watch-window" class="toc-link">4.  Immediate Window/Watch Window:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-20-5-thread-currentthread-managedthreadid" class="toc-link">5. 	Thread.CurrentThread.ManagedThreadId:</a>
+        <a href="#sec-33-lec-20-5-thread-currentthread-managedthreadid" class="toc-link">5.  Thread.CurrentThread.ManagedThreadId:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-21-1-set-breakpoints" class="toc-link">1. 	Set Breakpoints:</a>
+        <a href="#sec-33-lec-21-1-set-breakpoints" class="toc-link">1.  Set Breakpoints:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-22-2-start-debugging-run-the-application-in-debu" class="toc-link">2. 	Start Debugging: Run the application in debu</a>
+        <a href="#sec-33-lec-22-2-start-debugging-run-the-application-in-debu" class="toc-link">2.  Start Debugging: Run the application in debu</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-23-3-observe-execution-flow" class="toc-link">3. 	Observe Execution Flow:</a>
+        <a href="#sec-33-lec-23-3-observe-execution-flow" class="toc-link">3.  Observe Execution Flow:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-24-4-use-debugging-windows" class="toc-link">4. 	Use Debugging Windows:</a>
+        <a href="#sec-33-lec-24-4-use-debugging-windows" class="toc-link">4.  Use Debugging Windows:</a>
       </li>
     
       <li class="toc-item">
@@ -811,47 +802,43 @@
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-26-1-purpose-of-asynchronous-programming" class="toc-link">1. 	Purpose of Asynchronous Programming:</a>
+        <a href="#sec-33-lec-26-1-purpose-of-asynchronous-programming" class="toc-link">1.  Purpose of Asynchronous Programming:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-27-2-async-and-await-are-keywords-not-threads" class="toc-link">2. 	async and await are Keywords, not Threads:</a>
+        <a href="#sec-33-lec-27-2-async-and-await-are-keywords-not-threads" class="toc-link">2.  async and await are Keywords, not Threads:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-28-3-async-method-return-types" class="toc-link">3. 	async Method Return Types:</a>
+        <a href="#sec-33-lec-28-3-async-method-return-types" class="toc-link">3.  async Method Return Types:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-29-4-task-run-for-cpu-bound-work" class="toc-link">4. 	Task.Run for CPU-Bound Work:</a>
+        <a href="#sec-33-lec-29-4-task-run-for-cpu-bound-work" class="toc-link">4.  Task.Run for CPU-Bound Work:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-30-5-await-for-i-o-bound-work" class="toc-link">5. 	await for I/O-Bound Work:</a>
+        <a href="#sec-33-lec-30-5-await-for-i-o-bound-work" class="toc-link">5.  await for I/O-Bound Work:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-31-6-try-catch-finally-works-natively" class="toc-link">6. 	try-catch-finally Works Natively:</a>
+        <a href="#sec-33-lec-31-6-try-catch-finally-works-natively" class="toc-link">6.  try-catch-finally Works Natively:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-32-7-cooperative-cancellation" class="toc-link">7. 	Cooperative Cancellation:</a>
+        <a href="#sec-33-lec-32-7-cooperative-cancellation" class="toc-link">7.  Cooperative Cancellation:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-33-8-synchronizationcontext-and-configureawait-f" class="toc-link">8. 	SynchronizationContext and ConfigureAwait(fa</a>
+        <a href="#sec-33-lec-33-8-synchronizationcontext-and-configureawait-f" class="toc-link">8.  SynchronizationContext and ConfigureAwait(fa</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-33-lec-34-9-debugging-async-code" class="toc-link">9. 	Debugging Async Code:</a>
+        <a href="#sec-33-lec-34-9-debugging-async-code" class="toc-link">9.  Debugging Async Code:</a>
       </li>
     
       <li class="toc-item">
         <a href="#sec-33-lec-35-10-avoid-mixing-blocking-and-async-code-async" class="toc-link">10. Avoid Mixing Blocking and Async Code (Async </a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-33-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

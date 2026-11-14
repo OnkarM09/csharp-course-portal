@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="../assets/css/docs.css">
 </head>
 <body id="top">
+  <!-- Skip to Main Content (Accessibility) -->
+  <a href="#mainContent" class="skip-to-content">Skip to main content</a>
 
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
       <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
-      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
         <span class="sidebar-toggle-text">« Collapse</span>
       </button>
@@ -49,12 +51,12 @@
   <div class="docs-wrapper">
 
     <!-- Left Navigation Sidebar -->
-    <aside class="docs-sidebar">
+    <aside class="docs-sidebar" aria-label="Course Navigation">
       <div class="sidebar-top-bar">
-        <span class="sidebar-top-title">Navigation</span>
-        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
-          <span>Collapse</span>
+        <span class="sidebar-top-title">Course Outline</span>
+        <button class="sidebar-close-btn mobile-only-btn" id="sidebarCloseBtn" title="Close Sidebar" aria-label="Close navigation sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
         </button>
       </div>
       <div class="sidebar-search-box">
@@ -408,7 +410,7 @@
     </aside>
 
     <!-- Main Content Container -->
-    <main class="docs-main-container">
+    <main class="docs-main-container" id="mainContent" tabindex="-1">
 
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
@@ -533,7 +535,7 @@
       <li>For your own custom class objects, the class must implement the IComparable&lt;T&gt; interface to define its &quot;natural&quot; sort order. If it doesn't, calling Sort() will throw an exception. Alternatively, you can pass a custom sorting logic (an IComparer&lt;T&gt; or a Comparison&lt;T&gt; delegate) as a parameter to the Sort method.</li>
       <li>When to Use It: Whenever you need to order the elements of a list, for example, to display a list of names alphabetically or a list of scores from lowest to highest. Reverse()</li>
       <li>What it does: Reverses the sequence of the elements in the entire list. The first element becomes the last, the second becomes the second-to- last, and so on.</li>
-      <li>How it Works: It swaps the elements in place, making it a very efficient operation. Example List&lt;int&gt; scores = new List&lt;int&gt; { 88, 54, 95, 72, 68 }; Console.WriteLine(&quot;Original list: &quot; + string.Join(&quot;, &quot;, scores)); // Sort the list in place (ascending). scores.Sort(); Console.WriteLine(&quot;After Sort(): 	&quot; + string.join(&quot;, &quot;, scores)); // Reverse the now-sorted list to get descending order. scores.Reverse(); Console.WriteLine(&quot;After Reverse(): &quot; + string.Join(&quot;, &quot;, scores)); Output: Original list: 88, 54, 95, 72, 68 After Sort(): 	54, 68, 72, 88, 95 After Reverse(): 95, 88, 72, 68, 54</li>
+      <li>How it Works: It swaps the elements in place, making it a very efficient operation. Example List&lt;int&gt; scores = new List&lt;int&gt; { 88, 54, 95, 72, 68 }; Console.WriteLine(&quot;Original list: &quot; + string.Join(&quot;, &quot;, scores)); // Sort the list in place (ascending). scores.Sort(); Console.WriteLine(&quot;After Sort(): &quot; + string.join(&quot;, &quot;, scores)); // Reverse the now-sorted list to get descending order. scores.Reverse(); Console.WriteLine(&quot;After Reverse(): &quot; + string.Join(&quot;, &quot;, scores)); Output: Original list: 88, 54, 95, 72, 68 After Sort(): 54, 68, 72, 88, 95 After Reverse(): 95, 88, 72, 68, 54</li>
     </ul>
 
     <h2 id="sec-22-lec-8-toarray-and-foreach">Lecture 8: ToArray and ForEach</h2>
@@ -592,7 +594,7 @@
     <p>A SortedList&lt;TKey, TValue&gt; is a collection of key-value pairs that maintains its elements sorted by the key. Whenever you add a new item, it is automatically inserted into the correct position to keep the entire collection sorted. How It Works: Internal Arrays Unlike a Dictionary's hash table, a SortedList internally uses two separate arrays: one to store the keys and one to store the values. It keeps these arrays synchronized and sorted at all times. Performance Trade-offs This internal structure leads to a very specific performance profile, which is a key interview topic.</p>
     <ul>
       <li>Additions and Removals are SLOW (O(n)): To add a new item, the SortedList may have to shift a large number of elements in its internal arrays to make room in the correct sorted position.</li>
-      <li>Lookups are FAST (O(log n)): Because the keys are always sorted, it can use a highly efficient binary search to find an item by its key. Why and When to Use It You should choose a SortedList over a Dictionary only in scenarios where: 1. 	You need your collection to always remain sorted by key. 2. 	Your usage pattern involves many more lookups than insertions or deletions. If you just need fast lookups and don't care about sort order, Dictionary&lt;TKey, TValue&gt; is almost always the better choice due to its faster add/remove performance. Example SortedList&lt;int, string&gt; appointmentSchedule = new SortedList&lt;int, string&gt;(); // Items are added and automatically sorted by the key (the time). appointmentSchedule.Add(1100, &quot;Meet with Bob&quot;); appointmentSchedule.Add(900, &quot;Team Standup&quot;); appointmentSchedule.Add(1400, &quot;Deploy to Production&quot;); Console.WriteLine(&quot;--- Today's Schedule (Sorted) ---&quot;); foreach (var appointment in appointmentSchedule) { Console.WriteLine($&quot;{appointment.Key}: {appointment.Value}&quot;); } Output: --- Today's Schedule (Sorted) --- 900: Team Standup 1100: Meet with Bob 1400: Deploy to Production</li>
+      <li>Lookups are FAST (O(log n)): Because the keys are always sorted, it can use a highly efficient binary search to find an item by its key. Why and When to Use It You should choose a SortedList over a Dictionary only in scenarios where: 1. You need your collection to always remain sorted by key. 2. Your usage pattern involves many more lookups than insertions or deletions. If you just need fast lookups and don't care about sort order, Dictionary&lt;TKey, TValue&gt; is almost always the better choice due to its faster add/remove performance. Example SortedList&lt;int, string&gt; appointmentSchedule = new SortedList&lt;int, string&gt;(); // Items are added and automatically sorted by the key (the time). appointmentSchedule.Add(1100, &quot;Meet with Bob&quot;); appointmentSchedule.Add(900, &quot;Team Standup&quot;); appointmentSchedule.Add(1400, &quot;Deploy to Production&quot;); Console.WriteLine(&quot;--- Today's Schedule (Sorted) ---&quot;); foreach (var appointment in appointmentSchedule) { Console.WriteLine($&quot;{appointment.Key}: {appointment.Value}&quot;); } Output: --- Today's Schedule (Sorted) --- 900: Team Standup 1100: Meet with Bob 1400: Deploy to Production</li>
     </ul>
 
     <h2 id="sec-22-lec-13-hashtable">Lecture 13: Hashtable</h2>
@@ -619,7 +621,7 @@
 
     <h2 id="sec-22-lec-15-arraylist">Lecture 15: ArrayList</h2>
     <h3>Introduction</h3>
-    <p>An ArrayList is the non-generic, legacy version of List&lt;T&gt;. It comes from the older System.Collections namespace and was the primary tool for creating dynamically-sized collections before generics were introduced in C# 2.0. How It Works It functions similarly to a List&lt;T&gt;, using a dynamic internal array that resizes itself as needed. The crucial difference is that it stores all of its elements as the base type object. Disadvantages and Why Not to Use It You should avoid using ArrayList in all modern C# code. The generic List&lt;T&gt; is superior in every way for these critical reasons: Not Type-Safe: You can add any type of data to the same ArrayList, which can lead to logical errors and messy code. ArrayList mixedList = new ArrayList(); mixedList.Add(10); 	// An integer mixedList.Add(&quot;Hello&quot;); 	// A string mixedList.Add(new Product()); // A custom object Performance Issues (Boxing): If you add value types (like int, double, bool, or structs), they must be boxed into an object to be stored on the heap. This causes significant performance degradation. Requires Casting: When you retrieve an item, it comes back as object. You must perform an explicit cast back to its original type. This is verbose and risks a run-time InvalidCastException if you cast to the wrong type. int myNumber = (int)mixedList[0]; // Requires an explicit cast.</p>
+    <p>An ArrayList is the non-generic, legacy version of List&lt;T&gt;. It comes from the older System.Collections namespace and was the primary tool for creating dynamically-sized collections before generics were introduced in C# 2.0. How It Works It functions similarly to a List&lt;T&gt;, using a dynamic internal array that resizes itself as needed. The crucial difference is that it stores all of its elements as the base type object. Disadvantages and Why Not to Use It You should avoid using ArrayList in all modern C# code. The generic List&lt;T&gt; is superior in every way for these critical reasons: Not Type-Safe: You can add any type of data to the same ArrayList, which can lead to logical errors and messy code. ArrayList mixedList = new ArrayList(); mixedList.Add(10); // An integer mixedList.Add(&quot;Hello&quot;); // A string mixedList.Add(new Product()); // A custom object Performance Issues (Boxing): If you add value types (like int, double, bool, or structs), they must be boxed into an object to be stored on the heap. This causes significant performance degradation. Requires Casting: When you retrieve an item, it comes back as object. You must perform an explicit cast back to its original type. This is verbose and risks a run-time InvalidCastException if you cast to the wrong type. int myNumber = (int)mixedList[0]; // Requires an explicit cast.</p>
 
     <div class="callout callout-tip">
       <div class="callout-header">
@@ -780,32 +782,6 @@
       <li>Contravariance (in): An action that works on an object can be used as an action that works on a string.</li>
     </ul>
 
-    <h2 id="sec-22-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
-    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
-  <ul>
-  <li>PAGE 1 ---</li>
-  <li>PAGE 2 ---</li>
-  <li>PAGE 3 ---</li>
-  <li>It is not sorted by default. The elements are stored in the same order, how they are initialized. • It uses arrays internally; that means, recreates array when the element is added / removed. The 'Capacity' property holds the number of elements that can be stored in the internal array of the List. If you add more elements, the internal array will resized to the 'Count' of elements.   Properties of 'List' class 1. Count 2. Capacity  Methods of 'List' class 1. Add(T) 2. AddRange(IEnumerable&lt;T&gt;) 3. Insert(int, T) 4. InsertRange(int, IEnumerable&lt;T&gt;) 5. Remove(T) 6. RemoveAt(int) 7. RemoveRange(int, int) 8. RemoveAll(Predicate&lt;T&gt;) 9. Clear() 10. IndexOf(T) 11. BinarySearch(T) 12. Contains(T) 13. Sort() 14. Reverse() 15. ToArray() 16. ForEach(Action&lt;T&gt;) 17. Exists(Predicate&lt;T&gt;) 18. Find(Predicate&lt;T&gt;) 19. FindIndex(Predicate&lt;T&gt;)</li>
-  <li>PAGE 4 ---</li>
-  <li>FindLast(Predicate&lt;T&gt;) 21. FindLastIndex(Predicate&lt;T&gt;) 22. FindAll(Predicate&lt;T&gt;) 23. ConvertAll(T)    List - Add( ) method This method adds a new element to the collection.   Syntax: void List.Add(T newValue)  Syntax: List.Add(10)</li>
-  <li>PAGE 5 ---</li>
-  <li>PAGE 6 ---</li>
-  <li>PAGE 7 ---</li>
-  <li>PAGE 8 ---</li>
-  <li>PAGE 9 ---</li>
-  <li>PAGE 10 ---</li>
-  <li>PAGE 11 ---</li>
-  <li>PAGE 12 ---</li>
-  <li>PAGE 13 ---</li>
-  <li>It directly goes to the middle of the collection (collection size / 2), and checks that item is less than / greater than the search value. • If that item is greater than the search value, it searches only in the first half of the collection. • If that item is less than the search value, it searches only in the second half of the array. • Thus it searches only half of the array. So in this way, it improves performance  Parameters: value: This parameter represents the actual value that is to be searched.    List - Contains( ) method This method searches the specified element and returns 'true', if it is found; but returns 'false', if it is not found.    Syntax: bool List.Contains( T value )  Example: List.Contains(30)</li>
-  <li>PAGE 14 ---</li>
-  <li>PAGE 15 ---</li>
-  <li>PAGE 16 ---</li>
-  <li>PAGE 17 ---</li>
-  <li>PAGE 18 ---</li>
-</ul>
-
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -958,10 +934,6 @@
     
       <li class="toc-item">
         <a href="#sec-22-lec-31-imp-points-to-remember" class="toc-link">Lecture 31: IMP Points to Remember</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-22-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="../assets/css/docs.css">
 </head>
 <body id="top">
+  <!-- Skip to Main Content (Accessibility) -->
+  <a href="#mainContent" class="skip-to-content">Skip to main content</a>
 
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
       <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
-      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
         <span class="sidebar-toggle-text">« Collapse</span>
       </button>
@@ -49,12 +51,12 @@
   <div class="docs-wrapper">
 
     <!-- Left Navigation Sidebar -->
-    <aside class="docs-sidebar">
+    <aside class="docs-sidebar" aria-label="Course Navigation">
       <div class="sidebar-top-bar">
-        <span class="sidebar-top-title">Navigation</span>
-        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
-          <span>Collapse</span>
+        <span class="sidebar-top-title">Course Outline</span>
+        <button class="sidebar-close-btn mobile-only-btn" id="sidebarCloseBtn" title="Close Sidebar" aria-label="Close navigation sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
         </button>
       </div>
       <div class="sidebar-search-box">
@@ -408,7 +410,7 @@
     </aside>
 
     <!-- Main Content Container -->
-    <main class="docs-main-container">
+    <main class="docs-main-container" id="mainContent" tabindex="-1">
 
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
@@ -450,7 +452,7 @@
       <li>We would create a Product object. This single object would contain its own data: its name, its price, and its stockLevel.</li>
       <li>It would also contain its own behavior: methods like Purchase(quantity) or IsInStock().</li>
       <li>Similarly, we would have a Customer object with its own data (name, address) and behavior (PlaceOrder()).</li>
-      <li>We could have a ShoppingCart object with its own data (a list of products) and behavior (AddItem(), CalculateTotal(). The program then becomes a simulation of these objects interacting: a Customer object PlaceOrder(), which might involve a ShoppingCart object that checks if each Product object IsInStock() before finalizing the purchase. The Three Core Concepts of an Object Every object in OOP has three key characteristics: 1. 	Identity: Each object is a unique entity, distinct from all other objects, even if they are of the same type and have the same data. When we create two different Product objects, they occupy different spaces in memory. 2. 	State: This is the data or attributes that describe an object at any given moment. A Car object's state would include its current color, currentSpeed, and fuelLevel. The state is stored in fields (variables) within the object. 3. 	Behavior: This is what an object can do. The behavior of a Car object would be defined by its methods, such as Accelerate(), Brake(), and Refuel(). These methods are typically used to modify the object's internal state. Interview Perspective</li>
+      <li>We could have a ShoppingCart object with its own data (a list of products) and behavior (AddItem(), CalculateTotal(). The program then becomes a simulation of these objects interacting: a Customer object PlaceOrder(), which might involve a ShoppingCart object that checks if each Product object IsInStock() before finalizing the purchase. The Three Core Concepts of an Object Every object in OOP has three key characteristics: 1. Identity: Each object is a unique entity, distinct from all other objects, even if they are of the same type and have the same data. When we create two different Product objects, they occupy different spaces in memory. 2. State: This is the data or attributes that describe an object at any given moment. A Car object's state would include its current color, currentSpeed, and fuelLevel. The state is stored in fields (variables) within the object. 3. Behavior: This is what an object can do. The behavior of a Car object would be defined by its methods, such as Accelerate(), Brake(), and Refuel(). These methods are typically used to modify the object's internal state. Interview Perspective</li>
       <li>Question: &quot;Can you explain what Object-Oriented Programming is at a high level?&quot;</li>
       <li>Ideal Answer: &quot;OOP is a programming paradigm that organizes software design around data, or 'objects,' rather than functions and logic. It's a way of managing complexity by bundling data (state) and the methods that operate on that data (behavior) into a single unit. Instead of a top-down procedural approach, an OOP application is modeled as a collection of interacting objects, which often represent real-world entities. This makes the code more modular, reusable, and easier to maintain as it grows.&quot;</li>
     </ul>
@@ -519,7 +521,7 @@ object.
 Car myFirstCar;
 // 2. Instantiation: Use the 'new' keyword to create a new Car object in
 memory
-// 	and assign its memory address to our variable.
+//  and assign its memory address to our variable.
 myFirstCar = new Car();
 // Or, more commonly, do it all in one line:
 Car mySecondCar = new Car();
@@ -534,12 +536,12 @@ myFirstCar.SetColor(&quot;Red&quot;);
 // Call methods to change its behavior.
 myFirstCar.Accelerate(); // Output: Accelerating. Current speed: 10 km/h
 myFirstCar.Accelerate(); // Output: Accelerating. Current speed: 20 km/h
-myFirstCar.Brake(); 	// Output: Braking. Current speed: 15 km/h
+myFirstCar.Brake();  // Output: Braking. Current speed: 15 km/h
 // Now, interact with the second car. It is completely separate.
 mySecondCar.SetColor(&quot;Blue&quot;);
 mySecondCar.Accelerate(); // Output: Accelerating. Current speed: 10 km/h
 // Getting the color of the first car does not affect the second.
-Console.WriteLine($&quot;My first car's color is: {myFirstCar.GetColor()}&quot;); 	//
+Console.WriteLine($&quot;My first car's color is: {myFirstCar.GetColor()}&quot;);  //
 Output: Red
 Console.WriteLine($&quot;My second car's color is: {mySecondCar.GetColor()}&quot;); //
 Output: Blue
@@ -619,15 +621,6 @@ Console.WriteLine($&quot;Car B color: {carB.GetColor()}&quot;); // Output: Yello
                                           +--------------------------------------+</pre>
     </div>
   
-    <h2 id="sec-4-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
-    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
-  <ul>
-  <li>PAGE 1 ---</li>
-  <li>PAGE 2 ---</li>
-  <li>PAGE 3 ---</li>
-  <li>PAGE 4 ---</li>
-</ul>
-
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -668,10 +661,6 @@ Console.WriteLine($&quot;Car B color: {carB.GetColor()}&quot;); // Output: Yello
     
       <li class="toc-item">
         <a href="#sec-4-lec-3-imp-points-to-remember-about-classes-and-obje" class="toc-link">Lecture 3: IMP Points to remember about Classes </a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-4-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

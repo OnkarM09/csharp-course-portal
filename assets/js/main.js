@@ -77,8 +77,8 @@
   document.addEventListener('DOMContentLoaded', () => {
     initSidebarState();
 
-    // Attach sidebar collapse/expand listener
-    document.querySelectorAll('.sidebar-toggle-btn, .sidebar-collapse-btn, .expand-sidebar-pill').forEach(btn => {
+    // Attach sidebar collapse/expand & close listener
+    document.querySelectorAll('.sidebar-toggle-btn, .sidebar-close-btn, .expand-sidebar-pill').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         if (window.innerWidth <= 900) {

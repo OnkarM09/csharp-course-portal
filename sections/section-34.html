@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="../assets/css/docs.css">
 </head>
 <body id="top">
+  <!-- Skip to Main Content (Accessibility) -->
+  <a href="#mainContent" class="skip-to-content">Skip to main content</a>
 
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
       <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
-      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
         <span class="sidebar-toggle-text">« Collapse</span>
       </button>
@@ -49,12 +51,12 @@
   <div class="docs-wrapper">
 
     <!-- Left Navigation Sidebar -->
-    <aside class="docs-sidebar">
+    <aside class="docs-sidebar" aria-label="Course Navigation">
       <div class="sidebar-top-bar">
-        <span class="sidebar-top-title">Navigation</span>
-        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
-          <span>Collapse</span>
+        <span class="sidebar-top-title">Course Outline</span>
+        <button class="sidebar-close-btn mobile-only-btn" id="sidebarCloseBtn" title="Close Sidebar" aria-label="Close navigation sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
         </button>
       </div>
       <div class="sidebar-search-box">
@@ -408,7 +410,7 @@
     </aside>
 
     <!-- Main Content Container -->
-    <main class="docs-main-container">
+    <main class="docs-main-container" id="mainContent" tabindex="-1">
 
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
@@ -513,10 +515,10 @@
     <h2 id="sec-34-lec-7-6-file-local-types">6. File Local Types</h2>
     <p>C# 11 introduces a new access modifier, file, which allows you to declare types that are only visible and usable within the same source file (.cs file) in which they are declared. This feature is particularly useful for internal helper types that are specific to the implementation details of a single file, preventing naming conflicts and improving code encapsulation. Problem Solved: Before C# 11, if you had a helper class, struct, or interface that was only meant to be used by other types within the same .cs file, your options were limited:</p>
 
-    <h2 id="sec-34-lec-8-1-private-nested-type-this-tightly-couples-th">1. 	private nested type: This tightly couples the helper type to a specific</h2>
+    <h2 id="sec-34-lec-8-1-private-nested-type-this-tightly-couples-th">1.  private nested type: This tightly couples the helper type to a specific</h2>
     <p>outer class, making it inaccessible to other top-level types in the same file.</p>
 
-    <h2 id="sec-34-lec-9-2-internal-type-this-makes-the-type-visible-a">2. 	internal type: This makes the type visible across the entire assembly. This</h2>
+    <h2 id="sec-34-lec-9-2-internal-type-this-makes-the-type-visible-a">2.  internal type: This makes the type visible across the entire assembly. This</h2>
     <p>could lead to:</p>
     <ul>
       <li>Naming Conflicts: If multiple developers in a large project create internal helper types with common names (e.g., Helper, Processor, State), it could lead to ambiguity or require cumbersome prefixing.</li>
@@ -526,7 +528,7 @@
       <li>Default Visibility: If no explicit access modifier is given alongside file (e.g., just file class MyType), it behaves like file internal. You cannot specify public, protected, or private with file.</li>
       <li>Nesting: File-local types can be top-level types or nested within other types. If a file-local type is nested within another type, its visibility is still constrained by the file modifier to the containing file.</li>
       <li>Naming Conflicts: You can have multiple types with the same name across different files, as long as they are declared as file types. This eliminates naming conflicts for local helper types.</li>
-      <li>IntelliSense: file types will not appear in IntelliSense outside their declaring file. Example: Consider a scenario where you have a complex method or a set of related operations within a single source file, and you need some helper data structures or utility classes that are only relevant to that file's implementation. File: DataProcessor.cs using System; // This helper class is only visible within DataProcessor.cs file class DataBatch { public int Id { get; init; } public string[] Data { get; init; } public void ProcessData() { Console.WriteLine($&quot; Processing Batch {Id}: {Data.Length} items.&quot;); foreach (var item in Data) { Console.WriteLine($&quot; 	Item: {item}&quot;); } } } // This helper interface is also file-local file interface IFileLocalLogger { void Log(string message); } // This helper logger implementation is file-local file class ConsoleFileLogger : IFileLocalLogger { public void Log(string message) { Console.WriteLine($&quot;[FILE_LOG] {message}&quot;); } } public class DataProcessor { private readonly IFileLocalLogger _logger = new ConsoleFileLogger(); // OK, ConsoleFileLogger is file-local here public void ProcessLargeDataset(string[] rawData) { _logger.Log(&quot;Starting large dataset processing.&quot;); // Use the file-local DataBatch var batch1 = new DataBatch { Id = 1, Data = new[] { rawData[0], rawData[1] } }; var batch2 = new DataBatch { Id = 2, Data = new[] { rawData[2], rawData[3] } }; batch1.ProcessData(); batch2.ProcessData(); _logger.Log(&quot;Finished large dataset processing.&quot;); } } File: AnotherService.cs (in the same assembly) using System; public class AnotherService { public void DoSomething() { // Compiler Error: 'DataBatch' is inaccessible due to its protection level. // var batch = new DataBatch { Id = 3, Data = new[] { &quot;item5&quot; } }; // Compiler Error: 'IFileLocalLogger' is inaccessible. // IFileLocalLogger logger = new ConsoleFileLogger(); Console.WriteLine(&quot;AnotherService is doing something unrelated to DataProcessor's internal types.&quot;); } } In AnotherService.cs, attempting to use DataBatch or IFileLocalLogger will result in a compile-time error, clearly demonstrating their file-local scope. Benefits:</li>
+      <li>IntelliSense: file types will not appear in IntelliSense outside their declaring file. Example: Consider a scenario where you have a complex method or a set of related operations within a single source file, and you need some helper data structures or utility classes that are only relevant to that file's implementation. File: DataProcessor.cs using System; // This helper class is only visible within DataProcessor.cs file class DataBatch { public int Id { get; init; } public string[] Data { get; init; } public void ProcessData() { Console.WriteLine($&quot; Processing Batch {Id}: {Data.Length} items.&quot;); foreach (var item in Data) { Console.WriteLine($&quot; Item: {item}&quot;); } } } // This helper interface is also file-local file interface IFileLocalLogger { void Log(string message); } // This helper logger implementation is file-local file class ConsoleFileLogger : IFileLocalLogger { public void Log(string message) { Console.WriteLine($&quot;[FILE_LOG] {message}&quot;); } } public class DataProcessor { private readonly IFileLocalLogger _logger = new ConsoleFileLogger(); // OK, ConsoleFileLogger is file-local here public void ProcessLargeDataset(string[] rawData) { _logger.Log(&quot;Starting large dataset processing.&quot;); // Use the file-local DataBatch var batch1 = new DataBatch { Id = 1, Data = new[] { rawData[0], rawData[1] } }; var batch2 = new DataBatch { Id = 2, Data = new[] { rawData[2], rawData[3] } }; batch1.ProcessData(); batch2.ProcessData(); _logger.Log(&quot;Finished large dataset processing.&quot;); } } File: AnotherService.cs (in the same assembly) using System; public class AnotherService { public void DoSomething() { // Compiler Error: 'DataBatch' is inaccessible due to its protection level. // var batch = new DataBatch { Id = 3, Data = new[] { &quot;item5&quot; } }; // Compiler Error: 'IFileLocalLogger' is inaccessible. // IFileLocalLogger logger = new ConsoleFileLogger(); Console.WriteLine(&quot;AnotherService is doing something unrelated to DataProcessor's internal types.&quot;); } } In AnotherService.cs, attempting to use DataBatch or IFileLocalLogger will result in a compile-time error, clearly demonstrating their file-local scope. Benefits:</li>
       <li>Reduced Naming Conflicts: Multiple files can have file class Helper without clashing.</li>
       <li>Improved Encapsulation: Clearly defines the intended usage scope for helper types, preventing accidental misuse outside their dedicated file.</li>
       <li>Cleaner IntelliSense: Reduces clutter in code completion suggestions for developers.</li>
@@ -543,10 +545,10 @@
       <li>Initialization Requirement: Any required member must be initialized as part of the object's creation. This can happen in one of two ways:</li>
     </ul>
 
-    <h2 id="sec-34-lec-11-1-directly-in-a-constructor-the-constructor-e">1. 	Directly in a constructor: The constructor explicitly assigns a value</h2>
+    <h2 id="sec-34-lec-11-1-directly-in-a-constructor-the-constructor-e">1.  Directly in a constructor: The constructor explicitly assigns a value</h2>
     <p>to the required member.</p>
 
-    <h2 id="sec-34-lec-12-2-via-an-object-initializer-when-using-new-my">2. 	Via an object initializer: When using new MyClass { Name = &quot;...&quot;,</h2>
+    <h2 id="sec-34-lec-12-2-via-an-object-initializer-when-using-new-my">2.  Via an object initializer: When using new MyClass { Name = &quot;...&quot;,</h2>
     <p>Id = ... }, all required members must be present in the initializer list.</p>
     <ul>
       <li>Compile-Time Enforcement: The compiler enforces this rule. If a required member is not initialized in either of these ways, a compile-time error occurs (CS9035).</li>
@@ -556,14 +558,14 @@
       <li>Inheritance:</li>
     </ul>
 
-    <h2 id="sec-34-lec-13-1-required-members-are-inherited-if-a-base-cl">1. 	required members are inherited. If a base class has a required</h2>
+    <h2 id="sec-34-lec-13-1-required-members-are-inherited-if-a-base-cl">1.  required members are inherited. If a base class has a required</h2>
     <p>member, derived classes also inherit this requirement.</p>
 
-    <h2 id="sec-34-lec-14-2-derived-classes-do-not-need-to-re-declare-a">2. 	Derived classes do not need to re-declare a base required member</h2>
+    <h2 id="sec-34-lec-14-2-derived-classes-do-not-need-to-re-declare-a">2.  Derived classes do not need to re-declare a base required member</h2>
     <p>as required (though they can if they shadow it). The requirement from the base class applies to derived instances.</p>
     <ul>
       <li>record types: required members work seamlessly with record types, including positional records (though for positional records, constructor parameters usually handle initialization).</li>
-      <li>Default Constructors: If a type has a required member but no explicit constructor, the compiler will generate a default parameterless constructor. However, this default constructor will not initialize the required member, meaning you must use an object initializer when creating an instance. Example Scenarios: Example 1: Basic Usage with Class public class User { public required string Username { get; set; } public required string Email { get; init; } // init-only required property public required DateTime RegistrationDate { get; set; } // No explicit constructor needed if only object initializer is used. // However, if you add a constructor, it must initialize required members. public User(string username) // If this were the only ctor, it would be an error if Email/RegDate aren't set here. { Username = username; // Initializes Username // Compiler error if Email and RegistrationDate are not initialized here or via object initializer } public User() { } // Empty constructor, requires object initializer for all 'required' members public void PrintInfo() { Console.WriteLine($&quot;Username: {Username}, Email: {Email}, RegDate: {RegistrationDate.ToShortDateString()}&quot;); } } public static class RequiredMembersDemo { public static void RunExamples() { // Valid: All required members initialized via object initializer User user1 = new User { Username = &quot;Alice&quot;, Email = &quot;alice@example.com&quot;, RegistrationDate = DateTime.Today }; user1.PrintInfo(); // Valid: Using constructor AND object initializer User user2 = new User(&quot;Bob&quot;) { Email = &quot;bob@example.com&quot;, RegistrationDate = DateTime.Today.AddDays(-7) }; user2.PrintInfo(); // Compile-time Error: CS9035 - 'User.Email' and 'User.RegistrationDate' are required. // User invalidUser = new User(); // Compile-time Error: CS9035 - 'User.RegistrationDate' is required. // User invalidUser2 = new User { Username = &quot;Charlie&quot;, Email = &quot;charlie@example.com&quot; }; Console.WriteLine(&quot;\nRequired Members Demo Finished.&quot;); } } // Call from Main: // public static void Main(string[] args) // { // 	RequiredMembersDemo.RunExamples(); // } Example 2: Required Members in Structs C# 11 also introduces auto-default structs (next section), which work well with required members. public struct Point { public required int X { get; set; } public required int Y { get; set; } // If you define a constructor, it MUST initialize all required members // public Point(int x, int y) { X = x; Y = y; } // Valid constructor public void PrintCoords() =&gt; Console.WriteLine($&quot;Point: ({X}, {Y})&quot;); } public static class RequiredStructDemo { public static void RunExamples() { // Valid: All required members initialized via object initializer Point p1 = new Point { X = 10, Y = 20 }; p1.PrintCoords(); // Compile-time Error: CS9035 - 'Point.Y' is required. // Point p2 = new Point { X = 5 }; Console.WriteLine(&quot;\nRequired Struct Members Demo Finished.&quot;); } } Example 3: Inheritance with Required Members public class BaseShape { public required string ShapeType { get; init; } } public class Circle : BaseShape { public required double Radius { get; init; } // Constructor must initialize *all* required members (BaseShape.ShapeType and Circle.Radius) public Circle(string type, double radius) { ShapeType = type; // Initializes required member from BaseShape Radius = radius; // Initializes required member from Circle } public void PrintInfo() { Console.WriteLine($&quot;Shape Type: {ShapeType}, Radius: {Radius}&quot;); } } public static class RequiredInheritanceDemo { public static void RunExamples() { // Valid: Using constructor and object initializer Circle c1 = new Circle(&quot;Round&quot;, 10.5) { // Even if ShapeType and Radius are set in constructor, // they can also be set in object initializer IF they have 'set' or 'init' accessors. }; c1.PrintInfo(); // Valid: Using object initializer for all required members Circle c2 = new Circle { ShapeType = &quot;Ellipse&quot;, Radius = 5.2 }; c2.PrintInfo(); // Compile-time Error: CS9035 - 'Circle.Radius' is required. // Circle invalidCircle = new Circle { ShapeType = &quot;Square&quot; }; Console.WriteLine(&quot;\nRequired Members Inheritance Demo Finished.&quot;); } } Benefits:</li>
+      <li>Default Constructors: If a type has a required member but no explicit constructor, the compiler will generate a default parameterless constructor. However, this default constructor will not initialize the required member, meaning you must use an object initializer when creating an instance. Example Scenarios: Example 1: Basic Usage with Class public class User { public required string Username { get; set; } public required string Email { get; init; } // init-only required property public required DateTime RegistrationDate { get; set; } // No explicit constructor needed if only object initializer is used. // However, if you add a constructor, it must initialize required members. public User(string username) // If this were the only ctor, it would be an error if Email/RegDate aren't set here. { Username = username; // Initializes Username // Compiler error if Email and RegistrationDate are not initialized here or via object initializer } public User() { } // Empty constructor, requires object initializer for all 'required' members public void PrintInfo() { Console.WriteLine($&quot;Username: {Username}, Email: {Email}, RegDate: {RegistrationDate.ToShortDateString()}&quot;); } } public static class RequiredMembersDemo { public static void RunExamples() { // Valid: All required members initialized via object initializer User user1 = new User { Username = &quot;Alice&quot;, Email = &quot;alice@example.com&quot;, RegistrationDate = DateTime.Today }; user1.PrintInfo(); // Valid: Using constructor AND object initializer User user2 = new User(&quot;Bob&quot;) { Email = &quot;bob@example.com&quot;, RegistrationDate = DateTime.Today.AddDays(-7) }; user2.PrintInfo(); // Compile-time Error: CS9035 - 'User.Email' and 'User.RegistrationDate' are required. // User invalidUser = new User(); // Compile-time Error: CS9035 - 'User.RegistrationDate' is required. // User invalidUser2 = new User { Username = &quot;Charlie&quot;, Email = &quot;charlie@example.com&quot; }; Console.WriteLine(&quot;\nRequired Members Demo Finished.&quot;); } } // Call from Main: // public static void Main(string[] args) // { // RequiredMembersDemo.RunExamples(); // } Example 2: Required Members in Structs C# 11 also introduces auto-default structs (next section), which work well with required members. public struct Point { public required int X { get; set; } public required int Y { get; set; } // If you define a constructor, it MUST initialize all required members // public Point(int x, int y) { X = x; Y = y; } // Valid constructor public void PrintCoords() =&gt; Console.WriteLine($&quot;Point: ({X}, {Y})&quot;); } public static class RequiredStructDemo { public static void RunExamples() { // Valid: All required members initialized via object initializer Point p1 = new Point { X = 10, Y = 20 }; p1.PrintCoords(); // Compile-time Error: CS9035 - 'Point.Y' is required. // Point p2 = new Point { X = 5 }; Console.WriteLine(&quot;\nRequired Struct Members Demo Finished.&quot;); } } Example 3: Inheritance with Required Members public class BaseShape { public required string ShapeType { get; init; } } public class Circle : BaseShape { public required double Radius { get; init; } // Constructor must initialize *all* required members (BaseShape.ShapeType and Circle.Radius) public Circle(string type, double radius) { ShapeType = type; // Initializes required member from BaseShape Radius = radius; // Initializes required member from Circle } public void PrintInfo() { Console.WriteLine($&quot;Shape Type: {ShapeType}, Radius: {Radius}&quot;); } } public static class RequiredInheritanceDemo { public static void RunExamples() { // Valid: Using constructor and object initializer Circle c1 = new Circle(&quot;Round&quot;, 10.5) { // Even if ShapeType and Radius are set in constructor, // they can also be set in object initializer IF they have 'set' or 'init' accessors. }; c1.PrintInfo(); // Valid: Using object initializer for all required members Circle c2 = new Circle { ShapeType = &quot;Ellipse&quot;, Radius = 5.2 }; c2.PrintInfo(); // Compile-time Error: CS9035 - 'Circle.Radius' is required. // Circle invalidCircle = new Circle { ShapeType = &quot;Square&quot; }; Console.WriteLine(&quot;\nRequired Members Inheritance Demo Finished.&quot;); } } Benefits:</li>
       <li>Compile-Time Safety: Catches common initialization errors at compile time, preventing runtime null reference exceptions or unexpected behavior from uninitialized data.</li>
       <li>Clearer API Contracts: Developers using your types immediately know which members are essential for proper object creation.</li>
       <li>Reduced Boilerplate: Less need for verbose constructors or manual validation checks.</li>
@@ -576,10 +578,10 @@
       <li>No Parameterless Constructors: Structs could not declare an explicit parameterless constructor. The runtime provided an implicit one that would zero-initialize all fields.</li>
       <li>Definite Assignment Rule: If you declared a custom constructor in a struct, you had to explicitly assign a value to every field in that constructor. Failure to do so would result in a compile-time error (CS0171: Field 'field' must be fully assigned before control leaves the constructor). These rules often led to more verbose constructors, especially for structs with many fields, and could make it tricky to define constructors that only initialized a subset of fields. C# 11 Changes: In C# 11, the definite assignment rule for structs has been relaxed.</li>
       <li>Explicit Parameterless Constructors: Structs can now declare an explicit parameterless constructor.</li>
-      <li>Automatic Zero-Initialization: If a constructor (explicit or implicit) does not explicitly initialize all fields, any uninitialized fields are automatically set to their default value (e.g., 0 for numeric types, false for bool, null for reference types, default for other value types). Syntax and Behavior: There's no new keyword; it's a change in how the compiler handles struct initialization. Example 1: Parameterless Constructor in Structs (C# 11+) public struct Point3D { public int X; public int Y; public int Z; public string Label; // Reference type field // In C# 11, this is now valid! public Point3D() { // X, Y, Z will be 0, Label will be null if not explicitly set here X = 1; // Only explicitly initializing X // Y, Z, Label will be default(int), default(int), default(string) respectively } public void PrintCoords() { Console.WriteLine($&quot;Point3D: X={X}, Y={Y}, Z={Z}, Label='{Label ?? &quot;null&quot;}'&quot;); } } public static class AutoDefaultStructsDemo { public static void RunExamples() { Console.WriteLine(&quot;--- Auto Default Structs Demo ---&quot;); // Using the new parameterless constructor Point3D p1 = new Point3D(); // X = 1, Y = 0, Z = 0, Label = null p1.PrintCoords(); // Using default constructor (all fields zero-initialized) Point3D p2 = default; // X = 0, Y = 0, Z = 0, Label = null p2.PrintCoords(); // Using object initializer (still works the same) Point3D p3 = new Point3D { X = 5, Z = 15, Label = &quot;Custom&quot; }; // Y will be 0 p3.PrintCoords(); Console.WriteLine(&quot;\n--- Auto Default Structs Demo Finished ---&quot;); } } // Call from Main: // public static void Main(string[] args) // { // 	AutoDefaultStructsDemo.RunExamples(); // } Explanation:</li>
+      <li>Automatic Zero-Initialization: If a constructor (explicit or implicit) does not explicitly initialize all fields, any uninitialized fields are automatically set to their default value (e.g., 0 for numeric types, false for bool, null for reference types, default for other value types). Syntax and Behavior: There's no new keyword; it's a change in how the compiler handles struct initialization. Example 1: Parameterless Constructor in Structs (C# 11+) public struct Point3D { public int X; public int Y; public int Z; public string Label; // Reference type field // In C# 11, this is now valid! public Point3D() { // X, Y, Z will be 0, Label will be null if not explicitly set here X = 1; // Only explicitly initializing X // Y, Z, Label will be default(int), default(int), default(string) respectively } public void PrintCoords() { Console.WriteLine($&quot;Point3D: X={X}, Y={Y}, Z={Z}, Label='{Label ?? &quot;null&quot;}'&quot;); } } public static class AutoDefaultStructsDemo { public static void RunExamples() { Console.WriteLine(&quot;--- Auto Default Structs Demo ---&quot;); // Using the new parameterless constructor Point3D p1 = new Point3D(); // X = 1, Y = 0, Z = 0, Label = null p1.PrintCoords(); // Using default constructor (all fields zero-initialized) Point3D p2 = default; // X = 0, Y = 0, Z = 0, Label = null p2.PrintCoords(); // Using object initializer (still works the same) Point3D p3 = new Point3D { X = 5, Z = 15, Label = &quot;Custom&quot; }; // Y will be 0 p3.PrintCoords(); Console.WriteLine(&quot;\n--- Auto Default Structs Demo Finished ---&quot;); } } // Call from Main: // public static void Main(string[] args) // { // AutoDefaultStructsDemo.RunExamples(); // } Explanation:</li>
       <li>In Point3D p1 = new Point3D();, only X is explicitly initialized to 1 in the constructor. Y, Z, and Label are automatically default-initialized to 0, 0, and null respectively.</li>
       <li>Point3D p2 = default; still results in a fully zero-initialized struct, as it did before.</li>
-      <li>Point3D p3 = new Point3D { X = 5, Z = 15, Label = &quot;Custom&quot; }; uses an object initializer. Y is not set here, so it automatically defaults to 0. Example 2: Interaction with required Members The required members feature (discussed previously) works synergistically with auto-default structs. If a struct has required members, they must still be explicitly initialized, either in a constructor or an object initializer, overriding the auto-defaulting behavior for those specific members. public struct Person { public required string FirstName { get; set; } // Required public required string LastName { get; set; } // Required public int Age; // Not required // Valid constructor: explicitly initializes required members, Age defaults to 0 public Person(string firstName, string lastName) { FirstName = firstName; LastName = lastName; // Age is automatically default-initialized to 0 } public void PrintInfo() { Console.WriteLine($&quot;Name: {FirstName} {LastName}, Age: {Age}&quot;); } } public static class AutoDefaultAndRequiredStructsDemo { public static void RunExamples() { Console.WriteLine(&quot;\n--- Auto Default &amp; Required Structs Demo ---&quot;); // Valid: Using constructor, Age will be 0 Person p1 = new Person(&quot;Jane&quot;, &quot;Doe&quot;); p1.PrintInfo(); // Valid: Using object initializer, Age will be 0 Person p2 = new Person { FirstName = &quot;John&quot;, LastName = &quot;Smith&quot; // Age is automatically default-initialized to 0 }; p2.PrintInfo(); // Valid: Using object initializer and setting Age Person p3 = new Person { FirstName = &quot;Alice&quot;, LastName = &quot;Brown&quot;, Age = 30 }; p3.PrintInfo(); // Compile-time Error: CS9035 - 'Person.FirstName' is required. // Person invalidPerson = new Person(); Console.WriteLine(&quot;\n--- Auto Default &amp; Required Structs Demo Finished ---&quot;); } } // Call from Main: // public static void Main(string[] args) // { // 	AutoDefaultAndRequiredStructsDemo.RunExamples(); // } Benefits:</li>
+      <li>Point3D p3 = new Point3D { X = 5, Z = 15, Label = &quot;Custom&quot; }; uses an object initializer. Y is not set here, so it automatically defaults to 0. Example 2: Interaction with required Members The required members feature (discussed previously) works synergistically with auto-default structs. If a struct has required members, they must still be explicitly initialized, either in a constructor or an object initializer, overriding the auto-defaulting behavior for those specific members. public struct Person { public required string FirstName { get; set; } // Required public required string LastName { get; set; } // Required public int Age; // Not required // Valid constructor: explicitly initializes required members, Age defaults to 0 public Person(string firstName, string lastName) { FirstName = firstName; LastName = lastName; // Age is automatically default-initialized to 0 } public void PrintInfo() { Console.WriteLine($&quot;Name: {FirstName} {LastName}, Age: {Age}&quot;); } } public static class AutoDefaultAndRequiredStructsDemo { public static void RunExamples() { Console.WriteLine(&quot;\n--- Auto Default &amp; Required Structs Demo ---&quot;); // Valid: Using constructor, Age will be 0 Person p1 = new Person(&quot;Jane&quot;, &quot;Doe&quot;); p1.PrintInfo(); // Valid: Using object initializer, Age will be 0 Person p2 = new Person { FirstName = &quot;John&quot;, LastName = &quot;Smith&quot; // Age is automatically default-initialized to 0 }; p2.PrintInfo(); // Valid: Using object initializer and setting Age Person p3 = new Person { FirstName = &quot;Alice&quot;, LastName = &quot;Brown&quot;, Age = 30 }; p3.PrintInfo(); // Compile-time Error: CS9035 - 'Person.FirstName' is required. // Person invalidPerson = new Person(); Console.WriteLine(&quot;\n--- Auto Default &amp; Required Structs Demo Finished ---&quot;); } } // Call from Main: // public static void Main(string[] args) // { // AutoDefaultAndRequiredStructsDemo.RunExamples(); // } Benefits:</li>
       <li>Reduced Boilerplate: No longer need to manually initialize every field in a custom struct constructor if you only care about a subset.</li>
       <li>Improved Usability: Makes structs more flexible and easier to define, especially when some fields can reasonably have their default values.</li>
       <li>Consistency: Aligns struct initialization behavior more closely with class initialization regarding default values.</li>
@@ -595,33 +597,33 @@
       <li>More effectively represent views into unmanaged or stack-allocated memory without copying. Syntax: You declare a ref field by using the ref keyword before the field's type: public ref struct MyRefStruct { public ref int ValueRef; // A ref field pointing to an int public ref readonly string MessageRef; // A ref readonly field } Key Characteristics and Rules of ref Fields:</li>
     </ul>
 
-    <h2 id="sec-34-lec-17-1-must-be-in-a-ref-struct-ref-fields-are-only">1. 	Must be in a ref struct: ref fields are only allowed within ref struct types.</h2>
+    <h2 id="sec-34-lec-17-1-must-be-in-a-ref-struct-ref-fields-are-only">1.  Must be in a ref struct: ref fields are only allowed within ref struct types.</h2>
     <p>They cannot be used in regular structs or classes.</p>
 
-    <h2 id="sec-34-lec-18-2-ref-readonly-you-can-declare-a-ref-readonly">2. 	ref readonly: You can declare a ref readonly field, meaning the</h2>
+    <h2 id="sec-34-lec-18-2-ref-readonly-you-can-declare-a-ref-readonly">2.  ref readonly: You can declare a ref readonly field, meaning the</h2>
     <p>reference itself can be reassigned (if not also readonly), but the data it points to cannot be modified through this field.</p>
 
-    <h2 id="sec-34-lec-19-3-definite-assignment-like-all-fields-ref-fie">3. 	Definite Assignment: Like all fields, ref fields must be definitely assigned</h2>
+    <h2 id="sec-34-lec-19-3-definite-assignment-like-all-fields-ref-fie">3.  Definite Assignment: Like all fields, ref fields must be definitely assigned</h2>
     <p>in a constructor.</p>
 
-    <h2 id="sec-34-lec-20-4-ref-local-variables-ref-fields-are-similar-">4. 	ref local variables: ref fields are similar in concept to ref local variables</h2>
+    <h2 id="sec-34-lec-20-4-ref-local-variables-ref-fields-are-similar-">4.  ref local variables: ref fields are similar in concept to ref local variables</h2>
     <p>(ref int x = ref y;).</p>
 
-    <h2 id="sec-34-lec-21-5-lifetime-safety-the-compiler-strictly-enfor">5. 	Lifetime Safety: The compiler strictly enforces ref safety rules (similar to</h2>
+    <h2 id="sec-34-lec-21-5-lifetime-safety-the-compiler-strictly-enfor">5.  Lifetime Safety: The compiler strictly enforces ref safety rules (similar to</h2>
     <p>Span&lt;T&gt;) to ensure that a ref field does not outlive the memory it refers to. This prevents dangling pointers.</p>
     <ul>
       <li>The lifetime of the ref field must be equal to or shorter than the lifetime of the ref struct it is a part of.</li>
       <li>The lifetime of the data that the ref field points to must be equal to or longer than the lifetime of the ref field itself.</li>
     </ul>
 
-    <h2 id="sec-34-lec-22-6-no-static-or-readonly-ref-fields-initially-">6. 	No static or readonly ref fields (initially): A ref field cannot be static. A</h2>
+    <h2 id="sec-34-lec-22-6-no-static-or-readonly-ref-fields-initially-">6.  No static or readonly ref fields (initially): A ref field cannot be static. A</h2>
     <p>ref field can be readonly if it is always initialized to a valid reference in the constructor and never changed afterward.</p>
 
-    <h2 id="sec-34-lec-23-7-no-default-constructor-for-ref-struct-with-">7. 	No Default Constructor for ref struct with ref fields (usually): If a ref</h2>
+    <h2 id="sec-34-lec-23-7-no-default-constructor-for-ref-struct-with-">7.  No Default Constructor for ref struct with ref fields (usually): If a ref</h2>
     <p>struct contains ref fields, it generally cannot have a parameterless constructor (implicit or explicit) because ref fields must be initialized to a valid reference at construction, which default or an empty constructor cannot guarantee.</p>
 
-    <h2 id="sec-34-lec-24-8-pointers-vs-references-ref-fields-are-manag">8. 	Pointers vs. References: ref fields are managed references, not</h2>
-    <p>unmanaged pointers. They benefit from garbage collection safety, but within the strict ref struct context. Real-World Example (Simplified): Custom Span-like Type This example demonstrates how ref fields could be used to build a custom Span-like structure. This is simplified and primarily for conceptual understanding, as Span&lt;T&gt; itself is highly optimized. using System; using System.Runtime.InteropServices; // For potentially working with memory // A ref struct that uses a ref field to represent a &quot;view&quot; into an array public ref struct CustomSlice&lt;T&gt; { // A ref field that points to the first element of the underlying array/span. // This allows CustomSlice to hold a reference without copying the data. public ref T _start; public int Length { get; } // Constructor must initialize the ref field to a valid reference. // It also takes an index and length to define the &quot;slice&quot;. public CustomSlice(ref T arrayStart, int index, int length) { if (length &lt; 0) throw new ArgumentOutOfRangeException(nameof(length)); if (index &lt; 0) throw new ArgumentOutOfRangeException(nameof(index)); // Get a reference to the element at the specified index. // This is a simplified conceptual example; in real Span&lt;T&gt;, // unsafe context or other advanced techniques might be used // to get the true starting ref efficiently. // For demonstration, assume we can directly reference into an array. // In reality, arrayStart would be the actual array, and we'd offset it. // This simplified version assumes arrayStart is already the beginning of the desired slice. _start = ref arrayStart; // Directly assign the passed-in reference. Length = length; } public ref T this[int index] { get { if (index &lt; 0 || index &gt;= Length) { throw new IndexOutOfRangeException(); } // Add index offset to the starting reference. // This is a conceptual representation. In real C#/.NET, // this usually involves unsafe code or highly optimized internal methods. // For example, using System.Runtime.CompilerServices.Unsafe.Add. // For a managed 'ref T' to behave like an array, you'd typically need // to work with arrays directly, or use Span&lt;T&gt; provided by the runtime. // This example is illustrative of the 'ref' field concept. return ref _start; // Simplified: just returns the start. A real indexer would offset. // A realistic ref field usage is when _start is a ref to element 0 // and the indexer does ref _start[index] (if _start were a ref to an array). // Or using unsafe: return ref Unsafe.Add(ref _start, index); } } } public static class RefFieldsDemo { public static void RunExamples() { Console.WriteLine(&quot;--- Ref Fields Demo ---&quot;); int[] data = new int[] { 10, 20, 30, 40, 50 }; // Get a reference to the first element of the array ref int dataStart = ref data[0]; // Create a custom slice referencing a portion of the array // Here, _start will point to data[2] (value 30) // Length will be 3 (30, 40, 50) CustomSlice&lt;int&gt; slice = new CustomSlice&lt;int&gt;(ref data[2], 0, 3); Console.WriteLine($&quot;Slice Length: {slice.Length}&quot;); // For this simplified example, direct access via _start would be: Console.WriteLine($&quot;First element of slice (conceptually data[2]): {slice._start}&quot;); // Accessing the ref field directly // Modify value through the ref field indirectly (conceptually) // This actually modifies the original array data. slice._start = 99; // This would change data[2] to 99 Console.WriteLine($&quot;Original array after modification: [{string.Join(&quot;, &quot;, data)}]&quot;); Console.WriteLine(&quot;\n--- Ref Fields Demo Finished ---&quot;); } } // Call from Main: // public static void Main(string[] args) // { // 	RefFieldsDemo.RunExamples(); // } Why ref fields are advanced:</p>
+    <h2 id="sec-34-lec-24-8-pointers-vs-references-ref-fields-are-manag">8.  Pointers vs. References: ref fields are managed references, not</h2>
+    <p>unmanaged pointers. They benefit from garbage collection safety, but within the strict ref struct context. Real-World Example (Simplified): Custom Span-like Type This example demonstrates how ref fields could be used to build a custom Span-like structure. This is simplified and primarily for conceptual understanding, as Span&lt;T&gt; itself is highly optimized. using System; using System.Runtime.InteropServices; // For potentially working with memory // A ref struct that uses a ref field to represent a &quot;view&quot; into an array public ref struct CustomSlice&lt;T&gt; { // A ref field that points to the first element of the underlying array/span. // This allows CustomSlice to hold a reference without copying the data. public ref T _start; public int Length { get; } // Constructor must initialize the ref field to a valid reference. // It also takes an index and length to define the &quot;slice&quot;. public CustomSlice(ref T arrayStart, int index, int length) { if (length &lt; 0) throw new ArgumentOutOfRangeException(nameof(length)); if (index &lt; 0) throw new ArgumentOutOfRangeException(nameof(index)); // Get a reference to the element at the specified index. // This is a simplified conceptual example; in real Span&lt;T&gt;, // unsafe context or other advanced techniques might be used // to get the true starting ref efficiently. // For demonstration, assume we can directly reference into an array. // In reality, arrayStart would be the actual array, and we'd offset it. // This simplified version assumes arrayStart is already the beginning of the desired slice. _start = ref arrayStart; // Directly assign the passed-in reference. Length = length; } public ref T this[int index] { get { if (index &lt; 0 || index &gt;= Length) { throw new IndexOutOfRangeException(); } // Add index offset to the starting reference. // This is a conceptual representation. In real C#/.NET, // this usually involves unsafe code or highly optimized internal methods. // For example, using System.Runtime.CompilerServices.Unsafe.Add. // For a managed 'ref T' to behave like an array, you'd typically need // to work with arrays directly, or use Span&lt;T&gt; provided by the runtime. // This example is illustrative of the 'ref' field concept. return ref _start; // Simplified: just returns the start. A real indexer would offset. // A realistic ref field usage is when _start is a ref to element 0 // and the indexer does ref _start[index] (if _start were a ref to an array). // Or using unsafe: return ref Unsafe.Add(ref _start, index); } } } public static class RefFieldsDemo { public static void RunExamples() { Console.WriteLine(&quot;--- Ref Fields Demo ---&quot;); int[] data = new int[] { 10, 20, 30, 40, 50 }; // Get a reference to the first element of the array ref int dataStart = ref data[0]; // Create a custom slice referencing a portion of the array // Here, _start will point to data[2] (value 30) // Length will be 3 (30, 40, 50) CustomSlice&lt;int&gt; slice = new CustomSlice&lt;int&gt;(ref data[2], 0, 3); Console.WriteLine($&quot;Slice Length: {slice.Length}&quot;); // For this simplified example, direct access via _start would be: Console.WriteLine($&quot;First element of slice (conceptually data[2]): {slice._start}&quot;); // Accessing the ref field directly // Modify value through the ref field indirectly (conceptually) // This actually modifies the original array data. slice._start = 99; // This would change data[2] to 99 Console.WriteLine($&quot;Original array after modification: [{string.Join(&quot;, &quot;, data)}]&quot;); Console.WriteLine(&quot;\n--- Ref Fields Demo Finished ---&quot;); } } // Call from Main: // public static void Main(string[] args) // { // RefFieldsDemo.RunExamples(); // } Why ref fields are advanced:</p>
     <ul>
       <li>Memory Safety Concerns: The compiler's ref safety analysis is complex. Misusing ref fields can lead to memory corruption or crashes if the lifetime rules are violated.</li>
       <li>Low-Level: They are typically used in scenarios where you are trying to avoid memory allocations and garbage collector pressure at all costs, often involving interoperability (P/Invoke) or very performance-critical libraries.</li>
@@ -634,7 +636,7 @@
     <h2 id="sec-34-lec-25-10-points-to-remember">10. Points to Remember</h2>
     <p>C# 11 introduces a mix of quality-of-life improvements and powerful, low-level features. Here's a summary of the key takeaways for each feature:</p>
 
-    <h2 id="sec-34-lec-26-1-raw-string-literals">1. 	Raw String Literals:</h2>
+    <h2 id="sec-34-lec-26-1-raw-string-literals">1.  Raw String Literals:</h2>
     <ul>
       <li>Purpose: Simplify multiline strings, strings with special characters (quotes, backslashes), and embedded code (JSON, XML, SQL).</li>
       <li>Syntax: Started and ended with at least three double-quotes (&quot;&quot;&quot;).</li>
@@ -642,7 +644,7 @@
       <li>Remember: Makes code much more readable and reduces errors when dealing with complex string content.</li>
     </ul>
 
-    <h2 id="sec-34-lec-27-2-list-pattern">2. 	List Pattern:</h2>
+    <h2 id="sec-34-lec-27-2-list-pattern">2.  List Pattern:</h2>
     <ul>
       <li>Purpose: Allows pattern matching against elements in sequences (arrays, lists, IEnumerable).</li>
       <li>Syntax: Uses square brackets [] to define patterns for elements.</li>
@@ -650,7 +652,7 @@
       <li>Remember: Great for deconstructing and checking the structure of collections in a concise and declarative way.</li>
     </ul>
 
-    <h2 id="sec-34-lec-28-3-slice-pattern">3. 	Slice Pattern (..):</h2>
+    <h2 id="sec-34-lec-28-3-slice-pattern">3.  Slice Pattern (..):</h2>
     <ul>
       <li>Purpose: Used within List Patterns to match zero or more elements in a sequence.</li>
       <li>Syntax: Two dots ...</li>
@@ -658,7 +660,7 @@
       <li>Remember: Only one .. allowed per list pattern. Essential for flexible sequence matching.</li>
     </ul>
 
-    <h2 id="sec-34-lec-29-4-var-pattern-in-property-patterns">4. 	Var Pattern (in Property Patterns):</h2>
+    <h2 id="sec-34-lec-29-4-var-pattern-in-property-patterns">4.  Var Pattern (in Property Patterns):</h2>
     <ul>
       <li>Purpose: Allows using var within property patterns to infer the property's type and assign its value to a new variable.</li>
       <li>Syntax: MyObject is { PropertyName: var variableName }.</li>
@@ -666,7 +668,7 @@
       <li>Remember: A small but helpful syntactic sugar for more concise pattern matching.</li>
     </ul>
 
-    <h2 id="sec-34-lec-30-5-file-local-types">5. 	File Local Types:</h2>
+    <h2 id="sec-34-lec-30-5-file-local-types">5.  File Local Types:</h2>
     <ul>
       <li>Purpose: Declare types (classes, structs, interfaces, enums, records) that are only visible within the single .cs file where they are defined.</li>
       <li>Syntax: Use the file access modifier (e.g., file class MyHelper).</li>
@@ -674,7 +676,7 @@
       <li>Remember: Provides a scope narrower than internal but broader than private nested types.</li>
     </ul>
 
-    <h2 id="sec-34-lec-31-6-required-members">6. 	Required Members:</h2>
+    <h2 id="sec-34-lec-31-6-required-members">6.  Required Members:</h2>
     <ul>
       <li>Purpose: Enforce that specific properties or fields of a class or struct must be initialized during object creation.</li>
       <li>Syntax: Use the required keyword (e.g., public required string Name { get; set; }).</li>
@@ -682,14 +684,14 @@
       <li>Remember: Initialization must happen via a constructor or an object initializer. Inherited requirements are also enforced.</li>
     </ul>
 
-    <h2 id="sec-34-lec-32-7-auto-default-structs">7. 	Auto Default Structs:</h2>
+    <h2 id="sec-34-lec-32-7-auto-default-structs">7.  Auto Default Structs:</h2>
     <ul>
       <li>Purpose: Relax definite assignment rules for structs, allowing uninitialized fields in constructors to be automatically set to their default values (zero-initialized).</li>
       <li>Key Benefit: Reduces boilerplate in struct constructors, makes structs more flexible, and allows explicit parameterless constructors.</li>
       <li>Remember: Simplifies struct definitions and aligns default initialization behavior more closely with classes.</li>
     </ul>
 
-    <h2 id="sec-34-lec-33-8-ref-fields">8. 	Ref Fields:</h2>
+    <h2 id="sec-34-lec-33-8-ref-fields">8.  Ref Fields:</h2>
     <ul>
       <li>Purpose: Allows fields within ref struct types to be references (ref) to other memory locations.</li>
       <li>Syntax: public ref int MyRefField;.</li>
@@ -757,11 +759,11 @@
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-8-1-private-nested-type-this-tightly-couples-th" class="toc-link">1. 	private nested type: This tightly couples th</a>
+        <a href="#sec-34-lec-8-1-private-nested-type-this-tightly-couples-th" class="toc-link">1.  private nested type: This tightly couples th</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-9-2-internal-type-this-makes-the-type-visible-a" class="toc-link">2. 	internal type: This makes the type visible a</a>
+        <a href="#sec-34-lec-9-2-internal-type-this-makes-the-type-visible-a" class="toc-link">2.  internal type: This makes the type visible a</a>
       </li>
     
       <li class="toc-item">
@@ -769,19 +771,19 @@
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-11-1-directly-in-a-constructor-the-constructor-e" class="toc-link">1. 	Directly in a constructor: The constructor e</a>
+        <a href="#sec-34-lec-11-1-directly-in-a-constructor-the-constructor-e" class="toc-link">1.  Directly in a constructor: The constructor e</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-12-2-via-an-object-initializer-when-using-new-my" class="toc-link">2. 	Via an object initializer: When using new My</a>
+        <a href="#sec-34-lec-12-2-via-an-object-initializer-when-using-new-my" class="toc-link">2.  Via an object initializer: When using new My</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-13-1-required-members-are-inherited-if-a-base-cl" class="toc-link">1. 	required members are inherited. If a base cl</a>
+        <a href="#sec-34-lec-13-1-required-members-are-inherited-if-a-base-cl" class="toc-link">1.  required members are inherited. If a base cl</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-14-2-derived-classes-do-not-need-to-re-declare-a" class="toc-link">2. 	Derived classes do not need to re-declare a </a>
+        <a href="#sec-34-lec-14-2-derived-classes-do-not-need-to-re-declare-a" class="toc-link">2.  Derived classes do not need to re-declare a </a>
       </li>
     
       <li class="toc-item">
@@ -793,35 +795,35 @@
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-17-1-must-be-in-a-ref-struct-ref-fields-are-only" class="toc-link">1. 	Must be in a ref struct: ref fields are only</a>
+        <a href="#sec-34-lec-17-1-must-be-in-a-ref-struct-ref-fields-are-only" class="toc-link">1.  Must be in a ref struct: ref fields are only</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-18-2-ref-readonly-you-can-declare-a-ref-readonly" class="toc-link">2. 	ref readonly: You can declare a ref readonly</a>
+        <a href="#sec-34-lec-18-2-ref-readonly-you-can-declare-a-ref-readonly" class="toc-link">2.  ref readonly: You can declare a ref readonly</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-19-3-definite-assignment-like-all-fields-ref-fie" class="toc-link">3. 	Definite Assignment: Like all fields, ref fi</a>
+        <a href="#sec-34-lec-19-3-definite-assignment-like-all-fields-ref-fie" class="toc-link">3.  Definite Assignment: Like all fields, ref fi</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-20-4-ref-local-variables-ref-fields-are-similar-" class="toc-link">4. 	ref local variables: ref fields are similar </a>
+        <a href="#sec-34-lec-20-4-ref-local-variables-ref-fields-are-similar-" class="toc-link">4.  ref local variables: ref fields are similar </a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-21-5-lifetime-safety-the-compiler-strictly-enfor" class="toc-link">5. 	Lifetime Safety: The compiler strictly enfor</a>
+        <a href="#sec-34-lec-21-5-lifetime-safety-the-compiler-strictly-enfor" class="toc-link">5.  Lifetime Safety: The compiler strictly enfor</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-22-6-no-static-or-readonly-ref-fields-initially-" class="toc-link">6. 	No static or readonly ref fields (initially)</a>
+        <a href="#sec-34-lec-22-6-no-static-or-readonly-ref-fields-initially-" class="toc-link">6.  No static or readonly ref fields (initially)</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-23-7-no-default-constructor-for-ref-struct-with-" class="toc-link">7. 	No Default Constructor for ref struct with r</a>
+        <a href="#sec-34-lec-23-7-no-default-constructor-for-ref-struct-with-" class="toc-link">7.  No Default Constructor for ref struct with r</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-24-8-pointers-vs-references-ref-fields-are-manag" class="toc-link">8. 	Pointers vs. References: ref fields are mana</a>
+        <a href="#sec-34-lec-24-8-pointers-vs-references-ref-fields-are-manag" class="toc-link">8.  Pointers vs. References: ref fields are mana</a>
       </li>
     
       <li class="toc-item">
@@ -829,35 +831,35 @@
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-26-1-raw-string-literals" class="toc-link">1. 	Raw String Literals:</a>
+        <a href="#sec-34-lec-26-1-raw-string-literals" class="toc-link">1.  Raw String Literals:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-27-2-list-pattern" class="toc-link">2. 	List Pattern:</a>
+        <a href="#sec-34-lec-27-2-list-pattern" class="toc-link">2.  List Pattern:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-28-3-slice-pattern" class="toc-link">3. 	Slice Pattern (..):</a>
+        <a href="#sec-34-lec-28-3-slice-pattern" class="toc-link">3.  Slice Pattern (..):</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-29-4-var-pattern-in-property-patterns" class="toc-link">4. 	Var Pattern (in Property Patterns):</a>
+        <a href="#sec-34-lec-29-4-var-pattern-in-property-patterns" class="toc-link">4.  Var Pattern (in Property Patterns):</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-30-5-file-local-types" class="toc-link">5. 	File Local Types:</a>
+        <a href="#sec-34-lec-30-5-file-local-types" class="toc-link">5.  File Local Types:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-31-6-required-members" class="toc-link">6. 	Required Members:</a>
+        <a href="#sec-34-lec-31-6-required-members" class="toc-link">6.  Required Members:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-32-7-auto-default-structs" class="toc-link">7. 	Auto Default Structs:</a>
+        <a href="#sec-34-lec-32-7-auto-default-structs" class="toc-link">7.  Auto Default Structs:</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-34-lec-33-8-ref-fields" class="toc-link">8. 	Ref Fields:</a>
+        <a href="#sec-34-lec-33-8-ref-fields" class="toc-link">8.  Ref Fields:</a>
       </li>
     
       </ul>

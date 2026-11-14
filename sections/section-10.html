@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="../assets/css/docs.css">
 </head>
 <body id="top">
+  <!-- Skip to Main Content (Accessibility) -->
+  <a href="#mainContent" class="skip-to-content">Skip to main content</a>
 
   <!-- Top Header Navigation -->
   <header class="top-header">
     <div class="header-left">
       <button class="nav-toggle-btn" aria-label="Toggle Navigation Sidebar">☰</button>
-      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar">
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (Collapse/Expand)" aria-label="Toggle Sidebar" aria-expanded="true">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
         <span class="sidebar-toggle-text">« Collapse</span>
       </button>
@@ -49,12 +51,12 @@
   <div class="docs-wrapper">
 
     <!-- Left Navigation Sidebar -->
-    <aside class="docs-sidebar">
+    <aside class="docs-sidebar" aria-label="Course Navigation">
       <div class="sidebar-top-bar">
-        <span class="sidebar-top-title">Navigation</span>
-        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
-          <span>Collapse</span>
+        <span class="sidebar-top-title">Course Outline</span>
+        <button class="sidebar-close-btn mobile-only-btn" id="sidebarCloseBtn" title="Close Sidebar" aria-label="Close navigation sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
         </button>
       </div>
       <div class="sidebar-search-box">
@@ -408,7 +410,7 @@
     </aside>
 
     <!-- Main Content Container -->
-    <main class="docs-main-container">
+    <main class="docs-main-container" id="mainContent" tabindex="-1">
 
       <!-- Floating Expand Button when Sidebar is Collapsed -->
       <button class="expand-sidebar-pill" id="expandSidebarPill" title="Expand Sidebar">
@@ -525,11 +527,11 @@ Console.WriteLine($&quot;{manager.Name} manages a team of
       <pre><code>public class Animal { }
 public class Mammal : Animal { }
 public class Dog : Mammal { } // Dog inherits from Mammal and
-Animal.
-◦</code></pre>
+Animal.</code></pre>
     </div>
   
     <ul>
+      <li></li>
       <li>Hierarchical Inheritance</li>
       <li>What it is: Multiple classes inherit from a single base class. This is a very common structure.</li>
       <li>Example:</li>
@@ -814,14 +816,14 @@ public class MyConfig : FinalConfiguration // ERROR!
 // ...
 }
 Why and When to Use It
-1. 	Design Intent: To clearly communicate that a class is &quot;complete&quot; and not
+1.  Design Intent: To clearly communicate that a class is &quot;complete&quot; and not
 designed for extension. It prevents misuse of a class that wasn't built to be
 a parent. The most famous example in the .NET framework is the
 System.String class, which is sealed.
-2. 	Security: To protect classes with security-sensitive logic. By sealing the
+2.  Security: To protect classes with security-sensitive logic. By sealing the
 class, you prevent other developers from deriving from it and overriding its
 behavior in a way that could bypass security checks.
-3. 	Performance: There can be minor performance benefits. When the Just-In-
+3.  Performance: There can be minor performance benefits. When the Just-In-
 Time (JIT) compiler encounters a method call on a sealed class instance, it
 knows that the method can never be an overridden version. This allows it to
 perform optimizations like devirtualization, where it can make a more
@@ -859,23 +861,6 @@ direct and faster method call.</code></pre>
                                      +-------------------------+</pre>
     </div>
   
-    <h2 id="sec-10-cheat-sheet-matrix">⚡ Syntax Reference Matrix & Cheat Sheet Rules</h2>
-    <p>Essential syntax rules, matrices, and quick-reference points from the Masterclass Cheat Sheet:</p>
-  <ul>
-  <li>PAGE 1 ---</li>
-  <li>PAGE 2 ---</li>
-  <li>PAGE 3 ---</li>
-  <li>Multi-Level Inheritance class ParentClassName { }  class ChildClass1 : ParentClassName { }  class ChildClass2 : ChildClass1 { } One Parent Class, One Child Class; and the Child class has another Child class.  3. Hierarchical Inheritance class ParentClassName { }  class ChildClass1 : ParentClassName { }  class ChildClass2 : ParentClassName { } One Parent Class, Multiple Child Classes.</li>
-  <li>PAGE 4 ---</li>
-  <li>Multiple Inheritance class ParentClass1 { }  class ParentClass2 { }  class ChildClass : ParentClass1, ParentClass2 { } Multiple Parent Classes, One Child class.  5. Hybrid Inheritance class ParentClassName { }  class ChildClass1 : ParentClassName { }  class ChildClass2 : ChildClass1 { }  class ChildClass3 : ChildClass1 { } Hierarchical Inheritance + Multi Level Inheritance</li>
-  <li>PAGE 5 ---</li>
-  <li>PAGE 6 ---</li>
-  <li>PAGE 7 ---</li>
-  <li>PAGE 8 ---</li>
-  <li>PAGE 9 ---</li>
-  <li>PAGE 10 ---</li>
-</ul>
-
       </article>
 
       <!-- Bottom Navigation Prev / Next -->
@@ -936,10 +921,6 @@ direct and faster method call.</code></pre>
     
       <li class="toc-item">
         <a href="#sec-10-lec-8-imp-points-to-remember" class="toc-link">Lecture 8: IMP Points to Remember</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-10-cheat-sheet-matrix" class="toc-link">⚡ Cheat Sheet &amp; Syntax Matrix</a>
       </li>
     
       </ul>

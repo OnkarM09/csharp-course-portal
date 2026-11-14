@@ -213,22 +213,6 @@ window.SEARCH_INDEX = [
     "snippet": "Following a consistent naming style is not required by the compiler, but it is essential for writing professional, readable code...."
   },
   {
-    "sectionId": 1,
-    "title": "Course Fundamentals & .NET Architecture — Syntax Matrix",
-    "sectionTitle": "Section 01: Course Fundamentals & .NET Architecture",
-    "url": "sections/section-01.html",
-    "anchor": "sec-1-cheat-sheet-matrix",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      ".NET 9",
-      "CLR",
-      "JIT",
-      "BCL",
-      "Architecture"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 2,
     "title": "Lecture 1: Installing Visual Studio",
     "sectionTitle": "Section 02: C# Language Basics & Syntax",
@@ -469,22 +453,6 @@ window.SEARCH_INDEX = [
     "snippet": "Introduction: This is a classic exercise to demonstrate your command of nested loops and algorithmic thinking. Example 1: Right-Angled Trian..."
   },
   {
-    "sectionId": 2,
-    "title": "C# Language Basics & Syntax — Syntax Matrix",
-    "sectionTitle": "Section 02: C# Language Basics & Syntax",
-    "url": "sections/section-02.html",
-    "anchor": "sec-2-cheat-sheet-matrix",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "Syntax",
-      "Variables",
-      "Data Types",
-      "Operators",
-      "Control Flow"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 3,
     "title": "Welcome to your first step into the world of programming with C#. This section",
     "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
@@ -502,7 +470,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 3,
-    "title": "1. \tThe Base Class Library (BCL): Your Giant Toolbox of Pre-built Code",
+    "title": "1.  The Base Class Library (BCL): Your Giant Toolbox of Pre-built Code",
     "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
     "url": "sections/section-03.html",
     "anchor": "sec-3-lec-2-1-the-base-class-library-bcl-your-giant-toolb",
@@ -518,7 +486,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 3,
-    "title": "2. \tThis lets you focus on solving your unique problem, rather than re-solving",
+    "title": "2.  This lets you focus on solving your unique problem, rather than re-solving",
     "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
     "url": "sections/section-03.html",
     "anchor": "sec-3-lec-3-2-this-lets-you-focus-on-solving-your-unique-",
@@ -534,7 +502,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 3,
-    "title": "3. \tThe Runtime: Your Code's Guardian and Manager",
+    "title": "3.  The Runtime: Your Code's Guardian and Manager",
     "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
     "url": "sections/section-03.html",
     "anchor": "sec-3-lec-4-3-the-runtime-your-code-s-guardian-and-manage",
@@ -550,7 +518,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 3,
-    "title": "1. \tThe Intermediate Step (CIL): Your C# source code is first compiled into",
+    "title": "1.  The Intermediate Step (CIL): Your C# source code is first compiled into",
     "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
     "url": "sections/section-03.html",
     "anchor": "sec-3-lec-5-1-the-intermediate-step-cil-your-c-source-cod",
@@ -566,7 +534,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 3,
-    "title": "2. \tThe \"Just-In-Time\" (JIT) Compilation: When you run your program and a",
+    "title": "2.  The \"Just-In-Time\" (JIT) Compilation: When you run your program and a",
     "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
     "url": "sections/section-03.html",
     "anchor": "sec-3-lec-6-2-the-just-in-time-jit-compilation-when-you-r",
@@ -582,7 +550,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 3,
-    "title": "3. \tEfficiency and Caching: This \"Just-In-Time\" approach is highly efficient",
+    "title": "3.  Efficiency and Caching: This \"Just-In-Time\" approach is highly efficient",
     "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
     "url": "sections/section-03.html",
     "anchor": "sec-3-lec-7-3-efficiency-and-caching-this-just-in-time-ap",
@@ -598,7 +566,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 3,
-    "title": "1. \tCreating the Blueprint (The Class)",
+    "title": "1.  Creating the Blueprint (The Class)",
     "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
     "url": "sections/section-03.html",
     "anchor": "sec-3-lec-8-1-creating-the-blueprint-the-class",
@@ -614,7 +582,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 3,
-    "title": "2. \tBuilding Real Things from the Blueprint (Objects)",
+    "title": "2.  Building Real Things from the Blueprint (Objects)",
     "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
     "url": "sections/section-03.html",
     "anchor": "sec-3-lec-9-2-building-real-things-from-the-blueprint-obj",
@@ -630,7 +598,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 3,
-    "title": "3. \tInteracting with Objects",
+    "title": "3.  Interacting with Objects",
     "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
     "url": "sections/section-03.html",
     "anchor": "sec-3-lec-10-3-interacting-with-objects",
@@ -678,7 +646,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 3,
-    "title": "1. \tPascalCase: Capitalize the first letter of every word. Use for \"big\" or \"public\"",
+    "title": "1.  PascalCase: Capitalize the first letter of every word. Use for \"big\" or \"public\"",
     "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
     "url": "sections/section-03.html",
     "anchor": "sec-3-lec-13-1-pascalcase-capitalize-the-first-letter-of-e",
@@ -690,11 +658,11 @@ window.SEARCH_INDEX = [
       "Compilation",
       "Debugging"
     ],
-    "snippet": "Section 3: 1. \tPascalCase: Capitalize the first letter of every word. Use for \"big\" or \"public\""
+    "snippet": "Section 3: 1.  PascalCase: Capitalize the first letter of every word. Use for \"big\" or \"public\""
   },
   {
     "sectionId": 3,
-    "title": "2. \tcamelCase: The first letter is lowercase; the first letter of every following",
+    "title": "2.  camelCase: The first letter is lowercase; the first letter of every following",
     "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
     "url": "sections/section-03.html",
     "anchor": "sec-3-lec-14-2-camelcase-the-first-letter-is-lowercase-the",
@@ -707,22 +675,6 @@ window.SEARCH_INDEX = [
       "Debugging"
     ],
     "snippet": "word is capitalized. Use for \"local\" or \"private\" things...."
-  },
-  {
-    "sectionId": 3,
-    "title": "Development Environment, .NET CLI & First Program — Syntax Matrix",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-cheat-sheet-matrix",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 4,
@@ -771,22 +723,6 @@ window.SEARCH_INDEX = [
       "Memory Allocation"
     ],
     "snippet": "Understanding a few crucial, behind-the-scenes concepts about classes and objects is vital. These points are frequently the subject of inter..."
-  },
-  {
-    "sectionId": 4,
-    "title": "OOP Basics (Classes & Objects) — Syntax Matrix",
-    "sectionTitle": "Section 04: OOP Basics (Classes & Objects)",
-    "url": "sections/section-04.html",
-    "anchor": "sec-4-cheat-sheet-matrix",
-    "module": "Module 2: Object-Oriented Fundamentals",
-    "keywords": [
-      "OOP",
-      "Classes",
-      "Objects",
-      "Instantiating",
-      "Memory Allocation"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 5,
@@ -892,21 +828,6 @@ window.SEARCH_INDEX = [
       "State"
     ],
     "snippet": "This lecture summarizes the most critical, practical, and interview-worthy points about working with fields in C#...."
-  },
-  {
-    "sectionId": 5,
-    "title": "Fields & Access Modifiers — Syntax Matrix",
-    "sectionTitle": "Section 05: Fields & Access Modifiers",
-    "url": "sections/section-05.html",
-    "anchor": "sec-5-cheat-sheet-matrix",
-    "module": "Module 2: Object-Oriented Fundamentals",
-    "keywords": [
-      "Fields",
-      "Access Modifiers",
-      "Encapsulation",
-      "State"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 6,
@@ -1269,24 +1190,6 @@ window.SEARCH_INDEX = [
     "snippet": "This lecture summarizes the most critical, practical, and interview-worthy points about working with methods in C#...."
   },
   {
-    "sectionId": 6,
-    "title": "Methods & Parameters — Syntax Matrix",
-    "sectionTitle": "Section 06: Methods & Parameters",
-    "url": "sections/section-06.html",
-    "anchor": "sec-6-cheat-sheet-matrix",
-    "module": "Module 2: Object-Oriented Fundamentals",
-    "keywords": [
-      "Methods",
-      "Parameters",
-      "ref",
-      "out",
-      "in",
-      "Params",
-      "Overloading"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 7,
     "title": "Lecture 1: Overview of Type Conversion",
     "sectionTitle": "Section 07: Type Conversion & Casting",
@@ -1399,22 +1302,6 @@ window.SEARCH_INDEX = [
     "snippet": "Section 7: Lecture 7: IMP Points to remember"
   },
   {
-    "sectionId": 7,
-    "title": "Type Conversion & Casting — Syntax Matrix",
-    "sectionTitle": "Section 07: Type Conversion & Casting",
-    "url": "sections/section-07.html",
-    "anchor": "sec-7-cheat-sheet-matrix",
-    "module": "Module 2: Object-Oriented Fundamentals",
-    "keywords": [
-      "Implicit Casting",
-      "Explicit Casting",
-      "Convert",
-      "Parse",
-      "TryParse"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 8,
     "title": "Lecture 1: Instance Constructors",
     "sectionTitle": "Section 08: Constructors (Basics & Chaining)",
@@ -1509,22 +1396,6 @@ window.SEARCH_INDEX = [
       "base()"
     ],
     "snippet": "Section 8: Lecture 6: IMP Points to Remember"
-  },
-  {
-    "sectionId": 8,
-    "title": "Constructors (Basics & Chaining) — Syntax Matrix",
-    "sectionTitle": "Section 08: Constructors (Basics & Chaining)",
-    "url": "sections/section-08.html",
-    "anchor": "sec-8-cheat-sheet-matrix",
-    "module": "Module 2: Object-Oriented Fundamentals",
-    "keywords": [
-      "Constructors",
-      "Initialization",
-      "Chaining",
-      "this()",
-      "base()"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 9,
@@ -1687,22 +1558,6 @@ window.SEARCH_INDEX = [
     "snippet": "This lecture consolidates the most critical, practical, and interview-worthy points about both properties and indexers...."
   },
   {
-    "sectionId": 9,
-    "title": "Properties & Indexers — Syntax Matrix",
-    "sectionTitle": "Section 09: Properties & Indexers",
-    "url": "sections/section-09.html",
-    "anchor": "sec-9-cheat-sheet-matrix",
-    "module": "Module 2: Object-Oriented Fundamentals",
-    "keywords": [
-      "Getters/Setters",
-      "Auto-Properties",
-      "Init-Only",
-      "Indexers",
-      "Encapsulation"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 10,
     "title": "Lecture 1: Intro to Inheritance",
     "sectionTitle": "Section 10: Inheritance, Hiding & Overriding",
@@ -1837,23 +1692,6 @@ window.SEARCH_INDEX = [
       "Polymorphism"
     ],
     "snippet": "This lecture summarizes the most critical, practical, and interview-worthy points about inheritance in C#...."
-  },
-  {
-    "sectionId": 10,
-    "title": "Inheritance, Hiding & Overriding — Syntax Matrix",
-    "sectionTitle": "Section 10: Inheritance, Hiding & Overriding",
-    "url": "sections/section-10.html",
-    "anchor": "sec-10-cheat-sheet-matrix",
-    "module": "Module 3: Advanced Class Design & Type System",
-    "keywords": [
-      "Inheritance",
-      "virtual",
-      "override",
-      "new",
-      "base",
-      "Polymorphism"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 11,
@@ -2006,21 +1844,6 @@ window.SEARCH_INDEX = [
     "snippet": "This lecture summarizes the most critical, practical, and interview-worthy points about abstract classes and interfaces. The ability to arti..."
   },
   {
-    "sectionId": 11,
-    "title": "Abstract Classes & Interfaces — Syntax Matrix",
-    "sectionTitle": "Section 11: Abstract Classes & Interfaces",
-    "url": "sections/section-11.html",
-    "anchor": "sec-11-cheat-sheet-matrix",
-    "module": "Module 3: Advanced Class Design & Type System",
-    "keywords": [
-      "Abstract Classes",
-      "Interfaces",
-      "Multiple Implementation",
-      "Contract Design"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 12,
     "title": "Lecture 1: Intro to Namespaces",
     "sectionTitle": "Section 12: Namespaces & Code Organization",
@@ -2111,23 +1934,8 @@ window.SEARCH_INDEX = [
     "snippet": "Section 12: Lecture 6: IMP Points to Remember"
   },
   {
-    "sectionId": 12,
-    "title": "Namespaces & Code Organization — Syntax Matrix",
-    "sectionTitle": "Section 12: Namespaces & Code Organization",
-    "url": "sections/section-12.html",
-    "anchor": "sec-12-cheat-sheet-matrix",
-    "module": "Module 3: Advanced Class Design & Type System",
-    "keywords": [
-      "Namespaces",
-      "using Directives",
-      "File-Scoped Namespaces",
-      "Global Usings"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 13,
-    "title": "Classes, \tEnumerations",
+    "title": "Classes,  Enumerations",
     "sectionTitle": "Section 13: Partial Classes, Static Classes & Enums",
     "url": "sections/section-13.html",
     "anchor": "sec-13-lec-1-classes-enumerations",
@@ -2138,7 +1946,7 @@ window.SEARCH_INDEX = [
       "Enumerations",
       "Flags Attribute"
     ],
-    "snippet": "Section 13: Classes, \tEnumerations"
+    "snippet": "Section 13: Classes,  Enumerations"
   },
   {
     "sectionId": 13,
@@ -2214,21 +2022,6 @@ window.SEARCH_INDEX = [
       "Flags Attribute"
     ],
     "snippet": "Section 13: Lecture 5: IMP Points to Remember"
-  },
-  {
-    "sectionId": 13,
-    "title": "Partial Classes, Static Classes & Enums — Syntax Matrix",
-    "sectionTitle": "Section 13: Partial Classes, Static Classes & Enums",
-    "url": "sections/section-13.html",
-    "anchor": "sec-13-cheat-sheet-matrix",
-    "module": "Module 3: Advanced Class Design & Type System",
-    "keywords": [
-      "partial",
-      "static",
-      "Enumerations",
-      "Flags Attribute"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 14,
@@ -2327,22 +2120,6 @@ window.SEARCH_INDEX = [
     "snippet": "Section 14: Lecture 6: IMP Points to Remember"
   },
   {
-    "sectionId": 14,
-    "title": "Structures (Structs) & Value Semantics — Syntax Matrix",
-    "sectionTitle": "Section 14: Structures (Structs) & Value Semantics",
-    "url": "sections/section-14.html",
-    "anchor": "sec-14-cheat-sheet-matrix",
-    "module": "Module 3: Advanced Class Design & Type System",
-    "keywords": [
-      "struct",
-      "Value Types",
-      "Stack Allocation",
-      "readonly struct",
-      "ref struct"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 15,
     "title": "Lecture 1: Overview of System.Object class",
     "sectionTitle": "Section 15: System.Object & Core Method Overrides",
@@ -2421,22 +2198,6 @@ window.SEARCH_INDEX = [
       "GetType()"
     ],
     "snippet": "Section 15: Lecture 5: IMP Points to Remember"
-  },
-  {
-    "sectionId": 15,
-    "title": "System.Object & Core Method Overrides — Syntax Matrix",
-    "sectionTitle": "Section 15: System.Object & Core Method Overrides",
-    "url": "sections/section-15.html",
-    "anchor": "sec-15-cheat-sheet-matrix",
-    "module": "Module 3: Advanced Class Design & Type System",
-    "keywords": [
-      "System.Object",
-      "ToString()",
-      "Equals()",
-      "GetHashCode()",
-      "GetType()"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 16,
@@ -2519,22 +2280,6 @@ window.SEARCH_INDEX = [
     "snippet": "This lecture consolidates the most critical, practical, and interview-worthy points about generics. Understanding these concepts demonstrate..."
   },
   {
-    "sectionId": 16,
-    "title": "Generics (Classes, Methods, Constraints) — Syntax Matrix",
-    "sectionTitle": "Section 16: Generics (Classes, Methods, Constraints)",
-    "url": "sections/section-16.html",
-    "anchor": "sec-16-cheat-sheet-matrix",
-    "module": "Module 4: Language Plumbing & Memory Management",
-    "keywords": [
-      "Generics",
-      "Type Safety",
-      "where Constraints",
-      "Generic Methods",
-      "Covariance"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 17,
     "title": "Lecture 1: What is null",
     "sectionTitle": "Section 17: Handling Null & Nullable Value/Ref Types",
@@ -2613,22 +2358,6 @@ window.SEARCH_INDEX = [
       "?. and ??"
     ],
     "snippet": "Section 17: Lecture 5: IMP Points to Remember"
-  },
-  {
-    "sectionId": 17,
-    "title": "Handling Null & Nullable Value/Ref Types — Syntax Matrix",
-    "sectionTitle": "Section 17: Handling Null & Nullable Value/Ref Types",
-    "url": "sections/section-17.html",
-    "anchor": "sec-17-cheat-sheet-matrix",
-    "module": "Module 4: Language Plumbing & Memory Management",
-    "keywords": [
-      "Nullable<T>",
-      "NRT",
-      "Null-Forgiving",
-      "Null-Coalescing",
-      "?. and ??"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 18,
@@ -2719,21 +2448,6 @@ window.SEARCH_INDEX = [
       "Switch Expressions"
     ],
     "snippet": "An inner class, more formally known as a nested class, is a class that is declared within the scope of another containing class. It is a way..."
-  },
-  {
-    "sectionId": 18,
-    "title": "Extension Methods & Pattern Matching — Syntax Matrix",
-    "sectionTitle": "Section 18: Extension Methods & Pattern Matching",
-    "url": "sections/section-18.html",
-    "anchor": "sec-18-cheat-sheet-matrix",
-    "module": "Module 4: Language Plumbing & Memory Management",
-    "keywords": [
-      "this Parameter",
-      "Extension Methods",
-      "is Expressions",
-      "Switch Expressions"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 19,
@@ -2830,22 +2544,6 @@ window.SEARCH_INDEX = [
       "using statement"
     ],
     "snippet": "Section 19: Lecture 5: Things to Remember"
-  },
-  {
-    "sectionId": 19,
-    "title": "Garbage Collection, Destructors & IDisposable — Syntax Matrix",
-    "sectionTitle": "Section 19: Garbage Collection, Destructors & IDisposable",
-    "url": "sections/section-19.html",
-    "anchor": "sec-19-cheat-sheet-matrix",
-    "module": "Module 4: Language Plumbing & Memory Management",
-    "keywords": [
-      "GC Generations",
-      "Finalizers",
-      "IDisposable",
-      "Dispose Pattern",
-      "using statement"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 20,
@@ -3154,24 +2852,6 @@ window.SEARCH_INDEX = [
     "snippet": "Section 20: Lecture 16: Things to Remember"
   },
   {
-    "sectionId": 20,
-    "title": "Delegates, Multicast & Events — Syntax Matrix",
-    "sectionTitle": "Section 20: Delegates, Multicast & Events",
-    "url": "sections/section-20.html",
-    "anchor": "sec-20-cheat-sheet-matrix",
-    "module": "Module 5: Functional Constructs & Collections",
-    "keywords": [
-      "delegate",
-      "Multicast",
-      "Action",
-      "Func",
-      "Predicate",
-      "event",
-      "Event Handling"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 21,
     "title": "Lecture 1: Intro to Arrays",
     "sectionTitle": "Section 21: Arrays (1D, Multi-Dimensional, Jagged)",
@@ -3425,21 +3105,6 @@ window.SEARCH_INDEX = [
       "Array Class Methods"
     ],
     "snippet": "Section 21: Lecture 17: IMP Points to Remember"
-  },
-  {
-    "sectionId": 21,
-    "title": "Arrays (1D, Multi-Dimensional, Jagged) — Syntax Matrix",
-    "sectionTitle": "Section 21: Arrays (1D, Multi-Dimensional, Jagged)",
-    "url": "sections/section-21.html",
-    "anchor": "sec-21-cheat-sheet-matrix",
-    "module": "Module 5: Functional Constructs & Collections",
-    "keywords": [
-      "Single-D Arrays",
-      "Multi-D Arrays",
-      "Jagged Arrays",
-      "Array Class Methods"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 22,
@@ -3969,23 +3634,6 @@ window.SEARCH_INDEX = [
     "snippet": "Section 22: Lecture 31: IMP Points to Remember"
   },
   {
-    "sectionId": 22,
-    "title": "Collections (Lists, Dictionaries, Sets, Queues) — Syntax Matrix",
-    "sectionTitle": "Section 22: Collections (Lists, Dictionaries, Sets, Queues)",
-    "url": "sections/section-22.html",
-    "anchor": "sec-22-cheat-sheet-matrix",
-    "module": "Module 5: Functional Constructs & Collections",
-    "keywords": [
-      "List<T>",
-      "Dictionary<TKey,TValue>",
-      "HashSet<T>",
-      "Queue",
-      "Stack",
-      "Big-O"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 23,
     "title": "Lecture 1: Anonymous Types",
     "sectionTitle": "Section 23: Anonymous Types",
@@ -4044,21 +3692,6 @@ window.SEARCH_INDEX = [
       "Compiler Generation"
     ],
     "snippet": "Section 23: Lecture 4: Points to Remember"
-  },
-  {
-    "sectionId": 23,
-    "title": "Anonymous Types — Syntax Matrix",
-    "sectionTitle": "Section 23: Anonymous Types",
-    "url": "sections/section-23.html",
-    "anchor": "sec-23-cheat-sheet-matrix",
-    "module": "Module 5: Functional Constructs & Collections",
-    "keywords": [
-      "var",
-      "Anonymous Types",
-      "Read-Only Properties",
-      "Compiler Generation"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 24,
@@ -4134,21 +3767,6 @@ window.SEARCH_INDEX = [
       "Deconstruction"
     ],
     "snippet": "Section 24: Lecture 5: IMP Points to Remember"
-  },
-  {
-    "sectionId": 24,
-    "title": "Tuples & ValueTuples — Syntax Matrix",
-    "sectionTitle": "Section 24: Tuples & ValueTuples",
-    "url": "sections/section-24.html",
-    "anchor": "sec-24-cheat-sheet-matrix",
-    "module": "Module 5: Functional Constructs & Collections",
-    "keywords": [
-      "System.Tuple",
-      "ValueTuple",
-      "Named Elements",
-      "Deconstruction"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 25,
@@ -4319,23 +3937,6 @@ window.SEARCH_INDEX = [
       "GroupBy"
     ],
     "snippet": "Section 25: Lecture 10: Things to Remember"
-  },
-  {
-    "sectionId": 25,
-    "title": "LINQ (Language-Integrated Query) — Syntax Matrix",
-    "sectionTitle": "Section 25: LINQ (Language-Integrated Query)",
-    "url": "sections/section-25.html",
-    "anchor": "sec-25-cheat-sheet-matrix",
-    "module": "Module 5: Functional Constructs & Collections",
-    "keywords": [
-      "Query Syntax",
-      "Method Syntax",
-      "Deferred Execution",
-      "Select",
-      "Where",
-      "GroupBy"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 26,
@@ -4738,22 +4339,6 @@ window.SEARCH_INDEX = [
     "snippet": "Regular Expressions (or Regex) are a powerful, standardized mini-language for pattern matching in text. They are used for complex validation..."
   },
   {
-    "sectionId": 26,
-    "title": "String Manipulation, DateTime & Math — Syntax Matrix",
-    "sectionTitle": "Section 26: String Manipulation, DateTime & Math",
-    "url": "sections/section-26.html",
-    "anchor": "sec-26-cheat-sheet-matrix",
-    "module": "Module 6: Base Class Library & Resilience",
-    "keywords": [
-      "StringBuilder",
-      "String Interpolation",
-      "DateTime",
-      "TimeSpan",
-      "System.Math"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 27,
     "title": "Encoding",
     "sectionTitle": "Section 27: File I/O, Streams, Serialization & Encoding",
@@ -5128,23 +4713,6 @@ window.SEARCH_INDEX = [
     "snippet": "XML (eXtensible Markup Language) is another text-based format for representing data. It uses tags enclosed in angle brackets to create a hie..."
   },
   {
-    "sectionId": 27,
-    "title": "File I/O, Streams, Serialization & Encoding — Syntax Matrix",
-    "sectionTitle": "Section 27: File I/O, Streams, Serialization & Encoding",
-    "url": "sections/section-27.html",
-    "anchor": "sec-27-cheat-sheet-matrix",
-    "module": "Module 6: Base Class Library & Resilience",
-    "keywords": [
-      "File",
-      "Directory",
-      "FileStream",
-      "StreamReader/Writer",
-      "JSON Serialization",
-      "UTF8"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 28,
     "title": "Handling",
     "sectionTitle": "Section 28: Exception Handling & Defensive Programming",
@@ -5430,21 +4998,6 @@ window.SEARCH_INDEX = [
     "snippet": "Section 28: Lecture 18: Things to Remember"
   },
   {
-    "sectionId": 28,
-    "title": "Exception Handling & Defensive Programming — Syntax Matrix",
-    "sectionTitle": "Section 28: Exception Handling & Defensive Programming",
-    "url": "sections/section-28.html",
-    "anchor": "sec-28-cheat-sheet-matrix",
-    "module": "Module 6: Base Class Library & Resilience",
-    "keywords": [
-      "try-catch-finally",
-      "Custom Exceptions",
-      "Exception Filters",
-      "throw vs throw ex"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 29,
     "title": "Handling",
     "sectionTitle": "Section 29: Advanced Exception Patterns & Diagnostics",
@@ -5728,21 +5281,6 @@ window.SEARCH_INDEX = [
       "AppDomain.UnhandledException"
     ],
     "snippet": "Section 29: Lecture 18: Things to Remember"
-  },
-  {
-    "sectionId": 29,
-    "title": "Advanced Exception Patterns & Diagnostics — Syntax Matrix",
-    "sectionTitle": "Section 29: Advanced Exception Patterns & Diagnostics",
-    "url": "sections/section-29.html",
-    "anchor": "sec-29-cheat-sheet-matrix",
-    "module": "Module 6: Base Class Library & Resilience",
-    "keywords": [
-      "AggregateException",
-      "StackTrace",
-      "InnerException",
-      "AppDomain.UnhandledException"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 30,
@@ -6401,22 +5939,6 @@ window.SEARCH_INDEX = [
     "snippet": "Section 30: Lecture 40: Things to Remember"
   },
   {
-    "sectionId": 30,
-    "title": "C# 9 & C# 10 Features (.NET 5 & 6) — Syntax Matrix",
-    "sectionTitle": "Section 30: C# 9 & C# 10 Features (.NET 5 & 6)",
-    "url": "sections/section-30.html",
-    "anchor": "sec-30-cheat-sheet-matrix",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Records",
-      "init Accessors",
-      "Top-Level Statements",
-      "Target-Typed new",
-      "Global Usings"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 31,
     "title": "Lecture 1: Intro to Concurrent Execution",
     "sectionTitle": "Section 31: Threading & Synchronization Primitives",
@@ -6939,24 +6461,6 @@ window.SEARCH_INDEX = [
     "snippet": "Section 31: Lecture 29: Points to Remember"
   },
   {
-    "sectionId": 31,
-    "title": "Threading & Synchronization Primitives — Syntax Matrix",
-    "sectionTitle": "Section 31: Threading & Synchronization Primitives",
-    "url": "sections/section-31.html",
-    "anchor": "sec-31-cheat-sheet-matrix",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Thread",
-      "Thread Safety",
-      "lock",
-      "Monitor",
-      "Mutex",
-      "SemaphoreSlim",
-      "Interlocked"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
-  },
-  {
     "sectionId": 32,
     "title": "1. Drawbacks of Traditional Threading",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
@@ -7111,7 +6615,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "1. \tException Capture: When a task throws an unhandled exception, the",
+    "title": "1.  Exception Capture: When a task throws an unhandled exception, the",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-10-1-exception-capture-when-a-task-throws-an-unh",
@@ -7128,7 +6632,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "2. \tAggregateException: All exceptions thrown within a single task (if there",
+    "title": "2.  AggregateException: All exceptions thrown within a single task (if there",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-11-2-aggregateexception-all-exceptions-thrown-wi",
@@ -7145,7 +6649,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "3. \tObserving Exceptions: Exceptions are not re-thrown until the task's",
+    "title": "3.  Observing Exceptions: Exceptions are not re-thrown until the task's",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-12-3-observing-exceptions-exceptions-are-not-re-",
@@ -7196,7 +6700,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "1. \tCreate a CancellationTokenSource: This is the controller for",
+    "title": "1.  Create a CancellationTokenSource: This is the controller for",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-15-1-create-a-cancellationtokensource-this-is-th",
@@ -7213,7 +6717,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "2. \tGet a CancellationToken: Pass this token to the cancellable task.",
+    "title": "2.  Get a CancellationToken: Pass this token to the cancellable task.",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-16-2-get-a-cancellationtoken-pass-this-token-to-",
@@ -7230,7 +6734,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "3. \tPass the CancellationToken to the Task: The task's delegate should",
+    "title": "3.  Pass the CancellationToken to the Task: The task's delegate should",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-17-3-pass-the-cancellationtoken-to-the-task-the-",
@@ -7247,7 +6751,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "4. \tIn the Task's Logic, Monitor the Token: Periodically check",
+    "title": "4.  In the Task's Logic, Monitor the Token: Periodically check",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-18-4-in-the-task-s-logic-monitor-the-token-perio",
@@ -7264,7 +6768,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "5. \tSignal Cancellation: Call Cancel() on the CancellationTokenSource",
+    "title": "5.  Signal Cancellation: Call Cancel() on the CancellationTokenSource",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-19-5-signal-cancellation-call-cancel-on-the-canc",
@@ -7281,7 +6785,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "6. \tHandle OperationCanceledException:",
+    "title": "6.  Handle OperationCanceledException:",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-20-6-handle-operationcanceledexception",
@@ -7294,7 +6798,7 @@ window.SEARCH_INDEX = [
       "PLINQ",
       "CancellationToken"
     ],
-    "snippet": "Section 32: 6. \tHandle OperationCanceledException:"
+    "snippet": "Section 32: 6.  Handle OperationCanceledException:"
   },
   {
     "sectionId": 32,
@@ -7332,7 +6836,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "1. \tTask vs. Thread:",
+    "title": "1.  Task vs. Thread:",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-23-1-task-vs-thread",
@@ -7345,11 +6849,11 @@ window.SEARCH_INDEX = [
       "PLINQ",
       "CancellationToken"
     ],
-    "snippet": "Section 32: 1. \tTask vs. Thread:"
+    "snippet": "Section 32: 1.  Task vs. Thread:"
   },
   {
     "sectionId": 32,
-    "title": "2. \tCPU-Bound vs. I/O-Bound Operations:",
+    "title": "2.  CPU-Bound vs. I/O-Bound Operations:",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-24-2-cpu-bound-vs-i-o-bound-operations",
@@ -7362,11 +6866,11 @@ window.SEARCH_INDEX = [
       "PLINQ",
       "CancellationToken"
     ],
-    "snippet": "Section 32: 2. \tCPU-Bound vs. I/O-Bound Operations:"
+    "snippet": "Section 32: 2.  CPU-Bound vs. I/O-Bound Operations:"
   },
   {
     "sectionId": 32,
-    "title": "3. \tasync and await:",
+    "title": "3.  async and await:",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-25-3-async-and-await",
@@ -7379,11 +6883,11 @@ window.SEARCH_INDEX = [
       "PLINQ",
       "CancellationToken"
     ],
-    "snippet": "Section 32: 3. \tasync and await:"
+    "snippet": "Section 32: 3.  async and await:"
   },
   {
     "sectionId": 32,
-    "title": "4. \tTask.Run vs. Task.Factory.StartNew:",
+    "title": "4.  Task.Run vs. Task.Factory.StartNew:",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-26-4-task-run-vs-task-factory-startnew",
@@ -7396,11 +6900,11 @@ window.SEARCH_INDEX = [
       "PLINQ",
       "CancellationToken"
     ],
-    "snippet": "Section 32: 4. \tTask.Run vs. Task.Factory.StartNew:"
+    "snippet": "Section 32: 4.  Task.Run vs. Task.Factory.StartNew:"
   },
   {
     "sectionId": 32,
-    "title": "5. \tBlocking Operations (Wait, Result) vs. Non-Blocking (await,",
+    "title": "5.  Blocking Operations (Wait, Result) vs. Non-Blocking (await,",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-27-5-blocking-operations-wait-result-vs-non-bloc",
@@ -7417,7 +6921,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "6. \tException Handling:",
+    "title": "6.  Exception Handling:",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-28-6-exception-handling",
@@ -7430,11 +6934,11 @@ window.SEARCH_INDEX = [
       "PLINQ",
       "CancellationToken"
     ],
-    "snippet": "Section 32: 6. \tException Handling:"
+    "snippet": "Section 32: 6.  Exception Handling:"
   },
   {
     "sectionId": 32,
-    "title": "7. \tTask Cancellation:",
+    "title": "7.  Task Cancellation:",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-29-7-task-cancellation",
@@ -7447,11 +6951,11 @@ window.SEARCH_INDEX = [
       "PLINQ",
       "CancellationToken"
     ],
-    "snippet": "Section 32: 7. \tTask Cancellation:"
+    "snippet": "Section 32: 7.  Task Cancellation:"
   },
   {
     "sectionId": 32,
-    "title": "8. \tTask<TResult>:",
+    "title": "8.  Task<TResult>:",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-30-8-task-tresult",
@@ -7464,11 +6968,11 @@ window.SEARCH_INDEX = [
       "PLINQ",
       "CancellationToken"
     ],
-    "snippet": "Section 32: 8. \tTask<TResult>:"
+    "snippet": "Section 32: 8.  Task<TResult>:"
   },
   {
     "sectionId": 32,
-    "title": "9. \tTask.ContinueWith:",
+    "title": "9.  Task.ContinueWith:",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-31-9-task-continuewith",
@@ -7481,11 +6985,11 @@ window.SEARCH_INDEX = [
       "PLINQ",
       "CancellationToken"
     ],
-    "snippet": "Section 32: 9. \tTask.ContinueWith:"
+    "snippet": "Section 32: 9.  Task.ContinueWith:"
   },
   {
     "sectionId": 32,
-    "title": "10. \tSynchronization Context:",
+    "title": "10.  Synchronization Context:",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
     "anchor": "sec-32-lec-32-10-synchronization-context",
@@ -7498,24 +7002,7 @@ window.SEARCH_INDEX = [
       "PLINQ",
       "CancellationToken"
     ],
-    "snippet": "Section 32: 10. \tSynchronization Context:"
-  },
-  {
-    "sectionId": 32,
-    "title": "Tasks & Task Parallel Library (TPL) — Syntax Matrix",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-cheat-sheet-matrix",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
+    "snippet": "Section 32: 10.  Synchronization Context:"
   },
   {
     "sectionId": 33,
@@ -7570,7 +7057,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "1. \tThe async method yields control back to its caller.",
+    "title": "1.  The async method yields control back to its caller.",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-4-1-the-async-method-yields-control-back-to-its",
@@ -7583,11 +7070,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 1. \tThe async method yields control back to its caller."
+    "snippet": "Section 33: 1.  The async method yields control back to its caller."
   },
   {
     "sectionId": 33,
-    "title": "2. \tThe thread that was executing the async method is returned to its",
+    "title": "2.  The thread that was executing the async method is returned to its",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-5-2-the-thread-that-was-executing-the-async-met",
@@ -7604,7 +7091,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "3. \tA \"continuation\" is scheduled to resume the async method from",
+    "title": "3.  A \"continuation\" is scheduled to resume the async method from",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-6-3-a-continuation-is-scheduled-to-resume-the-a",
@@ -7621,7 +7108,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "4. \tIf a SynchronizationContext was captured at the point of await",
+    "title": "4.  If a SynchronizationContext was captured at the point of await",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-7-4-if-a-synchronizationcontext-was-captured-at",
@@ -7638,7 +7125,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "1. \tIf it completed successfully (RanToCompletion), the await",
+    "title": "1.  If it completed successfully (RanToCompletion), the await",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-8-1-if-it-completed-successfully-rantocompletio",
@@ -7655,7 +7142,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "2. \tIf it faulted (Faulted), the await expression re-throws the task's",
+    "title": "2.  If it faulted (Faulted), the await expression re-throws the task's",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-9-2-if-it-faulted-faulted-the-await-expression-",
@@ -7672,7 +7159,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "3. \tIf it was canceled (Canceled), the await expression re-throws an",
+    "title": "3.  If it was canceled (Canceled), the await expression re-throws an",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-10-3-if-it-was-canceled-canceled-the-await-expre",
@@ -7706,7 +7193,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "1. \tTask Faults: When an unhandled exception occurs within a Task that is",
+    "title": "1.  Task Faults: When an unhandled exception occurs within a Task that is",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-12-1-task-faults-when-an-unhandled-exception-occ",
@@ -7723,7 +7210,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "2. \tawait Unwraps: When the await expression is reached, and the awaited",
+    "title": "2.  await Unwraps: When the await expression is reached, and the awaited",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-13-2-await-unwraps-when-the-await-expression-is-",
@@ -7740,7 +7227,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "3. \tStandard try-catch: This re-thrown exception can then be caught by a",
+    "title": "3.  Standard try-catch: This re-thrown exception can then be caught by a",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-14-3-standard-try-catch-this-re-thrown-exception",
@@ -7774,7 +7261,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "1. \tTasks Window (Debug > Windows > Tasks):",
+    "title": "1.  Tasks Window (Debug > Windows > Tasks):",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-16-1-tasks-window-debug-windows-tasks",
@@ -7787,11 +7274,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 1. \tTasks Window (Debug > Windows > Tasks):"
+    "snippet": "Section 33: 1.  Tasks Window (Debug > Windows > Tasks):"
   },
   {
     "sectionId": 33,
-    "title": "2. \tParallel Stacks Window (Debug > Windows > Parallel Stacks):",
+    "title": "2.  Parallel Stacks Window (Debug > Windows > Parallel Stacks):",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-17-2-parallel-stacks-window-debug-windows-parall",
@@ -7804,11 +7291,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 2. \tParallel Stacks Window (Debug > Windows > Parallel Stacks):"
+    "snippet": "Section 33: 2.  Parallel Stacks Window (Debug > Windows > Parallel Stacks):"
   },
   {
     "sectionId": 33,
-    "title": "3. \tBreakpoints:",
+    "title": "3.  Breakpoints:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-18-3-breakpoints",
@@ -7821,11 +7308,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 3. \tBreakpoints:"
+    "snippet": "Section 33: 3.  Breakpoints:"
   },
   {
     "sectionId": 33,
-    "title": "4. \tImmediate Window/Watch Window:",
+    "title": "4.  Immediate Window/Watch Window:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-19-4-immediate-window-watch-window",
@@ -7838,11 +7325,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 4. \tImmediate Window/Watch Window:"
+    "snippet": "Section 33: 4.  Immediate Window/Watch Window:"
   },
   {
     "sectionId": 33,
-    "title": "5. \tThread.CurrentThread.ManagedThreadId:",
+    "title": "5.  Thread.CurrentThread.ManagedThreadId:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-20-5-thread-currentthread-managedthreadid",
@@ -7855,11 +7342,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 5. \tThread.CurrentThread.ManagedThreadId:"
+    "snippet": "Section 33: 5.  Thread.CurrentThread.ManagedThreadId:"
   },
   {
     "sectionId": 33,
-    "title": "1. \tSet Breakpoints:",
+    "title": "1.  Set Breakpoints:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-21-1-set-breakpoints",
@@ -7872,11 +7359,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 1. \tSet Breakpoints:"
+    "snippet": "Section 33: 1.  Set Breakpoints:"
   },
   {
     "sectionId": 33,
-    "title": "2. \tStart Debugging: Run the application in debug mode (F5).",
+    "title": "2.  Start Debugging: Run the application in debug mode (F5).",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-22-2-start-debugging-run-the-application-in-debu",
@@ -7889,11 +7376,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 2. \tStart Debugging: Run the application in debug mode (F5)."
+    "snippet": "Section 33: 2.  Start Debugging: Run the application in debug mode (F5)."
   },
   {
     "sectionId": 33,
-    "title": "3. \tObserve Execution Flow:",
+    "title": "3.  Observe Execution Flow:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-23-3-observe-execution-flow",
@@ -7906,11 +7393,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 3. \tObserve Execution Flow:"
+    "snippet": "Section 33: 3.  Observe Execution Flow:"
   },
   {
     "sectionId": 33,
-    "title": "4. \tUse Debugging Windows:",
+    "title": "4.  Use Debugging Windows:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-24-4-use-debugging-windows",
@@ -7923,7 +7410,7 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 4. \tUse Debugging Windows:"
+    "snippet": "Section 33: 4.  Use Debugging Windows:"
   },
   {
     "sectionId": 33,
@@ -7944,7 +7431,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "1. \tPurpose of Asynchronous Programming:",
+    "title": "1.  Purpose of Asynchronous Programming:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-26-1-purpose-of-asynchronous-programming",
@@ -7957,11 +7444,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 1. \tPurpose of Asynchronous Programming:"
+    "snippet": "Section 33: 1.  Purpose of Asynchronous Programming:"
   },
   {
     "sectionId": 33,
-    "title": "2. \tasync and await are Keywords, not Threads:",
+    "title": "2.  async and await are Keywords, not Threads:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-27-2-async-and-await-are-keywords-not-threads",
@@ -7974,11 +7461,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 2. \tasync and await are Keywords, not Threads:"
+    "snippet": "Section 33: 2.  async and await are Keywords, not Threads:"
   },
   {
     "sectionId": 33,
-    "title": "3. \tasync Method Return Types:",
+    "title": "3.  async Method Return Types:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-28-3-async-method-return-types",
@@ -7991,11 +7478,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 3. \tasync Method Return Types:"
+    "snippet": "Section 33: 3.  async Method Return Types:"
   },
   {
     "sectionId": 33,
-    "title": "4. \tTask.Run for CPU-Bound Work:",
+    "title": "4.  Task.Run for CPU-Bound Work:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-29-4-task-run-for-cpu-bound-work",
@@ -8008,11 +7495,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 4. \tTask.Run for CPU-Bound Work:"
+    "snippet": "Section 33: 4.  Task.Run for CPU-Bound Work:"
   },
   {
     "sectionId": 33,
-    "title": "5. \tawait for I/O-Bound Work:",
+    "title": "5.  await for I/O-Bound Work:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-30-5-await-for-i-o-bound-work",
@@ -8025,11 +7512,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 5. \tawait for I/O-Bound Work:"
+    "snippet": "Section 33: 5.  await for I/O-Bound Work:"
   },
   {
     "sectionId": 33,
-    "title": "6. \ttry-catch-finally Works Natively:",
+    "title": "6.  try-catch-finally Works Natively:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-31-6-try-catch-finally-works-natively",
@@ -8042,11 +7529,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 6. \ttry-catch-finally Works Natively:"
+    "snippet": "Section 33: 6.  try-catch-finally Works Natively:"
   },
   {
     "sectionId": 33,
-    "title": "7. \tCooperative Cancellation:",
+    "title": "7.  Cooperative Cancellation:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-32-7-cooperative-cancellation",
@@ -8059,11 +7546,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 7. \tCooperative Cancellation:"
+    "snippet": "Section 33: 7.  Cooperative Cancellation:"
   },
   {
     "sectionId": 33,
-    "title": "8. \tSynchronizationContext and ConfigureAwait(false):",
+    "title": "8.  SynchronizationContext and ConfigureAwait(false):",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-33-8-synchronizationcontext-and-configureawait-f",
@@ -8076,11 +7563,11 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 8. \tSynchronizationContext and ConfigureAwait(false):"
+    "snippet": "Section 33: 8.  SynchronizationContext and ConfigureAwait(false):"
   },
   {
     "sectionId": 33,
-    "title": "9. \tDebugging Async Code:",
+    "title": "9.  Debugging Async Code:",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
     "anchor": "sec-33-lec-34-9-debugging-async-code",
@@ -8093,7 +7580,7 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: 9. \tDebugging Async Code:"
+    "snippet": "Section 33: 9.  Debugging Async Code:"
   },
   {
     "sectionId": 33,
@@ -8111,23 +7598,6 @@ window.SEARCH_INDEX = [
       "ValueTask"
     ],
     "snippet": "Section 33: 10. Avoid Mixing Blocking and Async Code (Async over Sync / Sync over"
-  },
-  {
-    "sectionId": 33,
-    "title": "Asynchronous Programming (Async & Await) — Syntax Matrix",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-cheat-sheet-matrix",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Quick-reference syntax rules and matrices."
   },
   {
     "sectionId": 34,
@@ -8243,7 +7713,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "1. \tprivate nested type: This tightly couples the helper type to a specific",
+    "title": "1.  private nested type: This tightly couples the helper type to a specific",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-8-1-private-nested-type-this-tightly-couples-th",
@@ -8259,7 +7729,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "2. \tinternal type: This makes the type visible across the entire assembly. This",
+    "title": "2.  internal type: This makes the type visible across the entire assembly. This",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-9-2-internal-type-this-makes-the-type-visible-a",
@@ -8271,7 +7741,7 @@ window.SEARCH_INDEX = [
       "List Patterns",
       "UTF-8 String Literals"
     ],
-    "snippet": "Section 34: 2. \tinternal type: This makes the type visible across the entire assembly. This"
+    "snippet": "Section 34: 2.  internal type: This makes the type visible across the entire assembly. This"
   },
   {
     "sectionId": 34,
@@ -8291,7 +7761,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "1. \tDirectly in a constructor: The constructor explicitly assigns a value",
+    "title": "1.  Directly in a constructor: The constructor explicitly assigns a value",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-11-1-directly-in-a-constructor-the-constructor-e",
@@ -8303,11 +7773,11 @@ window.SEARCH_INDEX = [
       "List Patterns",
       "UTF-8 String Literals"
     ],
-    "snippet": "Section 34: 1. \tDirectly in a constructor: The constructor explicitly assigns a value"
+    "snippet": "Section 34: 1.  Directly in a constructor: The constructor explicitly assigns a value"
   },
   {
     "sectionId": 34,
-    "title": "2. \tVia an object initializer: When using new MyClass { Name = \"...\",",
+    "title": "2.  Via an object initializer: When using new MyClass { Name = \"...\",",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-12-2-via-an-object-initializer-when-using-new-my",
@@ -8323,7 +7793,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "1. \trequired members are inherited. If a base class has a required",
+    "title": "1.  required members are inherited. If a base class has a required",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-13-1-required-members-are-inherited-if-a-base-cl",
@@ -8339,7 +7809,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "2. \tDerived classes do not need to re-declare a base required member",
+    "title": "2.  Derived classes do not need to re-declare a base required member",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-14-2-derived-classes-do-not-need-to-re-declare-a",
@@ -8387,7 +7857,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "1. \tMust be in a ref struct: ref fields are only allowed within ref struct types.",
+    "title": "1.  Must be in a ref struct: ref fields are only allowed within ref struct types.",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-17-1-must-be-in-a-ref-struct-ref-fields-are-only",
@@ -8403,7 +7873,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "2. \tref readonly: You can declare a ref readonly field, meaning the",
+    "title": "2.  ref readonly: You can declare a ref readonly field, meaning the",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-18-2-ref-readonly-you-can-declare-a-ref-readonly",
@@ -8419,7 +7889,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "3. \tDefinite Assignment: Like all fields, ref fields must be definitely assigned",
+    "title": "3.  Definite Assignment: Like all fields, ref fields must be definitely assigned",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-19-3-definite-assignment-like-all-fields-ref-fie",
@@ -8431,11 +7901,11 @@ window.SEARCH_INDEX = [
       "List Patterns",
       "UTF-8 String Literals"
     ],
-    "snippet": "Section 34: 3. \tDefinite Assignment: Like all fields, ref fields must be definitely assigned"
+    "snippet": "Section 34: 3.  Definite Assignment: Like all fields, ref fields must be definitely assigned"
   },
   {
     "sectionId": 34,
-    "title": "4. \tref local variables: ref fields are similar in concept to ref local variables",
+    "title": "4.  ref local variables: ref fields are similar in concept to ref local variables",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-20-4-ref-local-variables-ref-fields-are-similar-",
@@ -8447,11 +7917,11 @@ window.SEARCH_INDEX = [
       "List Patterns",
       "UTF-8 String Literals"
     ],
-    "snippet": "Section 34: 4. \tref local variables: ref fields are similar in concept to ref local variables"
+    "snippet": "Section 34: 4.  ref local variables: ref fields are similar in concept to ref local variables"
   },
   {
     "sectionId": 34,
-    "title": "5. \tLifetime Safety: The compiler strictly enforces ref safety rules (similar to",
+    "title": "5.  Lifetime Safety: The compiler strictly enforces ref safety rules (similar to",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-21-5-lifetime-safety-the-compiler-strictly-enfor",
@@ -8467,7 +7937,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "6. \tNo static or readonly ref fields (initially): A ref field cannot be static. A",
+    "title": "6.  No static or readonly ref fields (initially): A ref field cannot be static. A",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-22-6-no-static-or-readonly-ref-fields-initially-",
@@ -8483,7 +7953,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "7. \tNo Default Constructor for ref struct with ref fields (usually): If a ref",
+    "title": "7.  No Default Constructor for ref struct with ref fields (usually): If a ref",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-23-7-no-default-constructor-for-ref-struct-with-",
@@ -8499,7 +7969,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "8. \tPointers vs. References: ref fields are managed references, not",
+    "title": "8.  Pointers vs. References: ref fields are managed references, not",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-24-8-pointers-vs-references-ref-fields-are-manag",
@@ -8531,7 +8001,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "1. \tRaw String Literals:",
+    "title": "1.  Raw String Literals:",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-26-1-raw-string-literals",
@@ -8543,11 +8013,11 @@ window.SEARCH_INDEX = [
       "List Patterns",
       "UTF-8 String Literals"
     ],
-    "snippet": "Section 34: 1. \tRaw String Literals:"
+    "snippet": "Section 34: 1.  Raw String Literals:"
   },
   {
     "sectionId": 34,
-    "title": "2. \tList Pattern:",
+    "title": "2.  List Pattern:",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-27-2-list-pattern",
@@ -8559,11 +8029,11 @@ window.SEARCH_INDEX = [
       "List Patterns",
       "UTF-8 String Literals"
     ],
-    "snippet": "Section 34: 2. \tList Pattern:"
+    "snippet": "Section 34: 2.  List Pattern:"
   },
   {
     "sectionId": 34,
-    "title": "3. \tSlice Pattern (..):",
+    "title": "3.  Slice Pattern (..):",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-28-3-slice-pattern",
@@ -8575,11 +8045,11 @@ window.SEARCH_INDEX = [
       "List Patterns",
       "UTF-8 String Literals"
     ],
-    "snippet": "Section 34: 3. \tSlice Pattern (..):"
+    "snippet": "Section 34: 3.  Slice Pattern (..):"
   },
   {
     "sectionId": 34,
-    "title": "4. \tVar Pattern (in Property Patterns):",
+    "title": "4.  Var Pattern (in Property Patterns):",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-29-4-var-pattern-in-property-patterns",
@@ -8591,11 +8061,11 @@ window.SEARCH_INDEX = [
       "List Patterns",
       "UTF-8 String Literals"
     ],
-    "snippet": "Section 34: 4. \tVar Pattern (in Property Patterns):"
+    "snippet": "Section 34: 4.  Var Pattern (in Property Patterns):"
   },
   {
     "sectionId": 34,
-    "title": "5. \tFile Local Types:",
+    "title": "5.  File Local Types:",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-30-5-file-local-types",
@@ -8607,11 +8077,11 @@ window.SEARCH_INDEX = [
       "List Patterns",
       "UTF-8 String Literals"
     ],
-    "snippet": "Section 34: 5. \tFile Local Types:"
+    "snippet": "Section 34: 5.  File Local Types:"
   },
   {
     "sectionId": 34,
-    "title": "6. \tRequired Members:",
+    "title": "6.  Required Members:",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-31-6-required-members",
@@ -8623,11 +8093,11 @@ window.SEARCH_INDEX = [
       "List Patterns",
       "UTF-8 String Literals"
     ],
-    "snippet": "Section 34: 6. \tRequired Members:"
+    "snippet": "Section 34: 6.  Required Members:"
   },
   {
     "sectionId": 34,
-    "title": "7. \tAuto Default Structs:",
+    "title": "7.  Auto Default Structs:",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-32-7-auto-default-structs",
@@ -8639,11 +8109,11 @@ window.SEARCH_INDEX = [
       "List Patterns",
       "UTF-8 String Literals"
     ],
-    "snippet": "Section 34: 7. \tAuto Default Structs:"
+    "snippet": "Section 34: 7.  Auto Default Structs:"
   },
   {
     "sectionId": 34,
-    "title": "8. \tRef Fields:",
+    "title": "8.  Ref Fields:",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
     "anchor": "sec-34-lec-33-8-ref-fields",
@@ -8655,7 +8125,7 @@ window.SEARCH_INDEX = [
       "List Patterns",
       "UTF-8 String Literals"
     ],
-    "snippet": "Section 34: 8. \tRef Fields:"
+    "snippet": "Section 34: 8.  Ref Fields:"
   },
   {
     "sectionId": 35,
@@ -8691,7 +8161,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 35,
-    "title": "1. \tParameter Scope: Parameters declared in the primary constructor are in",
+    "title": "1.  Parameter Scope: Parameters declared in the primary constructor are in",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-3-1-parameter-scope-parameters-declared-in-the-",
@@ -8707,7 +8177,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 35,
-    "title": "2. \tField/Property Initialization: You can directly initialize properties or fields",
+    "title": "2.  Field/Property Initialization: You can directly initialize properties or fields",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-4-2-field-property-initialization-you-can-direc",
@@ -8723,7 +8193,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 35,
-    "title": "3. \tNo Automatic Property Creation: Unlike record types, primary",
+    "title": "3.  No Automatic Property Creation: Unlike record types, primary",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-5-3-no-automatic-property-creation-unlike-recor",
@@ -8739,7 +8209,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 35,
-    "title": "4. \tBase Class Constructors: You can pass primary constructor parameters",
+    "title": "4.  Base Class Constructors: You can pass primary constructor parameters",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-6-4-base-class-constructors-you-can-pass-primar",
@@ -8755,7 +8225,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 35,
-    "title": "5. \tCoexistence with Other Constructors:",
+    "title": "5.  Coexistence with Other Constructors:",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-7-5-coexistence-with-other-constructors",
@@ -8767,11 +8237,11 @@ window.SEARCH_INDEX = [
       "Default Lambda Params",
       "Alias Any Type"
     ],
-    "snippet": "Section 35: 5. \tCoexistence with Other Constructors:"
+    "snippet": "Section 35: 5.  Coexistence with Other Constructors:"
   },
   {
     "sectionId": 35,
-    "title": "6. \tLifetime of Parameters: Primary constructor parameters are effectively",
+    "title": "6.  Lifetime of Parameters: Primary constructor parameters are effectively",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-8-6-lifetime-of-parameters-primary-constructor-",
@@ -8819,7 +8289,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 35,
-    "title": "1. \tDefine multiple lambda overloads: Not directly possible, you'd define",
+    "title": "1.  Define multiple lambda overloads: Not directly possible, you'd define",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-11-1-define-multiple-lambda-overloads-not-direct",
@@ -8835,7 +8305,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 35,
-    "title": "2. \tUse conditional logic: Check for null or specific values within the lambda",
+    "title": "2.  Use conditional logic: Check for null or specific values within the lambda",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-12-2-use-conditional-logic-check-for-null-or-spe",
@@ -8847,11 +8317,11 @@ window.SEARCH_INDEX = [
       "Default Lambda Params",
       "Alias Any Type"
     ],
-    "snippet": "Section 35: 2. \tUse conditional logic: Check for null or specific values within the lambda"
+    "snippet": "Section 35: 2.  Use conditional logic: Check for null or specific values within the lambda"
   },
   {
     "sectionId": 35,
-    "title": "3. \tDefine a separate method: Convert the lambda logic into a full method",
+    "title": "3.  Define a separate method: Convert the lambda logic into a full method",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-13-3-define-a-separate-method-convert-the-lambda",
@@ -8899,7 +8369,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 35,
-    "title": "1. \tPrimary Constructors in Classes:",
+    "title": "1.  Primary Constructors in Classes:",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-16-1-primary-constructors-in-classes",
@@ -8911,11 +8381,11 @@ window.SEARCH_INDEX = [
       "Default Lambda Params",
       "Alias Any Type"
     ],
-    "snippet": "Section 35: 1. \tPrimary Constructors in Classes:"
+    "snippet": "Section 35: 1.  Primary Constructors in Classes:"
   },
   {
     "sectionId": 35,
-    "title": "2. \tCollection Expressions:",
+    "title": "2.  Collection Expressions:",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-17-2-collection-expressions",
@@ -8927,11 +8397,11 @@ window.SEARCH_INDEX = [
       "Default Lambda Params",
       "Alias Any Type"
     ],
-    "snippet": "Section 35: 2. \tCollection Expressions:"
+    "snippet": "Section 35: 2.  Collection Expressions:"
   },
   {
     "sectionId": 35,
-    "title": "3. \tDefault Parameters in Lambda Expressions:",
+    "title": "3.  Default Parameters in Lambda Expressions:",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-18-3-default-parameters-in-lambda-expressions",
@@ -8943,11 +8413,11 @@ window.SEARCH_INDEX = [
       "Default Lambda Params",
       "Alias Any Type"
     ],
-    "snippet": "Section 35: 3. \tDefault Parameters in Lambda Expressions:"
+    "snippet": "Section 35: 3.  Default Parameters in Lambda Expressions:"
   },
   {
     "sectionId": 35,
-    "title": "4. \tAlias Any Type:",
+    "title": "4.  Alias Any Type:",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
     "anchor": "sec-35-lec-19-4-alias-any-type",
@@ -8959,7 +8429,7 @@ window.SEARCH_INDEX = [
       "Default Lambda Params",
       "Alias Any Type"
     ],
-    "snippet": "Section 35: 4. \tAlias Any Type:"
+    "snippet": "Section 35: 4.  Alias Any Type:"
   },
   {
     "sectionId": 36,
