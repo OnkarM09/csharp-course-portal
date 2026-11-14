@@ -243,12 +243,17 @@
       });
     });
 
-    // 7. Reading Progress Bar
+    // 7. Reading Progress Bar (anchored directly to sticky .top-header)
     let progressBar = document.querySelector('.reading-progress-bar');
     if (!progressBar) {
       progressBar = document.createElement('div');
       progressBar.className = 'reading-progress-bar';
-      document.body.appendChild(progressBar);
+      const header = document.querySelector('.top-header');
+      if (header) {
+        header.appendChild(progressBar);
+      } else {
+        document.body.appendChild(progressBar);
+      }
     }
 
     // 8. Floating Scroll-to-Top Button
