@@ -285,6 +285,19 @@
       }
     }
 
+    // 9. Module Tile Section Breakdown Toggle
+    document.querySelectorAll('.module-toggle-list-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tile = btn.closest('.module-tile');
+        if (!tile) return;
+        const drawer = tile.querySelector('.module-tile-drawer');
+        if (!drawer) return;
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', (!isExpanded).toString());
+        drawer.hidden = isExpanded;
+      });
+    });
+
     window.addEventListener('scroll', onScrollUpdate, { passive: true });
     onScrollUpdate();
   });

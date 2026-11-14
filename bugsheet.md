@@ -17,6 +17,7 @@ This document maintains the end-to-end audit, issue tracking, and resolution ver
 | **BUG-007** | A11y / Contrast | Medium | **Light Mode Contrast & Theme Switching**: Verify color contrast ratios for text, badges, and borders meet WCAG 2.1 AA (4.5:1). | **Resolved** | Audited contrast ratios in Dark (15.8:1) and Light (15.8:1) modes across all typography tokens. |
 | **BUG-008** | Performance | Medium | **Core Web Vitals & Layout Shifts**: Ensure zero CLS, sub-100ms LCP, and lightweight asset minification. | **Resolved** | Audited with Playwright: CLS = 0.000, 0 unhandled JS errors, fully minified static bundles. |
 | **BUG-009** | Responsive / Viewports | High | **Multi-Viewport Consistency**: Validate layouts across 16 device viewports in both Dark and Light themes. | **Resolved** | Playwright test suite passed on Mobile (360px–414px), Tablet (768px–1024px), Desktop (1280px–2560px). |
+| **BUG-010** | UI / Architecture | High | **Curriculum Module Height & Dead Vertical Space**: 3-section modules stretched to 500px with 160px empty voids due to uneven section counts and `flex: 1` on description. | **Resolved** | Redesigned into executive Module Tiles (~280px uniform height) with top accent bar, topic tags, direct section launchpad chips, and expandable section breakdown drawer. |
 
 ---
 
@@ -64,6 +65,16 @@ This document maintains the end-to-end audit, issue tracking, and resolution ver
 * **Tokens Audited**:
   - Dark Mode: Surface `#0f172a`, Text `#f8fafc` (15.8:1), Muted `#94a3b8` (5.4:1), Accent `#38bdf8` (8.2:1). Meets WCAG AA & AAA.
   - Light Mode: Surface `#ffffff`, Text `#0f172a` (15.8:1), Muted `#475569` (5.9:1), Accent `#0284c7` (4.6:1). Meets WCAG AA.
+
+### BUG-010: Curriculum Module Height Imbalance & Dead Vertical Space
+* **Root Cause**: In the homepage grid, cards stretched to match the tallest card in each row (500px for cards with 6 sections). Because `.module-card-desc` had `flex: 1`, modules with fewer sections (such as Module 1 and Module 7 with only 3 sections) had their description stretched to over 204px, creating a 160px empty void in the middle of the card. Furthermore, dumping full section lists duplicated the comprehensive curriculum table below.
+* **Resolution**:
+  1. Redesigned the cards into executive **Module Tiles** with a consistent, balanced height (~280px).
+  2. Added distinctive top accent bar matching the module's color theme.
+  3. Replaced stretched descriptions with crisp 2-line summaries and 4 core technical competency topic tags (`.module-topic-tag`).
+  4. Added a direct **Section Launchpad** with quick-jump chips (`[01]`, `[02]`, etc.) featuring full section titles in native tooltips.
+  5. Added a primary `Start Module →` CTA button alongside an expandable `Breakdown (X) ▾` drawer that smoothly reveals the full section rows without forcing initial vertical bulk.
+  6. Verified on desktop, tablet, and mobile with zero layout shift and uniform card heights.
 
 ---
 
