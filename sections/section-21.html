@@ -446,13 +446,13 @@
       <article class="docs-content">
         
     <h2 id="sec-21-lec-1-intro-to-arrays">Lecture 1: Intro to Arrays</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-1-intro-to-arrays-introduction">Introduction</h3>
 <p>An array is one of the most fundamental data structures in computer science and programming. It is a fixed-size, sequential collection of elements that are all of the same type. Think of it as a numbered row of boxes in a warehouse, where each box holds the same kind of item. There are two key characteristics you must always remember about arrays in C#:</p>
     <ol>
       <li><strong>Fixed Size:</strong> When you create an array, you must specify its size. That size cannot be changed for the lifetime of the array. If you need a dynamic collection that can grow or shrink, you would use a List&lt;T&gt; instead.</li>
       <li>Zero-Based Indexing: The elements in an array are accessed by an index, which is their numerical position. The first element is always at index 0, the second at index 1, and so on. The last element is at index Length - 1.</li>
     </ol>
-    <h3>How It Works</h3>
+    <h3 id="sec-21-lec-1-intro-to-arrays-how-it-works">How It Works</h3>
 <p>Understanding how arrays are stored in memory is key to understanding why they are so fast. When you create an array, for example new int[10], the .NET runtime allocates a single, contiguous block of memory on the heap.</p>
     <ul>
       <li><strong>Contiguous Block:</strong> This means all the elements of the array are stored right next to each other in memory, with no gaps.</li>
@@ -462,9 +462,9 @@
 <p>beforehand and will not change. Because of their memory layout, they offer the highest possible performance for accessing elements by their index. They are perfect for storing data read from a file of a known size, a set of lookup values, or image pixel data.</p>
 
     <h2 id="sec-21-lec-2-working-with-single-dimensional-arrays">Lecture 2: Working with Single-Dimensional Arrays</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-2-working-with-single-dimensional-arrays-introduction">Introduction</h3>
 <p>A single-dimensional array is the simplest and most common type of array. It represents a single, linear list of elements.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-21-lec-2-working-with-single-dimensional-arrays-syntax">Syntax</h3>
 <p>Declaration, Instantiation, and Initialization Working with arrays involves three steps, which can sometimes be combined.</p>
     <ol>
       <li><strong>Declaration:</strong> You declare a variable that can hold a reference to an array of a specific type. int[] scores;</li>
@@ -483,15 +483,15 @@
           Copy
         </button>
       </div>
-      <pre><code>// ...and so on.</code></pre>
+      <pre><code class="language-csharp">// ...and so on.</code></pre>
     </div>
   
     <ul>
       <li><strong>Collection Initializer Shorthand:</strong> You can declare, instantiate, and initialize an array in a single, concise line. The compiler will automatically figure out the size. string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot; }; // Creates a string array of size 3. Accessing Elements You get or set the value of an element using its zero-based index inside square brackets [].</li>
     </ul>
-    <h3>Important Note</h3>
+    <h3 id="sec-21-lec-2-working-with-single-dimensional-arrays-important-note">Important Note</h3>
 <p>If you try to access an index that is outside the valid range of the array (e.g., trying to access names[3] in the array above, where the valid indices are 0, 1, and 2), your program will compile fine but will crash at run- time with an IndexOutOfRangeException.</p>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-2-working-with-single-dimensional-arrays-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -501,7 +501,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// Declare, instantiate, and initialize in one line.
+      <pre><code class="language-csharp">// Declare, instantiate, and initialize in one line.
 int[] highScores = { 980, 955, 940, 890, 875 };
 // Access and read the first element (index 0).
 Console.WriteLine($&quot;The highest score is: {highScores[0]}&quot;);
@@ -515,9 +515,9 @@ Console.WriteLine($&quot;The array contains {highScores.Length} scores.&quot;);<
   
 
     <h2 id="sec-21-lec-3-arrays-with-for-loop">Lecture 3: Arrays with for loop</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-3-arrays-with-for-loop-introduction">Introduction</h3>
 <p>The for loop is the classic and most flexible way to iterate over an array. It gives you complete control over the iteration process and, most importantly, gives you direct access to the index of each element.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-21-lec-3-arrays-with-for-loop-how-it-works">How It Works</h3>
 <p>The Standard Pattern The standard pattern for iterating over an array with a for loop is: for (int i = 0; i &lt; array.Length; i++) Let's break this down:</p>
     <ul>
       <li>int i = 0;: The initializer. We create a counter variable i and start it at 0, the index of the first element.</li>
@@ -527,14 +527,14 @@ Console.WriteLine($&quot;The array contains {highScores.Length} scores.&quot;);<
     <ul>
       <li>i++: The iterator. At the end of each loop iteration, i is incremented, moving us to the next element.</li>
     </ul>
-    <h3>When to Use It</h3>
+    <h3 id="sec-21-lec-3-arrays-with-for-loop-when-to-use-it">When to Use It</h3>
 <p>You should use a for loop when:</p>
     <ul>
       <li>You need to know the index of the element you are processing.</li>
       <li>You need to modify the elements of the array in-place.</li>
       <li>You need to iterate in a non-standard way, such as backwards (for (int i = array.Length - 1; i &gt;= 0; i--)), or by skipping elements (i += 2).</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-3-arrays-with-for-loop-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -544,7 +544,7 @@ Console.WriteLine($&quot;The array contains {highScores.Length} scores.&quot;);<
           Copy
         </button>
       </div>
-      <pre><code>string[] daysOfWeek = { &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;,
+      <pre><code class="language-csharp">string[] daysOfWeek = { &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;,
 &quot;Friday&quot;, &quot;Saturday&quot;, &quot;Sunday&quot; };
 Console.WriteLine(&quot;The days of the week are:&quot;);</code></pre>
     </div>
@@ -558,7 +558,7 @@ Console.WriteLine(&quot;The days of the week are:&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // We can use the index 'i' in our logic.
     Console.WriteLine($&quot; Day {i + 1}: {daysOfWeek[i]}&quot;);
 }</code></pre>
@@ -566,15 +566,15 @@ Console.WriteLine(&quot;The days of the week are:&quot;);</code></pre>
   
 
     <h2 id="sec-21-lec-4-arrays-with-foreach-loop">Lecture 4: Arrays with foreach loop</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-4-arrays-with-foreach-loop-introduction">Introduction</h3>
 <p>The foreach loop is a simpler, more readable, and less error-prone way to iterate over a collection like an array. It is designed for situations where you simply need to access the value of each element from start to finish, and you don't care about its index.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-21-lec-4-arrays-with-foreach-loop-how-it-works">How It Works</h3>
 <p>The syntax is foreach (type variableName in collection). For each iteration, the next element in the collection is automatically assigned to the iteration variable. The loop continues until every element has been visited.</p>
 <p>Behind the scenes, the compiler translates this into code that uses a mechanism called an &quot;enumerator&quot; to safely visit each element. The &quot;Read-Only&quot; Limitation This is a critical concept to understand. The iteration variable in a foreach loop is effectively read-only.</p>
 <p>You cannot use it to assign a new value back into the array or collection. If you try, the compiler will give you an error. This is a safety feature designed to prevent accidental modification of the collection while you are iterating over it.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-21-lec-4-arrays-with-foreach-loop-when-to-use-it">When to Use It</h3>
 <p>Use a foreach loop whenever you need to read and process each element in an array from start to finish and you do not need the index. It is the preferred loop for simple iteration because it is more declarative and eliminates the possibility of common &quot;off-by-one&quot; errors that can happen with for loops.</p>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-4-arrays-with-foreach-loop-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -584,7 +584,7 @@ Console.WriteLine(&quot;The days of the week are:&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>int[] numbers = { 5, 10, 15, 20, 25 };
+      <pre><code class="language-csharp">int[] numbers = { 5, 10, 15, 20, 25 };
 int sum = 0;
 // 'number' will hold the value of each element in turn (5, then 10, then 15...).
 foreach (int number in numbers)
@@ -598,7 +598,7 @@ Console.WriteLine($&quot;The sum of the numbers is: {sum}&quot;); // Output: 75<
   
 
     <h2 id="sec-21-lec-5-overview-of-system-array-class">Lecture 5: Overview of System.Array class</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-5-overview-of-system-array-class-introduction">Introduction</h3>
 <p>), is actually an object. Array. This means that every array automatically inherits a set of powerful properties and methods from this base class, which you can use to inspect and manipulate the array. Length).</p>
     <ul>
       <li>.Length: Gets the total number of elements in the array across all its dimensions. This is the most commonly used property.</li>
@@ -608,7 +608,7 @@ Console.WriteLine($&quot;The sum of the numbers is: {sum}&quot;); // Output: 75<
       <li><strong>Instance Methods:</strong> There are very few of these. The most common is GetLength(int dimension), which gets the size of a specific dimension in a multi-dimensional array.</li>
       <li><strong>Static Methods:</strong> This is where most of the functionality lies. These are utility methods that you call on the Array class itself, passing your array instance as a parameter (e.g., Array.Sort(myArray)). We will explore these in the next lectures.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-5-overview-of-system-array-class-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -618,7 +618,7 @@ Console.WriteLine($&quot;The sum of the numbers is: {sum}&quot;); // Output: 75<
           Copy
         </button>
       </div>
-      <pre><code>int[] numbers = { 10, 20, 30 };
+      <pre><code class="language-csharp">int[] numbers = { 10, 20, 30 };
 Console.WriteLine($&quot;Total number of elements (Length):</code></pre>
     </div>
   
@@ -632,22 +632,22 @@ Console.WriteLine($&quot;Total number of elements (Length):</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Number of dimensions (Rank): {numbers.Rank}&quot;); 	//</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Number of dimensions (Rank): {numbers.Rank}&quot;); 	//</code></pre>
     </div>
   
-    <h3>Output: 1</h3>
+    <h3 id="sec-21-lec-5-overview-of-system-array-class-output">Output: 1</h3>
 
     <h2 id="sec-21-lec-6-system-array-indexof">Lecture 6: System.Array.IndexOf</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-6-system-array-indexof-introduction">Introduction</h3>
 <p>Array.IndexOf is a static helper method on the Array class that searches a single-dimensional array for a specific element. It is a straightforward way to find out if an element exists in an array and where it is located.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-21-lec-6-system-array-indexof-how-it-works">How It Works</h3>
 <p>This method performs a linear search, starting from the first element (index 0) and checking each element one by one until it finds a match. Because it checks every element in the worst case, its performance is O(n), meaning the time it takes to run is directly proportional to the size of the array.</p>
 <p>The method returns an integer representing the zero-based index of the first occurrence of the element. If it finds the element, it stops searching and returns that index. The Return Value: The &quot;-1&quot; Convention This is a critical point to remember.</p>
     <ul>
       <li>If the element is found, it returns the index (0 or greater).</li>
       <li>If the element is not found in the entire array, it returns -1. This -1 return value is a standard convention in many programming libraries to indicate &quot;not found.&quot;</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-6-system-array-indexof-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -657,7 +657,7 @@ Console.WriteLine($&quot;Total number of elements (Length):</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>string[] heroes = { &quot;Iron Man&quot;, &quot;Captain America&quot;, &quot;Thor&quot;, &quot;Hulk&quot;, &quot;Thor&quot; };
+      <pre><code class="language-csharp">string[] heroes = { &quot;Iron Man&quot;, &quot;Captain America&quot;, &quot;Thor&quot;, &quot;Hulk&quot;, &quot;Thor&quot; };
 // Search for an element that exists.
 int indexOfThor = Array.IndexOf(heroes, &quot;Thor&quot;);
 // This finds the FIRST occurrence at index 2.
@@ -668,7 +668,7 @@ int indexOfBatman = Array.IndexOf(heroes, &quot;Batman&quot;);
 Console.WriteLine($&quot;Found 'Batman' at index: {indexOfBatman}&quot;); //</code></pre>
     </div>
   
-    <h3>Output: -1</h3>
+    <h3 id="sec-21-lec-6-system-array-indexof-output">Output: -1</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -678,7 +678,7 @@ Console.WriteLine($&quot;Found 'Batman' at index: {indexOfBatman}&quot;); //</co
           Copy
         </button>
       </div>
-      <pre><code>if (indexOfBatman == -1)
+      <pre><code class="language-csharp">if (indexOfBatman == -1)
 {
     Console.WriteLine(&quot;'Batman' is not in the Avengers array.&quot;);
 }</code></pre>
@@ -686,10 +686,10 @@ Console.WriteLine($&quot;Found 'Batman' at index: {indexOfBatman}&quot;); //</co
   
 
     <h2 id="sec-21-lec-7-system-array-binarysearch">Lecture 7: System.Array.BinarySearch</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-7-system-array-binarysearch-introduction">Introduction</h3>
 <p>BinarySearch is a highly efficient static method used to find an element within a sorted array. It is significantly faster than a linear search (IndexOf) for large arrays. The Prerequisite: The Array MUST Be Sorted This is the most important rule for this method.</p>
 <p>BinarySearch will only produce a correct and predictable result if the array has been sorted in ascending order beforehand. If you run it on an unsorted array, the return value will be meaningless and incorrect.</p>
-    <h3>How It Works: Divide and Conquer</h3>
+    <h3 id="sec-21-lec-7-system-array-binarysearch-how-it-works">How It Works: Divide and Conquer</h3>
 <p>The binary search algorithm works by repeatedly dividing the search interval in half.</p>
     <ol>
       <li>It compares the target value to the element in the middle of the array.</li>
@@ -701,7 +701,7 @@ Console.WriteLine($&quot;Found 'Batman' at index: {indexOfBatman}&quot;); //</co
       <li>If the element is found, it returns the zero-based index.</li>
       <li>If the element is not found, it returns a negative number. This number is significant: it is the bitwise complement (~) of the index of the first element that is larger than the value you searched for. In simpler terms, it tells you where the item would be inserted to maintain the sort order.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-7-system-array-binarysearch-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -711,7 +711,7 @@ Console.WriteLine($&quot;Found 'Batman' at index: {indexOfBatman}&quot;); //</co
           Copy
         </button>
       </div>
-      <pre><code>int[] sortedNumbers = { 10, 20, 30, 40, 50, 60, 70, 80 };
+      <pre><code class="language-csharp">int[] sortedNumbers = { 10, 20, 30, 40, 50, 60, 70, 80 };
 // Search for a value that exists.
 int indexFound = Array.BinarySearch(sortedNumbers, 50);
 Console.WriteLine($&quot;Found 50 at index: {indexFound}&quot;); // Output: 4
@@ -722,12 +722,12 @@ int indexNotFound = Array.BinarySearch(sortedNumbers, 45);
 Console.WriteLine($&quot;Did not find 45. Returned: {indexNotFound}&quot;); //</code></pre>
     </div>
   
-    <h3>Output: -5</h3>
+    <h3 id="sec-21-lec-7-system-array-binarysearch-output">Output: -5</h3>
 
     <h2 id="sec-21-lec-8-system-array-clear">Lecture 8: System.Array.Clear</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-8-system-array-clear-introduction">Introduction</h3>
 <p>Array.Clear is a static method that sets a range of elements in an array back to their default value. This method does not remove elements or change the size of the array; it simply resets their values.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-21-lec-8-system-array-clear-how-it-works">How It Works</h3>
 <p>The default value depends on the element type:</p>
     <ul>
       <li>For numeric types (int, double), it's 0.</li>
@@ -735,12 +735,12 @@ Console.WriteLine($&quot;Did not find 45. Returned: {indexNotFound}&quot;); //</
       <li>For char, it's '\0'.</li>
       <li>For all reference types (string, class objects), it's null. The method signature is Array.Clear(Array array, int index, int length), where index is the starting position and length is the number of elements to clear.</li>
     </ul>
-    <h3>When to Use It</h3>
+    <h3 id="sec-21-lec-8-system-array-clear-when-to-use-it">When to Use It</h3>
     <ul>
       <li><strong>Reusing Buffers:</strong> When you are using an array as a buffer (e.g., for network or file I/O) and want to clear it out before reusing it.</li>
       <li><strong>Security:</strong> To explicitly overwrite sensitive data in memory (like passwords or keys) after you are done with it, ensuring it cannot be recovered from a memory dump.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-8-system-array-clear-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -750,7 +750,7 @@ Console.WriteLine($&quot;Did not find 45. Returned: {indexNotFound}&quot;); //</
           Copy
         </button>
       </div>
-      <pre><code>string[] userNames = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eve&quot; };
+      <pre><code class="language-csharp">string[] userNames = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eve&quot; };
 Console.WriteLine(&quot;Original array: &quot; + string.Join(&quot;, &quot;, userNames));
 // Clear 3 elements starting from index 1.</code></pre>
     </div>
@@ -765,18 +765,18 @@ Console.WriteLine(&quot;Original array: &quot; + string.Join(&quot;, &quot;, use
           Copy
         </button>
       </div>
-      <pre><code>// The elements are now null, but the array size is still 5.
+      <pre><code class="language-csharp">// The elements are now null, but the array size is still 5.
 Console.WriteLine(&quot;Array after Clear: &quot; + string.Join(&quot;, &quot;, userNames));
 Console.WriteLine($&quot;Array length is still: {userNames.Length}&quot;);</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-21-lec-8-system-array-clear-output">Output</h3>
 <p>Original array: Alice, Bob, Charlie, David, Eve Array after Clear: Alice, , , , Eve Array length is still: 5</p>
 
     <h2 id="sec-21-lec-9-system-array-resize">Lecture 9: System.Array.Resize</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-9-system-array-resize-introduction">Introduction</h3>
 <p>Array.Resize is a static method that appears to change the number of elements in a single-dimensional array to a specified new size. However, this is somewhat of an illusion, as arrays are fundamentally fixed-size.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-21-lec-9-system-array-resize-how-it-works">How It Works</h3>
 <p>The &quot;Create and Copy&quot; Illusion This is a critical concept for interviews. Array.Resize does not actually resize the original block of memory. Instead, it performs these steps behind the scenes:</p>
     <ol>
       <li>It creates a brand new array of the desired size.</li>
@@ -789,7 +789,7 @@ Console.WriteLine($&quot;Array length is still: {userNames.Length}&quot;);</code
     <ol>
       <li>It makes the original array variable (which is passed with the ref keyword) point to this new array. The old array is now unreferenced and will eventually be garbage collected. Performance Implications Because this method involves allocating a new array and copying all the elements, it can be an expensive operation for very large arrays. This is the primary reason why List&lt;T&gt; is generally preferred when you need a collection that must grow or shrink dynamically.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-9-system-array-resize-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -799,7 +799,7 @@ Console.WriteLine($&quot;Array length is still: {userNames.Length}&quot;);</code
           Copy
         </button>
       </div>
-      <pre><code>int[] numbers = { 10, 20, 30 };
+      <pre><code class="language-csharp">int[] numbers = { 10, 20, 30 };
 Console.WriteLine(&quot;Original array: &quot; + string.Join(&quot;, &quot;, numbers));
 // Use Array.Resize to &quot;expand&quot; the array.
 // The 'ref' keyword means the 'numbers' variable itself will be changed.
@@ -807,15 +807,15 @@ Array.Resize(ref numbers, 5);
 Console.WriteLine(&quot;Resized array: &quot; + string.Join(&quot;, &quot;, numbers));</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-21-lec-9-system-array-resize-output">Output</h3>
 <p>Original array: 10, 20, 30 Resized array: 10, 20, 30, 0, 0</p>
 
     <h2 id="sec-21-lec-10-system-array-sort">Lecture 10: System.Array.Sort</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-10-system-array-sort-introduction">Introduction</h3>
 <p>Array.Sort is a powerful static method that sorts the elements in a single- dimensional array in place. This means it rearranges the elements within the original array rather than creating a new, sorted array.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-21-lec-10-system-array-sort-how-it-works">How It Works</h3>
 <p>For primitive types like int and string, the sort is straightforward (ascending numerical or alphabetical order). The method uses a highly efficient, unstable sorting algorithm called Introsort, which is a hybrid of Quicksort, Heapsort, and Insertion sort. It starts with Quicksort but switches to Heapsort if the recursion depth gets too deep (to prevent worst-case scenarios) and switches to Insertion sort for very small partitions.</p>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-10-system-array-sort-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -825,7 +825,7 @@ Console.WriteLine(&quot;Resized array: &quot; + string.Join(&quot;, &quot;, numb
           Copy
         </button>
       </div>
-      <pre><code>// --- Sorting Numbers ---
+      <pre><code class="language-csharp">// --- Sorting Numbers ---
 int[] numbers = { 5, 1, 9, 3, 7, 6 };
 Console.WriteLine(&quot;Original numbers: &quot; + string.Join(&quot;, &quot;, numbers));
 Array.Sort(numbers);
@@ -838,15 +838,15 @@ Array.Sort(names);
 Console.WriteLine(&quot;Sorted names: 	&quot; + string.Join(&quot;, &quot;, names));</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-21-lec-10-system-array-sort-output">Output</h3>
 <p>Original numbers: 5, 1, 9, 3, 7, 6 Sorted numbers: 1, 3, 5, 6, 7, 9 -------------------- Original names: Charlie, Alice, Eve, Bob Sorted names: Alice, Bob, Charlie, Eve</p>
 
     <h2 id="sec-21-lec-11-system-array-reverse">Lecture 11: System.Array.Reverse</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-11-system-array-reverse-introduction">Introduction</h3>
 <p>Array.Reverse is a simple static utility method that reverses the sequence of the elements in a single-dimensional array in place.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-21-lec-11-system-array-reverse-how-it-works">How It Works</h3>
 <p>The method swaps the first element with the last, the second element with the second-to-last, and so on, continuing until it reaches the middle of the array. The original array is modified directly.</p>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-11-system-array-reverse-example">Example</h3>
 <p>char[] letters = { 'A', 'B', 'C', 'D', 'E' };</p>
 
     <div class="code-block-container">
@@ -857,20 +857,20 @@ Console.WriteLine(&quot;Sorted names: 	&quot; + string.Join(&quot;, &quot;, name
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(&quot;Original letters: &quot; + string.Join(&quot;, &quot;, letters));
+      <pre><code class="language-csharp">Console.WriteLine(&quot;Original letters: &quot; + string.Join(&quot;, &quot;, letters));
 Array.Reverse(letters);
 Console.WriteLine(&quot;Reversed letters: &quot; + string.Join(&quot;, &quot;, letters));</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-21-lec-11-system-array-reverse-output">Output</h3>
 <p>Original letters: A, B, C, D, E Reversed letters: E, D, C, B, A</p>
 
     <h2 id="sec-21-lec-12-multi-dimensional-arrays">Lecture 12: Multi-Dimensional Arrays</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-12-multi-dimensional-arrays-introduction">Introduction</h3>
 <p>A multi-dimensional array, also known as a rectangular array, is an array with more than one dimension. The most common type is a 2D array, which is used to represent a grid or a table of data with rows and columns.</p>
-    <h3>How It Works: Syntax and Memory</h3>
+    <h3 id="sec-21-lec-12-multi-dimensional-arrays-how-it-works">How It Works: Syntax and Memory</h3>
 <p>A 2D array is declared with a comma inside the square brackets.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-21-lec-12-multi-dimensional-arrays-syntax">Syntax</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -880,7 +880,7 @@ Console.WriteLine(&quot;Reversed letters: &quot; + string.Join(&quot;, &quot;, l
           Copy
         </button>
       </div>
-      <pre><code>type[,] arrayName = new type[rows, columns];</code></pre>
+      <pre><code class="language-csharp">type[,] arrayName = new type[rows, columns];</code></pre>
     </div>
   
 <p>Even though it has two dimensions, it is still stored as a single, contiguous block of memory on the heap. The size of this block is rows * columns. The compiler uses this information to calculate the exact memory offset when you access an element using arrayName[row, column].</p>
@@ -889,7 +889,7 @@ Console.WriteLine(&quot;Reversed letters: &quot; + string.Join(&quot;, &quot;, l
       <li>array.GetLength(0) returns the number of rows.</li>
       <li>array.GetLength(1) returns the number of columns.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-12-multi-dimensional-arrays-example">Example</h3>
 <p>A Tic-Tac-Toe Board</p>
 
     <div class="code-block-container">
@@ -900,7 +900,7 @@ Console.WriteLine(&quot;Reversed letters: &quot; + string.Join(&quot;, &quot;, l
           Copy
         </button>
       </div>
-      <pre><code>// A 3x3 grid to represent a Tic-Tac-Toe board.
+      <pre><code class="language-csharp">// A 3x3 grid to represent a Tic-Tac-Toe board.
 char[,] board = new char[3, 3]
 {
     { 'X', 'O', 'X' },
@@ -920,7 +920,7 @@ char[,] board = new char[3, 3]
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(&quot;Current Board State:&quot;);
+      <pre><code class="language-csharp">Console.WriteLine(&quot;Current Board State:&quot;);
 // Use nested loops to iterate through the grid.</code></pre>
     </div>
   
@@ -933,7 +933,7 @@ char[,] board = new char[3, 3]
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     for (int col = 0; col &lt; board.GetLength(1); col++)
     {
         Console.Write($&quot;[{board[row, col]}]&quot;);
@@ -944,18 +944,18 @@ char[,] board = new char[3, 3]
   
 
     <h2 id="sec-21-lec-13-jagged-arrays">Lecture 13: Jagged Arrays</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-13-jagged-arrays-introduction">Introduction</h3>
 <p>A jagged array is an &quot;array of arrays.&quot; Unlike a rectangular 2D array where every row must have the same number of columns, a jagged array allows each of its inner arrays to have a different length. You can visualize it as a collection of rows, where each row can be a different size.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-21-lec-13-jagged-arrays-how-it-works">How It Works</h3>
 <p>This is the key distinction from a multi-dimensional array. A jagged array is not a single contiguous block of memory. Instead:</p>
     <ol>
       <li>The &quot;outer&quot; array is a single-dimensional array whose elements are themselves references to other arrays.</li>
       <li>Each &quot;inner&quot; array is a separate, regular single-dimensional array allocated in its own block of memory on the heap. Because each inner array is a distinct object, each can have its own independent length.</li>
     </ol>
-    <h3>Syntax</h3>
+    <h3 id="sec-21-lec-13-jagged-arrays-syntax">Syntax</h3>
 <p>A jagged array is declared with multiple sets of square brackets. Instantiation is a two-step process: you must first create the outer array, and then you must create a new array for each of its elements. Declaration: int[][] jaggedArray; Instantiation: jaggedArray = new int[3][]; // Create the outer array to hold 3 inner arrays.</p>
 <p>jaggedArray[0] = new int[5]; // The first row is an array of 5 integers. jaggedArray[1] = new int[2]; // The second row is an array of 2 integers. jaggedArray[2] = new int[4]; // The third row is an array of 4 integers.</p>
-    <h3>Example: Storing Monthly Sales Data</h3>
+    <h3 id="sec-21-lec-13-jagged-arrays-example">Example: Storing Monthly Sales Data</h3>
 <p>Imagine you want to store daily sales figures for a few months, but each month has a different number of days. A jagged array is perfect for this.</p>
 
     <div class="code-block-container">
@@ -966,7 +966,7 @@ char[,] board = new char[3, 3]
           Copy
         </button>
       </div>
-      <pre><code>// The outer array has 3 elements, one for each month.
+      <pre><code class="language-csharp">// The outer array has 3 elements, one for each month.
 int[][] monthlySales = new int[3][];
 // Initialize each inner array with the correct number of days.</code></pre>
     </div>
@@ -981,7 +981,7 @@ int[][] monthlySales = new int[3][];
           Copy
         </button>
       </div>
-      <pre><code>// Use nested loops to iterate.</code></pre>
+      <pre><code class="language-csharp">// Use nested loops to iterate.</code></pre>
     </div>
   
 
@@ -993,7 +993,7 @@ int[][] monthlySales = new int[3][];
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.Write($&quot;Month {i + 1} Sales: &quot;);
     for (int j = 0; j &lt; monthlySales[i].Length; j++)
     {
@@ -1005,12 +1005,12 @@ int[][] monthlySales = new int[3][];
   
 
     <h2 id="sec-21-lec-14-array-of-objects">Lecture 14: Array of Objects</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-14-array-of-objects-introduction">Introduction</h3>
 <p>You can create an array where the element type is not a primitive like int or string, but a class that you have defined. This allows you to create a fixed-size collection of complex objects.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-21-lec-14-array-of-objects-how-it-works">How It Works</h3>
 <p>An Array of References This is a critical concept that trips up many beginners. When you create an array of a reference type, you are not creating the objects themselves. You are creating an array of references, and each element in that array is initialized to null.</p>
 <p>You must then iterate through the array and manually create a new instance of your object for each element. If you forget this second step and try to access a member of an element, you will get a NullReferenceException.</p>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-14-array-of-objects-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1020,7 +1020,7 @@ int[][] monthlySales = new int[3][];
           Copy
         </button>
       </div>
-      <pre><code>public class Student
+      <pre><code class="language-csharp">public class Student
 {
     public string Name { get; set; }
 }
@@ -1053,7 +1053,7 @@ public class Program
   
 
     <h2 id="sec-21-lec-15-copyto-and-clone">Lecture 15: CopyTo and Clone</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-15-copyto-and-clone-introduction">Introduction</h3>
 <p>The System.Array class provides built-in methods for creating copies of arrays. However, it is crucial to understand that these methods perform a shallow copy, which has very different results for value types versus reference types. CopyTo(Array dest, int index)</p>
     <ul>
       <li><strong>What it does:</strong> This is an instance method that copies all the elements from the source array into a pre-existing destination array, starting at a specified destination index.</li>
@@ -1063,7 +1063,7 @@ public class Program
       <li>For an array of value types (like int[]), it creates a true, independent copy of the values.</li>
       <li>For an array of reference types (like Student[]), it copies only the references (the memory addresses). The new array will contain references pointing to the exact same original objects as the first array.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-15-copyto-and-clone-example">Example</h3>
 <p>Demonstrating Shallow Copy with Clone()</p>
 
     <div class="code-block-container">
@@ -1074,7 +1074,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>public class Student { public string Name; }
+      <pre><code class="language-csharp">public class Student { public string Name; }
 public class Program
 {
     public static void Main(string[] args)
@@ -1102,16 +1102,16 @@ public class Program
   
 
     <h2 id="sec-21-lec-16-deep-copy">Lecture 16: Deep Copy</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-21-lec-16-deep-copy-introduction">Introduction</h3>
 <p>A deep copy is the process of creating a new array and then creating a new copy of every single object referenced by that array. This results in a completely independent clone with no shared object references. A change to an object in the new array will not affect any object in the original array.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-21-lec-16-deep-copy-how-it-works">How It Works</h3>
 <p>C# does not provide a built-in method for a generic deep copy because it cannot know how to create a copy of your custom objects. You must implement the logic yourself. The standard way is to:</p>
     <ol>
       <li>Create a new destination array of the same size.</li>
       <li>Iterate through the original array.</li>
       <li>For each element in the original array, create a new object for the new array, copying the values from the original object. This is often done using a copy constructor.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-21-lec-16-deep-copy-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1121,7 +1121,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>public class Student
+      <pre><code class="language-csharp">public class Student
 {
     public string Name;
     // A regular constructor
@@ -1175,6 +1175,18 @@ public class Program
 
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="21" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -1203,71 +1215,303 @@ public class Program
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-21-lec-1-intro-to-arrays" class="toc-link">Lecture 1: Intro to Arrays</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-1-intro-to-arrays-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-1-intro-to-arrays-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-2-working-with-single-dimensional-arrays" class="toc-link">Lecture 2: Working with Single-Dimensional Array</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-2-working-with-single-dimensional-arrays-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-2-working-with-single-dimensional-arrays-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-2-working-with-single-dimensional-arrays-important-note" class="toc-link">Important Note</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-2-working-with-single-dimensional-arrays-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-3-arrays-with-for-loop" class="toc-link">Lecture 3: Arrays with for loop</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-3-arrays-with-for-loop-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-3-arrays-with-for-loop-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-3-arrays-with-for-loop-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-3-arrays-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-4-arrays-with-foreach-loop" class="toc-link">Lecture 4: Arrays with foreach loop</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-4-arrays-with-foreach-loop-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-4-arrays-with-foreach-loop-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-4-arrays-with-foreach-loop-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-4-arrays-with-foreach-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-5-overview-of-system-array-class" class="toc-link">Lecture 5: Overview of System.Array class</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-5-overview-of-system-array-class-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-5-overview-of-system-array-class-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-5-overview-of-system-array-class-output" class="toc-link">Output: 1</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-6-system-array-indexof" class="toc-link">Lecture 6: System.Array.IndexOf</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-6-system-array-indexof-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-6-system-array-indexof-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-6-system-array-indexof-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-6-system-array-indexof-output" class="toc-link">Output: -1</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-7-system-array-binarysearch" class="toc-link">Lecture 7: System.Array.BinarySearch</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-7-system-array-binarysearch-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-7-system-array-binarysearch-how-it-works" class="toc-link">How It Works: Divide and Conquer</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-7-system-array-binarysearch-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-7-system-array-binarysearch-output" class="toc-link">Output: -5</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-8-system-array-clear" class="toc-link">Lecture 8: System.Array.Clear</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-8-system-array-clear-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-8-system-array-clear-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-8-system-array-clear-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-8-system-array-clear-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-8-system-array-clear-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-9-system-array-resize" class="toc-link">Lecture 9: System.Array.Resize</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-9-system-array-resize-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-9-system-array-resize-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-9-system-array-resize-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-9-system-array-resize-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-10-system-array-sort" class="toc-link">Lecture 10: System.Array.Sort</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-10-system-array-sort-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-10-system-array-sort-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-10-system-array-sort-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-10-system-array-sort-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-11-system-array-reverse" class="toc-link">Lecture 11: System.Array.Reverse</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-11-system-array-reverse-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-11-system-array-reverse-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-11-system-array-reverse-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-11-system-array-reverse-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-12-multi-dimensional-arrays" class="toc-link">Lecture 12: Multi-Dimensional Arrays</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-12-multi-dimensional-arrays-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-12-multi-dimensional-arrays-how-it-works" class="toc-link">How It Works: Syntax and Memory</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-12-multi-dimensional-arrays-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-12-multi-dimensional-arrays-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-13-jagged-arrays" class="toc-link">Lecture 13: Jagged Arrays</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-13-jagged-arrays-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-13-jagged-arrays-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-13-jagged-arrays-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-13-jagged-arrays-example" class="toc-link">Example: Storing Monthly Sales Data</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-14-array-of-objects" class="toc-link">Lecture 14: Array of Objects</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-14-array-of-objects-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-14-array-of-objects-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-14-array-of-objects-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-15-copyto-and-clone" class="toc-link">Lecture 15: CopyTo and Clone</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-15-copyto-and-clone-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-15-copyto-and-clone-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-16-deep-copy" class="toc-link">Lecture 16: Deep Copy</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-16-deep-copy-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-16-deep-copy-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-21-lec-16-deep-copy-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-21-lec-17-imp-points-to-remember" class="toc-link">Lecture 17: IMP Points to Remember</a>
       </li>
     
@@ -1279,6 +1523,7 @@ public class Program
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

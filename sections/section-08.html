@@ -446,10 +446,10 @@
       <article class="docs-content">
         
     <h2 id="sec-8-lec-1-instance-constructors">Lecture 1: Instance Constructors</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-8-lec-1-instance-constructors-introduction">Introduction</h3>
 <p>An instance constructor is a special method within a class that is automatically called whenever an object of that class is created using the new keyword. Its primary and most critical purpose is to initialize the object's fields and put the object into a valid, consistent, and usable initial state.</p>
 <p>A constructor ensures that no object starts its life with random or null data where a specific value is required. It's the first piece of code that runs for a new object instance.</p>
-    <h3>How It Works: Syntax and Execution Flow</h3>
+    <h3 id="sec-8-lec-1-instance-constructors-how-it-works">How It Works: Syntax and Execution Flow</h3>
 <p>A constructor is defined like a method but with two strict rules:</p>
     <ol>
       <li>It must have the exact same name as the class.</li>
@@ -459,7 +459,7 @@
       <li>The code inside the constructor executes, typically assigning initial values to the instance fields.</li>
       <li>After the constructor completes, the reference to the newly created and initialized object is returned. The Default Constructor This is a critical concept often tested in interviews. If you do not define any constructor in your class, the C# compiler will automatically provide one for you behind the scenes. This is called the default constructor. It is always public and has no parameters. Its only job is to create the object and leave the fields with their default values. However, the moment you define any constructor yourself (e.g., a constructor that takes parameters), the compiler no longer provides the automatic default constructor. If you still need a parameterless constructor in that case, you must write one explicitly.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-8-lec-1-instance-constructors-example">Example</h3>
 <p>A Class With a Parameterized Constructor C#</p>
 
     <div class="code-block-container">
@@ -470,7 +470,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public class Car
+      <pre><code class="language-csharp">public class Car
 {
     // Private instance fields
     private string _model;
@@ -506,7 +506,7 @@ Car myCar = new Car(&quot;Ford Mustang&quot;, &quot;Red&quot;, 2023);</code></pr
           Copy
         </button>
       </div>
-      <pre><code>// The following line would now cause a compiler error because the default
+      <pre><code class="language-csharp">// The following line would now cause a compiler error because the default
 // parameterless constructor is no longer available.
 // Car anotherCar = new Car(); // ERROR! No constructor takes 0 arguments.</code></pre>
     </div>
@@ -514,19 +514,19 @@ Car myCar = new Car(&quot;Ford Mustang&quot;, &quot;Red&quot;, 2023);</code></pr
 
     <h2 id="sec-8-lec-2-static-constructor-introduction">Lecture 2: Static Constructor Introduction</h2>
 <p>A static constructor is a special constructor used to initialize static members of a class or to perform a one-time action required for the class itself, before any instances are created or any other static members are accessed.</p>
-    <h3>How It Works: &amp; Rules</h3>
+    <h3 id="sec-8-lec-2-static-constructor-introduction-how-it-works">How It Works: &amp; Rules</h3>
 <p>The behavior of a static constructor is very specific and is a common source of interview questions.</p>
     <ul>
       <li><strong>Syntax:</strong> It is declared with the static keyword, has the same name as the class, has no access modifiers (it's effectively private), and cannot have any parameters.</li>
       <li><strong>Execution:</strong> It is called automatically by the .NET runtime. You cannot call it directly from your code.</li>
       <li><strong>Timing:</strong> It is guaranteed to be called only once during the lifetime of your application. This call happens at some point before the first instance of the class is created or before any static members (fields or methods) of the class are referenced. The exact timing is determined by the runtime, but the &quot;before first use&quot; guarantee is what matters.</li>
     </ul>
-    <h3>When to Use: &amp; Real-World Examples</h3>
+    <h3 id="sec-8-lec-2-static-constructor-introduction-when-to-use">When to Use: &amp; Real-World Examples</h3>
     <ul>
       <li><strong>Initializing Complex Static Fields:</strong> If a static field needs some logic to get its initial value (e.g., reading from a configuration file, getting a value from the operating system), you do this in the static constructor.</li>
       <li><strong>Setting up Singleton Instances:</strong> In the Singleton design pattern, the static constructor is the perfect place to create the single, shared instance of the class.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-8-lec-2-static-constructor-introduction-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -536,7 +536,7 @@ Car myCar = new Car(&quot;Ford Mustang&quot;, &quot;Red&quot;, 2023);</code></pr
           Copy
         </button>
       </div>
-      <pre><code>public class AppConfig
+      <pre><code class="language-csharp">public class AppConfig
 {
     // A static field to hold a configuration value.
     public static readonly string LogFilePath;
@@ -567,10 +567,10 @@ Console.WriteLine(&quot;Program starting...&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(&quot;Program finished.&quot;);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(&quot;Program finished.&quot;);</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-8-lec-2-static-constructor-introduction-output">Output</h3>
 <p>Program starting... --- Static Constructor Called: Initializing App Settings --- Logging to C:\logs\application.log: First log message. Logging to C:\logs\application.log: Second log message. Program finished.</p>
 
     <h2 id="sec-8-lec-3-types-of-constructor-introduction">Lecture 3: Types of Constructor Introduction</h2>
@@ -590,7 +590,7 @@ Console.WriteLine(&quot;Program starting...&quot;);</code></pre>
       <li><strong>What it is:</strong> This is a common programming pattern, not a special C# feature. It's a parameterized constructor that takes another object of the same class as its parameter.</li>
       <li><strong>Its Job:</strong> To create a new object by copying the values from the existing object, creating a duplicate.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-8-lec-3-types-of-constructor-introduction-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -600,7 +600,7 @@ Console.WriteLine(&quot;Program starting...&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Car
+      <pre><code class="language-csharp">public class Car
 {
     public string Model;
     // ... other fields
@@ -625,16 +625,16 @@ Car originalCar = new Car(&quot;Mustang&quot;);</code></pre>
     </ul>
 
     <h2 id="sec-8-lec-4-constructor-overloading">Lecture 4: Constructor Overloading</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-8-lec-4-constructor-overloading-introduction">Introduction</h3>
 <p>, a different number or type of parameters). This provides flexibility, allowing an object to be created in several different ways depending on the information the caller has available. Why and When to Use It Use constructor overloading to provide convenient ways to create an object. For</p>
-    <h3>example</h3>
+    <h3 id="sec-8-lec-4-constructor-overloading-example">example</h3>
 <p>, you might create a User object:</p>
     <ul>
       <li>With just an email address (and generate a default username).</li>
       <li>With an email and a username.</li>
       <li>With an email, username, and a specific ID. Instead of forcing the user to pass null or default values, you provide a dedicated constructor for each common scenario. Constructor Chaining with : this(...) A critical best practice when overloading constructors is to avoid duplicating initialization logic. If you have three constructors that all set the name field, and you later need to change how name is processed, you'd have to update three places. To solve this, you use constructor chaining. The : this(...) syntax allows one constructor to call another constructor in the same class. The best practice is to have one &quot;master&quot; constructor that does all the real work, and have the simpler constructors call it, providing default values for the parameters they don't have.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-8-lec-4-constructor-overloading-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -644,7 +644,7 @@ Car originalCar = new Car(&quot;Mustang&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class User
+      <pre><code class="language-csharp">public class User
 {
     private string _username;
     private string _email;
@@ -672,13 +672,13 @@ Car originalCar = new Car(&quot;Mustang&quot;);</code></pre>
 User user1 = new User(&quot;alice&quot;, &quot;alice@example.com&quot;);</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-8-lec-4-constructor-overloading-output">Output</h3>
 <p>Master three-parameter constructor called. Two-parameter constructor called.</p>
 
     <h2 id="sec-8-lec-5-object-initializer">Lecture 5: Object Initializer</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-8-lec-5-object-initializer-introduction">Introduction</h3>
 <p>Object initializers are a feature introduced in C# 3.0 that provides a concise, readable, and flexible syntax for creating an object and setting its public properties or fields at the same time.</p>
-    <h3>How It Works: Syntactic Sugar</h3>
+    <h3 id="sec-8-lec-5-object-initializer-how-it-works">How It Works: Syntactic Sugar</h3>
 <p>The object initializer syntax is syntactic sugar. This means it doesn't introduce new functionality but provides a cleaner way to write code. R.</p>
 <p>Tolkien&quot; }; The C# compiler translates this behind the scenes into the following equivalent code: C# Book myBook = new Book(); // 1. First, the parameterless constructor is called. Title = &quot;The Hobbit&quot;; // 2.</p>
 <p>Then, a separate assignment for each property. R. Tolkien&quot;; Because the compiler must call the parameterless constructor first, a class must have an accessible parameterless constructor (either the automatic default one or one you've written explicitly) to be used with object initializer syntax. Why and When to Use It</p>
@@ -686,7 +686,7 @@ User user1 = new User(&quot;alice&quot;, &quot;alice@example.com&quot;);</code><
       <li><strong>Flexibility:</strong> It's perfect for creating objects when you don't want to create a specific constructor for every possible combination of properties you might want to set.</li>
       <li><strong>Readability:</strong> It creates highly readable, declarative code, especially when creating Data Transfer Objects (DTOs) or model objects.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-8-lec-5-object-initializer-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -696,7 +696,7 @@ User user1 = new User(&quot;alice&quot;, &quot;alice@example.com&quot;);</code><
           Copy
         </button>
       </div>
-      <pre><code>public class Book
+      <pre><code class="language-csharp">public class Book
 {
     public string Title { get; set; }
     public string Author { get; set; }
@@ -731,10 +731,22 @@ Book book2 = new Book
     <ul>
       <li>Object Initializers Require a Parameterless Constructor: Remember that object initializer syntax (new Book { ... }) is syntactic sugar that first calls the parameterless constructor and then sets the properties. If your class does not have an accessible parameterless constructor, you cannot use this</li>
     </ul>
-    <h3>syntax</h3>
+    <h3 id="sec-8-lec-6-imp-points-to-remember-syntax">syntax</h3>
 <p>.</p>
 
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="8" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -764,28 +776,92 @@ Book book2 = new Book
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-8-lec-1-instance-constructors" class="toc-link">Lecture 1: Instance Constructors</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-1-instance-constructors-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-1-instance-constructors-how-it-works" class="toc-link">How It Works: Syntax and Execution </a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-1-instance-constructors-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-8-lec-2-static-constructor-introduction" class="toc-link">Lecture 2: Static Constructor Introduction</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-2-static-constructor-introduction-how-it-works" class="toc-link">How It Works: &amp; Rules</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-2-static-constructor-introduction-when-to-use" class="toc-link">When to Use: &amp; Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-2-static-constructor-introduction-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-2-static-constructor-introduction-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-8-lec-3-types-of-constructor-introduction" class="toc-link">Lecture 3: Types of Constructor Introduction</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-3-types-of-constructor-introduction-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-8-lec-4-constructor-overloading" class="toc-link">Lecture 4: Constructor Overloading</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-4-constructor-overloading-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-4-constructor-overloading-example" class="toc-link">example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-4-constructor-overloading-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-4-constructor-overloading-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-8-lec-5-object-initializer" class="toc-link">Lecture 5: Object Initializer</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-5-object-initializer-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-5-object-initializer-how-it-works" class="toc-link">How It Works: Syntactic Sugar</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-5-object-initializer-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-8-lec-6-imp-points-to-remember" class="toc-link">Lecture 6: IMP Points to Remember</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-8-lec-6-imp-points-to-remember-syntax" class="toc-link">syntax</a>
       </li>
     
       </ul>
@@ -796,6 +872,7 @@ Book book2 = new Book
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

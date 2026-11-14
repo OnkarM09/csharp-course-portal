@@ -446,7 +446,7 @@
       <article class="docs-content">
         
     <h2 id="sec-15-lec-1-overview-of-system-object-class">Lecture 1: Overview of System.Object class</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-15-lec-1-overview-of-system-object-class-introduction">Introduction</h3>
 <p>Object (or its C# alias, object) is the most important class. It is the ultimate base class, the universal ancestor from which every single type in C# implicitly derives. Object.</p>
 <p>This design choice is the foundation of C#'s powerful and unified type system. Internal Class Hierarchy and Design The hierarchy ensures that every type shares a common foundation. Here's how it's structured:</p>
     <ul>
@@ -465,7 +465,7 @@
     </ul>
 
     <h2 id="sec-15-lec-2-understanding-and-overriding-methods-of-objec">Lecture 2: Understanding and Overriding Methods of Object class</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-15-lec-2-understanding-and-overriding-methods-of-objec-introduction">Introduction</h3>
 <p>Object, it also inherits its public and protected instance methods. These methods provide foundational behavior, but their default implementations are often too generic. To make your classes behave intelligently, you will frequently override these methods to provide your own custom logic. The Four Important Instance Methods</p>
     <ol>
       <li>ToString()</li>
@@ -474,7 +474,7 @@
       <li><strong>Default Behavior:</strong> The default implementation of ToString() is not very useful. It simply returns a string containing the fully qualified name of the type (e.g., &quot;MyProject.Person&quot;).</li>
       <li><strong>Overriding (virtual):</strong> This method is marked as virtual, meaning it is designed to be overridden. You should override ToString() in your classes to provide a meaningful, human-readable string representation of the object's current state. This is invaluable for logging and debugging.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-15-lec-2-understanding-and-overriding-methods-of-objec-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -484,7 +484,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public class Car
+      <pre><code class="language-csharp">public class Car
 {
     public string Model { get; set; }
     public int Year { get; set; }
@@ -517,7 +517,7 @@ Console.WriteLine(myCar.ToString()); // Output: 2023 Mustang</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Point
+      <pre><code class="language-csharp">public class Point
 {
     public int X { get; set; }
     public int Y { get; set; }
@@ -563,7 +563,7 @@ Console.WriteLine(p1.Equals(p3)); // Output: False</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Point // Continuing from above
+      <pre><code class="language-csharp">public class Point // Continuing from above
 {
     // ... X and Y properties and Equals method ... public override int GetHashCode()
     {
@@ -580,7 +580,7 @@ Console.WriteLine(p1.Equals(p3)); // Output: False</code></pre>
       <li><strong>Behavior:</strong> This method is not virtual and cannot be overridden. It always returns a Type object containing detailed metadata about the object's exact runtime type.</li>
       <li><strong>When to Use It:</strong> When you need to inspect an object's type at runtime, often for reflection (a more advanced topic).</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-15-lec-2-understanding-and-overriding-methods-of-objec-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -590,16 +590,16 @@ Console.WriteLine(p1.Equals(p3)); // Output: False</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Car myCar = new Car { Model = &quot;Mustang&quot;, Year = 2023 };
+      <pre><code class="language-csharp">Car myCar = new Car { Model = &quot;Mustang&quot;, Year = 2023 };
 Type carType = myCar.GetType();
 Console.WriteLine($&quot;The object is of type: {carType.FullName}&quot;);</code></pre>
     </div>
   
 
     <h2 id="sec-15-lec-3-boxing">Lecture 3: Boxing</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-15-lec-3-boxing-introduction">Introduction</h3>
 <p>Boxing is the process of converting a value type instance (like an int, double, or a custom struct) into a reference type (object or an interface it implements). This allows value types, which normally live on the fast stack, to be treated like objects and stored on the heap, enabling them to be used in collections or methods that expect an object.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-15-lec-3-boxing-how-it-works">How It Works</h3>
 <p>The Internal Mechanics When a value type is boxed, the .NET runtime performs these steps behind the scenes:</p>
     <ol>
       <li><strong>Memory Allocation:</strong> A small amount of memory is allocated on the heap. This memory block will act as the &quot;box.&quot;</li>
@@ -608,7 +608,7 @@ Console.WriteLine($&quot;The object is of type: {carType.FullName}&quot;);</code
       <li>The memory allocation on the heap is significantly slower than stack allocation.</li>
       <li>The newly created box object on the heap puts pressure on the Garbage Collector (GC), which will eventually have to clean it up.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-15-lec-3-boxing-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -618,7 +618,7 @@ Console.WriteLine($&quot;The object is of type: {carType.FullName}&quot;);</code
           Copy
         </button>
       </div>
-      <pre><code>// 1. 'i' is a value type, living on the stack.
+      <pre><code class="language-csharp">// 1. 'i' is a value type, living on the stack.
 int i = 123;
 // 2. 'o' is a reference type variable.
 // When 'i' is assigned to 'o', boxing occurs.
@@ -634,17 +634,17 @@ System.Collections.ArrayList list = new System.Collections.ArrayList();</code></
 <p>list.Add(456); // Boxing occurs here! 456 is put in a box on the heap.</p>
 
     <h2 id="sec-15-lec-4-unboxing">Lecture 4: Unboxing</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-15-lec-4-unboxing-introduction">Introduction</h3>
 <p>Unboxing is the reverse process of boxing. It is the explicit conversion of an object reference (that points to a boxed value type) back into its original value type.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-15-lec-4-unboxing-how-it-works">How It Works</h3>
 <p>The Internal Mechanics Unboxing is also a multi-step, potentially costly operation:</p>
     <ol>
       <li><strong>Type Check:</strong> The runtime first checks if the object being unboxed is actually a boxed instance of the exact target value type. If the object is null or is a boxed value of a different type, an InvalidCastException is thrown.</li>
       <li><strong>Value Copy:</strong> If the type check passes, the value is copied from the box on the heap back into a new value type variable, which is allocated on the stack.</li>
     </ol>
-    <h3>Syntax</h3>
+    <h3 id="sec-15-lec-4-unboxing-syntax">Syntax</h3>
 <p>Unboxing is an explicit conversion and requires a cast. Performance Implications Unboxing also has a performance cost due to the type checking and the memory copy operation, though it is generally slightly cheaper than boxing as it doesn't involve heap allocation.</p>
-    <h3>Example</h3>
+    <h3 id="sec-15-lec-4-unboxing-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -654,7 +654,7 @@ System.Collections.ArrayList list = new System.Collections.ArrayList();</code></
           Copy
         </button>
       </div>
-      <pre><code>// Start with a boxed integer.
+      <pre><code class="language-csharp">// Start with a boxed integer.
 object o = 123;
 // To get the value back, we must explicitly cast it. This is unboxing.
 int j = (int)o;
@@ -675,7 +675,7 @@ Console.WriteLine($&quot;Unboxed value: {j}&quot;);
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // This will FAIL. You cannot unbox to a different type, even if
     // the conversion would normally be safe (like int to long).
     // You must unbox to the exact original type first.
@@ -700,6 +700,18 @@ catch (InvalidCastException ex)
     </ul>
 
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="15" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -729,23 +741,67 @@ catch (InvalidCastException ex)
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-15-lec-1-overview-of-system-object-class" class="toc-link">Lecture 1: Overview of System.Object class</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-15-lec-1-overview-of-system-object-class-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-15-lec-2-understanding-and-overriding-methods-of-objec" class="toc-link">Lecture 2: Understanding and Overriding Methods </a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-15-lec-2-understanding-and-overriding-methods-of-objec-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-15-lec-2-understanding-and-overriding-methods-of-objec-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-15-lec-2-understanding-and-overriding-methods-of-objec-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-15-lec-3-boxing" class="toc-link">Lecture 3: Boxing</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-15-lec-3-boxing-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-15-lec-3-boxing-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-15-lec-3-boxing-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-15-lec-4-unboxing" class="toc-link">Lecture 4: Unboxing</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-15-lec-4-unboxing-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-15-lec-4-unboxing-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-15-lec-4-unboxing-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-15-lec-4-unboxing-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-15-lec-5-imp-points-to-remember" class="toc-link">Lecture 5: IMP Points to Remember</a>
       </li>
     
@@ -757,6 +813,7 @@ catch (InvalidCastException ex)
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

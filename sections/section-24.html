@@ -446,15 +446,15 @@
       <article class="docs-content">
         
     <h2 id="sec-24-lec-1-tuple-class">Lecture 1: Tuple class</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-24-lec-1-tuple-class-introduction">Introduction</h3>
 <p>The System.Tuple class was the original way of creating tuples in the .NET Framework, before modern language improvements. A tuple is a data structure that holds a specific number and sequence of elements of potentially different types. It's a simple way to group a small, fixed set of related data points together without needing to create a custom class.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-24-lec-1-tuple-class-how-it-works">How It Works</h3>
 <p>Tuple is a reference type (a class). This means when you create a Tuple, memory is allocated on the heap, which can be less performant than stack allocation for small data structures. The elements within a Tuple are accessed through read-only properties with generic, non-descriptive names: Item1, Item2, Item3, and so on. Tuple class has two significant drawbacks that have led to it being almost entirely replaced by the modern ValueTuple.</p>
     <ol>
       <li><strong>Poor Performance:</strong> Being a class, it requires heap allocation and can create pressure on the garbage collector.</li>
       <li><strong>Poor Readability:</strong> The property names Item1, Item2, etc., provide no semantic meaning. When you read product.Item1, you have no idea what that data represents without looking up the original declaration.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-24-lec-1-tuple-class-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -464,7 +464,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// Creating an instance of the Tuple class.
+      <pre><code class="language-csharp">// Creating an instance of the Tuple class.
 Tuple&lt;string, int, decimal&gt; product = new Tuple&lt;string, int,
 decimal&gt;(&quot;Laptop&quot;, 15, 1299.99M);
 // Accessing elements is verbose and not very readable.
@@ -477,21 +477,21 @@ Console.WriteLine($&quot;Product: {productName}, Quantity: {quantity}, Price:
   
 
     <h2 id="sec-24-lec-2-value-tuples">Lecture 2: Value Tuples</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-24-lec-2-value-tuples-introduction">Introduction</h3>
 <p>Value Tuples, introduced in C# 7.0, are the modern, lightweight, and preferred way to work with tuples. They were designed specifically to overcome the performance and readability limitations of the System.Tuple class.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-24-lec-2-value-tuples-how-it-works">How It Works</h3>
 <p>The most crucial difference is that a value tuple is a value type (a struct). This makes it far more efficient for temporary data grouping, as it is typically allocated on the stack, avoiding heap allocation and garbage collection overhead.</p>
-    <h3>Syntax: and Features</h3>
+    <h3 id="sec-24-lec-2-value-tuples-syntax">Syntax: and Features</h3>
     <ul>
       <li><strong>Literal Syntax:</strong> You create a value tuple using a simple and clean literal</li>
     </ul>
-    <h3>syntax</h3>
+    <h3 id="sec-24-lec-2-value-tuples-syntax">syntax</h3>
 <p>with parentheses.</p>
     <ul>
       <li><strong>Named Elements:</strong> This is their biggest advantage. You can give meaningful names to the elements, which dramatically improves code readability. These names are available through IntelliSense.</li>
       <li><strong>Mutability:</strong> Unlike anonymous types, the elements of a value tuple are mutable public fields. Why and When to Use It The primary and most powerful use case for value tuples is as a return type from a method. It provides a clean and efficient way to return multiple values without the ceremony of creating a custom class or using multiple out parameters.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-24-lec-2-value-tuples-example">Example</h3>
 <p>public (string, int) GetUser() // The method's return type is a value tuple.</p>
 
     <div class="code-block-container">
@@ -502,7 +502,7 @@ Console.WriteLine($&quot;Product: {productName}, Quantity: {quantity}, Price:
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     string name = &quot;Alice&quot;;
     int age = 30;
     return (name, age);
@@ -522,9 +522,9 @@ old.&quot;);</code></pre>
   
 
     <h2 id="sec-24-lec-3-deconstructing">Lecture 3: Deconstructing</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-24-lec-3-deconstructing-introduction">Introduction</h3>
 <p>Deconstruction is the process of &quot;unpacking&quot; the elements of a tuple (or another compatible object) into separate, distinct variables. It provides a convenient syntax to get the individual components of a grouped data structure into their own clearly named local variables.</p>
-    <h3>How It Works: Syntax Variations</h3>
+    <h3 id="sec-24-lec-3-deconstructing-how-it-works">How It Works: Syntax Variations</h3>
     <ol>
       <li>Deconstructing into Newly Declared Variables: This is the most common form. You declare the types and names of the variables you want to create on the left side of the assignment. (string name, int age) = GetUser();</li>
     </ol>
@@ -537,14 +537,14 @@ old.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Deconstructed name: {name}&quot;);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Deconstructed name: {name}&quot;);</code></pre>
     </div>
   
     <ol>
       <li><strong>Deconstructing with var:</strong> You can use the var keyword for a more concise syntax. The compiler will infer the correct types for the new variables. var (name, age) = GetUser();</li>
       <li><strong>Deconstructing into Existing Variables:</strong> You can also deconstruct into variables that have already been declared. string existingName; int existingAge; (existingName, existingAge) = GetUser(); Deconstructing Other Types This feature is not limited to tuples. Any type can be made deconstructible by implementing a special Deconstruct method. For example, KeyValuePair&lt;TKey, TValue&gt; from a dictionary supports deconstruction.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-24-lec-3-deconstructing-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -554,7 +554,7 @@ old.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>var userScores = new Dictionary&lt;string, int&gt; { { &quot;Alice&quot;, 95 } };
+      <pre><code class="language-csharp">var userScores = new Dictionary&lt;string, int&gt; { { &quot;Alice&quot;, 95 } };
 // A foreach loop over a dictionary yields KeyValuePair objects.
 // We can deconstruct the KeyValuePair directly in the loop! foreach ((string name, int score) in userScores)
 {
@@ -564,12 +564,12 @@ old.&quot;);</code></pre>
   
 
     <h2 id="sec-24-lec-4-discards">Lecture 4: Discards</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-24-lec-4-discards-introduction">Introduction</h3>
 <p>A discard, represented by the underscore character _, is a special placeholder variable that you use when you are required to provide a variable but you intentionally want to ignore its value.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-24-lec-4-discards-how-it-works">How It Works</h3>
 <p>The underscore is not a real variable with a memory location. &quot; The compiler can often use this information to generate more efficient code by avoiding the allocation of memory for the discarded value. Why and When to Use It The most common use case is with deconstruction when you only care about some of the values being returned.</p>
 <p>It allows you to selectively unpack a tuple. It's also frequently used with out parameters when you call a method for its return value but don't need the out argument.</p>
-    <h3>Example</h3>
+    <h3 id="sec-24-lec-4-discards-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -579,7 +579,7 @@ old.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// This method returns three values. public (string, string, int) GetUserDetails()
+      <pre><code class="language-csharp">// This method returns three values. public (string, string, int) GetUserDetails()
 {
     return (&quot;John&quot;, &quot;Doe&quot;, 42);
 }
@@ -601,7 +601,7 @@ Console.WriteLine($&quot;{firstName} is {age} years old.&quot;);
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;The string is a valid number.&quot;);
 }</code></pre>
     </div>
@@ -617,6 +617,18 @@ Console.WriteLine($&quot;{firstName} is {age} years old.&quot;);
     </ul>
 
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="24" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -646,23 +658,79 @@ Console.WriteLine($&quot;{firstName} is {age} years old.&quot;);
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-24-lec-1-tuple-class" class="toc-link">Lecture 1: Tuple class</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-1-tuple-class-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-1-tuple-class-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-1-tuple-class-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-24-lec-2-value-tuples" class="toc-link">Lecture 2: Value Tuples</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-2-value-tuples-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-2-value-tuples-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-2-value-tuples-syntax" class="toc-link">Syntax: and Features</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-2-value-tuples-syntax" class="toc-link">syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-2-value-tuples-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-24-lec-3-deconstructing" class="toc-link">Lecture 3: Deconstructing</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-3-deconstructing-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-3-deconstructing-how-it-works" class="toc-link">How It Works: Syntax Variations</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-3-deconstructing-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-24-lec-4-discards" class="toc-link">Lecture 4: Discards</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-4-discards-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-4-discards-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-24-lec-4-discards-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-24-lec-5-imp-points-to-remember" class="toc-link">Lecture 5: IMP Points to Remember</a>
       </li>
     
@@ -674,6 +742,7 @@ Console.WriteLine($&quot;{firstName} is {age} years old.&quot;);
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

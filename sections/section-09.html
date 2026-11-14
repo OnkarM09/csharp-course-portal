@@ -446,7 +446,7 @@
       <article class="docs-content">
         
     <h2 id="sec-9-lec-1-introduction-to-properties-working-with-prope">Lecture 1: Introduction to Properties &amp; Working with Properties</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-9-lec-1-introduction-to-properties-working-with-prope-introduction">Introduction</h3>
 <p>In modern C# programming, properties are the preferred way to expose data from a class. A property is a class member that provides a flexible and controlled mechanism to read, write, or compute the value of a private field. Name = &quot;Test&quot;), but internally, it is actually a special pair of methods called accessors (get and set).</p>
 <p>This combination gives you the ease of use of a field with the power and safety of a method, perfectly embodying the principle of encapsulation. The Problem Properties Solve: The Old Way</p>
 <p>Before properties, if you wanted to protect a private field, you had to write explicit &quot;getter&quot; and &quot;setter&quot; methods. C#</p>
@@ -459,7 +459,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public class Student
+      <pre><code class="language-csharp">public class Student
 {
     private string _name; // The private data
     // &quot;Getter&quot; method public string GetName()
@@ -486,7 +486,7 @@
       <li>The get accessor is a method with no parameters that is executed when the property's value is read. It must return a value of the property's type.</li>
       <li>The set accessor is a method that is executed when a value is assigned to the property. It has an implicit parameter named value, which contains the value from the right side of the assignment operator.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-9-lec-1-introduction-to-properties-working-with-prope-example">Example</h3>
 <p>The Modern Property Syntax Let's refactor the Student class to use a property. C#</p>
 
     <div class="code-block-container">
@@ -497,7 +497,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public class Student
+      <pre><code class="language-csharp">public class Student
 {
     // 1. A private &quot;backing field&quot; to hold the data.
     private string _name;
@@ -539,7 +539,7 @@ Student student = new Student();
           Copy
         </button>
       </div>
-      <pre><code>// This read operation calls the 'get' accessor.
+      <pre><code class="language-csharp">// This read operation calls the 'get' accessor.
 string currentName = student.Name;
 Console.WriteLine(currentName); // Output: John
 // This assignment will trigger our validation logic.</code></pre>
@@ -548,17 +548,17 @@ Console.WriteLine(currentName); // Output: John
 <p>student.Name = &quot;&quot;; // Output: Error: Name cannot be null or empty.</p>
 
     <h2 id="sec-9-lec-2-read-only-properties">Lecture 2: Read-Only Properties</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-9-lec-2-read-only-properties-introduction">Introduction</h3>
 <p>A read-only property is one that can be read from outside the class but cannot be changed. This is essential for exposing data that should be immutable to the consumer of your object.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-9-lec-2-read-only-properties-how-it-works">How It Works</h3>
 <p>You can create a read-only property in several ways. The most common is by simply omitting the set accessor. This means there is no mechanism for external code to assign a value to the property.</p>
 <p>Another modern and common way is to use an expression-bodied member, which is a concise syntax using =&gt; for properties that have only a get accessor and return the result of a single expression.</p>
-    <h3>When to Use: &amp; Real-World Examples</h3>
+    <h3 id="sec-9-lec-2-read-only-properties-when-to-use">When to Use: &amp; Real-World Examples</h3>
     <ul>
       <li><strong>Computed Values:</strong> When a property's value is calculated from other data in the object. A FullName property that combines FirstName and LastName is a classic example.</li>
       <li><strong>Exposing Internal State:</strong> To allow external code to see the value of a private field without being able to change it.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-9-lec-2-read-only-properties-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -568,7 +568,7 @@ Console.WriteLine(currentName); // Output: John
           Copy
         </button>
       </div>
-      <pre><code>public class Person
+      <pre><code class="language-csharp">public class Person
 {
     private string _firstName;
     private string _lastName;
@@ -606,12 +606,12 @@ Console.WriteLine($&quot;Age: {p.Age}&quot;);
 <p>'Person.FullName' cannot be assigned to — it is read only.</p>
 
     <h2 id="sec-9-lec-3-write-only-properties">Lecture 3: Write-Only Properties</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-9-lec-3-write-only-properties-introduction">Introduction</h3>
 <p>A write-only property is the opposite of a read-only property: it can be written to from outside the class, but its value cannot be read back.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-9-lec-3-write-only-properties-how-it-works">How It Works</h3>
 <p>You create a write-only property by providing only a set accessor and omitting the get accessor. Why and When to Use It Write-only properties are extremely rare and often considered a sign of questionable design because they are counter-intuitive. An object should generally be able to report its own state.</p>
 <p>The most common (and often only valid) use case is for setting sensitive data that should never be read back, like a password. The set accessor would take the incoming password, hash it, and store the secure hash in a private field. There would be no get accessor to prevent anyone from ever reading the raw password.</p>
-    <h3>Example</h3>
+    <h3 id="sec-9-lec-3-write-only-properties-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -621,7 +621,7 @@ Console.WriteLine($&quot;Age: {p.Age}&quot;);
           Copy
         </button>
       </div>
-      <pre><code>public class PasswordManager
+      <pre><code class="language-csharp">public class PasswordManager
 {
     private string _hashedPassword;
     // This is a write-only property. public string Password
@@ -656,16 +656,16 @@ PasswordManager pm = new PasswordManager();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// The following line would cause a compiler error because there is no 'get' accessor.
+      <pre><code class="language-csharp">// The following line would cause a compiler error because there is no 'get' accessor.
 // string myPass = pm.Password; // ERROR! The property</code></pre>
     </div>
   
 <p>'PasswordManager.Password' cannot be used in this context because it lacks the get accessor.</p>
 
     <h2 id="sec-9-lec-4-auto-implemented-properties">Lecture 4: Auto-Implemented Properties</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-9-lec-4-auto-implemented-properties-introduction">Introduction</h3>
 <p>Auto-Implemented Properties, often called &quot;auto-properties,&quot; are a concise C# feature that dramatically simplifies property declaration. They are used in the common scenario where a property's get and set accessors do not need any custom logic; they simply read from and write to a backing field. This feature allows you to declare the property in a single line without having to explicitly declare the private backing field yourself.</p>
-    <h3>How It Works: Compiler Magic</h3>
+    <h3 id="sec-9-lec-4-auto-implemented-properties-how-it-works">How It Works: Compiler Magic</h3>
 <p>When you use the auto-property syntax, you are giving an instruction to the C# compiler. When you write this: C# public string Name { get; set; } The compiler automatically generates this for you behind the scenes: C# private string _name_backingField; // A hidden, private backing field with a &quot;mangled&quot; name. public string Name</p>
 
     <div class="code-block-container">
@@ -676,7 +676,7 @@ PasswordManager pm = new PasswordManager();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     get
     {
         return this._name_backingField;
@@ -689,9 +689,9 @@ PasswordManager pm = new PasswordManager();</code></pre>
     </div>
   
 <p>You never see or interact with this hidden backing field directly, but it is there, created by the compiler to store the property's value. This gives you the best of both worlds: a clean, one-line declaration in your code, with the proper encapsulated implementation generated for you.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-9-lec-4-auto-implemented-properties-when-to-use-it">When to Use It</h3>
 <p>This is now the standard and default way to create properties in C#. You should always start by creating an auto-property. Only if you later discover that you need to add validation or computation logic to the get or set accessor should you expand it to a fully implemented property with an explicit backing field.</p>
-    <h3>Example</h3>
+    <h3 id="sec-9-lec-4-auto-implemented-properties-example">Example</h3>
 <p>A Data Transfer Object (DTO) or a simple model class is a perfect use case for auto-properties, as they are typically just containers for data. C#</p>
 
     <div class="code-block-container">
@@ -702,7 +702,7 @@ PasswordManager pm = new PasswordManager();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Product
+      <pre><code class="language-csharp">public class Product
 {
     // These are all auto-properties.
     // The compiler will create hidden backing fields for each one.
@@ -723,13 +723,13 @@ Console.WriteLine($&quot;Product: {laptop.Name} (ID: {laptop.Id}) costs
   
 
     <h2 id="sec-9-lec-5-auto-implemented-property-accessor-accessibil">Lecture 5: Auto-Implemented Property Accessor Accessibility</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-9-lec-5-auto-implemented-property-accessor-accessibil-introduction">Introduction</h3>
 <p>Even when using the concise syntax of auto-properties, C# allows you to specify different access modifiers for the get and set accessors individually. This gives you fine-grained control over how a property can be read and written, allowing you to create powerful and safe data patterns.</p>
-    <h3>How It Works: &amp; Rules</h3>
+    <h3 id="sec-9-lec-5-auto-implemented-property-accessor-accessibil-how-it-works">How It Works: &amp; Rules</h3>
 <p>You can add an access modifier (private, protected, internal) directly to the get or set keyword. The key rule is that the modifier on an individual accessor must be more restrictive than the accessibility of the property itself. For example, you can have a public property with a private set, but you cannot have a private property with a public set.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-9-lec-5-auto-implemented-property-accessor-accessibil-when-to-use-it">When to Use It</h3>
 <p>The private set Pattern The most common and powerful use case for this feature is creating a property with a public getter and a private setter. C# public int Id { get; private set; } This pattern creates a property that is read-only to the outside world, but can still be set from code within the class itself. This is the modern, preferred way to create fields that should be set once (typically in the constructor) and then remain immutable from an external perspective for the lifetime of the object.</p>
-    <h3>Example</h3>
+    <h3 id="sec-9-lec-5-auto-implemented-property-accessor-accessibil-example">Example</h3>
 <p>Let's refactor our Product class. A product's ID should never change after it has been created. C#</p>
 
     <div class="code-block-container">
@@ -740,7 +740,7 @@ Console.WriteLine($&quot;Product: {laptop.Name} (ID: {laptop.Id}) costs
           Copy
         </button>
       </div>
-      <pre><code>public class Product
+      <pre><code class="language-csharp">public class Product
 {
     // This property can be read by anyone...
     public int Id { get; private set; } // ...but can only be set by code inside
@@ -792,13 +792,13 @@ Console.WriteLine($&quot;Created product with ID: {phone.Id}&quot;);
   
 
     <h2 id="sec-9-lec-6-auto-implemented-property-initializers">Lecture 6: Auto-Implemented Property Initializers</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-9-lec-6-auto-implemented-property-initializers-introduction">Introduction</h3>
 <p>This is a modern C# feature (introduced in C# 6.0) that allows you to provide a default value for an auto-implemented property directly at the point of its declaration. This makes code more concise and readable by removing the need to set default values inside the constructor.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-9-lec-6-auto-implemented-property-initializers-how-it-works">How It Works</h3>
 <p>It's syntactic sugar. When you write public string Status { get; set; } = &quot;Active&quot;;, the compiler ensures that when a new object of this class is created, the hidden backing field for the Status property will be initialized with the value &quot;Active&quot;. This happens before the constructor runs, making it a reliable way to set default states.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-9-lec-6-auto-implemented-property-initializers-when-to-use-it">When to Use It</h3>
 <p>Use auto-property initializers anytime you want a property to have a sensible default value other than the system defaults (0, false, null). This makes your objects more robust and predictable from the moment they are created.</p>
-    <h3>Example</h3>
+    <h3 id="sec-9-lec-6-auto-implemented-property-initializers-example">Example</h3>
 <p>Consider a Customer class where new customers should have a default status and join date. C#</p>
 
     <div class="code-block-container">
@@ -809,7 +809,7 @@ Console.WriteLine($&quot;Created product with ID: {phone.Id}&quot;);
           Copy
         </button>
       </div>
-      <pre><code>public class Customer
+      <pre><code class="language-csharp">public class Customer
 {
     public int Id { get; private set; }
     // Auto-property initializer sets a default value.
@@ -832,11 +832,11 @@ Console.WriteLine($&quot;Status: {newCustomer.Status}&quot;); // Output: Active
 Console.WriteLine($&quot;Member Since: {newCustomer.MemberSince}&quot;); //</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-9-lec-6-auto-implemented-property-initializers-output">Output</h3>
 <p>The current date/time</p>
 
     <h2 id="sec-9-lec-7-imp-points-to-remember-about-properties">Lecture 7: IMP Points to Remember about Properties</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-9-lec-7-imp-points-to-remember-about-properties-introduction">Introduction</h3>
 <p>This lecture consolidates the most critical, practical, and interview-worthy points about working with properties.</p>
     <ol>
       <li>Properties are Methods in Disguise This is the most fundamental concept to understand. A property is not a direct variable; it is syntactic sugar over one or two methods (get and/or set). Understanding this explains why you can add logic to them and control their accessibility. An interviewer might ask &quot;What is the difference between a public field and a public property?&quot; The answer is that a property provides a layer of abstraction and control through its accessors, while a public field offers no protection or logic whatsoever.</li>
@@ -855,9 +855,9 @@ Console.WriteLine($&quot;Member Since: {newCustomer.MemberSince}&quot;); //</cod
     </ul>
 
     <h2 id="sec-9-lec-8-intro-to-indexers-working-with-indexers">Lecture 8: Intro to Indexers &amp; Working with Indexers</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-9-lec-8-intro-to-indexers-working-with-indexers-introduction">Introduction</h3>
 <p>An indexer is a special type of class member that allows an object of your class to be accessed using the familiar square bracket [] notation, just like an array or a dictionary. Its purpose is to provide a more natural and intuitive syntax for accessing elements when your class logically represents a collection or list of items. Instead of writing myTeam.GetPlayer(0), an indexer allows you to write the much cleaner myTeam[0].</p>
-    <h3>How It Works: Syntax and Mechanics</h3>
+    <h3 id="sec-9-lec-8-intro-to-indexers-working-with-indexers-how-it-works">How It Works: Syntax and Mechanics</h3>
 <p>An indexer looks very similar to a property, but with two key differences:</p>
     <ol>
       <li>It is declared using the this keyword as its name.</li>
@@ -867,9 +867,9 @@ Console.WriteLine($&quot;Member Since: {newCustomer.MemberSince}&quot;); //</cod
       <li>The get accessor is executed when you read from the indexer (e.g., var player = myTeam[0];). The index value (0) is passed into the indexer's parameter.</li>
       <li>The set accessor is executed when you assign a value to the indexer (e.g., myTeam[0] = &quot;New Player&quot;;). It receives both the index value (0) and the assigned value (in the implicit value keyword).</li>
     </ul>
-    <h3>When to Use It</h3>
+    <h3 id="sec-9-lec-8-intro-to-indexers-working-with-indexers-when-to-use-it">When to Use It</h3>
 <p>You should implement an indexer when the primary purpose of your class is to encapsulate and manage an internal collection (like an array, list, or dictionary). It provides a simplified &quot;front-end&quot; for a more complex &quot;back-end&quot; storage mechanism.</p>
-    <h3>Example</h3>
+    <h3 id="sec-9-lec-8-intro-to-indexers-working-with-indexers-example">Example</h3>
 <p>Let's create a Team class that internally stores player names in a List&lt;string&gt;. We will expose access to this list through an indexer, adding our own bounds- checking logic for safety. C#</p>
 
     <div class="code-block-container">
@@ -880,7 +880,7 @@ Console.WriteLine($&quot;Member Since: {newCustomer.MemberSince}&quot;); //</cod
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 using System.Collections.Generic;
 public class Team
 {
@@ -930,16 +930,16 @@ Alicia
 Console.WriteLine($&quot;Player at index 5 is: {myTeam[5] ?? &quot;Not Found&quot;}&quot;); //</code></pre>
     </div>
   
-    <h3>Output: Not Found</h3>
+    <h3 id="sec-9-lec-8-intro-to-indexers-working-with-indexers-output">Output: Not Found</h3>
 
     <h2 id="sec-9-lec-9-indexer-overloading">Lecture 9: Indexer Overloading</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-9-lec-9-indexer-overloading-introduction">Introduction</h3>
 <p>Just like methods, indexers can be overloaded. This means you can declare multiple indexers in the same class, as long as their signatures are different. The signature of an indexer is determined by the number and/or type of its parameters (the values inside the square brackets).</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-9-lec-9-indexer-overloading-how-it-works">How It Works</h3>
 <p>The C# compiler determines which indexer to call based on the data type of the index you provide in the square brackets. This allows you to provide multiple, intuitive ways to look up data in your encapsulated collection. For example, you can have one indexer to look up an item by its integer position and another to look up the same item by its string name or key.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-9-lec-9-indexer-overloading-when-to-use-it">When to Use It</h3>
 <p>Indexer overloading is perfect for classes that represent more complex collections where items can be identified in multiple ways. A common pattern is to have an int indexer for positional access and a string indexer for key-based lookup, making the class behave like both an array and a dictionary.</p>
-    <h3>Example</h3>
+    <h3 id="sec-9-lec-9-indexer-overloading-example">Example</h3>
 <p>Let's enhance our Team class. Instead of just storing names, it will now store Player objects. We will provide an int indexer to get a player by their position and a string indexer to look up a player by their name. C#</p>
 
     <div class="code-block-container">
@@ -950,7 +950,7 @@ Console.WriteLine($&quot;Player at index 5 is: {myTeam[5] ?? &quot;Not Found&quo
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 using System.Collections.Generic;
 using System.Linq;
 public class Player
@@ -1003,7 +1003,7 @@ Console.WriteLine($&quot;Is Charlie on the team? {charlie == null}&quot;);</code
   
 
     <h2 id="sec-9-lec-10-imp-points-to-remember-about-properties-index">Lecture 10: IMP Points to Remember about Properties &amp; Indexers</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-9-lec-10-imp-points-to-remember-about-properties-index-introduction">Introduction</h3>
 <p>This lecture consolidates the most critical, practical, and interview-worthy points about both properties and indexers.</p>
     <ol>
       <li>Properties are Methods in Disguise This is the most fundamental concept. A property is not a direct variable; it is syntactic sugar over one or two methods (get and/or set). This explains why you can add logic to them, control their accessibility, and why they are central to encapsulation.</li>
@@ -1019,6 +1019,18 @@ Console.WriteLine($&quot;Is Charlie on the team? {charlie == null}&quot;);</code
     </ul>
 
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="9" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -1048,44 +1060,176 @@ Console.WriteLine($&quot;Is Charlie on the team? {charlie == null}&quot;);</code
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-9-lec-1-introduction-to-properties-working-with-prope" class="toc-link">Lecture 1: Introduction to Properties &amp; Working </a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-1-introduction-to-properties-working-with-prope-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-1-introduction-to-properties-working-with-prope-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-9-lec-2-read-only-properties" class="toc-link">Lecture 2: Read-Only Properties</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-2-read-only-properties-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-2-read-only-properties-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-2-read-only-properties-when-to-use" class="toc-link">When to Use: &amp; Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-2-read-only-properties-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-9-lec-3-write-only-properties" class="toc-link">Lecture 3: Write-Only Properties</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-3-write-only-properties-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-3-write-only-properties-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-3-write-only-properties-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-9-lec-4-auto-implemented-properties" class="toc-link">Lecture 4: Auto-Implemented Properties</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-4-auto-implemented-properties-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-4-auto-implemented-properties-how-it-works" class="toc-link">How It Works: Compiler Magic</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-4-auto-implemented-properties-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-4-auto-implemented-properties-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-9-lec-5-auto-implemented-property-accessor-accessibil" class="toc-link">Lecture 5: Auto-Implemented Property Accessor Ac</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-5-auto-implemented-property-accessor-accessibil-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-5-auto-implemented-property-accessor-accessibil-how-it-works" class="toc-link">How It Works: &amp; Rules</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-5-auto-implemented-property-accessor-accessibil-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-5-auto-implemented-property-accessor-accessibil-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-9-lec-6-auto-implemented-property-initializers" class="toc-link">Lecture 6: Auto-Implemented Property Initializer</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-6-auto-implemented-property-initializers-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-6-auto-implemented-property-initializers-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-6-auto-implemented-property-initializers-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-6-auto-implemented-property-initializers-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-6-auto-implemented-property-initializers-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-9-lec-7-imp-points-to-remember-about-properties" class="toc-link">Lecture 7: IMP Points to Remember about Properti</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-7-imp-points-to-remember-about-properties-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-9-lec-8-intro-to-indexers-working-with-indexers" class="toc-link">Lecture 8: Intro to Indexers &amp; Working with Inde</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-8-intro-to-indexers-working-with-indexers-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-8-intro-to-indexers-working-with-indexers-how-it-works" class="toc-link">How It Works: Syntax and Mechanics</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-8-intro-to-indexers-working-with-indexers-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-8-intro-to-indexers-working-with-indexers-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-8-intro-to-indexers-working-with-indexers-output" class="toc-link">Output: Not Found</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-9-lec-9-indexer-overloading" class="toc-link">Lecture 9: Indexer Overloading</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-9-indexer-overloading-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-9-indexer-overloading-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-9-indexer-overloading-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-9-indexer-overloading-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-9-lec-10-imp-points-to-remember-about-properties-index" class="toc-link">Lecture 10: IMP Points to Remember about Propert</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-9-lec-10-imp-points-to-remember-about-properties-index-introduction" class="toc-link">Introduction</a>
       </li>
     
       </ul>
@@ -1096,6 +1240,7 @@ Console.WriteLine($&quot;Is Charlie on the team? {charlie == null}&quot;);</code
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

@@ -446,16 +446,16 @@
       <article class="docs-content">
         
     <h2 id="sec-16-lec-1-generic-classes">Lecture 1: Generic Classes</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-16-lec-1-generic-classes-introduction">Introduction</h3>
 <p>Generics are one of the most powerful and important features of the C# language. They allow you to design classes, interfaces, and methods with a placeholder for a data type (T). This placeholder is specified later by the developer who uses your code, allowing them to create type-safe and high-performance data structures without sacrificing reusability.</p>
 <p>To understand why generics are so crucial, we must look at the problem they solved. Object. For example, the old ArrayList stored everything as an object. This caused two major problems:</p>
     <ol>
       <li><strong>Lack of Type Safety:</strong> You could add any type of data to an ArrayList. You could add an integer, then a string, then a Car object. When you later retrieved an item, you had to perform an explicit cast and hope it was the correct type. This often led to InvalidCastException errors at run-time.</li>
       <li><strong>Poor Performance (Boxing):</strong> When you added a value type (like an int or double) to an ArrayList, it had to be boxed (wrapped in an object on the heap). When you retrieved it, it had to be unboxed. As we learned, these operations are computationally expensive and create pressure on the garbage collector. Generics solve both of these problems elegantly.</li>
     </ol>
-    <h3>How It Works</h3>
+    <h3 id="sec-16-lec-1-generic-classes-how-it-works">How It Works</h3>
 <p>Type Parameters and JIT Specialization You create a generic class by adding a type parameter in angle brackets after the class name. The letter T is a conventional placeholder for &quot;Type&quot;.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-16-lec-1-generic-classes-syntax">Syntax</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -465,7 +465,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public class MyList&lt;T&gt; { ... }</code></pre>
+      <pre><code class="language-csharp">public class MyList&lt;T&gt; { ... }</code></pre>
     </div>
   
 <p>When a developer uses your generic class, they specify a concrete type, creating what is called a closed generic type: MyList&lt;int&gt; or MyList&lt;string&gt;. The .NET Just-In-Time (JIT) compiler then performs a specialization process:</p>
@@ -473,7 +473,7 @@
       <li>For value types (like int, double, struct), the JIT compiler creates a brand new, highly optimized version of the class specifically for that value type. MyList&lt;int&gt; becomes a class where T is replaced with int everywhere, completely avoiding any boxing or unboxing.</li>
       <li>For reference types (string, Car, etc.), the JIT is able to reuse a single underlying implementation for all of them, because all references are the same size.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-16-lec-1-generic-classes-example">Example</h3>
 <p>A Reusable Repository Let's create a simple generic Repository&lt;T&gt; class that can store and retrieve any type of data entity. C#</p>
 
     <div class="code-block-container">
@@ -484,7 +484,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// 'T' is a placeholder for whatever type we want this repository to handle. public class Repository&lt;T&gt;
+      <pre><code class="language-csharp">// 'T' is a placeholder for whatever type we want this repository to handle. public class Repository&lt;T&gt;
 {
     private List&lt;T&gt; _items = new List&lt;T&gt;();
     public void Add(T item)
@@ -511,11 +511,11 @@ productRepo.Add(new Product { Sku = &quot;XYZ-123&quot; });
   
 
     <h2 id="sec-16-lec-2-multiple-generic-parameters">Lecture 2: Multiple Generic Parameters</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-16-lec-2-multiple-generic-parameters-introduction">Introduction</h3>
 <p>A generic class or method is not limited to a single type parameter. You can define multiple placeholders for different types when your class needs to work with a combination of them.</p>
-    <h3>How It Works: Comma-Separated Type Parameters</h3>
+    <h3 id="sec-16-lec-2-multiple-generic-parameters-how-it-works">How It Works: Comma-Separated Type Parameters</h3>
 <p>You declare multiple type parameters by listing them inside the angle brackets, separated by commas. By convention, the letters T, U, V are often used, or more descriptive names like TKey and TValue.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-16-lec-2-multiple-generic-parameters-syntax">Syntax</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -525,11 +525,11 @@ productRepo.Add(new Product { Sku = &quot;XYZ-123&quot; });
           Copy
         </button>
       </div>
-      <pre><code>public class MyClass&lt;T, U&gt; { ... }</code></pre>
+      <pre><code class="language-csharp">public class MyClass&lt;T, U&gt; { ... }</code></pre>
     </div>
   
 <p>Why and When to Use It Use multiple generic parameters when you are creating a class that naturally pairs or relates two or more different and potentially unrelated types. The most famous</p>
-    <h3>example</h3>
+    <h3 id="sec-16-lec-2-multiple-generic-parameters-example">example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -539,11 +539,11 @@ productRepo.Add(new Product { Sku = &quot;XYZ-123&quot; });
           Copy
         </button>
       </div>
-      <pre><code>in the .NET framework is Dictionary&lt;TKey, TValue&gt;, which needs one</code></pre>
+      <pre><code class="language-csharp">in the .NET framework is Dictionary&lt;TKey, TValue&gt;, which needs one</code></pre>
     </div>
   
 <p>generic type for its keys and another for its values.</p>
-    <h3>Example</h3>
+    <h3 id="sec-16-lec-2-multiple-generic-parameters-example">Example</h3>
 <p>A Simple Pair Class Let's create a generic Pair class that can hold any two items together. C#</p>
 
     <div class="code-block-container">
@@ -554,7 +554,7 @@ productRepo.Add(new Product { Sku = &quot;XYZ-123&quot; });
           Copy
         </button>
       </div>
-      <pre><code>// This class uses two type parameters, TFirst and TSecond. public class Pair&lt;TFirst, TSecond&gt;
+      <pre><code class="language-csharp">// This class uses two type parameters, TFirst and TSecond. public class Pair&lt;TFirst, TSecond&gt;
 {
     public TFirst First { get; set; }
     public TSecond Second { get; set; }
@@ -579,12 +579,12 @@ Console.WriteLine($&quot;Employee: {employeeAndSalary.First.Name}, Salary:
   
 
     <h2 id="sec-16-lec-3-generic-constraints">Lecture 3: Generic Constraints</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-16-lec-3-generic-constraints-introduction">Introduction</h3>
 <p>Constraints are rules that you apply to a generic type parameter to restrict the types that can be used with your generic class or method. Object. ).</p>
 <p>Constraints give the compiler more information about the capabilities of T, allowing you to call specific methods or access specific properties on it.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-16-lec-3-generic-constraints-how-it-works">How It Works</h3>
 <p>The where Clause You apply constraints using the where keyword after the generic type parameter list.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-16-lec-3-generic-constraints-syntax">Syntax</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -594,7 +594,7 @@ Console.WriteLine($&quot;Employee: {employeeAndSalary.First.Name}, Salary:
           Copy
         </button>
       </div>
-      <pre><code>public class MyClass&lt;T&gt; where T : ...</code></pre>
+      <pre><code class="language-csharp">public class MyClass&lt;T&gt; where T : ...</code></pre>
     </div>
   
 <p>Common Types of Constraints</p>
@@ -605,7 +605,7 @@ Console.WriteLine($&quot;Employee: {employeeAndSalary.First.Name}, Salary:
       <li><strong>where T :</strong> &lt;base class name&gt;: The type argument must be, or derive from, the specified base class. This allows you to safely use all the public members of that base class on T.</li>
       <li><strong>where T :</strong> &lt;interface name&gt;: The type argument must implement the specified interface. This is one of the most common and powerful constraints, as it allows you to call the interface's methods on T.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-16-lec-3-generic-constraints-example">Example</h3>
 <p>Constraining to an Interface Let's create a generic reporting service that can generate a report from any object, as long as that object has a Name property. We can enforce this with an interface. C#</p>
 
     <div class="code-block-container">
@@ -616,7 +616,7 @@ Console.WriteLine($&quot;Employee: {employeeAndSalary.First.Name}, Salary:
           Copy
         </button>
       </div>
-      <pre><code>// 1. Define the contract (the interface). public interface IEntityWithName
+      <pre><code class="language-csharp">// 1. Define the contract (the interface). public interface IEntityWithName
 {
     string Name { get; }
 }
@@ -632,7 +632,7 @@ Console.WriteLine($&quot;Employee: {employeeAndSalary.First.Name}, Salary:
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     public string Name { get; set; }
     public decimal Price { get; set; }
 }</code></pre>
@@ -647,7 +647,7 @@ Console.WriteLine($&quot;Employee: {employeeAndSalary.First.Name}, Salary:
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     public string Name { get; set; }
     public int Id { get; set; }
 }
@@ -663,7 +663,7 @@ Console.WriteLine($&quot;Employee: {employeeAndSalary.First.Name}, Salary:
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     public void GenerateReport(T item)
     {
         // Because of the constraint, the compiler KNOWS that 'item'
@@ -681,11 +681,11 @@ generator.GenerateReport(new Product { Name = &quot;Laptop&quot;, Price = 1200 }
   
 
     <h2 id="sec-16-lec-4-generic-methods">Lecture 4: Generic Methods</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-16-lec-4-generic-methods-introduction">Introduction</h3>
 <p>A generic method is a method that is declared with its own type parameters. This allows a single method to perform the same action on a wide variety of different data types while still maintaining full type safety. A key feature is that a generic method can exist inside a non-generic class.</p>
-    <h3>How It Works: Syntax and Type Inference</h3>
+    <h3 id="sec-16-lec-4-generic-methods-how-it-works">How It Works: Syntax and Type Inference</h3>
 <p>You declare a generic method by placing the type parameter in angle brackets immediately after the method name.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-16-lec-4-generic-methods-syntax">Syntax</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -695,12 +695,12 @@ generator.GenerateReport(new Product { Name = &quot;Laptop&quot;, Price = 1200 }
           Copy
         </button>
       </div>
-      <pre><code>access_modifier return_type MethodName&lt;T&gt;(T parameter) { ... }</code></pre>
+      <pre><code class="language-csharp">access_modifier return_type MethodName&lt;T&gt;(T parameter) { ... }</code></pre>
     </div>
   
 <p>One of the most powerful features of generic methods is type inference. In most cases, the C# compiler is smart enough to deduce the type T from the arguments you pass to the method. This means you usually don't have to explicitly specify the type in angle brackets when you call the method.</p>
 <p>Why and When to Use It Use a generic method when you need a single, standalone utility function that performs an action that is not dependent on a specific data type. This is perfect for general-purpose operations like swapping, sorting, or comparing items. The classic textbook example is a Swap method.</p>
-    <h3>Example</h3>
+    <h3 id="sec-16-lec-4-generic-methods-example">Example</h3>
 <p>A Reusable Swap Method Without generics, you would need to write a separate Swap method for integers, one for strings, one for doubles, and so on. With a generic method, you only need to write it once. C#</p>
 
     <div class="code-block-container">
@@ -711,7 +711,7 @@ generator.GenerateReport(new Product { Name = &quot;Laptop&quot;, Price = 1200 }
           Copy
         </button>
       </div>
-      <pre><code>public class Utilities
+      <pre><code class="language-csharp">public class Utilities
 {
     // This is a generic method. 'T' can be any type. public static void Swap&lt;T&gt;(ref T a, ref T b)
     {
@@ -739,17 +739,17 @@ Utilities.Swap(ref s1, ref s2);
 Console.WriteLine($&quot;After: s1={s1}, s2={s2}&quot;);</code></pre>
     </div>
   
-    <h3>Output</h3>
-    <h3>Before:: x=5, y=10</h3>
+    <h3 id="sec-16-lec-4-generic-methods-output">Output</h3>
+    <h3 id="sec-16-lec-4-generic-methods-before">Before:: x=5, y=10</h3>
 <p>Swapping items of type: Int32</p>
-    <h3>After:: x=10, y=5</h3>
+    <h3 id="sec-16-lec-4-generic-methods-after">After:: x=10, y=5</h3>
 <p>--------------------</p>
-    <h3>Before:: s1=Hello, s2=World</h3>
+    <h3 id="sec-16-lec-4-generic-methods-before">Before:: s1=Hello, s2=World</h3>
 <p>Swapping items of type: String</p>
-    <h3>After:: s1=World, s2=Hello</h3>
+    <h3 id="sec-16-lec-4-generic-methods-after">After:: s1=World, s2=Hello</h3>
 
     <h2 id="sec-16-lec-5-imp-points-to-remember">Lecture 5: IMP Points to Remember</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-16-lec-5-imp-points-to-remember-introduction">Introduction</h3>
 <p>This lecture consolidates the most critical, practical, and interview-worthy points about generics. Understanding these concepts demonstrates a professional-level grasp of C#.</p>
     <ol>
       <li>Generics Solve Two Main Problems This is the most important takeaway and the ideal answer to the interview question, &quot;Why does C# have generics?&quot;</li>
@@ -798,6 +798,18 @@ Console.WriteLine($&quot;After: s1={s1}, s2={s2}&quot;);</code></pre>
 
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="16" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -826,24 +838,116 @@ Console.WriteLine($&quot;After: s1={s1}, s2={s2}&quot;);</code></pre>
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-16-lec-1-generic-classes" class="toc-link">Lecture 1: Generic Classes</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-1-generic-classes-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-1-generic-classes-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-1-generic-classes-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-1-generic-classes-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-16-lec-2-multiple-generic-parameters" class="toc-link">Lecture 2: Multiple Generic Parameters</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-2-multiple-generic-parameters-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-2-multiple-generic-parameters-how-it-works" class="toc-link">How It Works: Comma-Separated Type </a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-2-multiple-generic-parameters-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-2-multiple-generic-parameters-example" class="toc-link">example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-2-multiple-generic-parameters-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-16-lec-3-generic-constraints" class="toc-link">Lecture 3: Generic Constraints</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-3-generic-constraints-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-3-generic-constraints-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-3-generic-constraints-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-3-generic-constraints-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-16-lec-4-generic-methods" class="toc-link">Lecture 4: Generic Methods</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-4-generic-methods-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-4-generic-methods-how-it-works" class="toc-link">How It Works: Syntax and Type Infer</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-4-generic-methods-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-4-generic-methods-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-4-generic-methods-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-4-generic-methods-before" class="toc-link">Before:: x=5, y=10</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-4-generic-methods-after" class="toc-link">After:: x=10, y=5</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-4-generic-methods-before" class="toc-link">Before:: s1=Hello, s2=World</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-4-generic-methods-after" class="toc-link">After:: s1=World, s2=Hello</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-16-lec-5-imp-points-to-remember" class="toc-link">Lecture 5: IMP Points to Remember</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-16-lec-5-imp-points-to-remember-introduction" class="toc-link">Introduction</a>
       </li>
     
       </ul>
@@ -854,6 +958,7 @@ Console.WriteLine($&quot;After: s1={s1}, s2={s2}&quot;);</code></pre>
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

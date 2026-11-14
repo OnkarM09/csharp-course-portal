@@ -467,7 +467,7 @@
     <h2 id="sec-32-lec-2-introduction-to-tasks">2. Introduction to Tasks</h2>
 <p>0, provides a higher-level abstraction for asynchronous and parallel programming than raw threads. At its core, TPL is built around the Task class. A Task represents an asynchronous operation.</p>
 <p>Think of it as a promise that some work will be completed in the future. Instead of directly managing threads, you describe units of work (tasks), and the TPL's sophisticated scheduler efficiently maps these tasks to the underlying thread pool.</p>
-    <h3>Key characteristics</h3>
+    <h3 id="sec-32-lec-2-introduction-to-tasks-key-characteristics">Key characteristics</h3>
 <p>of Tasks:</p>
     <ul>
       <li>Work Item, Not a Thread: Crucially, a Task is not the same as a Thread. A</li>
@@ -524,7 +524,7 @@
           Copy
         </button>
       </div>
-      <pre><code>Task myTask = Task.Run(() =&gt; { /* do some work */ });
+      <pre><code class="language-csharp">Task myTask = Task.Run(() =&gt; { /* do some work */ });
 Console.WriteLine($&quot;Task Status: {myTask.Status}&quot;); // Will likely be
 WaitingToRun or Running quickly</code></pre>
     </div>
@@ -539,7 +539,7 @@ WaitingToRun or Running quickly</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Task Status after completion:</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Task Status after completion:</code></pre>
     </div>
   
 <p>{myTask.Status}&quot;); // RanToCompletion or Faulted</p>
@@ -569,7 +569,7 @@ WaitingToRun or Running quickly</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Func&lt;TResult&gt; to run on a thread pool thread.</code></pre>
+      <pre><code class="language-csharp">Func&lt;TResult&gt; to run on a thread pool thread.</code></pre>
     </div>
   
     <ul>
@@ -585,7 +585,7 @@ WaitingToRun or Running quickly</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Func&lt;TResult&gt;).</code></pre>
+      <pre><code class="language-csharp">Func&lt;TResult&gt;).</code></pre>
     </div>
   
     <ul>
@@ -601,7 +601,7 @@ WaitingToRun or Running quickly</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// A task that doesn't return a value
+      <pre><code class="language-csharp">// A task that doesn't return a value
 Task backgroundWork = Task.Run(() =&gt;
 {
     Console.WriteLine(&quot;Task.Run: Doing some background
@@ -639,7 +639,7 @@ Console.WriteLine($&quot;Calculated Sum:</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Start delay at
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Start delay at
 {DateTime.Now:HH:mm:ss}&quot;);</code></pre>
     </div>
   
@@ -653,7 +653,7 @@ Console.WriteLine($&quot;Calculated Sum:</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;End delay at {DateTime.Now:HH:mm:ss}&quot;);
+      <pre><code class="language-csharp">Console.WriteLine($&quot;End delay at {DateTime.Now:HH:mm:ss}&quot;);
 // Or without await (blocks if you wait on it)
 Task delayTask = Task.Delay(1000);
 Console.WriteLine(&quot;Delay task initiated.&quot;);</code></pre>
@@ -669,7 +669,7 @@ Console.WriteLine(&quot;Delay task initiated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(&quot;Delay task completed.&quot;);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(&quot;Delay task completed.&quot;);</code></pre>
     </div>
   
     <ul>
@@ -696,7 +696,7 @@ Console.WriteLine(&quot;Delay task initiated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Task task1 = Task.Run(() =&gt; { Thread.Sleep(3000);
+      <pre><code class="language-csharp">Task task1 = Task.Run(() =&gt; { Thread.Sleep(3000);
 Console.WriteLine(&quot;Task 1 Done&quot;); });
 Task task2 = Task.Run(() =&gt; { Thread.Sleep(1000);
 Console.WriteLine(&quot;Task 2 Done&quot;); });
@@ -725,7 +725,7 @@ Console.WriteLine(&quot;All tasks completed.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Task&lt;string&gt; downloadImage = Task.Run(() =&gt;
+      <pre><code class="language-csharp">Task&lt;string&gt; downloadImage = Task.Run(() =&gt;
 { Thread.Sleep(4000); return &quot;Image Downloaded&quot;; });
 Task&lt;string&gt; downloadText = Task.Run(() =&gt;
 { Thread.Sleep(2000); return &quot;Text Downloaded&quot;; });
@@ -763,7 +763,7 @@ Console.WriteLine($&quot;First task to complete was at index
           Copy
         </button>
       </div>
-      <pre><code>async Task SimulateMultipleDownloads()
+      <pre><code class="language-csharp">async Task SimulateMultipleDownloads()
 {
     Task&lt;string&gt; downloadImage = Task.Run(() =&gt;
     { Thread.Sleep(4000); return &quot;Image Downloaded&quot;; });
@@ -799,7 +799,7 @@ Console.WriteLine($&quot;First task to complete was at index
           Copy
         </button>
       </div>
-      <pre><code>async Task SimulateFastestDownload()
+      <pre><code class="language-csharp">async Task SimulateFastestDownload()
 {
     Task&lt;string&gt; slowDownload = Task.Run(() =&gt;
     { Thread.Sleep(5000); return &quot;Slow Download
@@ -834,7 +834,7 @@ Console.WriteLine($&quot;First task to complete was at index
           Copy
         </button>
       </div>
-      <pre><code>public static Task Run(Action action);
+      <pre><code class="language-csharp">public static Task Run(Action action);
 public static Task&lt;TResult&gt; Run&lt;TResult&gt;(Func&lt;TResult&gt; function);</code></pre>
     </div>
   
@@ -859,7 +859,7 @@ public static Task&lt;TResult&gt; Run&lt;TResult&gt;(Func&lt;TResult&gt; functio
           Copy
         </button>
       </div>
-      <pre><code>Func&lt;Task&lt;TResult&gt;&gt; correctly, returning a Task that represents</code></pre>
+      <pre><code class="language-csharp">Func&lt;Task&lt;TResult&gt;&gt; correctly, returning a Task that represents</code></pre>
     </div>
   
 <p>the completion of the asynchronous operation, not just the start.</p>
@@ -879,7 +879,7 @@ public static Task&lt;TResult&gt; Run&lt;TResult&gt;(Func&lt;TResult&gt; functio
           Copy
         </button>
       </div>
-      <pre><code>public Task&lt;TResult&gt; StartNew(Func&lt;TResult&gt; function,
+      <pre><code class="language-csharp">public Task&lt;TResult&gt; StartNew(Func&lt;TResult&gt; function,
 CancellationToken cancellationToken, TaskCreationOptions
 creationOptions, TaskScheduler scheduler);
 // And many other overloads for Action, etc.</code></pre>
@@ -902,7 +902,7 @@ creationOptions, TaskScheduler scheduler);
       <li>You need to specify a custom TaskScheduler (e.g., for UI thread updates via TaskScheduler.FromCurrentSynchronizationContext if not using await).</li>
       <li>You understand its default behavior (especially regarding child tasks and async unwrapping) and explicitly need that behavior. Key Difference Summary for Interviews:</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-32-lec-5-task-run-vs-task-factory-startnew-example">Example</h3>
 <p>of StartNew vs. Run with async:</p>
 
     <div class="code-block-container">
@@ -913,7 +913,7 @@ creationOptions, TaskScheduler scheduler);
           Copy
         </button>
       </div>
-      <pre><code>async Task MyAsyncMethod()
+      <pre><code class="language-csharp">async Task MyAsyncMethod()
 {
     Console.WriteLine(&quot;Inside MyAsyncMethod&quot;);
     await Task.Delay(100);
@@ -939,7 +939,7 @@ Console.WriteLine($&quot;Task.Factory.StartNew task status (outer):</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// To get the actual completion from StartNew, you need to Unwrap or</code></pre>
+      <pre><code class="language-csharp">// To get the actual completion from StartNew, you need to Unwrap or</code></pre>
     </div>
   
 <p>await twice:</p>
@@ -952,7 +952,7 @@ Console.WriteLine($&quot;Task.Factory.StartNew task status (outer):</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Task unwrappedTask = startNewTask.Unwrap();
+      <pre><code class="language-csharp">Task unwrappedTask = startNewTask.Unwrap();
 // Or: await await startNewTask; Feature 	Task.Run 	Task.Factory.StartNew
 Purpose Simple way to offload
 work to ThreadPool.
@@ -993,7 +993,7 @@ runTask.Wait();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(&quot;All tasks completed their work.&quot;);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(&quot;All tasks completed their work.&quot;);</code></pre>
     </div>
   
 <p>In the above example, startNewTask itself completes quickly because the outer lambda finishes its synchronous part (which is returning the Task from MyAsyncMethod). The actual work represented by MyAsyncMethod is in the</p>
@@ -1006,7 +1006,7 @@ runTask.Wait();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Task inside startNewTask. Task.Run handles this unwrapping automatically for</code></pre>
+      <pre><code class="language-csharp">Task inside startNewTask. Task.Run handles this unwrapping automatically for</code></pre>
     </div>
   
 <p>you, making it much more intuitive when working with async/await.</p>
@@ -1035,7 +1035,7 @@ runTask.Wait();</code></pre>
       <li>ElapsedTicks (Property, long):</li>
       <li><strong>Purpose:</strong> Gets the total elapsed time in timer ticks.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-32-lec-6-stopwatch-class-example">Example</h3>
 <p>Usage with Tasks:</p>
 
     <div class="code-block-container">
@@ -1046,7 +1046,7 @@ runTask.Wait();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>using System.Diagnostics;
+      <pre><code class="language-csharp">using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Threading;
 public class PerformanceMonitor
@@ -1115,7 +1115,7 @@ public class PerformanceMonitor
           Copy
         </button>
       </div>
-      <pre><code>Task&lt;int&gt; sumTask = Task.Run(() =&gt;
+      <pre><code class="language-csharp">Task&lt;int&gt; sumTask = Task.Run(() =&gt;
 {
     Console.WriteLine(&quot;Calculating sum in a task...&quot;);
     Thread.Sleep(2000); // Simulate work
@@ -1135,7 +1135,7 @@ public class PerformanceMonitor
           Copy
         </button>
       </div>
-      <pre><code>Task&lt;string&gt; dataFetchTask = Task.Factory.StartNew(() =&gt;
+      <pre><code class="language-csharp">Task&lt;string&gt; dataFetchTask = Task.Factory.StartNew(() =&gt;
 {
     Console.WriteLine(&quot;Fetching data in a task...&quot;);
     Thread.Sleep(3000);
@@ -1155,7 +1155,7 @@ public class PerformanceMonitor
           Copy
         </button>
       </div>
-      <pre><code>async Task&lt;double&gt; CalculateAverageAsync(List&lt;int&gt;
+      <pre><code class="language-csharp">async Task&lt;double&gt; CalculateAverageAsync(List&lt;int&gt;
 numbers)
 {
     Console.WriteLine(&quot;Calculating average asynchronously...&quot;);
@@ -1185,7 +1185,7 @@ List&lt;int&gt; { 1, 2, 3, 4, 5 });</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Blocking way (use with caution)
+      <pre><code class="language-csharp">// Blocking way (use with caution)
 Task&lt;int&gt; mySumTask = Task.Run(() =&gt; { Thread.Sleep(1000);
 return 100; });
 Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
@@ -1201,7 +1201,7 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Result: {result}&quot;);
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Result: {result}&quot;);
 // Non-blocking way (preferred in async methods) async Task DemonstrateAwait()
 {
     Task&lt;int&gt; anotherSumTask = Task.Run(() =&gt;
@@ -1233,10 +1233,10 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Func&lt;Task&lt;TResult&gt;&gt; to avoid Task&lt;Task&lt;TResult&gt;&gt;).</code></pre>
+      <pre><code class="language-csharp">Func&lt;Task&lt;TResult&gt;&gt; to avoid Task&lt;Task&lt;TResult&gt;&gt;).</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-32-lec-8-returning-complex-types-from-tasks-example">Example</h3>
 <p>Returning a Custom Object Let's define a simple UserData class:</p>
 
     <div class="code-block-container">
@@ -1247,7 +1247,7 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class UserData
+      <pre><code class="language-csharp">public class UserData
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -1271,7 +1271,7 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class UserProcessor
+      <pre><code class="language-csharp">public class UserProcessor
 {
     public static async Task&lt;UserData&gt; GetUserAsync(int userId)
     {
@@ -1373,7 +1373,7 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class TaskExceptionExample
+      <pre><code class="language-csharp">public class TaskExceptionExample
 {
     public static async Task SimulateFaultyTask()
     {
@@ -1462,7 +1462,7 @@ Console.WriteLine(&quot;Waiting for result (blocking)...&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public static void HandleExceptionsWithWait()
+      <pre><code class="language-csharp">public static void HandleExceptionsWithWait()
 {
     Console.WriteLine(&quot;\nHandling exceptions with Task.Wait()...&quot;);
     Task failingTask = Task.Run(() =&gt;
@@ -1508,7 +1508,7 @@ Task.WhenAll expression will throw a single AggregateException that</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public static async Task HandleExceptionsWithWhenAll()
+      <pre><code class="language-csharp">public static async Task HandleExceptionsWithWhenAll()
 {
     Console.WriteLine(&quot;\nHandling exceptions with Task.WhenAll()...&quot;);
     Task goodTask = Task.Run(() =&gt;
@@ -1564,7 +1564,7 @@ Task.WhenAll expression will throw a single AggregateException that</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public static void HandleExceptionsWithHandleMethod()
+      <pre><code class="language-csharp">public static void HandleExceptionsWithHandleMethod()
 {
     Console.WriteLine(&quot;\nHandling exceptions with
     AggregateException.Handle()...&quot;);
@@ -1643,7 +1643,7 @@ Task.WhenAll expression will throw a single AggregateException that</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public static void SimpleContinuation()
+      <pre><code class="language-csharp">public static void SimpleContinuation()
 {
     Task firstTask = Task.Run(() =&gt;
     {
@@ -1676,7 +1676,7 @@ Task.WhenAll expression will throw a single AggregateException that</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Task&lt;TResult&gt; to access that result.
+      <pre><code class="language-csharp">Task&lt;TResult&gt; to access that result.
 public static void ContinuationWithResult()
 {
     Task&lt;int&gt; dataFetchTask = Task.Run(() =&gt;
@@ -1717,7 +1717,7 @@ public static void ContinuationWithResult()
 <p>TaskContinuationOptions (Crucial for Control): This enum provides powerful options to control when and how the continuation task executes based on the antecedent's completion status. This is very important for robust error handling and conditional logic in task workflows. Option Description None (Default) The continuation executes when the antecedent completes, regardless of its final status (Success, Faulted, Canceled).</p>
 <p>OnlyOnRanToCompletion The continuation executes only if the antecedent task completes successfully (no exceptions, not canceled). OnlyOnFaulted The continuation executes only if the antecedent task completed due to an unhandled exception. OnlyOnCanceled The continuation executes only if the antecedent task was canceled.</p>
 <p>, faulted or canceled). , ran to completion or was canceled). , ran to completion or faulted). AttachedToParent The continuation task is implicitly a child of its parent, meaning the parent will wait for it.</p>
-    <h3>Example</h3>
+    <h3 id="sec-32-lec-10-continuation-chain-task-continuewith-example">Example</h3>
 <p>with TaskContinuationOptions:</p>
 
     <div class="code-block-container">
@@ -1728,7 +1728,7 @@ public static void ContinuationWithResult()
           Copy
         </button>
       </div>
-      <pre><code>public static void ContinuationWithOptions()
+      <pre><code class="language-csharp">public static void ContinuationWithOptions()
 {
     Task&lt;int&gt; operationTask = Task.Run(() =&gt;
     {
@@ -1829,7 +1829,7 @@ public static void ContinuationWithResult()
           Copy
         </button>
       </div>
-      <pre><code>public static void ContinuationChain()
+      <pre><code class="language-csharp">public static void ContinuationChain()
 {
     Task&lt;string&gt; fetchDataTask = Task.Run(() =&gt;
     {
@@ -1909,7 +1909,7 @@ public static void ContinuationWithResult()
           Copy
         </button>
       </div>
-      <pre><code>CancellationToken token = cts.Token;</code></pre>
+      <pre><code class="language-csharp">CancellationToken token = cts.Token;</code></pre>
     </div>
   
     <ol>
@@ -1924,7 +1924,7 @@ public static void ContinuationWithResult()
           Copy
         </button>
       </div>
-      <pre><code>Task longRunningTask = Task.Run(() =&gt;
+      <pre><code class="language-csharp">Task longRunningTask = Task.Run(() =&gt;
 MyCancellableOperation(token), token);
 Note: The second token argument to Task.Run (and</code></pre>
     </div>
@@ -1942,7 +1942,7 @@ Note: The second token argument to Task.Run (and</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public static void MyCancellableOperation(CancellationToken
+      <pre><code class="language-csharp">public static void MyCancellableOperation(CancellationToken
 cancellationToken)
 {
     for (int i = 0; i &lt; 100; i++)
@@ -1979,7 +1979,7 @@ cancellationToken)
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 using System.Threading;
 using System.Threading.Tasks;
 public class TaskCancellationDemo
@@ -2080,7 +2080,7 @@ public class TaskCancellationDemo
           Copy
         </button>
       </div>
-      <pre><code>using System.IO;
+      <pre><code class="language-csharp">using System.IO;
 using System.Text;
 public class SyncFileIO
 {
@@ -2122,7 +2122,7 @@ public class SyncFileIO
           Copy
         </button>
       </div>
-      <pre><code>using System.IO;
+      <pre><code class="language-csharp">using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 public class AsyncFileIO
@@ -2387,7 +2387,30 @@ WaitingForActivation ---&gt; WaitingToRun ---&gt; Running
 (Returns Task&lt;T&gt;.Result)              (AggregateException)     (OperationCanceled)</pre>
     </div>
   
+      <h2 id="sec-32-comparison-table">Task.Run vs. Task.Factory.StartNew Architectural Comparison</h2>
+      <p>Architectural comparison between modern task offloading and legacy TaskFactory creation:</p>
+      
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Feature</th><th>Task.Run</th><th>Task.Factory.StartNew</th></tr></thead>
+        <tbody><tr><td>Primary Purpose</td><td>Optimized shorthand for offloading compute-bound work to the ThreadPool.</td><td>Advanced task creation API providing full configuration options.</td></tr><tr><td>Async Delegate Unwrapping</td><td>Automatically unwraps <code>Task&lt;Task&gt;</code> to return <code>Task</code> or <code>Task&lt;T&gt;</code>.</td><td>Does NOT unwrap async delegates; returns nested <code>Task&lt;Task&lt;T&gt;&gt;</code> unless <code>.Unwrap()</code> is called.</td></tr><tr><td>Default TaskCreationOptions</td><td>Uses <code>TaskCreationOptions.DenyChildAttach</code> by default for safety.</td><td>Uses <code>TaskCreationOptions.None</code> by default.</td></tr><tr><td>Long-Running Tasks</td><td>Does not support <code>TaskCreationOptions.LongRunning</code> flag.</td><td>Supports <code>LongRunning</code> flag to allocate a dedicated non-pooled OS thread.</td></tr><tr><td>When to Choose</td><td>99% of general CPU-bound asynchronous tasks.</td><td>Only when <code>LongRunning</code> is required or custom <code>TaskScheduler</code> / parent-child attach is needed.</td></tr></tbody>
+      </table>
+    </div>
+  
+    
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="32" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -2417,56 +2440,80 @@ WaitingForActivation ---&gt; WaitingToRun ---&gt; Running
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-32-lec-1-drawbacks-of-traditional-threading" class="toc-link">1. Drawbacks of Traditional Threading</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-32-lec-2-introduction-to-tasks" class="toc-link">2. Introduction to Tasks</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-32-lec-2-introduction-to-tasks-key-characteristics" class="toc-link">Key characteristics</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-32-lec-3-advantages-of-the-task-parallel-library-tpl" class="toc-link">3. Advantages of the Task Parallel Library (TPL)</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-32-lec-4-task-class-and-its-important-members" class="toc-link">4. Task Class and its Important Members</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-32-lec-5-task-run-vs-task-factory-startnew" class="toc-link">5. Task.Run vs. Task.Factory.StartNew</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-32-lec-5-task-run-vs-task-factory-startnew-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-32-lec-6-stopwatch-class" class="toc-link">6. Stopwatch Class</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-32-lec-6-stopwatch-class-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-32-lec-7-task-tresult-tasks-with-return-values" class="toc-link">7. Task&lt;TResult&gt; - Tasks with Return Values</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-32-lec-8-returning-complex-types-from-tasks" class="toc-link">8. Returning Complex Types from Tasks</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-32-lec-8-returning-complex-types-from-tasks-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-32-lec-9-task-exception-handling" class="toc-link">9. Task Exception Handling</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-32-lec-10-continuation-chain-task-continuewith" class="toc-link">10. Continuation Chain (Task.ContinueWith)</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-32-lec-10-continuation-chain-task-continuewith-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-32-lec-11-task-cancellation" class="toc-link">11. Task Cancellation</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-32-lec-12-file-io-example-with-tasks-illustrating-i-o-b" class="toc-link">12. File IO Example with Tasks (Illustrating I/O</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-32-lec-13-points-to-remember-interview-focus" class="toc-link">13. Points to Remember (Interview Focus)</a>
+      </li>
+    
+      <li class="toc-item ">
+        <a href="#sec-32-comparison-table" class="toc-link">Task.Run vs StartNew Comparison</a>
       </li>
     
       </ul>
@@ -2477,6 +2524,7 @@ WaitingForActivation ---&gt; WaitingToRun ---&gt; Running
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

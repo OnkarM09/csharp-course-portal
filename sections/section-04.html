@@ -446,7 +446,7 @@
       <article class="docs-content">
         
     <h2 id="sec-4-lec-1-understanding-oop-fundamentals">Lecture 1: Understanding OOP Fundamentals</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-4-lec-1-understanding-oop-fundamentals-introduction">Introduction</h3>
 <p>Object-Oriented Programming (OOP) is a fundamental shift in how we think about and structure our programs. Before OOP, the dominant style was procedural programming, where a program was essentially a long list of instructions or functions that acted upon data. This works for small programs, but as applications grow in size and complexity, it becomes incredibly difficult to manage.</p>
 <p>&quot; OOP was created to solve this problem of complexity. &quot; We stop thinking about our program as a sequence of steps and start thinking about it as a collection of interacting objects, where each object models a distinct entity from the problem we're trying to solve. The Core Idea: Modeling the World An &quot;object&quot; in programming represents a person, place, thing, or even an abstract concept.</p>
 <p>Think about a simple e-commerce application. A procedural approach might have separate variables for product names, prices, and inventory counts, and separate functions to update inventory or calculate totals. An OOP approach would model this differently:</p>
@@ -467,7 +467,7 @@
     </ul>
 
     <h2 id="sec-4-lec-2-creating-classes-objects">Lecture 2: Creating Classes &amp; Objects</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-4-lec-2-creating-classes-objects-introduction">Introduction</h3>
 <p>Now that we understand the concept of an &quot;object,&quot; we need a way to define what our objects will look like and how they will behave. This is the role of a class. A class is the blueprint, the template, or the design for an object.</p>
 <p>An object is the actual concrete instance that is built from that blueprint. You can have one Car class (the blueprint), but you can use it to build thousands of individual Car objects, each with its own unique state (one might be a red Ferrari, another a blue Ford). Defining a Class A class is defined using the class keyword, followed by the name of the class (which should be in PascalCase). Inside the curly braces {}, we define its members: fields and methods. C#</p>
 
@@ -479,7 +479,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// This is the blueprint for all Car objects. public class Car
+      <pre><code class="language-csharp">// This is the blueprint for all Car objects. public class Car
 {
     // 1. Fields: These are variables that store the state of an object.
     // By convention, we make fields private to protect them (Encapsulation).
@@ -527,7 +527,7 @@ Creating an Object (Instantiation)</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// The Main method where our program runs static void Main(string[] args)
+      <pre><code class="language-csharp">// The Main method where our program runs static void Main(string[] args)
 {
     // 1. Declaration: Declare a variable that can hold a reference to a Car object.
     Car myFirstCar;
@@ -551,7 +551,7 @@ Accessing Members</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Continuing in the Main method...
+      <pre><code class="language-csharp">// Continuing in the Main method...
 // Use the public methods to set the state of the first car.
 myFirstCar.SetColor(&quot;Red&quot;);
 // Call methods to change its behavior.</code></pre>
@@ -567,7 +567,7 @@ myFirstCar.SetColor(&quot;Red&quot;);
           Copy
         </button>
       </div>
-      <pre><code>// Now, interact with the second car. It is completely separate.
+      <pre><code class="language-csharp">// Now, interact with the second car. It is completely separate.
 mySecondCar.SetColor(&quot;Blue&quot;);</code></pre>
     </div>
   
@@ -581,11 +581,11 @@ mySecondCar.SetColor(&quot;Blue&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Getting the color of the first car does not affect the second.
+      <pre><code class="language-csharp">// Getting the color of the first car does not affect the second.
 Console.WriteLine($&quot;My first car's color is: {myFirstCar.GetColor()}&quot;); 	//</code></pre>
     </div>
   
-    <h3>Output: Red</h3>
+    <h3 id="sec-4-lec-2-creating-classes-objects-output">Output: Red</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -595,10 +595,10 @@ Console.WriteLine($&quot;My first car's color is: {myFirstCar.GetColor()}&quot;)
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;My second car's color is: {mySecondCar.GetColor()}&quot;); //</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;My second car's color is: {mySecondCar.GetColor()}&quot;); //</code></pre>
     </div>
   
-    <h3>Output: Blue</h3>
+    <h3 id="sec-4-lec-2-creating-classes-objects-output">Output: Blue</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -608,7 +608,7 @@ Console.WriteLine($&quot;My first car's color is: {myFirstCar.GetColor()}&quot;)
           Copy
         </button>
       </div>
-      <pre><code>// IMPORTANT: You cannot access private fields directly from outside the class.
+      <pre><code class="language-csharp">// IMPORTANT: You cannot access private fields directly from outside the class.
 // The following line would cause a compiler error:
 // myFirstCar._currentSpeed = 100; // ERROR! '_currentSpeed' is inaccessible.</code></pre>
     </div>
@@ -635,12 +635,12 @@ Console.WriteLine($&quot;My first car's color is: {myFirstCar.GetColor()}&quot;)
   
 
     <h2 id="sec-4-lec-3-imp-points-to-remember-about-classes-and-obje">Lecture 3: IMP Points to remember about Classes and Objects</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-4-lec-3-imp-points-to-remember-about-classes-and-obje-introduction">Introduction</h3>
 <p>Understanding a few crucial, behind-the-scenes concepts about classes and objects is vital. These points are frequently the subject of interview questions because they test for a deeper understanding beyond just the basic syntax.</p>
     <ol>
       <li>A Class is a Reference Type This is the single most important concept to understand at this stage. When you create a variable of a class type, the variable does not hold the object itself. Instead, it holds a reference—which is essentially the memory address—to where the object is stored. The actual object lives on a region of memory called the heap.</li>
     </ol>
-    <h3>How It Works: &amp; Why It Matters:</h3>
+    <h3 id="sec-4-lec-3-imp-points-to-remember-about-classes-and-obje-how-it-works">How It Works: &amp; Why It Matters:</h3>
 <p>Because the variable holds a reference, not the object, you can have multiple variables referencing the same object. C#</p>
 
     <div class="code-block-container">
@@ -651,7 +651,7 @@ Console.WriteLine($&quot;My first car's color is: {myFirstCar.GetColor()}&quot;)
           Copy
         </button>
       </div>
-      <pre><code>// We create ONE car object in memory.
+      <pre><code class="language-csharp">// We create ONE car object in memory.
 // carA holds the memory address of this object.
 Car carA = new Car();
 carA.SetColor(&quot;Green&quot;);
@@ -720,7 +720,30 @@ Console.WriteLine($&quot;Car B color: {carB.GetColor()}&quot;); // Output: Yello
                                           +--------------------------------------+</pre>
     </div>
   
+      <h2 id="sec-4-comparison-table">Value Types (struct) vs. Reference Types (class) Architectural Comparison</h2>
+      <p>Core architectural differences in memory allocation, copying semantics, lifetime, and inheritance in C#:</p>
+      
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Architectural Dimension</th><th>Value Types (struct)</th><th>Reference Types (class)</th></tr></thead>
+        <tbody><tr><td>Memory Allocation</td><td>Allocated inline where declared (usually on the execution Stack, or inline within an enclosing object).</td><td>Allocated on the Managed Heap; variable on stack holds an 8-byte reference pointer.</td></tr><tr><td>Assignment Behavior</td><td>Copy-by-value: duplicates all fields and data. Modifying a copy has zero effect on the original.</td><td>Copy-by-reference: duplicates memory pointer. Both variables reference identical heap object.</td></tr><tr><td>Default Value</td><td>Zeroed-out memory bits (all numeric fields 0, booleans false). Never <code>null</code> unless <code>Nullable&lt;T&gt;</code>.</td><td>Default is <code>null</code> (points to no memory address). Dereferencing throws <code>NullReferenceException</code>.</td></tr><tr><td>Deallocation & GC</td><td>Deallocated immediately when the stack frame pops. Zero GC overhead or latency.</td><td>Subject to CLR Garbage Collection (Gen 0, Gen 1, Gen 2 generational lifecycle).</td></tr><tr><td>Inheritance</td><td>Implicitly sealed. Cannot inherit from other classes or structs. Can implement interfaces.</td><td>Supports full object-oriented inheritance hierarchies, abstract classes, and polymorphism.</td></tr></tbody>
+      </table>
+    </div>
+  
+    
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="4" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -750,16 +773,44 @@ Console.WriteLine($&quot;Car B color: {carB.GetColor()}&quot;); // Output: Yello
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-4-lec-1-understanding-oop-fundamentals" class="toc-link">Lecture 1: Understanding OOP Fundamentals</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-4-lec-1-understanding-oop-fundamentals-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-4-lec-2-creating-classes-objects" class="toc-link">Lecture 2: Creating Classes &amp; Objects</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-4-lec-2-creating-classes-objects-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-4-lec-2-creating-classes-objects-output" class="toc-link">Output: Red</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-4-lec-2-creating-classes-objects-output" class="toc-link">Output: Blue</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-4-lec-3-imp-points-to-remember-about-classes-and-obje" class="toc-link">Lecture 3: IMP Points to remember about Classes </a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-4-lec-3-imp-points-to-remember-about-classes-and-obje-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-4-lec-3-imp-points-to-remember-about-classes-and-obje-how-it-works" class="toc-link">How It Works: &amp; Why It Matters:</a>
+      </li>
+    
+      <li class="toc-item ">
+        <a href="#sec-4-comparison-table" class="toc-link">Value vs. Reference Types Comparison</a>
       </li>
     
       </ul>
@@ -770,6 +821,7 @@ Console.WriteLine($&quot;Car B color: {carB.GetColor()}&quot;); // Output: Yello
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

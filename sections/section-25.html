@@ -446,7 +446,7 @@
       <article class="docs-content">
         
     <h2 id="sec-25-lec-1-intro-and-linq-basics">Lecture 1: Intro and LINQ Basics</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-25-lec-1-intro-and-linq-basics-introduction">Introduction</h3>
 <p>LINQ, which stands for Language-Integrated Query, is a powerful and unified set of features in C# that provides a consistent, SQL-like syntax for querying data. Before LINQ, if you wanted to get data from a database, an XML file, or an in-memory collection, you had to learn a completely different API for each one. LINQ provides a single, elegant way to work with all of them. The two key benefits of LINQ are:</p>
     <ol>
       <li><strong>Declarative Syntax:</strong> You describe what you want, not how to get it. You write a query that says &quot;give me all products where the price is over 100,&quot; and LINQ figures out the underlying loops and conditions for you.</li>
@@ -462,7 +462,7 @@
           Copy
         </button>
       </div>
-      <pre><code>var results = from student in students
+      <pre><code class="language-csharp">var results = from student in students
 where student.Score &gt; 90
 select student.Name;</code></pre>
     </div>
@@ -479,11 +479,11 @@ select student.Name;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>var results = students.Where(student =&gt; student.Score &gt; 90)
+      <pre><code class="language-csharp">var results = students.Where(student =&gt; student.Score &gt; 90)
 .Select(student =&gt; student.Name);</code></pre>
     </div>
   
-    <h3>How It Works</h3>
+    <h3 id="sec-25-lec-1-intro-and-linq-basics-how-it-works">How It Works</h3>
 <p>Extension Methods &amp; Deferred Execution</p>
     <ul>
       <li><strong>Extension Methods:</strong> LINQ is built almost entirely on extension methods for the IEnumerable&lt;T&gt; interface. This is why you can call methods like .Where() and .Select() on any array or list. To access them, you must add the using System.Linq; directive to your file.</li>
@@ -491,12 +491,12 @@ select student.Name;</code></pre>
     </ul>
 
     <h2 id="sec-25-lec-2-linq-to-arrays-and-collections">Lecture 2: LINQ to Arrays and Collections</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-25-lec-2-linq-to-arrays-and-collections-introduction">Introduction</h3>
 <p>The most common and straightforward use of LINQ is for querying in-memory collections like List&lt;T&gt; and arrays. This allows you to filter, sort, and transform your data with incredibly concise and readable code, replacing complex and error-prone for and if loops.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-25-lec-2-linq-to-arrays-and-collections-how-it-works">How It Works</h3>
 <p>Linq; directive at the top of your file. This brings all the LINQ extension methods into scope. You then simply call the desired methods on your collection variable.</p>
 <p>The result of most LINQ query operators (like Where and OrderBy) is another IEnumerable&lt;T&gt;. This allows you to chain operators together to build up a more complex query. Remember that due to deferred execution, this chain of operations is only a plan. The work isn't done until you materialize the results.</p>
-    <h3>Example</h3>
+    <h3 id="sec-25-lec-2-linq-to-arrays-and-collections-example">Example</h3>
 <p>Let's find all numbers greater than 50 in a list and display them.</p>
 
     <div class="code-block-container">
@@ -507,7 +507,7 @@ select student.Name;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// The data source
+      <pre><code class="language-csharp">// The data source
 List&lt;int&gt; scores = new List&lt;int&gt; { 25, 88, 42, 95, 15, 71, 99 };
 // --- Method Syntax (Preferred) ---
 // 1. Define the query. No work is done here yet.
@@ -525,18 +525,18 @@ loop...&quot;);
 }</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-25-lec-2-linq-to-arrays-and-collections-output">Output</h3>
 <p>Query has been defined. Now executing with foreach loop... 88 95 71 99</p>
 
     <h2 id="sec-25-lec-3-orderby">Lecture 3: OrderBy</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-25-lec-3-orderby-introduction">Introduction</h3>
 <p>OrderBy and its counterpart OrderByDescending are the primary LINQ methods for sorting sequences. They allow you to order a collection based on a specific property or value of its elements.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-25-lec-3-orderby-how-it-works">How It Works</h3>
     <ul>
       <li><strong>OrderBy(keySelector):</strong> Sorts the elements in ascending order.</li>
       <li><strong>OrderByDescending(keySelector):</strong> Sorts the elements in descending order. The keySelector is a lambda expression that tells the method what to sort by. For example, p =&gt; p.Price tells it to sort by the Price property. For secondary sorting, you can chain ThenBy() or ThenByDescending(). This allows you to sort by one criterion, and then for all items that are equal in that first sort, sort them by a second criterion.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-25-lec-3-orderby-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -546,7 +546,7 @@ loop...&quot;);
           Copy
         </button>
       </div>
-      <pre><code>public class Product { public string Category; public string Name; }
+      <pre><code class="language-csharp">public class Product { public string Category; public string Name; }
 List&lt;Product&gt; products = new List&lt;Product&gt;
 {
     new Product { Category = &quot;Fruit&quot;, Name = &quot;Apple&quot; },
@@ -571,9 +571,9 @@ foreach (var product in sortedByCategoryThenName)
   
 
     <h2 id="sec-25-lec-4-first-and-firstordefault">Lecture 4: First and FirstOrDefault</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-25-lec-4-first-and-firstordefault-introduction">Introduction</h3>
 <p>These are element operators used to retrieve the very first element from a sequence. Choosing between them depends on how you want to handle the case where the sequence is empty or no element matches your criteria.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-25-lec-4-first-and-firstordefault-how-it-works">How It Works</h3>
 <p>The Critical Difference</p>
     <ul>
       <li>First()</li>
@@ -587,7 +587,7 @@ foreach (var product in sortedByCategoryThenName)
       <li><strong>With a Predicate:</strong> FirstOrDefault(predicate) returns the first element that matches. If no element matches, it also returns the default value.</li>
       <li><strong>When to Use:</strong> Use FirstOrDefault() when it is a normal, valid scenario for an element to be missing. This is the safer and more common choice.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-25-lec-4-first-and-firstordefault-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -597,7 +597,7 @@ foreach (var product in sortedByCategoryThenName)
           Copy
         </button>
       </div>
-      <pre><code>List&lt;int&gt; numbers = new List&lt;int&gt; { 10, 20, 30 };
+      <pre><code class="language-csharp">List&lt;int&gt; numbers = new List&lt;int&gt; { 10, 20, 30 };
 List&lt;int&gt; emptyList = new List&lt;int&gt;();
 // --- Successful Cases ---</code></pre>
     </div>
@@ -612,7 +612,7 @@ List&lt;int&gt; emptyList = new List&lt;int&gt;();
           Copy
         </button>
       </div>
-      <pre><code>// --- Unsuccessful Cases ---</code></pre>
+      <pre><code class="language-csharp">// --- Unsuccessful Cases ---</code></pre>
     </div>
   
 <p>int? firstOrDefaultEmpty = emptyList.FirstOrDefault(); // Returns default(int), which is 0. No exception. try</p>
@@ -625,7 +625,7 @@ List&lt;int&gt; emptyList = new List&lt;int&gt;();
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     int firstEmpty = emptyList.First(); // Throws InvalidOperationException!
 }
 catch (InvalidOperationException)
@@ -637,15 +637,15 @@ catch (InvalidOperationException)
   
 
     <h2 id="sec-25-lec-5-last-and-lastordefault">Lecture 5: Last and LastOrDefault</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-25-lec-5-last-and-lastordefault-introduction">Introduction</h3>
 <p>These methods are the direct counterparts to First and FirstOrDefault. They are used to retrieve the very last element from a sequence.</p>
-    <h3>How It Works: Same Rules, Opposite End</h3>
+    <h3 id="sec-25-lec-5-last-and-lastordefault-how-it-works">How It Works: Same Rules, Opposite End</h3>
 <p>The exception handling rules are identical to First and FirstOrDefault:</p>
     <ul>
       <li><strong>Last():</strong> Throws an InvalidOperationException if the sequence is empty or if no element matches the predicate.</li>
       <li><strong>LastOrDefault():</strong> Gracefully returns the default value for the type if the sequence is empty or no element matches. Performance Note For simple collections like List&lt;T&gt; that know their count and can be indexed from the end, these operations are fast. However, for a generic IEnumerable&lt;T&gt; that can only be iterated forward, calling Last() might require iterating through the entire sequence to find the end, which can be a slow (O(n)) operation.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-25-lec-5-last-and-lastordefault-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -655,7 +655,7 @@ catch (InvalidOperationException)
           Copy
         </button>
       </div>
-      <pre><code>List&lt;string&gt; names = new List&lt;string&gt; { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot; };</code></pre>
+      <pre><code class="language-csharp">List&lt;string&gt; names = new List&lt;string&gt; { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot; };</code></pre>
     </div>
   
 <p>string lastName = names.Last(); // &quot;Charlie&quot; string lastOrDefaultName = names.LastOrDefault(); // &quot;Charlie&quot;</p>
@@ -668,7 +668,7 @@ catch (InvalidOperationException)
           Copy
         </button>
       </div>
-      <pre><code>// Find the last name that starts with &quot;A&quot;</code></pre>
+      <pre><code class="language-csharp">// Find the last name that starts with &quot;A&quot;</code></pre>
     </div>
   
 <p>string lastA = names.LastOrDefault(name =&gt; name.StartsWith(&quot;A&quot;)); // &quot;Alice&quot;</p>
@@ -681,7 +681,7 @@ catch (InvalidOperationException)
           Copy
         </button>
       </div>
-      <pre><code>// Find the last name that starts with &quot;Z&quot;</code></pre>
+      <pre><code class="language-csharp">// Find the last name that starts with &quot;Z&quot;</code></pre>
     </div>
   
 <p>string lastZ = names.LastOrDefault(name =&gt; name.StartsWith(&quot;Z&quot;)); // null (default for string)</p>
@@ -694,21 +694,21 @@ catch (InvalidOperationException)
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Last name starting with Z: {lastZ ?? &quot;Not Found&quot;}&quot;);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Last name starting with Z: {lastZ ?? &quot;Not Found&quot;}&quot;);</code></pre>
     </div>
   
 
     <h2 id="sec-25-lec-6-elementat-and-elementatordefault">Lecture 6: ElementAt and ElementAtOrDefault</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-25-lec-6-elementat-and-elementatordefault-introduction">Introduction</h3>
 <p>These are LINQ element operators used to retrieve an element at a specific zero-based index within a sequence. While this seems similar to using the array/list indexer (e.g., myList[5]), these methods have the advantage of working on any sequence that implements IEnumerable&lt;T&gt;, even those that don't have a built-in indexer.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-25-lec-6-elementat-and-elementatordefault-how-it-works">How It Works</h3>
 <p>&amp; When to Use It The key difference is performance and applicability. The direct indexer (myList[index]) is an O(1) operation for lists and arrays because it can calculate the memory location directly. The ElementAt(index) method, when used on a simple forward-only IEnumerable&lt;T&gt;, may have to iterate through all the elements from the beginning up to the desired index, making it a potentially slow O(n) operation.</p>
 <p>You should use ElementAt when you are working with a generic IEnumerable&lt;T&gt; and need to get an element by its position. The Exception Handling Pattern These methods follow the same safety pattern as First and Last.</p>
     <ul>
       <li><strong>ElementAt(index):</strong> Returns the element at the specified index. If the index is negative or greater than or equal to the size of the collection, it throws an ArgumentOutOfRangeException.</li>
       <li><strong>ElementAtOrDefault(index):</strong> Returns the element at the specified index. If the index is out of bounds, it gracefully returns the default value for the type (null, 0, etc.) and does not throw an exception.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-25-lec-6-elementat-and-elementatordefault-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -718,7 +718,7 @@ catch (InvalidOperationException)
           Copy
         </button>
       </div>
-      <pre><code>string[] colors = { &quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot; };
+      <pre><code class="language-csharp">string[] colors = { &quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot; };
 // --- Successful Case ---
 string secondColor = colors.ElementAt(1);
 Console.WriteLine($&quot;The element at index 1 is: {secondColor}&quot;); // Output:
@@ -740,7 +740,7 @@ Console.WriteLine($&quot;The element at index 5 is: {nonExistentColor ?? &quot;N
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // This call will throw an exception.
     string errorColor = colors.ElementAt(5);
 }
@@ -752,9 +752,9 @@ catch (ArgumentOutOfRangeException)
   
 
     <h2 id="sec-25-lec-7-single-and-singleordefault">Lecture 7: Single and SingleOrDefault</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-25-lec-7-single-and-singleordefault-introduction">Introduction</h3>
 <p>These are the strictest element operators in LINQ. They are used to retrieve the one and only element from a sequence that satisfies a condition. Their purpose is to enforce an assumption of uniqueness. If that assumption is violated (by finding zero elements, or more than one), they will throw an exception.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-25-lec-7-single-and-singleordefault-how-it-works">How It Works</h3>
 <p>The Strict Rules This is a very common interview topic used to distinguish between First and Single.</p>
     <ul>
       <li>Single()</li>
@@ -766,7 +766,7 @@ catch (ArgumentOutOfRangeException)
       <li>Returns the default value (null, 0, etc.) if the sequence is empty.</li>
       <li>Throws InvalidOperationException if more than one element is found. Why and When to Use It Use Single or SingleOrDefault when your business logic dictates that there must be exactly one (or zero-or-one) result. A classic example is looking up a record by its unique primary key in a database. You expect to find exactly one record. Finding zero is a problem, and finding more than one indicates data corruption. First would be wrong in this case, as it would happily return the first record and hide the fact that there were duplicates.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-25-lec-7-single-and-singleordefault-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -776,7 +776,7 @@ catch (ArgumentOutOfRangeException)
           Copy
         </button>
       </div>
-      <pre><code>List&lt;Product&gt; products = new List&lt;Product&gt;
+      <pre><code class="language-csharp">List&lt;Product&gt; products = new List&lt;Product&gt;
 {
     new Product { Id = 10, Category = &quot;Electronics&quot; },
     new Product { Id = 20, Category = &quot;Books&quot; },
@@ -805,19 +805,19 @@ True, returns null gracefully.</code></pre>
   
 
     <h2 id="sec-25-lec-8-select">Lecture 8: Select</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-25-lec-8-select-introduction">Introduction</h3>
 <p>Select is the primary projection operator in LINQ. Its job is to take a sequence of elements and transform each element into a new form. It projects the data from one shape into another. This is one of the most powerful and frequently used LINQ methods.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-25-lec-8-select-how-it-works">How It Works</h3>
 <p>The Select method takes a lambda expression (Func&lt;TSource, TResult&gt;) that is applied to every element in the source collection. The value returned by your lambda expression for each element becomes an element in the new output sequence. The output sequence (IEnumerable&lt;TResult&gt;) can be of a completely different type than the input sequence (IEnumerable&lt;TSource&gt;). Why and When to Use It</p>
     <ol>
       <li>To select a single property from a collection of complex objects. For</li>
     </ol>
-    <h3>example</h3>
+    <h3 id="sec-25-lec-8-select-example">example</h3>
 <p>, getting a list of just the names from a list of Product objects.</p>
     <ol>
       <li>To transform each element into a new object. This is often used with anonymous types to create a new sequence containing only a subset of the original data.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-25-lec-8-select-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -827,7 +827,7 @@ True, returns null gracefully.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Product { public string Name; public decimal Price; }
+      <pre><code class="language-csharp">public class Product { public string Name; public decimal Price; }
 List&lt;Product&gt; products = new List&lt;Product&gt;
 {
     new Product { Name = &quot;Laptop&quot;, Price = 1200 },
@@ -853,7 +853,7 @@ foreach (var p in productsWithTax)
   
 
     <h2 id="sec-25-lec-9-min-max-count-sum-average">Lecture 9: Min, Max, Count, Sum, Average</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-25-lec-9-min-max-count-sum-average-introduction">Introduction</h3>
 <p>These are the primary aggregate operators in LINQ. They take an entire sequence of values and compute a single, summary result from them. How They Work: Immediate Execution This is a key difference from most other LINQ operators.</p>
 <p>Aggregate operators do not use deferred execution. They must iterate through the entire sequence immediately to compute their value. They return a single value (like an int or double), not an IEnumerable&lt;T&gt;. The Methods</p>
     <ul>
@@ -862,9 +862,9 @@ foreach (var p in productsWithTax)
       <li><strong>Sum():</strong> Calculates the sum of a sequence of numeric values.</li>
       <li><strong>Average():</strong> Calculates the average of a sequence of numeric values.</li>
     </ul>
-    <h3>Important Note</h3>
+    <h3 id="sec-25-lec-9-min-max-count-sum-average-important-note">Important Note</h3>
 <p>Calling Min, Max, or Average on an empty sequence will throw an InvalidOperationException. Count and Sum will gracefully return 0.</p>
-    <h3>Example</h3>
+    <h3 id="sec-25-lec-9-min-max-count-sum-average-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -874,7 +874,7 @@ foreach (var p in productsWithTax)
           Copy
         </button>
       </div>
-      <pre><code>int[] scores = { 88, 95, 72, 100, 65 };
+      <pre><code class="language-csharp">int[] scores = { 88, 95, 72, 100, 65 };
 // Count</code></pre>
     </div>
   
@@ -888,7 +888,7 @@ foreach (var p in productsWithTax)
           Copy
         </button>
       </div>
-      <pre><code>// Min / Max</code></pre>
+      <pre><code class="language-csharp">// Min / Max</code></pre>
     </div>
   
 <p>int lowestScore = scores.Min(); // 65 int highestScore = scores.Max(); // 100</p>
@@ -901,7 +901,7 @@ foreach (var p in productsWithTax)
           Copy
         </button>
       </div>
-      <pre><code>// Sum / Average</code></pre>
+      <pre><code class="language-csharp">// Sum / Average</code></pre>
     </div>
   
 <p>int totalPoints = scores.Sum(); // 420 double averageScore = scores.Average(); // 84.0</p>
@@ -914,7 +914,7 @@ foreach (var p in productsWithTax)
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Total Scores: {totalScores}&quot;);
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Total Scores: {totalScores}&quot;);
 Console.WriteLine($&quot;Number of A-grade scores: {scoresOver90}&quot;);
 Console.WriteLine($&quot;Highest score: {highestScore}&quot;);
 Console.WriteLine($&quot;Average score: {averageScore}&quot;);</code></pre>
@@ -933,6 +933,18 @@ Console.WriteLine($&quot;Average score: {averageScore}&quot;);</code></pre>
     </ul>
 
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="25" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -962,43 +974,155 @@ Console.WriteLine($&quot;Average score: {averageScore}&quot;);</code></pre>
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-25-lec-1-intro-and-linq-basics" class="toc-link">Lecture 1: Intro and LINQ Basics</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-1-intro-and-linq-basics-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-1-intro-and-linq-basics-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-25-lec-2-linq-to-arrays-and-collections" class="toc-link">Lecture 2: LINQ to Arrays and Collections</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-2-linq-to-arrays-and-collections-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-2-linq-to-arrays-and-collections-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-2-linq-to-arrays-and-collections-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-2-linq-to-arrays-and-collections-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-25-lec-3-orderby" class="toc-link">Lecture 3: OrderBy</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-3-orderby-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-3-orderby-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-3-orderby-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-25-lec-4-first-and-firstordefault" class="toc-link">Lecture 4: First and FirstOrDefault</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-4-first-and-firstordefault-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-4-first-and-firstordefault-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-4-first-and-firstordefault-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-25-lec-5-last-and-lastordefault" class="toc-link">Lecture 5: Last and LastOrDefault</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-5-last-and-lastordefault-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-5-last-and-lastordefault-how-it-works" class="toc-link">How It Works: Same Rules, Opposite </a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-5-last-and-lastordefault-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-25-lec-6-elementat-and-elementatordefault" class="toc-link">Lecture 6: ElementAt and ElementAtOrDefault</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-6-elementat-and-elementatordefault-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-6-elementat-and-elementatordefault-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-6-elementat-and-elementatordefault-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-25-lec-7-single-and-singleordefault" class="toc-link">Lecture 7: Single and SingleOrDefault</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-7-single-and-singleordefault-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-7-single-and-singleordefault-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-7-single-and-singleordefault-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-25-lec-8-select" class="toc-link">Lecture 8: Select</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-8-select-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-8-select-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-8-select-example" class="toc-link">example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-8-select-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-25-lec-9-min-max-count-sum-average" class="toc-link">Lecture 9: Min, Max, Count, Sum, Average</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-9-min-max-count-sum-average-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-9-min-max-count-sum-average-important-note" class="toc-link">Important Note</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-25-lec-9-min-max-count-sum-average-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-25-lec-10-things-to-remember" class="toc-link">Lecture 10: Things to Remember</a>
       </li>
     
@@ -1010,6 +1134,7 @@ Console.WriteLine($&quot;Average score: {averageScore}&quot;);</code></pre>
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

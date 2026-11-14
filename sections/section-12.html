@@ -446,13 +446,13 @@
       <article class="docs-content">
         
     <h2 id="sec-12-lec-1-intro-to-namespaces">Lecture 1: Intro to Namespaces</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-12-lec-1-intro-to-namespaces-introduction">Introduction</h3>
 <p>A namespace is a fundamental organizational mechanism in C# used to group related types (like classes, interfaces, and structs) under a single, hierarchical name. Its primary purposes are to manage complexity in large applications and, most importantly, to prevent naming conflicts.</p>
 <p>Think of namespaces like a folder system on your computer. txt). Logger).</p>
 <p>Without namespaces, it would be impossible to combine code from different teams or libraries without the risk of class names clashing.</p>
-    <h3>How It Works: Fully Qualified Names</h3>
+    <h3 id="sec-12-lec-1-intro-to-namespaces-how-it-works">How It Works: Fully Qualified Names</h3>
 <p>NET ecosystem has a fully qualified name, which includes its full namespace path followed by the type name. String. When you are working within a specific namespace, you can access other types in that same namespace directly. However, to access a type located in a different namespace, you must use its fully qualified name.</p>
-    <h3>Example</h3>
+    <h3 id="sec-12-lec-1-intro-to-namespaces-example">Example</h3>
 <p>Let's create two separate namespaces in the same project to see how this works. C#</p>
 
     <div class="code-block-container">
@@ -463,7 +463,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// --- File 1: Defines a utility class in its own namespace --- namespace MyProject.Utilities
+      <pre><code class="language-csharp">// --- File 1: Defines a utility class in its own namespace --- namespace MyProject.Utilities
 {
     public class TextHelper
     {
@@ -493,12 +493,12 @@
   
 
     <h2 id="sec-12-lec-2-nested-namespaces">Lecture 2: Nested Namespaces</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-12-lec-2-nested-namespaces-introduction">Introduction</h3>
 <p>To create an even more granular and logical organization, namespaces can be nested inside other namespaces. This allows you to create a clear hierarchy that mirrors the structure of your application or company.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-12-lec-2-nested-namespaces-how-it-works">How It Works</h3>
 <p>You create a nested namespace using the dot (.) notation. For example, the</p>
 <p>of the Billing system, which belongs to MyCompany. This is just like having a folder named Invoicing inside a folder named Billing. This deep organization is essential for very large enterprise applications where thousands of classes must be managed.</p>
-    <h3>Example</h3>
+    <h3 id="sec-12-lec-2-nested-namespaces-example">Example</h3>
 <p>Let's expand on our previous example with a nested namespace structure. C#</p>
 
     <div class="code-block-container">
@@ -509,7 +509,7 @@
           Copy
         </button>
       </div>
-      <pre><code>namespace MyCompany.BusinessLogic.Billing
+      <pre><code class="language-csharp">namespace MyCompany.BusinessLogic.Billing
 {
     // This class lives inside a nested namespace. public class InvoiceGenerator
     {
@@ -537,11 +537,11 @@ namespace MyCompany.MainApp
   
 
     <h2 id="sec-12-lec-3-importing-namespaces">Lecture 3: Importing Namespaces</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-12-lec-3-importing-namespaces-introduction">Introduction</h3>
 <p>Typing the fully qualified name for every class you use is tedious and makes code difficult to read. The using directive is the C# feature that solves this problem. By placing a using directive at the top of your code file, you are telling the compiler, &quot;For this file, I will be frequently using types from the specified namespace, so please recognize them by their short names.&quot;</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-12-lec-3-importing-namespaces-how-it-works">How It Works</h3>
 <p>When the compiler encounters a type name in your code (like List or Logger), it first checks if that type is defined in the current namespace. If not, it then searches through all the namespaces that you have imported with using directives at the top of the file. As soon as it finds a match, it resolves the type. This removes the need for you to write the fully qualified name everywhere.</p>
-    <h3>Example</h3>
+    <h3 id="sec-12-lec-3-importing-namespaces-example">Example</h3>
 <p>Let's refactor our previous example to be much cleaner using the using directive. C#</p>
 
     <div class="code-block-container">
@@ -552,7 +552,7 @@ namespace MyCompany.MainApp
           Copy
         </button>
       </div>
-      <pre><code>// --- The other class files remain the same ---
+      <pre><code class="language-csharp">// --- The other class files remain the same ---
 // --- In our main program file ---
 // We import the namespaces at the top of the file.
 using System;
@@ -580,13 +580,13 @@ namespace MyProject.MainApplication
 <p>before the namespace declaration.</p>
 
     <h2 id="sec-12-lec-4-using-alias">Lecture 4: Using Alias</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-12-lec-4-using-alias-introduction">Introduction</h3>
 <p>A using alias is a special form of the using directive that creates a new, often shorter, name for a specific type. It does not import an entire namespace, but instead creates an alias for a single class, struct, or other type. Why and When to Use It</p>
     <ol>
       <li>To Resolve Naming Conflicts (Primary Use Case): This is the most important reason. If you import two different namespaces that both contain a class with the same name, the compiler won't know which one you mean. This ambiguity results in a compile-time error. An alias allows you to create a unique name for one or both of the conflicting types.</li>
       <li><strong>To Shorten Long Generic Type Names:</strong> If you frequently use a very long and complex generic type, you can create a simple alias for it to make your code much more readable.</li>
     </ol>
-    <h3>Syntax</h3>
+    <h3 id="sec-12-lec-4-using-alias-syntax">Syntax</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -596,10 +596,10 @@ namespace MyProject.MainApplication
           Copy
         </button>
       </div>
-      <pre><code>using AliasName = Fully.Qualified.Namespace.TypeName;</code></pre>
+      <pre><code class="language-csharp">using AliasName = Fully.Qualified.Namespace.TypeName;</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-12-lec-4-using-alias-example">Example</h3>
 <p>Resolving a Naming Conflict The .NET framework has two different Timer classes in two different namespaces. Let's see how to use both in the same file without conflict. C#</p>
 
     <div class="code-block-container">
@@ -610,7 +610,7 @@ namespace MyProject.MainApplication
           Copy
         </button>
       </div>
-      <pre><code>// Create an alias for each Timer class to resolve the name clash.
+      <pre><code class="language-csharp">// Create an alias for each Timer class to resolve the name clash.
 using SystemTimersTimer = System.Timers.Timer;
 using SystemThreadingTimer = System.Threading.Timer;
 public class TimerManager
@@ -631,15 +631,15 @@ public class TimerManager
   
 
     <h2 id="sec-12-lec-5-using-static">Lecture 5: using static</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-12-lec-5-using-static-introduction">Introduction</h3>
 <p>The using static directive is a feature that allows you to import the static members (methods, properties, and fields) of a single class directly into the current scope. This allows you to call those static methods without having to prefix them with the class name.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-12-lec-5-using-static-how-it-works">How It Works</h3>
 <p>When you write using static System.Math; at the top of your file, the compiler becomes aware of all the public static members of the Math class. When it later sees a method call like Sqrt(25), it will search the imported static classes and find that Sqrt is a static method of Math, resolving the call correctly. Why and When to Use It Use this feature sparingly to improve readability when you are making frequent calls to the static members of a single class within a file.</p>
     <ul>
       <li><strong>Good Candidates:</strong> System.Math in a class with heavy calculations, System.Console in a simple console application, or a custom Constants class you've written.</li>
       <li><strong>Caution:</strong> Overusing using static can sometimes make code less clear, as it might not be immediately obvious where a method like Log() or Calculate() is coming from if its class name is omitted.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-12-lec-5-using-static-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -649,7 +649,7 @@ public class TimerManager
           Copy
         </button>
       </div>
-      <pre><code>// Import all static members from the Console and Math classes.
+      <pre><code class="language-csharp">// Import all static members from the Console and Math classes.
 using static System.Console;
 using static System.Math;
 class Program
@@ -681,6 +681,18 @@ class Program
 
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="12" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -709,27 +721,87 @@ class Program
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-12-lec-1-intro-to-namespaces" class="toc-link">Lecture 1: Intro to Namespaces</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-1-intro-to-namespaces-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-1-intro-to-namespaces-how-it-works" class="toc-link">How It Works: Fully Qualified Names</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-1-intro-to-namespaces-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-12-lec-2-nested-namespaces" class="toc-link">Lecture 2: Nested Namespaces</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-2-nested-namespaces-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-2-nested-namespaces-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-2-nested-namespaces-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-12-lec-3-importing-namespaces" class="toc-link">Lecture 3: Importing Namespaces</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-3-importing-namespaces-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-3-importing-namespaces-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-3-importing-namespaces-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-12-lec-4-using-alias" class="toc-link">Lecture 4: Using Alias</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-4-using-alias-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-4-using-alias-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-4-using-alias-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-12-lec-5-using-static" class="toc-link">Lecture 5: using static</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-5-using-static-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-5-using-static-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-12-lec-5-using-static-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-12-lec-6-imp-points-to-remember" class="toc-link">Lecture 6: IMP Points to Remember</a>
       </li>
     
@@ -741,6 +813,7 @@ class Program
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

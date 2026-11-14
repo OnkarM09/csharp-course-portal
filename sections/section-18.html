@@ -449,18 +449,18 @@
 <p>Matching</p>
 
     <h2 id="sec-18-lec-2-extension-methods">Lecture 1: Extension Methods</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-18-lec-2-extension-methods-introduction">Introduction</h3>
 <p>Extension methods are a powerful C# feature that allow you to &quot;add&quot; new methods to existing types without creating a new derived type, recompiling, or otherwise modifying the original type's source code. This is particularly useful for extending types that you don't own, like classes from the .NET Framework (e.g., string, DateTime) or classes from third-party libraries. They provide the illusion of being instance methods, but are actually a form of syntactic sugar for calling a static method.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-18-lec-2-extension-methods-how-it-works">How It Works</h3>
 <p>The static and this Keywords To create an extension method, you must follow three strict rules:</p>
     <ol>
       <li>The method must be defined in a static class.</li>
       <li>The method itself must be static.</li>
       <li>The first parameter of the method must be marked with the this keyword, followed by the name of the type it extends. The this parameter is what the compiler uses to link the method to the type. When you call the method, you do not provide an argument for this first parameter; it is automatically populated with the instance on which the method was called.</li>
     </ol>
-    <h3>When to Use It: &amp; Real-World Examples</h3>
+    <h3 id="sec-18-lec-2-extension-methods-when-to-use-it">When to Use It: &amp; Real-World Examples</h3>
 <p>The most prominent real-world example of extension methods is LINQ (Language-Integrated Query). Every LINQ method you use on a collection —.Where(), .Select(), .OrderBy(), .ToList()—is an extension method on the IEnumerable&lt;T&gt; interface. Use extension methods to create reusable helper or utility functions that are logically tied to a specific type.</p>
-    <h3>Example</h3>
+    <h3 id="sec-18-lec-2-extension-methods-example">Example</h3>
 <p>Let's say we frequently need to count the number of words in a string. Instead of writing a separate utility function everywhere, we can extend the string type itself. C#</p>
 
     <div class="code-block-container">
@@ -471,7 +471,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// 1. Must be a static class. public static class StringExtensions
+      <pre><code class="language-csharp">// 1. Must be a static class. public static class StringExtensions
 {
     // 2. Must be a static method.
     // 3. 'this string str' indicates this method extends the string type. public static int WordCount(this string str)
@@ -500,7 +500,7 @@ string mySentence = &quot;This is a sample sentence for testing.&quot;;
           Copy
         </button>
       </div>
-      <pre><code>int count = mySentence.WordCount();
+      <pre><code class="language-csharp">int count = mySentence.WordCount();
 Console.WriteLine($&quot;The sentence is: '{mySentence}'&quot;);
 Console.WriteLine($&quot;The word count is: {count}&quot;); // Output: 8</code></pre>
     </div>
@@ -529,9 +529,9 @@ Console.WriteLine($&quot;The word count is: {count}&quot;); // Output: 8</code><
   
 
     <h2 id="sec-18-lec-3-pattern-matching">Lecture 2: Pattern Matching</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-18-lec-3-pattern-matching-introduction">Introduction</h3>
 <p>Pattern matching is a powerful set of features in modern C# that provides a more sophisticated and readable way to check if a variable conforms to a certain &quot;shape&quot; or &quot;pattern,&quot; and to extract information from it if it does. It significantly enhances the capabilities of if statements and, most notably, switch statements and expressions, turning them into highly advanced control flow tools.</p>
-    <h3>How It Works: Common Patterns</h3>
+    <h3 id="sec-18-lec-3-pattern-matching-how-it-works">How It Works: Common Patterns</h3>
 <p>Pattern matching introduces several new patterns you can use in conditional logic.</p>
     <ul>
       <li>Type Pattern (is Type variableName) This pattern both checks the run-time type of an object and, if the check is successful, assigns the object to a new variable of that specific type. C#</li>
@@ -545,7 +545,7 @@ Console.WriteLine($&quot;The word count is: {count}&quot;); // Output: 8</code><
           Copy
         </button>
       </div>
-      <pre><code>object myValue = &quot;Hello World&quot;;</code></pre>
+      <pre><code class="language-csharp">object myValue = &quot;Hello World&quot;;</code></pre>
     </div>
   
 <p>if (myValue is string str) // Checks if myValue is a string, and if so, assigns it to 'str'</p>
@@ -558,7 +558,7 @@ Console.WriteLine($&quot;The word count is: {count}&quot;); // Output: 8</code><
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine($&quot;It's a string with length: {str.Length}&quot;);
 }</code></pre>
     </div>
@@ -573,7 +573,7 @@ Console.WriteLine($&quot;The word count is: {count}&quot;); // Output: 8</code><
           Copy
         </button>
       </div>
-      <pre><code>public class Car { public int PassengerCount { get; set; } }
+      <pre><code class="language-csharp">public class Car { public int PassengerCount { get; set; } }
 Car myCar = new Car { PassengerCount = 4 };
 string message = myCar switch
 {
@@ -595,7 +595,7 @@ ranges, not just constant values.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>int score = 85;
+      <pre><code class="language-csharp">int score = 85;
 string grade = score switch
 {
     &gt;= 90 =&gt; &quot;A&quot;,
@@ -616,7 +616,7 @@ more complex conditions.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>string GetWeatherReport(double temp, bool isRaining) =&gt; (temp,
+      <pre><code class="language-csharp">string GetWeatherReport(double temp, bool isRaining) =&gt; (temp,
 isRaining) switch
 {
     (&gt; 30.0, false) =&gt; &quot;Hot and sunny.&quot;,
@@ -651,16 +651,16 @@ isRaining) switch
   
 
     <h2 id="sec-18-lec-4-implicitly-typed-variables-var">Lecture 3: Implicitly Typed Variables (var)</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-18-lec-4-implicitly-typed-variables-var-introduction">Introduction</h3>
 <p>The var keyword, introduced in C# 3.0, lets you declare a local variable without explicitly specifying its data type. The compiler infers the type for you based on the value you use to initialize the variable.</p>
-    <h3>How It Works: Compile-Time Type Inference</h3>
+    <h3 id="sec-18-lec-4-implicitly-typed-variables-var-how-it-works">How It Works: Compile-Time Type Inference</h3>
 <p>This is the most critical concept to understand: var does not create a dynamically typed variable. C# remains a statically-typed language. The var keyword is purely a compile-time feature.</p>
 <p>The compiler looks at the expression on the right-hand side of the assignment and determines its type. It then replaces the var keyword with that explicit type in the Intermediate Language (IL).</p>
     <ul>
       <li><strong>When you write:</strong> var name = &quot;John&quot;;</li>
       <li>The compiler generates the same code as if you had written: string name = &quot;John&quot;; Once the type is inferred and compiled, it is locked in. You cannot later assign a value of a different type to that variable.</li>
     </ul>
-    <h3>Rules: and Best Practices</h3>
+    <h3 id="sec-18-lec-4-implicitly-typed-variables-var-rules">Rules: and Best Practices</h3>
     <ul>
       <li><strong>Rule:</strong> A var variable must be initialized at the time of its declaration so the compiler can infer its type. var x; is a compiler error.</li>
       <li><strong>Rule:</strong> var can only be used for local variables inside a method. It cannot be used for fields or method parameters.</li>
@@ -676,9 +676,9 @@ isRaining) switch
     </ul>
 
     <h2 id="sec-18-lec-5-dynamically-typed-variables-dynamic">Lecture 4: Dynamically Typed Variables (dynamic)</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-18-lec-5-dynamically-typed-variables-dynamic-introduction">Introduction</h3>
 <p>The dynamic keyword, introduced in C# 4.0, allows you to create variables that bypass static type checking at compile-time. It fundamentally changes how the compiler treats the variable.</p>
-    <h3>How It Works: Run-Time Resolution</h3>
+    <h3 id="sec-18-lec-5-dynamically-typed-variables-dynamic-how-it-works">How It Works: Run-Time Resolution</h3>
 <p>When you declare a variable as dynamic, you are telling the compiler: &quot;Trust me. Don't check anything I do with this variable right now. &quot; All calls to methods, properties, or operators on a dynamic variable are packaged up and resolved only when the program is actually running.</p>
 <p>If the member you tried to call exists at run-time, the code works. If it does not exist, the program will crash with a RuntimeBinderException. Why and When to Use It You should use dynamic with great caution as it sacrifices the core benefit of C#'s static type safety. Its main valid use cases are for interoperability:</p>
     <ul>
@@ -699,7 +699,7 @@ isRaining) switch
       <li><strong>Errors:</strong> Bypasses the compiler and throws a run-time exception if you call a non-existent method.</li>
       <li><strong>Example:</strong> dynamic x = 10; x = &quot;hello&quot;; // NO ERROR. The type of x changes at runtime.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-18-lec-5-dynamically-typed-variables-dynamic-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -709,7 +709,7 @@ isRaining) switch
           Copy
         </button>
       </div>
-      <pre><code>// The compiler knows x is an int.
+      <pre><code class="language-csharp">// The compiler knows x is an int.
 var x = 10;
 // Console.WriteLine(x.ToUpper()); // Compile-time error: 'int' does not</code></pre>
     </div>
@@ -724,7 +724,7 @@ var x = 10;
           Copy
         </button>
       </div>
-      <pre><code>// The compiler knows nothing about what y can do. It trusts you.
+      <pre><code class="language-csharp">// The compiler knows nothing about what y can do. It trusts you.
 dynamic y = 10;
 // This next line compiles fine, but will CRASH at runtime because the integer 10
 // does not have a ToUpper() method. try
@@ -742,15 +742,15 @@ Console.WriteLine(y.ToUpper()); // This works now. Output: HELLO</code></pre>
   
 
     <h2 id="sec-18-lec-6-inner-classes-nested-classes">Lecture 5: Inner Classes (Nested Classes)</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-18-lec-6-inner-classes-nested-classes-introduction">Introduction</h3>
 <p>An inner class, more formally known as a nested class, is a class that is declared within the scope of another containing class. It is a way to group classes that are tightly coupled and to control their visibility.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-18-lec-6-inner-classes-nested-classes-how-it-works">How It Works</h3>
 <p>A nested class is a member of its containing class. This has two key implications:</p>
     <ol>
       <li><strong>Access:</strong> A nested class has access to all members of its containing class, including private fields and methods. This is because it is considered part of the containing class's implementation.</li>
       <li><strong>Visibility:</strong> The nested class itself can have an access modifier (public, private, etc.). If you declare a nested class as private, it is completely hidden from the outside world and can only be used by the containing class. Why and When to Use It Use a nested class when a class logically only makes sense in the context of its containing class and is not intended for general public use. It's a tool for better organization and encapsulation. The most classic real-world example is the relationship between a LinkedList and its Node. The concept of a Node (which holds a value and a pointer to the next node) is an implementation detail of the linked list. No outside code should ever need to create or work with a Node directly. By making the Node class a private nested class inside the LinkedList, you hide this implementation detail completely.</li>
     </ol>
-    <h3>Example: LinkedList and Node</h3>
+    <h3 id="sec-18-lec-6-inner-classes-nested-classes-example">Example: LinkedList and Node</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -760,7 +760,7 @@ Console.WriteLine(y.ToUpper()); // This works now. Output: HELLO</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class MyLinkedList&lt;T&gt;
+      <pre><code class="language-csharp">public class MyLinkedList&lt;T&gt;
 {
     // A private nested class. It is only visible and usable
     // by the MyLinkedList&lt;T&gt; class. private class Node
@@ -806,6 +806,18 @@ list.Add(2);
 
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="18" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -834,28 +846,88 @@ list.Add(2);
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-18-lec-1-methods-and-pattern" class="toc-link">Methods and Pattern</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-18-lec-2-extension-methods" class="toc-link">Lecture 1: Extension Methods</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-2-extension-methods-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-2-extension-methods-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-2-extension-methods-when-to-use-it" class="toc-link">When to Use It: &amp; Real-World Exampl</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-2-extension-methods-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-18-lec-3-pattern-matching" class="toc-link">Lecture 2: Pattern Matching</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-3-pattern-matching-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-3-pattern-matching-how-it-works" class="toc-link">How It Works: Common Patterns</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-18-lec-4-implicitly-typed-variables-var" class="toc-link">Lecture 3: Implicitly Typed Variables (var)</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-4-implicitly-typed-variables-var-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-4-implicitly-typed-variables-var-how-it-works" class="toc-link">How It Works: Compile-Time Type Inf</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-4-implicitly-typed-variables-var-rules" class="toc-link">Rules: and Best Practices</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-18-lec-5-dynamically-typed-variables-dynamic" class="toc-link">Lecture 4: Dynamically Typed Variables (dynamic)</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-5-dynamically-typed-variables-dynamic-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-5-dynamically-typed-variables-dynamic-how-it-works" class="toc-link">How It Works: Run-Time Resolution</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-5-dynamically-typed-variables-dynamic-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-18-lec-6-inner-classes-nested-classes" class="toc-link">Lecture 5: Inner Classes (Nested Classes)</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-6-inner-classes-nested-classes-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-6-inner-classes-nested-classes-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-18-lec-6-inner-classes-nested-classes-example" class="toc-link">Example: LinkedList and Node</a>
       </li>
     
       </ul>
@@ -866,6 +938,7 @@ list.Add(2);
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

@@ -448,14 +448,14 @@
     <h2 id="sec-26-lec-1-math">Math</h2>
 
     <h2 id="sec-26-lec-2-intro-to-strings">Lecture 1: Intro to Strings</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-2-intro-to-strings-introduction">Introduction</h3>
 <p>The string data type is one of the most fundamental and frequently used types in any programming language. In C#, a string represents a sequence of characters. While it often feels like a simple, primitive type, it is actually a complex and highly optimized reference type with some very special behaviors.</p>
 <p>Understanding these nuances is critical for writing efficient and correct code. The Two Most Important Characteristics of a String</p>
     <ol>
       <li><strong>It is a Reference Type:</strong> When you create a string variable, the variable itself holds a reference to the actual sequence of characters, which is stored on the heap. However...</li>
       <li>It Exhibits Value-Type Behavior (It is Immutable): This is the most crucial concept to grasp about strings. Strings in C# are immutable. This means that once a string object has been created in memory, its content can never be changed. Any operation that appears to modify a string—like converting it to uppercase or replacing a character—does not change the original string. Instead, it creates a brand new string object in memory with the modified content and returns a reference to that new object.</li>
     </ol>
-    <h3>Example: Demonstrating Immutability</h3>
+    <h3 id="sec-26-lec-2-intro-to-strings-example">Example: Demonstrating Immutability</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -465,7 +465,7 @@
           Copy
         </button>
       </div>
-      <pre><code>string originalMessage = &quot;Hello&quot;;
+      <pre><code class="language-csharp">string originalMessage = &quot;Hello&quot;;
 Console.WriteLine($&quot;Original message: '{originalMessage}'&quot;);
 // The ToUpper() method does NOT change the original string.
 // It creates a NEW string in memory and returns a reference to it.
@@ -473,7 +473,7 @@ string upperMessage = originalMessage.ToUpper();
 Console.WriteLine($&quot;'originalMessage' is still: '{originalMessage}'&quot;); //</code></pre>
     </div>
   
-    <h3>Output: Hello</h3>
+    <h3 id="sec-26-lec-2-intro-to-strings-output">Output: Hello</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -483,15 +483,15 @@ Console.WriteLine($&quot;'originalMessage' is still: '{originalMessage}'&quot;);
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;'upperMessage' is a new string:</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;'upperMessage' is a new string:</code></pre>
     </div>
   
 <p>'{upperMessage}'&quot;); // Output: HELLO This immutable nature ensures that strings are predictable and safe to pass between different parts of an application without fear that one part will unexpectedly change the string for another.</p>
 
     <h2 id="sec-26-lec-3-how-string-objects-are-created">Lecture 2: How String Objects are Created</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-3-how-string-objects-are-created-introduction">Introduction</h3>
 <p>There are several ways to create a string object, but the most common method involves a special optimization by the .NET runtime called the intern pool.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-3-how-string-objects-are-created-how-it-works">How It Works</h3>
 <p>String Literals and the Intern Pool When you declare a string using a string literal (text enclosed in double quotes), the CLR performs a special check.</p>
 
     <div class="code-block-container">
@@ -502,7 +502,7 @@ Console.WriteLine($&quot;'originalMessage' is still: '{originalMessage}'&quot;);
           Copy
         </button>
       </div>
-      <pre><code>string s1 = &quot;Hello World&quot;;
+      <pre><code class="language-csharp">string s1 = &quot;Hello World&quot;;
 string s2 = &quot;Hello World&quot;;</code></pre>
     </div>
   
@@ -518,9 +518,9 @@ string s2 = &quot;Hello World&quot;;</code></pre>
     </ul>
 
     <h2 id="sec-26-lec-4-the-system-string-class">Lecture 3: The System.String class</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-4-the-system-string-class-introduction">Introduction</h3>
 <p>The string keyword in C# is not a true primitive type; it is a convenient alias for the System.String class. This is a fundamental concept. Because string is an alias for a class, every string variable you create is a true object, which gives it access to a rich set of powerful instance methods for manipulation and inspection.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-4-the-system-string-class-how-it-works">How It Works</h3>
 <p>When you write string name = &quot;John&quot;;, the compiler treats it exactly as if you had written System.String name = &quot;John&quot;;. This means you can call methods directly on the variable or even on a string literal.</p>
 
     <div class="code-block-container">
@@ -531,7 +531,7 @@ string s2 = &quot;Hello World&quot;;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>string greeting = &quot;Hello, World!&quot;;
+      <pre><code class="language-csharp">string greeting = &quot;Hello, World!&quot;;
 // Calling an instance method on the string variable.</code></pre>
     </div>
   
@@ -545,24 +545,24 @@ string s2 = &quot;Hello World&quot;;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// You can even call methods on a literal.
+      <pre><code class="language-csharp">// You can even call methods on a literal.
 bool startsWithHello = &quot;Hello, World!&quot;.StartsWith(&quot;Hello&quot;);</code></pre>
     </div>
   
 <p>This design provides the best of both worlds: the simple, intuitive feel of a primitive type with the power and functionality of a full-featured class. In the following lectures, we will explore the most important methods of this class.</p>
 
     <h2 id="sec-26-lec-5-toupper-and-tolower">Lecture 4: ToUpper() and ToLower()</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-5-toupper-and-tolower-introduction">Introduction</h3>
 <p>These are two simple but essential methods for case conversion. Methods</p>
     <ul>
       <li><strong>string ToUpper():</strong> Returns a new string in which all the characters of the original string are converted to uppercase.</li>
       <li><strong>string ToLower():</strong> Returns a new string in which all the characters of the original string are converted to lowercase.</li>
     </ul>
-    <h3>How It Works: &amp; Immutability</h3>
+    <h3 id="sec-26-lec-5-toupper-and-tolower-how-it-works">How It Works: &amp; Immutability</h3>
 <p>It is crucial to remember that strings are immutable. These methods do not change the original string. They create a new string in memory with the converted case and return a reference to it.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-26-lec-5-toupper-and-tolower-when-to-use-it">When to Use It</h3>
 <p>Case conversion is vital for performing case-insensitive comparisons. Before comparing two strings, a common practice is to convert both to a consistent case (usually upper or lower) to ensure that &quot;Apple&quot; and &quot;apple&quot; are treated as equal.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-5-toupper-and-tolower-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -572,7 +572,7 @@ bool startsWithHello = &quot;Hello, World!&quot;.StartsWith(&quot;Hello&quot;);<
           Copy
         </button>
       </div>
-      <pre><code>string userInput = &quot;CSharp&quot;;
+      <pre><code class="language-csharp">string userInput = &quot;CSharp&quot;;
 string dbValue = &quot;csharp&quot;;
 Console.WriteLine($&quot;Original userInput: {userInput}&quot;);
 // To perform a case-insensitive comparison
@@ -588,15 +588,15 @@ Console.WriteLine($&quot;Original userInput is still unchanged: {userInput}&quot
   
 
     <h2 id="sec-26-lec-6-substring">Lecture 5: Substring()</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-6-substring-introduction">Introduction</h3>
 <p>The Substring() method allows you to extract a portion of a string, creating a new string from a part of the original. Method Overloads</p>
     <ol>
       <li><strong>string Substring(int startIndex):</strong> Returns a new string that is a substring of the original. The substring starts at the specified startIndex and continues to the end of the string.</li>
       <li>string Substring(int startIndex, int length): Returns a new string that is a substring of the original. The substring starts at startIndex and has a specified length.</li>
     </ol>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-6-substring-how-it-works">How It Works</h3>
 <p>Like all string manipulation methods, Substring is immutable. It allocates new memory for the new, shorter string and returns a reference to it. The original string remains untouched.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-6-substring-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -606,7 +606,7 @@ Console.WriteLine($&quot;Original userInput is still unchanged: {userInput}&quot
           Copy
         </button>
       </div>
-      <pre><code>string data = &quot;ID:12345-USERNAME:JohnDoe&quot;;
+      <pre><code class="language-csharp">string data = &quot;ID:12345-USERNAME:JohnDoe&quot;;
 // Find the starting position of the username.
 int userStartIndex = data.IndexOf(&quot;USERNAME:&quot;) + &quot;USERNAME:&quot;.Length;
 // Extract the username from that position to the end of the string.
@@ -621,15 +621,15 @@ Console.WriteLine($&quot;Extracted ID: {id}&quot;); // Output: 12345</code></pre
   
 
     <h2 id="sec-26-lec-7-replace">Lecture 6: Replace()</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-7-replace-introduction">Introduction</h3>
 <p>The Replace() method is used to find all occurrences of a specified character or string within the current string and replace them with another character or string. Method Overloads</p>
     <ul>
       <li>string Replace(char oldChar, char newChar): Replaces all occurrences of a character.</li>
       <li>string Replace(string oldValue, string newValue): Replaces all occurrences of a string.</li>
     </ul>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-7-replace-how-it-works">How It Works</h3>
 <p>This method is case-sensitive. It returns a new string with the replacements made. If the oldValue is not found in the string, it returns a reference to the original, unchanged string.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-7-replace-example">Example</h3>
 <p>string reportText = &quot;This report is incomplete and contains incomplete data.&quot;;</p>
 
     <div class="code-block-container">
@@ -640,7 +640,7 @@ Console.WriteLine($&quot;Extracted ID: {id}&quot;); // Output: 12345</code></pre
           Copy
         </button>
       </div>
-      <pre><code>// Replace all occurrences of the word &quot;incomplete&quot;.
+      <pre><code class="language-csharp">// Replace all occurrences of the word &quot;incomplete&quot;.
 string correctedText = reportText.Replace(&quot;incomplete&quot;, &quot;preliminary&quot;);
 Console.WriteLine($&quot;Original: {reportText}&quot;);
 Console.WriteLine($&quot;Corrected: {correctedText}&quot;);
@@ -652,12 +652,12 @@ Console.WriteLine($&quot;Web-friendly path: {webPath}&quot;);</code></pre>
   
 
     <h2 id="sec-26-lec-8-format">Lecture 7: Format()</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-8-format-introduction">Introduction</h3>
 <p>String.Format() is a powerful static method that allows you to create a new string by inserting formatted values into placeholders within a template string. This technique is known as composite formatting.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-8-format-how-it-works">How It Works</h3>
 <p>, {0}, {1}) and a list of arguments. It replaces each placeholder with the string representation of the corresponding argument from the list. , formatting a number as currency or a date in a specific style).</p>
 <p>0, is the modern, more readable, and preferred way to format strings. You prefix the string with a $ and place the variable names directly inside curly braces {}. Format calls behind the scenes.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-8-format-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -667,7 +667,7 @@ Console.WriteLine($&quot;Web-friendly path: {webPath}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>string name = &quot;Alice&quot;;
+      <pre><code class="language-csharp">string name = &quot;Alice&quot;;
 int score = 95;
 decimal price = 24.99m;
 // --- Using String.Format (The Old Way) ---</code></pre>
@@ -683,7 +683,7 @@ decimal price = 24.99m;
           Copy
         </button>
       </div>
-      <pre><code>// {2:C} formats the third argument as Currency.
+      <pre><code class="language-csharp">// {2:C} formats the third argument as Currency.
 // --- Using String Interpolation (The Modern, Preferred Way) ---</code></pre>
     </div>
   
@@ -697,19 +697,19 @@ decimal price = 24.99m;
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(interpolatedString);
+      <pre><code class="language-csharp">Console.WriteLine(interpolatedString);
 // Output: User Alice scored 95 points. The item costs $24.99.</code></pre>
     </div>
   
 
     <h2 id="sec-26-lec-9-isnullorempty">Lecture 8: IsNullOrEmpty</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-9-isnullorempty-introduction">Introduction</h3>
 <p>String.IsNullOrEmpty is a static utility method that provides a convenient and safe way to check if a string is either null or an empty string (&quot;&quot;). It combines two common checks into a single, highly readable method call.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-9-isnullorempty-how-it-works">How It Works</h3>
 <p>This method is a simple shortcut for the common condition: if (myString == null || myString == &quot;&quot;). By using IsNullOrEmpty, you first guard against a NullReferenceException (by checking for null) and then check if the string has any characters.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-26-lec-9-isnullorempty-when-to-use-it">When to Use It</h3>
 <p>This should be your standard way to check for empty or non-existent string data, especially when validating method parameters or user input. It prevents NullReferenceException errors and makes your code's intent clearer than writing out the full || condition.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-9-isnullorempty-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -719,7 +719,7 @@ decimal price = 24.99m;
           Copy
         </button>
       </div>
-      <pre><code>public void ProcessUsername(string username)
+      <pre><code class="language-csharp">public void ProcessUsername(string username)
 {
     // Use IsNullOrEmpty as a &quot;guard clause&quot; at the beginning of the method.
     if (String.IsNullOrEmpty(username))
@@ -736,13 +736,13 @@ decimal price = 24.99m;
 <p>ProcessUsername(&quot;JohnDoe&quot;); // Output: Processing user: JohnDoe ProcessUsername(&quot;&quot;); // Output: Username cannot be empty. Process halted. ProcessUsername(null); // Output: Username cannot be empty. Process halted.</p>
 
     <h2 id="sec-26-lec-10-split">Lecture 9: Split</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-10-split-introduction">Introduction</h3>
 <p>The Split() method is an instance method that breaks a string into an array of substrings based on a specified set of delimiters. It is an essential tool for parsing structured string data.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-10-split-how-it-works">How It Works</h3>
 <p>The most common overload takes an array of characters (char[]) to use as delimiters. A very useful second parameter is StringSplitOptions.RemoveEmptyEntries, which tells the method to discard any empty strings that result from the split. This is helpful when your data might have multiple delimiters next to each other (e.g., &quot;apple,,banana&quot;).</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-26-lec-10-split-when-to-use-it">When to Use It</h3>
 <p>Use Split whenever you need to parse a single string that contains multiple pieces of data separated by a consistent character. The most common use case is parsing a line from a comma-separated value (CSV) file.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-10-split-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -752,7 +752,7 @@ decimal price = 24.99m;
           Copy
         </button>
       </div>
-      <pre><code>// A string representing a row of comma-separated data.
+      <pre><code class="language-csharp">// A string representing a row of comma-separated data.
 // Note the extra space after the comma.
 string csvLine = &quot;John,Doe,35,New York&quot;;
 // Define the character to split on.
@@ -775,17 +775,17 @@ Console.WriteLine(&quot;\nClean tags: &quot; + String.Join(&quot;, &quot;, clean
   
 
     <h2 id="sec-26-lec-11-trim">Lecture 10: Trim</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-11-trim-introduction">Introduction</h3>
 <p>The Trim() method is an instance method used to create a new string by removing all leading and trailing whitespace characters from the original string.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-11-trim-how-it-works">How It Works</h3>
 <p>&quot;Whitespace&quot; includes common characters like spaces, tabs (\t), and newlines (\n). The Trim() method does not affect whitespace within the middle of the string. It has two variations:</p>
     <ul>
       <li><strong>TrimStart():</strong> Removes whitespace only from the beginning of the string.</li>
       <li><strong>TrimEnd():</strong> Removes whitespace only from the end of thestring. Like all string methods, it is immutable and returns a new string.</li>
     </ul>
-    <h3>When to Use It</h3>
+    <h3 id="sec-26-lec-11-trim-when-to-use-it">When to Use It</h3>
 <p>It is essential for cleaning up user input before processing or saving it. Users frequently add accidental leading or trailing spaces when typing. Trim() ensures that these extra spaces don't cause issues in comparisons, database lookups, or file paths.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-11-trim-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -795,7 +795,7 @@ Console.WriteLine(&quot;\nClean tags: &quot; + String.Join(&quot;, &quot;, clean
           Copy
         </button>
       </div>
-      <pre><code>string rawUserInput = &quot; 	John Doe 	&quot;;
+      <pre><code class="language-csharp">string rawUserInput = &quot; 	John Doe 	&quot;;
 Console.WriteLine($&quot;Raw: '{rawUserInput}'&quot;);
 // Use Trim to clean up the input.
 string cleanedInput = rawUserInput.Trim();
@@ -807,13 +807,13 @@ string messyPath = &quot; 	C:\\MyFiles\\ 	&quot;;</code></pre>
 <p>string cleanStart = messyPath.TrimStart(); // &quot;C:\\MyFiles\\ &quot; string cleanEnd = messyPath.TrimEnd(); // &quot; C:\\MyFiles\\&quot;</p>
 
     <h2 id="sec-26-lec-12-tochararray">Lecture 11: ToCharArray</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-12-tochararray-introduction">Introduction</h3>
 <p>The ToCharArray() method is a simple instance method that converts a string into a character array (char[]).</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-12-tochararray-how-it-works">How It Works</h3>
 <p>It creates a new character array where each element of the array is a character from the original string, in the same order.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-26-lec-12-tochararray-when-to-use-it">When to Use It</h3>
 <p>You would use this when you need to perform complex, character-by- character manipulation that is easier or more efficient to do with an array. Since strings are immutable, you can't change individual characters. But you can convert the string to a mutable char array, perform your modifications on the array, and then convert it back to a string.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-12-tochararray-example">Example</h3>
 <p>Let's manually reverse a string using this technique.</p>
 
     <div class="code-block-container">
@@ -824,7 +824,7 @@ string messyPath = &quot; 	C:\\MyFiles\\ 	&quot;;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>string original = &quot;Hello&quot;;
+      <pre><code class="language-csharp">string original = &quot;Hello&quot;;
 // 1. Convert the string to a char array.
 char[] chars = original.ToCharArray();
 // 2. Perform manipulations on the array (e.g., Array.Reverse).
@@ -837,7 +837,7 @@ Console.WriteLine($&quot;Reversed: {reversed}&quot;); // Output: olleH</code></p
   
 
     <h2 id="sec-26-lec-13-equals">Lecture 12: Equals</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-13-equals-introduction">Introduction</h3>
 <p>Comparing strings for equality is a very common task, and the string type provides multiple ways to do it, each with different performance and correctness implications. The == Operator This is a critical interview point. For most reference types, the == operator performs reference equality (checking if two variables point to the same object).</p>
 <p>However, the string type overloads this operator to perform a value equality check. This means s1 == s2 will compare the actual character contents of the strings. This is done because it is the intuitive and expected behavior for strings.</p>
 <p>The comparison it performs is case-sensitive and culture- aware. Equals() method. Its most robust overload is: public static bool Equals(string a, string b, StringComparison comparisonType) The StringComparison Enum This enum is crucial for specifying how the comparison should be done.</p>
@@ -847,7 +847,7 @@ Console.WriteLine($&quot;Reversed: {reversed}&quot;); // Output: olleH</code></p
       <li>StringComparison.CurrentCulture: This performs a slower comparison that respects the linguistic rules of the user's current operating system culture (e.g., how different cultures sort characters).</li>
       <li>StringComparison.CurrentCultureIgnoreCase: Same as CurrentCulture, but case-insensitive. Use this when comparing strings for display to an end-user where cultural context matters.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-13-equals-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -857,7 +857,7 @@ Console.WriteLine($&quot;Reversed: {reversed}&quot;); // Output: olleH</code></p
           Copy
         </button>
       </div>
-      <pre><code>string s1 = &quot;Strasse&quot;;</code></pre>
+      <pre><code class="language-csharp">string s1 = &quot;Strasse&quot;;</code></pre>
     </div>
   
 <p>string s2 = &quot;Straße&quot;; // A German character that is equivalent to &quot;ss&quot; in some contexts.</p>
@@ -870,7 +870,7 @@ Console.WriteLine($&quot;Reversed: {reversed}&quot;); // Output: olleH</code></p
           Copy
         </button>
       </div>
-      <pre><code>// Using the default == operator (culture-aware)
+      <pre><code class="language-csharp">// Using the default == operator (culture-aware)
 // In some cultures, this might be true. In an Ordinal compare, it's false.
 // --- The robust way ---
 // Ordinal compare: Are the bytes identical?
@@ -890,7 +890,7 @@ False
           Copy
         </button>
       </div>
-      <pre><code>bool areEqualCulture = String.Equals(s1, s2,
+      <pre><code class="language-csharp">bool areEqualCulture = String.Equals(s1, s2,
 StringComparison.CurrentCulture);
 Console.WriteLine($&quot;Current Culture comparison: {areEqualCulture}&quot;); //</code></pre>
     </div>
@@ -899,11 +899,11 @@ Console.WriteLine($&quot;Current Culture comparison: {areEqualCulture}&quot;); /
 
     <h2 id="sec-26-lec-14-join-introduction">Lecture 13: Join Introduction</h2>
 <p>String.Join is a powerful static method that does the opposite of Split. It concatenates the elements of a collection (like an array or List&lt;string&gt;) into a single new string, inserting a specified separator between each element.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-14-join-introduction-how-it-works">How It Works</h3>
 <p>It takes a separator string and a collection of items. It iterates through the collection, efficiently building a new string by appending each item's string representation and the separator.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-26-lec-14-join-introduction-when-to-use-it">When to Use It</h3>
 <p>Use String.Join anytime you need to create a formatted, delimited string from a list of items. It is far more efficient and cleaner than using a loop and manually appending strings with a + operator. Common uses include creating a comma-separated list for display or generating a line for a CSV file.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-14-join-introduction-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -913,7 +913,7 @@ Console.WriteLine($&quot;Current Culture comparison: {areEqualCulture}&quot;); /
           Copy
         </button>
       </div>
-      <pre><code>string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot; };
+      <pre><code class="language-csharp">string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot; };
 // Join the names with a comma and a space.
 string commaSeparatedNames = String.Join(&quot;, &quot;, names);
 Console.WriteLine(commaSeparatedNames); // Output: Alice, Bob,
@@ -926,16 +926,16 @@ Console.WriteLine(fullPath); // Output: C:\Users\JohnDoe\Documents</code></pre>
   
 
     <h2 id="sec-26-lec-15-compareto">Lecture 14: CompareTo</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-15-compareto-introduction">Introduction</h3>
 <p>The CompareTo method is an instance method that compares the current string object to another string to determine their relative position in a sort order. This method is the implementation of the IComparable interface for strings, and it's what methods like Array.Sort and List&lt;T&gt;.Sort use under the hood to sort strings alphabetically.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-15-compareto-how-it-works">How It Works</h3>
 <p>The Return Value CompareTo returns an integer with a specific meaning:</p>
     <ul>
       <li><strong>Less than 0:</strong> The current string instance comes before the other string in the sort order (e.g., &quot;Apple&quot; comes before &quot;Banana&quot;).</li>
       <li><strong>Zero:</strong> The strings are equal in sort order.</li>
       <li><strong>Greater than 0:</strong> The current string instance comes after the other string in the sort order (e.g., &quot;Cat&quot; comes after &quot;Banana&quot;). The comparison is culture-aware and case-sensitive by default.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-15-compareto-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -945,7 +945,7 @@ Console.WriteLine(fullPath); // Output: C:\Users\JohnDoe\Documents</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>string s1 = &quot;Apple&quot;;
+      <pre><code class="language-csharp">string s1 = &quot;Apple&quot;;
 string s2 = &quot;Banana&quot;;
 string s3 = &quot;Apple&quot;;
 int result1 = s1.CompareTo(s2);
@@ -961,13 +961,13 @@ Console.WriteLine($&quot;Comparing '{s1}' to '{s3}': {result3}&quot;); // Output
   
 
     <h2 id="sec-26-lec-16-startswith-and-endswith">Lecture 15: StartsWith and EndsWith</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-16-startswith-and-endswith-introduction">Introduction</h3>
 <p>These are simple but very useful boolean instance methods for checking if a string begins or ends with a specific substring. How They Work</p>
     <ul>
       <li><strong>bool StartsWith(string value):</strong> Returns true if the string instance begins with the specified substring.</li>
       <li><strong>bool EndsWith(string value):</strong> Returns true if the string instance ends with the specified substring. By default, these comparisons are case-sensitive. However, they have important overloads that accept a StringComparison enum value, allowing you to easily perform case-insensitive checks.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-16-startswith-and-endswith-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -977,7 +977,7 @@ Console.WriteLine($&quot;Comparing '{s1}' to '{s3}': {result3}&quot;); // Output
           Copy
         </button>
       </div>
-      <pre><code>string filename = &quot;MyReport.PDF&quot;;
+      <pre><code class="language-csharp">string filename = &quot;MyReport.PDF&quot;;
 // Case-sensitive check (default)
 bool endsWithPdfLower = filename.EndsWith(&quot;.pdf&quot;);
 Console.WriteLine($&quot;Ends with '.pdf'? {endsWithPdfLower}&quot;); // Output:
@@ -995,7 +995,7 @@ False
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Ends with '.pdf' (ignore case)?</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Ends with '.pdf' (ignore case)?</code></pre>
     </div>
   
 <p>{endsWithPdfIgnoreCase}&quot;); // Output: True</p>
@@ -1008,7 +1008,7 @@ False
           Copy
         </button>
       </div>
-      <pre><code>string url = &quot;[https://www.google.com](https://www.google.com)&quot;;</code></pre>
+      <pre><code class="language-csharp">string url = &quot;[https://www.google.com](https://www.google.com)&quot;;</code></pre>
     </div>
   
 
@@ -1020,16 +1020,16 @@ False
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;URL is secure.&quot;);
 }</code></pre>
     </div>
   
 
     <h2 id="sec-26-lec-17-contains">Lecture 16: Contains</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-17-contains-introduction">Introduction</h3>
 <p>The Contains method is a boolean instance method that checks if a specified substring exists anywhere within the string.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-17-contains-how-it-works">How It Works</h3>
 <p>It returns true if the substring is found, and false otherwise. Like StartsWith and EndsWith, it is case-sensitive by default. Modern versions of .NET include an overload that accepts a StringComparison enum for case-insensitive checks.</p>
 
     <div class="callout callout-tip">
@@ -1058,15 +1058,15 @@ False
   
 
     <h2 id="sec-26-lec-18-indexof-and-lastindexof">Lecture 17: IndexOf and LastIndexOf</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-18-indexof-and-lastindexof-introduction">Introduction</h3>
 <p>These instance methods are used to find the position of a character or substring within a string.</p>
     <ul>
       <li><strong>IndexOf(char/string value):</strong> Searches the string from beginning to end and returns the zero-based index of the first occurrence of the specified character or substring.</li>
       <li><strong>LastIndexOf(char/string value):</strong> Searches the string from end to beginning and returns the zero-based index of the last occurrence of the specified character or substring.</li>
     </ul>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-18-indexof-and-lastindexof-how-it-works">How It Works</h3>
 <p>If the specified character or substring is not found, both methods return -1. They also have overloads that allow you to specify a starting index for the search, giving you more control over where the search begins.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-18-indexof-and-lastindexof-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1076,7 +1076,7 @@ False
           Copy
         </button>
       </div>
-      <pre><code>string path = &quot;C:\\Users\\JohnDoe\\Documents\\MyFile.txt&quot;;
+      <pre><code class="language-csharp">string path = &quot;C:\\Users\\JohnDoe\\Documents\\MyFile.txt&quot;;
 // Find the first occurrence of 'o'
 int firstO = path.IndexOf('o');
 Console.WriteLine($&quot;First 'o' is at index: {firstO}&quot;); // Output: 10
@@ -1091,18 +1091,18 @@ Console.WriteLine($&quot;Filename is: {filename}&quot;); // Output: MyFile.txt</
   
 
     <h2 id="sec-26-lec-19-isnullorwhitespace">Lecture 18: IsNullOrWhiteSpace</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-19-isnullorwhitespace-introduction">Introduction</h3>
 <p>String.IsNullOrWhiteSpace is a static utility method that provides a robust check for &quot;empty&quot; strings. It is an enhancement over String.IsNullOrEmpty.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-26-lec-19-isnullorwhitespace-how-it-works">How It Works</h3>
 <p>This method returns true if a string is:</p>
     <ul>
       <li>null</li>
       <li>An empty string (&quot;&quot;)</li>
       <li>Consists only of whitespace characters (spaces, tabs, newlines, etc.). This is what makes it more powerful than IsNullOrEmpty, which would return false for a string like &quot; &quot;.</li>
     </ul>
-    <h3>When to Use It</h3>
+    <h3 id="sec-26-lec-19-isnullorwhitespace-when-to-use-it">When to Use It</h3>
 <p>This should be your preferred method for validating user input or any string that should contain actual content. It correctly handles cases where a user might enter just spaces into a required text field.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-19-isnullorwhitespace-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1112,7 +1112,7 @@ Console.WriteLine($&quot;Filename is: {filename}&quot;); // Output: MyFile.txt</
           Copy
         </button>
       </div>
-      <pre><code>string s1 = null;
+      <pre><code class="language-csharp">string s1 = null;
 string s2 = &quot;&quot;;</code></pre>
     </div>
   
@@ -1126,7 +1126,7 @@ string s2 = &quot;&quot;;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>string s4 = &quot;Hello&quot;;
+      <pre><code class="language-csharp">string s4 = &quot;Hello&quot;;
 Console.WriteLine($&quot;s1 is null or whitespace?</code></pre>
     </div>
   
@@ -1140,7 +1140,7 @@ Console.WriteLine($&quot;s1 is null or whitespace?</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;s2 is null or whitespace?</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;s2 is null or whitespace?</code></pre>
     </div>
   
 <p>{String.IsNullOrWhiteSpace(s2)}&quot;); // True</p>
@@ -1153,7 +1153,7 @@ Console.WriteLine($&quot;s1 is null or whitespace?</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;s3 is null or whitespace?</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;s3 is null or whitespace?</code></pre>
     </div>
   
 <p>{String.IsNullOrWhiteSpace(s3)}&quot;); // True</p>
@@ -1166,17 +1166,17 @@ Console.WriteLine($&quot;s1 is null or whitespace?</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;s4 is null or whitespace?</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;s4 is null or whitespace?</code></pre>
     </div>
   
 <p>{String.IsNullOrWhiteSpace(s4)}&quot;); // False</p>
 
     <h2 id="sec-26-lec-20-strings-with-for-loop">Lecture 19: Strings with For Loop</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-introduction">Introduction</h3>
 <p>While C# and its LINQ library provide many high-level, convenient methods for string manipulation, interviewers often ask you to solve string problems using basic loops. This isn't because you would do it this way in daily work, but because it tests your fundamental problem-solving skills, your logical thinking, and your ability to handle edge cases manually.</p>
 <p>A string can be treated like a read-only array of characters (char). Length. This makes the for loop a perfect tool for low-level string manipulation.</p>
 <p>This lecture covers a comprehensive set of classic interview problems solved using this fundamental approach. Category 1: Basic Manipulation &amp; Counting These examples cover fundamental iteration and conditional logic.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>1: Count a Specific Character</p>
     <ul>
       <li><strong>Task:</strong> Write a function to count how many times a specific character appears in a string.</li>
@@ -1191,7 +1191,7 @@ Console.WriteLine($&quot;s1 is null or whitespace?</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public int CountCharacter(string input, char charToFind)
+      <pre><code class="language-csharp">public int CountCharacter(string input, char charToFind)
 {
     if (string.IsNullOrEmpty(input))
     {
@@ -1209,7 +1209,7 @@ Console.WriteLine($&quot;s1 is null or whitespace?</code></pre>
 }</code></pre>
     </div>
   
-    <h3>Example: 2: Count Vowels and Consonants</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example: 2: Count Vowels and Consonants</h3>
 <p>Task: Write a function that counts the number of vowels and consonants in a string. Logic: Iterate through the string. For each character, first check if it's a letter.</p>
 <p>If it is, then check if it's one of the vowels (a, e, i, o, u). If so, increment the vowel counter; otherwise, increment the consonant counter. It's best practice to convert the character to lowercase first to simplify the vowel check.</p>
 
@@ -1221,7 +1221,7 @@ Console.WriteLine($&quot;s1 is null or whitespace?</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public void CountVowelsAndConsonants(string input, out int
+      <pre><code class="language-csharp">public void CountVowelsAndConsonants(string input, out int
 vowelCount, out int consonantCount)
 {
     vowelCount = 0;
@@ -1246,7 +1246,7 @@ vowelCount, out int consonantCount)
 }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>3: Extract All Digits from a String Task: Write a function that takes a string and returns a new string containing only the digits found in the original. Logic: Use a StringBuilder for efficient string building. Iterate through the input string. IsDigit() method to check if it's a number. If it is, append it to the StringBuilder.</p>
 
     <div class="code-block-container">
@@ -1257,7 +1257,7 @@ vowelCount, out int consonantCount)
           Copy
         </button>
       </div>
-      <pre><code>public string ExtractDigits(string input)
+      <pre><code class="language-csharp">public string ExtractDigits(string input)
 {
     if (string.IsNullOrEmpty(input)) return &quot;&quot;;
     StringBuilder digitsOnly = new StringBuilder();
@@ -1273,7 +1273,7 @@ vowelCount, out int consonantCount)
     </div>
   
 <p>Category 2: Reversing &amp; Palindromes These examples test classic algorithmic patterns.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>4: Reverse a String Manually Task: Write a function that returns a new string with its characters in reverse order. Logic: The most efficient way is to iterate through the original string from back to front and build a new string using a StringBuilder.</p>
 
     <div class="code-block-container">
@@ -1284,7 +1284,7 @@ vowelCount, out int consonantCount)
           Copy
         </button>
       </div>
-      <pre><code>public string ReverseString(string input)
+      <pre><code class="language-csharp">public string ReverseString(string input)
 {
     if (string.IsNullOrEmpty(input)) return input;
     StringBuilder reversedString = new StringBuilder(input.Length);
@@ -1296,7 +1296,7 @@ vowelCount, out int consonantCount)
 }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>5: Check for a Palindrome Task: Write a function that returns true if a string is a palindrome (reads the same forwards and backwards). Logic: Use a &quot;two-pointer&quot; approach. One pointer starts at the beginning (left) and one starts at the end (right).</p>
 <p>Compare the characters at each pointer. If they don't match, it's not a palindrome. If they do, move both pointers one step closer to the middle and repeat until they cross.</p>
 
@@ -1308,7 +1308,7 @@ vowelCount, out int consonantCount)
           Copy
         </button>
       </div>
-      <pre><code>public bool IsPalindrome(string input)
+      <pre><code class="language-csharp">public bool IsPalindrome(string input)
 {
     if (string.IsNullOrEmpty(input)) return true;
     int left = 0;
@@ -1326,7 +1326,7 @@ vowelCount, out int consonantCount)
 }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>6: Check if Two Strings are Anagrams Task: Determine if two strings are anagrams of each other (i.e., they contain the same characters in different orders, like &quot;listen&quot; and &quot;silent&quot;). Logic: A common approach is to use frequency count arrays. If both strings have the same counts of each character, they are anagrams.</p>
 
     <div class="code-block-container">
@@ -1337,7 +1337,7 @@ vowelCount, out int consonantCount)
           Copy
         </button>
       </div>
-      <pre><code>public bool AreAnagrams(string s1, string s2)
+      <pre><code class="language-csharp">public bool AreAnagrams(string s1, string s2)
 {
     if (s1.Length != s2.Length) return false;
     int[] charCounts = new int[256]; // For ASCII characters
@@ -1364,7 +1364,7 @@ vowelCount, out int consonantCount)
     </div>
   
 <p>Category 3: Character Frequency &amp; Duplicates These examples test your ability to use helper data structures to track information.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>7: Find the Most Frequent Character Task: Find the character that appears most often in a string. Logic: Use a frequency map (an integer array) to store the count for each possible character. Iterate through the string once to populate the map, then iterate through the map to find the character with the highest count. public char FindMostFrequentCharacter(string input)</p>
 
     <div class="code-block-container">
@@ -1375,7 +1375,7 @@ vowelCount, out int consonantCount)
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     if (string.IsNullOrEmpty(input)) throw new
     ArgumentException(&quot;Input is empty.&quot;);
     int[] charCounts = new int[256];
@@ -1397,7 +1397,7 @@ vowelCount, out int consonantCount)
 }</code></pre>
     </div>
   
-    <h3>Example: 8: Remove Duplicate Characters</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example: 8: Remove Duplicate Characters</h3>
 <p>Task: Return a new string with all duplicate characters removed (e.g., &quot;programming&quot; becomes &quot;progamin&quot;). Logic: Iterate through the input string. Use a HashSet&lt;char&gt; to keep track of characters you have already &quot;seen&quot; and added to your result. A HashSet provides an extremely fast Contains check.</p>
 
     <div class="code-block-container">
@@ -1408,7 +1408,7 @@ vowelCount, out int consonantCount)
           Copy
         </button>
       </div>
-      <pre><code>public string RemoveDuplicates(string input)
+      <pre><code class="language-csharp">public string RemoveDuplicates(string input)
 {
     if (string.IsNullOrEmpty(input)) return input;
     StringBuilder result = new StringBuilder();
@@ -1425,7 +1425,7 @@ vowelCount, out int consonantCount)
 }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>9: Find the First Non-Repeated Character Task: Find the first character in a string that does not repeat itself anywhere else in the string. Logic: This often requires two passes. The first pass populates a frequency map (like a Dictionary&lt;char, int&gt;).</p>
 <p>The second pass iterates through the original string again and returns the first character it finds that has a count of 1 in the frequency map. public char? FindFirstNonRepeatedChar(string input)</p>
 
@@ -1437,7 +1437,7 @@ vowelCount, out int consonantCount)
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     if (string.IsNullOrEmpty(input)) return null;
     var charCounts = new Dictionary&lt;char, int&gt;();
     for (int i = 0; i &lt; input.Length; i++)
@@ -1464,7 +1464,7 @@ vowelCount, out int consonantCount)
     </div>
   
 <p>Category 4: Word &amp; Sentence Manipulation These examples test your ability to break a problem down into smaller steps.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>10: Reverse the Order of Words in a Sentence Task: Given &quot;the quick brown fox&quot;, return &quot;fox brown quick the&quot;. Logic: This is not a simple character reversal. First, split the string into an array of words. Then, iterate through that array backwards, appending each word to a StringBuilder.</p>
 
     <div class="code-block-container">
@@ -1475,7 +1475,7 @@ vowelCount, out int consonantCount)
           Copy
         </button>
       </div>
-      <pre><code>public string ReverseWords(string sentence)
+      <pre><code class="language-csharp">public string ReverseWords(string sentence)
 {
     if (string.IsNullOrEmpty(sentence)) return sentence;
     string[] words = sentence.Split(' ');
@@ -1492,7 +1492,7 @@ vowelCount, out int consonantCount)
 }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>11: Capitalize the First Letter of Each Word Task: Convert a string to &quot;title case&quot; where the first letter of each word is capitalized. Logic: Split the sentence into an array of words. Loop through the array.</p>
 <p>For each word, create a new word string by taking the first character, converting it to uppercase, and appending the rest of the word's substring. Join the modified words back together.</p>
 
@@ -1504,7 +1504,7 @@ vowelCount, out int consonantCount)
           Copy
         </button>
       </div>
-      <pre><code>public string ToTitleCase(string sentence)
+      <pre><code class="language-csharp">public string ToTitleCase(string sentence)
 {
     if (string.IsNullOrWhiteSpace(sentence)) return sentence;
     string[] words = sentence.Split(' ');
@@ -1519,7 +1519,7 @@ vowelCount, out int consonantCount)
 }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>12: Find the Longest Word in a Sentence Task: Find and return the longest word from a given sentence. Logic: Split the sentence into an array of words. Initialize a variable longestWord to an empty string.</p>
 <p>Loop through the words array. In each iteration, if the current word's length is greater than the length of longestWord, update longestWord.</p>
 
@@ -1531,7 +1531,7 @@ vowelCount, out int consonantCount)
           Copy
         </button>
       </div>
-      <pre><code>public string FindLongestWord(string sentence)
+      <pre><code class="language-csharp">public string FindLongestWord(string sentence)
 {
     if (string.IsNullOrWhiteSpace(sentence)) return &quot;&quot;;
     string[] words = sentence.Split(' ');
@@ -1548,7 +1548,7 @@ vowelCount, out int consonantCount)
     </div>
   
 <p>Category 5: Advanced String Logic These examples mimic more difficult interview challenges.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>13: String to Integer (atoi) Task: Manually implement the int.Parse method without using built-in parsing functions. Logic: This is complex. You need to handle optional leading whitespace, an optional sign (+ or -), and then build the number digit by digit while checking for overflow.</p>
 
     <div class="code-block-container">
@@ -1559,7 +1559,7 @@ vowelCount, out int consonantCount)
           Copy
         </button>
       </div>
-      <pre><code>// Note: This is a simplified version. A full implementation is much more complex.
+      <pre><code class="language-csharp">// Note: This is a simplified version. A full implementation is much more complex.
 public int Atoi(string s)
 {
     if (string.IsNullOrEmpty(s)) return 0;
@@ -1583,7 +1583,7 @@ public int Atoi(string s)
 }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>IndexOf to find the starting index of a substring (needle) within a larger string (haystack). Logic: Use nested loops. The outer loop iterates through the haystack. The inner loop starts from the current outer loop position and checks if the characters match the needle sequentially.</p>
 
     <div class="code-block-container">
@@ -1594,7 +1594,7 @@ public int Atoi(string s)
           Copy
         </button>
       </div>
-      <pre><code>public int IndexOf(string haystack, string needle)
+      <pre><code class="language-csharp">public int IndexOf(string haystack, string needle)
 {
     if (string.IsNullOrEmpty(needle)) return 0;
     if (haystack.Length &lt; needle.Length) return -1;
@@ -1618,7 +1618,7 @@ public int Atoi(string s)
 }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-20-strings-with-for-loop-example">Example</h3>
 <p>15: Validate an IP Address String Task: Check if a string is a valid IPv4 address (e.g., &quot;192.168.1.1&quot;). Logic: An IP address must have four parts separated by three dots. Each part must be a number between 0 and 255 and cannot have leading zeros (unless it's just &quot;0&quot;).</p>
 
     <div class="code-block-container">
@@ -1629,7 +1629,7 @@ public int Atoi(string s)
           Copy
         </button>
       </div>
-      <pre><code>public bool IsValidIpAddress(string ip)
+      <pre><code class="language-csharp">public bool IsValidIpAddress(string ip)
 {
     string[] parts = ip.Split('.');
     if (parts.Length != 4) return false;
@@ -1648,7 +1648,7 @@ public int Atoi(string s)
   
 
     <h2 id="sec-26-lec-21-stringbuilder">Lecture 20: StringBuilder</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-21-stringbuilder-introduction">Introduction</h3>
 <p>Text namespace, is a crucial tool for building and manipulating strings efficiently. Unlike the standard string class which is immutable, StringBuilder represents a mutable sequence of characters. Why and When to Use It: Performance This is the most important reason to use a StringBuilder.</p>
 <p>, result = result + nextString;) is extremely inefficient. Each + operation creates a brand new string object in memory, leading to a large number of temporary objects that the Garbage Collector must clean up. A StringBuilder avoids this by using a single, mutable internal buffer (an array of characters).</p>
 <p>When you append text, it adds to this buffer. If the buffer gets full, it allocates a new, larger buffer and copies the content, but this resizing happens far less frequently than with simple string concatenation. Best Practice: Any time you are building a string within a loop or through a significant number of concatenations, you should use a StringBuilder. Key Methods</p>
@@ -1660,7 +1660,7 @@ public int Atoi(string s)
       <li>Replace(oldValue, newValue): Replaces all occurrences of a string with another.</li>
       <li><strong>ToString():</strong> This is the final step. It converts the mutable StringBuilder content into a regular, immutable string.</li>
     </ul>
-    <h3>Example: Efficient String Concatenation</h3>
+    <h3 id="sec-26-lec-21-stringbuilder-example">Example: Efficient String Concatenation</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1670,7 +1670,7 @@ public int Atoi(string s)
           Copy
         </button>
       </div>
-      <pre><code>// Inefficient way using string concatenation
+      <pre><code class="language-csharp">// Inefficient way using string concatenation
 // string s = &quot;&quot;;
 // for (int i = 0; i &lt; 10000; i++)
 // {
@@ -1690,7 +1690,7 @@ public int Atoi(string s)
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     sb.Append(i); // Modifies the internal buffer. Very fast.
     sb.Append(&quot;, &quot;);
 }</code></pre>
@@ -1706,13 +1706,13 @@ public int Atoi(string s)
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(&quot;Done. The final string is very long.&quot;);
+      <pre><code class="language-csharp">Console.WriteLine(&quot;Done. The final string is very long.&quot;);
 // Console.WriteLine(finalResult);</code></pre>
     </div>
   
 
     <h2 id="sec-26-lec-22-datetime">Lecture 21: DateTime</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-22-datetime-introduction">Introduction</h3>
 <p>The DateTime struct is the primary type in .NET for representing a specific moment in time, including both the date and the time of day. As it is a struct, it is a value type and cannot be null (though DateTime? can be). Creating DateTime Instances</p>
     <ul>
       <li>Current Time:</li>
@@ -1735,7 +1735,7 @@ public int Atoi(string s)
           Copy
         </button>
       </div>
-      <pre><code>DateTime now = DateTime.Now;
+      <pre><code class="language-csharp">DateTime now = DateTime.Now;
 // Standard formats
 Console.WriteLine($&quot;Short date (d): {now.ToString(&quot;d&quot;)}&quot;);
 Console.WriteLine($&quot;Long date (D): {now.ToString(&quot;D&quot;)}&quot;);
@@ -1748,7 +1748,7 @@ HH:mm:ss&quot;)}&quot;);</code></pre>
   
 
     <h2 id="sec-26-lec-23-date-subtraction-and-addition">Lecture 22: Date Subtraction and Addition</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-23-date-subtraction-and-addition-introduction">Introduction</h3>
 <p>Performing calculations with DateTime objects is a common requirement, such as finding the duration between two events or calculating a future date. Date Subtraction When you subtract one DateTime from another (date2 - date1), the result is not another DateTime. The result is a TimeSpan object, which represents a duration or interval of time. The TimeSpan object has useful properties to get the duration in different units:</p>
     <ul>
       <li>TotalDays</li>
@@ -1756,7 +1756,7 @@ HH:mm:ss&quot;)}&quot;);</code></pre>
       <li>TotalMinutes</li>
       <li>TotalSeconds</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-23-date-subtraction-and-addition-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1766,7 +1766,7 @@ HH:mm:ss&quot;)}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>DateTime projectStartDate = new DateTime(2025, 1, 15);
+      <pre><code class="language-csharp">DateTime projectStartDate = new DateTime(2025, 1, 15);
 DateTime projectEndDate = new DateTime(2025, 7, 12);
 TimeSpan projectDuration = projectEndDate - projectStartDate;
 Console.WriteLine($&quot;The project has been running for
@@ -1778,7 +1778,7 @@ You cannot add two DateTime objects together. Instead, you add a TimeSpan</code>
     </div>
   
 <p>to a DateTime, or you use the built-in Add... methods. Since DateTime is a value type, these methods are immutable; they return a new DateTime object with the result and do not modify the original.</p>
-    <h3>Example</h3>
+    <h3 id="sec-26-lec-23-date-subtraction-and-addition-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1788,7 +1788,7 @@ You cannot add two DateTime objects together. Instead, you add a TimeSpan</code>
           Copy
         </button>
       </div>
-      <pre><code>DateTime today = new DateTime(2025, 7, 12);
+      <pre><code class="language-csharp">DateTime today = new DateTime(2025, 7, 12);
 // Using Add methods is very readable
 DateTime nextWeek = today.AddDays(7);</code></pre>
     </div>
@@ -1803,14 +1803,14 @@ DateTime nextWeek = today.AddDays(7);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Today is: {today:d}&quot;);
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Today is: {today:d}&quot;);
 Console.WriteLine($&quot;One week from now will be: {nextWeek:d}&quot;);
 Console.WriteLine($&quot;One month ago was: {lastMonth:d}&quot;);</code></pre>
     </div>
   
 
     <h2 id="sec-26-lec-24-math">Lecture 23: Math</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-24-math-introduction">Introduction</h3>
 <p>System.Math is a built-in static class that provides constants and static methods for common trigonometric, logarithmic, and other mathematical functions. You do not create an instance of the Math class; you call its methods directly on the class name. Common Constants and Methods</p>
     <ul>
       <li>Constants:</li>
@@ -1833,7 +1833,7 @@ Console.WriteLine($&quot;One month ago was: {lastMonth:d}&quot;);</code></pre>
     </ul>
 
     <h2 id="sec-26-lec-25-regular-expressions">Lecture 24: Regular Expressions</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-26-lec-25-regular-expressions-introduction">Introduction</h3>
 <p>Regular Expressions (or Regex) are a powerful, standardized mini-language for pattern matching in text. They are used for complex validation, searching, finding, and replacing text that would be difficult or impossible with standard string methods. Regex class. The most common methods are static helpers on this class. Common Regex Characters (a mini-dictionary)</p>
     <ul>
       <li>Characters:</li>
@@ -1854,7 +1854,7 @@ Console.WriteLine($&quot;One month ago was: {lastMonth:d}&quot;);</code></pre>
       <li>(...): Creates a capturing group.</li>
       <li>|: Acts as an OR operator.</li>
     </ul>
-    <h3>Real-World Examples</h3>
+    <h3 id="sec-26-lec-25-regular-expressions-real-world-examples">Real-World Examples</h3>
     <ul>
       <li><strong>Example 1:</strong> Validating a US Phone Number</li>
       <li><strong>Task:</strong> Check if a string matches the format XXX-XXX-XXXX. string pattern = @&quot;^\d{3}-\d{3}-\d{4}$&quot;; string phone1 = &quot;555-123-4567&quot;; // Valid string phone2 = &quot;555-123-456&quot;; // Invalid</li>
@@ -1868,7 +1868,7 @@ Console.WriteLine($&quot;One month ago was: {lastMonth:d}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(&quot;Is′phone1′avalidphonenumber?
+      <pre><code class="language-csharp">Console.WriteLine(&quot;Is′phone1′avalidphonenumber?
 Regex.IsMatch(phone1,pattern)&quot;);Console.WriteLine(&quot;Is '{phone2}' a
 valid phone number? {Regex.IsMatch(phone2, pattern)}&quot;);</code></pre>
     </div>
@@ -1886,7 +1886,7 @@ valid phone number? {Regex.IsMatch(phone2, pattern)}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Match match = Regex.Match(input, pattern);
+      <pre><code class="language-csharp">Match match = Regex.Match(input, pattern);
 if (match.Success) { string key = match.Groups[&quot;key&quot;].Value; string
 value = match.Groups[&quot;value&quot;].Value; Console.WriteLine($&quot;\nFound
 Key: {key}, Value: {value}&quot;); }</code></pre>
@@ -1894,6 +1894,18 @@ Key: {key}, Value: {value}&quot;); }</code></pre>
   
 
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="26" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -1923,104 +1935,424 @@ Key: {key}, Value: {value}&quot;); }</code></pre>
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-26-lec-1-math" class="toc-link">Math</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-26-lec-2-intro-to-strings" class="toc-link">Lecture 1: Intro to Strings</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-2-intro-to-strings-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-2-intro-to-strings-example" class="toc-link">Example: Demonstrating Immutability</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-2-intro-to-strings-output" class="toc-link">Output: Hello</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-3-how-string-objects-are-created" class="toc-link">Lecture 2: How String Objects are Created</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-3-how-string-objects-are-created-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-3-how-string-objects-are-created-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-4-the-system-string-class" class="toc-link">Lecture 3: The System.String class</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-4-the-system-string-class-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-4-the-system-string-class-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-5-toupper-and-tolower" class="toc-link">Lecture 4: ToUpper() and ToLower()</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-5-toupper-and-tolower-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-5-toupper-and-tolower-how-it-works" class="toc-link">How It Works: &amp; Immutability</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-5-toupper-and-tolower-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-5-toupper-and-tolower-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-6-substring" class="toc-link">Lecture 5: Substring()</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-6-substring-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-6-substring-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-6-substring-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-7-replace" class="toc-link">Lecture 6: Replace()</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-7-replace-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-7-replace-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-7-replace-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-8-format" class="toc-link">Lecture 7: Format()</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-8-format-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-8-format-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-8-format-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-9-isnullorempty" class="toc-link">Lecture 8: IsNullOrEmpty</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-9-isnullorempty-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-9-isnullorempty-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-9-isnullorempty-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-9-isnullorempty-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-10-split" class="toc-link">Lecture 9: Split</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-10-split-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-10-split-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-10-split-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-10-split-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-11-trim" class="toc-link">Lecture 10: Trim</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-11-trim-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-11-trim-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-11-trim-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-11-trim-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-12-tochararray" class="toc-link">Lecture 11: ToCharArray</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-12-tochararray-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-12-tochararray-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-12-tochararray-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-12-tochararray-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-13-equals" class="toc-link">Lecture 12: Equals</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-13-equals-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-13-equals-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-14-join-introduction" class="toc-link">Lecture 13: Join Introduction</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-14-join-introduction-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-14-join-introduction-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-14-join-introduction-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-15-compareto" class="toc-link">Lecture 14: CompareTo</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-15-compareto-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-15-compareto-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-15-compareto-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-16-startswith-and-endswith" class="toc-link">Lecture 15: StartsWith and EndsWith</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-16-startswith-and-endswith-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-16-startswith-and-endswith-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-17-contains" class="toc-link">Lecture 16: Contains</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-17-contains-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-17-contains-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-18-indexof-and-lastindexof" class="toc-link">Lecture 17: IndexOf and LastIndexOf</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-18-indexof-and-lastindexof-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-18-indexof-and-lastindexof-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-18-indexof-and-lastindexof-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-19-isnullorwhitespace" class="toc-link">Lecture 18: IsNullOrWhiteSpace</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-19-isnullorwhitespace-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-19-isnullorwhitespace-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-19-isnullorwhitespace-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-19-isnullorwhitespace-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-20-strings-with-for-loop" class="toc-link">Lecture 19: Strings with For Loop</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example: 2: Count Vowels and Conson</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example: 8: Remove Duplicate Charac</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-20-strings-with-for-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-21-stringbuilder" class="toc-link">Lecture 20: StringBuilder</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-21-stringbuilder-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-21-stringbuilder-example" class="toc-link">Example: Efficient String Concatena</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-22-datetime" class="toc-link">Lecture 21: DateTime</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-22-datetime-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-23-date-subtraction-and-addition" class="toc-link">Lecture 22: Date Subtraction and Addition</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-23-date-subtraction-and-addition-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-23-date-subtraction-and-addition-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-23-date-subtraction-and-addition-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-24-math" class="toc-link">Lecture 23: Math</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-24-math-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-26-lec-25-regular-expressions" class="toc-link">Lecture 24: Regular Expressions</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-25-regular-expressions-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-26-lec-25-regular-expressions-real-world-examples" class="toc-link">Real-World Examples</a>
       </li>
     
       </ul>
@@ -2031,6 +2363,7 @@ Key: {key}, Value: {value}&quot;); }</code></pre>
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

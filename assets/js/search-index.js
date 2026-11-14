@@ -517,6 +517,24 @@ window.SEARCH_INDEX = [
     "snippet": "Understanding a few crucial, behind-the-scenes concepts about classes and objects is vital. These points are frequently the subject of inter..."
   },
   {
+    "sectionId": 4,
+    "title": "Value Types (struct) vs. Reference Types (class) Architectural Comparison",
+    "sectionTitle": "Section 04: OOP Basics (Classes & Objects)",
+    "url": "sections/section-04.html",
+    "anchor": "sec-4-comparison-table",
+    "module": "Module 2: Object-Oriented Fundamentals",
+    "keywords": [
+      "Comparison",
+      "Architecture",
+      "OOP",
+      "Classes",
+      "Objects",
+      "Instantiating",
+      "Memory Allocation"
+    ],
+    "snippet": "Core architectural differences in memory allocation, copying semantics, lifetime, and inheritance in C#:"
+  },
+  {
     "sectionId": 5,
     "title": "Lecture 1: Introduction to Fields",
     "sectionTitle": "Section 05: Fields & Access Modifiers",
@@ -1486,6 +1504,25 @@ window.SEARCH_INDEX = [
     "snippet": "This lecture summarizes the most critical, practical, and interview-worthy points about inheritance in C#...."
   },
   {
+    "sectionId": 10,
+    "title": "Method Overriding (virtual / override) vs. Method Hiding (new) Comparison",
+    "sectionTitle": "Section 10: Inheritance, Hiding & Overriding",
+    "url": "sections/section-10.html",
+    "anchor": "sec-10-comparison-table",
+    "module": "Module 3: Advanced Class Design & Type System",
+    "keywords": [
+      "Comparison",
+      "Architecture",
+      "Inheritance",
+      "virtual",
+      "override",
+      "new",
+      "base",
+      "Polymorphism"
+    ],
+    "snippet": "Detailed technical comparison between polymorphic dynamic dispatch and compile-time static hiding:"
+  },
+  {
     "sectionId": 11,
     "title": "Interfaces",
     "sectionTitle": "Section 11: Abstract Classes & Interfaces",
@@ -1910,6 +1947,24 @@ window.SEARCH_INDEX = [
       "ref struct"
     ],
     "snippet": "Section 14: Lecture 6: IMP Points to Remember"
+  },
+  {
+    "sectionId": 14,
+    "title": "Structs vs. Classes vs. Records Architectural Comparison Matrix",
+    "sectionTitle": "Section 14: Structures (Structs) & Value Semantics",
+    "url": "sections/section-14.html",
+    "anchor": "sec-14-comparison-table",
+    "module": "Module 3: Advanced Class Design & Type System",
+    "keywords": [
+      "Comparison",
+      "Architecture",
+      "struct",
+      "Value Types",
+      "Stack Allocation",
+      "readonly struct",
+      "ref struct"
+    ],
+    "snippet": "Side-by-side architectural comparison matrix across C# type constructs:"
   },
   {
     "sectionId": 15,
@@ -4790,6 +4845,23 @@ window.SEARCH_INDEX = [
     "snippet": "Section 28: Lecture 18: Things to Remember"
   },
   {
+    "sectionId": 28,
+    "title": "throw; vs. throw ex; Stack Trace Preservation Comparison",
+    "sectionTitle": "Section 28: Exception Handling & Defensive Programming",
+    "url": "sections/section-28.html",
+    "anchor": "sec-28-comparison-table",
+    "module": "Module 6: Base Class Library & Resilience",
+    "keywords": [
+      "Comparison",
+      "Architecture",
+      "try-catch-finally",
+      "Custom Exceptions",
+      "Exception Filters",
+      "throw vs throw ex"
+    ],
+    "snippet": "Crucial differences in stack trace integrity, debugging fidelity, and exception bubbling:"
+  },
+  {
     "sectionId": 29,
     "title": "Handling",
     "sectionTitle": "Section 29: Advanced Exception Patterns & Diagnostics",
@@ -5073,6 +5145,23 @@ window.SEARCH_INDEX = [
       "AppDomain.UnhandledException"
     ],
     "snippet": "Section 29: Lecture 18: Things to Remember"
+  },
+  {
+    "sectionId": 29,
+    "title": "throw; vs. throw ex; Exception Re-Throwing Semantics",
+    "sectionTitle": "Section 29: Advanced Exception Patterns & Diagnostics",
+    "url": "sections/section-29.html",
+    "anchor": "sec-29-comparison-table",
+    "module": "Module 6: Base Class Library & Resilience",
+    "keywords": [
+      "Comparison",
+      "Architecture",
+      "AggregateException",
+      "StackTrace",
+      "InnerException",
+      "AppDomain.UnhandledException"
+    ],
+    "snippet": "Summary of stack trace preservation vs stack truncation when propagating exceptions in C#:"
   },
   {
     "sectionId": 30,
@@ -6474,6 +6563,25 @@ window.SEARCH_INDEX = [
     "snippet": "This section summarizes the key takeaways and often-asked interview points regarding Tasks. Mastering these concepts will position you well ..."
   },
   {
+    "sectionId": 32,
+    "title": "Task.Run vs. Task.Factory.StartNew Architectural Comparison",
+    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
+    "url": "sections/section-32.html",
+    "anchor": "sec-32-comparison-table",
+    "module": "Module 7: Concurrency & Asynchronous Programming",
+    "keywords": [
+      "Comparison",
+      "Architecture",
+      "Task",
+      "Task<T>",
+      "Task.Run",
+      "Parallel.For",
+      "PLINQ",
+      "CancellationToken"
+    ],
+    "snippet": "Architectural comparison between modern task offloading and legacy TaskFactory creation:"
+  },
+  {
     "sectionId": 33,
     "title": "1. Introduction to Asynchronous Programming",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
@@ -6717,6 +6825,24 @@ window.SEARCH_INDEX = [
       "UTF-8 String Literals"
     ],
     "snippet": "C# 11 introduces a mix of quality-of-life improvements and powerful, low-level features. Here's a summary of the key takeaways for each feat..."
+  },
+  {
+    "sectionId": 34,
+    "title": "Managed References (ref / ref struct) vs. Unmanaged Pointers (*) Comparison",
+    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
+    "url": "sections/section-34.html",
+    "anchor": "sec-34-comparison-table",
+    "module": "Module 8: Modern C# Evolution",
+    "keywords": [
+      "Comparison",
+      "Architecture",
+      "Raw String Literals",
+      "Generic Math",
+      "Required Members",
+      "List Patterns",
+      "UTF-8 String Literals"
+    ],
+    "snippet": "Comparison between modern C# type-safe managed memory semantics and unmanaged pointers:"
   },
   {
     "sectionId": 35,

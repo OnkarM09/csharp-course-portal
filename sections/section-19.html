@@ -448,9 +448,9 @@
     <h2 id="sec-19-lec-1-idisposable">IDisposable</h2>
 
     <h2 id="sec-19-lec-2-garbage-collection-generations">Lecture 1: Garbage Collection &amp; Generations</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-19-lec-2-garbage-collection-generations-introduction">Introduction</h3>
 <p>NET runtime's automatic memory manager. In languages like C++, developers are responsible for manually allocating and deallocating memory, a process which is a major source of bugs like memory leaks and dangling pointers. In C#, the GC simplifies this by automatically identifying and reclaiming memory occupied by objects that are no longer being used by the application. NET Common Language Runtime (CLR).</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-19-lec-2-garbage-collection-generations-how-it-works">How It Works</h3>
 <p>The Generational Hypothesis The C# garbage collector is highly optimized. It operates on the &quot;generational hypothesis,&quot; which observes that most objects have a very short lifetime (e.g., local variables in a method call) while a few objects live for the entire duration of the application. Based on this, the GC divides the heap into three &quot;generations&quot; to manage objects efficiently.</p>
     <ul>
       <li><strong>Generation 0 (Gen 0):</strong> The Nursery 🌱 This is where all new, small objects are allocated. GC collections happen most frequently in this generation. When the GC runs on Gen 0, it's a very fast process because it only has to scan a small segment of the heap containing the most recently created objects. Any objects that are still referenced by the application after the scan are considered &quot;survivors.&quot; They are promoted to Generation 1.</li>
@@ -459,10 +459,10 @@
     </ul>
 
     <h2 id="sec-19-lec-3-destructors">Lecture 2: Destructors</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-19-lec-3-destructors-introduction">Introduction</h3>
 <p>A destructor, known in the CLR as a finalizer, is a special class method whose sole purpose is to clean up any unmanaged resources held by an object</p>
 <p>before that object is reclaimed by the garbage collector. Unmanaged resources are things the GC knows nothing about, like raw file handles, database connections, or window handles from the operating system.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-19-lec-3-destructors-syntax">Syntax</h3>
 <p>A destructor has the same name as the class, is prefixed with a tilde (~), and can have no access modifiers or parameters. class MyResourceHolder</p>
 
     <div class="code-block-container">
@@ -473,7 +473,7 @@
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // Destructor (Finalizer) ~MyResourceHolder()
     {
         // Cleanup code for unmanaged resources would go here.
@@ -482,7 +482,7 @@
 }</code></pre>
     </div>
   
-    <h3>How It Works</h3>
+    <h3 id="sec-19-lec-3-destructors-how-it-works">How It Works</h3>
 <p>The Finalization Queue When you create an object that has a destructor, the CLR adds a pointer to it on a special list. Here's the complex process that happens when the object is no longer referenced:</p>
     <ol>
       <li>During a garbage collection, the GC finds the object is unreachable.</li>
@@ -500,9 +500,9 @@
     </ul>
 
     <h2 id="sec-19-lec-4-idisposable">Lecture 3: IDisposable</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-19-lec-4-idisposable-introduction">Introduction</h3>
 <p>The IDisposable interface is the standard, recommended, and professional mechanism in .NET for providing a deterministic way for a class to release its unmanaged resources. Deterministic means the cleanup happens at a precise and predictable time—when you decide it should happen.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-19-lec-4-idisposable-how-it-works">How It Works</h3>
 <p>The Dispose() Contract The IDisposable interface is incredibly simple. It is defined in the System</p>
 
     <div class="code-block-container">
@@ -513,14 +513,14 @@
           Copy
         </button>
       </div>
-      <pre><code>public interface IDisposable
+      <pre><code class="language-csharp">public interface IDisposable
 {
     void Dispose();
 }</code></pre>
     </div>
   
 <p>A class that implements this interface is making a clear promise: &quot;I am holding onto a scarce or expensive resource (like a file handle or database connection). When you are finished using me, you must call my Dispose() method to release that resource immediately and predictably.&quot; Inside the Dispose() method, you write the code to perform the actual cleanup.</p>
-    <h3>Real-World Examples</h3>
+    <h3 id="sec-19-lec-4-idisposable-real-world-examples">Real-World Examples</h3>
 <p>Many classes in the .NET framework that deal with external resources implement IDisposable:</p>
     <ul>
       <li>System.IO.StreamReader and System.IO.StreamWriter (for files)</li>
@@ -528,7 +528,7 @@
       <li>System.Net.Http.HttpClient (for network requests)</li>
       <li>System.Drawing.Bitmap (for graphics objects)</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-19-lec-4-idisposable-example">Example</h3>
 <p>A Simple File Logger</p>
 
     <div class="code-block-container">
@@ -539,7 +539,7 @@
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     private StreamWriter _streamWriter;
     private bool _isDisposed = false; // To prevent multiple dispose calls
     public FileLogger(string filePath)
@@ -571,12 +571,12 @@
   
 
     <h2 id="sec-19-lec-5-using-declaration">Lecture 4: Using Declaration</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-19-lec-5-using-declaration-introduction">Introduction</h3>
 <p>Calling Dispose() manually is possible, but it's risky. What if an exception occurs</p>
 <p>before the Dispose() line is reached? The resource would never be cleaned up. The using statement (and its more modern form, the using declaration) is a C# language feature that provides a convenient and completely safe syntax for working with IDisposable objects.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-19-lec-5-using-declaration-how-it-works">How It Works</h3>
 <p>Syntactic Sugar for try...finally The using block is just syntactic sugar. When you write code with using, the C# compiler transforms it into a try...finally block behind the scenes. This guarantees that the .Dispose() method is always called, no matter how the code inside the block is exited—whether it completes normally or an exception is thrown.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-19-lec-5-using-declaration-syntax">Syntax</h3>
 <p>Statement vs. Declaration</p>
     <ul>
       <li><strong>using Statement (Classic):</strong> The object is created, and its scope is limited to the curly braces {}. Dispose() is called automatically at the closing brace.</li>
@@ -590,7 +590,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// logger is only accessible inside these curly braces.</code></pre>
+      <pre><code class="language-csharp">// logger is only accessible inside these curly braces.</code></pre>
     </div>
   
 <p>using (FileLogger logger = new FileLogger(&quot;log.txt&quot;))</p>
@@ -603,7 +603,7 @@
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     logger.Log(&quot;This is the first message.&quot;);
     logger.Log(&quot;This is the second message.&quot;);
 } // logger.Dispose() is automatically called here.</code></pre>
@@ -621,7 +621,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public void DoLogging() {
+      <pre><code class="language-csharp">public void DoLogging() {
     using var logger = new FileLogger(&quot;log.txt&quot;);
     logger.Log(&quot;This is a message.&quot;);
     // logger can be used throughout the rest of the method. if (true)
@@ -660,6 +660,18 @@ method.</code></pre>
   
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="19" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -688,27 +700,75 @@ method.</code></pre>
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-19-lec-1-idisposable" class="toc-link">IDisposable</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-19-lec-2-garbage-collection-generations" class="toc-link">Lecture 1: Garbage Collection &amp; Generations</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-19-lec-2-garbage-collection-generations-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-19-lec-2-garbage-collection-generations-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-19-lec-3-destructors" class="toc-link">Lecture 2: Destructors</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-19-lec-3-destructors-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-19-lec-3-destructors-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-19-lec-3-destructors-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-19-lec-4-idisposable" class="toc-link">Lecture 3: IDisposable</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-19-lec-4-idisposable-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-19-lec-4-idisposable-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-19-lec-4-idisposable-real-world-examples" class="toc-link">Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-19-lec-4-idisposable-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-19-lec-5-using-declaration" class="toc-link">Lecture 4: Using Declaration</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-19-lec-5-using-declaration-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-19-lec-5-using-declaration-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-19-lec-5-using-declaration-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-19-lec-6-things-to-remember" class="toc-link">Lecture 5: Things to Remember</a>
       </li>
     
@@ -720,6 +780,7 @@ method.</code></pre>
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

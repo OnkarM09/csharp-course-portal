@@ -446,7 +446,7 @@
       <article class="docs-content">
         
     <h2 id="sec-31-lec-1-intro-to-concurrent-execution">Lecture 1: Intro to Concurrent Execution</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-1-intro-to-concurrent-execution-introduction">Introduction</h3>
 <p>To master threading, we must first understand the concepts it enables: concurrency and parallelism. While they sound similar, they represent different ideas about how tasks are executed.</p>
     <ul>
       <li><strong>Concurrency:</strong> This is the concept of managing multiple tasks that are making progress over overlapping time periods. The tasks don't have to be running at the exact same instant. Think of a chef in a kitchen preparing a meal. They might start boiling water on the stove, then turn to chop vegetables while the water heats up, then switch back to add pasta to the boiling water. Multiple tasks (boiling, chopping) are &quot;in progress&quot; at once, and the chef intelligently switches between them to keep everything moving forward. This is concurrency.</li>
@@ -454,10 +454,10 @@
     </ul>
 
     <h2 id="sec-31-lec-2-intro-to-threading">Lecture 2: Intro to Threading</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-2-intro-to-threading-introduction">Introduction</h3>
 <p>A thread is the smallest sequence of programmed instructions that can be managed independently by an operating system's scheduler. You can think of it as an independent path of execution within a single process. Every application you run is a process.</p>
 <p>A process is a container that encapsulates all the resources for an application, such as its memory space and file handles. By default, every process has at least one thread, the Main Thread. By creating additional threads, you enable your application to perform multiple operations concurrently.</p>
-    <h3>How It Works: Internally</h3>
+    <h3 id="sec-31-lec-2-intro-to-threading-how-it-works">How It Works: Internally</h3>
 <p>Understanding the relationship between threads, memory, and the operating system is crucial.</p>
     <ul>
       <li><strong>The Call Stack:</strong> Each thread gets its own independent call stack. This is the most critical concept. The call stack is a region of memory that keeps track of which methods are currently being executed. Because each thread has its own stack, Thread A can be inside Method1() while Thread B is simultaneously inside Method2(), and their local variables and parameters will not interfere with each other. They are completely isolated at the stack level.</li>
@@ -467,7 +467,7 @@
     </ul>
 
     <h2 id="sec-31-lec-3-main-thread">Lecture 3: Main Thread</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-3-main-thread-introduction">Introduction</h3>
 <p>The Main Thread is the primary thread that is automatically created when any C# application starts. Main method and is the parent of all other threads you might create within your application. The Special Role of the UI Thread In applications with a graphical user interface (GUI), such as WPF, WinForms, or MAUI, the Main Thread has a special, critical role: it is also the UI Thread. The UI Thread is responsible for managing a message loop that handles:</p>
     <ol>
       <li><strong>User Input:</strong> All mouse clicks, key presses, and touch events.</li>
@@ -482,7 +482,7 @@
     </ul>
 
     <h2 id="sec-31-lec-4-overview-thread-class">Lecture 4: Overview Thread class</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-4-overview-thread-class-introduction">Introduction</h3>
 <p>NET for creating and controlling a thread directly. While modern C# offers higher-level, easier-to-use abstractions for concurrency (like the Task Parallel Library, which we'll see later), understanding the Thread class is essential for grasping the core principles of how threading works at a lower level.</p>
 <p>It gives you direct control over the execution path. Key Members Here are the most important properties and methods of the Thread class that we will be covering in the subsequent lectures.</p>
     <ul>
@@ -497,10 +497,10 @@
     </ul>
 
     <h2 id="sec-31-lec-5-single-threaded-app">Lecture 5: Single-Threaded App</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-5-single-threaded-app-introduction">Introduction</h3>
 <p>A single-threaded application executes all its tasks sequentially, one after the other, on the Main Thread. No task can begin until the previous task has completely finished. This is the simplest programming model to understand and debug, as the flow of execution is linear and predictable.</p>
 <p>However, it is not suitable for applications that need to remain responsive while performing long- running work. Execution Analysis In a single-threaded model, if TaskA takes 5 seconds and TaskB takes 5 seconds, the total execution time will be 10 seconds. The Main method will call HeavyTaskA() and will block—it will wait at that line of code without proceeding—until HeavyTaskA returns. Only then will it proceed to call HeavyTaskB().</p>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-5-single-threaded-app-example">Example</h3>
 <p>This example demonstrates the sequential nature of a single-threaded program. Notice in the output how Task B started. does not appear until after Task A finished. is printed. class Program</p>
 
     <div class="code-block-container">
@@ -511,7 +511,7 @@
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     static void Main(string[] args)
     {
         Console.WriteLine(&quot;Main thread started. Starting sequential tasks...&quot;);
@@ -552,7 +552,7 @@
           Copy
         </button>
       </div>
-      <pre><code>Task A started.</code></pre>
+      <pre><code class="language-csharp">Task A started.</code></pre>
     </div>
   
 <p>... (repeats 5 times) ...</p>
@@ -565,7 +565,7 @@
           Copy
         </button>
       </div>
-      <pre><code>Task A finished.
+      <pre><code class="language-csharp">Task A finished.
 Task B started.</code></pre>
     </div>
   
@@ -579,22 +579,22 @@ Task B started.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Task B finished.
+      <pre><code class="language-csharp">Task B finished.
 Main thread finished.</code></pre>
     </div>
   
 
     <h2 id="sec-31-lec-6-multiple-threads">Lecture 6: Multiple Threads</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-6-multiple-threads-introduction">Introduction</h3>
 <p>By creating new Thread objects, we can break free from sequential execution and perform multiple tasks concurrently. Each task will run on its own thread, with its execution path managed independently by the operating system scheduler. This allows long-running tasks to execute in the background without blocking the Main Thread.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-6-multiple-threads-how-it-works">How It Works</h3>
 <p>The 3-Step Process</p>
     <ol>
       <li><strong>Define the Work:</strong> Create the method that the new thread will execute. This method must have a void return type and, for a simple thread, no parameters.</li>
       <li><strong>Create the Thread object:</strong> Instantiate a new Thread(). The constructor takes a delegate that points to your work method. The ThreadStart delegate is used for methods with no parameters. The compiler is smart enough that you can usually just pass the method name directly.</li>
       <li><strong>Start the Thread:</strong> Call the thread.Start() method. This is a non-blocking call. It returns immediately to the calling thread after telling the OS scheduler to place the new thread in a &quot;runnable&quot; state. The OS will then begin executing it when CPU resources become available.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-6-multiple-threads-example">Example</h3>
 <p>Let's refactor the previous example to run HeavyTaskA and HeavyTaskB on separate, concurrent threads. class Program</p>
 
     <div class="code-block-container">
@@ -605,7 +605,7 @@ Main thread finished.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     static void Main(string[] args)
     {
         Console.WriteLine(&quot;Main thread started.&quot;);
@@ -628,28 +628,28 @@ Main thread finished.</code></pre>
 <p>Analyzing the Output: If you run this code, you will see the output from &quot;Task A&quot; and &quot;Task B&quot; interleaved. The OS scheduler switches between threadA and threadB, giving each a slice of CPU time. You will also see that the &quot;Main thread has finished&quot; message appears almost instantly, because the Start() calls did not block it. The application as a whole, however, will not exit until both background threads have also finished.</p>
 
     <h2 id="sec-31-lec-7-thread-sleep">Lecture 7: Thread.Sleep</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-7-thread-sleep-introduction">Introduction</h3>
 <p>Thread.Sleep(int milliseconds) is a static method that pauses the currently executing thread for a specified duration. It is a way for a thread to voluntarily yield its time slice back to the operating system and enter a waiting state.</p>
-    <h3>How It Works: Internal State</h3>
+    <h3 id="sec-31-lec-7-thread-sleep-how-it-works">How It Works: Internal State</h3>
 <p>Sleep(), the OS scheduler transitions it from a &quot;Running&quot; state to a WaitSleepJoin state. The OS will not schedule this thread to run on a CPU core again until the specified time interval has elapsed. It's important to understand that Sleep is not a precise timer.</p>
 <p>It guarantees a minimum pause, but the OS may take longer to reschedule the thread, especially on a busy system. You are telling the thread to sleep for at least the specified time. Special Use Cases</p>
     <ul>
       <li>Thread.Sleep(0): This is a special signal to the OS. It tells the scheduler to immediately end the current thread's time slice and yield the CPU to any other threads of the same priority that are ready to run. If there are no other ready threads, the current thread may continue immediately.</li>
       <li>Thread.Sleep(1): This is often used inside &quot;busy-wait&quot; loops (loops that continuously check a condition) to prevent the loop from consuming 100% of a CPU core. It yields to the OS scheduler, greatly reducing CPU usage while still checking the condition frequently.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-7-thread-sleep-example">Example</h3>
 <p>Using Thread.Sleep inside our task methods helps to simulate I/O operations (like waiting for a web request or a file to download) and makes the concurrent execution more obvious. The examples in the previous lectures already use Thread.Sleep(500) for this purpose.</p>
 
     <h2 id="sec-31-lec-8-thread-join-introduction">Lecture 8: Thread.Join Introduction</h2>
 <p>The instance method thread.Join() is a fundamental synchronization mechanism. It blocks the calling thread until the thread on which Join was called has completed its execution.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-8-thread-join-introduction-how-it-works">How It Works</h3>
 <p>Waiting for Completion Think of it like a project manager (the Main Thread) telling a team member (a worker thread) to go complete a task. &quot; The Join() method is that act of waiting. The Main Thread will enter the WaitSleepJoin state until the worker thread terminates.</p>
 <p>Why and When to Use It Its primary use case is to ensure that one or more background computations are fully complete before the main thread proceeds. This is essential when:</p>
     <ol>
       <li>The main thread needs to use the results calculated by the background thread(s).</li>
       <li>The main thread needs to ensure all background work (like saving files) is finished before the application can safely exit.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-8-thread-join-introduction-example">Example</h3>
 <p>Let's modify our multi-threaded example so the Main Thread waits for both tasks to complete before the program exits. class Program</p>
 
     <div class="code-block-container">
@@ -660,7 +660,7 @@ Main thread finished.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     static void Main(string[] args)
     {
         Console.WriteLine(&quot;Main thread: Starting background tasks...&quot;);
@@ -684,9 +684,9 @@ Main thread finished.</code></pre>
   
 
     <h2 id="sec-31-lec-9-threadpriority">Lecture 9: ThreadPriority</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-9-threadpriority-introduction">Introduction</h3>
 <p>The ThreadPriority is an enum property on a Thread object that allows you to give a hint to the operating system's scheduler about the relative importance of a thread. It does not provide a guarantee of execution order, but rather suggests how the scheduler should allocate CPU time slices among runnable threads.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-9-threadpriority-how-it-works">How It Works</h3>
 <p>The ThreadPriority enum has five levels:</p>
     <ul>
       <li>Lowest</li>
@@ -701,15 +701,15 @@ Main thread finished.</code></pre>
     </ul>
 
     <h2 id="sec-31-lec-10-thread-interrupt">Lecture 10: Thread.Interrupt</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-10-thread-interrupt-introduction">Introduction</h3>
 <p>The thread.Interrupt() method is a mechanism for one thread to interrupt another thread that is in a blocked or waiting state. A thread is in this state (the WaitSleepJoin state) if it has called Thread.Sleep(), thread.Join(), or is waiting on a synchronization primitive like Monitor.Wait().</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-10-thread-interrupt-how-it-works">How It Works</h3>
 <p>When threadB calls threadA.Interrupt(), one of two things happens:</p>
     <ol>
       <li>If threadA is currently blocked in a waiting state, it will wake up immediately and a ThreadInterruptedException will be thrown on threadA.</li>
       <li>If threadA is currently running (not blocked), the interrupt request is held. The next time threadA enters a waiting state, the exception will be thrown immediately. Why and When to Use It This is an older mechanism for implementing cooperative cancellation. It's a way to &quot;wake up&quot; a sleeping or waiting thread and signal that it should stop what it's doing and shut down gracefully. The waiting thread is expected to have a try...catch block to handle the ThreadInterruptedException and perform cleanup. Modern Practice: For all new code, the CancellationToken and CancellationTokenSource framework is the standard, safer, and more robust way to handle cancellation and should be used instead of Thread.Interrupt().</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-10-thread-interrupt-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -719,7 +719,7 @@ Main thread finished.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public static void Worker()
+      <pre><code class="language-csharp">public static void Worker()
 {
     try
     {
@@ -746,9 +746,9 @@ workerThread.Interrupt();</code></pre>
   
 
     <h2 id="sec-31-lec-11-thread-states">Lecture 11: Thread States</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-11-thread-states-introduction">Introduction</h3>
 <p>The ThreadState property of a Thread object allows you to query the current execution state of that thread. The state is represented by the ThreadState enum. This is primarily useful for monitoring and debugging purposes; you should not use it for synchronization, as a thread's state can change rapidly between the time you check it and the time you act on that information.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-11-thread-states-how-it-works">How It Works</h3>
 <p>A Bitmask Enum ThreadState is a bitmask enum, which means a thread can technically be in multiple states at once (e.g., WaitSleepJoin and Background). Key States Explained</p>
     <ul>
       <li><strong>Unstarted:</strong> The Thread object has been created, but the Start() method has not yet been called.</li>
@@ -761,12 +761,12 @@ workerThread.Interrupt();</code></pre>
     </ul>
 
     <h2 id="sec-31-lec-12-thread-parameters">Lecture 12: Thread Parameters</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-12-thread-parameters-introduction">Introduction</h3>
 <p>The basic ThreadStart delegate is for methods that take no parameters. But what if you need to pass initial data or configuration to the new thread when it starts? The traditional way to do this was with the ParameterizedThreadStart delegate.</p>
-    <h3>How It Works: ParameterizedThreadStart</h3>
+    <h3 id="sec-31-lec-12-thread-parameters-how-it-works">How It Works: ParameterizedThreadStart</h3>
 <p>This is a delegate that points to a method that takes a single parameter of type object. Start(data) overload. The Major Drawback: Lack of Type Safety This approach is not type-safe and is considered poor practice in modern C#.</p>
 <p>Because the parameter is an object, you must perform an explicit (and potentially unsafe) cast inside the thread method to get the data back to its original type. This can lead to run-time errors if the wrong type of data is passed.</p>
-    <h3>Example: (Legacy Approach)</h3>
+    <h3 id="sec-31-lec-12-thread-parameters-example">Example: (Legacy Approach)</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -776,7 +776,7 @@ workerThread.Interrupt();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public static void Worker(object data)
+      <pre><code class="language-csharp">public static void Worker(object data)
 {
     // We must cast the object back to its expected type.
     // This is risky if the wrong data is passed to Start().
@@ -796,9 +796,9 @@ workerThread.Start(5);</code></pre>
 <p>Modern Approach: The need for ParameterizedThreadStart has been almost completely eliminated by lambda expressions, which can &quot;capture&quot; variables from the containing scope in a type-safe way.</p>
 
     <h2 id="sec-31-lec-13-custom-thread-object">Lecture 13: Custom Thread Object</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-13-custom-thread-object-introduction">Introduction</h3>
 <p>Before lambda expressions became common, the standard, type-safe alternative to ParameterizedThreadStart was to create a custom class to hold both the data and the logic for the worker thread.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-13-custom-thread-object-how-it-works">How It Works</h3>
 <p>Instead of trying to pass data directly into the thread's Start method, you encapsulate everything the thread needs into its own object.</p>
     <ol>
       <li>Create a normal class (e.g., Worker).</li>
@@ -806,7 +806,7 @@ workerThread.Start(5);</code></pre>
       <li>Create an instance method in this class that will perform the work, using the data from its own properties.</li>
       <li>In your Main method, you create an instance of this Worker class, set its properties, and then create a new Thread that points to the worker.Run() instance method. Why It's Better This method is completely type-safe. There is no casting from object involved. All the data the thread needs is neatly contained and strongly typed within its own dedicated object.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-13-custom-thread-object-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -816,7 +816,7 @@ workerThread.Start(5);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Worker
+      <pre><code class="language-csharp">public class Worker
 {
     // Data for the thread is stored as strongly-typed properties.
     public int Iterations { get; set; }
@@ -840,18 +840,18 @@ workerThread.Start();</code></pre>
   
 
     <h2 id="sec-31-lec-14-callback">Lecture 14: Callback</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-14-callback-introduction">Introduction</h3>
 <p>A callback is a common programming pattern where you pass a method as an argument to another method. In the context of threading, it's a mechanism that allows a worker thread to notify the creating thread that it has completed its task and, optionally, to pass back a result.</p>
-    <h3>How It Works: Using Delegates</h3>
+    <h3 id="sec-31-lec-14-callback-how-it-works">How It Works: Using Delegates</h3>
     <ol>
       <li>Define a delegate for the callback method's signature. This delegate defines what the &quot;callback&quot; function must look like. For example, delegate void ResultCallback(string result);.</li>
       <li>The worker class's constructor will accept this delegate as a parameter and store it in a private field.</li>
       <li>When the worker thread finishes its long-running task, its very last step is to invoke the stored callback delegate, passing the result back.</li>
       <li>The main thread provides a method that matches the delegate signature and passes it when creating the worker object. This method will be executed when the work is done.</li>
     </ol>
-    <h3>Note</h3>
+    <h3 id="sec-31-lec-14-callback-note">Note</h3>
 <p>The callback method will execute on the worker thread's context, not the main thread's.</p>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-14-callback-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -861,7 +861,7 @@ workerThread.Start();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// 1. Define the delegate for the callback.
+      <pre><code class="language-csharp">// 1. Define the delegate for the callback.
 public delegate void DownloadCompleteCallback(string fileContent);
 public class Downloader
 {
@@ -903,7 +903,7 @@ public class Program
   
 
     <h2 id="sec-31-lec-15-shared-resources">Lecture 15: Shared Resources</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-15-shared-resources-introduction">Introduction</h3>
 <p>A shared resource is any piece of data or resource—a class field, a static variable, a list, a file on disk—that can be accessed by multiple threads concurrently. While this sharing of data is what makes multi-threading powerful, it is also the primary source of its complexity and danger.</p>
 <p>The Problem: Race Conditions When two or more threads attempt to read, modify, and write back to a shared resource at the same time, a race condition can occur. The final state of the resource depends on the unpredictable timing and scheduling of the threads. The thread that &quot;wins the race&quot; and writes its value last will overwrite the work of the other threads, leading to data corruption.</p>
 <p>This happens because common operations like incrementing a number (counter++) are not atomic. At a low level, counter++ is actually three separate steps:</p>
@@ -918,7 +918,7 @@ public class Program
       <li>The OS switches back to Thread A. Thread A still has the old value 10 that it read earlier.</li>
       <li>Thread A adds 1 (result is 11) and writes 11 back to memory. The counter should be 12, but because Thread A's work was based on stale data, its result overwrote Thread B's result. One of the increments was lost.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-15-shared-resources-example">Example</h3>
 <p>Demonstrating a Race Condition This code starts two threads that each increment a shared counter 1,000,000 times. The expected final result is 2,000,000, but the actual result will almost always be less due to race conditions. class Program</p>
 
     <div class="code-block-container">
@@ -929,7 +929,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     static int sharedCounter = 0;
     static void Main(string[] args)
     {
@@ -960,7 +960,7 @@ public class Program
   
 
     <h2 id="sec-31-lec-16-thread-synchronization">Lecture 16: Thread Synchronization</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-16-thread-synchronization-introduction">Introduction</h3>
 <p>Thread synchronization is the mechanism by which we coordinate the execution of multiple threads to ensure that they access shared resources in a safe and predictable manner. The primary goal of synchronization is to prevent race conditions and ensure data integrity. The Goal: Mutual Exclusion and Critical Sections The way we prevent race conditions is by enforcing mutual exclusion.</p>
 <p>This means ensuring that only one thread can access a specific piece of code at any given time. This protected block of code is known as a critical section. The Restroom Analogy Think of a shared resource as a single-person public restroom, and threads as people who need to use it.</p>
     <ul>
@@ -972,13 +972,13 @@ public class Program
 
     <h2 id="sec-31-lec-17-monitor-introduction">Lecture 17: Monitor Introduction</h2>
 <p>The System.Threading.Monitor class is a low-level, powerful tool in .NET for providing synchronized access to a block of code by using an exclusive lock. While you will more commonly use the lock keyword, it's important to understand that the lock keyword is just a convenient syntax for what the Monitor class is doing behind the scenes.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-17-monitor-introduction-how-it-works">How It Works</h3>
 <p>Enter, Exit, and the Lock Object You need an object to act as the &quot;key&quot; for the lock. This should be a private readonly object field in your class. The two primary static methods are:</p>
     <ul>
       <li>Monitor.Enter(object lockObject): A thread calls this to acquire an exclusive lock on the lockObject. If another thread already holds the lock, this thread will block (wait) until the lock is released.</li>
       <li>Monitor.Exit(object lockObject): The thread that holds the lock calls this to release it, allowing the next waiting thread to acquire it. The try...finally Pattern (Crucial) It is absolutely critical that Monitor.Exit is placed in a finally block. This guarantees that the lock is always released, even if an exception occurs inside the critical section. Forgetting to release a lock will cause all other threads waiting for it to be blocked forever, a condition known as a deadlock.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-17-monitor-introduction-example">Example</h3>
 <p>Fixing the Race Condition class Program</p>
 
     <div class="code-block-container">
@@ -989,7 +989,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     static int sharedCounter = 0;
     // The private object used as the lock &quot;key&quot;.
     private static readonly object counterLock = new object();
@@ -1017,9 +1017,9 @@ public class Program
 <p>Running this code will now correctly produce the result of 2,000,000.</p>
 
     <h2 id="sec-31-lec-18-lock">Lecture 18: lock</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-18-lock-introduction">Introduction</h3>
 <p>The lock keyword is a much cleaner, safer, and the preferred C# language feature for achieving mutual exclusion. It simplifies the process of acquiring and releasing a lock on a shared resource.</p>
-    <h3>How It Works: Syntactic Sugar</h3>
+    <h3 id="sec-31-lec-18-lock-how-it-works">How It Works: Syntactic Sugar</h3>
 <p>This is the key insight for interviews. The lock statement is just syntactic sugar for the Monitor.Enter and Monitor.Exit pattern wrapped in a try...finally block. When you write this: lock (counterLock)</p>
 
     <div class="code-block-container">
@@ -1030,7 +1030,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // Critical section code...
     sharedCounter++;
 }</code></pre>
@@ -1046,7 +1046,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // Critical section code...
     sharedCounter++;
 }
@@ -1061,7 +1061,7 @@ finally
       <li><strong>Readability:</strong> It is far more concise and clearly expresses the intent of protecting a block of code.</li>
       <li><strong>Safety:</strong> It makes it impossible to accidentally forget to release the lock, as the try...finally block is guaranteed by the compiler. This completely prevents deadlocks caused by unreleased locks. Best Practice: Always use the lock statement instead of manually using Monitor.Enter/Exit.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-18-lock-example">Example</h3>
 <p>Refactoring with lock class Program</p>
 
     <div class="code-block-container">
@@ -1072,7 +1072,7 @@ finally
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     static int sharedCounter = 0;
     private static readonly object counterLock = new object();
     // ... Main method is the same ... static void IncrementCounter()
@@ -1092,9 +1092,9 @@ finally
   
 
     <h2 id="sec-31-lec-19-manualresetevent">Lecture 19: ManualResetEvent</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-19-manualresetevent-introduction">Introduction</h3>
 <p>A ManualResetEvent is a synchronization primitive that acts like a gate. It can be in one of two states: signaled (the gate is open) or non-signaled (the gate is closed). Threads can be made to wait at the closed gate, and another thread can open the gate to release them.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-19-manualresetevent-how-it-works">How It Works</h3>
 <p>It uses three key methods:</p>
     <ul>
       <li><strong>WaitOne():</strong> When a thread calls this method, it checks the state of the gate.</li>
@@ -1106,7 +1106,7 @@ finally
       <li>&quot;A required resource is now available.&quot;</li>
       <li>Signaling the end of a process to multiple listeners.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-19-manualresetevent-example">Example</h3>
 <p>Waiting for Initialization Imagine a main thread needs to perform some setup, and several worker threads must wait for that setup to be complete before they start their work. class Program</p>
 
     <div class="code-block-container">
@@ -1117,7 +1117,7 @@ finally
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // Start in the non-signaled (closed) state.
     static ManualResetEvent gate = new ManualResetEvent(false);
     static void Main(string[] args)
@@ -1142,13 +1142,13 @@ finally
   
 
     <h2 id="sec-31-lec-20-autoresetevent">Lecture 20: AutoResetEvent</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-20-autoresetevent-introduction">Introduction</h3>
 <p>An AutoResetEvent is another gate-like synchronization primitive, very similar to ManualResetEvent. It also has WaitOne() and Set() methods and can be in a signaled or non-signaled state. However, it has one critical difference in behavior.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-20-autoresetevent-how-it-works">How It Works</h3>
 <p>The Automatic Reset This is the key distinction. When a thread is waiting on an AutoResetEvent and another thread calls Set() to open the gate, it allows only one waiting thread to pass through. Immediately after letting that single thread proceed, the gate automatically resets back to the closed (non-signaled) state.</p>
 <p>Think of it like a subway turnstile: it unlocks to let one person through, and then immediately locks again. A ManualResetEvent is like a main gate that, once opened, lets everyone rush through until it's manually closed. Why and When to Use It Use an AutoResetEvent when you want to release waiting threads one at a time in a controlled, sequential manner.</p>
 <p>It's often used in producer-consumer scenarios where one thread produces a piece of data and then signals exactly one consumer thread to wake up and process it.</p>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-20-autoresetevent-example">Example</h3>
 <p>A Simple Ping-Pong Let's create two threads that take turns &quot;pinging&quot; and &quot;ponging&quot; each other. class Program</p>
 
     <div class="code-block-container">
@@ -1159,7 +1159,7 @@ finally
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // Two gates. 'pingGate' starts open, 'pongGate' starts closed.
     static AutoResetEvent pingGate = new AutoResetEvent(true);
     static AutoResetEvent pongGate = new AutoResetEvent(false);
@@ -1191,9 +1191,9 @@ finally
   
 
     <h2 id="sec-31-lec-21-wait-and-pulse">Lecture 21: Wait and Pulse</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-21-wait-and-pulse-introduction">Introduction</h3>
 <p>Monitor.Wait(), Monitor.Pulse(), and Monitor.PulseAll() are low-level methods on the Monitor class that allow threads to coordinate more advanced interactions while they are inside a locked region. They are used to build producer-consumer patterns where a thread needs to wait for a specific condition to become true before it can proceed.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-21-wait-and-pulse-how-it-works">How It Works</h3>
 <p>The Lock Token Exchange This pattern is complex and must be understood precisely.</p>
     <ol>
       <li>A &quot;consumer&quot; thread must first acquire a lock using lock(lockObject).</li>
@@ -1203,9 +1203,9 @@ finally
       <li>The producer then calls Monitor.Pulse(lockObject) to wake up one waiting thread, or Monitor.PulseAll(lockObject) to wake up all waiting threads.</li>
       <li>The woken-up consumer thread does not run immediately. It is moved from the waiting queue to the &quot;ready&quot; queue. It must now re-acquire the lock before it can proceed from the point where it called Wait.</li>
     </ol>
-    <h3>When to Use It</h3>
+    <h3 id="sec-31-lec-21-wait-and-pulse-when-to-use-it">When to Use It</h3>
 <p>For building complex, custom producer-consumer queues or other synchronization patterns where threads need to wait for state changes inside a critical section. In modern C#, higher-level abstractions like BlockingCollection&lt;T&gt; are often a better and safer choice for these scenarios.</p>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-21-wait-and-pulse-example">Example</h3>
 <p>A Simple Producer-Consumer Queue class Program</p>
 
     <div class="code-block-container">
@@ -1216,7 +1216,7 @@ finally
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     static Queue&lt;string&gt; _tasks = new Queue&lt;string&gt;();
     static readonly object _lock = new object();
     static void Main(string[] args)
@@ -1260,7 +1260,7 @@ finally
   
 
     <h2 id="sec-31-lec-22-monitor-with-manualresetevent">Lecture 22: Monitor with ManualResetEvent</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-22-monitor-with-manualresetevent-introduction">Introduction</h3>
 <p>The Monitor (used via lock) and ManualResetEvent are both synchronization primitives, but they solve different fundamental problems. It's rare to use them together in a single, tight pattern, but it's crucial to understand their distinct roles. Comparing Their Purpose</p>
     <ul>
       <li>Monitor / lock</li>
@@ -1276,15 +1276,15 @@ finally
     </ul>
 
     <h2 id="sec-31-lec-23-intro-to-concurrent-collections">Lecture 23: Intro to Concurrent Collections</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-23-intro-to-concurrent-collections-introduction">Introduction</h3>
 <p>The standard collection classes we've learned about (List&lt;T&gt;, Dictionary&lt;TKey, TValue&gt;) are not thread-safe. If multiple threads try to add or remove items from a standard List&lt;T&gt; at the same time, the list's internal state (its internal array and count variable) can become corrupted, leading to lost data or exceptions.</p>
 <p>Before concurrent collections were introduced, the only way to solve this was to manually wrap every single access to the shared collection with a lock statement. This can be error-prone and can cause performance bottlenecks if many threads are competing for the same single lock.</p>
 <p>Concurrent namespace, are a set of specialized collection classes designed from the ground up to be thread-safe. They use highly efficient, low-level synchronization mechanisms (like fine-grained locks and lock-free techniques) internally, allowing multiple threads to add and remove items safely and often more performantly than a manually locked collection.</p>
-    <h3>When to Use: Them</h3>
+    <h3 id="sec-31-lec-23-intro-to-concurrent-collections-when-to-use">When to Use: Them</h3>
 <p>You should use a concurrent collection whenever you have a scenario where multiple threads need to produce or consume items from a single, shared collection.</p>
 
     <h2 id="sec-31-lec-24-csv-with-threads">Lecture 24: CSV with Threads</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-24-csv-with-threads-introduction">Introduction</h3>
 <p>A perfect real-world scenario to demonstrate the power of concurrent collections is processing a large data file with multiple threads. Imagine you have a CSV file with millions of rows, and you want to process each row and add a result to a shared list. Add() inside a lock block. This ensures that only one thread can modify the list at a time, preventing corruption.</p>
 
     <div class="code-block-container">
@@ -1295,7 +1295,7 @@ finally
           Copy
         </button>
       </div>
-      <pre><code>List&lt;string&gt; results = new List&lt;string&gt;();
+      <pre><code class="language-csharp">List&lt;string&gt; results = new List&lt;string&gt;();
 object listLock = new object();
 // Inside each worker thread's method...
 string processedData = &quot;some result&quot;;
@@ -1306,7 +1306,7 @@ lock (listLock)
     </div>
   
 <p>This works, but the lock can become a bottleneck if additions are very frequent. The Modern Way: Using a Concurrent Collection We can replace the List&lt;T&gt; and the manual lock with a thread-safe collection. A ConcurrentBag&lt;T&gt; is an excellent choice for this. It is an unordered collection designed for scenarios where multiple threads are adding items concurrently.</p>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-24-csv-with-threads-example">Example</h3>
 <p>This example simulates multiple threads processing data and adding it to a shared collection. Notice how the ConcurrentBag removes the need for any explicit locking in our code.</p>
 
     <div class="code-block-container">
@@ -1317,7 +1317,7 @@ lock (listLock)
           Copy
         </button>
       </div>
-      <pre><code>// ConcurrentBag is a thread-safe, unordered collection.
+      <pre><code class="language-csharp">// ConcurrentBag is a thread-safe, unordered collection.
 ConcurrentBag&lt;string&gt; processedLines = new ConcurrentBag&lt;string&gt;();
 string[] linesToProcess = { &quot;line1&quot;, &quot;line2&quot;, &quot;line3&quot;, &quot;line4&quot;, &quot;line5&quot;, &quot;line6&quot; };
 // Create tasks to simulate concurrent processing
@@ -1343,7 +1343,7 @@ Task task2 = Task.Run(() =&gt;
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Total items processed: {processedLines.Count}&quot;);
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Total items processed: {processedLines.Count}&quot;);
 // Note: The order of items in a ConcurrentBag is not guaranteed.</code></pre>
     </div>
   
@@ -1355,9 +1355,9 @@ Task task2 = Task.Run(() =&gt;
     </ul>
 
     <h2 id="sec-31-lec-25-semaphore">Lecture 25: Semaphore</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-25-semaphore-introduction">Introduction</h3>
 <p>A Semaphore is a synchronization primitive that limits the number of threads that can access a particular resource or a pool of resources concurrently. It maintains a &quot;count&quot; of available slots.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-25-semaphore-how-it-works">How It Works</h3>
 <p>The Bouncer Analogy Think of a semaphore like a bouncer at a nightclub that has a maximum capacity of 10 people.</p>
     <ul>
       <li>The semaphore is initialized with a count of 10.</li>
@@ -1366,14 +1366,14 @@ Task task2 = Task.Run(() =&gt;
       <li>If the count is already zero, the thread must wait outside until someone leaves.</li>
       <li>When a thread is finished with the resource, it calls Release(), which increments the count and allows one waiting thread to enter.</li>
     </ul>
-    <h3>When to Use It</h3>
+    <h3 id="sec-31-lec-25-semaphore-when-to-use-it">When to Use It</h3>
 <p>Use a semaphore to control access to a limited pool of resources.</p>
     <ul>
       <li>Limiting access to a fixed number of database connections.</li>
       <li>Throttling the number of concurrent web service calls.</li>
       <li>Controlling access to a limited number of software licenses. The modern, lightweight version for use within a single application is SemaphoreSlim.</li>
     </ul>
-    <h3>Example: Throttling Database Connections</h3>
+    <h3 id="sec-31-lec-25-semaphore-example">Example: Throttling Database Connections</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1383,7 +1383,7 @@ Task task2 = Task.Run(() =&gt;
           Copy
         </button>
       </div>
-      <pre><code>// This semaphore will only allow 3 threads access at a time.
+      <pre><code class="language-csharp">// This semaphore will only allow 3 threads access at a time.
 static SemaphoreSlim dbConnectionPool = new SemaphoreSlim(3);
 static void Main(string[] args)
 {
@@ -1406,18 +1406,18 @@ static void AccessDatabase(object id)
   
 
     <h2 id="sec-31-lec-26-mutex">Lecture 26: Mutex</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-26-mutex-introduction">Introduction</h3>
 <p>A Mutex (short for Mutual Exclusion) is a synchronization primitive that is very similar to a lock, as it is used to ensure that only one thread can access a resource at a time. However, it has one critical difference. The Key Difference: System-Wide vs. Process-Local This is a very important interview topic.</p>
     <ul>
       <li>A lock (Monitor) is local to a single process. It can only be used to synchronize threads within your own running application.</li>
       <li>A Mutex is a system-wide or cross-process synchronization primitive. This means a Mutex can be given a name, and it can be used to synchronize threads across multiple, different running applications.</li>
     </ul>
-    <h3>When to Use It</h3>
+    <h3 id="sec-31-lec-26-mutex-when-to-use-it">When to Use It</h3>
     <ol>
       <li>Cross-Process Synchronization: When you need to protect a shared resource that is accessible by multiple separate processes, such as a specific file on disk that only one application should be writing to at a time.</li>
       <li>Enforcing a Single Instance Application: A very common use case is to ensure that only one instance of your application can run at a time. On startup, the application tries to acquire a named Mutex. If it succeeds, it knows it's the first instance. If it fails, it means another instance already holds the Mutex, and the new instance can then exit.</li>
     </ol>
-    <h3>Example: Basic Usage Pattern</h3>
+    <h3 id="sec-31-lec-26-mutex-example">Example: Basic Usage Pattern</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1427,7 +1427,7 @@ static void AccessDatabase(object id)
           Copy
         </button>
       </div>
-      <pre><code>// A named Mutex can be shared across processes.
+      <pre><code class="language-csharp">// A named Mutex can be shared across processes.
 private static Mutex singleInstanceMutex = new Mutex(true,
 &quot;MyUniqueAppName123&quot;);
 // In Main:
@@ -1444,7 +1444,7 @@ bool isNewInstance = singleInstanceMutex.WaitOne(0, false);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;Another instance of this application is already
     running. Exiting.&quot;);
     return;
@@ -1456,10 +1456,10 @@ singleInstanceMutex.ReleaseMutex();</code></pre>
   
 
     <h2 id="sec-31-lec-27-thread-pool">Lecture 27: Thread Pool</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-27-thread-pool-introduction">Introduction</h3>
 <p>NET runtime. Its purpose is to efficiently execute many short-lived, background tasks without the performance overhead of creating and destroying a new thread for every single task. The Problem It Solves Creating a new Thread() is an expensive operation for the operating system.</p>
 <p>It requires allocating memory for the thread's stack and setting up kernel resources. If your application needs to perform hundreds of small background tasks, creating and destroying a new thread for each one is extremely inefficient and will hurt performance.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-27-thread-pool-how-it-works">How It Works</h3>
 <p>The .NET runtime maintains a set of warm, ready-to-go worker threads.</p>
     <ol>
       <li>When you want to run a task, you queue it to the thread pool (e.g., using ThreadPool.QueueUserWorkItem).</li>
@@ -1475,7 +1475,7 @@ singleInstanceMutex.ReleaseMutex();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // This code will be executed on a thread pool thread.
     Console.WriteLine(&quot;Hello from the thread pool!&quot;);
 });
@@ -1487,18 +1487,18 @@ way.</code></pre>
   
 
     <h2 id="sec-31-lec-28-countdownevent">Lecture 28: CountDownEvent</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-31-lec-28-countdownevent-introduction">Introduction</h3>
 <p>A CountdownEvent is a synchronization primitive used to wait for a specific number of signals to occur. It allows a main thread to start multiple parallel operations and then wait for all of them to complete before it proceeds.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-31-lec-28-countdownevent-how-it-works">How It Works</h3>
     <ol>
       <li>You initialize the CountdownEvent with a count, representing the number of tasks you are waiting for. For example, new CountdownEvent(3).</li>
       <li>The main thread calls myEvent.Wait(). This will block the main thread until the event's internal count reaches zero.</li>
       <li>Multiple worker threads perform their tasks. Each time a worker finishes its task, it calls myEvent.Signal(), which decrements the internal counter by one.</li>
       <li>When the final worker calls Signal(), the count becomes zero. This automatically releases the main thread that was blocked on Wait().</li>
     </ol>
-    <h3>When to Use It</h3>
+    <h3 id="sec-31-lec-28-countdownevent-when-to-use-it">When to Use It</h3>
 <p>It is perfect for &quot;fork-join&quot; scenarios, where a main thread &quot;forks&quot; its work out to multiple workers and then needs to &quot;join&quot; them all back together before continuing.</p>
-    <h3>Example</h3>
+    <h3 id="sec-31-lec-28-countdownevent-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1508,7 +1508,7 @@ way.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Initialize the event to wait for 3 signals.
+      <pre><code class="language-csharp">// Initialize the event to wait for 3 signals.
 static CountdownEvent countdown = new CountdownEvent(3);
 static void Main(string[] args)
 {
@@ -1556,6 +1556,18 @@ static void Worker(string id, int sleepTime)
   
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="31" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -1584,119 +1596,391 @@ static void Worker(string id, int sleepTime)
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-31-lec-1-intro-to-concurrent-execution" class="toc-link">Lecture 1: Intro to Concurrent Execution</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-1-intro-to-concurrent-execution-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-2-intro-to-threading" class="toc-link">Lecture 2: Intro to Threading</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-2-intro-to-threading-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-2-intro-to-threading-how-it-works" class="toc-link">How It Works: Internally</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-3-main-thread" class="toc-link">Lecture 3: Main Thread</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-3-main-thread-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-4-overview-thread-class" class="toc-link">Lecture 4: Overview Thread class</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-4-overview-thread-class-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-5-single-threaded-app" class="toc-link">Lecture 5: Single-Threaded App</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-5-single-threaded-app-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-5-single-threaded-app-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-6-multiple-threads" class="toc-link">Lecture 6: Multiple Threads</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-6-multiple-threads-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-6-multiple-threads-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-6-multiple-threads-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-7-thread-sleep" class="toc-link">Lecture 7: Thread.Sleep</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-7-thread-sleep-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-7-thread-sleep-how-it-works" class="toc-link">How It Works: Internal State</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-7-thread-sleep-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-8-thread-join-introduction" class="toc-link">Lecture 8: Thread.Join Introduction</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-8-thread-join-introduction-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-8-thread-join-introduction-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-9-threadpriority" class="toc-link">Lecture 9: ThreadPriority</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-9-threadpriority-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-9-threadpriority-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-10-thread-interrupt" class="toc-link">Lecture 10: Thread.Interrupt</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-10-thread-interrupt-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-10-thread-interrupt-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-10-thread-interrupt-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-11-thread-states" class="toc-link">Lecture 11: Thread States</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-11-thread-states-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-11-thread-states-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-12-thread-parameters" class="toc-link">Lecture 12: Thread Parameters</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-12-thread-parameters-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-12-thread-parameters-how-it-works" class="toc-link">How It Works: ParameterizedThreadSt</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-12-thread-parameters-example" class="toc-link">Example: (Legacy Approach)</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-13-custom-thread-object" class="toc-link">Lecture 13: Custom Thread Object</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-13-custom-thread-object-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-13-custom-thread-object-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-13-custom-thread-object-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-14-callback" class="toc-link">Lecture 14: Callback</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-14-callback-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-14-callback-how-it-works" class="toc-link">How It Works: Using Delegates</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-14-callback-note" class="toc-link">Note</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-14-callback-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-15-shared-resources" class="toc-link">Lecture 15: Shared Resources</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-15-shared-resources-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-15-shared-resources-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-16-thread-synchronization" class="toc-link">Lecture 16: Thread Synchronization</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-16-thread-synchronization-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-17-monitor-introduction" class="toc-link">Lecture 17: Monitor Introduction</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-17-monitor-introduction-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-17-monitor-introduction-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-18-lock" class="toc-link">Lecture 18: lock</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-18-lock-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-18-lock-how-it-works" class="toc-link">How It Works: Syntactic Sugar</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-18-lock-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-19-manualresetevent" class="toc-link">Lecture 19: ManualResetEvent</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-19-manualresetevent-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-19-manualresetevent-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-19-manualresetevent-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-20-autoresetevent" class="toc-link">Lecture 20: AutoResetEvent</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-20-autoresetevent-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-20-autoresetevent-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-20-autoresetevent-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-21-wait-and-pulse" class="toc-link">Lecture 21: Wait and Pulse</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-21-wait-and-pulse-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-21-wait-and-pulse-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-21-wait-and-pulse-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-21-wait-and-pulse-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-22-monitor-with-manualresetevent" class="toc-link">Lecture 22: Monitor with ManualResetEvent</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-22-monitor-with-manualresetevent-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-23-intro-to-concurrent-collections" class="toc-link">Lecture 23: Intro to Concurrent Collections</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-23-intro-to-concurrent-collections-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-23-intro-to-concurrent-collections-when-to-use" class="toc-link">When to Use: Them</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-24-csv-with-threads" class="toc-link">Lecture 24: CSV with Threads</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-24-csv-with-threads-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-24-csv-with-threads-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-25-semaphore" class="toc-link">Lecture 25: Semaphore</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-25-semaphore-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-25-semaphore-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-25-semaphore-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-25-semaphore-example" class="toc-link">Example: Throttling Database Connec</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-26-mutex" class="toc-link">Lecture 26: Mutex</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-26-mutex-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-26-mutex-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-26-mutex-example" class="toc-link">Example: Basic Usage Pattern</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-27-thread-pool" class="toc-link">Lecture 27: Thread Pool</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-27-thread-pool-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-27-thread-pool-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-28-countdownevent" class="toc-link">Lecture 28: CountDownEvent</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-28-countdownevent-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-28-countdownevent-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-28-countdownevent-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-31-lec-28-countdownevent-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-31-lec-29-points-to-remember" class="toc-link">Lecture 29: Points to Remember</a>
       </li>
     
@@ -1708,6 +1992,7 @@ static void Worker(string id, int sleepTime)
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

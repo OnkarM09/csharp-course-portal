@@ -446,12 +446,12 @@
       <article class="docs-content">
         
     <h2 id="sec-5-lec-1-introduction-to-fields">Lecture 1: Introduction to Fields</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-5-lec-1-introduction-to-fields-introduction">Introduction</h3>
 <p>In Object-Oriented Programming, fields are variables declared directly inside a class. They are the fundamental building blocks for storing data and represent the state, or attributes, of an object. If a class is a blueprint for a Student, the fields would be the lines on that blueprint for name, studentId, and dateOfBirth. Every object created from the class gets its own copy of these fields to store its unique state.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-5-lec-1-introduction-to-fields-how-it-works">How It Works</h3>
 <p>Memory Allocation and Object Isolation This is a critical concept. NET runtime allocates a block of memory on a region called the heap. This block is sized to hold all of the instance fields defined in that object's class.</p>
 <p>The most important takeaway is that each object gets its own, separate block of memory. This ensures that objects are isolated from one another. Modifying the state (the field values) of one object has no effect on the state of another object of the same class.</p>
-    <h3>Example: 1: Demonstrating Object Isolation</h3>
+    <h3 id="sec-5-lec-1-introduction-to-fields-example">Example: 1: Demonstrating Object Isolation</h3>
 <p>This example proves that two objects have separate memory for their fields. C#</p>
 
     <div class="code-block-container">
@@ -462,7 +462,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public class Student
+      <pre><code class="language-csharp">public class Student
 {
     // Fields to store the state of a single student.
     // We use public here only for a clear demonstration.
@@ -498,9 +498,9 @@ public class Program
 }</code></pre>
     </div>
   
-    <h3>How It Works: Copying Object References</h3>
+    <h3 id="sec-5-lec-1-introduction-to-fields-how-it-works">How It Works: Copying Object References</h3>
 <p>A class is a reference type. This means the variable (student1) does not hold the object itself, but rather the memory address (a reference) to the object on the heap. When you assign one object variable to another, you are only copying this memory address.</p>
-    <h3>Example: 2: Demonstrating Reference Sharing</h3>
+    <h3 id="sec-5-lec-1-introduction-to-fields-example">Example: 2: Demonstrating Reference Sharing</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -510,7 +510,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>public static void Main(string[] args)
+      <pre><code class="language-csharp">public static void Main(string[] args)
 {
     // studentA holds a reference to a new Student object in memory.
     Student studentA = new Student();
@@ -557,7 +557,7 @@ public class Program
   
 
     <h2 id="sec-5-lec-2-access-modifiers-for-fields">Lecture 2: Access Modifiers for Fields</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-5-lec-2-access-modifiers-for-fields-introduction">Introduction</h3>
 <p>Access modifiers are keywords that define the visibility of a class member. They are the core mechanism for enforcing encapsulation, which dictates that an object's internal data should be protected from direct, uncontrolled external access. The golden rule is to make your fields as private as possible. List and Explanation of Access Modifiers</p>
     <ul>
       <li>public</li>
@@ -581,17 +581,17 @@ public class Program
     </ul>
 
     <h2 id="sec-5-lec-3-static-fields">Lecture 3: Static Fields</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-5-lec-3-static-fields-introduction">Introduction</h3>
 <p>A static field belongs to the class itself, not to any individual object instance. No matter how many objects of the class you create, there is only one copy of the static field in memory, and it is shared by all of them.</p>
-    <h3>How It Works: Memory</h3>
+    <h3 id="sec-5-lec-3-static-fields-how-it-works">How It Works: Memory</h3>
 <p>While instance fields are stored on the heap with their respective objects, a static field is stored in a special area of memory associated with the type's metadata (often on a special section of the heap called the High-Frequency Heap). It is initialized only once, before the type is first used. You access it using the ClassName.FieldName syntax.</p>
-    <h3>When to Use: &amp; Real-World Examples</h3>
+    <h3 id="sec-5-lec-3-static-fields-when-to-use">When to Use: &amp; Real-World Examples</h3>
     <ul>
       <li><strong>Counters:</strong> To keep track of how many objects of a class have been created.</li>
       <li><strong>Shared Resources:</strong> Storing a single database connection string or a logger instance that all objects of the class should share.</li>
       <li><strong>Singleton Pattern:</strong> A design pattern where a static field holds the single instance of a class.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-5-lec-3-static-fields-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -601,7 +601,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>public class User
+      <pre><code class="language-csharp">public class User
 {
     public string name;
     public static int userCount = 0; // One counter shared by ALL User
@@ -629,11 +629,11 @@ public class Program
   
 
     <h2 id="sec-5-lec-4-constant-fields-const">Lecture 4: Constant Fields (const)</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-5-lec-4-constant-fields-const-introduction">Introduction</h3>
 <p>A const (constant) field declares a value that can never be changed. Its value is fixed at compile-time.</p>
-    <h3>How It Works: Compilation</h3>
+    <h3 id="sec-5-lec-4-constant-fields-const-how-it-works">How It Works: Compilation</h3>
 <p>The C# compiler replaces every usage of the const field in your code with its literal value directly in the Intermediate Language (IL). It's essentially a compile- time &quot;find and replace&quot; operation. For this reason, a const field is implicitly static and must be initialized at the time of declaration.</p>
-    <h3>When to Use: &amp; Real-World Examples</h3>
+    <h3 id="sec-5-lec-4-constant-fields-const-when-to-use">When to Use: &amp; Real-World Examples</h3>
     <ul>
       <li><strong>Mathematical Constants:</strong> When a value is universally and eternally fixed.</li>
     </ul>
@@ -646,7 +646,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>public const double PI = 3.14159;</code></pre>
+      <pre><code class="language-csharp">public const double PI = 3.14159;</code></pre>
     </div>
   
     <ul>
@@ -654,7 +654,7 @@ public class Program
       <li><strong>Fixed Conversion Factors:</strong> public const int SecondsInHour = 3600;</li>
       <li>Application-wide Keys: When you have a key for a dictionary or configuration that should never change. public const string ApiKeyName = &quot;MyApp:ApiKey&quot;;</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-5-lec-4-constant-fields-const-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -664,7 +664,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>public class Configuration
+      <pre><code class="language-csharp">public class Configuration
 {
     public const int DefaultTimeoutSeconds = 30;
 }
@@ -680,18 +680,18 @@ public class Program
   
 
     <h2 id="sec-5-lec-5-readonly-fields-readonly">Lecture 5: Readonly Fields (readonly)</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-5-lec-5-readonly-fields-readonly-introduction">Introduction</h3>
 <p>A readonly field's value can only be assigned once. This assignment can happen either at its declaration or within the constructor of the same class. After the constructor finishes, the field becomes &quot;read-only&quot; and cannot be changed.</p>
-    <h3>How It Works: Initialization</h3>
+    <h3 id="sec-5-lec-5-readonly-fields-readonly-how-it-works">How It Works: Initialization</h3>
 <p>Unlike const, a readonly field's value is fixed at run-time. This is a crucial difference. It allows each instance of an object to have its own unique, immutable value that is determined when the object is created.</p>
-    <h3>When to Use: &amp; Real-World Examples</h3>
+    <h3 id="sec-5-lec-5-readonly-fields-readonly-when-to-use">When to Use: &amp; Real-World Examples</h3>
 <p>This is perfect for per-object values that should not change after creation.</p>
     <ul>
       <li><strong>Unique IDs:</strong> public readonly Guid transactionId;</li>
       <li><strong>Creation Timestamps:</strong> public readonly DateTime creationDate;</li>
       <li><strong>Dependency Injection:</strong> When a service is injected via the constructor and should be used for the lifetime of the object without being replaced. private readonly ILogger _logger;</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-5-lec-5-readonly-fields-readonly-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -701,7 +701,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>public class LogEntry
+      <pre><code class="language-csharp">public class LogEntry
 {
     public readonly Guid entryId;
     public readonly DateTime entryTime;
@@ -718,11 +718,11 @@ public class Program
   
 
     <h2 id="sec-5-lec-6-local-constants">Lecture 6: Local Constants</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-5-lec-6-local-constants-introduction">Introduction</h3>
 <p>You can also declare constants that are local to a method. The const keyword, when used inside a method, creates a local variable whose value is fixed for the duration of that method call.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-5-lec-6-local-constants-when-to-use-it">When to Use It</h3>
 <p>To improve readability and maintainability by giving a descriptive name to a &quot;magic number&quot; or &quot;magic string&quot; that is used within a method. It also prevents accidental modification of a value that should remain fixed.</p>
-    <h3>Example</h3>
+    <h3 id="sec-5-lec-6-local-constants-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -732,7 +732,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>public decimal CalculateSalesTax(decimal amount)
+      <pre><code class="language-csharp">public decimal CalculateSalesTax(decimal amount)
 {
     // Instead of using a magic number like '0.0875', we declare a local constant.
     const decimal SalesTaxRate = 0.0875M;
@@ -742,7 +742,7 @@ public class Program
   
 
     <h2 id="sec-5-lec-7-imp-points-to-remember-about-fields">Lecture 7: IMP Points to remember about Fields</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-5-lec-7-imp-points-to-remember-about-fields-introduction">Introduction</h3>
 <p>This lecture summarizes the most critical, practical, and interview-worthy points about working with fields in C#.</p>
     <ol>
       <li>Fields Represent State Remember that fields are the &quot;nouns&quot; or &quot;adjectives&quot; of your class. They hold the data that defines the current state of any given object.</li>
@@ -758,6 +758,18 @@ public class Program
     </ol>
 
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="5" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -787,32 +799,120 @@ public class Program
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-5-lec-1-introduction-to-fields" class="toc-link">Lecture 1: Introduction to Fields</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-1-introduction-to-fields-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-1-introduction-to-fields-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-1-introduction-to-fields-example" class="toc-link">Example: 1: Demonstrating Object Is</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-1-introduction-to-fields-how-it-works" class="toc-link">How It Works: Copying Object Refere</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-1-introduction-to-fields-example" class="toc-link">Example: 2: Demonstrating Reference</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-5-lec-2-access-modifiers-for-fields" class="toc-link">Lecture 2: Access Modifiers for Fields</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-2-access-modifiers-for-fields-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-5-lec-3-static-fields" class="toc-link">Lecture 3: Static Fields</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-3-static-fields-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-3-static-fields-how-it-works" class="toc-link">How It Works: Memory</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-3-static-fields-when-to-use" class="toc-link">When to Use: &amp; Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-3-static-fields-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-5-lec-4-constant-fields-const" class="toc-link">Lecture 4: Constant Fields (const)</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-4-constant-fields-const-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-4-constant-fields-const-how-it-works" class="toc-link">How It Works: Compilation</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-4-constant-fields-const-when-to-use" class="toc-link">When to Use: &amp; Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-4-constant-fields-const-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-5-lec-5-readonly-fields-readonly" class="toc-link">Lecture 5: Readonly Fields (readonly)</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-5-readonly-fields-readonly-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-5-readonly-fields-readonly-how-it-works" class="toc-link">How It Works: Initialization</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-5-readonly-fields-readonly-when-to-use" class="toc-link">When to Use: &amp; Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-5-readonly-fields-readonly-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-5-lec-6-local-constants" class="toc-link">Lecture 6: Local Constants</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-6-local-constants-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-6-local-constants-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-6-local-constants-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-5-lec-7-imp-points-to-remember-about-fields" class="toc-link">Lecture 7: IMP Points to remember about Fields</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-5-lec-7-imp-points-to-remember-about-fields-introduction" class="toc-link">Introduction</a>
       </li>
     
       </ul>
@@ -823,6 +923,7 @@ public class Program
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

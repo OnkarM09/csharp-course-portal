@@ -488,9 +488,9 @@
     <ul>
       <li><strong>No Blocking:</strong> The crucial point is that await does not block the calling thread. This is the fundamental difference from Task.Wait() or Task.Result.</li>
     </ul>
-    <h3>Real-World Examples</h3>
+    <h3 id="sec-33-lec-2-async-and-await-real-world-examples">Real-World Examples</h3>
 <p>Let's explore several practical examples focusing on CPU-bound work and file I/ O within a standard console application.</p>
-    <h3>Example</h3>
+    <h3 id="sec-33-lec-2-async-and-await-example">Example</h3>
 <p>1: Offloading CPU-Bound Work with Task.Run Imagine a complex calculation that would freeze your application if run synchronously.</p>
 
     <div class="code-block-container">
@@ -501,7 +501,7 @@
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 using System.Threading;
 using System.Threading.Tasks;</code></pre>
     </div>
@@ -515,7 +515,7 @@ using System.Threading.Tasks;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class CpuBoundExample
+      <pre><code class="language-csharp">public class CpuBoundExample
 {
     // A synchronous, CPU-intensive method private static long CalculateFactorial(int n)
     {
@@ -574,7 +574,7 @@ using System.Threading.Tasks;</code></pre>
     </div>
   
 <p>RunFactorialCalculations (which is an async method) doesn't block while waiting for factorialTask to complete. This allows the &quot;Main thread&quot; to print its messages and simulate other work concurrently.</p>
-    <h3>Example</h3>
+    <h3 id="sec-33-lec-2-async-and-await-example">Example</h3>
 <p>2: Asynchronous File I/O (File.ReadAllTextAsync) Reading a large file can be an I/O-bound operation. Using async I/O methods keeps your application responsive.</p>
 
     <div class="code-block-container">
@@ -585,7 +585,7 @@ using System.Threading.Tasks;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -638,7 +638,7 @@ public class FileIOExample
   
 <p>ReadAllTextAsync is an async I/O method. , because it's on disk), the current thread is returned to the thread pool. It doesn't block.</p>
 <p>When the file read completes, a thread from the thread pool picks up the async method's continuation and executes the remaining code. This is crucial for keeping applications responsive during I/O operations.</p>
-    <h3>Example</h3>
+    <h3 id="sec-33-lec-2-async-and-await-example">Example</h3>
 <p>3: Concurrent Asynchronous Operations with Task.WhenAll Often, you need to perform several independent asynchronous operations and wait for all of them to complete. Task.WhenAll is perfect for this.</p>
 
     <div class="code-block-container">
@@ -649,7 +649,7 @@ public class FileIOExample
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Threading;
@@ -731,7 +731,7 @@ public class ConcurrentOperationsExample
       <li><strong>await Unwraps:</strong> When the await expression is reached, and the awaited task has faulted, the await keyword effectively unwraps the AggregateException and re-throws the first inner exception of that AggregateException.</li>
       <li>Standard try-catch: This re-thrown exception can then be caught by a standard try-catch block surrounding the await call.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-33-lec-3-error-handling-in-async-methods-example">Example</h3>
 <p>1: Basic Error Handling with try-catch</p>
 
     <div class="code-block-container">
@@ -742,7 +742,7 @@ public class ConcurrentOperationsExample
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 using System.Threading.Tasks;
 using System.Threading;
 public class AsyncErrorHandlingExample1
@@ -809,7 +809,7 @@ public class AsyncErrorHandlingExample1
     </div>
   
 <p>Explanation: When GetDataAsync(true) throws InvalidOperationException, the await expression captures it and re-throws it within the try block of RunBasicErrorHandling, allowing it to be caught by the appropriate catch block. The finally block executes regardless of whether an exception occurred.</p>
-    <h3>Example</h3>
+    <h3 id="sec-33-lec-3-error-handling-in-async-methods-example">Example</h3>
 <p>2: Handling Exceptions from Multiple Concurrent Tasks (Task.WhenAll) When you await Task.WhenAll(task1, task2, ...), if any of the awaited tasks fault, the await Task.WhenAll expression will throw a single AggregateException that contains all the exceptions from all the faulted tasks. You must catch AggregateException and iterate through its InnerExceptions collection.</p>
 
     <div class="code-block-container">
@@ -820,7 +820,7 @@ public class AsyncErrorHandlingExample1
           Copy
         </button>
       </div>
-      <pre><code>using System;</code></pre>
+      <pre><code class="language-csharp">using System;</code></pre>
     </div>
   
 
@@ -832,7 +832,7 @@ public class AsyncErrorHandlingExample1
           Copy
         </button>
       </div>
-      <pre><code>using System.Threading.Tasks;
+      <pre><code class="language-csharp">using System.Threading.Tasks;
 using System.Threading;
 public class AsyncErrorHandlingExample2
 {
@@ -907,7 +907,7 @@ public class AsyncErrorHandlingExample2
     </div>
   
 <p>Explanation: Even though SimulateOperationC throws an exception earlier, Task.WhenAll waits for all tasks to complete their execution (either successfully, faulted, or canceled) before propagating any exceptions. When it propagates, it aggregates all exceptions from all faulted tasks into a single AggregateException. This ensures you don't miss any errors from concurrent operations.</p>
-    <h3>Example</h3>
+    <h3 id="sec-33-lec-3-error-handling-in-async-methods-example">Example</h3>
 <p>3: Exception Handling in a Continuation Chain (with ContinueWith and await) While await simplifies most chains, sometimes you explicitly use ContinueWith for conditional execution. Exceptions still propagate.</p>
 
     <div class="code-block-container">
@@ -918,7 +918,7 @@ public class AsyncErrorHandlingExample2
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 using System.Threading.Tasks;
 using System.Threading;
 public class AsyncErrorHandlingExample3
@@ -1063,7 +1063,7 @@ public class AsyncErrorHandlingExample3
     <ul>
       <li>Sprinkle Console.WriteLine($&quot;Current Thread ID: {Thread.CurrentThread.ManagedThreadId}&quot;); throughout your async methods. This helps you observe thread hopping, which is normal and expected behavior for asynchronous operations, particularly I/O-bound ones. This can help confirm that await is indeed releasing the thread.</li>
     </ul>
-    <h3>Example: Debugging Scenario</h3>
+    <h3 id="sec-33-lec-4-debugging-async-methods-example">Example: Debugging Scenario</h3>
 <p>Let's use an example where we intentionally introduce a delay and an error to demonstrate debugging.</p>
 
     <div class="code-block-container">
@@ -1074,7 +1074,7 @@ public class AsyncErrorHandlingExample3
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
@@ -1167,7 +1167,7 @@ public class DebuggingAsyncExample
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(&quot;Tasks initiated...&quot;).</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(&quot;Tasks initiated...&quot;).</code></pre>
     </div>
   
     <ul>
@@ -1272,6 +1272,18 @@ public class DebuggingAsyncExample
 
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="33" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -1300,23 +1312,55 @@ public class DebuggingAsyncExample
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-33-lec-1-introduction-to-asynchronous-programming" class="toc-link">1. Introduction to Asynchronous Programming</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-33-lec-2-async-and-await" class="toc-link">2. Async and Await</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-33-lec-2-async-and-await-real-world-examples" class="toc-link">Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-33-lec-2-async-and-await-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-33-lec-2-async-and-await-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-33-lec-2-async-and-await-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-33-lec-3-error-handling-in-async-methods" class="toc-link">3. Error Handling in Async Methods</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-33-lec-3-error-handling-in-async-methods-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-33-lec-3-error-handling-in-async-methods-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-33-lec-3-error-handling-in-async-methods-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-33-lec-4-debugging-async-methods" class="toc-link">4. Debugging Async Methods</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-33-lec-4-debugging-async-methods-example" class="toc-link">Example: Debugging Scenario</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-33-lec-5-points-to-remember" class="toc-link">5. Points to Remember</a>
       </li>
     
@@ -1328,6 +1372,7 @@ public class DebuggingAsyncExample
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

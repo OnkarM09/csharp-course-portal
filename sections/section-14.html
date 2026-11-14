@@ -446,16 +446,16 @@
       <article class="docs-content">
         
     <h2 id="sec-14-lec-1-intro-and-working-with-structs">Lecture 1: Intro and Working with Structs</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-14-lec-1-intro-and-working-with-structs-introduction">Introduction</h3>
 <p>A struct (short for structure) is a composite data type that allows you to group a set of related variables under a single name. The single most important characteristic of a struct is that it is a value type. This fundamentally distinguishes it from a class, which is a reference type.</p>
 <p>This difference dictates how structs are stored in memory, how they are passed between methods, and how they behave during assignment. Structs are typically used for creating small, lightweight objects that logically represent a single value, such as a coordinate point, a color, or a pair of related numbers.</p>
-    <h3>How It Works: Value Type Semantics and Memory</h3>
+    <h3 id="sec-14-lec-1-intro-and-working-with-structs-how-it-works">How It Works: Value Type Semantics and Memory</h3>
 <p>Because a struct is a value type, a variable of a struct type holds the actual data itself, not a reference (or pointer) to the data.</p>
     <ul>
       <li><strong>Memory Allocation:</strong> Structs are almost always allocated on the stack, a region of memory that is very fast and efficient. When a method call finishes, any structs created within it are instantly deallocated as the stack frame is popped. This avoids the overhead of garbage collection that comes with class objects on the heap.</li>
       <li><strong>Assignment Behavior:</strong> When you assign one struct variable to another, you are creating a complete copy of the data. Each variable will have its own independent instance.</li>
     </ul>
-    <h3>Example: Demonstrating Copy-on-Assignment</h3>
+    <h3 id="sec-14-lec-1-intro-and-working-with-structs-example">Example: Demonstrating Copy-on-Assignment</h3>
 <p>Let's create a simple Point struct to see this behavior in action. C#</p>
 
     <div class="code-block-container">
@@ -466,7 +466,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public struct Point
+      <pre><code class="language-csharp">public struct Point
 {
     // By default, fields in a struct should be public for easy access,
     // as structs are primarily simple data containers.
@@ -497,21 +497,21 @@ public class Program
 }</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-14-lec-1-intro-and-working-with-structs-output">Output</h3>
 <p>Before change: point1=(10, 20), point2=(10, 20) --- Changed point1.X to 99 ---</p>
 <p>After change: point1=(99, 20), point2=(10, 20)</p>
 
     <h2 id="sec-14-lec-2-structures-with-constructors">Lecture 2: Structures with Constructors</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-14-lec-2-structures-with-constructors-introduction">Introduction</h3>
 <p>Like classes, structs can declare constructors to initialize their fields. Using a constructor is the preferred way to create a struct instance and ensure it starts in a valid and predictable state, rather than setting each field manually after creation.</p>
-    <h3>How It Works: &amp; Rules</h3>
+    <h3 id="sec-14-lec-2-structures-with-constructors-how-it-works">How It Works: &amp; Rules</h3>
 <p>There are specific rules for struct constructors that differ from class constructors:</p>
     <ol>
       <li><strong>Parameterized Constructors:</strong> You can define constructors that take parameters. Within a parameterized constructor, you must initialize all instance fields of the struct. The C# compiler enforces this rule to ensure the struct is fully initialized.</li>
       <li><strong>The Implicit Parameterless Constructor:</strong> Every struct always has a built-in, parameterless constructor that initializes all its fields to their system default values (0, false, null). You cannot delete or override this default behavior.</li>
       <li>Explicit Parameterless Constructors (C# 10+): In modern C# (version 10 and later), you are now allowed to explicitly declare your own public, parameterless constructor to provide different default initialization logic. However, the implicit one still exists behind the scenes.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-14-lec-2-structures-with-constructors-example">Example</h3>
 <p>Let's enhance our Point struct with a constructor to make initialization cleaner. C#</p>
 
     <div class="code-block-container">
@@ -522,7 +522,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>public struct Point
+      <pre><code class="language-csharp">public struct Point
 {
     public int X;
     public int Y;
@@ -557,7 +557,7 @@ public class Program
   
 
     <h2 id="sec-14-lec-3-structures-vs-classes">Lecture 3: Structures vs. Classes</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-14-lec-3-structures-vs-classes-introduction">Introduction</h3>
 <p>Knowing when to use a struct versus a class is a critical skill for any C# developer. This is one of the most fundamental and frequently asked interview questions because the choice has significant implications for memory management, performance, and program behavior. The core difference is that structs are value types and classes are reference types. Detailed Comparison</p>
     <ul>
       <li>Type &amp; Memory:</li>
@@ -585,7 +585,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>// The class (reference type)
+      <pre><code class="language-csharp">// The class (reference type)
 public class ClassPoint { public int X; }
 // The struct (value type)
 public struct StructPoint { public int X; }
@@ -613,7 +613,7 @@ public class Program
 }</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-14-lec-3-structures-vs-classes-output">Output</h3>
 <p>Before method call: ClassPoint.X = 10, StructPoint.X = 10</p>
 <p>After method call: ClassPoint.X = 100, StructPoint.X = 10 Conclusion: The change to the ClassPoint persisted because the method received a reference to the original object. The change to the StructPoint was lost because the method only operated on a temporary copy.</p>
 
@@ -636,9 +636,9 @@ public class Program
   
 
     <h2 id="sec-14-lec-4-readonly-structures">Lecture 4: Readonly Structures</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-14-lec-4-readonly-structures-introduction">Introduction</h3>
 <p>A readonly struct is a special type of structure that is declared as immutable. This means that once an instance of the struct is created, its state can never be changed for its entire lifetime. This provides a strong compile-time guarantee of immutability.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-14-lec-4-readonly-structures-how-it-works">How It Works</h3>
 <p>When you add the readonly modifier to a struct declaration, the C# compiler enforces two rules:</p>
     <ol>
       <li>All instance fields within the struct must also be declared as readonly.</li>
@@ -649,7 +649,7 @@ public class Program
       <li>Preventing accidental modification of data.</li>
       <li>Clearly communicating the design intent that an object is just a &quot;value&quot; and should not have its state changed.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-14-lec-4-readonly-structures-example">Example</h3>
 <p>A Color or RgbValue is a perfect candidate for a readonly struct. C#</p>
 
     <div class="code-block-container">
@@ -660,7 +660,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>public readonly struct RgbColor
+      <pre><code class="language-csharp">public readonly struct RgbColor
 {
     // All fields MUST be readonly.
     public readonly byte R;
@@ -692,14 +692,14 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>// 'myColor' is now immutable. Its state cannot be changed.</code></pre>
+      <pre><code class="language-csharp">// 'myColor' is now immutable. Its state cannot be changed.</code></pre>
     </div>
   
 
     <h2 id="sec-14-lec-5-primitive-types-are-structures">Lecture 5: Primitive Types are Structures</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-14-lec-5-primitive-types-are-structures-introduction">Introduction</h3>
 <p>This lecture reveals a fundamental truth about C#'s type system that clarifies much of the behavior we've seen so far. Most of the basic types that we think of as built-in keywords are, in fact, just convenient C# aliases for struct types defined in the .NET System namespace.</p>
-    <h3>How It Works: Keywords as Aliases</h3>
+    <h3 id="sec-14-lec-5-primitive-types-are-structures-how-it-works">How It Works: Keywords as Aliases</h3>
 <p>Here is a list of some of the most common primitive types and the structs they represent:</p>
     <ul>
       <li>int is an alias for System.Int32</li>
@@ -722,7 +722,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>int myNumber = 123;
+      <pre><code class="language-csharp">int myNumber = 123;
 // We are calling the ToString() method on the System.Int32 struct.
 string myString = myNumber.ToString();
 // You can even call methods on a literal value!
@@ -771,7 +771,30 @@ Console.WriteLine(123.ToString());</code></pre>
 +-------------------------+               +--------------------------------------+</pre>
     </div>
   
+      <h2 id="sec-14-comparison-table">Structs vs. Classes vs. Records Architectural Comparison Matrix</h2>
+      <p>Side-by-side architectural comparison matrix across C# type constructs:</p>
+      
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Category</th><th>Struct (Value Type)</th><th>Class (Reference Type)</th><th>Record (Class or Struct)</th></tr></thead>
+        <tbody><tr><td>Memory Location</td><td>Stack / inline in parent container</td><td>Managed Heap (pointer on stack)</td><td>Heap (record class) or Stack (record struct)</td></tr><tr><td>Equality Semantics</td><td>Value equality (field-by-field comparison via Reflection unless overridden)</td><td>Reference equality (memory address comparison by default)</td><td>Value equality synthesized by compiler (<code>IEquatable&lt;T&gt;</code> + <code>==</code> operator)</td></tr><tr><td>Mutability</td><td>Mutable or <code>readonly struct</code> (enforces deep immutability)</td><td>Mutable by default (can define init/readonly properties)</td><td>Immutable by default with init-only properties & <code>with</code> expression support</td></tr><tr><td>Deconstruction</td><td>Manual <code>Deconstruct()</code> method required</td><td>Manual <code>Deconstruct()</code> method required</td><td>Positional syntax automatically generates <code>Deconstruct()</code> method</td></tr><tr><td>Best Use Case</td><td>Small, short-lived types (&le; 16 bytes), math vectors, coordinates</td><td>Domain entities with identity, state changes, and lifetime management</td><td>DTOs, API payloads, immutability, pattern matching models</td></tr></tbody>
+      </table>
+    </div>
+  
+    
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="14" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -801,28 +824,88 @@ Console.WriteLine(123.ToString());</code></pre>
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-14-lec-1-intro-and-working-with-structs" class="toc-link">Lecture 1: Intro and Working with Structs</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-1-intro-and-working-with-structs-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-1-intro-and-working-with-structs-how-it-works" class="toc-link">How It Works: Value Type Semantics </a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-1-intro-and-working-with-structs-example" class="toc-link">Example: Demonstrating Copy-on-Assi</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-1-intro-and-working-with-structs-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-14-lec-2-structures-with-constructors" class="toc-link">Lecture 2: Structures with Constructors</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-2-structures-with-constructors-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-2-structures-with-constructors-how-it-works" class="toc-link">How It Works: &amp; Rules</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-2-structures-with-constructors-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-14-lec-3-structures-vs-classes" class="toc-link">Lecture 3: Structures vs. Classes</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-3-structures-vs-classes-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-3-structures-vs-classes-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-14-lec-4-readonly-structures" class="toc-link">Lecture 4: Readonly Structures</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-4-readonly-structures-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-4-readonly-structures-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-4-readonly-structures-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-14-lec-5-primitive-types-are-structures" class="toc-link">Lecture 5: Primitive Types are Structures</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-5-primitive-types-are-structures-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-14-lec-5-primitive-types-are-structures-how-it-works" class="toc-link">How It Works: Keywords as Aliases</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-14-lec-6-imp-points-to-remember" class="toc-link">Lecture 6: IMP Points to Remember</a>
+      </li>
+    
+      <li class="toc-item ">
+        <a href="#sec-14-comparison-table" class="toc-link">Struct vs Class vs Record Matrix</a>
       </li>
     
       </ul>
@@ -833,6 +916,7 @@ Console.WriteLine(123.ToString());</code></pre>
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

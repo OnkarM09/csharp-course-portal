@@ -448,18 +448,18 @@
     <h2 id="sec-30-lec-1-new-features">New Features</h2>
 
     <h2 id="sec-30-lec-2-top-level-statements">Lecture 1: Top-Level Statements</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-2-top-level-statements-introduction">Introduction</h3>
 <p>Top-level statements, introduced in C# 9, are a major feature designed to simplify the creation of simple programs and make C# more approachable for beginners. This feature allows you to write your main program's executable code directly in a Program.cs file, eliminating the need for the traditional boilerplate ceremony of a Program class and a static void Main method.</p>
-    <h3>How It Works: Compiler Generation</h3>
+    <h3 id="sec-30-lec-2-top-level-statements-how-it-works">How It Works: Compiler Generation</h3>
 <p>This feature is powerful syntactic sugar. NET programs fundamentally work. Behind the scenes, the C# compiler takes your statements and generates the familiar Program class and Main method for you. You only write the code that would have gone inside the Main method.</p>
-    <h3>Rules</h3>
+    <h3 id="sec-30-lec-2-top-level-statements-rules">Rules</h3>
     <ul>
       <li>You can only use top-level statements in one file per project.</li>
       <li>That file becomes the entry point for your application.</li>
       <li>You can still define methods and classes in the same file, but they must appear after the top-level statements.</li>
     </ul>
-    <h3>Example: Before and After</h3>
-    <h3>Before (Traditional C#)</h3>
+    <h3 id="sec-30-lec-2-top-level-statements-example">Example: Before and After</h3>
+    <h3 id="sec-30-lec-2-top-level-statements-before-traditional-c">Before (Traditional C#)</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -469,7 +469,7 @@
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 namespace MySimpleApp
 {
     class Program
@@ -482,7 +482,7 @@ namespace MySimpleApp
 }</code></pre>
     </div>
   
-    <h3>After (Modern C# with Top-Level Statements)</h3>
+    <h3 id="sec-30-lec-2-top-level-statements-after-modern-c-with-top-level-">After (Modern C# with Top-Level Statements)</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -492,7 +492,7 @@ namespace MySimpleApp
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 Console.WriteLine(&quot;Hello, World!&quot;);
 // You can access command line args via the magic 'args' variable.
 Console.WriteLine($&quot;There are {args.Length} arguments.&quot;);</code></pre>
@@ -519,11 +519,11 @@ Console.WriteLine($&quot;There are {args.Length} arguments.&quot;);</code></pre>
   
 
     <h2 id="sec-30-lec-3-file-scoped-namespaces">Lecture 2: File-Scoped Namespaces</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-3-file-scoped-namespaces-introduction">Introduction</h3>
 <p>File-scoped namespaces, introduced in C# 10, are a stylistic improvement that allows you to declare a namespace for an entire file without needing to wrap your code in curly braces {}.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-3-file-scoped-namespaces-how-it-works">How It Works</h3>
 <p>You declare the namespace at the very top of the file, ending the line with a semicolon. Everything in the file below this declaration is considered part of that namespace.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-30-lec-3-file-scoped-namespaces-syntax">Syntax</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -533,12 +533,12 @@ Console.WriteLine($&quot;There are {args.Length} arguments.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>namespace MyProject.MyFeature;</code></pre>
+      <pre><code class="language-csharp">namespace MyProject.MyFeature;</code></pre>
     </div>
   
 <p>Why and When to Use It The sole purpose is to reduce horizontal nesting and boilerplate code. This makes your code files cleaner, less indented, and slightly easier to read. It is the recommended style for all new C# 10+ projects.</p>
-    <h3>Example: Before and After</h3>
-    <h3>Before (Block-Scoped Namespace)</h3>
+    <h3 id="sec-30-lec-3-file-scoped-namespaces-example">Example: Before and After</h3>
+    <h3 id="sec-30-lec-3-file-scoped-namespaces-before-block-scoped-namespace">Before (Block-Scoped Namespace)</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -548,7 +548,7 @@ Console.WriteLine($&quot;There are {args.Length} arguments.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>namespace MyProject
+      <pre><code class="language-csharp">namespace MyProject
 {
     public class MyClass
     {
@@ -560,7 +560,7 @@ Console.WriteLine($&quot;There are {args.Length} arguments.&quot;);</code></pre>
 }</code></pre>
     </div>
   
-    <h3>After (File-Scoped Namespace)</h3>
+    <h3 id="sec-30-lec-3-file-scoped-namespaces-after-file-scoped-namespace">After (File-Scoped Namespace)</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -570,7 +570,7 @@ Console.WriteLine($&quot;There are {args.Length} arguments.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class MyClass
+      <pre><code class="language-csharp">public class MyClass
 {
     public void MyMethod()
     {
@@ -582,12 +582,12 @@ Console.WriteLine($&quot;There are {args.Length} arguments.&quot;);</code></pre>
   
 
     <h2 id="sec-30-lec-4-global-using">Lecture 3: Global Using</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-4-global-using-introduction">Introduction</h3>
 <p>The global using directive, introduced in C# 10, is a powerful feature that allows you to declare a using directive in one place and have it apply to your entire project.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-4-global-using-how-it-works">How It Works</h3>
 <p>You prefix a standard using directive with the global keyword. cs file in the project. cs) to hold all of your global using directives for better organization.</p>
 <p>Why and When to Use It Its purpose is to significantly reduce boilerplate code. Generic;) in dozens or hundreds of files. global using eliminates this repetition completely.</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-4-global-using-example">Example</h3>
 <p>Step 1: Create a GlobalUsings.cs file:</p>
 
     <div class="code-block-container">
@@ -598,7 +598,7 @@ Console.WriteLine($&quot;There are {args.Length} arguments.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// This using statement now applies to every file in the project.
+      <pre><code class="language-csharp">// This using statement now applies to every file in the project.
 global using System.Linq;
 global using System.Collections.Generic;</code></pre>
     </div>
@@ -613,7 +613,7 @@ global using System.Collections.Generic;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// No need for 'using System.Linq;' or 'using System.Collections.Generic;' here.
+      <pre><code class="language-csharp">// No need for 'using System.Linq;' or 'using System.Collections.Generic;' here.
 public class ProductService
 {
     public List&lt;string&gt; GetProductNames(List&lt;Product&gt; products)
@@ -634,7 +634,7 @@ public class ProductService
           Copy
         </button>
       </div>
-      <pre><code>// No need for 'using System.Linq;' or 'using System.Collections.Generic;' here either.
+      <pre><code class="language-csharp">// No need for 'using System.Linq;' or 'using System.Collections.Generic;' here either.
 public class UserService
 {
     public int CountActiveUsers(List&lt;User&gt; users)
@@ -647,9 +647,9 @@ public class UserService
   
 
     <h2 id="sec-30-lec-5-module-initializers">Lecture 4: Module Initializers</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-5-module-initializers-introduction">Introduction</h3>
 <p>A module initializer is an advanced C# 9 feature that allows you to write code that will run once when an entire assembly (a module, e.g., a .dll or .exe) is loaded by the .NET runtime.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-5-module-initializers-how-it-works">How It Works</h3>
 <p>You create a method and mark it with the [ModuleInitializer] attribute. This method must adhere to three rules:</p>
     <ol>
       <li>It must be static.</li>
@@ -660,7 +660,7 @@ public class UserService
       <li>Pre-caching data: A library could start pre-caching required data as soon as it's loaded.</li>
       <li><strong>Complex Setup:</strong> Running one-time setup logic, like registering components with a dependency injection framework or setting up interop with native libraries.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-5-module-initializers-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -670,7 +670,7 @@ public class UserService
           Copy
         </button>
       </div>
-      <pre><code>using System.Runtime.CompilerServices;
+      <pre><code class="language-csharp">using System.Runtime.CompilerServices;
 class MyLibrary
 {
     // This method will run automatically when the assembly is loaded. [ModuleInitializer]
@@ -684,9 +684,9 @@ class MyLibrary
   
 
     <h2 id="sec-30-lec-6-nullable-reference-types">Lecture 5: Nullable Reference Types</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-6-nullable-reference-types-introduction">Introduction</h3>
 <p>This is a major language feature (introduced in C# 8, but central to modern C#) that redefines how reference types work in order to help developers prevent NullReferenceException errors at compile time.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-6-nullable-reference-types-how-it-works">How It Works</h3>
 <p>Flipping the Default Assumption When you enable this feature in your project file (&lt;Nullable&gt;enable&lt;/ Nullable&gt;), the compiler's default assumption about reference types flips.</p>
     <ul>
       <li>Non-Nullable by Default (string) A standard reference type like string is now considered non-nullable. The compiler expects it to always hold a valid object reference. It will issue a warning if you:</li>
@@ -694,7 +694,7 @@ class MyLibrary
       <li>Don't initialize it to a non-null value before use.</li>
       <li>Explicitly Nullable (string?) To declare a reference type that is allowed to be null, you must explicitly use the nullable annotation ?. When you do this, the compiler then enforces a new rule: it will warn you if you try to use this variable without first checking if it is null. Why It's Important This feature moves null-related errors from unpredictable run-time crashes to predictable compile-time warnings. It forces you to be explicit and conscious about where null is allowed in your program, making your code dramatically safer and more robust.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-6-nullable-reference-types-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -704,7 +704,7 @@ class MyLibrary
           Copy
         </button>
       </div>
-      <pre><code>// In a project with &lt;Nullable&gt;enable&lt;/Nullable&gt;</code></pre>
+      <pre><code class="language-csharp">// In a project with &lt;Nullable&gt;enable&lt;/Nullable&gt;</code></pre>
     </div>
   
 <p>lastName)</p>
@@ -717,7 +717,7 @@ class MyLibrary
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // The compiler trusts that 'firstName' and 'lastName' are not null.
     Console.WriteLine($&quot;First: {firstName.ToUpper()}&quot;);
     // The compiler gives a WARNING on the next line because 'middleName' could be null.
@@ -734,12 +734,12 @@ class MyLibrary
 
     <h2 id="sec-30-lec-7-null-forgiving-operator-introduction">Lecture 6: Null-Forgiving Operator Introduction</h2>
 <p>The null-forgiving operator (also known as the null-suppression operator) is the exclamation mark (!). It is a special operator used only when you have enabled Nullable Reference Types. Its purpose is to tell the C# compiler to suppress a possible &quot;may be null&quot; warning.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-7-null-forgiving-operator-introduction-how-it-works">How It Works</h3>
 <p>A Promise to the Compiler This operator has no effect at run-time. It does not check for null or prevent a NullReferenceException. It is purely a compile-time instruction.</p>
 <p>, you are making a promise to the compiler: &quot;I, the developer, know more than your static analysis in this specific situation. I have performed a check or have other knowledge that guarantees this value is not null right here. &quot; If your guarantee is wrong and the variable is null at run-time, your program will still crash with a NullReferenceException.</p>
 <p>You are taking on the responsibility for the null check yourself. Why and When to Use It (With Caution) You should use this operator sparingly. Overusing it defeats the entire purpose of the nullable reference types feature.</p>
 <p>The primary valid use case is when you have checked for null in a way that the compiler's flow analysis cannot understand.</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-7-null-forgiving-operator-introduction-example">Example</h3>
 <p>Using a Helper Method The compiler can't see inside the IsNotNull method, so it doesn't know that user is safe to use after the call.</p>
 
     <div class="code-block-container">
@@ -750,7 +750,7 @@ class MyLibrary
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // This helper method throws an exception if the user is null.
     EnsureNotNull(user);
     // Even after the check, the compiler still warns that 'user' may be null here.
@@ -768,7 +768,7 @@ class MyLibrary
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     if (obj == null)
     {
         throw new ArgumentNullException();
@@ -778,15 +778,15 @@ class MyLibrary
   
 
     <h2 id="sec-30-lec-8-target-typed-new-expressions">Lecture 7: Target-Typed 'new' Expressions</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-8-target-typed-new-expressions-introduction">Introduction</h3>
 <p>This C# 9 feature provides a more concise syntax for object instantiation. It allows you to omit the type name in a new expression when the compiler can already infer the type from the context (i.e., from the variable declaration or method parameter).</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-8-target-typed-new-expressions-how-it-works">How It Works</h3>
 <p>If the compiler already knows what type of object needs to be created, you can simply use new() instead of new MyClassName(). Why and When to Use It It reduces code repetition and boilerplate, especially when working with long type names or generic types. It's most useful in two common scenarios:</p>
     <ol>
       <li><strong>Initializing Fields and Properties:</strong> When declaring a field or property, the type is already specified on the left side.</li>
       <li><strong>Passing Arguments to Methods:</strong> When passing a new object as an argument, the method's parameter type provides the context.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-8-target-typed-new-expressions-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -796,7 +796,7 @@ class MyLibrary
           Copy
         </button>
       </div>
-      <pre><code>// A class to demonstrate with
+      <pre><code class="language-csharp">// A class to demonstrate with
 public class User { public User(string name) { Name = name; } public
 string Name; }
 public class UserManager
@@ -816,15 +816,15 @@ public class UserManager
   
 
     <h2 id="sec-30-lec-9-intro-why-to-use-pattern-matching">Lecture 8: Intro &amp; Why to use Pattern Matching</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-9-intro-why-to-use-pattern-matching-introduction">Introduction</h3>
 <p>Pattern matching is a powerful suite of features in modern C# that provides a more declarative and readable way to check if a variable conforms to a certain &quot;shape&quot; or &quot;pattern,&quot; and to extract information from it if it does. Why Use It: Beyond Simple Equality</p>
 <p>Before pattern matching, if and switch statements were limited. You could check for equality (if (x == 5)), or check a type (if (x is MyClass)), but combining these checks was often verbose and clunky. Pattern matching evolves this by allowing you to express complex conditional logic based on both the type of an object and its state (the values of its properties) in a single, concise expression.</p>
 <p>It fundamentally makes your code more declarative—you describe the &quot;pattern&quot; of the data you're interested in, rather than writing a long series of imperative checks. This leads to code that is often more readable, less error-prone, and easier to maintain. The following lectures will explore the specific patterns that make this possible.</p>
 
     <h2 id="sec-30-lec-10-pattern-matching-type-pattern">Lecture 9: Pattern Matching - Type Pattern</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-10-pattern-matching-type-pattern-introduction">Introduction</h3>
 <p>The type pattern is the most fundamental pattern. It improves upon the old is operator by not only checking the run-time type of an object but also, if the check succeeds, assigning that object to a new, strongly-typed variable that is immediately available for use.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-10-pattern-matching-type-pattern-how-it-works">How It Works</h3>
 <p>This pattern avoids the old, clunky two-step process of checking a type and then casting it. The Old Way:</p>
 
     <div class="code-block-container">
@@ -835,7 +835,7 @@ public class UserManager
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     string s = (string)myObject;
     Console.WriteLine($&quot;The string has {s.Length} characters.&quot;);
 }</code></pre>
@@ -851,7 +851,7 @@ public class UserManager
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // The variable 's' is now in scope and is strongly-typed as a string.
     Console.WriteLine($&quot;The string has {s.Length} characters.&quot;);
 }
@@ -871,12 +871,12 @@ public void ProcessValue(object value)
   
 
     <h2 id="sec-30-lec-11-pattern-matching-switch-case-pattern">Lecture 10: Pattern Matching - Switch-Case Pattern</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-11-pattern-matching-switch-case-pattern-introduction">Introduction</h3>
 <p>Starting in C# 7.0, the traditional switch statement was enhanced to support pattern matching, allowing it to switch on the type of an object, not just constant values like integers or strings.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-11-pattern-matching-switch-case-pattern-how-it-works">How It Works</h3>
 <p>You can use the type pattern directly in a case label. This provides a much cleaner and more readable alternative to a long chain of if-else if statements when you need to perform different actions based on an object's runtime type.</p>
-    <h3>Syntax: case Type variableName:</h3>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-11-pattern-matching-switch-case-pattern-syntax">Syntax: case Type variableName:</h3>
+    <h3 id="sec-30-lec-11-pattern-matching-switch-case-pattern-example">Example</h3>
 <p>Let's refactor the previous example to use a switch statement, which is often more organized when there are many types to check.</p>
 
     <div class="code-block-container">
@@ -887,7 +887,7 @@ public void ProcessValue(object value)
           Copy
         </button>
       </div>
-      <pre><code>public abstract class Shape { }
+      <pre><code class="language-csharp">public abstract class Shape { }
 public class Circle : Shape { public double Radius; }
 public class Rectangle : Shape { public double Width, Height; }
 public void PrintShapeInfo(Shape shape)
@@ -912,15 +912,15 @@ public void PrintShapeInfo(Shape shape)
   
 
     <h2 id="sec-30-lec-12-pattern-matching-when-pattern">Lecture 11: Pattern Matching - when Pattern</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-12-pattern-matching-when-pattern-introduction">Introduction</h3>
 <p>The when keyword can be used to add an additional boolean condition, or filter, to a case in a switch statement. This allows you to create much more specific and powerful case labels.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-12-pattern-matching-when-pattern-how-it-works">How It Works</h3>
 <p>A case with a when clause will only be executed if both the primary pattern (e.g., the type pattern) matches and the condition in the when clause evaluates to true.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-30-lec-12-pattern-matching-when-pattern-syntax">Syntax</h3>
 <p>case Type variableName when (condition):</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-30-lec-12-pattern-matching-when-pattern-when-to-use-it">When to Use It</h3>
 <p>Use a when clause to distinguish between objects of the same type but with different states. For example, you can have one case for a Product when its IsOnSale property is true, and another case for the same Product type when it's false.</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-12-pattern-matching-when-pattern-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -930,7 +930,7 @@ public void PrintShapeInfo(Shape shape)
           Copy
         </button>
       </div>
-      <pre><code>public class Order { public decimal Total; }
+      <pre><code class="language-csharp">public class Order { public decimal Total; }
 public void ProcessOrder(object order)
 {
     switch (order)
@@ -952,16 +952,16 @@ public void ProcessOrder(object order)
   
 
     <h2 id="sec-30-lec-13-pattern-matching-switch-expression">Lecture 12: Pattern Matching - Switch Expression</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-13-pattern-matching-switch-expression-introduction">Introduction</h3>
 <p>A switch expression, introduced in C# 8.0 and enhanced in later versions, is a modern, concise, and expression-based alternative to the traditional switch statement. The key difference is that a switch statement performs actions, while a switch expression produces a value.</p>
-    <h3>How It Works: Syntax</h3>
+    <h3 id="sec-30-lec-13-pattern-matching-switch-expression-how-it-works">How It Works: Syntax</h3>
 <p>The syntax is much more compact and functional in style: variableToInspect switch { pattern1 =&gt; result1, pattern2 =&gt; result2, _ =&gt; defaultResult };</p>
     <ul>
       <li>variable switch { ... }: The variable being checked comes first.</li>
       <li>pattern =&gt; result,: Each line is an &quot;arm.&quot; It consists of a pattern, the =&gt; operator, the result to produce if the pattern matches, and a comma.</li>
       <li>_: The discard pattern acts as the default case and is often required by the compiler to ensure the expression is exhaustive (handles all possible inputs). Why and When to Use It Use a switch expression when you need to get a single value based on a series of pattern matches. It is far cleaner and less error-prone than a traditional switch statement where every case block contains a return statement.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-13-pattern-matching-switch-expression-example">Example</h3>
 <p>Let's refactor our Shape example to a method that returns a descriptive string for each shape type.</p>
 
     <div class="code-block-container">
@@ -972,7 +972,7 @@ public void ProcessOrder(object order)
           Copy
         </button>
       </div>
-      <pre><code>public string GetShapeDescription(Shape shape) =&gt; shape switch
+      <pre><code class="language-csharp">public string GetShapeDescription(Shape shape) =&gt; shape switch
 {
     // The pattern is on the left, the result is on the right.
     Circle c =&gt; $&quot;A red circle with radius {c.Radius}&quot;,
@@ -983,15 +983,15 @@ public void ProcessOrder(object order)
   
 
     <h2 id="sec-30-lec-14-pattern-matching-relational-and-logical-patte">Lecture 13: Pattern Matching - Relational and Logical Patterns</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-14-pattern-matching-relational-and-logical-patte-introduction">Introduction</h3>
 <p>C# 9 significantly enhanced pattern matching by introducing relational patterns (&lt;, &gt;, &lt;=, &gt;=) and logical patterns (and, or, not). These allow you to use comparisons and combine patterns directly within a case or switch expression arm.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-14-pattern-matching-relational-and-logical-patte-how-it-works">How It Works</h3>
 <p>These keywords allow you to create powerful, declarative checks that are highly readable.</p>
     <ul>
       <li><strong>Relational Patterns:</strong> Compare a value against a constant.</li>
       <li><strong>Logical Patterns:</strong> Combine other patterns. and requires both patterns to match. or requires either pattern to match. not negates a pattern.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-14-pattern-matching-relational-and-logical-patte-example">Example</h3>
 <p>A Temperature Categorizer</p>
 
     <div class="code-block-container">
@@ -1002,7 +1002,7 @@ public void ProcessOrder(object order)
           Copy
         </button>
       </div>
-      <pre><code>public string CategorizeTemperature(double temp) =&gt; temp switch
+      <pre><code class="language-csharp">public string CategorizeTemperature(double temp) =&gt; temp switch
 {
     &lt; -10.0 =&gt; &quot;Extreme cold&quot;,
     &gt;= -10.0 and &lt; 0 =&gt; &quot;Freezing&quot;,
@@ -1017,11 +1017,11 @@ Console.WriteLine(CategorizeTemperature(32)); // Output: Hot</code></pre>
   
 
     <h2 id="sec-30-lec-15-pattern-matching-property-pattern">Lecture 14: Pattern Matching - Property Pattern</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-15-pattern-matching-property-pattern-introduction">Introduction</h3>
 <p>The property pattern allows you to match an object based on the values of its public properties or fields. This lets your conditional logic depend not just on the type of an object, but on its internal state.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-15-pattern-matching-property-pattern-how-it-works">How It Works</h3>
 <p>You use curly braces { } to specify the properties you want to check. Inside the braces, you list the property names followed by a colon and another pattern to match against.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-30-lec-15-pattern-matching-property-pattern-syntax">Syntax</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1031,10 +1031,10 @@ Console.WriteLine(CategorizeTemperature(32)); // Output: Hot</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{ PropertyName1: pattern1, PropertyName2: pattern2 }</code></pre>
+      <pre><code class="language-csharp">{ PropertyName1: pattern1, PropertyName2: pattern2 }</code></pre>
     </div>
   
-    <h3>Example: Calculating Vehicle Toll</h3>
+    <h3 id="sec-30-lec-15-pattern-matching-property-pattern-example">Example: Calculating Vehicle Toll</h3>
 <p>Let's create a method that calculates a vehicle toll based on its type and properties.</p>
 
     <div class="code-block-container">
@@ -1045,7 +1045,7 @@ Console.WriteLine(CategorizeTemperature(32)); // Output: Hot</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public abstract class Vehicle { }
+      <pre><code class="language-csharp">public abstract class Vehicle { }
 public class Car : Vehicle { public int PassengerCount { get; set; } }
 public class Bus : Vehicle { public int Capacity { get; set; } }
 public class DeliveryTruck : Vehicle { public int WeightKg { get; set; } }
@@ -1067,11 +1067,11 @@ public decimal CalculateToll(Vehicle vehicle) =&gt; vehicle switch
   
 
     <h2 id="sec-30-lec-16-pattern-matching-tuple-pattern">Lecture 15: Pattern Matching - Tuple Pattern</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-16-pattern-matching-tuple-pattern-introduction">Introduction</h3>
 <p>The tuple pattern allows you to perform pattern matching on the elements of a tuple. You can match against literal values or use other patterns for each element of the tuple.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-16-pattern-matching-tuple-pattern-how-it-works">How It Works</h3>
 <p>You use parentheses (pattern1, pattern2, ...) to match the corresponding elements of an input tuple. This is extremely powerful in switch expressions where the input is a tuple representing a combination of states.</p>
-    <h3>Example: Rock-Paper-Scissors Game Logic</h3>
+    <h3 id="sec-30-lec-16-pattern-matching-tuple-pattern-example">Example: Rock-Paper-Scissors Game Logic</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1081,7 +1081,7 @@ public decimal CalculateToll(Vehicle vehicle) =&gt; vehicle switch
           Copy
         </button>
       </div>
-      <pre><code>public string GetGameResult(string player1Move, string player2Move) =&gt;
+      <pre><code class="language-csharp">public string GetGameResult(string player1Move, string player2Move) =&gt;
 (player1Move, player2Move) switch
 {
     // Player 1 wins
@@ -1105,11 +1105,11 @@ draw</code></pre>
   
 
     <h2 id="sec-30-lec-17-pattern-matching-positional-pattern">Lecture 16: Pattern Matching - Positional Pattern</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-17-pattern-matching-positional-pattern-introduction">Introduction</h3>
 <p>The positional pattern provides another way to deconstruct an object and match against its values. It relies on an accessible Deconstruct method being present on the object's type.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-17-pattern-matching-positional-pattern-how-it-works">How It Works</h3>
 <p>Instead of using property names in curly braces, you use parentheses (pattern1, pattern2, ...) to match the values that would be returned by the Deconstruct method in order. record types (which we'll see later) are perfect for this as they get a Deconstruct method automatically.</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-17-pattern-matching-positional-pattern-example">Example</h3>
 <p>Let's define a Point with a Deconstruct method and use positional patterns.</p>
 
     <div class="code-block-container">
@@ -1120,7 +1120,7 @@ draw</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Point
+      <pre><code class="language-csharp">public class Point
 {
     public int X { get; set; }
     public int Y { get; set; }
@@ -1145,11 +1145,11 @@ public string CheckPoint(Point p) =&gt; p switch
   
 
     <h2 id="sec-30-lec-18-pattern-matching-extended-property-pattern">Lecture 17: Pattern Matching - Extended Property Pattern</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-18-pattern-matching-extended-property-pattern-introduction">Introduction</h3>
 <p>The extended property pattern, introduced in C# 10, is a simplification that makes it easier to write patterns that check nested properties.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-18-pattern-matching-extended-property-pattern-how-it-works">How It Works</h3>
 <p>Instead of nesting property patterns, you can now use a &quot;dot&quot; notation directly within a single set of curly braces. The Old Way (before C# 10): { Customer: { Address: { Country: &quot;USA&quot; } } } The New, Flatter Way (C# 10+): { Customer.Address.Country: &quot;USA&quot; }</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-18-pattern-matching-extended-property-pattern-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1159,7 +1159,7 @@ public string CheckPoint(Point p) =&gt; p switch
           Copy
         </button>
       </div>
-      <pre><code>public class Address { public string Country { get; set; } }
+      <pre><code class="language-csharp">public class Address { public string Country { get; set; } }
 public class Customer { public Address Address { get; set; } }
 public class Order { public Customer Customer { get; set; } }
 public decimal GetShippingRate(Order order) =&gt; order switch
@@ -1173,7 +1173,7 @@ public decimal GetShippingRate(Order order) =&gt; order switch
   
 
     <h2 id="sec-30-lec-19-need-of-immutable-classes">Lecture 18: Need of Immutable Classes</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-19-need-of-immutable-classes-introduction">Introduction</h3>
 <p>Immutability is a programming concept where an object's state cannot be changed after it has been created. In contrast, a mutable object is one whose state can be modified after creation. While mutability is the default for most classes in C#, creating immutable types is a powerful technique for writing safer, more predictable, and more maintainable code.</p>
 <p>The Problem with Mutability Mutable objects can introduce significant complexity and bugs, especially in large applications.</p>
     <ol>
@@ -1186,7 +1186,7 @@ public decimal GetShippingRate(Order order) =&gt; order switch
     </ul>
 
     <h2 id="sec-30-lec-20-immutable-classes">Lecture 19: Immutable Classes</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-20-immutable-classes-introduction">Introduction</h3>
 <p>Before the new features in C# 9, creating an immutable class required a significant amount of boilerplate code and strict adherence to a specific pattern. Understanding this traditional pattern helps appreciate the modern features like init properties and records. How to Implement (The Traditional Way) To make a class immutable, you must ensure that its state cannot be changed</p>
 <p>after the object has been constructed. This involves these key steps:</p>
     <ol>
@@ -1194,7 +1194,7 @@ public decimal GetShippingRate(Order order) =&gt; order switch
       <li>Provide only get accessors for all public properties: By omitting the set accessor, you prevent external code from changing the property's value.</li>
       <li>Initialize all fields via the constructor: The constructor becomes the one and only place where the object's state is set.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-20-immutable-classes-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1204,7 +1204,7 @@ public decimal GetShippingRate(Order order) =&gt; order switch
           Copy
         </button>
       </div>
-      <pre><code>public class Point
+      <pre><code class="language-csharp">public class Point
 {
     // 1. All fields are private and readonly.
     private readonly int _x;
@@ -1226,15 +1226,15 @@ Point p1 = new Point(10, 20);
 <p>-- it is read only.</p>
 
     <h2 id="sec-30-lec-21-init-only-properties">Lecture 20: Init-Only Properties</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-21-init-only-properties-introduction">Introduction</h3>
 <p>Init-only properties, introduced in C# 9, simplify the creation of immutable objects. An init accessor is a new type of property accessor that can only be called during object initialization.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-21-init-only-properties-how-it-works">How It Works</h3>
 <p>An init accessor acts like a set accessor, but with a crucial restriction. You can only assign a value to an init-only property:</p>
     <ul>
       <li>In the object initializer syntax (when you use new { ... }).</li>
       <li>In the constructor of the class. Once the object's construction is complete, the init-only property becomes effectively readonly. Why and When to Use It init solves a major problem with traditional immutable classes. To use the convenient object initializer syntax (new Point { X = 10, Y = 20 }), properties needed to have a public set accessor, which meant they weren't truly immutable. init gives you the best of both worlds: the flexibility of object initializers with the safety of immutability.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-21-init-only-properties-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1244,7 +1244,7 @@ Point p1 = new Point(10, 20);
           Copy
         </button>
       </div>
-      <pre><code>public class WeatherObservation
+      <pre><code class="language-csharp">public class WeatherObservation
 {
     // These properties can be set during initialization, but not after.
     public DateTime ObservationTime { get; init; }
@@ -1266,15 +1266,15 @@ var observation = new WeatherObservation
   
 
     <h2 id="sec-30-lec-22-readonly-structs">Lecture 21: Readonly Structs</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-22-readonly-structs-introduction">Introduction</h3>
 <p>The readonly modifier can be applied to an entire struct declaration to create a fully immutable value type. This is a powerful feature for creating small, lightweight data containers that are guaranteed to be safe from modification.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-22-readonly-structs-how-it-works">How It Works</h3>
 <p>When you add the readonly modifier to a struct declaration (public readonly struct Point), the C# compiler enforces two rules:</p>
     <ol>
       <li>All instance fields within the struct must also be declared as readonly.</li>
       <li>All instance properties must be read-only (i.e., they can only have a get accessor). This creates a compile-time guarantee that once an instance of the struct is created, its state can never change. Why and When to Use It Use a readonly struct when you want to represent a &quot;value&quot; that is small and should not change. It's perfect for things like coordinates, colors, or complex numbers. Because they are both immutable and value types (stack-allocated), they can lead to very safe and high-performance code, especially in multi- threaded or mathematical applications.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-22-readonly-structs-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1284,7 +1284,7 @@ var observation = new WeatherObservation
           Copy
         </button>
       </div>
-      <pre><code>// 'readonly' guarantees the entire struct is immutable. public readonly struct RgbColor
+      <pre><code class="language-csharp">// 'readonly' guarantees the entire struct is immutable. public readonly struct RgbColor
 {
     // All fields must also be readonly.
     public readonly byte R;
@@ -1301,14 +1301,14 @@ var observation = new WeatherObservation
   
 
     <h2 id="sec-30-lec-23-parameterless-struct-constructors">Lecture 22: Parameterless Struct Constructors</h2>
-    <h3>Introduction</h3>
-    <h3>Before C# 10</h3>
+    <h3 id="sec-30-lec-23-parameterless-struct-constructors-introduction">Introduction</h3>
+    <h3 id="sec-30-lec-23-parameterless-struct-constructors-before-c-10">Before C# 10</h3>
 <p>, developers could not declare their own parameterless constructor for a struct. Every struct had an implicit, unchangeable parameterless constructor that simply initialized all its fields to their default system values (0, false, etc.). C# 10 removed this restriction.</p>
-    <h3>How It Works: (C# 10 and later)</h3>
+    <h3 id="sec-30-lec-23-parameterless-struct-constructors-how-it-works">How It Works: (C# 10 and later)</h3>
 <p>You can now declare a public, parameterless constructor in a struct to provide custom default initialization logic. However, the system's implicit default constructor (which zeroes out memory) still exists and will be used when you create an array of structs, for example.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-30-lec-23-parameterless-struct-constructors-when-to-use-it">When to Use It</h3>
 <p>Use this feature when you want an instance of a struct created with new MyStruct() to have a different, more sensible default state than all zeros.</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-23-parameterless-struct-constructors-example">Example</h3>
 <p>Let's create a Point struct where the default new() constructor places it at (1, 1) instead of (0, 0).</p>
 
     <div class="code-block-container">
@@ -1319,7 +1319,7 @@ var observation = new WeatherObservation
           Copy
         </button>
       </div>
-      <pre><code>public struct Point
+      <pre><code class="language-csharp">public struct Point
 {
     public int X { get; set; }
     public int Y { get; set; }
@@ -1341,9 +1341,9 @@ Console.WriteLine($&quot;p2 is at ({p2.X}, {p2.Y})&quot;); // Output: (0, 0)</co
   
 
     <h2 id="sec-30-lec-24-intro-and-working-with-records">Lecture 23: Intro and Working with Records</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-24-intro-and-working-with-records-introduction">Introduction</h3>
 <p>Record types, introduced in C# 9, are a new kind of reference type designed specifically for creating immutable data models. A record is essentially syntactic sugar that tells the compiler to automatically generate a lot of the boilerplate code that you would normally have to write by hand for a data- centric, immutable class.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-24-intro-and-working-with-records-how-it-works">How It Works</h3>
 <p>Positional Records and Generated Code The most concise way to declare a record is using positional syntax. When you write this single line:</p>
 
     <div class="code-block-container">
@@ -1354,7 +1354,7 @@ Console.WriteLine($&quot;p2 is at ({p2.X}, {p2.Y})&quot;); // Output: (0, 0)</co
           Copy
         </button>
       </div>
-      <pre><code>public record Person(string FirstName, string LastName);</code></pre>
+      <pre><code class="language-csharp">public record Person(string FirstName, string LastName);</code></pre>
     </div>
   
 <p>The C# compiler generates the following for you:</p>
@@ -1365,7 +1365,7 @@ Console.WriteLine($&quot;p2 is at ({p2.X}, {p2.Y})&quot;); // Output: (0, 0)</co
       <li>An overridden ToString() method that provides a clean, readable output of the object's state.</li>
       <li>Overridden Equals() and GetHashCode() methods that perform value- based equality, not the default reference equality of classes. This is a major feature.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-24-intro-and-working-with-records-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1375,7 +1375,7 @@ Console.WriteLine($&quot;p2 is at ({p2.X}, {p2.Y})&quot;); // Output: (0, 0)</co
           Copy
         </button>
       </div>
-      <pre><code>// This one line of code generates all the features mentioned above.
+      <pre><code class="language-csharp">// This one line of code generates all the features mentioned above.
 public record Person(string FirstName, string LastName);
 // --- In your Main method ---
 Person person1 = new Person(&quot;John&quot;, &quot;Doe&quot;);
@@ -1388,10 +1388,10 @@ LastName = Doe }
   
 
     <h2 id="sec-30-lec-25-nested-records">Lecture 24: Nested Records</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-25-nested-records-introduction">Introduction</h3>
 <p>Just as you can nest a class inside another class, you can also define a record type within the scope of another class or record. This follows the same logic as nested classes. Why and When to Use It Use a nested record when a small, immutable data container is tightly coupled to and only ever used by its containing class.</p>
 <p>This is an organizational tool that keeps the helper data structure close to the only class that uses it, preventing it from &quot;polluting&quot; the public namespace.</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-25-nested-records-example">Example</h3>
 <p>Imagine an Order class that needs to store shipping information. The ShippingAddress is a simple data structure only relevant to the Order.</p>
 
     <div class="code-block-container">
@@ -1402,7 +1402,7 @@ LastName = Doe }
           Copy
         </button>
       </div>
-      <pre><code>public class Order
+      <pre><code class="language-csharp">public class Order
 {
     // This is a nested record. It's only accessible through the Order class.
     public record Address(string Street, string City, string PostalCode);
@@ -1431,14 +1431,14 @@ LastName = Doe }
           Copy
         </button>
       </div>
-      <pre><code>var order = new Order { OrderId = 101, ShippingDestination =
+      <pre><code class="language-csharp">var order = new Order { OrderId = 101, ShippingDestination =
 shippingAddress };
 order.PrintShippingLabel();</code></pre>
     </div>
   
 
     <h2 id="sec-30-lec-26-understanding-immutability-of-records">Lecture 25: Understanding Immutability of Records</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-26-understanding-immutability-of-records-introduction">Introduction</h3>
 <p>Records are designed from the ground up to support immutability. This means that once a record object is created, its state should not change. This is primarily achieved through init-only properties and non-destructive mutation.</p>
 <p>However, it is crucial to understand that this immutability is shallow by default when reference types are involved. How they are Immutable</p>
     <ol>
@@ -1449,7 +1449,7 @@ order.PrintShippingLabel();</code></pre>
       <li>The reference to the list cannot be changed. You cannot assign a completely new list to the property.</li>
       <li>However, the contents of the list itself can still be modified. You can still call .Add() or .Remove() on the list, which mutates the state of the original record object.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-26-understanding-immutability-of-records-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1459,7 +1459,7 @@ order.PrintShippingLabel();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// A record with a mutable collection property.
+      <pre><code class="language-csharp">// A record with a mutable collection property.
 public record BlogPost(string Title, List&lt;string&gt; Tags);
 // --- In your Main method ---
 var post = new BlogPost(&quot;My First Post&quot;, new List&lt;string&gt; { &quot;c#&quot;,
@@ -1480,15 +1480,15 @@ System.Collections.Generic.List`1[System.String] }
   
 
     <h2 id="sec-30-lec-27-records-equality">Lecture 26: Records - Equality</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-27-records-equality-introduction">Introduction</h3>
 <p>One of the most powerful and important features of records is that they exhibit value-based equality by default. This is a major departure from classes, which use reference equality by default.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-27-records-equality-how-it-works">How It Works</h3>
 <p>The C# compiler automatically overrides the Equals() method and the == and ! = operators for record types.</p>
     <ul>
       <li><strong>Reference Equality (for classes):</strong> classA == classB is only true if both variables point to the exact same object in memory.</li>
       <li>Value-Based Equality (for records): recordA == recordB is true if the two records are of the same type and the values of all their corresponding public properties are equal. The compiler also generates a matching GetHashCode() override based on the values of all public properties, satisfying the rule that equal objects must have equal hash codes.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-27-records-equality-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1498,7 +1498,7 @@ System.Collections.Generic.List`1[System.String] }
           Copy
         </button>
       </div>
-      <pre><code>public record Person(string FirstName, string LastName);
+      <pre><code class="language-csharp">public record Person(string FirstName, string LastName);
 // --- In your Main method ---
 var p1 = new Person(&quot;John&quot;, &quot;Doe&quot;);</code></pre>
     </div>
@@ -1513,7 +1513,7 @@ var p1 = new Person(&quot;John&quot;, &quot;Doe&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>var p3 = new Person(&quot;Jane&quot;, &quot;Doe&quot;);
+      <pre><code class="language-csharp">var p3 = new Person(&quot;Jane&quot;, &quot;Doe&quot;);
 // For regular classes, p1 == p2 would be FALSE.
 // For records, it's TRUE because their values are the same.
 Console.WriteLine($&quot;p1 == p2: {p1 == p2}&quot;); // Output: True
@@ -1523,13 +1523,13 @@ Console.WriteLine($&quot;p1 == p3: {p1 == p3}&quot;); // Output: False</code></p
   
 
     <h2 id="sec-30-lec-28-records-with-expression">Lecture 27: Records - 'with' Expression</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-28-records-with-expression-introduction">Introduction</h3>
 <p>The with expression is a special feature for records that provides a simple</p>
-    <h3>syntax</h3>
+    <h3 id="sec-30-lec-28-records-with-expression-syntax">syntax</h3>
 <p>for performing non-destructive mutation. Since records are meant to be immutable, you don't change them directly. Instead, you create a copy of the record with one or more properties changed to new values.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-28-records-with-expression-how-it-works">How It Works</h3>
 <p>The with expression creates a shallow copy of the original record object and then applies the property changes specified in the object initializer block. The original record object is left completely untouched.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-30-lec-28-records-with-expression-syntax">Syntax</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1539,10 +1539,10 @@ Console.WriteLine($&quot;p1 == p3: {p1 == p3}&quot;); // Output: False</code></p
           Copy
         </button>
       </div>
-      <pre><code>var newRecord = oldRecord with { PropertyName = newValue };</code></pre>
+      <pre><code class="language-csharp">var newRecord = oldRecord with { PropertyName = newValue };</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-28-records-with-expression-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1552,7 +1552,7 @@ Console.WriteLine($&quot;p1 == p3: {p1 == p3}&quot;); // Output: False</code></p
           Copy
         </button>
       </div>
-      <pre><code>public record Book(string Title, string Author, int PublicationYear);
+      <pre><code class="language-csharp">public record Book(string Title, string Author, int PublicationYear);
 // --- In your Main method ---
 var originalBook = new Book(&quot;The Hobbit&quot;, &quot;J.R.R. Tolkien&quot;, 1937);
 // Let's create a new record for a &quot;revised edition&quot;.
@@ -1570,11 +1570,11 @@ Console.WriteLine($&quot;Original year is still: {originalBook.PublicationYear}&
   
 
     <h2 id="sec-30-lec-29-records-deconstruct">Lecture 28: Records - Deconstruct</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-29-records-deconstruct-introduction">Introduction</h3>
 <p>When you declare a record using the concise positional syntax, the compiler automatically generates a Deconstruct method for you. This allows you to easily unpack the properties of a record into separate variables, just like with tuples.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-29-records-deconstruct-how-it-works">How It Works</h3>
 <p>The generated Deconstruct method has an out parameter for each positional parameter defined in the record's primary constructor. This enables the deconstruction syntax.</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-29-records-deconstruct-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1584,7 +1584,7 @@ Console.WriteLine($&quot;Original year is still: {originalBook.PublicationYear}&
           Copy
         </button>
       </div>
-      <pre><code>public record Person(string FirstName, string LastName, int Age);
+      <pre><code class="language-csharp">public record Person(string FirstName, string LastName, int Age);
 // --- In your Main method ---
 var person = new Person(&quot;John&quot;, &quot;Doe&quot;, 42);
 // Deconstruct the record's properties into new variables.
@@ -1596,11 +1596,11 @@ Console.WriteLine($&quot;The age is {age}&quot;);</code></pre>
   
 
     <h2 id="sec-30-lec-30-records-tostring">Lecture 29: Records - ToString</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-30-records-tostring-introduction">Introduction</h3>
 <p>A simple but significant benefit of using records is that the compiler automatically overrides the ToString() method to provide a clean, readable, built-in text representation of the object's state.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-30-records-tostring-how-it-works">How It Works</h3>
 <p>Unlike a standard class, which by default would only print its type name (e.g., MyProject.Person), the record's generated ToString() method prints the type name followed by the names and values of all its public properties, formatted in a style that looks similar to an object initializer. This makes debugging and logging with records much more convenient.</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-30-records-tostring-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1610,7 +1610,7 @@ Console.WriteLine($&quot;The age is {age}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public record Person(string FirstName, string LastName);
+      <pre><code class="language-csharp">public record Person(string FirstName, string LastName);
 // --- In your Main method ---
 var person = new Person(&quot;John&quot;, &quot;Doe&quot;);
 // Console.WriteLine automatically calls the .ToString() method on the object.
@@ -1620,16 +1620,16 @@ Output: Person { FirstName = John, LastName = Doe }</code></pre>
   
 
     <h2 id="sec-30-lec-31-records-inheritance">Lecture 30: Records - Inheritance</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-31-records-inheritance-introduction">Introduction</h3>
 <p>Record types support inheritance, allowing you to create hierarchies of immutable data models. However, the rules are specific:</p>
     <ul>
       <li>A record can inherit from another record.</li>
       <li>A record cannot inherit from a class.</li>
       <li>A class cannot inherit from a record.</li>
     </ul>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-31-records-inheritance-how-it-works">How It Works</h3>
 <p>Inheritance for records follows the standard syntax and rules. The derived record inherits all the properties of the base record. The compiler-generated features like value-based equality and ToString() are automatically updated to include the properties from both the base and the derived records.</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-31-records-inheritance-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1639,7 +1639,7 @@ Output: Person { FirstName = John, LastName = Doe }</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Base record
+      <pre><code class="language-csharp">// Base record
 public record Person(string FirstName, string LastName);
 // Derived record that inherits from Person.
 // It passes the common properties up to the base constructor.
@@ -1655,13 +1655,13 @@ Console.WriteLine(employee);
   
 
     <h2 id="sec-30-lec-32-records-sealed-tostring">Lecture 31: Records - sealed ToString</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-32-records-sealed-tostring-introduction">Introduction</h3>
 <p>This C# 10 feature gives you control over the ToString() behavior in a record inheritance hierarchy. By marking an overridden ToString() method as sealed, you can &quot;lock it down&quot; and prevent any further derived records from generating their own ToString() implementation.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-32-records-sealed-tostring-how-it-works">How It Works</h3>
 <p>If you create a sealed override of ToString in a base record, any record that inherits from it will use this &quot;sealed&quot; implementation instead of generating a new one that includes its own properties.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-30-lec-32-records-sealed-tostring-when-to-use-it">When to Use It</h3>
 <p>Use this when you want to define a final, canonical string representation for an entire record hierarchy and you do not want the output to change even when new derived records are created.</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-32-records-sealed-tostring-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1671,7 +1671,7 @@ Console.WriteLine(employee);
           Copy
         </button>
       </div>
-      <pre><code>// Base record with a sealed ToString public record Person(string Name)
+      <pre><code class="language-csharp">// Base record with a sealed ToString public record Person(string Name)
 {
     // This implementation is now final for all derived records. public sealed override string ToString()
     {
@@ -1688,9 +1688,9 @@ Console.WriteLine(employee); // Output: Person: John Doe</code></pre>
   
 
     <h2 id="sec-30-lec-33-record-structs">Lecture 32: Record Structs</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-33-record-structs-introduction">Introduction</h3>
 <p>Record structs, introduced in C# 10, combine the compiler-generated benefits of records with the performance and semantics of a value type (struct).</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-33-record-structs-how-it-works">How It Works</h3>
 <p>You declare them using record struct. Like a class-based record, a record</p>
     <ul>
       <li>Value-based equality (Equals, GetHashCode, ==, !=).</li>
@@ -1698,7 +1698,7 @@ Console.WriteLine(employee); // Output: Person: John Doe</code></pre>
       <li>A Deconstruct method.</li>
       <li>init-only properties (if declared as readonly record struct). The key difference is that it is a value type. It lives on the stack (typically), is copied on assignment, and cannot be null. Why and When to Use It Use a record struct for small, immutable data models where value type semantics and high performance are desired. It's an excellent modern replacement for a simple readonly struct because you get all the equality and display methods generated for free.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-33-record-structs-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1708,7 +1708,7 @@ Console.WriteLine(employee); // Output: Person: John Doe</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// A readonly record struct is a fully immutable value type.
+      <pre><code class="language-csharp">// A readonly record struct is a fully immutable value type.
 public readonly record struct Point(int X, int Y);
 // --- In your Main method ---
 var p1 = new Point(10, 20);</code></pre>
@@ -1724,7 +1724,7 @@ var p1 = new Point(10, 20);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Like a record class, it has value-based equality.
+      <pre><code class="language-csharp">// Like a record class, it has value-based equality.
 Console.WriteLine($&quot;p1 == p2: {p1 == p2}&quot;); // Output: True
 // It has a clean ToString() implementation.
 Console.WriteLine(p1); // Output: Point { X = 10, Y = 20 }</code></pre>
@@ -1732,16 +1732,16 @@ Console.WriteLine(p1); // Output: Point { X = 10, Y = 20 }</code></pre>
   
 
     <h2 id="sec-30-lec-34-command-line-arguments">Lecture 33: Command Line Arguments</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-34-command-line-arguments-introduction">Introduction</h3>
 <p>Command-line arguments are a way to pass data into a console application when it is launched from the command line. This is a fundamental feature that allows your applications to be configured or controlled dynamically, making them useful for automation and scripting.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-34-command-line-arguments-how-it-works">How It Works</h3>
 <p>The args Array The .NET runtime automatically collects any arguments provided after the executable name and makes them available to your program as an array of strings (string[]).</p>
     <ul>
       <li><strong>In a traditional Main method:</strong> They are passed into the static void Main(string[] args) parameter.</li>
       <li>In modern Top-Level Statements: A &quot;magic&quot; variable named args is automatically available in the global scope. Each space-separated value on the command line becomes a separate element in the args array. If an argument contains spaces, it must be enclosed in double quotes.</li>
     </ul>
-    <h3>Real-World Examples</h3>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-34-command-line-arguments-real-world-examples">Real-World Examples</h3>
+    <h3 id="sec-30-lec-34-command-line-arguments-example">Example</h3>
 <p>1: A Simple Greeter</p>
     <ul>
       <li><strong>Command Line:</strong> MyGreeter.exe &quot;John Smith&quot; Code:</li>
@@ -1755,7 +1755,7 @@ Console.WriteLine(p1); // Output: Point { X = 10, Y = 20 }</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// In a top-level statement file (Program.cs) if (args.Length &gt; 0)
+      <pre><code class="language-csharp">// In a top-level statement file (Program.cs) if (args.Length &gt; 0)
 {
     string name = args[0];
     Console.WriteLine($&quot;Hello, {name}!&quot;);
@@ -1766,12 +1766,12 @@ else
 }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-34-command-line-arguments-example">Example</h3>
 <p>2: A File Processing Utility</p>
     <ul>
       <li><strong>Command Line:</strong> FileConverter.exe --input C:\data\report.csv --</li>
     </ul>
-    <h3>output</h3>
+    <h3 id="sec-30-lec-34-command-line-arguments-output">output</h3>
 <p>C:\reports\report.json Logic: This requires more sophisticated parsing. You would typically loop through the args array looking for &quot;flags&quot; (like --input) and then treat the next element as the value for that flag.</p>
 
     <div class="code-block-container">
@@ -1782,7 +1782,7 @@ else
           Copy
         </button>
       </div>
-      <pre><code>// A simplified parsing example
+      <pre><code class="language-csharp">// A simplified parsing example
 string inputFile = null;
 string outputFile = null;</code></pre>
     </div>
@@ -1796,7 +1796,7 @@ string outputFile = null;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     if (args[i] == &quot;--input&quot; &amp;&amp; i + 1 &lt; args.Length)
     {
         inputFile = args[i + 1];
@@ -1812,21 +1812,21 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
   
 
     <h2 id="sec-30-lec-35-partial-methods-return-type">Lecture 34: Partial Methods Return Type</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-35-partial-methods-return-type-introduction">Introduction</h3>
 <p>This C# 9 feature is an enhancement to the partial methods we discussed earlier. In previous versions of C#, partial methods were required to have a void return type. Now, they can return a value.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-35-partial-methods-return-type-how-it-works">How It Works</h3>
 <p>, partial bool IsValid();), it creates a new rule. The compiler will no longer just remove the method call if no implementation is found. Instead, if an implementation is not provided in another part of the partial class, the compiler will generate an error.</p>
 <p>Why and When to Use It This change makes partial methods much more useful in source generation scenarios. A code generator can now define a &quot;hook&quot; method that is expected to return a value (like a validation result or a computed property). The generated code can then call this method and use its return value in its logic, with the compiler guaranteeing that the developer has provided the necessary implementation.</p>
 
     <h2 id="sec-30-lec-36-static-anonymous-functions">Lecture 35: Static Anonymous Functions</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-36-static-anonymous-functions-introduction">Introduction</h3>
 <p>This C# 9 feature is a performance optimization that allows you to add the static modifier to a lambda expression or an anonymous method.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-36-static-anonymous-functions-how-it-works">How It Works</h3>
 <p>By declaring a lambda as static, you are making a promise to the compiler that this function will not capture (access) any variables from its containing scope. It cannot access local variables, parameters from the outer method, or the this reference of the class. It can only work with the parameters passed directly to it.</p>
-    <h3>Syntax: static (x, y) =&gt; x + y</h3>
+    <h3 id="sec-30-lec-36-static-anonymous-functions-syntax">Syntax: static (x, y) =&gt; x + y</h3>
 <p>Why and When to Use It This is primarily a performance optimization. A non-static lambda that &quot;captures&quot; outer variables requires the compiler to create a hidden &quot;closure&quot; object to hold those variables, which results in a small memory allocation. A static anonymous function avoids this allocation.</p>
 <p>Use it when your helper lambda is &quot;pure&quot;—meaning its output depends only on its input parameters—to prevent accidental capturing of state and to give the compiler a hint for minor optimizations.</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-36-static-anonymous-functions-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1836,7 +1836,7 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public void ProcessData(List&lt;int&gt; numbers)
+      <pre><code class="language-csharp">public void ProcessData(List&lt;int&gt; numbers)
 {
     int multiplier = 2;
     // This lambda CANNOT be static because it captures 'multiplier' from the outer scope.
@@ -1848,11 +1848,11 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
   
 
     <h2 id="sec-30-lec-37-constant-interpolated-strings">Lecture 36: Constant Interpolated Strings</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-37-constant-interpolated-strings-introduction">Introduction</h3>
 <p>This is a quality-of-life feature from C# 10. It allows you to declare const strings that are built using string interpolation ($&quot;&quot;).</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-37-constant-interpolated-strings-how-it-works">How It Works</h3>
 <p>The key restriction is that all the values used inside the interpolated placeholders ({...}) must also be compile-time constants. You cannot use variables or method calls.</p>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-37-constant-interpolated-strings-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1862,7 +1862,7 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public static class ApiRoutes
+      <pre><code class="language-csharp">public static class ApiRoutes
 {
     private const string ApiBase = &quot;/api/v1&quot;;
     // This is valid because ApiBase is also a const.
@@ -1873,7 +1873,7 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
   
 
     <h2 id="sec-30-lec-38-interface-default-methods-and-static-members">Lecture 37: Interface Default Methods and Static Members</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-38-interface-default-methods-and-static-members-introduction">Introduction</h3>
 <p>Starting with C# 8.0, interfaces became significantly more powerful, blurring the lines slightly with abstract classes by allowing them to contain code. Default Interface Methods</p>
     <ul>
       <li><strong>What It Is:</strong> You can now provide a default implementation (a method body) for a method directly inside an interface.</li>
@@ -1881,13 +1881,13 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
       <li><strong>What It Is:</strong> Interfaces can now contain static members, including methods, properties, and events.</li>
       <li>Why It's Important: This is useful for placing factory methods or utility functions directly on the interface where they are most relevant. For</li>
     </ul>
-    <h3>example</h3>
+    <h3 id="sec-30-lec-38-interface-default-methods-and-static-members-example">example</h3>
 <p>, you could have an ICalculator.Add(a, b) static method. This is a key feature for enabling generic math in modern C#. Private and Protected Members in Interfaces</p>
     <ul>
       <li><strong>What It Is:</strong> Interfaces can now have private and protected members (both static and instance).</li>
       <li>Why It's Important: These are typically used as helper methods to share common logic between multiple default method implementations within the interface itself, avoiding code duplication.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-38-interface-default-methods-and-static-members-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1897,7 +1897,7 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public interface ILogger
+      <pre><code class="language-csharp">public interface ILogger
 {
     // A required method for all implementers.
     void LogError(string message);
@@ -1918,14 +1918,14 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
 
     <h2 id="sec-30-lec-39-index-from-end-operator-introduction">Lecture 38: Index-From-End Operator Introduction</h2>
 <p>The index-from-end operator ^, introduced in C# 8, provides a concise syntax for accessing elements from the end of an indexable collection.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-39-index-from-end-operator-introduction-how-it-works">How It Works</h3>
 <p>The ^ operator tells the indexer to count from the end rather than the beginning.</p>
     <ul>
       <li>^1 is the last element.</li>
       <li>^2 is the second-to-last element.</li>
       <li>^0 is not the last element. It is equivalent to the collection's Length, so attempting to access myArray[^0] will result in an IndexOutOfRangeException.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-39-index-from-end-operator-introduction-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1935,7 +1935,7 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eve&quot; };
+      <pre><code class="language-csharp">string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eve&quot; };
 // Get the last element.</code></pre>
     </div>
   
@@ -1949,7 +1949,7 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Get the second-to-last element.</code></pre>
+      <pre><code class="language-csharp">// Get the second-to-last element.</code></pre>
     </div>
   
 <p>string secondToLastName = names[^2]; // David</p>
@@ -1962,24 +1962,24 @@ Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;The last name is: {lastName}&quot;);
+      <pre><code class="language-csharp">Console.WriteLine($&quot;The last name is: {lastName}&quot;);
 Console.WriteLine($&quot;The second-to-last name is: {secondToLastName}&quot;);</code></pre>
     </div>
   
 
     <h2 id="sec-30-lec-40-range-struct">Lecture 39: Range Struct</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-30-lec-40-range-struct-introduction">Introduction</h3>
 <p>The .. operator, also introduced in C# 8, is used to create a Range object. It provides a simple and powerful syntax for specifying a &quot;slice&quot; or sub-section of a collection.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-30-lec-40-range-struct-how-it-works">How It Works</h3>
 <p>The range operator is used inside an indexer []. The number on the left of .. is the inclusive start of the range, and the number on the right is the exclusive end of the range. It can be used with both standard integer indices and the index-from-end ^ operator.</p>
-    <h3>Syntax: Variations:</h3>
+    <h3 id="sec-30-lec-40-range-struct-syntax">Syntax: Variations:</h3>
     <ul>
       <li>myArray[1..4]: Gets elements from index 1 up to (but not including) index 4.</li>
       <li>myArray[..3]: From the start up to index 3.</li>
       <li>myArray[3..]: From index 3 to the end.</li>
       <li>myArray[2..^1]: From index 2 up to the second-to-last element.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-30-lec-40-range-struct-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1989,7 +1989,7 @@ Console.WriteLine($&quot;The second-to-last name is: {secondToLastName}&quot;);<
           Copy
         </button>
       </div>
-      <pre><code>string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eve&quot; };
+      <pre><code class="language-csharp">string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eve&quot; };
 // Indices: 	0 	1 	2 	3 	4
 // From-End: 	^5 	^4 	^3 	^2 	^1
 // Get the middle three names (Bob, Charlie, David)</code></pre>
@@ -2005,7 +2005,7 @@ Console.WriteLine($&quot;The second-to-last name is: {secondToLastName}&quot;);<
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(&quot;Middle names: &quot; + string.Join(&quot;, &quot;, middleNames));
+      <pre><code class="language-csharp">Console.WriteLine(&quot;Middle names: &quot; + string.Join(&quot;, &quot;, middleNames));
 // Get all names except the first and last.
 string[] innerNames = names[1..^1];
 Console.WriteLine(&quot;Inner names: &quot; + string.Join(&quot;, &quot;, innerNames));</code></pre>
@@ -2025,6 +2025,18 @@ Console.WriteLine(&quot;Inner names: &quot; + string.Join(&quot;, &quot;, innerN
     </ul>
 
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="30" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -2054,167 +2066,671 @@ Console.WriteLine(&quot;Inner names: &quot; + string.Join(&quot;, &quot;, innerN
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-30-lec-1-new-features" class="toc-link">New Features</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-30-lec-2-top-level-statements" class="toc-link">Lecture 1: Top-Level Statements</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-2-top-level-statements-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-2-top-level-statements-how-it-works" class="toc-link">How It Works: Compiler Generation</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-2-top-level-statements-rules" class="toc-link">Rules</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-2-top-level-statements-example" class="toc-link">Example: Before and After</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-2-top-level-statements-before-traditional-c" class="toc-link">Before (Traditional C#)</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-2-top-level-statements-after-modern-c-with-top-level-" class="toc-link">After (Modern C# with Top-Level Statements</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-3-file-scoped-namespaces" class="toc-link">Lecture 2: File-Scoped Namespaces</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-3-file-scoped-namespaces-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-3-file-scoped-namespaces-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-3-file-scoped-namespaces-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-3-file-scoped-namespaces-example" class="toc-link">Example: Before and After</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-3-file-scoped-namespaces-before-block-scoped-namespace" class="toc-link">Before (Block-Scoped Namespace)</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-3-file-scoped-namespaces-after-file-scoped-namespace" class="toc-link">After (File-Scoped Namespace)</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-4-global-using" class="toc-link">Lecture 3: Global Using</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-4-global-using-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-4-global-using-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-4-global-using-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-5-module-initializers" class="toc-link">Lecture 4: Module Initializers</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-5-module-initializers-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-5-module-initializers-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-5-module-initializers-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-6-nullable-reference-types" class="toc-link">Lecture 5: Nullable Reference Types</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-6-nullable-reference-types-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-6-nullable-reference-types-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-6-nullable-reference-types-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-7-null-forgiving-operator-introduction" class="toc-link">Lecture 6: Null-Forgiving Operator Introduction</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-7-null-forgiving-operator-introduction-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-7-null-forgiving-operator-introduction-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-8-target-typed-new-expressions" class="toc-link">Lecture 7: Target-Typed 'new' Expressions</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-8-target-typed-new-expressions-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-8-target-typed-new-expressions-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-8-target-typed-new-expressions-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-9-intro-why-to-use-pattern-matching" class="toc-link">Lecture 8: Intro &amp; Why to use Pattern Matching</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-9-intro-why-to-use-pattern-matching-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-10-pattern-matching-type-pattern" class="toc-link">Lecture 9: Pattern Matching - Type Pattern</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-10-pattern-matching-type-pattern-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-10-pattern-matching-type-pattern-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-11-pattern-matching-switch-case-pattern" class="toc-link">Lecture 10: Pattern Matching - Switch-Case Patte</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-11-pattern-matching-switch-case-pattern-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-11-pattern-matching-switch-case-pattern-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-11-pattern-matching-switch-case-pattern-syntax" class="toc-link">Syntax: case Type variableName:</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-11-pattern-matching-switch-case-pattern-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-12-pattern-matching-when-pattern" class="toc-link">Lecture 11: Pattern Matching - when Pattern</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-12-pattern-matching-when-pattern-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-12-pattern-matching-when-pattern-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-12-pattern-matching-when-pattern-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-12-pattern-matching-when-pattern-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-12-pattern-matching-when-pattern-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-13-pattern-matching-switch-expression" class="toc-link">Lecture 12: Pattern Matching - Switch Expression</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-13-pattern-matching-switch-expression-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-13-pattern-matching-switch-expression-how-it-works" class="toc-link">How It Works: Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-13-pattern-matching-switch-expression-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-14-pattern-matching-relational-and-logical-patte" class="toc-link">Lecture 13: Pattern Matching - Relational and Lo</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-14-pattern-matching-relational-and-logical-patte-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-14-pattern-matching-relational-and-logical-patte-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-14-pattern-matching-relational-and-logical-patte-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-15-pattern-matching-property-pattern" class="toc-link">Lecture 14: Pattern Matching - Property Pattern</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-15-pattern-matching-property-pattern-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-15-pattern-matching-property-pattern-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-15-pattern-matching-property-pattern-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-15-pattern-matching-property-pattern-example" class="toc-link">Example: Calculating Vehicle Toll</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-16-pattern-matching-tuple-pattern" class="toc-link">Lecture 15: Pattern Matching - Tuple Pattern</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-16-pattern-matching-tuple-pattern-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-16-pattern-matching-tuple-pattern-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-16-pattern-matching-tuple-pattern-example" class="toc-link">Example: Rock-Paper-Scissors Game L</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-17-pattern-matching-positional-pattern" class="toc-link">Lecture 16: Pattern Matching - Positional Patter</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-17-pattern-matching-positional-pattern-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-17-pattern-matching-positional-pattern-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-17-pattern-matching-positional-pattern-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-18-pattern-matching-extended-property-pattern" class="toc-link">Lecture 17: Pattern Matching - Extended Property</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-18-pattern-matching-extended-property-pattern-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-18-pattern-matching-extended-property-pattern-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-18-pattern-matching-extended-property-pattern-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-19-need-of-immutable-classes" class="toc-link">Lecture 18: Need of Immutable Classes</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-19-need-of-immutable-classes-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-20-immutable-classes" class="toc-link">Lecture 19: Immutable Classes</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-20-immutable-classes-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-20-immutable-classes-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-21-init-only-properties" class="toc-link">Lecture 20: Init-Only Properties</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-21-init-only-properties-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-21-init-only-properties-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-21-init-only-properties-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-22-readonly-structs" class="toc-link">Lecture 21: Readonly Structs</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-22-readonly-structs-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-22-readonly-structs-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-22-readonly-structs-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-23-parameterless-struct-constructors" class="toc-link">Lecture 22: Parameterless Struct Constructors</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-23-parameterless-struct-constructors-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-23-parameterless-struct-constructors-before-c-10" class="toc-link">Before C# 10</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-23-parameterless-struct-constructors-how-it-works" class="toc-link">How It Works: (C# 10 and later)</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-23-parameterless-struct-constructors-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-23-parameterless-struct-constructors-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-24-intro-and-working-with-records" class="toc-link">Lecture 23: Intro and Working with Records</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-24-intro-and-working-with-records-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-24-intro-and-working-with-records-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-24-intro-and-working-with-records-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-25-nested-records" class="toc-link">Lecture 24: Nested Records</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-25-nested-records-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-25-nested-records-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-26-understanding-immutability-of-records" class="toc-link">Lecture 25: Understanding Immutability of Record</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-26-understanding-immutability-of-records-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-26-understanding-immutability-of-records-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-27-records-equality" class="toc-link">Lecture 26: Records - Equality</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-27-records-equality-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-27-records-equality-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-27-records-equality-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-28-records-with-expression" class="toc-link">Lecture 27: Records - 'with' Expression</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-28-records-with-expression-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-28-records-with-expression-syntax" class="toc-link">syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-28-records-with-expression-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-28-records-with-expression-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-28-records-with-expression-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-29-records-deconstruct" class="toc-link">Lecture 28: Records - Deconstruct</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-29-records-deconstruct-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-29-records-deconstruct-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-29-records-deconstruct-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-30-records-tostring" class="toc-link">Lecture 29: Records - ToString</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-30-records-tostring-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-30-records-tostring-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-30-records-tostring-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-31-records-inheritance" class="toc-link">Lecture 30: Records - Inheritance</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-31-records-inheritance-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-31-records-inheritance-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-31-records-inheritance-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-32-records-sealed-tostring" class="toc-link">Lecture 31: Records - sealed ToString</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-32-records-sealed-tostring-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-32-records-sealed-tostring-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-32-records-sealed-tostring-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-32-records-sealed-tostring-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-33-record-structs" class="toc-link">Lecture 32: Record Structs</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-33-record-structs-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-33-record-structs-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-33-record-structs-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-34-command-line-arguments" class="toc-link">Lecture 33: Command Line Arguments</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-34-command-line-arguments-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-34-command-line-arguments-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-34-command-line-arguments-real-world-examples" class="toc-link">Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-34-command-line-arguments-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-34-command-line-arguments-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-34-command-line-arguments-output" class="toc-link">output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-35-partial-methods-return-type" class="toc-link">Lecture 34: Partial Methods Return Type</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-35-partial-methods-return-type-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-35-partial-methods-return-type-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-36-static-anonymous-functions" class="toc-link">Lecture 35: Static Anonymous Functions</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-36-static-anonymous-functions-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-36-static-anonymous-functions-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-36-static-anonymous-functions-syntax" class="toc-link">Syntax: static (x, y) =&gt; x + y</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-36-static-anonymous-functions-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-37-constant-interpolated-strings" class="toc-link">Lecture 36: Constant Interpolated Strings</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-37-constant-interpolated-strings-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-37-constant-interpolated-strings-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-37-constant-interpolated-strings-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-38-interface-default-methods-and-static-members" class="toc-link">Lecture 37: Interface Default Methods and Static</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-38-interface-default-methods-and-static-members-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-38-interface-default-methods-and-static-members-example" class="toc-link">example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-38-interface-default-methods-and-static-members-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-39-index-from-end-operator-introduction" class="toc-link">Lecture 38: Index-From-End Operator Introduction</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-39-index-from-end-operator-introduction-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-39-index-from-end-operator-introduction-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-40-range-struct" class="toc-link">Lecture 39: Range Struct</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-40-range-struct-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-40-range-struct-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-40-range-struct-syntax" class="toc-link">Syntax: Variations:</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-30-lec-40-range-struct-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-30-lec-41-things-to-remember" class="toc-link">Lecture 40: Things to Remember</a>
       </li>
     
@@ -2226,6 +2742,7 @@ Console.WriteLine(&quot;Inner names: &quot; + string.Join(&quot;, &quot;, innerN
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>C# Masterclass — Production Architecture & Documentation Portal</title>
+  <title>C# Masterclass — Production Architecture & Documentation Portal (.NET 9 / C# 13)</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="alternate icon" href="favicon.ico">
   <link rel="stylesheet" href="assets/css/docs.css">
@@ -38,11 +38,28 @@
   <!-- Hero Banner -->
   <main id="mainContent" tabindex="-1">
     <section class="portal-hero">
+      <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1rem; padding: 4px 12px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 9999px; font-size: 0.8rem; color: var(--accent-primary); font-weight: 600;">
+        <span>🚀 Updated for .NET 9 & C# 13</span>
+        <span>•</span>
+        <span>37 Masterclass Modules</span>
+      </div>
+
       <h1>C# Architecture & Language Masterclass</h1>
       <p class="portal-hero-lead">
         Comprehensive, production-grade documentation combining intuitive step-by-step conceptual depth,
-        under-the-hood compiler lowering, memory models, Cheat Sheet syntax matrices, and modern C# 9–14 paradigms.
+        under-the-hood compiler lowering, memory models, Cheat Sheet syntax matrices, and modern C# 9–14 (.NET 9 / C# 13) paradigms.
       </p>
+
+      <!-- Overall Course Progress Card -->
+      <div class="overall-progress-card">
+        <div class="overall-progress-header">
+          <span>📚 Curriculum Mastery Progress</span>
+          <span id="overallProgressText" style="font-weight: 600; color: var(--accent-primary);">0 of 37 Sections Completed (0%)</span>
+        </div>
+        <div class="overall-progress-track">
+          <div class="overall-progress-fill" id="overallProgressFill" style="width: 0%;"></div>
+        </div>
+      </div>
 
       <div style="margin-bottom: 2.5rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
         <button class="search-trigger-btn" style="padding: 10px 20px; font-size: 1rem; border-radius: 10px; background: var(--bg-surface-elevated); border-color: var(--accent-primary);">
@@ -102,20 +119,31 @@
           <span class="module-topic-tag">.NET 9</span><span class="module-topic-tag">CLR</span><span class="module-topic-tag">JIT</span><span class="module-topic-tag">BCL</span>
         </div>
 
+        <!-- Module Completion Progress Bar -->
+        <div class="module-progress-wrapper">
+          <div class="module-progress-header">
+            <span>Progress</span>
+            <span class="module-progress-text">0 / 3 completed (0%)</span>
+          </div>
+          <div class="module-progress-track">
+            <div class="module-progress-fill" style="width: 0%; background: #3b82f6;"></div>
+          </div>
+        </div>
+
         <div class="module-tile-launchpad">
           <div class="launchpad-chips-bar">
             <span class="launchpad-label">Sections:</span>
             <div class="launchpad-chips">
               
-      <a href="sections/section-01.html" class="module-chip-link" title="Section 01: Course Fundamentals &amp; .NET Architecture" aria-label="Section 1: Course Fundamentals &amp; .NET Architecture">
+      <a href="sections/section-01.html" class="module-chip-link" data-section="1" title="Section 01: Course Fundamentals &amp; .NET Architecture" aria-label="Section 1: Course Fundamentals &amp; .NET Architecture">
         <span class="chip-num">01</span>
       </a>
     
-      <a href="sections/section-02.html" class="module-chip-link" title="Section 02: C# Language Basics &amp; Syntax" aria-label="Section 2: C# Language Basics &amp; Syntax">
+      <a href="sections/section-02.html" class="module-chip-link" data-section="2" title="Section 02: C# Language Basics &amp; Syntax" aria-label="Section 2: C# Language Basics &amp; Syntax">
         <span class="chip-num">02</span>
       </a>
     
-      <a href="sections/section-03.html" class="module-chip-link" title="Section 03: Development Environment, .NET CLI &amp; First Program" aria-label="Section 3: Development Environment, .NET CLI &amp; First Program">
+      <a href="sections/section-03.html" class="module-chip-link" data-section="3" title="Section 03: Development Environment, .NET CLI &amp; First Program" aria-label="Section 3: Development Environment, .NET CLI &amp; First Program">
         <span class="chip-num">03</span>
       </a>
     
@@ -127,9 +155,8 @@
               <span>Start Module</span>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
-            <button class="module-toggle-list-btn" aria-expanded="false" title="Toggle section breakdown">
-              <span class="toggle-text">Breakdown (3)</span>
-              <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <button class="module-toggle-list-btn" aria-expanded="false" data-count="3" title="Toggle section breakdown">
+              <span class="toggle-text">View all 3 sections ▾</span>
             </button>
           </div>
         </div>
@@ -137,7 +164,7 @@
         <div class="module-tile-drawer" hidden>
           <ul class="module-drawer-list">
             
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="1">
         <a href="sections/section-01.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 01</span>
           <span class="module-sec-title">Course Fundamentals &amp; .NET Architecture</span>
@@ -145,7 +172,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 18 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="2">
         <a href="sections/section-02.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 02</span>
           <span class="module-sec-title">C# Language Basics &amp; Syntax</span>
@@ -153,7 +180,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 25 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="3">
         <a href="sections/section-03.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 03</span>
           <span class="module-sec-title">Development Environment, .NET CLI &amp; First Program</span>
@@ -185,32 +212,43 @@
           <span class="module-topic-tag">OOP</span><span class="module-topic-tag">Classes</span><span class="module-topic-tag">Objects</span><span class="module-topic-tag">Instantiating</span>
         </div>
 
+        <!-- Module Completion Progress Bar -->
+        <div class="module-progress-wrapper">
+          <div class="module-progress-header">
+            <span>Progress</span>
+            <span class="module-progress-text">0 / 6 completed (0%)</span>
+          </div>
+          <div class="module-progress-track">
+            <div class="module-progress-fill" style="width: 0%; background: #6366f1;"></div>
+          </div>
+        </div>
+
         <div class="module-tile-launchpad">
           <div class="launchpad-chips-bar">
             <span class="launchpad-label">Sections:</span>
             <div class="launchpad-chips">
               
-      <a href="sections/section-04.html" class="module-chip-link" title="Section 04: OOP Basics (Classes &amp; Objects)" aria-label="Section 4: OOP Basics (Classes &amp; Objects)">
+      <a href="sections/section-04.html" class="module-chip-link" data-section="4" title="Section 04: OOP Basics (Classes &amp; Objects)" aria-label="Section 4: OOP Basics (Classes &amp; Objects)">
         <span class="chip-num">04</span>
       </a>
     
-      <a href="sections/section-05.html" class="module-chip-link" title="Section 05: Fields &amp; Access Modifiers" aria-label="Section 5: Fields &amp; Access Modifiers">
+      <a href="sections/section-05.html" class="module-chip-link" data-section="5" title="Section 05: Fields &amp; Access Modifiers" aria-label="Section 5: Fields &amp; Access Modifiers">
         <span class="chip-num">05</span>
       </a>
     
-      <a href="sections/section-06.html" class="module-chip-link" title="Section 06: Methods &amp; Parameters" aria-label="Section 6: Methods &amp; Parameters">
+      <a href="sections/section-06.html" class="module-chip-link" data-section="6" title="Section 06: Methods &amp; Parameters" aria-label="Section 6: Methods &amp; Parameters">
         <span class="chip-num">06</span>
       </a>
     
-      <a href="sections/section-07.html" class="module-chip-link" title="Section 07: Type Conversion &amp; Casting" aria-label="Section 7: Type Conversion &amp; Casting">
+      <a href="sections/section-07.html" class="module-chip-link" data-section="7" title="Section 07: Type Conversion &amp; Casting" aria-label="Section 7: Type Conversion &amp; Casting">
         <span class="chip-num">07</span>
       </a>
     
-      <a href="sections/section-08.html" class="module-chip-link" title="Section 08: Constructors (Basics &amp; Chaining)" aria-label="Section 8: Constructors (Basics &amp; Chaining)">
+      <a href="sections/section-08.html" class="module-chip-link" data-section="8" title="Section 08: Constructors (Basics &amp; Chaining)" aria-label="Section 8: Constructors (Basics &amp; Chaining)">
         <span class="chip-num">08</span>
       </a>
     
-      <a href="sections/section-09.html" class="module-chip-link" title="Section 09: Properties &amp; Indexers" aria-label="Section 9: Properties &amp; Indexers">
+      <a href="sections/section-09.html" class="module-chip-link" data-section="9" title="Section 09: Properties &amp; Indexers" aria-label="Section 9: Properties &amp; Indexers">
         <span class="chip-num">09</span>
       </a>
     
@@ -222,9 +260,8 @@
               <span>Start Module</span>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
-            <button class="module-toggle-list-btn" aria-expanded="false" title="Toggle section breakdown">
-              <span class="toggle-text">Breakdown (6)</span>
-              <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <button class="module-toggle-list-btn" aria-expanded="false" data-count="6" title="Toggle section breakdown">
+              <span class="toggle-text">View all 6 sections ▾</span>
             </button>
           </div>
         </div>
@@ -232,7 +269,7 @@
         <div class="module-tile-drawer" hidden>
           <ul class="module-drawer-list">
             
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="4">
         <a href="sections/section-04.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 04</span>
           <span class="module-sec-title">OOP Basics (Classes &amp; Objects)</span>
@@ -240,7 +277,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 15 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="5">
         <a href="sections/section-05.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 05</span>
           <span class="module-sec-title">Fields &amp; Access Modifiers</span>
@@ -248,7 +285,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 16 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="6">
         <a href="sections/section-06.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 06</span>
           <span class="module-sec-title">Methods &amp; Parameters</span>
@@ -256,7 +293,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 30 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="7">
         <a href="sections/section-07.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 07</span>
           <span class="module-sec-title">Type Conversion &amp; Casting</span>
@@ -264,7 +301,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 18 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="8">
         <a href="sections/section-08.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 08</span>
           <span class="module-sec-title">Constructors (Basics &amp; Chaining)</span>
@@ -272,7 +309,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 20 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="9">
         <a href="sections/section-09.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 09</span>
           <span class="module-sec-title">Properties &amp; Indexers</span>
@@ -304,32 +341,43 @@
           <span class="module-topic-tag">Inheritance</span><span class="module-topic-tag">virtual</span><span class="module-topic-tag">override</span><span class="module-topic-tag">new</span>
         </div>
 
+        <!-- Module Completion Progress Bar -->
+        <div class="module-progress-wrapper">
+          <div class="module-progress-header">
+            <span>Progress</span>
+            <span class="module-progress-text">0 / 6 completed (0%)</span>
+          </div>
+          <div class="module-progress-track">
+            <div class="module-progress-fill" style="width: 0%; background: #8b5cf6;"></div>
+          </div>
+        </div>
+
         <div class="module-tile-launchpad">
           <div class="launchpad-chips-bar">
             <span class="launchpad-label">Sections:</span>
             <div class="launchpad-chips">
               
-      <a href="sections/section-10.html" class="module-chip-link" title="Section 10: Inheritance, Hiding &amp; Overriding" aria-label="Section 10: Inheritance, Hiding &amp; Overriding">
+      <a href="sections/section-10.html" class="module-chip-link" data-section="10" title="Section 10: Inheritance, Hiding &amp; Overriding" aria-label="Section 10: Inheritance, Hiding &amp; Overriding">
         <span class="chip-num">10</span>
       </a>
     
-      <a href="sections/section-11.html" class="module-chip-link" title="Section 11: Abstract Classes &amp; Interfaces" aria-label="Section 11: Abstract Classes &amp; Interfaces">
+      <a href="sections/section-11.html" class="module-chip-link" data-section="11" title="Section 11: Abstract Classes &amp; Interfaces" aria-label="Section 11: Abstract Classes &amp; Interfaces">
         <span class="chip-num">11</span>
       </a>
     
-      <a href="sections/section-12.html" class="module-chip-link" title="Section 12: Namespaces &amp; Code Organization" aria-label="Section 12: Namespaces &amp; Code Organization">
+      <a href="sections/section-12.html" class="module-chip-link" data-section="12" title="Section 12: Namespaces &amp; Code Organization" aria-label="Section 12: Namespaces &amp; Code Organization">
         <span class="chip-num">12</span>
       </a>
     
-      <a href="sections/section-13.html" class="module-chip-link" title="Section 13: Partial Classes, Static Classes &amp; Enums" aria-label="Section 13: Partial Classes, Static Classes &amp; Enums">
+      <a href="sections/section-13.html" class="module-chip-link" data-section="13" title="Section 13: Partial Classes, Static Classes &amp; Enums" aria-label="Section 13: Partial Classes, Static Classes &amp; Enums">
         <span class="chip-num">13</span>
       </a>
     
-      <a href="sections/section-14.html" class="module-chip-link" title="Section 14: Structures (Structs) &amp; Value Semantics" aria-label="Section 14: Structures (Structs) &amp; Value Semantics">
+      <a href="sections/section-14.html" class="module-chip-link" data-section="14" title="Section 14: Structures (Structs) &amp; Value Semantics" aria-label="Section 14: Structures (Structs) &amp; Value Semantics">
         <span class="chip-num">14</span>
       </a>
     
-      <a href="sections/section-15.html" class="module-chip-link" title="Section 15: System.Object &amp; Core Method Overrides" aria-label="Section 15: System.Object &amp; Core Method Overrides">
+      <a href="sections/section-15.html" class="module-chip-link" data-section="15" title="Section 15: System.Object &amp; Core Method Overrides" aria-label="Section 15: System.Object &amp; Core Method Overrides">
         <span class="chip-num">15</span>
       </a>
     
@@ -341,9 +389,8 @@
               <span>Start Module</span>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
-            <button class="module-toggle-list-btn" aria-expanded="false" title="Toggle section breakdown">
-              <span class="toggle-text">Breakdown (6)</span>
-              <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <button class="module-toggle-list-btn" aria-expanded="false" data-count="6" title="Toggle section breakdown">
+              <span class="toggle-text">View all 6 sections ▾</span>
             </button>
           </div>
         </div>
@@ -351,7 +398,7 @@
         <div class="module-tile-drawer" hidden>
           <ul class="module-drawer-list">
             
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="10">
         <a href="sections/section-10.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 10</span>
           <span class="module-sec-title">Inheritance, Hiding &amp; Overriding</span>
@@ -359,7 +406,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 24 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="11">
         <a href="sections/section-11.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 11</span>
           <span class="module-sec-title">Abstract Classes &amp; Interfaces</span>
@@ -367,7 +414,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 28 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="12">
         <a href="sections/section-12.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 12</span>
           <span class="module-sec-title">Namespaces &amp; Code Organization</span>
@@ -375,7 +422,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 14 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="13">
         <a href="sections/section-13.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 13</span>
           <span class="module-sec-title">Partial Classes, Static Classes &amp; Enums</span>
@@ -383,7 +430,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 20 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="14">
         <a href="sections/section-14.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 14</span>
           <span class="module-sec-title">Structures (Structs) &amp; Value Semantics</span>
@@ -391,7 +438,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 20 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="15">
         <a href="sections/section-15.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 15</span>
           <span class="module-sec-title">System.Object &amp; Core Method Overrides</span>
@@ -423,24 +470,35 @@
           <span class="module-topic-tag">Generics</span><span class="module-topic-tag">Type Safety</span><span class="module-topic-tag">where Constraints</span><span class="module-topic-tag">Generic Methods</span>
         </div>
 
+        <!-- Module Completion Progress Bar -->
+        <div class="module-progress-wrapper">
+          <div class="module-progress-header">
+            <span>Progress</span>
+            <span class="module-progress-text">0 / 4 completed (0%)</span>
+          </div>
+          <div class="module-progress-track">
+            <div class="module-progress-fill" style="width: 0%; background: #ec4899;"></div>
+          </div>
+        </div>
+
         <div class="module-tile-launchpad">
           <div class="launchpad-chips-bar">
             <span class="launchpad-label">Sections:</span>
             <div class="launchpad-chips">
               
-      <a href="sections/section-16.html" class="module-chip-link" title="Section 16: Generics (Classes, Methods, Constraints)" aria-label="Section 16: Generics (Classes, Methods, Constraints)">
+      <a href="sections/section-16.html" class="module-chip-link" data-section="16" title="Section 16: Generics (Classes, Methods, Constraints)" aria-label="Section 16: Generics (Classes, Methods, Constraints)">
         <span class="chip-num">16</span>
       </a>
     
-      <a href="sections/section-17.html" class="module-chip-link" title="Section 17: Handling Null &amp; Nullable Value/Ref Types" aria-label="Section 17: Handling Null &amp; Nullable Value/Ref Types">
+      <a href="sections/section-17.html" class="module-chip-link" data-section="17" title="Section 17: Handling Null &amp; Nullable Value/Ref Types" aria-label="Section 17: Handling Null &amp; Nullable Value/Ref Types">
         <span class="chip-num">17</span>
       </a>
     
-      <a href="sections/section-18.html" class="module-chip-link" title="Section 18: Extension Methods &amp; Pattern Matching" aria-label="Section 18: Extension Methods &amp; Pattern Matching">
+      <a href="sections/section-18.html" class="module-chip-link" data-section="18" title="Section 18: Extension Methods &amp; Pattern Matching" aria-label="Section 18: Extension Methods &amp; Pattern Matching">
         <span class="chip-num">18</span>
       </a>
     
-      <a href="sections/section-19.html" class="module-chip-link" title="Section 19: Garbage Collection, Destructors &amp; IDisposable" aria-label="Section 19: Garbage Collection, Destructors &amp; IDisposable">
+      <a href="sections/section-19.html" class="module-chip-link" data-section="19" title="Section 19: Garbage Collection, Destructors &amp; IDisposable" aria-label="Section 19: Garbage Collection, Destructors &amp; IDisposable">
         <span class="chip-num">19</span>
       </a>
     
@@ -452,9 +510,8 @@
               <span>Start Module</span>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
-            <button class="module-toggle-list-btn" aria-expanded="false" title="Toggle section breakdown">
-              <span class="toggle-text">Breakdown (4)</span>
-              <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <button class="module-toggle-list-btn" aria-expanded="false" data-count="4" title="Toggle section breakdown">
+              <span class="toggle-text">View all 4 sections ▾</span>
             </button>
           </div>
         </div>
@@ -462,7 +519,7 @@
         <div class="module-tile-drawer" hidden>
           <ul class="module-drawer-list">
             
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="16">
         <a href="sections/section-16.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 16</span>
           <span class="module-sec-title">Generics (Classes, Methods, Constraints)</span>
@@ -470,7 +527,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 25 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="17">
         <a href="sections/section-17.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 17</span>
           <span class="module-sec-title">Handling Null &amp; Nullable Value/Ref Types</span>
@@ -478,7 +535,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 18 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="18">
         <a href="sections/section-18.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 18</span>
           <span class="module-sec-title">Extension Methods &amp; Pattern Matching</span>
@@ -486,7 +543,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 24 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="19">
         <a href="sections/section-19.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 19</span>
           <span class="module-sec-title">Garbage Collection, Destructors &amp; IDisposable</span>
@@ -518,32 +575,43 @@
           <span class="module-topic-tag">delegate</span><span class="module-topic-tag">Multicast</span><span class="module-topic-tag">Action</span><span class="module-topic-tag">Func</span>
         </div>
 
+        <!-- Module Completion Progress Bar -->
+        <div class="module-progress-wrapper">
+          <div class="module-progress-header">
+            <span>Progress</span>
+            <span class="module-progress-text">0 / 6 completed (0%)</span>
+          </div>
+          <div class="module-progress-track">
+            <div class="module-progress-fill" style="width: 0%; background: #f59e0b;"></div>
+          </div>
+        </div>
+
         <div class="module-tile-launchpad">
           <div class="launchpad-chips-bar">
             <span class="launchpad-label">Sections:</span>
             <div class="launchpad-chips">
               
-      <a href="sections/section-20.html" class="module-chip-link" title="Section 20: Delegates, Multicast &amp; Events" aria-label="Section 20: Delegates, Multicast &amp; Events">
+      <a href="sections/section-20.html" class="module-chip-link" data-section="20" title="Section 20: Delegates, Multicast &amp; Events" aria-label="Section 20: Delegates, Multicast &amp; Events">
         <span class="chip-num">20</span>
       </a>
     
-      <a href="sections/section-21.html" class="module-chip-link" title="Section 21: Arrays (1D, Multi-Dimensional, Jagged)" aria-label="Section 21: Arrays (1D, Multi-Dimensional, Jagged)">
+      <a href="sections/section-21.html" class="module-chip-link" data-section="21" title="Section 21: Arrays (1D, Multi-Dimensional, Jagged)" aria-label="Section 21: Arrays (1D, Multi-Dimensional, Jagged)">
         <span class="chip-num">21</span>
       </a>
     
-      <a href="sections/section-22.html" class="module-chip-link" title="Section 22: Collections (Lists, Dictionaries, Sets, Queues)" aria-label="Section 22: Collections (Lists, Dictionaries, Sets, Queues)">
+      <a href="sections/section-22.html" class="module-chip-link" data-section="22" title="Section 22: Collections (Lists, Dictionaries, Sets, Queues)" aria-label="Section 22: Collections (Lists, Dictionaries, Sets, Queues)">
         <span class="chip-num">22</span>
       </a>
     
-      <a href="sections/section-23.html" class="module-chip-link" title="Section 23: Anonymous Types" aria-label="Section 23: Anonymous Types">
+      <a href="sections/section-23.html" class="module-chip-link" data-section="23" title="Section 23: Anonymous Types" aria-label="Section 23: Anonymous Types">
         <span class="chip-num">23</span>
       </a>
     
-      <a href="sections/section-24.html" class="module-chip-link" title="Section 24: Tuples &amp; ValueTuples" aria-label="Section 24: Tuples &amp; ValueTuples">
+      <a href="sections/section-24.html" class="module-chip-link" data-section="24" title="Section 24: Tuples &amp; ValueTuples" aria-label="Section 24: Tuples &amp; ValueTuples">
         <span class="chip-num">24</span>
       </a>
     
-      <a href="sections/section-25.html" class="module-chip-link" title="Section 25: LINQ (Language-Integrated Query)" aria-label="Section 25: LINQ (Language-Integrated Query)">
+      <a href="sections/section-25.html" class="module-chip-link" data-section="25" title="Section 25: LINQ (Language-Integrated Query)" aria-label="Section 25: LINQ (Language-Integrated Query)">
         <span class="chip-num">25</span>
       </a>
     
@@ -555,9 +623,8 @@
               <span>Start Module</span>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
-            <button class="module-toggle-list-btn" aria-expanded="false" title="Toggle section breakdown">
-              <span class="toggle-text">Breakdown (6)</span>
-              <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <button class="module-toggle-list-btn" aria-expanded="false" data-count="6" title="Toggle section breakdown">
+              <span class="toggle-text">View all 6 sections ▾</span>
             </button>
           </div>
         </div>
@@ -565,7 +632,7 @@
         <div class="module-tile-drawer" hidden>
           <ul class="module-drawer-list">
             
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="20">
         <a href="sections/section-20.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 20</span>
           <span class="module-sec-title">Delegates, Multicast &amp; Events</span>
@@ -573,7 +640,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 30 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="21">
         <a href="sections/section-21.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 21</span>
           <span class="module-sec-title">Arrays (1D, Multi-Dimensional, Jagged)</span>
@@ -581,7 +648,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 24 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="22">
         <a href="sections/section-22.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 22</span>
           <span class="module-sec-title">Collections (Lists, Dictionaries, Sets, Queues)</span>
@@ -589,7 +656,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 35 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="23">
         <a href="sections/section-23.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 23</span>
           <span class="module-sec-title">Anonymous Types</span>
@@ -597,7 +664,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 15 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="24">
         <a href="sections/section-24.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 24</span>
           <span class="module-sec-title">Tuples &amp; ValueTuples</span>
@@ -605,7 +672,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 16 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="25">
         <a href="sections/section-25.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 25</span>
           <span class="module-sec-title">LINQ (Language-Integrated Query)</span>
@@ -637,24 +704,35 @@
           <span class="module-topic-tag">StringBuilder</span><span class="module-topic-tag">String Interpolation</span><span class="module-topic-tag">DateTime</span><span class="module-topic-tag">TimeSpan</span>
         </div>
 
+        <!-- Module Completion Progress Bar -->
+        <div class="module-progress-wrapper">
+          <div class="module-progress-header">
+            <span>Progress</span>
+            <span class="module-progress-text">0 / 4 completed (0%)</span>
+          </div>
+          <div class="module-progress-track">
+            <div class="module-progress-fill" style="width: 0%; background: #10b981;"></div>
+          </div>
+        </div>
+
         <div class="module-tile-launchpad">
           <div class="launchpad-chips-bar">
             <span class="launchpad-label">Sections:</span>
             <div class="launchpad-chips">
               
-      <a href="sections/section-26.html" class="module-chip-link" title="Section 26: String Manipulation, DateTime &amp; Math" aria-label="Section 26: String Manipulation, DateTime &amp; Math">
+      <a href="sections/section-26.html" class="module-chip-link" data-section="26" title="Section 26: String Manipulation, DateTime &amp; Math" aria-label="Section 26: String Manipulation, DateTime &amp; Math">
         <span class="chip-num">26</span>
       </a>
     
-      <a href="sections/section-27.html" class="module-chip-link" title="Section 27: File I/O, Streams, Serialization &amp; Encoding" aria-label="Section 27: File I/O, Streams, Serialization &amp; Encoding">
+      <a href="sections/section-27.html" class="module-chip-link" data-section="27" title="Section 27: File I/O, Streams, Serialization &amp; Encoding" aria-label="Section 27: File I/O, Streams, Serialization &amp; Encoding">
         <span class="chip-num">27</span>
       </a>
     
-      <a href="sections/section-28.html" class="module-chip-link" title="Section 28: Exception Handling &amp; Defensive Programming" aria-label="Section 28: Exception Handling &amp; Defensive Programming">
+      <a href="sections/section-28.html" class="module-chip-link" data-section="28" title="Section 28: Exception Handling &amp; Defensive Programming" aria-label="Section 28: Exception Handling &amp; Defensive Programming">
         <span class="chip-num">28</span>
       </a>
     
-      <a href="sections/section-29.html" class="module-chip-link" title="Section 29: Advanced Exception Patterns &amp; Diagnostics" aria-label="Section 29: Advanced Exception Patterns &amp; Diagnostics">
+      <a href="sections/section-29.html" class="module-chip-link" data-section="29" title="Section 29: Advanced Exception Patterns &amp; Diagnostics" aria-label="Section 29: Advanced Exception Patterns &amp; Diagnostics">
         <span class="chip-num">29</span>
       </a>
     
@@ -666,9 +744,8 @@
               <span>Start Module</span>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
-            <button class="module-toggle-list-btn" aria-expanded="false" title="Toggle section breakdown">
-              <span class="toggle-text">Breakdown (4)</span>
-              <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <button class="module-toggle-list-btn" aria-expanded="false" data-count="4" title="Toggle section breakdown">
+              <span class="toggle-text">View all 4 sections ▾</span>
             </button>
           </div>
         </div>
@@ -676,7 +753,7 @@
         <div class="module-tile-drawer" hidden>
           <ul class="module-drawer-list">
             
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="26">
         <a href="sections/section-26.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 26</span>
           <span class="module-sec-title">String Manipulation, DateTime &amp; Math</span>
@@ -684,7 +761,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 32 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="27">
         <a href="sections/section-27.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 27</span>
           <span class="module-sec-title">File I/O, Streams, Serialization &amp; Encoding</span>
@@ -692,7 +769,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 34 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="28">
         <a href="sections/section-28.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 28</span>
           <span class="module-sec-title">Exception Handling &amp; Defensive Programming</span>
@@ -700,7 +777,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 26 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="29">
         <a href="sections/section-29.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 29</span>
           <span class="module-sec-title">Advanced Exception Patterns &amp; Diagnostics</span>
@@ -732,20 +809,31 @@
           <span class="module-topic-tag">Thread</span><span class="module-topic-tag">Thread Safety</span><span class="module-topic-tag">lock</span><span class="module-topic-tag">Monitor</span>
         </div>
 
+        <!-- Module Completion Progress Bar -->
+        <div class="module-progress-wrapper">
+          <div class="module-progress-header">
+            <span>Progress</span>
+            <span class="module-progress-text">0 / 3 completed (0%)</span>
+          </div>
+          <div class="module-progress-track">
+            <div class="module-progress-fill" style="width: 0%; background: #06b6d4;"></div>
+          </div>
+        </div>
+
         <div class="module-tile-launchpad">
           <div class="launchpad-chips-bar">
             <span class="launchpad-label">Sections:</span>
             <div class="launchpad-chips">
               
-      <a href="sections/section-31.html" class="module-chip-link" title="Section 31: Threading &amp; Synchronization Primitives" aria-label="Section 31: Threading &amp; Synchronization Primitives">
+      <a href="sections/section-31.html" class="module-chip-link" data-section="31" title="Section 31: Threading &amp; Synchronization Primitives" aria-label="Section 31: Threading &amp; Synchronization Primitives">
         <span class="chip-num">31</span>
       </a>
     
-      <a href="sections/section-32.html" class="module-chip-link" title="Section 32: Tasks &amp; Task Parallel Library (TPL)" aria-label="Section 32: Tasks &amp; Task Parallel Library (TPL)">
+      <a href="sections/section-32.html" class="module-chip-link" data-section="32" title="Section 32: Tasks &amp; Task Parallel Library (TPL)" aria-label="Section 32: Tasks &amp; Task Parallel Library (TPL)">
         <span class="chip-num">32</span>
       </a>
     
-      <a href="sections/section-33.html" class="module-chip-link" title="Section 33: Asynchronous Programming (Async &amp; Await)" aria-label="Section 33: Asynchronous Programming (Async &amp; Await)">
+      <a href="sections/section-33.html" class="module-chip-link" data-section="33" title="Section 33: Asynchronous Programming (Async &amp; Await)" aria-label="Section 33: Asynchronous Programming (Async &amp; Await)">
         <span class="chip-num">33</span>
       </a>
     
@@ -757,9 +845,8 @@
               <span>Start Module</span>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
-            <button class="module-toggle-list-btn" aria-expanded="false" title="Toggle section breakdown">
-              <span class="toggle-text">Breakdown (3)</span>
-              <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <button class="module-toggle-list-btn" aria-expanded="false" data-count="3" title="Toggle section breakdown">
+              <span class="toggle-text">View all 3 sections ▾</span>
             </button>
           </div>
         </div>
@@ -767,7 +854,7 @@
         <div class="module-tile-drawer" hidden>
           <ul class="module-drawer-list">
             
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="31">
         <a href="sections/section-31.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 31</span>
           <span class="module-sec-title">Threading &amp; Synchronization Primitives</span>
@@ -775,7 +862,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 35 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="32">
         <a href="sections/section-32.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 32</span>
           <span class="module-sec-title">Tasks &amp; Task Parallel Library (TPL)</span>
@@ -783,7 +870,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 40 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="33">
         <a href="sections/section-33.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 33</span>
           <span class="module-sec-title">Asynchronous Programming (Async &amp; Await)</span>
@@ -815,28 +902,39 @@
           <span class="module-topic-tag">Records</span><span class="module-topic-tag">init Accessors</span><span class="module-topic-tag">Top-Level Statements</span><span class="module-topic-tag">Target-Typed new</span>
         </div>
 
+        <!-- Module Completion Progress Bar -->
+        <div class="module-progress-wrapper">
+          <div class="module-progress-header">
+            <span>Progress</span>
+            <span class="module-progress-text">0 / 5 completed (0%)</span>
+          </div>
+          <div class="module-progress-track">
+            <div class="module-progress-fill" style="width: 0%; background: #f43f5e;"></div>
+          </div>
+        </div>
+
         <div class="module-tile-launchpad">
           <div class="launchpad-chips-bar">
             <span class="launchpad-label">Sections:</span>
             <div class="launchpad-chips">
               
-      <a href="sections/section-30.html" class="module-chip-link" title="Section 30: C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)" aria-label="Section 30: C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)">
+      <a href="sections/section-30.html" class="module-chip-link" data-section="30" title="Section 30: C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)" aria-label="Section 30: C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)">
         <span class="chip-num">30</span>
       </a>
     
-      <a href="sections/section-34.html" class="module-chip-link" title="Section 34: C# 11 New Features (.NET 7)" aria-label="Section 34: C# 11 New Features (.NET 7)">
+      <a href="sections/section-34.html" class="module-chip-link" data-section="34" title="Section 34: C# 11 New Features (.NET 7)" aria-label="Section 34: C# 11 New Features (.NET 7)">
         <span class="chip-num">34</span>
       </a>
     
-      <a href="sections/section-35.html" class="module-chip-link" title="Section 35: C# 12 New Features (.NET 8)" aria-label="Section 35: C# 12 New Features (.NET 8)">
+      <a href="sections/section-35.html" class="module-chip-link" data-section="35" title="Section 35: C# 12 New Features (.NET 8)" aria-label="Section 35: C# 12 New Features (.NET 8)">
         <span class="chip-num">35</span>
       </a>
     
-      <a href="sections/section-36.html" class="module-chip-link" title="Section 36: C# 13 Innovations (.NET 9)" aria-label="Section 36: C# 13 Innovations (.NET 9)">
+      <a href="sections/section-36.html" class="module-chip-link" data-section="36" title="Section 36: C# 13 Innovations (.NET 9)" aria-label="Section 36: C# 13 Innovations (.NET 9)">
         <span class="chip-num">36</span>
       </a>
     
-      <a href="sections/section-37.html" class="module-chip-link" title="Section 37: C# 14 &amp; Future Modern C# Roadmap" aria-label="Section 37: C# 14 &amp; Future Modern C# Roadmap">
+      <a href="sections/section-37.html" class="module-chip-link" data-section="37" title="Section 37: C# 14 &amp; Future Modern C# Roadmap" aria-label="Section 37: C# 14 &amp; Future Modern C# Roadmap">
         <span class="chip-num">37</span>
       </a>
     
@@ -848,9 +946,8 @@
               <span>Start Module</span>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
-            <button class="module-toggle-list-btn" aria-expanded="false" title="Toggle section breakdown">
-              <span class="toggle-text">Breakdown (5)</span>
-              <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <button class="module-toggle-list-btn" aria-expanded="false" data-count="5" title="Toggle section breakdown">
+              <span class="toggle-text">View all 5 sections ▾</span>
             </button>
           </div>
         </div>
@@ -858,7 +955,7 @@
         <div class="module-tile-drawer" hidden>
           <ul class="module-drawer-list">
             
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="30">
         <a href="sections/section-30.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 30</span>
           <span class="module-sec-title">C# 9 &amp; C# 10 Features (.NET 5 &amp; 6)</span>
@@ -866,7 +963,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 35 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="34">
         <a href="sections/section-34.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 34</span>
           <span class="module-sec-title">C# 11 New Features (.NET 7)</span>
@@ -874,7 +971,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 30 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="35">
         <a href="sections/section-35.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 35</span>
           <span class="module-sec-title">C# 12 New Features (.NET 8)</span>
@@ -882,7 +979,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 25 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="36">
         <a href="sections/section-36.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 36</span>
           <span class="module-sec-title">C# 13 Innovations (.NET 9)</span>
@@ -890,7 +987,7 @@
         <span class="read-time-badge"><span class="time-icon" aria-hidden="true">⏱️</span> 22 min</span>
       </li>
     
-      <li class="module-sec-row">
+      <li class="module-sec-row" data-section="37">
         <a href="sections/section-37.html" class="module-sec-row-link">
           <span class="module-sec-pill">Sec 37</span>
           <span class="module-sec-title">C# 14 &amp; Future Modern C# Roadmap</span>
@@ -929,7 +1026,7 @@
             </thead>
             <tbody>
               
-      <tr>
+      <tr data-section="1">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 01</td>
         <td>
           <a href="sections/section-01.html" style="font-weight: 600; font-size: 0.95rem;">Course Fundamentals & .NET Architecture</a>
@@ -942,7 +1039,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="2">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 02</td>
         <td>
           <a href="sections/section-02.html" style="font-weight: 600; font-size: 0.95rem;">C# Language Basics & Syntax</a>
@@ -955,7 +1052,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="3">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 03</td>
         <td>
           <a href="sections/section-03.html" style="font-weight: 600; font-size: 0.95rem;">Development Environment, .NET CLI & First Program</a>
@@ -968,7 +1065,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="4">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 04</td>
         <td>
           <a href="sections/section-04.html" style="font-weight: 600; font-size: 0.95rem;">OOP Basics (Classes & Objects)</a>
@@ -981,7 +1078,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="5">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 05</td>
         <td>
           <a href="sections/section-05.html" style="font-weight: 600; font-size: 0.95rem;">Fields & Access Modifiers</a>
@@ -994,7 +1091,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="6">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 06</td>
         <td>
           <a href="sections/section-06.html" style="font-weight: 600; font-size: 0.95rem;">Methods & Parameters</a>
@@ -1007,7 +1104,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="7">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 07</td>
         <td>
           <a href="sections/section-07.html" style="font-weight: 600; font-size: 0.95rem;">Type Conversion & Casting</a>
@@ -1020,7 +1117,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="8">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 08</td>
         <td>
           <a href="sections/section-08.html" style="font-weight: 600; font-size: 0.95rem;">Constructors (Basics & Chaining)</a>
@@ -1033,7 +1130,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="9">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 09</td>
         <td>
           <a href="sections/section-09.html" style="font-weight: 600; font-size: 0.95rem;">Properties & Indexers</a>
@@ -1046,7 +1143,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="10">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 10</td>
         <td>
           <a href="sections/section-10.html" style="font-weight: 600; font-size: 0.95rem;">Inheritance, Hiding & Overriding</a>
@@ -1059,7 +1156,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="11">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 11</td>
         <td>
           <a href="sections/section-11.html" style="font-weight: 600; font-size: 0.95rem;">Abstract Classes & Interfaces</a>
@@ -1072,7 +1169,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="12">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 12</td>
         <td>
           <a href="sections/section-12.html" style="font-weight: 600; font-size: 0.95rem;">Namespaces & Code Organization</a>
@@ -1085,7 +1182,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="13">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 13</td>
         <td>
           <a href="sections/section-13.html" style="font-weight: 600; font-size: 0.95rem;">Partial Classes, Static Classes & Enums</a>
@@ -1098,7 +1195,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="14">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 14</td>
         <td>
           <a href="sections/section-14.html" style="font-weight: 600; font-size: 0.95rem;">Structures (Structs) & Value Semantics</a>
@@ -1111,7 +1208,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="15">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 15</td>
         <td>
           <a href="sections/section-15.html" style="font-weight: 600; font-size: 0.95rem;">System.Object & Core Method Overrides</a>
@@ -1124,7 +1221,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="16">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 16</td>
         <td>
           <a href="sections/section-16.html" style="font-weight: 600; font-size: 0.95rem;">Generics (Classes, Methods, Constraints)</a>
@@ -1137,7 +1234,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="17">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 17</td>
         <td>
           <a href="sections/section-17.html" style="font-weight: 600; font-size: 0.95rem;">Handling Null & Nullable Value/Ref Types</a>
@@ -1150,7 +1247,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="18">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 18</td>
         <td>
           <a href="sections/section-18.html" style="font-weight: 600; font-size: 0.95rem;">Extension Methods & Pattern Matching</a>
@@ -1163,7 +1260,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="19">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 19</td>
         <td>
           <a href="sections/section-19.html" style="font-weight: 600; font-size: 0.95rem;">Garbage Collection, Destructors & IDisposable</a>
@@ -1176,7 +1273,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="20">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 20</td>
         <td>
           <a href="sections/section-20.html" style="font-weight: 600; font-size: 0.95rem;">Delegates, Multicast & Events</a>
@@ -1189,7 +1286,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="21">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 21</td>
         <td>
           <a href="sections/section-21.html" style="font-weight: 600; font-size: 0.95rem;">Arrays (1D, Multi-Dimensional, Jagged)</a>
@@ -1202,7 +1299,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="22">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 22</td>
         <td>
           <a href="sections/section-22.html" style="font-weight: 600; font-size: 0.95rem;">Collections (Lists, Dictionaries, Sets, Queues)</a>
@@ -1215,7 +1312,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="23">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 23</td>
         <td>
           <a href="sections/section-23.html" style="font-weight: 600; font-size: 0.95rem;">Anonymous Types</a>
@@ -1228,7 +1325,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="24">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 24</td>
         <td>
           <a href="sections/section-24.html" style="font-weight: 600; font-size: 0.95rem;">Tuples & ValueTuples</a>
@@ -1241,7 +1338,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="25">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 25</td>
         <td>
           <a href="sections/section-25.html" style="font-weight: 600; font-size: 0.95rem;">LINQ (Language-Integrated Query)</a>
@@ -1254,7 +1351,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="26">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 26</td>
         <td>
           <a href="sections/section-26.html" style="font-weight: 600; font-size: 0.95rem;">String Manipulation, DateTime & Math</a>
@@ -1267,7 +1364,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="27">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 27</td>
         <td>
           <a href="sections/section-27.html" style="font-weight: 600; font-size: 0.95rem;">File I/O, Streams, Serialization & Encoding</a>
@@ -1280,7 +1377,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="28">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 28</td>
         <td>
           <a href="sections/section-28.html" style="font-weight: 600; font-size: 0.95rem;">Exception Handling & Defensive Programming</a>
@@ -1293,7 +1390,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="29">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 29</td>
         <td>
           <a href="sections/section-29.html" style="font-weight: 600; font-size: 0.95rem;">Advanced Exception Patterns & Diagnostics</a>
@@ -1306,7 +1403,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="30">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 30</td>
         <td>
           <a href="sections/section-30.html" style="font-weight: 600; font-size: 0.95rem;">C# 9 & C# 10 Features (.NET 5 & 6)</a>
@@ -1319,7 +1416,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="31">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 31</td>
         <td>
           <a href="sections/section-31.html" style="font-weight: 600; font-size: 0.95rem;">Threading & Synchronization Primitives</a>
@@ -1332,7 +1429,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="32">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 32</td>
         <td>
           <a href="sections/section-32.html" style="font-weight: 600; font-size: 0.95rem;">Tasks & Task Parallel Library (TPL)</a>
@@ -1345,7 +1442,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="33">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 33</td>
         <td>
           <a href="sections/section-33.html" style="font-weight: 600; font-size: 0.95rem;">Asynchronous Programming (Async & Await)</a>
@@ -1358,7 +1455,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="34">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 34</td>
         <td>
           <a href="sections/section-34.html" style="font-weight: 600; font-size: 0.95rem;">C# 11 New Features (.NET 7)</a>
@@ -1371,7 +1468,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="35">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 35</td>
         <td>
           <a href="sections/section-35.html" style="font-weight: 600; font-size: 0.95rem;">C# 12 New Features (.NET 8)</a>
@@ -1384,7 +1481,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="36">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 36</td>
         <td>
           <a href="sections/section-36.html" style="font-weight: 600; font-size: 0.95rem;">C# 13 Innovations (.NET 9)</a>
@@ -1397,7 +1494,7 @@
         </td>
       </tr>
     
-      <tr>
+      <tr data-section="37">
         <td style="font-family: monospace; font-weight: 700; color: var(--accent-primary);">Sec 37</td>
         <td>
           <a href="sections/section-37.html" style="font-weight: 600; font-size: 0.95rem;">C# 14 & Future Modern C# Roadmap</a>
@@ -1419,7 +1516,7 @@
 
   <!-- Footer -->
   <footer style="border-top: 1px solid var(--border-subtle); padding: 2rem 1.5rem; text-align: center; color: var(--text-dim); font-size: 0.85rem; background: var(--bg-surface);">
-    <p>C# Masterclass Offline Documentation Portal — Generated with full conceptual preservation and Cheat Sheet syntax integration.</p>
+    <p>C# Masterclass Offline Documentation Portal (.NET 9 / C# 13) — Generated with full conceptual preservation and Cheat Sheet syntax integration.</p>
     <p style="margin-top: 6px;">Zero build step required. Double-click any file to browse completely offline.</p>
   </footer>
 

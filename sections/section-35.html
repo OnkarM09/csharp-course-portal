@@ -447,7 +447,7 @@
         
     <h2 id="sec-35-lec-1-primary-constructors-in-classes">1. Primary Constructors in Classes</h2>
 <p>C# 12 extends the concept of primary constructors to classes, a feature previously available only for record types since C# 9. This enhancement provides a more concise and streamlined way to declare constructor parameters directly within the class declaration, promoting immutable data and reducing boilerplate code for common scenarios. Problem Solved:</p>
-    <h3>Before C# 12</h3>
+    <h3 id="sec-35-lec-1-primary-constructors-in-classes-before-c-12">Before C# 12</h3>
 <p>, defining constructor parameters and then assigning them to properties often involved repetition, especially for simple data classes:</p>
 
     <div class="code-block-container">
@@ -458,7 +458,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// Pre-C# 12 class constructor public class OldUser
+      <pre><code class="language-csharp">// Pre-C# 12 class constructor public class OldUser
 {
     public string Name { get; }
     public int Age { get; }
@@ -471,7 +471,7 @@
     </div>
   
 <p>This is boilerplate for simply taking constructor parameters and making them available as properties. While record types addressed this, their value-based equality semantics weren't always desired for classes.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-35-lec-1-primary-constructors-in-classes-syntax">Syntax</h3>
 <p>and Behavior in C# 12: With primary constructors, you declare parameters directly after the class name, similar to records:</p>
 
     <div class="code-block-container">
@@ -482,7 +482,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// C# 12 primary constructor for class public class NewUser(string name, int age)
+      <pre><code class="language-csharp">// C# 12 primary constructor for class public class NewUser(string name, int age)
 {
     public string Name { get; } = name; // Initialize properties using primary
     constructor parameters
@@ -490,7 +490,7 @@
 }</code></pre>
     </div>
   
-    <h3>Key Characteristics and Rules</h3>
+    <h3 id="sec-35-lec-1-primary-constructors-in-classes-key-characteristics-and-rules">Key Characteristics and Rules</h3>
     <ol>
       <li><strong>Parameter Scope:</strong> Parameters declared in the primary constructor are in scope throughout the entire class body, including:</li>
     </ol>
@@ -514,7 +514,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public class BaseClass(int id) { public int Id { get; } = id; }</code></pre>
+      <pre><code class="language-csharp">public class BaseClass(int id) { public int Id { get; } = id; }</code></pre>
     </div>
   
 
@@ -526,7 +526,7 @@
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     public string Name { get; } = name;
 }</code></pre>
     </div>
@@ -541,8 +541,8 @@
     <ol>
       <li><strong>Lifetime of Parameters:</strong> Primary constructor parameters are effectively &quot;promoted&quot; to fields if they are captured by instance members (e.g., used to initialize a property or accessed in a method). This ensures their values persist for the lifetime of the object. If a parameter is only used within the constructor itself, it won't necessarily become a field.</li>
     </ol>
-    <h3>Real-World Examples</h3>
-    <h3>Example: 1: Simple Data Class</h3>
+    <h3 id="sec-35-lec-1-primary-constructors-in-classes-real-world-examples">Real-World Examples</h3>
+    <h3 id="sec-35-lec-1-primary-constructors-in-classes-example">Example: 1: Simple Data Class</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -552,7 +552,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public class TemperatureSensor(string location, double initialReading)
+      <pre><code class="language-csharp">public class TemperatureSensor(string location, double initialReading)
 {
     public string Location { get; } = location;
     public double CurrentReading { get; set; } = initialReading; // Can be
@@ -577,7 +577,7 @@
 // Console.WriteLine(livingRoomSensor.GetStatus());</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-35-lec-1-primary-constructors-in-classes-example">Example</h3>
 <p>2: Chaining with Secondary Constructors</p>
 
     <div class="code-block-container">
@@ -588,7 +588,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public class Product(int id, string name, decimal price)
+      <pre><code class="language-csharp">public class Product(int id, string name, decimal price)
 {
     public int Id { get; } = id;
     public string Name { get; } = name;
@@ -622,7 +622,7 @@ DateTime.Now.AddDays(-30));
 // defaultProduct.DisplayProduct();</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-35-lec-1-primary-constructors-in-classes-example">Example</h3>
 <p>3: Using Primary Constructor Parameters in Methods and Instance Members</p>
 
     <div class="code-block-container">
@@ -633,7 +633,7 @@ DateTime.Now.AddDays(-30));
           Copy
         </button>
       </div>
-      <pre><code>public class Logger(string sourceName)
+      <pre><code class="language-csharp">public class Logger(string sourceName)
 {
     private readonly string _logPrefix = $&quot;[{sourceName}] &quot;; // Use parameter
     in field initializer
@@ -663,7 +663,7 @@ DateTime.Now.AddDays(-30));
 
     <h2 id="sec-35-lec-2-collection-expressions">2. Collection Expressions</h2>
 <p>C# 12 introduces Collection Expressions, a powerful and concise syntax for creating common collection types. This feature leverages the new spread element (..) to provide a unified way to initialize arrays, Span&lt;T&gt;, and any type that supports the collection initializer pattern (like List&lt;T&gt;, HashSet&lt;T&gt;, etc.). Problem Solved:</p>
-    <h3>Before C# 12</h3>
+    <h3 id="sec-35-lec-2-collection-expressions-before-c-12">Before C# 12</h3>
 <p>, creating collections often involved different syntaxes or more verbose approaches depending on the collection type: C#</p>
 
     <div class="code-block-container">
@@ -674,7 +674,7 @@ DateTime.Now.AddDays(-30));
           Copy
         </button>
       </div>
-      <pre><code>// Pre-C# 12 ways to create collections
+      <pre><code class="language-csharp">// Pre-C# 12 ways to create collections
 int[] array = new int[] { 1, 2, 3 };
 List&lt;string&gt; list = new List&lt;string&gt; { &quot;A&quot;, &quot;B&quot;, &quot;C&quot; };
 HashSet&lt;char&gt; set = new HashSet&lt;char&gt; { 'x', 'y', 'z' };
@@ -683,7 +683,7 @@ int[] moreNumbers = new int[] { 4, 5, 6 };</code></pre>
     </div>
   
 <p>int[] combinedArray = array.Concat(moreNumbers).ToArray(); // Requires LINQ List&lt;int&gt; combinedList = new List&lt;int&gt;(list) { 4, 5, 6 }; // Or list.AddRange(new [] {4,5,6}); Collection expressions aim to simplify this, making collection creation more consistent and readable.</p>
-    <h3>Syntax: and Features:</h3>
+    <h3 id="sec-35-lec-2-collection-expressions-syntax">Syntax: and Features:</h3>
 <p>Collection expressions use square brackets [] to enclose the elements, similar to array initializers, but with enhanced capabilities.</p>
     <ul>
       <li>Basic Syntax:</li>
@@ -697,7 +697,7 @@ int[] moreNumbers = new int[] { 4, 5, 6 };</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Creating an array
+      <pre><code class="language-csharp">// Creating an array
 int[] numbers = [1, 2, 3];
 // Creating a List&lt;string&gt;
 List&lt;string&gt; names = [&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;];
@@ -717,7 +717,7 @@ Span&lt;int&gt; span = [10, 20, 30];</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>int[] odds = [1, 3, 5];
+      <pre><code class="language-csharp">int[] odds = [1, 3, 5];
 int[] evens = [2, 4, 6];</code></pre>
     </div>
   
@@ -729,8 +729,8 @@ int[] evens = [2, 4, 6];</code></pre>
       <li>Target-Typed Context: Collection expressions are target-typed. The compiler infers the exact type of the collection from the context. C# IEnumerable&lt;int&gt; iEnumerable = [1, 2, 3]; // Inferred as int[] at runtime IReadOnlyList&lt;string&gt; readOnlyList = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]; // Inferred as string[] at runtime If the target type is IEnumerable&lt;T&gt;, IReadOnlyList&lt;T&gt;, or a base interface, the compiler will default to creating an array (T[]). You can explicitly specify a different type if needed (e.g., new List&lt;int&gt;([1, 2, 3])).</li>
       <li><strong>Empty Collection:</strong> List&lt;int&gt; emptyList = []; // Creates an empty List&lt;int&gt; int[] emptyArray = []; // Creates an empty int[]</li>
     </ul>
-    <h3>Real-World Examples</h3>
-    <h3>Example</h3>
+    <h3 id="sec-35-lec-2-collection-expressions-real-world-examples">Real-World Examples</h3>
+    <h3 id="sec-35-lec-2-collection-expressions-example">Example</h3>
 <p>1: Creating and Combining Different Collections</p>
 
     <div class="code-block-container">
@@ -741,7 +741,7 @@ int[] evens = [2, 4, 6];</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 using System.Collections.Generic;</code></pre>
     </div>
   
@@ -754,7 +754,7 @@ using System.Collections.Generic;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public static class CollectionExpressionsDemo
+      <pre><code class="language-csharp">public static class CollectionExpressionsDemo
 {
     public static void RunExamples()
     {
@@ -793,7 +793,7 @@ using System.Collections.Generic;</code></pre>
     // }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-35-lec-2-collection-expressions-example">Example</h3>
 <p>2: Usage in Method Parameters and Return Types Collection expressions make method calls more concise when passing collections. C#</p>
 
     <div class="code-block-container">
@@ -804,7 +804,7 @@ using System.Collections.Generic;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class DataProcessor
+      <pre><code class="language-csharp">public class DataProcessor
 {
     public void ProcessData(IEnumerable&lt;string&gt; data)
     {
@@ -848,14 +848,14 @@ using System.Collections.Generic;</code></pre>
 
     <h2 id="sec-35-lec-3-default-parameters-in-lambda-expressions">3. Default Parameters in Lambda Expressions</h2>
 <p>C# 12 introduces the ability to specify default parameter values directly within lambda expressions. This feature brings lambda expressions closer to the functionality of full methods, enhancing their flexibility and reducing the need for overloads or conditional logic within the lambda body. Problem Solved:</p>
-    <h3>Before C# 12</h3>
+    <h3 id="sec-35-lec-3-default-parameters-in-lambda-expressions-before-c-12">Before C# 12</h3>
 <p>, if a lambda expression needed to handle optional parameters or provide default behavior, you would often have to:</p>
     <ol>
       <li><strong>Define multiple lambda overloads:</strong> Not directly possible, you'd define different lambda expressions or delegates for different numbers of arguments.</li>
       <li><strong>Use conditional logic:</strong> Check for null or specific values within the lambda body and assign defaults.</li>
       <li><strong>Define a separate method:</strong> Convert the lambda logic into a full method with default parameters and then reference that method. This could make simple lambda expressions more verbose or less intuitive.</li>
     </ol>
-    <h3>Syntax: and Behavior:</h3>
+    <h3 id="sec-35-lec-3-default-parameters-in-lambda-expressions-syntax">Syntax: and Behavior:</h3>
 <p>The syntax for default parameters in lambda expressions is identical to that for methods:</p>
 
     <div class="code-block-container">
@@ -866,14 +866,14 @@ using System.Collections.Generic;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// C# 12: Default parameter in lambda
+      <pre><code class="language-csharp">// C# 12: Default parameter in lambda
 var greet = (string name = &quot;Guest&quot;) =&gt; Console.WriteLine($&quot;Hello, {name}!&quot;);
 // Calling the lambda:
 // greet(); 	// Output: Hello, Guest!
 // greet(&quot;Alice&quot;); // Output: Hello, Alice!</code></pre>
     </div>
   
-    <h3>Key Characteristics and Rules</h3>
+    <h3 id="sec-35-lec-3-default-parameters-in-lambda-expressions-key-characteristics-and-rules">Key Characteristics and Rules</h3>
     <ul>
       <li><strong>Syntax:</strong> Default parameters are defined by assigning a value directly in the parameter list (e.g., (int x, int y = 10) =&gt; ...).</li>
       <li><strong>Position:</strong> Parameters with default values must appear after all required parameters in the lambda's parameter list.</li>
@@ -884,8 +884,8 @@ var greet = (string name = &quot;Guest&quot;) =&gt; Console.WriteLine($&quot;Hel
     <ul>
       <li>Compile-time Constants: Default values must be compile-time constants. This is the same rule as for default parameters in methods.</li>
     </ul>
-    <h3>Real-World Examples</h3>
-    <h3>Example: 1: Simple Greeting Lambda</h3>
+    <h3 id="sec-35-lec-3-default-parameters-in-lambda-expressions-real-world-examples">Real-World Examples</h3>
+    <h3 id="sec-35-lec-3-default-parameters-in-lambda-expressions-example">Example: 1: Simple Greeting Lambda</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -895,7 +895,7 @@ var greet = (string name = &quot;Guest&quot;) =&gt; Console.WriteLine($&quot;Hel
           Copy
         </button>
       </div>
-      <pre><code>public static class LambdaDefaultParamsDemo
+      <pre><code class="language-csharp">public static class LambdaDefaultParamsDemo
 {
     public static void RunExamples()
     {
@@ -930,7 +930,7 @@ var greet = (string name = &quot;Guest&quot;) =&gt; Console.WriteLine($&quot;Hel
     // }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-35-lec-3-default-parameters-in-lambda-expressions-example">Example</h3>
 <p>2: Event Handling (Conceptual Example) While often handled by method overloads, this demonstrates how a lambda assigned to a delegate could use default parameters.</p>
 
     <div class="code-block-container">
@@ -941,7 +941,7 @@ var greet = (string name = &quot;Guest&quot;) =&gt; Console.WriteLine($&quot;Hel
           Copy
         </button>
       </div>
-      <pre><code>// Define a custom delegate type
+      <pre><code class="language-csharp">// Define a custom delegate type
 public delegate void DataProcessedEventHandler(int dataCount, string
 status = &quot;Completed&quot;);
 public class DataProcessor
@@ -998,14 +998,14 @@ public static class EventHandlingDemo
 
     <h2 id="sec-35-lec-4-alias-any-type">4. Alias Any Type</h2>
 <p>C# 12 extends the using alias directive to allow you to create an alias for any type, including tuple types, pointer types, and array types. Previously, using alias was limited to named types (classes, structs, interfaces, enums, delegates). This enhancement provides greater flexibility for improving code readability, especially when dealing with complex or repetitive type declarations. Problem Solved:</p>
-    <h3>Before C# 12</h3>
+    <h3 id="sec-35-lec-4-alias-any-type-before-c-12">Before C# 12</h3>
 <p>, if you had a complex type signature that you used repeatedly, such as a tuple type or a nested array type, you couldn't create a simple alias for it. This often led to:</p>
     <ul>
       <li><strong>Verbose code:</strong> Repeating long type names throughout your code.</li>
       <li><strong>Reduced readability:</strong> Complex type signatures can obscure the intent of the code.</li>
       <li><strong>Maintenance overhead:</strong> If the complex type definition changed, you'd have to update every instance of its usage.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-35-lec-4-alias-any-type-example">Example</h3>
 <p>of old way (pre-C# 12):</p>
 
     <div class="code-block-container">
@@ -1016,7 +1016,7 @@ public static class EventHandlingDemo
           Copy
         </button>
       </div>
-      <pre><code>// Before C# 12, this was not allowed:
+      <pre><code class="language-csharp">// Before C# 12, this was not allowed:
 // using PersonInfo = (string Name, int Age, bool IsStudent); // Compile</code></pre>
     </div>
   
@@ -1030,7 +1030,7 @@ public static class EventHandlingDemo
           Copy
         </button>
       </div>
-      <pre><code>// So you'd have to write the full tuple type repeatedly:
+      <pre><code class="language-csharp">// So you'd have to write the full tuple type repeatedly:
 public static (string Name, int Age, bool IsStudent) GetPersonData()
 {
     return (&quot;Alice&quot;, 30, false);
@@ -1043,7 +1043,7 @@ person)
 }</code></pre>
     </div>
   
-    <h3>Syntax</h3>
+    <h3 id="sec-35-lec-4-alias-any-type-syntax">Syntax</h3>
 <p>and Behavior in C# 12: The syntax for aliasing remains the same, but the types you can alias are now greatly expanded:</p>
 
     <div class="code-block-container">
@@ -1054,7 +1054,7 @@ person)
           Copy
         </button>
       </div>
-      <pre><code>using MyTupleType = (int x, int y);
+      <pre><code class="language-csharp">using MyTupleType = (int x, int y);
 using MyArrayType = string[];
 using MyPointerType = unsafe int*;</code></pre>
     </div>
@@ -1069,13 +1069,13 @@ using MyPointerType = unsafe int*;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// New in C# 12:
+      <pre><code class="language-csharp">// New in C# 12:
 using PersonInfo = (string Name, int Age, bool IsStudent);
 using Matrix = double[,];
 using ActionList = System.Collections.Generic.List&lt;System.Action&lt;int&gt;&gt;;</code></pre>
     </div>
   
-    <h3>Key Characteristics and Rules</h3>
+    <h3 id="sec-35-lec-4-alias-any-type-key-characteristics-and-rules">Key Characteristics and Rules</h3>
     <ul>
       <li><strong>Broader Scope:</strong> You can now alias:</li>
       <li><strong>Tuple types:</strong> Named or unnamed tuples (e.g., (int, string), (string Name, int Age)).</li>
@@ -1087,8 +1087,8 @@ using ActionList = System.Collections.Generic.List&lt;System.Action&lt;int&gt;&g
       <li><strong>Scope of Alias:</strong> The alias is only valid within the file where it is declared.</li>
       <li><strong>No Circular References:</strong> You cannot create circular aliases (e.g., using A = B; using B = A;).</li>
     </ul>
-    <h3>Real-World Examples</h3>
-    <h3>Example: 1: Aliasing Tuple Types</h3>
+    <h3 id="sec-35-lec-4-alias-any-type-real-world-examples">Real-World Examples</h3>
+    <h3 id="sec-35-lec-4-alias-any-type-example">Example: 1: Aliasing Tuple Types</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1098,7 +1098,7 @@ using ActionList = System.Collections.Generic.List&lt;System.Action&lt;int&gt;&g
           Copy
         </button>
       </div>
-      <pre><code>using ProductDetail = (int Id, string Name, decimal Price);
+      <pre><code class="language-csharp">using ProductDetail = (int Id, string Name, decimal Price);
 using InventoryStatus = (string Location, int Quantity, DateTime
 LastUpdated);
 public class OrderProcessor
@@ -1128,7 +1128,7 @@ public class OrderProcessor
 // new OrderProcessor().DisplayOrderInfo();</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-35-lec-4-alias-any-type-example">Example</h3>
 <p>2: Aliasing Array and Generic Collection Types</p>
 
     <div class="code-block-container">
@@ -1139,7 +1139,7 @@ public class OrderProcessor
           Copy
         </button>
       </div>
-      <pre><code>using Grid = bool[,];
+      <pre><code class="language-csharp">using Grid = bool[,];
 using UserPermissions = System.Collections.Generic.HashSet&lt;string&gt;;
 using SensorDataStream =
 System.Collections.Generic.IEnumerable&lt;(DateTime Timestamp, double
@@ -1192,7 +1192,7 @@ public class ConfigurationManager
 // new ConfigurationManager().ShowConfiguration();</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-35-lec-4-alias-any-type-example">Example</h3>
 <p>3: Aliasing Pointer Types (Requires unsafe context)</p>
 
     <div class="code-block-container">
@@ -1203,7 +1203,7 @@ public class ConfigurationManager
           Copy
         </button>
       </div>
-      <pre><code>// Add &lt;AllowUnsafeBlocks&gt;true&lt;/AllowUnsafeBlocks&gt; to your .csproj file
+      <pre><code class="language-csharp">// Add &lt;AllowUnsafeBlocks&gt;true&lt;/AllowUnsafeBlocks&gt; to your .csproj file
 using UnmanagedBufferPtr = unsafe byte*;
 using ImageDimensionsPtr = unsafe int*;
 public unsafe class UnsafeOperations
@@ -1293,6 +1293,18 @@ public unsafe class UnsafeOperations
 
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="35" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -1321,23 +1333,127 @@ public unsafe class UnsafeOperations
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-35-lec-1-primary-constructors-in-classes" class="toc-link">1. Primary Constructors in Classes</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-1-primary-constructors-in-classes-before-c-12" class="toc-link">Before C# 12</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-1-primary-constructors-in-classes-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-1-primary-constructors-in-classes-key-characteristics-and-rules" class="toc-link">Key Characteristics and Rules</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-1-primary-constructors-in-classes-real-world-examples" class="toc-link">Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-1-primary-constructors-in-classes-example" class="toc-link">Example: 1: Simple Data Class</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-1-primary-constructors-in-classes-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-1-primary-constructors-in-classes-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-35-lec-2-collection-expressions" class="toc-link">2. Collection Expressions</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-2-collection-expressions-before-c-12" class="toc-link">Before C# 12</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-2-collection-expressions-syntax" class="toc-link">Syntax: and Features:</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-2-collection-expressions-real-world-examples" class="toc-link">Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-2-collection-expressions-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-2-collection-expressions-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-35-lec-3-default-parameters-in-lambda-expressions" class="toc-link">3. Default Parameters in Lambda Expressions</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-3-default-parameters-in-lambda-expressions-before-c-12" class="toc-link">Before C# 12</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-3-default-parameters-in-lambda-expressions-syntax" class="toc-link">Syntax: and Behavior:</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-3-default-parameters-in-lambda-expressions-key-characteristics-and-rules" class="toc-link">Key Characteristics and Rules</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-3-default-parameters-in-lambda-expressions-real-world-examples" class="toc-link">Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-3-default-parameters-in-lambda-expressions-example" class="toc-link">Example: 1: Simple Greeting Lambda</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-3-default-parameters-in-lambda-expressions-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-35-lec-4-alias-any-type" class="toc-link">4. Alias Any Type</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-4-alias-any-type-before-c-12" class="toc-link">Before C# 12</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-4-alias-any-type-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-4-alias-any-type-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-4-alias-any-type-key-characteristics-and-rules" class="toc-link">Key Characteristics and Rules</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-4-alias-any-type-real-world-examples" class="toc-link">Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-4-alias-any-type-example" class="toc-link">Example: 1: Aliasing Tuple Types</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-4-alias-any-type-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-35-lec-4-alias-any-type-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-35-lec-5-points-to-remember" class="toc-link">5. Points to Remember</a>
       </li>
     
@@ -1349,6 +1465,7 @@ public unsafe class UnsafeOperations
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

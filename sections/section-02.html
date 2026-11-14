@@ -446,9 +446,9 @@
       <article class="docs-content">
         
     <h2 id="sec-2-lec-1-installing-visual-studio">Lecture 1: Installing Visual Studio</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-2-lec-1-installing-visual-studio-introduction">Introduction</h3>
 <p>Visual Studio is the professional Integrated Development Environment (IDE) that you'll use for C# development. Think of it as your complete workshop, containing not just a text editor, but all the specialized tools you need to build, debug, and manage your applications efficiently.</p>
-    <h3>How it Works: &amp; Best Practices</h3>
+    <h3 id="sec-2-lec-1-installing-visual-studio-how-it-works">How it Works: &amp; Best Practices</h3>
 <p>When you install Visual Studio, you select Workloads, which are bundles of tools for specific development types. The &quot;.NET desktop development&quot; workload is essential for our purposes, as it includes the C# compiler, the .NET Framework, and project templates.</p>
 
     <div class="callout callout-tip">
@@ -475,9 +475,9 @@
   
 
     <h2 id="sec-2-lec-2-creating-your-first-c-application">Lecture 2: Creating Your First C# Application</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-2-lec-2-creating-your-first-c-application-introduction">Introduction</h3>
 <p>The &quot;Hello, World!&quot; application is a fundamental first step. It confirms your environment is set up correctly and introduces you to the basic structure of a C# program. When creating your project, be sure to select the &quot;Console App (.NET Framework)&quot; template.</p>
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-2-creating-your-first-c-application-how-it-works">How it Works</h3>
 <p>The Structure of a Program The code Visual Studio generates resides in a file named Program.cs. C#</p>
 
     <div class="code-block-container">
@@ -488,7 +488,7 @@
           Copy
         </button>
       </div>
-      <pre><code>namespace HelloWorld
+      <pre><code class="language-csharp">namespace HelloWorld
 {
     class Program
     {
@@ -512,7 +512,7 @@
     </ul>
 
     <h2 id="sec-2-lec-3-the-system-console-class">Lecture 3: The System.Console Class</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-2-lec-3-the-system-console-class-introduction">Introduction</h3>
 <p>The Console class is your primary tool for interacting with the text-based console window. It provides fundamental methods for input and output. Common Methods</p>
     <ul>
       <li>Console.WriteLine(string value): Prints the specified text to the console, followed by a new line character.</li>
@@ -525,9 +525,9 @@
     </ul>
 
     <h2 id="sec-2-lec-4-variables">Lecture 4: Variables</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-2-lec-4-variables-introduction">Introduction</h3>
 <p>A variable is a named placeholder in memory used to store a value that your program can manipulate.</p>
-    <h3>How it Works: Scope and Memory</h3>
+    <h3 id="sec-2-lec-4-variables-how-it-works">How it Works: Scope and Memory</h3>
 <p>When you declare a variable of a primitive type inside a method, its value is stored on the stack, a very fast region of memory. The variable's lifetime is tied to its scope, which is the code block {...} where it is declared. Best Practices &amp; Interview Perspective</p>
     <ul>
       <li><strong>Naming:</strong> Always use camelCase (userAge, firstName) for local variables.</li>
@@ -535,7 +535,7 @@
     </ul>
 
     <h2 id="sec-2-lec-5-primitive-types">Lecture 5: Primitive Types</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-2-lec-5-primitive-types-introduction">Introduction</h3>
 <p>Primitive types are the fundamental data building blocks. C# is a statically-typed language, so you must declare the type of a variable before you use it. Integer Types (Whole Numbers) These types store whole numbers without decimal points. The main difference is their size and whether they can store negative values.</p>
     <ul>
       <li><strong>sbyte:</strong> 8-bit signed integer (-128 to 127).</li>
@@ -554,7 +554,7 @@
     </ul>
 
     <h2 id="sec-2-lec-6-operators">Lecture 6: Operators</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-2-lec-6-operators-introduction">Introduction</h3>
 <p>Operators are special symbols that perform operations on variables and values (operands). Arithmetic Operators</p>
     <ul>
       <li>+ (Addition): Adds two operands. int sum = 10 + 5; // 15</li>
@@ -582,12 +582,12 @@
     </ul>
 
     <h2 id="sec-2-lec-7-if-and-its-forms">Lecture 7: if and its forms</h2>
-    <h3>Simple if Statement</h3>
-    <h3>When to Use</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-simple-if-statement">Simple if Statement</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-when-to-use">When to Use</h3>
 <p>When you want to execute a block of code only if a single condition is true, and do nothing otherwise.</p>
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-how-it-works">How it Works</h3>
 <p>The boolean expression inside the parentheses is evaluated. If it's true, the code block inside the curly braces is executed. If it's false, the block is skipped.</p>
-    <h3>Example</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -597,7 +597,7 @@
           Copy
         </button>
       </div>
-      <pre><code>int currentStock = 12;
+      <pre><code class="language-csharp">int currentStock = 12;
 if (currentStock &lt; 10)
 {
     Console.WriteLine(&quot;Warning: Stock is low. Time to re-order.&quot;);
@@ -605,11 +605,11 @@ if (currentStock &lt; 10)
 if-else Statement</code></pre>
     </div>
   
-    <h3>When to Use</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-when-to-use">When to Use</h3>
 <p>When you have a single condition but need to execute one block of code if it's true and a different block if it's false.</p>
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-how-it-works">How it Works</h3>
 <p>If the condition is true, the first block (if) is executed. If it's false, the second block (else) is executed. One of the two blocks will always execute.</p>
-    <h3>Example</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -619,7 +619,7 @@ if-else Statement</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>int userAge = 17;
+      <pre><code class="language-csharp">int userAge = 17;
 if (userAge &gt;= 18)
 {
     Console.WriteLine(&quot;Access granted to the restricted area.&quot;);
@@ -631,11 +631,11 @@ else
 if-else if Ladder</code></pre>
     </div>
   
-    <h3>When to Use</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-when-to-use">When to Use</h3>
 <p>When you have multiple related conditions to check in sequence.</p>
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-how-it-works">How it Works</h3>
 <p>The conditions are evaluated from top to bottom. The code block for the first condition that evaluates to true is executed, and all subsequent else if and else blocks are skipped. The final else is optional and acts as a catch-all if none of the preceding conditions are true.</p>
-    <h3>Example</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -645,7 +645,7 @@ if-else if Ladder</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>double score = 85.5;
+      <pre><code class="language-csharp">double score = 85.5;
 if (score &gt;= 90)
 {
     Console.WriteLine(&quot;Grade: A&quot;);
@@ -665,11 +665,11 @@ else
 Nested if Statements</code></pre>
     </div>
   
-    <h3>When to Use</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-when-to-use">When to Use</h3>
 <p>When a condition can only be checked if another, outer condition is already true.</p>
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-how-it-works">How it Works</h3>
 <p>The inner if statement is only evaluated if the outer if statement's condition is true.</p>
-    <h3>Example</h3>
+    <h3 id="sec-2-lec-7-if-and-its-forms-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -679,7 +679,7 @@ Nested if Statements</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>bool hasTicket = true;
+      <pre><code class="language-csharp">bool hasTicket = true;
 bool isVip = false;
 if (hasTicket)
 {
@@ -698,11 +698,11 @@ else
 <p>Best Practice: Avoid nesting if statements too deeply (more than 2 or 3 levels) as it can make the code very difficult to read and understand.</p>
 
     <h2 id="sec-2-lec-8-switch-case">Lecture 8: switch-case</h2>
-    <h3>When to Use It</h3>
+    <h3 id="sec-2-lec-8-switch-case-when-to-use-it">When to Use It</h3>
 <p>A switch is a cleaner, often more readable, alternative to a long if- else if ladder when you are checking a single variable against a series of specific, constant values.</p>
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-8-switch-case-how-it-works">How it Works</h3>
 <p>The value of the variable in the switch() is compared to the value of each case. When a match is found, the code in that case block is executed until a break statement is hit. The break causes execution to jump out of the switch block. The default case is executed if no other cases match.</p>
-    <h3>Example</h3>
+    <h3 id="sec-2-lec-8-switch-case-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -712,7 +712,7 @@ else
           Copy
         </button>
       </div>
-      <pre><code>string userRole = &quot;admin&quot;;
+      <pre><code class="language-csharp">string userRole = &quot;admin&quot;;
 switch (userRole.ToLower()) // Good practice to normalize string input
 {
     case &quot;admin&quot;:
@@ -732,11 +732,11 @@ switch (userRole.ToLower()) // Good practice to normalize string input
   
 
     <h2 id="sec-2-lec-9-while-loop">Lecture 9: while Loop</h2>
-    <h3>When to Use It</h3>
+    <h3 id="sec-2-lec-9-while-loop-when-to-use-it">When to Use It</h3>
 <p>When you need to loop based on a condition, and you do not know the exact number of iterations beforehand.</p>
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-9-while-loop-how-it-works">How it Works</h3>
 <p>The boolean condition is evaluated before each potential iteration. If true, the loop body executes. This process repeats until the condition becomes false. If the condition is false to begin with, the loop body never executes.</p>
-    <h3>Example: s:</h3>
+    <h3 id="sec-2-lec-9-while-loop-example">Example: s:</h3>
     <ul>
       <li>Counter-Controlled Loop: C#</li>
     </ul>
@@ -749,7 +749,7 @@ switch (userRole.ToLower()) // Good practice to normalize string input
           Copy
         </button>
       </div>
-      <pre><code>int ticketsLeft = 5;</code></pre>
+      <pre><code class="language-csharp">int ticketsLeft = 5;</code></pre>
     </div>
   
     <ul>
@@ -771,7 +771,7 @@ switch (userRole.ToLower()) // Good practice to normalize string input
           Copy
         </button>
       </div>
-      <pre><code>string command = &quot;&quot;;</code></pre>
+      <pre><code class="language-csharp">string command = &quot;&quot;;</code></pre>
     </div>
   
     <ul>
@@ -785,11 +785,11 @@ switch (userRole.ToLower()) // Good practice to normalize string input
     </ul>
 
     <h2 id="sec-2-lec-10-do-while-loop">Lecture 10: do-while Loop</h2>
-    <h3>When to Use It</h3>
+    <h3 id="sec-2-lec-10-do-while-loop-when-to-use-it">When to Use It</h3>
 <p>In the specific scenario where you need to guarantee the loop body executes at least once.</p>
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-10-do-while-loop-how-it-works">How it Works</h3>
 <p>The loop body executes first, and then the boolean condition is evaluated. If true, the loop repeats.</p>
-    <h3>Example</h3>
+    <h3 id="sec-2-lec-10-do-while-loop-example">Example</h3>
 <p>(the classic use case: input validation): C# int age; do</p>
 
     <div class="code-block-container">
@@ -800,7 +800,7 @@ switch (userRole.ToLower()) // Good practice to normalize string input
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.Write(&quot;Please enter your age (must be 18 or older): &quot;);
     // This code must run at least once to get the input
     string input = Console.ReadLine();
@@ -815,9 +815,9 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
   
 
     <h2 id="sec-2-lec-11-for-loop">Lecture 11: for Loop</h2>
-    <h3>When to Use It</h3>
+    <h3 id="sec-2-lec-11-for-loop-when-to-use-it">When to Use It</h3>
 <p>When you know the number of iterations before the loop starts.</p>
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-11-for-loop-how-it-works">How it Works</h3>
 <p>for (initializer; condition; iterator)</p>
     <ol>
       <li>The initializer runs once at the beginning.</li>
@@ -837,7 +837,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>string[] shoppingList = { &quot;Apples&quot;, &quot;Bananas&quot;, &quot;Carrots&quot; };</code></pre>
+      <pre><code class="language-csharp">string[] shoppingList = { &quot;Apples&quot;, &quot;Bananas&quot;, &quot;Carrots&quot; };</code></pre>
     </div>
   
     <ul>
@@ -864,13 +864,13 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
     </ul>
 
     <h2 id="sec-2-lec-12-break-and-continue">Lecture 12: break and continue</h2>
-    <h3>When to Use</h3>
+    <h3 id="sec-2-lec-12-break-and-continue-when-to-use">When to Use</h3>
 <p>Them: To manually alter the flow of a loop from within its body.</p>
     <ul>
       <li><strong>break:</strong> Use when you need to exit the loop immediately, regardless of the loop's condition. For example, if you find the item you're searching for.</li>
       <li><strong>continue:</strong> Use when you want to skip the current item and move directly to the next iteration. For example, to ignore invalid data in a list.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-2-lec-12-break-and-continue-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -880,7 +880,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Find the first multiple of 7, but ignore numbers less than 20.</code></pre>
+      <pre><code class="language-csharp">// Find the first multiple of 7, but ignore numbers less than 20.</code></pre>
     </div>
   
 
@@ -892,7 +892,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     if (i &lt; 20)
     {
         continue; // Skip this number and go to the next i
@@ -907,11 +907,11 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
   
 
     <h2 id="sec-2-lec-13-nested-for-loops">Lecture 13: Nested for Loops</h2>
-    <h3>When to Use It</h3>
+    <h3 id="sec-2-lec-13-nested-for-loops-when-to-use-it">When to Use It</h3>
 <p>Whenever you need to work with a two-dimensional structure, like a grid, a multiplication table, or a game board.</p>
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-13-nested-for-loops-how-it-works">How it Works</h3>
 <p>The inner loop completes its entire run for every single iteration of the outer loop.</p>
-    <h3>Example: (Multiplication Table):</h3>
+    <h3 id="sec-2-lec-13-nested-for-loops-example">Example: (Multiplication Table):</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -921,7 +921,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Outer loop for the first number in the multiplication</code></pre>
+      <pre><code class="language-csharp">// Outer loop for the first number in the multiplication</code></pre>
     </div>
   
 
@@ -933,7 +933,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // Inner loop for the second number
     for (int j = 1; j &lt;= 5; j++)
     {
@@ -952,7 +952,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
 
     <h2 id="sec-2-lec-15-pattern-printing-using-nested-for-loops">Lecture 15: Pattern Printing using Nested for Loops</h2>
 <p>Introduction: This is a classic exercise to demonstrate your command of nested loops and algorithmic thinking.</p>
-    <h3>Example: 1: Right-Angled Triangle</h3>
+    <h3 id="sec-2-lec-15-pattern-printing-using-nested-for-loops-example">Example: 1: Right-Angled Triangle</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -962,7 +962,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>int size = 5;</code></pre>
+      <pre><code class="language-csharp">int size = 5;</code></pre>
     </div>
   
 
@@ -974,7 +974,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     for (int col = 1; col &lt;= row; col++)
     {
         Console.Write(&quot;*&quot;);
@@ -983,9 +983,9 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
 }</code></pre>
     </div>
   
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-15-pattern-printing-using-nested-for-loops-how-it-works">How it Works</h3>
 <p>The outer loop controls the rows. The inner loop's condition col &lt;= row is the key; it prints a number of stars equal to the current row number.</p>
-    <h3>Example: 2: Inverted Right-Angled Triangle</h3>
+    <h3 id="sec-2-lec-15-pattern-printing-using-nested-for-loops-example">Example: 2: Inverted Right-Angled Triangle</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -995,7 +995,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>int size = 5;</code></pre>
+      <pre><code class="language-csharp">int size = 5;</code></pre>
     </div>
   
 
@@ -1007,7 +1007,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     for (int col = 1; col &lt;= row; col++)
     {
         Console.Write(&quot;*&quot;);
@@ -1016,9 +1016,9 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
 }</code></pre>
     </div>
   
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-15-pattern-printing-using-nested-for-loops-how-it-works">How it Works</h3>
 <p>The logic is reversed. The outer loop counts down from size. The inner loop still prints a number of stars equal to the current row value, which is now decreasing.</p>
-    <h3>Example: 3: Pyramid</h3>
+    <h3 id="sec-2-lec-15-pattern-printing-using-nested-for-loops-example">Example: 3: Pyramid</h3>
 <p>This is a more advanced pattern that requires a third loop for spacing. C#</p>
 
     <div class="code-block-container">
@@ -1029,7 +1029,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>int size = 5;</code></pre>
+      <pre><code class="language-csharp">int size = 5;</code></pre>
     </div>
   
 
@@ -1041,7 +1041,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // Loop for leading spaces
     for (int space = 1; space &lt;= size - row; space++)
     {
@@ -1056,7 +1056,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
 }</code></pre>
     </div>
   
-    <h3>How it Works</h3>
+    <h3 id="sec-2-lec-15-pattern-printing-using-nested-for-loops-how-it-works">How it Works</h3>
     <ol>
       <li><strong>Outer Loop:</strong> Controls the row number.</li>
       <li><strong>Space Loop:</strong> For each row, it prints size - row spaces. On row 1, it prints 4 spaces; on row 5, it prints 0 spaces. This centers the pattern.</li>
@@ -1064,6 +1064,18 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
     </ol>
 
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="2" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -1093,64 +1105,240 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-2-lec-1-installing-visual-studio" class="toc-link">Lecture 1: Installing Visual Studio</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-1-installing-visual-studio-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-1-installing-visual-studio-how-it-works" class="toc-link">How it Works: &amp; Best Practices</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-2-creating-your-first-c-application" class="toc-link">Lecture 2: Creating Your First C# Application</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-2-creating-your-first-c-application-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-2-creating-your-first-c-application-how-it-works" class="toc-link">How it Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-3-the-system-console-class" class="toc-link">Lecture 3: The System.Console Class</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-3-the-system-console-class-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-4-variables" class="toc-link">Lecture 4: Variables</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-4-variables-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-4-variables-how-it-works" class="toc-link">How it Works: Scope and Memory</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-5-primitive-types" class="toc-link">Lecture 5: Primitive Types</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-5-primitive-types-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-6-operators" class="toc-link">Lecture 6: Operators</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-6-operators-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-7-if-and-its-forms" class="toc-link">Lecture 7: if and its forms</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-simple-if-statement" class="toc-link">Simple if Statement</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-when-to-use" class="toc-link">When to Use</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-how-it-works" class="toc-link">How it Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-when-to-use" class="toc-link">When to Use</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-how-it-works" class="toc-link">How it Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-when-to-use" class="toc-link">When to Use</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-how-it-works" class="toc-link">How it Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-when-to-use" class="toc-link">When to Use</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-how-it-works" class="toc-link">How it Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-7-if-and-its-forms-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-8-switch-case" class="toc-link">Lecture 8: switch-case</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-8-switch-case-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-8-switch-case-how-it-works" class="toc-link">How it Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-8-switch-case-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-9-while-loop" class="toc-link">Lecture 9: while Loop</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-9-while-loop-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-9-while-loop-how-it-works" class="toc-link">How it Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-9-while-loop-example" class="toc-link">Example: s:</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-10-do-while-loop" class="toc-link">Lecture 10: do-while Loop</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-10-do-while-loop-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-10-do-while-loop-how-it-works" class="toc-link">How it Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-10-do-while-loop-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-11-for-loop" class="toc-link">Lecture 11: for Loop</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-11-for-loop-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-11-for-loop-how-it-works" class="toc-link">How it Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-12-break-and-continue" class="toc-link">Lecture 12: break and continue</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-12-break-and-continue-when-to-use" class="toc-link">When to Use</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-12-break-and-continue-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-13-nested-for-loops" class="toc-link">Lecture 13: Nested for Loops</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-13-nested-for-loops-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-13-nested-for-loops-how-it-works" class="toc-link">How it Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-13-nested-for-loops-example" class="toc-link">Example: (Multiplication Table):</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-2-lec-14-goto-introduction-and-warning-the-goto-statem" class="toc-link">Lecture 14: goto Introduction and Warning: The g</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-2-lec-15-pattern-printing-using-nested-for-loops" class="toc-link">Lecture 15: Pattern Printing using Nested for Lo</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-15-pattern-printing-using-nested-for-loops-example" class="toc-link">Example: 1: Right-Angled Triangle</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-15-pattern-printing-using-nested-for-loops-how-it-works" class="toc-link">How it Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-15-pattern-printing-using-nested-for-loops-example" class="toc-link">Example: 2: Inverted Right-Angled T</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-15-pattern-printing-using-nested-for-loops-how-it-works" class="toc-link">How it Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-15-pattern-printing-using-nested-for-loops-example" class="toc-link">Example: 3: Pyramid</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-2-lec-15-pattern-printing-using-nested-for-loops-how-it-works" class="toc-link">How it Works</a>
       </li>
     
       </ul>
@@ -1161,6 +1349,7 @@ Console.WriteLine(&quot;Age successfully validated.&quot;);</code></pre>
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

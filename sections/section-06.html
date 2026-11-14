@@ -446,17 +446,17 @@
       <article class="docs-content">
         
     <h2 id="sec-6-lec-1-introduction-to-methods">Lecture 1: Introduction to Methods</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-1-introduction-to-methods-introduction">Introduction</h3>
 <p>In Object-Oriented Programming, if fields represent the &quot;state&quot; or data of an object, then methods represent its &quot;behavior&quot; or actions. A method is a named block of code that performs a specific task. Unlike standalone functions in procedural programming, methods are intrinsically linked to a class.</p>
 <p>They are the verbs that bring your objects to life. A Car object has methods like StartEngine() and Accelerate(); a File object has methods like Open() and Close(). This lecture focuses on instance methods, which operate on the data of a specific object instance.</p>
 <p>You must create an object before you can call one of its instance methods. The purpose of methods is to provide a way to interact with and modify the object's state in a controlled and predictable manner, forming the core of an object's public interface.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-6-lec-1-introduction-to-methods-how-it-works">How It Works</h3>
 <p>When you define a method within a class, you're creating a reusable piece of logic. Accelerate()), you are sending a message to that specific object, instructing it to execute the code within that method's body. ) of the myCar object it was called on. This connection between an object's data and its methods is a cornerstone of OOP.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-6-lec-1-introduction-to-methods-when-to-use-it">When to Use It</h3>
 <p>You create methods to represent every action an object can perform. Instead of having loose functions that modify data, you encapsulate those actions within the class itself. This makes your code more organized, more readable, and easier to debug, because the logic that affects an object's state is located right with the data it affects.</p>
 
     <h2 id="sec-6-lec-2-adding-and-working-with-instance-methods">Lecture 2: Adding and Working with Instance Methods</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-2-adding-and-working-with-instance-methods-introduction">Introduction</h3>
 <p>An instance method is defined within a class and is designed to work with the data of a specific object created from that class. Its syntax provides a blueprint for what data it needs (parameters), what task it performs (body), and what result it gives back (return type). Method Syntax and Explanation The basic structure (or signature) of a method is: access_modifier return_type MethodName(parameter_list) { ... body ... }</p>
     <ul>
       <li>access_modifier: Keywords like public or private. public methods can be called from anywhere, forming the object's public interface. private methods are helper methods that can only be called by other methods within the same class.</li>
@@ -464,9 +464,9 @@
       <li><strong>MethodName:</strong> The name of the method, which should be a verb or verb phrase in PascalCase (e.g., CalculateTotal, PrintReport).</li>
       <li>parameter_list: A comma-separated list of variables that receive data passed into the method. If a method doesn't need any input, the parentheses are left empty.</li>
     </ul>
-    <h3>How It Works: Internally</h3>
+    <h3 id="sec-6-lec-2-adding-and-working-with-instance-methods-how-it-works">How It Works: Internally</h3>
 <p>When you call an instance method like myObject.MyMethod(), the .NET runtime performs a crucial step behind the scenes: it implicitly passes a reference to the myObject instance into the method. This hidden reference is accessible inside the method via the this keyword. This is how the method knows which specific object's fields it should operate on.</p>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-2-adding-and-working-with-instance-methods-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -476,7 +476,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public class LightSwitch
+      <pre><code class="language-csharp">public class LightSwitch
 {
     private bool _isOn; // A private field representing the state
     // A public method to change the state public void TurnOn()
@@ -507,16 +507,16 @@
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Is the kitchen light on? {status}&quot;);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Is the kitchen light on? {status}&quot;);</code></pre>
     </div>
   
 
     <h2 id="sec-6-lec-3-encapsulation">Lecture 3: Encapsulation</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-3-encapsulation-introduction">Introduction</h3>
 <p>Encapsulation is one of the most important principles of OOP. It refers to the bundling of data (private fields) with the methods that operate on that data. The primary goal is data hiding: protecting an object's internal state from direct, uncontrolled access.</p>
 <p>Methods are the public &quot;gatekeepers&quot; that enforce this protection. How Methods Enforce Encapsulation By making fields private, you prevent outside code from arbitrarily changing them. health = -999, putting the object in an invalid state.</p>
 <p>By forcing all interactions to go through public methods, you create a controlled interface. Inside these methods, you can add validation logic, business rules, and error checking to ensure that any change to the object's state is valid.</p>
-    <h3>Real-World Example: Validation</h3>
+    <h3 id="sec-6-lec-3-encapsulation-real-world-example">Real-World Example: Validation</h3>
 <p>Let's expand the Player class example to show robust validation. C#</p>
 
     <div class="code-block-container">
@@ -527,7 +527,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public class Player
+      <pre><code class="language-csharp">public class Player
 {
     private int _health = 100;
     private int _maxHealth = 100;
@@ -581,7 +581,7 @@
   
 
     <h2 id="sec-6-lec-4-local-variables-parameters">Lecture 4: Local Variables &amp; Parameters</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-4-local-variables-parameters-introduction">Introduction</h3>
 <p>It's crucial to understand the difference between variables that receive data (parameters) and variables that are created temporarily inside a method (local variables). Both are essential for a method to perform its task.</p>
     <ul>
       <li><strong>Parameters:</strong> These are the variables defined in a method's signature (inside the parentheses). They act as placeholders for the data that will be passed into the method when it is called from outside.</li>
@@ -596,7 +596,7 @@
       <li><strong>Destruction:</strong> The moment the stack frame is popped, all of its parameters and local variables are instantly destroyed, and their memory is automatically reclaimed. This is why they are temporary and have a scope limited only to the method they are in.</li>
       <li><strong>Resuming Execution:</strong> The return value is passed back to the calling code, and execution resumes where it left off.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-4-local-variables-parameters-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -606,7 +606,7 @@
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // sum is a LOCAL VARIABLE
     int sum = a + b;
     return sum;
@@ -616,12 +616,12 @@ destroyed.</code></pre>
   
 
     <h2 id="sec-6-lec-5-this-keyword">Lecture 5: this Keyword</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-5-this-keyword-introduction">Introduction</h3>
 <p>The this keyword is a special reference that is available inside any non-static (instance) member of a class, such as an instance method or constructor. It acts as a direct reference to the current object instance on which the method was called. Think of it as an object's way of referring to itself.</p>
-    <h3>How It Works: Internally</h3>
+    <h3 id="sec-6-lec-5-this-keyword-how-it-works">How It Works: Internally</h3>
 <p>DoSomething(), the C# compiler and runtime work together to implicitly pass myObject's reference as a hidden parameter to the DoSomething method. The this keyword is your way of accessing that hidden reference inside the method body. Because it refers to a specific object instance, it is unavailable in a static context, which belongs to the class as a whole, not any particular object.</p>
 <p>Why and When to Use It The this keyword is used in three primary scenarios: To Disambiguate Between Fields and Parameters (Most Common Use): When a method parameter has the same name as a class field, the parameter name takes precedence within the method's scope. The this keyword is used to explicitly refer to the instance's field.</p>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-5-this-keyword-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -631,7 +631,7 @@ destroyed.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Employee
+      <pre><code class="language-csharp">public class Employee
 {
     private string name; // The instance field
     // The constructor parameter is also named 'name'. public Employee(string name)
@@ -645,7 +645,7 @@ destroyed.</code></pre>
     </div>
   
 <p>To Pass the Current Object as a Parameter: A method might need to call another method and pass the current object as an argument.</p>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-5-this-keyword-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -655,7 +655,7 @@ destroyed.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class OrderProcessor
+      <pre><code class="language-csharp">public class OrderProcessor
 {
     public void Process(Order order)
     {
@@ -696,9 +696,9 @@ public class Order
   
 
     <h2 id="sec-6-lec-6-static-methods">Lecture 6: Static Methods</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-6-static-methods-introduction">Introduction</h3>
 <p>A static method is a method that belongs to the class itself, not to a specific object instance. You do not need to create an object of the class to call a static method; you call it directly using the ClassName.MethodName() syntax.</p>
-    <h3>How It Works: Static Context</h3>
+    <h3 id="sec-6-lec-6-static-methods-how-it-works">How It Works: Static Context</h3>
 <p>Because a static method is not associated with any object instance, it operates in a &quot;static context.&quot; This means:</p>
     <ul>
       <li>It cannot access instance fields or methods because there is no specific object to work with.</li>
@@ -714,7 +714,7 @@ public class Order
           Copy
         </button>
       </div>
-      <pre><code>public class InputValidator
+      <pre><code class="language-csharp">public class InputValidator
 {
     public static bool IsValidEmailAddress(string email)
     {
@@ -736,7 +736,7 @@ InputValidator.IsValidEmailAddress(&quot;test@example.com&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class User
+      <pre><code class="language-csharp">public class User
 {
     public bool IsAdmin { get; private set; }
     // Private constructor to control creation
@@ -754,16 +754,16 @@ InputValidator.IsValidEmailAddress(&quot;test@example.com&quot;);</code></pre>
     </ul>
 
     <h2 id="sec-6-lec-7-object-reference-as-arguments">Lecture 7: Object Reference as Arguments</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-7-object-reference-as-arguments-introduction">Introduction</h3>
 <p>When you pass an object of a class as an argument to a method, you are passing it by reference. Understanding the mechanics of this is crucial, as it behaves differently from passing simple types like int or bool.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-6-lec-7-object-reference-as-arguments-how-it-works">How It Works</h3>
 <p>Passing a Copy of the Reference Let's be very precise here. The method does not receive the original variable itself. It receives a copy of the reference (the memory address). This is a subtle but important distinction.</p>
     <ol>
       <li>You have a variable myRobot that holds a memory address, say 0x1000, which points to a Robot object on the heap.</li>
       <li>When you call technician.Repair(myRobot), a copy of the memory address 0x1000 is created and passed to the method's parameter, robotToRepair.</li>
       <li>Now, both myRobot and robotToRepair hold the same address (0x1000) and therefore point to the exact same object on the heap. Consequence 1: Modifying the Object's State (The Common Case) Because both variables point to the same object, any changes made to the object's public members (fields or properties) through the parameter inside the method will persist after the method returns.</li>
     </ol>
-    <h3>Example: 1: State Change</h3>
+    <h3 id="sec-6-lec-7-object-reference-as-arguments-example">Example: 1: State Change</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -773,7 +773,7 @@ InputValidator.IsValidEmailAddress(&quot;test@example.com&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Robot { public int PowerLevel { get; set; } }
+      <pre><code class="language-csharp">public class Robot { public int PowerLevel { get; set; } }
 public class Technician
 {
     public void Recharge(Robot robotToCharge)
@@ -795,7 +795,7 @@ public class Technician
           Copy
         </button>
       </div>
-      <pre><code>Technician tech = new Technician();</code></pre>
+      <pre><code class="language-csharp">Technician tech = new Technician();</code></pre>
     </div>
   
 <p>tech.Recharge(wallE); // A copy of 0x1000 is passed.</p>
@@ -808,12 +808,12 @@ public class Technician
           Copy
         </button>
       </div>
-      <pre><code>// After the call, the object at 0x1000 has been changed.
+      <pre><code class="language-csharp">// After the call, the object at 0x1000 has been changed.
 Console.WriteLine(wallE.PowerLevel); // Output: 100</code></pre>
     </div>
   
 <p>Consequence 2: Reassigning the Reference (The Interview &quot;Gotcha&quot;) What happens if you try to assign a completely new object to the parameter inside the method?</p>
-    <h3>Example: 2: Failed Reassignment</h3>
+    <h3 id="sec-6-lec-7-object-reference-as-arguments-example">Example: 2: Failed Reassignment</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -823,7 +823,7 @@ Console.WriteLine(wallE.PowerLevel); // Output: 100</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Technician
+      <pre><code class="language-csharp">public class Technician
 {
     public void Replace(Robot robotToReplace)
     {
@@ -846,7 +846,7 @@ Console.WriteLine(wallE.PowerLevel); // Output: 100</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Technician tech = new Technician();</code></pre>
+      <pre><code class="language-csharp">Technician tech = new Technician();</code></pre>
     </div>
   
 <p>tech.Replace(wallE); // Pass the reference 0x1000. The method does not change it.</p>
@@ -859,7 +859,7 @@ Console.WriteLine(wallE.PowerLevel); // Output: 100</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(wallE.PowerLevel); // Output: 15. The original object was
+      <pre><code class="language-csharp">Console.WriteLine(wallE.PowerLevel); // Output: 15. The original object was
 not affected.</code></pre>
     </div>
   
@@ -887,12 +887,12 @@ not affected.</code></pre>
   
 
     <h2 id="sec-6-lec-8-default-arguments-optional-parameters">Lecture 8: Default Arguments / Optional Parameters</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-8-default-arguments-optional-parameters-introduction">Introduction</h3>
 <p>Default arguments, also known as optional parameters, provide flexibility when calling a method. This feature allows you to assign a default value to one or more parameters in the method's signature. If a caller chooses not to provide an argument for an optional parameter, the compiler will automatically use the specified default value. This can significantly reduce the need for creating multiple method overloads.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-6-lec-8-default-arguments-optional-parameters-how-it-works">How It Works</h3>
 <p>A Compile-Time Feature This is a critical insight for interviews. The use of default arguments is a compile- time feature. &quot; Instead, the compiler &quot;bakes&quot; or embeds the default value directly into the Intermediate Language (IL) at the call site.</p>
 <p>Why this matters: If you have your method in a separate project (a class library DLL) and you change the default value, any application that uses your library will not see the new default value until that application is also recompiled. The old default value is still baked into its code.</p>
-    <h3>Rules: and Syntax</h3>
+    <h3 id="sec-6-lec-8-default-arguments-optional-parameters-rules">Rules: and Syntax</h3>
     <ol>
       <li>Optional parameters are defined by providing a value with the assignment operator (=) in the method signature.</li>
       <li>All optional parameters must appear after all required (mandatory) parameters. C#</li>
@@ -906,7 +906,7 @@ not affected.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// This is NOT allowed:
+      <pre><code class="language-csharp">// This is NOT allowed:
 // public void InvalidMethod(int optional = 10, int required) { ... } Common Examples</code></pre>
     </div>
   
@@ -920,7 +920,7 @@ not affected.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class ReportGenerator
+      <pre><code class="language-csharp">public class ReportGenerator
 {
     // includeHeader and useEncryption are optional.
     public void CreateReport(string title, string data, bool includeHeader =
@@ -958,13 +958,13 @@ generator.CreateReport(&quot;Financials&quot;, &quot;Q2 Profits...&quot;, true, 
   
 
     <h2 id="sec-6-lec-9-named-arguments">Lecture 9: Named Arguments</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-9-named-arguments-introduction">Introduction</h3>
 <p>Named arguments free you from the strict requirement of remembering the order of parameters in a method call. By explicitly stating the parameter's name followed by a colon (:), you can provide arguments in any order you choose. Why and When to Use It While you can use named arguments for any method, they are most impactful in two scenarios:</p>
     <ol>
       <li><strong>Improving Readability:</strong> When a method has multiple parameters, especially if they are of the same data type (like several bool or int parameters), the code can become hard to read. What does CreateUser(&quot;John&quot;, true, false, true) mean? Named arguments make this self-documenting.</li>
       <li><strong>Convenience with Optional Parameters:</strong> This is the most powerful use case. Named arguments allow you to provide a value for a specific optional parameter far down the list without having to provide values for all the other optional parameters that come before it.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-9-named-arguments-example">Example</h3>
 <p>Let's use the ReportGenerator class from the previous lecture. It has two optional parameters: includeHeader and useEncryption. What if we want to create a report that uses encryption but keeps the default includeHeader value of true? C#</p>
 
     <div class="code-block-container">
@@ -975,7 +975,7 @@ generator.CreateReport(&quot;Financials&quot;, &quot;Q2 Profits...&quot;, true, 
           Copy
         </button>
       </div>
-      <pre><code>ReportGenerator generator = new ReportGenerator();
+      <pre><code class="language-csharp">ReportGenerator generator = new ReportGenerator();
 // Without named arguments, this is impossible. You would have to provide a value
 // for 'includeHeader' just to get to 'useEncryption'.
 // With named arguments, it's easy and clear: generator.CreateReport(</code></pre>
@@ -991,7 +991,7 @@ generator.CreateReport(&quot;Financials&quot;, &quot;Q2 Profits...&quot;, true, 
           Copy
         </button>
       </div>
-      <pre><code>// Another example showing improved readability and mixed order. generator.CreateReport(</code></pre>
+      <pre><code class="language-csharp">// Another example showing improved readability and mixed order. generator.CreateReport(</code></pre>
     </div>
   
 <p>data: &quot;Log of all server activity.&quot;, includeHeader: false, useEncryption: true, title: &quot;Server Logs&quot; );</p>
@@ -1016,13 +1016,13 @@ generator.CreateReport(&quot;Financials&quot;, &quot;Q2 Profits...&quot;, true, 
   
 
     <h2 id="sec-6-lec-10-method-overloading">Lecture 10: Method Overloading</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-10-method-overloading-introduction">Introduction</h3>
 <p>Method overloading is the practice of creating multiple methods in the same class that have the same name, but a different signature. The method signature is composed of the method's name and its parameter list (the number of parameters, their data types, and their order). The method's return type is not part of the signature.</p>
-    <h3>How It Works: Compile-Time Polymorphism</h3>
+    <h3 id="sec-6-lec-10-method-overloading-how-it-works">How It Works: Compile-Time Polymorphism</h3>
 <p>Method overloading is a form of compile-time polymorphism. When you call an overloaded method, the C# compiler analyzes the arguments you have provided (the number of arguments and their types) and, at compile time, determines the &quot;best&quot; overloaded version to call. This process is called overload resolution.</p>
 <p>If the compiler cannot find an exact match or an unambiguous best match through implicit conversions, it will produce a compile-time error. Why and When to Use It The goal of overloading is to provide a more flexible and intuitive API for a class. It allows you to create a single, memorable method name (like Add or Log) that can perform the same logical operation on different sets or types of data, without forcing the developer to remember different method names for each variation.</p>
 <p>WriteLine() method is a perfect real-world example; it has many overloads to handle printing strings, integers, doubles, booleans, and so on. Common Examples</p>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-10-method-overloading-example">Example</h3>
 <p>1: A Calculator with different Add methods C#</p>
 
     <div class="code-block-container">
@@ -1033,7 +1033,7 @@ generator.CreateReport(&quot;Financials&quot;, &quot;Q2 Profits...&quot;, true, 
           Copy
         </button>
       </div>
-      <pre><code>public class Calculator
+      <pre><code class="language-csharp">public class Calculator
 {
     // Overload 1: Accepts two integers public int Add(int a, int b)
     {
@@ -1065,11 +1065,11 @@ Calculator calc = new Calculator();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Overload resolution with implicit conversion:</code></pre>
+      <pre><code class="language-csharp">// Overload resolution with implicit conversion:</code></pre>
     </div>
   
 <p>calc.Add(5, 10.2); // Calls Overload 3, because the int '5' can be safely converted to a double.</p>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-10-method-overloading-example">Example</h3>
 <p>2: A CreateUser method with different inputs C#</p>
 
     <div class="code-block-container">
@@ -1080,7 +1080,7 @@ Calculator calc = new Calculator();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class UserService
+      <pre><code class="language-csharp">public class UserService
 {
     // Overload 1: Create a user with just an email public void CreateUser(string email)
     {
@@ -1098,24 +1098,24 @@ Calculator calc = new Calculator();</code></pre>
   
 
     <h2 id="sec-6-lec-11-parameter-modifiers-ref">Lecture 11: Parameter Modifiers - ref</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-11-parameter-modifiers-ref-introduction">Introduction</h3>
 <p>) are passed to methods by value. This means the method receives a copy of the variable's data. Any changes made to the copy inside the method do not affect the original variable outside the method. The ref modifier completely changes this behavior. It forces an argument to be passed by reference.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-6-lec-11-parameter-modifiers-ref-how-it-works">How It Works</h3>
 <p>Passing a Pointer When you use the ref keyword, you are no longer passing a copy of the value. Instead, you are passing a direct pointer to the original variable's memory location on the stack. The method parameter becomes an alias for the original variable.</p>
 <p>Therefore, any change made to the parameter inside the method is, in fact, directly changing the value in the original variable's memory location.</p>
-    <h3>Rules: and Syntax</h3>
+    <h3 id="sec-6-lec-11-parameter-modifiers-ref-rules">Rules: and Syntax</h3>
     <ol>
       <li>You must use the ref keyword in both the method signature and in the method call.</li>
       <li>The variable passed as a ref argument must be initialized before the call. The compiler enforces this because the method expects to be able to read its initial value.</li>
     </ol>
-    <h3>When to Use It</h3>
+    <h3 id="sec-6-lec-11-parameter-modifiers-ref-when-to-use-it">When to Use It</h3>
 <p>You should use ref sparingly, as it can make code harder to follow. The primary use cases are:</p>
     <ul>
       <li>When a method needs to modify the value of a primitive type (int, double, etc.).</li>
       <li>When you need to create a method that swaps the values of two variables.</li>
       <li>When you want to swap which objects two reference variables are pointing to. Common Examples</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-11-parameter-modifiers-ref-example">Example</h3>
 <p>1: Swapping Two Integers (Classic Use Case) C#</p>
 
     <div class="code-block-container">
@@ -1126,7 +1126,7 @@ Calculator calc = new Calculator();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Swapper
+      <pre><code class="language-csharp">public class Swapper
 {
     public static void Swap(ref int a, ref int b)
     {
@@ -1153,11 +1153,11 @@ Console.WriteLine($&quot;OUTSIDE METHOD (Before): x={x}, y={y}&quot;);</code></p
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;OUTSIDE METHOD (After): x={x}, y={y}&quot;); // Output:
+      <pre><code class="language-csharp">Console.WriteLine($&quot;OUTSIDE METHOD (After): x={x}, y={y}&quot;); // Output:
 x=10, y=5</code></pre>
     </div>
   
-    <h3>Example: 2: Swapping Object References</h3>
+    <h3 id="sec-6-lec-11-parameter-modifiers-ref-example">Example: 2: Swapping Object References</h3>
 <p>This is a more advanced example. Without ref, the swap would only happen to the local copies of the references inside the method. With ref, we are swapping the actual references held by the p1 and p2 variables. C#</p>
 
     <div class="code-block-container">
@@ -1168,7 +1168,7 @@ x=10, y=5</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Player { public string Name; }
+      <pre><code class="language-csharp">public class Player { public string Name; }
 public static void SwapPlayers(ref Player playerA, ref Player playerB)
 {
     Player temp = playerA;
@@ -1186,9 +1186,9 @@ Console.WriteLine($&quot;After: p1 is {p1.Name}, p2 is {p2.Name}&quot;); // Outp
 <p>p1 is Bob, p2 is Alice</p>
 
     <h2 id="sec-6-lec-12-parameter-modifiers-out">Lecture 12: Parameter Modifiers - out</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-12-parameter-modifiers-out-introduction">Introduction</h3>
 <p>The out modifier also passes an argument by reference, just like ref. However, its purpose and rules are different. The primary intent of out is to provide a clean and safe way for a method to return multiple values to the caller.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-6-lec-12-parameter-modifiers-out-how-it-works">How It Works</h3>
 <p>&amp; Key Differences from ref While it also passes a pointer to the original variable's memory, out has two key distinguishing rules enforced by the compiler:</p>
     <ol>
       <li>The variable passed as an out argument does not need to be initialized</li>
@@ -1197,9 +1197,9 @@ Console.WriteLine($&quot;After: p1 is {p1.Name}, p2 is {p2.Name}&quot;); // Outp
     <ol>
       <li>The method must assign a value to the out parameter before the method returns. The compiler will give an error if any possible code path through the method exists where the out parameter is not assigned.</li>
     </ol>
-    <h3>When to Use It</h3>
+    <h3 id="sec-6-lec-12-parameter-modifiers-out-when-to-use-it">When to Use It</h3>
 <p>The classic use case is for methods that need to return a success/failure status (bool) along with a result if the operation was successful. This avoids having to return complex objects or throwing exceptions for common failure scenarios.</p>
-    <h3>Real-World Example</h3>
+    <h3 id="sec-6-lec-12-parameter-modifiers-out-real-world-example">Real-World Example</h3>
 <p>The TryParse Pattern The most famous example in the .NET framework is int.TryParse. It tries to convert a string to an integer. It returns true if it succeeds and false if it fails (e.g., the string was &quot;abc&quot;). If it succeeds, it provides the converted integer through an out parameter. C#</p>
 
     <div class="code-block-container">
@@ -1210,7 +1210,7 @@ Console.WriteLine($&quot;After: p1 is {p1.Name}, p2 is {p2.Name}&quot;); // Outp
           Copy
         </button>
       </div>
-      <pre><code>// Our own custom implementation to demonstrate the pattern.
+      <pre><code class="language-csharp">// Our own custom implementation to demonstrate the pattern.
 public bool TryDivide(double numerator, double denominator, out double
 result)
 {
@@ -1237,7 +1237,7 @@ result)
           Copy
         </button>
       </div>
-      <pre><code>if (TryDivide(10.0, 2.0, out divisionResult))
+      <pre><code class="language-csharp">if (TryDivide(10.0, 2.0, out divisionResult))
 {
     Console.WriteLine($&quot;Success! Result is: {divisionResult}&quot;);
 }
@@ -1249,11 +1249,11 @@ else
   
 
     <h2 id="sec-6-lec-13-parameter-modifiers-out-declaration">Lecture 13: Parameter Modifiers - out declaration</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-13-parameter-modifiers-out-declaration-introduction">Introduction</h3>
 <p>Modern C# (version 7.0 and later) introduced a more convenient syntax for working with out parameters, often called &quot;out variables&quot; or &quot;out declarations.&quot; This feature allows you to declare the variable for the out parameter directly inside the method call.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-6-lec-13-parameter-modifiers-out-declaration-how-it-works">How It Works</h3>
 <p>It's purely syntactic sugar that makes the code more concise and readable. Instead of declaring the variable on a separate line before the method call, you declare it right at the point of use. The variable is then properly typed and scoped to be available for use within the containing code block.</p>
-    <h3>Example: Before and After</h3>
+    <h3 id="sec-6-lec-13-parameter-modifiers-out-declaration-example">Example: Before and After</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1263,7 +1263,7 @@ else
           Copy
         </button>
       </div>
-      <pre><code>string numberString = &quot;123&quot;;
+      <pre><code class="language-csharp">string numberString = &quot;123&quot;;
 // --- The Old Way (before C# 7.0) ---</code></pre>
     </div>
   
@@ -1277,7 +1277,7 @@ else
           Copy
         </button>
       </div>
-      <pre><code>bool wasSuccessfulOld = int.TryParse(numberString, out
+      <pre><code class="language-csharp">bool wasSuccessfulOld = int.TryParse(numberString, out
 parsedNumberOld);
 if (wasSuccessfulOld)
 {
@@ -1296,14 +1296,14 @@ if (int.TryParse(numberString, out int parsedNumberNew))
 
     <h2 id="sec-6-lec-14-parameter-modifiers-in-introduction">Lecture 14: Parameter Modifiers - in Introduction</h2>
 <p>The in modifier is a more specialized parameter modifier introduced in C# 7.2. It specifies that an argument should be passed by reference, but that the method is not allowed to modify it. It provides a guarantee of immutability from the method's perspective.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-6-lec-14-parameter-modifiers-in-introduction-how-it-works">How It Works</h3>
 <p>Like ref, it passes a direct pointer to the argument's memory location. However, unlike ref, the compiler will produce an error if you try to reassign the parameter or change any of its fields inside the method. It combines the performance benefit of passing by reference with the safety of passing by value. Why and When to Use It This is almost exclusively a performance optimization for passing very large structs.</p>
     <ul>
       <li>A struct is a value type. When you pass a struct to a method by default, the runtime creates a complete copy of it. If the struct is large (containing many fields), this copying can be computationally expensive.</li>
       <li>Passing the large struct with the in modifier avoids this expensive copy. The method gets a direct reference, which is very fast to pass.</li>
       <li>It is rarely used with classes, because their references are already small and cheap to copy by default.</li>
     </ul>
-    <h3>Real-World Example: Game Development</h3>
+    <h3 id="sec-6-lec-14-parameter-modifiers-in-introduction-real-world-example">Real-World Example: Game Development</h3>
 <p>Imagine a large struct representing a 3D model's transformation matrix in a game engine. C#</p>
 
     <div class="code-block-container">
@@ -1314,7 +1314,7 @@ if (int.TryParse(numberString, out int parsedNumberNew))
           Copy
         </button>
       </div>
-      <pre><code>// Imagine this struct has 16 double fields, making it large.
+      <pre><code class="language-csharp">// Imagine this struct has 16 double fields, making it large.
 public struct Matrix4x4 { /* ... many fields ... */ }
 public class GraphicsEngine
 {
@@ -1330,13 +1330,13 @@ public class GraphicsEngine
   
 
     <h2 id="sec-6-lec-15-ref-returns">Lecture 15: ref returns</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-15-ref-returns-introduction">Introduction</h3>
 <p>This is an advanced feature for high-performance scenarios. A ref return allows a method to return a direct reference to a variable (often an element inside a larger data structure like an array), rather than returning a copy of its value. The caller who receives this reference can then modify the original variable's data directly.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-6-lec-15-ref-returns-how-it-works">How It Works</h3>
 <p>The method signature must be marked with ref, and the return statement must also use ref. The caller must also use the ref keyword to declare a local variable to store the returned reference. This creates a chain of references from the caller's variable directly back to the original data storage location.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-6-lec-15-ref-returns-when-to-use-it">When to Use It</h3>
 <p>This is not for general-purpose programming. It is used in performance-critical code where you need to avoid the overhead of copying data and need to modify data &quot;in-place.&quot; Common areas include game development, scientific computing, and low-level data parsing.</p>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-15-ref-returns-example">Example</h3>
 <p>Imagine you have a Robot with a large internal array representing its memory banks, and you want a method to find and directly modify a specific memory value. C#</p>
 
     <div class="code-block-container">
@@ -1347,7 +1347,7 @@ public class GraphicsEngine
           Copy
         </button>
       </div>
-      <pre><code>public class Robot
+      <pre><code class="language-csharp">public class Robot
 {
     private int[] _memoryBanks = { 10, 20, 30, 40, 50 };
     // This method returns a REFERENCE to an element's location in the array.
@@ -1371,27 +1371,27 @@ Console.WriteLine(&quot;Original value at index 2: &quot; +</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Get a DIRECT REFERENCE to the memory location of the element at index 2.
+      <pre><code class="language-csharp">// Get a DIRECT REFERENCE to the memory location of the element at index 2.
 ref int memoryBankRef = ref robbie.FindMemoryBank(2);
 // Now, modify the original data through the reference.
 memoryBankRef = 99;
 Console.WriteLine(&quot;New value at index 2: &quot; + robbie._memoryBanks[2]); //</code></pre>
     </div>
   
-    <h3>Output: 99</h3>
+    <h3 id="sec-6-lec-15-ref-returns-output">Output: 99</h3>
 
     <h2 id="sec-6-lec-16-parameter-modifiers-params">Lecture 16: Parameter Modifiers - params</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-16-parameter-modifiers-params-introduction">Introduction</h3>
 <p>The params modifier is a powerful feature that provides flexibility by allowing a method to accept a variable number of arguments of the same type. Instead of forcing the caller to manually create an array of arguments, they can simply provide them as a comma-separated list in the method call.</p>
-    <h3>How It Works: &amp; Rules</h3>
+    <h3 id="sec-6-lec-16-parameter-modifiers-params-how-it-works">How It Works: &amp; Rules</h3>
     <ol>
       <li>The params modifier must be applied to the last parameter in a method's signature.</li>
       <li>You can only have one params parameter in a method.</li>
       <li>Inside the method, the variable number of arguments are automatically collected by the C# compiler and treated as an array of the specified type. If the caller provides no arguments, it will be an empty array.</li>
     </ol>
-    <h3>When to Use It</h3>
+    <h3 id="sec-6-lec-16-parameter-modifiers-params-when-to-use-it">When to Use It</h3>
 <p>Use params when it is more convenient or intuitive for the user of your method to provide a list of items rather than an array. It's perfect for aggregate functions, formatting utilities, or any method that logically operates on a collection of similar items. WriteLine(). Common Examples</p>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-16-parameter-modifiers-params-example">Example</h3>
 <p>1: A flexible Sum method C#</p>
 
     <div class="code-block-container">
@@ -1402,7 +1402,7 @@ Console.WriteLine(&quot;New value at index 2: &quot; + robbie._memoryBanks[2]); 
           Copy
         </button>
       </div>
-      <pre><code>public class Calculator
+      <pre><code class="language-csharp">public class Calculator
 {
     // This method can accept zero, one, or many integers. public int Sum(params int[] numbers)
     {
@@ -1430,12 +1430,12 @@ Calculator calc = new Calculator();
           Copy
         </button>
       </div>
-      <pre><code>// You can also pass a pre-existing array.
+      <pre><code class="language-csharp">// You can also pass a pre-existing array.
 int[] myNumbers = { 1, 1, 2, 3, 5, 8 };</code></pre>
     </div>
   
 <p>int sum5 = calc.Sum(myNumbers); // Processing 6 numbers. sum5 is 20</p>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-16-parameter-modifiers-params-example">Example</h3>
 <p>2: A simple logger C#</p>
 
     <div class="code-block-container">
@@ -1446,7 +1446,7 @@ int[] myNumbers = { 1, 1, 2, 3, 5, 8 };</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public void LogEntries(string source, params string[] entries)
+      <pre><code class="language-csharp">public void LogEntries(string source, params string[] entries)
 {
     Console.WriteLine($&quot;--- Log from {source} at {DateTime.Now} ---&quot;);
     foreach (string entry in entries)
@@ -1458,16 +1458,16 @@ int[] myNumbers = { 1, 1, 2, 3, 5, 8 };</code></pre>
   
 
     <h2 id="sec-6-lec-17-local-functions">Lecture 17: Local Functions</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-17-local-functions-introduction">Introduction</h3>
 <p>A local function is a method that is declared inside another containing method. It is a powerful feature for improving code organization and readability without exposing helper methods to the entire class.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-6-lec-17-local-functions-how-it-works">How It Works</h3>
 <p>A local function is only visible and can only be called from within the method where it is defined. Its key feature is that it can capture and use the local variables and parameters of its containing method. This process of capturing outer variables is known as creating a closure. Why and When to Use It Use a local function for a small helper routine that is only ever used by one single method.</p>
     <ul>
       <li><strong>Improves Readability:</strong> It keeps the helper logic physically close to where it's used, making the code easier to follow.</li>
       <li>Reduces Class &quot;Pollution&quot;: It prevents you from having to create many small private methods that clutter the class definition and are only relevant to one public method.</li>
       <li><strong>Simplifies Complex Methods:</strong> You can break down a large, complex method into smaller, named, logical chunks using local functions.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-17-local-functions-example">Example</h3>
 <p>A complex calculation Imagine a method that calculates a final price after applying a discount and then adding tax. The discount logic is complex and only used here. C#</p>
 
     <div class="code-block-container">
@@ -1478,7 +1478,7 @@ int[] myNumbers = { 1, 1, 2, 3, 5, 8 };</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public decimal CalculateFinalPrice(decimal initialPrice, string
+      <pre><code class="language-csharp">public decimal CalculateFinalPrice(decimal initialPrice, string
 userDiscountCode)
 {
     // --- Start of Local Function ---
@@ -1505,16 +1505,16 @@ userDiscountCode)
   
 
     <h2 id="sec-6-lec-18-static-local-functions">Lecture 18: Static Local Functions</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-18-static-local-functions-introduction">Introduction</h3>
 <p>A static local function is a local function that is marked with the static keyword. This adds one important restriction to its behavior.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-6-lec-18-static-local-functions-how-it-works">How It Works</h3>
 <p>A static local function cannot access (or &quot;capture&quot;) any local variables or parameters from the containing (&quot;outer&quot;) method. It is completely self-contained and can only work with parameters passed directly to it. Why and When to Use It</p>
     <ol>
       <li><strong>Declaration of Intent:</strong> It clearly signals to anyone reading the code that this helper function is a pure utility that does not depend on the state of the outer method.</li>
       <li><strong>Preventing Accidental Capture:</strong> It prevents you from accidentally using a variable from the outer scope, which can sometimes lead to subtle bugs.</li>
       <li><strong>Performance:</strong> There can be a very minor performance benefit. A non-static local function that captures variables requires the compiler to create a small, hidden &quot;closure&quot; object to hold those captured variables. A static local function does not require this extra allocation.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-6-lec-18-static-local-functions-example">Example</h3>
 <p>Let's refactor a method to use a static local function. C#</p>
 
     <div class="code-block-container">
@@ -1525,7 +1525,7 @@ userDiscountCode)
           Copy
         </button>
       </div>
-      <pre><code>public int AddAndFormat(int a, int b)
+      <pre><code class="language-csharp">public int AddAndFormat(int a, int b)
 {
     // This helper function is pure. It only needs its own parameter 'val'.
     // It doesn't need 'a' or 'b', so we can make it static. static string FormatResult(int val)
@@ -1542,9 +1542,9 @@ userDiscountCode)
   
 
     <h2 id="sec-6-lec-19-recursion">Lecture 19: Recursion</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-19-recursion-introduction">Introduction</h3>
 <p>Recursion is a programming technique where a method solves a problem by calling itself. It's a powerful alternative to iteration (loops) for a specific class of problems that can be broken down into smaller, self-similar sub-problems.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-6-lec-19-recursion-how-it-works">How It Works</h3>
 <p>The Call Stack Explained Understanding recursion requires understanding the call stack.</p>
     <ol>
       <li>When a recursive method is called, a new stack frame is created for it.</li>
@@ -1556,7 +1556,7 @@ userDiscountCode)
       <li><strong>Base Case:</strong> A condition that stops the recursion and returns a value without making another recursive call. This is the most important part to prevent infinite recursion.</li>
       <li><strong>Recursive Step:</strong> The part where the method calls itself, but with a modified argument that moves it closer to the base case (e.g., calling Factorial(n-1)).</li>
     </ol>
-    <h3>When to Use It</h3>
+    <h3 id="sec-6-lec-19-recursion-when-to-use-it">When to Use It</h3>
 <p>Use recursion when a problem's definition is naturally recursive.</p>
     <ul>
       <li>Navigating tree-like data structures (file systems, organizational charts, HTML DOM).</li>
@@ -1572,7 +1572,7 @@ userDiscountCode)
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // Base Case: The condition that stops the recursion.
     if (n == 0)
     {
@@ -1601,7 +1601,7 @@ userDiscountCode)
           Copy
         </button>
       </div>
-      <pre><code>public int Fibonacci(int n)
+      <pre><code class="language-csharp">public int Fibonacci(int n)
 {
     if (n &lt;= 1) return n; // Base Cases for 0 and 1
     return Fibonacci(n - 1) + Fibonacci(n - 2);
@@ -1612,7 +1612,7 @@ userDiscountCode)
 <p>But the Fibonacci(4) call also calculates Fibonacci(3). This exponential re-computation is a key talking point. You should state that an iterative (loop-based) solution or a recursive solution using memoization (caching results) would be far more efficient.</p>
 
     <h2 id="sec-6-lec-20-imp-points-to-remember-about-methods">Lecture 20: IMP points to remember about methods</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-6-lec-20-imp-points-to-remember-about-methods-introduction">Introduction</h3>
 <p>This lecture summarizes the most critical, practical, and interview-worthy points about working with methods in C#.</p>
     <ol>
       <li>Methods Define Behavior and Enforce Encapsulation Methods are the &quot;verbs&quot; of your classes. They are the primary way you provide functionality and act as essential gatekeepers to protect your object's private data from invalid changes.</li>
@@ -1644,6 +1644,18 @@ userDiscountCode)
 
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="6" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -1672,84 +1684,340 @@ userDiscountCode)
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-6-lec-1-introduction-to-methods" class="toc-link">Lecture 1: Introduction to Methods</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-1-introduction-to-methods-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-1-introduction-to-methods-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-1-introduction-to-methods-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-2-adding-and-working-with-instance-methods" class="toc-link">Lecture 2: Adding and Working with Instance Meth</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-2-adding-and-working-with-instance-methods-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-2-adding-and-working-with-instance-methods-how-it-works" class="toc-link">How It Works: Internally</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-2-adding-and-working-with-instance-methods-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-3-encapsulation" class="toc-link">Lecture 3: Encapsulation</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-3-encapsulation-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-3-encapsulation-real-world-example" class="toc-link">Real-World Example: Validation</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-4-local-variables-parameters" class="toc-link">Lecture 4: Local Variables &amp; Parameters</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-4-local-variables-parameters-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-4-local-variables-parameters-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-5-this-keyword" class="toc-link">Lecture 5: this Keyword</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-5-this-keyword-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-5-this-keyword-how-it-works" class="toc-link">How It Works: Internally</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-5-this-keyword-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-5-this-keyword-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-6-static-methods" class="toc-link">Lecture 6: Static Methods</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-6-static-methods-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-6-static-methods-how-it-works" class="toc-link">How It Works: Static Context</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-7-object-reference-as-arguments" class="toc-link">Lecture 7: Object Reference as Arguments</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-7-object-reference-as-arguments-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-7-object-reference-as-arguments-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-7-object-reference-as-arguments-example" class="toc-link">Example: 1: State Change</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-7-object-reference-as-arguments-example" class="toc-link">Example: 2: Failed Reassignment</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-8-default-arguments-optional-parameters" class="toc-link">Lecture 8: Default Arguments / Optional Paramete</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-8-default-arguments-optional-parameters-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-8-default-arguments-optional-parameters-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-8-default-arguments-optional-parameters-rules" class="toc-link">Rules: and Syntax</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-9-named-arguments" class="toc-link">Lecture 9: Named Arguments</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-9-named-arguments-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-9-named-arguments-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-10-method-overloading" class="toc-link">Lecture 10: Method Overloading</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-10-method-overloading-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-10-method-overloading-how-it-works" class="toc-link">How It Works: Compile-Time Polymorp</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-10-method-overloading-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-10-method-overloading-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-11-parameter-modifiers-ref" class="toc-link">Lecture 11: Parameter Modifiers - ref</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-11-parameter-modifiers-ref-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-11-parameter-modifiers-ref-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-11-parameter-modifiers-ref-rules" class="toc-link">Rules: and Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-11-parameter-modifiers-ref-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-11-parameter-modifiers-ref-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-11-parameter-modifiers-ref-example" class="toc-link">Example: 2: Swapping Object Referen</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-12-parameter-modifiers-out" class="toc-link">Lecture 12: Parameter Modifiers - out</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-12-parameter-modifiers-out-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-12-parameter-modifiers-out-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-12-parameter-modifiers-out-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-12-parameter-modifiers-out-real-world-example" class="toc-link">Real-World Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-13-parameter-modifiers-out-declaration" class="toc-link">Lecture 13: Parameter Modifiers - out declaratio</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-13-parameter-modifiers-out-declaration-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-13-parameter-modifiers-out-declaration-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-13-parameter-modifiers-out-declaration-example" class="toc-link">Example: Before and After</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-14-parameter-modifiers-in-introduction" class="toc-link">Lecture 14: Parameter Modifiers - in Introductio</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-14-parameter-modifiers-in-introduction-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-14-parameter-modifiers-in-introduction-real-world-example" class="toc-link">Real-World Example: Game Developmen</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-15-ref-returns" class="toc-link">Lecture 15: ref returns</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-15-ref-returns-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-15-ref-returns-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-15-ref-returns-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-15-ref-returns-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-15-ref-returns-output" class="toc-link">Output: 99</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-16-parameter-modifiers-params" class="toc-link">Lecture 16: Parameter Modifiers - params</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-16-parameter-modifiers-params-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-16-parameter-modifiers-params-how-it-works" class="toc-link">How It Works: &amp; Rules</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-16-parameter-modifiers-params-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-16-parameter-modifiers-params-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-16-parameter-modifiers-params-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-17-local-functions" class="toc-link">Lecture 17: Local Functions</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-17-local-functions-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-17-local-functions-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-17-local-functions-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-18-static-local-functions" class="toc-link">Lecture 18: Static Local Functions</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-18-static-local-functions-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-18-static-local-functions-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-18-static-local-functions-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-19-recursion" class="toc-link">Lecture 19: Recursion</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-19-recursion-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-19-recursion-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-19-recursion-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-6-lec-20-imp-points-to-remember-about-methods" class="toc-link">Lecture 20: IMP points to remember about methods</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-6-lec-20-imp-points-to-remember-about-methods-introduction" class="toc-link">Introduction</a>
       </li>
     
       </ul>
@@ -1760,6 +2028,7 @@ userDiscountCode)
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

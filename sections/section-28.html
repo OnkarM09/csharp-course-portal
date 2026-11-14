@@ -448,16 +448,16 @@
     <h2 id="sec-28-lec-1-handling">Handling</h2>
 
     <h2 id="sec-28-lec-2-intro-to-exception-handling">Lecture 1: Intro to Exception Handling</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-2-intro-to-exception-handling-introduction">Introduction</h3>
 <p>An exception is an error condition or an unexpected event that occurs during the execution of a program, disrupting its normal, top-to-bottom flow. These are not syntax errors that the compiler can catch before you run the code; they are run-time errors. Examples include trying to divide by zero, accessing a file that doesn't exist, or connecting to a database that is offline.</p>
 <p>Exception handling is the process of responding to these run-time errors in a structured and controlled way. Without it, any exception would immediately terminate your application, resulting in a crash, a poor user experience, and potential data corruption. A robust exception handling strategy allows you to gracefully manage errors, log them for debugging, inform the user of the problem, and allow the application to continue running if possible.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-28-lec-2-intro-to-exception-handling-how-it-works">How It Works</h3>
 <p>The Exception Object When an error occurs, the .NET runtime creates an exception object that contains detailed information about the error, such as its type (e.g., FileNotFoundException), a descriptive message, and a stack trace indicating where in the code the error happened. The runtime then &quot;throws&quot; this object, halting the current execution path and looking for a compatible error handler to &quot;catch&quot; it.</p>
 
     <h2 id="sec-28-lec-3-try-catch-finally">Lecture 2: Try-Catch-Finally</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-3-try-catch-finally-introduction">Introduction</h3>
 <p>The try-catch-finally block is the fundamental C# construct for handling exceptions. It allows you to define a block of &quot;protected&quot; code and specify how to handle errors that may occur within it.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-28-lec-3-try-catch-finally-how-it-works">How It Works</h3>
 <p>The Three Blocks</p>
     <ol>
       <li>The try Block:</li>
@@ -480,7 +480,7 @@
       <li>This block is always executed, regardless of what happened in the try and catch blocks. It will run if no exception occurred, if an exception was caught, or even if an exception was thrown but not caught.</li>
       <li>Its purpose is cleanup. This is where you put code that absolutely must run to release resources, such as closing a file or a database connection.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-3-try-catch-finally-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -490,7 +490,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public void ProcessUserInput()
+      <pre><code class="language-csharp">public void ProcessUserInput()
 {
     Console.WriteLine(&quot;Please enter a number:&quot;);
     string input = Console.ReadLine();
@@ -516,11 +516,11 @@
   
 
     <h2 id="sec-28-lec-4-formatexception">Lecture 3: FormatException</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-4-formatexception-introduction">Introduction</h3>
 <p>A FormatException is the specific exception thrown when the format of an argument is incorrect for the method it's being passed to. Common Cause The most common cause by far is using a Parse method on a string that is not in a valid format. Parse(&quot;abc&quot;) will throw a FormatException because &quot;abc&quot; cannot be converted into an integer.</p>
 <p>Parse(&quot;yesterday&quot;) will also fail. How to Handle It: Prevention with TryParse While you can wrap a Parse call in a try-catch block, this is generally considered poor practice for validation. A thrown exception is a relatively &quot;expensive&quot; operation in terms of performance.</p>
 <p>The best practice is to prevent the exception from happening in the first place by using the TryParse pattern. TryParse return a bool indicating success or failure and do not throw an exception on invalid input, which is much more efficient for handling expected validation failures.</p>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-4-formatexception-example">Example</h3>
 <p>string userInput = &quot;not-a-number&quot;;</p>
 
     <div class="code-block-container">
@@ -531,7 +531,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// --- Bad Practice: Using try-catch for validation --- try
+      <pre><code class="language-csharp">// --- Bad Practice: Using try-catch for validation --- try
 {
     int number = int.Parse(userInput);
 }
@@ -552,13 +552,13 @@ else
   
 
     <h2 id="sec-28-lec-5-indexoutofrangeexception">Lecture 4: IndexOutOfRangeException</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-5-indexoutofrangeexception-introduction">Introduction</h3>
 <p>An IndexOutOfRangeException is the exception thrown when you attempt to access an element of an array or a list using an index that is outside its valid bounds. Common Cause This is almost always a logic error in your code, often called an &quot;off-by-one&quot; error.</p>
     <ul>
       <li>The valid indices for an array of Length N are 0 through N-1.</li>
       <li>A common mistake is using &lt;= in a for loop condition: for (int i = 0; i &lt;= myArray.Length; i++). When i becomes equal to myArray.Length, this will throw the exception. The condition should be i &lt; myArray.Length. How to Handle It: Fix the Bug You should never catch an IndexOutOfRangeException. Catching it would be like putting a bandage on a deep wound without treating the cause. The presence of this exception indicates a flaw in your program's logic that needs to be found and fixed.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-5-indexoutofrangeexception-example">Example</h3>
 <p>int[] numbers = { 10, 20, 30 }; // Length is 3. Valid indices are 0, 1, 2. try</p>
 
     <div class="code-block-container">
@@ -569,7 +569,7 @@ else
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // This attempts to access the element at index 3, which does not exist.
     int value = numbers[3];
 }
@@ -581,7 +581,7 @@ catch (IndexOutOfRangeException ex)
   
 
     <h2 id="sec-28-lec-6-nullreferenceexception">Lecture 5: NullReferenceException</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-6-nullreferenceexception-introduction">Introduction</h3>
 <p>This is one of the most common exceptions in C# and programming in general. A NullReferenceException occurs at run-time when you try to access a member (like a method, property, or field) on a variable that is currently null. Common Cause It's caused by trying to dereference a &quot;null pointer&quot;—that is, following a reference that doesn't point to any object in memory.</p>
     <ul>
       <li>Forgetting to initialize a reference type variable before using it (new MyClass()).</li>
@@ -589,7 +589,7 @@ catch (IndexOutOfRangeException ex)
       <li>Always check for null before using an object that might be null.</li>
       <li>Use the null-conditional operator (?.) and null coalescing operator (??) to handle potential nulls safely and concisely.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-6-nullreferenceexception-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -599,7 +599,7 @@ catch (IndexOutOfRangeException ex)
           Copy
         </button>
       </div>
-      <pre><code>public class Person { public string Name { get; set; } }
+      <pre><code class="language-csharp">public class Person { public string Name { get; set; } }
 // This variable holds a null reference. It doesn't point to a Person object.
 Person person = null;
 try
@@ -617,17 +617,17 @@ catch (NullReferenceException ex)
   
 
     <h2 id="sec-28-lec-7-overflowexception">Lecture 6: OverflowException</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-7-overflowexception-introduction">Introduction</h3>
 <p>An OverflowException is the error that occurs when an arithmetic operation produces a result that is outside the allowable range of the destination data type. For example, the int data type has a maximum value of 2,147,483,647. If you try to add 1 to a variable holding this value, you will cause an overflow.</p>
-    <h3>How It Works: checked and unchecked Contexts</h3>
+    <h3 id="sec-28-lec-7-overflowexception-how-it-works">How It Works: checked and unchecked Contexts</h3>
 <p>This is a critical interview topic. By default, for performance reasons, integer arithmetic in C# is unchecked. MaxValue + 1) silently, without throwing an exception. To enable overflow checking, you must explicitly create a checked context.</p>
     <ul>
       <li><strong>The checked keyword:</strong> You can wrap a block of code in checked { ... }. If an overflow occurs inside this block, an OverflowException will be thrown.</li>
       <li><strong>Compiler Flag:</strong> You can also enable overflow checking for an entire project in the project's build settings.</li>
     </ul>
-    <h3>When to Use It</h3>
+    <h3 id="sec-28-lec-7-overflowexception-when-to-use-it">When to Use It</h3>
 <p>You should use a checked block in any critical financial or mathematical calculation where a silent overflow would lead to incorrect data and serious bugs.</p>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-7-overflowexception-example">Example</h3>
 <p>int a = int.MaxValue; // 2,147,483,647</p>
 
     <div class="code-block-container">
@@ -638,7 +638,7 @@ catch (NullReferenceException ex)
           Copy
         </button>
       </div>
-      <pre><code>// --- Unchecked context (default) ---
+      <pre><code class="language-csharp">// --- Unchecked context (default) ---
 int resultUnchecked = a + 1;
 // The value wraps around to the smallest possible integer.
 Console.WriteLine($&quot;Unchecked result: {resultUnchecked}&quot;); // Output:
@@ -658,7 +658,7 @@ catch (OverflowException ex)
   
 
     <h2 id="sec-28-lec-8-invalidcastexception">Lecture 7: InvalidCastException</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-8-invalidcastexception-introduction">Introduction</h3>
 <p>An InvalidCastException is the exception thrown for an explicit cast or conversion that is not valid. This happens when you try to force a variable of one type into another, incompatible type at run-time. Common Causes</p>
     <ol>
       <li><strong>Unboxing to the Wrong Type:</strong> This is a classic cause. If you box an int into an object, you can only unbox it back to an int (or a nullable int). Trying to unbox it directly to a long or double will fail, even though the numeric conversion would be possible.</li>
@@ -668,7 +668,7 @@ catch (OverflowException ex)
       <li><strong>The is operator:</strong> Returns true if an object can be safely cast to a specific type, allowing you to proceed with the cast inside an if block. if (myObject is Dog d) { ... }</li>
       <li><strong>The as operator:</strong> Attempts to cast an object. If successful, it returns the casted object. If the cast is invalid, it returns null instead of throwing an exception. Dog myDog = myObject as Dog;</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-8-invalidcastexception-example">Example</h3>
 <p>object boxedInt = 123; // This is a boxed int. try</p>
 
     <div class="code-block-container">
@@ -679,7 +679,7 @@ catch (OverflowException ex)
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // This will fail. You cannot unbox an int directly to a long.
     long myLong = (long)boxedInt;
 }
@@ -694,7 +694,7 @@ Console.WriteLine($&quot;Correct conversion: {myCorrectLong}&quot;);</code></pre
   
 
     <h2 id="sec-28-lec-9-invalidoperationexception">Lecture 8: InvalidOperationException</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-9-invalidoperationexception-introduction">Introduction</h3>
 <p>This is a more general exception that is thrown when a method call is invalid or inappropriate given the object's current state. The operation itself is valid, but the object is not in a condition to perform it successfully. Common Causes from the .NET Framework</p>
     <ul>
       <li>Trying to call .Value on a nullable type when its .HasValue property is false.</li>
@@ -702,7 +702,7 @@ Console.WriteLine($&quot;Correct conversion: {myCorrectLong}&quot;);</code></pre
       <li>Trying to call Dequeue() or Peek() on an empty Queue.</li>
       <li>Trying to read from a database connection that has been closed. How to Handle It This almost always indicates a logic error. The solution is to check the object's state before calling the method. You shouldn't catch this exception; you should prevent it.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-9-invalidoperationexception-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -712,7 +712,7 @@ Console.WriteLine($&quot;Correct conversion: {myCorrectLong}&quot;);</code></pre
           Copy
         </button>
       </div>
-      <pre><code>Stack&lt;int&gt; myStack = new Stack&lt;int&gt;();
+      <pre><code class="language-csharp">Stack&lt;int&gt; myStack = new Stack&lt;int&gt;();
 // myStack is currently empty. try
 {
     // This is an invalid operation on an empty stack.
@@ -735,14 +735,14 @@ else
   
 
     <h2 id="sec-28-lec-10-argumentnullexception">Lecture 9: ArgumentNullException</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-10-argumentnullexception-introduction">Introduction</h3>
 <p>ArgumentNullException is a specific type of argument exception that should be thrown by a method when one of its parameters is null, but the method requires a non-null value to function correctly.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-28-lec-10-argumentnullexception-how-it-works">How It Works</h3>
 <p>It is a subclass of ArgumentException. Its purpose is to provide a very clear error message indicating which parameter was null, which is extremely helpful for debugging.</p>
-    <h3>When to Use It: (Best Practice)</h3>
+    <h3 id="sec-28-lec-10-argumentnullexception-when-to-use-it">When to Use It: (Best Practice)</h3>
 <p>As a developer writing a method that will be used by others, you should perform guard clause checks at the very beginning of your method. If a critical parameter is null, you should immediately throw new ArgumentNullException() to fail fast and provide a clear error. Using nameof: It is a best practice to use the nameof operator to specify the parameter name.</p>
 <p>This avoids using &quot;magic strings&quot; and ensures that if you rename the parameter later, the error message will update automatically.</p>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-10-argumentnullexception-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -752,7 +752,7 @@ else
           Copy
         </button>
       </div>
-      <pre><code>public void ProcessUser(User user)
+      <pre><code class="language-csharp">public void ProcessUser(User user)
 {
     // This is a guard clause.
     if (user == null)
@@ -766,12 +766,12 @@ else
   
 
     <h2 id="sec-28-lec-11-innerexception">Lecture 10: InnerException</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-11-innerexception-introduction">Introduction</h3>
 <p>The InnerException property, which exists on all exception objects, is a crucial mechanism for preserving the original error when you catch a low-level exception and then throw a new, more specific, higher-level exception. Why It's Important It creates a &quot;chain&quot; or &quot;stack&quot; of exceptions.</p>
 <p>This is vital for debugging because it allows you to see the full story of what went wrong. Without preserving the inner exception, the original root cause of the problem is lost forever, making it much harder to diagnose the issue.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-28-lec-11-innerexception-how-it-works">How It Works</h3>
 <p>When you catch a low-level exception (e.g., a SqlException) and decide to throw a new, more meaningful exception (e.g., a UserUpdateException), you should pass the original exception into the constructor of the new exception.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-28-lec-11-innerexception-syntax">Syntax</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -781,10 +781,10 @@ else
           Copy
         </button>
       </div>
-      <pre><code>throw new MyCustomException(&quot;Could not update user.&quot;, ex);</code></pre>
+      <pre><code class="language-csharp">throw new MyCustomException(&quot;Could not update user.&quot;, ex);</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-11-innerexception-example">Example</h3>
 <p>try</p>
 
     <div class="code-block-container">
@@ -795,7 +795,7 @@ else
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // This line will throw a FormatException.
     int.Parse(&quot;abc&quot;);
 }
@@ -811,7 +811,7 @@ catch (FormatException ex) // 'ex' holds the original error.
 <p>When you inspect the ApplicationException, its InnerException property will contain the original FormatException, complete with its own message and stack trace.</p>
 
     <h2 id="sec-28-lec-12-argumentoutofrangeexception">Lecture 11: ArgumentOutOfRangeException</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-12-argumentoutofrangeexception-introduction">Introduction</h3>
 <p>ArgumentOutOfRangeException is the exception that should be thrown when the value of an argument is outside the allowable range of values for a method's parameter. Common Causes</p>
     <ul>
       <li>Passing a negative number to a method that only accepts non-negative numbers (e.g., Take(-5) from a list).</li>
@@ -819,7 +819,7 @@ catch (FormatException ex) // 'ex' holds the original error.
       <li>Use ArgumentNullException when the argument reference itself is null.</li>
       <li>Use ArgumentOutOfRangeException when the argument is not null, but its value is invalid.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-12-argumentoutofrangeexception-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -829,7 +829,7 @@ catch (FormatException ex) // 'ex' holds the original error.
           Copy
         </button>
       </div>
-      <pre><code>public string GetMonthName(int month)
+      <pre><code class="language-csharp">public string GetMonthName(int month)
 {
     if (month &lt; 1 || month &gt; 12)
     {
@@ -844,11 +844,11 @@ catch (FormatException ex) // 'ex' holds the original error.
   
 
     <h2 id="sec-28-lec-13-argumentexception">Lecture 12: ArgumentException</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-13-argumentexception-introduction">Introduction</h3>
 <p>ArgumentException is the base class for all argument-related exceptions. You should throw this exception when an argument to a method is invalid, but none of the more specific exceptions (ArgumentNullException, ArgumentOutOfRangeException) are appropriate.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-28-lec-13-argumentexception-when-to-use-it">When to Use It</h3>
 <p>It's a general-purpose &quot;invalid argument&quot; error. A common use case is when a string parameter is required but an empty string is passed. It's not null (ArgumentNullException), and it's not out of a numeric range (ArgumentOutOfRangeException), so the general ArgumentException is the best fit.</p>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-13-argumentexception-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -858,7 +858,7 @@ catch (FormatException ex) // 'ex' holds the original error.
           Copy
         </button>
       </div>
-      <pre><code>public void SetUsername(string username)
+      <pre><code class="language-csharp">public void SetUsername(string username)
 {
     // A username can't be null.
     if (username == null)
@@ -877,20 +877,20 @@ catch (FormatException ex) // 'ex' holds the original error.
   
 
     <h2 id="sec-28-lec-14-custom-exceptions">Lecture 13: Custom Exceptions</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-14-custom-exceptions-introduction">Introduction</h3>
 <p>While the .NET framework provides a rich hierarchy of exception types, it is a crucial best practice to create your own custom exception classes for errors that are specific to your application's domain logic. Throwing a ProductOutOfStockException is far more meaningful and clear than throwing a generic InvalidOperationException. Why and When to Use It</p>
     <ol>
       <li><strong>Clarity and Specificity:</strong> Custom exceptions allow you to create highly specific error handlers. A catch block that catches a DuplicateUsernameException knows exactly what went wrong and can respond appropriately, perhaps by showing a targeted error message to the user.</li>
       <li><strong>Carrying Extra Data:</strong> A custom exception class can have its own properties to carry extra, context-rich information about the error. For</li>
     </ol>
-    <h3>example</h3>
+    <h3 id="sec-28-lec-14-custom-exceptions-example">example</h3>
 <p>, a ProductOutOfStockException could carry the ProductId of the item that was out of stock. How to Implement (Best Practices) Follow this standard pattern when creating a custom exception:</p>
     <ol>
       <li>Create a new class that inherits from System.Exception (or a more specific base exception, like ArgumentException).</li>
       <li>By convention, the class name should end with the word &quot;Exception&quot;.</li>
       <li>Provide the three standard constructors that allow for setting a message and an inner exception, which ensures your custom exception works well with the rest of the .NET ecosystem.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-14-custom-exceptions-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -900,7 +900,7 @@ catch (FormatException ex) // 'ex' holds the original error.
           Copy
         </button>
       </div>
-      <pre><code>// 1. Create the custom exception class.</code></pre>
+      <pre><code class="language-csharp">// 1. Create the custom exception class.</code></pre>
     </div>
   
 
@@ -912,7 +912,7 @@ catch (FormatException ex) // 'ex' holds the original error.
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     public decimal AmountShort { get; } // A custom property
     // 2. Provide the three standard constructors.
     public InsufficientBalanceException() { }
@@ -945,7 +945,7 @@ public class BankAccount
   
 
     <h2 id="sec-28-lec-15-stack-trace">Lecture 14: Stack Trace</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-15-stack-trace-introduction">Introduction</h3>
 <p>The stack trace is a snapshot of the call stack at the moment an exception was thrown. It is arguably the single most important piece of information for debugging an error. It provides a &quot;breadcrumb trail&quot; or a &quot;chain of evidence&quot; that shows the exact sequence of method calls that led to the exception, allowing a developer to pinpoint the source of the problem.</p>
 <p>How Is It Maintained Internally? To understand the stack trace, you must understand the call stack. The call stack is a region of memory that keeps track of the active methods in your program. It operates on a Last-In, First-Out (LIFO) principle.</p>
     <ol>
@@ -954,7 +954,7 @@ public class BankAccount
       <li>If MethodA calls MethodB, a frame for MethodB is pushed on top of MethodA's frame.</li>
       <li>When MethodB finishes, its frame is popped off, and control returns to MethodA. When an exception is thrown in MethodB, the runtime halts execution and captures the current state of this call stack. It then formats this information into a human-readable string, including the namespace, class name, method name, and often the file name and line number for each frame. This resulting string is the stack trace.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-15-stack-trace-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -964,7 +964,7 @@ public class BankAccount
           Copy
         </button>
       </div>
-      <pre><code>public class Program
+      <pre><code class="language-csharp">public class Program
 {
     public static void Main(string[] args)
     {
@@ -1002,7 +1002,7 @@ public class BankAccount
 <p>The output stack trace would look like this (simplified): --- STACK TRACE --- at MyProject.Program.MethodC() in C:\MyApp\Program.cs:line 35 at MyProject.Program.MethodB() in C:\MyApp\Program.cs:line 29 at MyProject.Program.MethodA() in C:\MyApp\Program.cs:line 23 at MyProject.Program.Main(String[] args) in C:\MyApp\Program.cs:line 11 This clearly shows the &quot;breadcrumb trail&quot;: Main called A, which called B, which called C, where the error occurred.</p>
 
     <h2 id="sec-28-lec-16-logging-exceptions">Lecture 15: Logging Exceptions</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-16-logging-exceptions-introduction">Introduction</h3>
 <p>Simply catching an exception is not enough. If you catch an error and do nothing with it (an &quot;empty catch block&quot;), you have effectively hidden a problem. This is a dangerous practice.</p>
 <p>Logging the details of an exception is critical for monitoring application health, diagnosing issues in a production environment, and understanding why and where errors are occurring. What to Log When you log an exception, you should always capture as much information as possible. At a minimum:</p>
     <ul>
@@ -1012,7 +1012,7 @@ public class BankAccount
       <li>The full StackTrace.</li>
       <li>Crucially, the InnerException. If an inner exception exists, you must log its details as well, and recursively check if it has an inner exception, all the way down the chain. This ensures you capture the root cause.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-16-logging-exceptions-example">Example</h3>
 <p>This example shows a simple helper class to demonstrate the principle of logging all important details. In a real application, you would use a robust, third- party logging library.</p>
 
     <div class="code-block-container">
@@ -1023,7 +1023,7 @@ public class BankAccount
           Copy
         </button>
       </div>
-      <pre><code>public static class Logger
+      <pre><code class="language-csharp">public static class Logger
 {
     public static void LogException(Exception ex)
     {
@@ -1053,17 +1053,17 @@ public class BankAccount
   
 
     <h2 id="sec-28-lec-17-system-exception">Lecture 16: System.Exception</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-17-system-exception-introduction">Introduction</h3>
 <p>System.Exception is the base class for all exceptions in the .NET framework. Every specific exception, like FormatException, ArgumentNullException, and even your own custom exceptions, ultimately inherits from this class.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-28-lec-17-system-exception-how-it-works">How It Works</h3>
 <p>Because of inheritance, a catch (Exception ex) block is a general-purpose, &quot;catch-all&quot; handler. It will catch any possible exception that could be thrown in your try block.</p>
-    <h3>When to Use It: (Best Practices)</h3>
+    <h3 id="sec-28-lec-17-system-exception-when-to-use-it">When to Use It: (Best Practices)</h3>
 <p>Catching the generic Exception type should be done with caution and is generally only appropriate in specific places.</p>
     <ul>
       <li><strong>Good Use:</strong> At the highest level of your application (e.g., in Program.Main or a global error handler in a web app). Here, it acts as a final safety net to log any totally unexpected error and prevent the entire application from crashing.</li>
       <li><strong>Bad Use:</strong> In lower-level business logic. In these areas, you should try to catch more specific exception types whenever possible. For example, if you are working with files, you should specifically catch (FileNotFoundException ex) or catch (IOException ex). Catching the generic Exception can hide bugs by accidentally catching and &quot;handling&quot; errors you weren't expecting and didn't actually know how to deal with properly. Best Practice: Always order your catch blocks from most specific to most general.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-17-system-exception-example">Example</h3>
 <p>try</p>
 
     <div class="code-block-container">
@@ -1074,7 +1074,7 @@ public class BankAccount
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // ... code that could throw different errors ...
 }
 catch (ArgumentNullException ex) // Most specific
@@ -1093,17 +1093,17 @@ catch (Exception ex) // The final catch-all safety net
   
 
     <h2 id="sec-28-lec-18-catch-when-exception-filters">Lecture 17: Catch When / Exception Filters</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-28-lec-18-catch-when-exception-filters-introduction">Introduction</h3>
 <p>Exception filters, introduced in C# 6.0, allow you to add a conditional check to a catch block using the when keyword. This provides a more powerful and precise way to decide whether to handle an exception.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-28-lec-18-catch-when-exception-filters-how-it-works">How It Works</h3>
 <p>A catch block with a when clause will only execute if both the exception type matches and the boolean condition in the when clause evaluates to true.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-28-lec-18-catch-when-exception-filters-syntax">Syntax</h3>
 <p>catch (ExceptionType ex) when (condition) Why It's Better Than if Inside catch This is the key insight and a great interview point.</p>
     <ul>
       <li>If you use an if statement inside a catch block, the exception is considered handled the moment execution enters the catch block. The stack unwinding stops. If your if condition is false, the exception is effectively &quot;swallowed&quot; unless you manually re-throw it.</li>
       <li>With when, the condition is evaluated before the stack unwinding stops. If the when condition is false, the runtime continues searching up the call stack for another suitable catch block. This is better for logging and debugging because you don't &quot;handle&quot; an exception you aren't prepared for, allowing a more appropriate handler further up the stack to deal with it.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-28-lec-18-catch-when-exception-filters-example">Example</h3>
 <p>Let's say we only want to handle a specific type of web error, like a timeout, but let other web errors propagate. try</p>
 
     <div class="code-block-container">
@@ -1114,7 +1114,7 @@ catch (Exception ex) // The final catch-all safety net
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // ... code that makes a web request ...
     // For this example, we'll just throw it manually. throw new WebException(&quot;The request timed out.&quot;,
     WebExceptionStatus.Timeout);
@@ -1132,7 +1132,7 @@ catch (Exception ex) // The final catch-all safety net
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;Caught a timeout error specifically. Retrying...&quot;);
 }
 // Any other WebException (like NameResolutionFailure) would NOT be caught here.
@@ -1155,7 +1155,30 @@ catch (WebException ex)
       <li><strong>Clean Up with finally:</strong> Use the finally block (or the using statement for IDisposable objects) to guarantee that critical cleanup code (like releasing file handles or database connections) is always executed, whether an exception occurred or not.</li>
     </ul>
 
+      <h2 id="sec-28-comparison-table">throw; vs. throw ex; Stack Trace Preservation Comparison</h2>
+      <p>Crucial differences in stack trace integrity, debugging fidelity, and exception bubbling:</p>
+      
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Statement</th><th>Stack Trace Impact</th><th>Original Origin (Call Site)</th><th>Recommended Best Practice</th></tr></thead>
+        <tbody><tr><td><code>throw;</code></td><td>Preserves complete original call stack trace intact back to initial error source.</td><td>Point of origin remains the exact line number where the exception occurred.</td><td>Always use when logging or inspecting exceptions without altering origin.</td></tr><tr><td><code>throw ex;</code></td><td>Wipes out original stack trace. Resets stack trace to current catch block.</td><td>Call site is overwritten to current catch block line number. Obscures root cause.</td><td>Anti-pattern. Destroys critical troubleshooting context in production.</td></tr><tr><td><code>throw new CustomException("...", ex);</code></td><td>Preserves original exception in <code>InnerException</code> property while adding context.</td><td>Original stack trace preserved in <code>ex.InnerException</code>.</td><td>Best practice when wrapping low-level errors into domain-specific exceptions.</td></tr></tbody>
+      </table>
+    </div>
+  
+    
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="28" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -1185,80 +1208,272 @@ catch (WebException ex)
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-28-lec-1-handling" class="toc-link">Handling</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-28-lec-2-intro-to-exception-handling" class="toc-link">Lecture 1: Intro to Exception Handling</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-2-intro-to-exception-handling-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-2-intro-to-exception-handling-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-3-try-catch-finally" class="toc-link">Lecture 2: Try-Catch-Finally</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-3-try-catch-finally-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-3-try-catch-finally-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-3-try-catch-finally-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-4-formatexception" class="toc-link">Lecture 3: FormatException</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-4-formatexception-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-4-formatexception-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-5-indexoutofrangeexception" class="toc-link">Lecture 4: IndexOutOfRangeException</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-5-indexoutofrangeexception-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-5-indexoutofrangeexception-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-6-nullreferenceexception" class="toc-link">Lecture 5: NullReferenceException</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-6-nullreferenceexception-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-6-nullreferenceexception-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-7-overflowexception" class="toc-link">Lecture 6: OverflowException</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-7-overflowexception-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-7-overflowexception-how-it-works" class="toc-link">How It Works: checked and unchecked</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-7-overflowexception-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-7-overflowexception-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-8-invalidcastexception" class="toc-link">Lecture 7: InvalidCastException</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-8-invalidcastexception-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-8-invalidcastexception-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-9-invalidoperationexception" class="toc-link">Lecture 8: InvalidOperationException</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-9-invalidoperationexception-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-9-invalidoperationexception-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-10-argumentnullexception" class="toc-link">Lecture 9: ArgumentNullException</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-10-argumentnullexception-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-10-argumentnullexception-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-10-argumentnullexception-when-to-use-it" class="toc-link">When to Use It: (Best Practice)</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-10-argumentnullexception-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-11-innerexception" class="toc-link">Lecture 10: InnerException</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-11-innerexception-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-11-innerexception-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-11-innerexception-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-11-innerexception-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-12-argumentoutofrangeexception" class="toc-link">Lecture 11: ArgumentOutOfRangeException</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-12-argumentoutofrangeexception-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-12-argumentoutofrangeexception-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-13-argumentexception" class="toc-link">Lecture 12: ArgumentException</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-13-argumentexception-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-13-argumentexception-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-13-argumentexception-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-14-custom-exceptions" class="toc-link">Lecture 13: Custom Exceptions</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-14-custom-exceptions-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-14-custom-exceptions-example" class="toc-link">example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-14-custom-exceptions-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-15-stack-trace" class="toc-link">Lecture 14: Stack Trace</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-15-stack-trace-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-15-stack-trace-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-16-logging-exceptions" class="toc-link">Lecture 15: Logging Exceptions</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-16-logging-exceptions-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-16-logging-exceptions-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-17-system-exception" class="toc-link">Lecture 16: System.Exception</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-17-system-exception-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-17-system-exception-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-17-system-exception-when-to-use-it" class="toc-link">When to Use It: (Best Practices)</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-17-system-exception-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-18-catch-when-exception-filters" class="toc-link">Lecture 17: Catch When / Exception Filters</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-18-catch-when-exception-filters-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-18-catch-when-exception-filters-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-18-catch-when-exception-filters-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-28-lec-18-catch-when-exception-filters-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-28-lec-19-things-to-remember" class="toc-link">Lecture 18: Things to Remember</a>
+      </li>
+    
+      <li class="toc-item ">
+        <a href="#sec-28-comparison-table" class="toc-link">throw; vs. throw ex; Comparison</a>
       </li>
     
       </ul>
@@ -1269,6 +1484,7 @@ catch (WebException ex)
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

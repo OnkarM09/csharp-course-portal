@@ -462,9 +462,9 @@
 
     <h2 id="sec-34-lec-2-raw-string-literals">2. Raw String Literals</h2>
 <p>Raw string literals are a new string literal format introduced in C# 11 that significantly simplifies working with strings containing special characters, multiple lines, or embedded code (like JSON, XML, or regular expressions). They eliminate the need for cumbersome escape sequences, making the string content much more readable and closer to its intended literal form. Problem Solved:</p>
-    <h3>Before C# 11</h3>
+    <h3 id="sec-34-lec-2-raw-string-literals-before-c-11">Before C# 11</h3>
 <p>, if you wanted to include special characters like backslashes (\), quotes (&quot;), or newlines (\n) directly in a string, you had to use escape sequences. For multi-line strings, you often had to concatenate multiple lines or use @ verbatim string literals, which still required escaping double quotes.</p>
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-2-raw-string-literals-example">Example</h3>
 <p>of old way: string json1 = &quot;{\n \&quot;name\&quot;: \&quot;Alice\&quot;,\n \&quot;age\&quot;: 30\n}&quot;; // Requires escaping newlines and quotes</p>
 
     <div class="code-block-container">
@@ -475,14 +475,14 @@
           Copy
         </button>
       </div>
-      <pre><code>string json2 = @&quot;{
+      <pre><code class="language-csharp">string json2 = @&quot;{
     &quot;&quot;name&quot;&quot;: &quot;&quot;Bob&quot;&quot;,
     &quot;&quot;age&quot;&quot;: 25
 }&quot;; // Requires doubling internal quotes</code></pre>
     </div>
   
 <p>This becomes very unreadable with complex JSON, XML, SQL queries, or regular expressions.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-34-lec-2-raw-string-literals-syntax">Syntax</h3>
 <p>of Raw String Literals: Raw string literals start and end with at least three double-quote characters (&quot;&quot;&quot;).</p>
     <ul>
       <li><strong>No Escaping:</strong> Inside the delimiters, all characters (including newlines and double quotes) are interpreted literally. You don't need \ or &quot;&quot; for escaping.</li>
@@ -499,7 +499,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// Simple multi-line string</code></pre>
+      <pre><code class="language-csharp">// Simple multi-line string</code></pre>
     </div>
   
 <p>This is the first line. This is the second line. And a third line. &quot;&quot;&quot;;</p>
@@ -512,7 +512,7 @@
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(multiLineString);
+      <pre><code class="language-csharp">Console.WriteLine(multiLineString);
 // Output will be:
 // This is the first line.
 // This is the second line.
@@ -520,7 +520,7 @@
     </div>
   
 <p>Notice how the leading whitespace before &quot;This is&quot; is automatically removed because it aligns with the closing &quot;&quot;&quot;.</p>
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-2-raw-string-literals-example">Example</h3>
 <p>with Embedded Quotes:</p>
 
     <div class="code-block-container">
@@ -531,7 +531,7 @@
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     &quot;name&quot;: &quot;Charlie&quot;,
     &quot;occupation&quot;: &quot;Developer&quot;,
     &quot;details&quot;: {
@@ -544,7 +544,7 @@ Console.WriteLine(json);
 // Output is exactly the JSON as written, no escapes needed.</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-2-raw-string-literals-example">Example</h3>
 <p>with Interpolation and Literal Curly Braces: If your string contains curly braces that are not for interpolation, or if you need to use specific interpolation formatting:</p>
 
     <div class="code-block-container">
@@ -555,7 +555,7 @@ Console.WriteLine(json);
           Copy
         </button>
       </div>
-      <pre><code>string name = &quot;Alice&quot;;
+      <pre><code class="language-csharp">string name = &quot;Alice&quot;;
 int age = 30;
 // Default interpolation: {name} interpolates, literal curly braces need to be
 doubled {{ and }}</code></pre>
@@ -571,7 +571,7 @@ doubled {{ and }}</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(&quot;\n--- Interpolation 1 ---&quot;);
+      <pre><code class="language-csharp">Console.WriteLine(&quot;\n--- Interpolation 1 ---&quot;);
 Console.WriteLine(greeting1);
 // Using more '$' to indicate more braces for interpolation
 // If you use $$$&quot;&quot;, then {expr} is literal, {{expr}} interpolates, {{{expr}}} literal
@@ -587,7 +587,7 @@ Console.WriteLine(greeting1);
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     &quot;UserName&quot;: &quot;{{name}}&quot;,
     &quot;UserAge&quot;: {{age}},
     &quot;CreatedAt&quot;: &quot;{{DateTime.UtcNow:yyyy-MM-ddTHH:mm:ssZ}}&quot;
@@ -597,7 +597,7 @@ Console.WriteLine(&quot;\n--- Interpolation 2 ---&quot;);
 Console.WriteLine(template);</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-2-raw-string-literals-example">Example</h3>
 <p>with Delimiter Length Adjustment: If your string content itself contains &quot;&quot;&quot;, you need to use a longer delimiter:</p>
 
     <div class="code-block-container">
@@ -608,7 +608,7 @@ Console.WriteLine(template);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// This is a C# code snippet</code></pre>
+      <pre><code class="language-csharp">// This is a C# code snippet</code></pre>
     </div>
   
 <p>string message = &quot;&quot;&quot;Hello, World!&quot;&quot;&quot;; // This string contains triple quotes</p>
@@ -621,7 +621,7 @@ Console.WriteLine(template);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(message);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(message);</code></pre>
     </div>
   
 <p>&quot;&quot;&quot;&quot;&quot;; // Five quotes to match the start</p>
@@ -634,7 +634,7 @@ Console.WriteLine(template);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(&quot;\n--- Delimiter Length Adjustment ---&quot;);
+      <pre><code class="language-csharp">Console.WriteLine(&quot;\n--- Delimiter Length Adjustment ---&quot;);
 Console.WriteLine(codeSnippet);</code></pre>
     </div>
   
@@ -647,9 +647,9 @@ Console.WriteLine(codeSnippet);</code></pre>
 
     <h2 id="sec-34-lec-3-list-pattern">3. List Pattern</h2>
 <p>C# 11 introduces List Patterns, which extend the capabilities of pattern matching to allow you to match against elements in a list, array, or any type that implements IEnumerable. This feature provides a concise and expressive way to inspect the structure and contents of sequences, making code that deals with collections more readable and less error-prone. Problem Solved:</p>
-    <h3>Before C# 11</h3>
+    <h3 id="sec-34-lec-3-list-pattern-before-c-11">Before C# 11</h3>
 <p>, checking the structure of a list often involved multiple conditional statements (if checks) for Count and individual element access (e.g., list[0], list[1]), followed by more checks on the elements themselves. This could quickly become verbose and difficult to read for complex scenarios.</p>
-    <h3>Syntax: and Features:</h3>
+    <h3 id="sec-34-lec-3-list-pattern-syntax">Syntax: and Features:</h3>
 <p>List patterns use square brackets [] to enclose the patterns for the elements you want to match.</p>
     <ul>
       <li><strong>Matching Specific Elements:</strong> You can specify literal values or declaration patterns for elements at specific positions.</li>
@@ -663,7 +663,7 @@ Console.WriteLine(codeSnippet);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>int[] numbers = { 1, 2, 3 };</code></pre>
+      <pre><code class="language-csharp">int[] numbers = { 1, 2, 3 };</code></pre>
     </div>
   
 
@@ -675,7 +675,7 @@ Console.WriteLine(codeSnippet);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;Matches [1, 2, 3]&quot;);
 }</code></pre>
     </div>
@@ -692,7 +692,7 @@ Console.WriteLine(codeSnippet);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>int[] numbers = { 10, 20, 30 };</code></pre>
+      <pre><code class="language-csharp">int[] numbers = { 10, 20, 30 };</code></pre>
     </div>
   
 <p>if (numbers is [10, _, 30]) // Matches if first is 10, second is anything, third is 30</p>
@@ -705,7 +705,7 @@ Console.WriteLine(codeSnippet);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;Matches [10, _, 30]&quot;);
 }</code></pre>
     </div>
@@ -722,7 +722,7 @@ Console.WriteLine(codeSnippet);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>int[] data = { 1, 2, 3, 4, 5 };</code></pre>
+      <pre><code class="language-csharp">int[] data = { 1, 2, 3, 4, 5 };</code></pre>
     </div>
   
 <p>if (data is [1, .., 5]) // Matches if it starts with 1, ends with 5, and has any number of elements in between</p>
@@ -735,7 +735,7 @@ Console.WriteLine(codeSnippet);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;Matches [1, .., 5]&quot;);
 }</code></pre>
     </div>
@@ -754,7 +754,7 @@ Console.WriteLine(codeSnippet);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>record Point(int X, int Y);
+      <pre><code class="language-csharp">record Point(int X, int Y);
 record Shape(string Type, Point[] Vertices);
 Shape square = new(&quot;Square&quot;, new Point[] { new(0,0), new(1,0),
 new(1,1), new(0,1) });</code></pre>
@@ -769,7 +769,7 @@ new(1,1), new(0,1) });</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;It's a square and has a vertex at (1,1)&quot;);
 }</code></pre>
     </div>
@@ -786,7 +786,7 @@ new(1,1), new(0,1) });</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>int[] numbers = { 1, 2 };</code></pre>
+      <pre><code class="language-csharp">int[] numbers = { 1, 2 };</code></pre>
     </div>
   
 <p>if (numbers is [1, 2, 3]) // False, length mismatch</p>
@@ -799,13 +799,13 @@ new(1,1), new(0,1) });</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     // This won't execute
 }</code></pre>
     </div>
   
-    <h3>Real-World Examples</h3>
-    <h3>Example: 1: Checking Command Line Arguments</h3>
+    <h3 id="sec-34-lec-3-list-pattern-real-world-examples">Real-World Examples</h3>
+    <h3 id="sec-34-lec-3-list-pattern-example">Example: 1: Checking Command Line Arguments</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -815,7 +815,7 @@ new(1,1), new(0,1) });</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public static void ProcessArguments(string[] args)
+      <pre><code class="language-csharp">public static void ProcessArguments(string[] args)
 {
     Console.WriteLine($&quot;\nProcessing arguments: [{string.Join(&quot;, &quot;, args)}]&quot;);
     if (args is [&quot;run&quot;, var programName])
@@ -852,7 +852,7 @@ new(1,1), new(0,1) });</code></pre>
 // ProcessArguments(new string[] { &quot;unknown&quot;, &quot;arg1&quot;, &quot;arg2&quot; });</code></pre>
     </div>
   
-    <h3>Example: 2: Analyzing Log Entries</h3>
+    <h3 id="sec-34-lec-3-list-pattern-example">Example: 2: Analyzing Log Entries</h3>
 <p>Assume LogEntry is a string array where [0] is timestamp, [1] is level, [2] is message.</p>
 
     <div class="code-block-container">
@@ -863,7 +863,7 @@ new(1,1), new(0,1) });</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public static void AnalyzeLogEntry(string[] logEntry)
+      <pre><code class="language-csharp">public static void AnalyzeLogEntry(string[] logEntry)
 {
     Console.WriteLine($&quot;\nAnalyzing log entry: [{string.Join(&quot;, &quot;, logEntry)}]&quot;);
     if (logEntry is [_, &quot;ERROR&quot;, var message])
@@ -894,7 +894,7 @@ memory&quot;, &quot;details&quot; });
 message&quot; });</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-3-list-pattern-example">Example</h3>
 <p>3: Processing Data Streams / Protocols Imagine a simple byte array representing a network packet header.</p>
 
     <div class="code-block-container">
@@ -905,7 +905,7 @@ message&quot; });</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public static void ProcessPacketHeader(byte[] header)
+      <pre><code class="language-csharp">public static void ProcessPacketHeader(byte[] header)
 {
     Console.WriteLine($&quot;\nProcessing packet header: [{string.Join(&quot;, &quot;,
     header)}]&quot;);
@@ -940,7 +940,7 @@ message&quot; });</code></pre>
       <li>To capture a sub-sequence of elements from the input collection.</li>
       <li>To ignore an arbitrary number of elements within a pattern match.</li>
     </ul>
-    <h3>Syntax: and Behavior:</h3>
+    <h3 id="sec-34-lec-4-slice-pattern-syntax">Syntax: and Behavior:</h3>
 <p>The slice pattern is denoted by two dots: ..</p>
     <ul>
       <li>Matching Zero or More Elements:</li>
@@ -951,7 +951,7 @@ message&quot; });</code></pre>
       <li><strong>Placement:</strong> A list pattern can contain at most one slice pattern (..). You cannot have [.., _, ..] because it would be ambiguous.</li>
       <li><strong>Supported Types:</strong> Slice patterns work with types that can be &quot;sliced&quot; in a meaningful way, primarily Array, List&lt;T&gt;, Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;, and types that are &quot;sliceable&quot; by convention for pattern matching. Illustrative Examples:</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-4-slice-pattern-example">Example</h3>
 <p>1: Basic Slice Pattern (Ignoring Middle Elements)</p>
 
     <div class="code-block-container">
@@ -962,7 +962,7 @@ message&quot; });</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+      <pre><code class="language-csharp">int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 // Match sequences that start with 1, end with 10, and have anything in between.</code></pre>
     </div>
   
@@ -975,7 +975,7 @@ message&quot; });</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;[1, .., 10] matches: Array starts with 1 and ends with
     10.&quot;);
 }
@@ -991,7 +991,7 @@ message&quot; });</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;[1, 2, ..] matches: Array starts with 1 and 2.&quot;);
 }
 // Match sequences that end with 9 and 10, and have anything before them.</code></pre>
@@ -1006,7 +1006,7 @@ message&quot; });</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;[.., 9, 10] matches: Array ends with 9 and 10.&quot;);
 }
 // Match an empty array
@@ -1022,7 +1022,7 @@ int[] empty = { };</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;[] matches: Empty array.&quot;);
 }</code></pre>
     </div>
@@ -1037,7 +1037,7 @@ int[] empty = { };</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;[..] also matches: Empty array (zero elements in
     slice).&quot;);
 }
@@ -1054,13 +1054,13 @@ int[] shortNumbers = { 5, 6 };</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;[5, .., 6] matches: Short array 5, 6.&quot;); // The '..' matches
     zero elements here
 }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-4-slice-pattern-example">Example</h3>
 <p>2: Capturing a Slice</p>
 
     <div class="code-block-container">
@@ -1071,7 +1071,7 @@ int[] shortNumbers = { 5, 6 };</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>string[] pathSegments = { &quot;user&quot;, &quot;documents&quot;, &quot;reports&quot;, &quot;Q3&quot;, &quot;sales.pdf&quot; };
+      <pre><code class="language-csharp">string[] pathSegments = { &quot;user&quot;, &quot;documents&quot;, &quot;reports&quot;, &quot;Q3&quot;, &quot;sales.pdf&quot; };
 // Capture the intermediate segments of a path</code></pre>
     </div>
   
@@ -1084,7 +1084,7 @@ int[] shortNumbers = { 5, 6 };</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine($&quot;\nPath breakdown:&quot;);
     Console.WriteLine($&quot; Root: user&quot;);
     Console.WriteLine($&quot; User Path Segments: [{string.Join(&quot;, &quot;, userPath)}]&quot;);
@@ -1103,7 +1103,7 @@ int[] shortNumbers = { 5, 6 };</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>string[] justUser = { &quot;user&quot;, &quot;profile.txt&quot; };</code></pre>
+      <pre><code class="language-csharp">string[] justUser = { &quot;user&quot;, &quot;profile.txt&quot; };</code></pre>
     </div>
   
 
@@ -1115,7 +1115,7 @@ int[] shortNumbers = { 5, 6 };</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine($&quot;\nPath breakdown (just user):&quot;);
     Console.WriteLine($&quot; Root: user&quot;);
     Console.WriteLine($&quot; User Path Segments: [{string.Join(&quot;, &quot;, userPath)}]&quot;);
@@ -1137,7 +1137,7 @@ string[] logLine = { &quot;INFO&quot;, &quot;2023-01-01&quot;, &quot;10:00:00&qu
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine($&quot;\nLog Entry:&quot;);
     Console.WriteLine($&quot; Level: {level}&quot;);
     Console.WriteLine($&quot; Date: {date}&quot;);
@@ -1157,7 +1157,7 @@ string[] logLine = { &quot;INFO&quot;, &quot;2023-01-01&quot;, &quot;10:00:00&qu
 
     <h2 id="sec-34-lec-5-var-pattern">5. Var Pattern</h2>
 <p>The var pattern is a relatively small but useful enhancement in C# 11 that allows you to use the var keyword in a pattern matching context where it was previously not permitted, specifically within a property pattern. Problem Solved / Enhancement: Prior to C# 11, if you wanted to deconstruct an object using a property pattern and assign a property's value to a new variable, you had to explicitly state the type of the property, even if that type was obvious or you didn't strictly need to specify it.</p>
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-5-var-pattern-example">Example</h3>
 <p>of old way (pre C# 11):</p>
 
     <div class="code-block-container">
@@ -1168,7 +1168,7 @@ string[] logLine = { &quot;INFO&quot;, &quot;2023-01-01&quot;, &quot;10:00:00&qu
           Copy
         </button>
       </div>
-      <pre><code>record Product(string Name, decimal Price);
+      <pre><code class="language-csharp">record Product(string Name, decimal Price);
 Product p = new(&quot;Laptop&quot;, 1200.50m);
 // Old way: Must specify 'string name' and 'decimal price'</code></pre>
     </div>
@@ -1182,13 +1182,13 @@ Product p = new(&quot;Laptop&quot;, 1200.50m);
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine($&quot;Product: {name}, Price: {price}&quot;);
 }</code></pre>
     </div>
   
 <p>This was verbose, especially if the property types were long or generic.</p>
-    <h3>Syntax: and Behavior:</h3>
+    <h3 id="sec-34-lec-5-var-pattern-syntax">Syntax: and Behavior:</h3>
 <p>In C# 11, you can now use var within property patterns. The var pattern infers the type of the matched expression (the property's type) and assigns its value to a new variable.</p>
 
     <div class="code-block-container">
@@ -1199,7 +1199,7 @@ Product p = new(&quot;Laptop&quot;, 1200.50m);
           Copy
         </button>
       </div>
-      <pre><code>record Product(string Name, decimal Price);
+      <pre><code class="language-csharp">record Product(string Name, decimal Price);
 Product p = new(&quot;Laptop&quot;, 1200.50m);
 // C# 11 new way: Using 'var' in property patterns</code></pre>
     </div>
@@ -1213,7 +1213,7 @@ Product p = new(&quot;Laptop&quot;, 1200.50m);
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine($&quot;Product: {name}, Price: {price}&quot;);
 }
 // More concise with positionals for records:</code></pre>
@@ -1228,15 +1228,15 @@ Product p = new(&quot;Laptop&quot;, 1200.50m);
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine($&quot;Product (positional): {n}, Price: {pr}&quot;);
 }</code></pre>
     </div>
   
 <p>What the var pattern really does (in broader pattern matching context): The var pattern, when used in general pattern matching (not just property patterns), is an unconditional pattern. It always succeeds and captures the value of the matched expression into a new local variable.</p>
 <p>Its type is implicitly the type of the expression being matched. It's equivalent to a declaration pattern (Type variableName) where Type is var.</p>
-    <h3>Example: s:</h3>
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-5-var-pattern-example">Example: s:</h3>
+    <h3 id="sec-34-lec-5-var-pattern-example">Example</h3>
 <p>1: Using var in Property Patterns</p>
 
     <div class="code-block-container">
@@ -1247,7 +1247,7 @@ Product p = new(&quot;Laptop&quot;, 1200.50m);
           Copy
         </button>
       </div>
-      <pre><code>public class Order
+      <pre><code class="language-csharp">public class Order
 {
     public int OrderId { get; set; }
     public string CustomerName { get; set; }
@@ -1283,7 +1283,7 @@ TotalAmount = 200.00m, OrderDate = DateTime.Now.AddDays(-5), Status
 = &quot;Shipped&quot; });</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-5-var-pattern-example">Example</h3>
 <p>2: Combining var Pattern with List Pattern and other patterns While var in property patterns is new, the var pattern has existed in other contexts. This example shows its use in various pattern matching scenarios.</p>
 
     <div class="code-block-container">
@@ -1294,7 +1294,7 @@ TotalAmount = 200.00m, OrderDate = DateTime.Now.AddDays(-5), Status
           Copy
         </button>
       </div>
-      <pre><code>public static void AnalyzeData(object data)
+      <pre><code class="language-csharp">public static void AnalyzeData(object data)
 {
     switch (data)
     {
@@ -1350,7 +1350,7 @@ public static void ProcessCoordinates(object point)
 
     <h2 id="sec-34-lec-6-file-local-types">6. File Local Types</h2>
 <p>C# 11 introduces a new access modifier, file, which allows you to declare types that are only visible and usable within the same source file (.cs file) in which they are declared. This feature is particularly useful for internal helper types that are specific to the implementation details of a single file, preventing naming conflicts and improving code encapsulation. Problem Solved:</p>
-    <h3>Before C# 11</h3>
+    <h3 id="sec-34-lec-6-file-local-types-before-c-11">Before C# 11</h3>
 <p>, if you had a helper class, struct, or interface that was only meant to be used by other types within the same .cs file, your options were limited:</p>
     <ol>
       <li><strong>private nested type:</strong> This tightly couples the helper type to a specific outer class, making it inaccessible to other top-level types in the same file.</li>
@@ -1361,9 +1361,9 @@ public static void ProcessCoordinates(object point)
       <li><strong>Unintended Usage:</strong> The internal type might accidentally be used by code outside its intended scope (but still within the same assembly).</li>
       <li><strong>Polluting IntelliSense:</strong> The helper type might appear in IntelliSense for unrelated parts of the assembly. File-local types provide a perfect solution for these scenarios, offering a scope narrower than internal but broader than private nested types.</li>
     </ul>
-    <h3>Syntax</h3>
+    <h3 id="sec-34-lec-6-file-local-types-syntax">Syntax</h3>
 <p>You declare a file-local type by adding the file access modifier before the type declaration. file class MyFileLocalClass { /* ... */ } file struct MyFileLocalStruct { /* ... */ } file interface IMyFileLocalInterface { /* ... */ } file enum MyFileLocalEnum { /* ... */ } file record MyFileLocalRecord { /* ... */ }</p>
-    <h3>Key Characteristics</h3>
+    <h3 id="sec-34-lec-6-file-local-types-key-characteristics">Key Characteristics</h3>
     <ul>
       <li><strong>Scope:</strong> A file type is accessible only within the .cs file where it is declared.</li>
       <li><strong>Default Visibility:</strong> If no explicit access modifier is given alongside file (e.g., just file class MyType), it behaves like file internal. You cannot specify public, protected, or private with file.</li>
@@ -1371,7 +1371,7 @@ public static void ProcessCoordinates(object point)
       <li><strong>Naming Conflicts:</strong> You can have multiple types with the same name across different files, as long as they are declared as file types. This eliminates naming conflicts for local helper types.</li>
       <li><strong>IntelliSense:</strong> file types will not appear in IntelliSense outside their declaring file.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-6-file-local-types-example">Example</h3>
 <p>Consider a scenario where you have a complex method or a set of related operations within a single source file, and you need some helper data structures or utility classes that are only relevant to that file's implementation. File: DataProcessor.cs</p>
 
     <div class="code-block-container">
@@ -1382,7 +1382,7 @@ public static void ProcessCoordinates(object point)
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 // This helper class is only visible within DataProcessor.cs file class DataBatch
 {
     public int Id { get; init; }
@@ -1413,7 +1413,7 @@ public static void ProcessCoordinates(object point)
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     public void Log(string message)
     {
         Console.WriteLine($&quot;[FILE_LOG] {message}&quot;);
@@ -1448,7 +1448,7 @@ public class DataProcessor
           Copy
         </button>
       </div>
-      <pre><code>using System;
+      <pre><code class="language-csharp">using System;
 public class AnotherService
 {
     public void DoSomething()
@@ -1482,7 +1482,7 @@ result in a compile-time error, clearly demonstrating their file-local scope.</c
       <li><strong>Runtime Checks:</strong> Adding validation logic within constructors or property setters, which would only catch issues at runtime.</li>
       <li><strong>Nullable Reference Types:</strong> While useful, null cannot differentiate between an intentionally null value and a property that was simply forgotten to be initialized. required members provide a compile-time guarantee, preventing object creation if the required members are not initialized.</li>
     </ul>
-    <h3>Syntax</h3>
+    <h3 id="sec-34-lec-7-required-members-syntax">Syntax</h3>
 <p>You mark a property or field with the required keyword:</p>
 
     <div class="code-block-container">
@@ -1493,7 +1493,7 @@ result in a compile-time error, clearly demonstrating their file-local scope.</c
           Copy
         </button>
       </div>
-      <pre><code>public class MyClass
+      <pre><code class="language-csharp">public class MyClass
 {
     public required string Name { get; set; }
     public required int Id { get; init; } // Can be combined with 'init'
@@ -1501,7 +1501,7 @@ result in a compile-time error, clearly demonstrating their file-local scope.</c
 }</code></pre>
     </div>
   
-    <h3>Key Characteristics and Rules</h3>
+    <h3 id="sec-34-lec-7-required-members-key-characteristics-and-rules">Key Characteristics and Rules</h3>
     <ul>
       <li><strong>Initialization Requirement:</strong> Any required member must be initialized as part of the object's creation. This can happen in one of two ways:</li>
     </ul>
@@ -1524,8 +1524,8 @@ result in a compile-time error, clearly demonstrating their file-local scope.</c
       <li><strong>record types:</strong> required members work seamlessly with record types, including positional records (though for positional records, constructor parameters usually handle initialization).</li>
       <li><strong>Default Constructors:</strong> If a type has a required member but no explicit constructor, the compiler will generate a default parameterless constructor. However, this default constructor will not initialize the required member, meaning you must use an object initializer when creating an instance.</li>
     </ul>
-    <h3>Example: Scenarios:</h3>
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-7-required-members-example">Example: Scenarios:</h3>
+    <h3 id="sec-34-lec-7-required-members-example">Example</h3>
 <p>1: Basic Usage with Class</p>
 
     <div class="code-block-container">
@@ -1536,7 +1536,7 @@ result in a compile-time error, clearly demonstrating their file-local scope.</c
           Copy
         </button>
       </div>
-      <pre><code>public class User
+      <pre><code class="language-csharp">public class User
 {
     public required string Username { get; set; }
     public required string Email { get; init; } // init-only required property
@@ -1591,7 +1591,7 @@ public static class RequiredMembersDemo
     // }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-7-required-members-example">Example</h3>
 <p>2: Required Members in Structs C# 11 also introduces auto-default structs (next section), which work well with required members.</p>
 
     <div class="code-block-container">
@@ -1602,7 +1602,7 @@ public static class RequiredMembersDemo
           Copy
         </button>
       </div>
-      <pre><code>public struct Point
+      <pre><code class="language-csharp">public struct Point
 {
     public required int X { get; set; }
     public required int Y { get; set; }
@@ -1624,7 +1624,7 @@ public static class RequiredStructDemo
 }</code></pre>
     </div>
   
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-7-required-members-example">Example</h3>
 <p>3: Inheritance with Required Members</p>
 
     <div class="code-block-container">
@@ -1635,7 +1635,7 @@ public static class RequiredStructDemo
           Copy
         </button>
       </div>
-      <pre><code>public class BaseShape
+      <pre><code class="language-csharp">public class BaseShape
 {
     public required string ShapeType { get; init; }
 }</code></pre>
@@ -1650,7 +1650,7 @@ public static class RequiredStructDemo
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     public required double Radius { get; init; }
     // Constructor must initialize *all* required members (BaseShape.ShapeType and Circle.Radius)
     public Circle(string type, double radius)
@@ -1699,7 +1699,7 @@ public static class RequiredInheritanceDemo
 
     <h2 id="sec-34-lec-8-auto-default-structs">8. Auto Default Structs</h2>
 <p>C# 11 introduces a significant improvement for structs by ensuring that all fields of a struct are automatically initialized to their default values if they are not explicitly set by a constructor or an object initializer. This feature is known as Auto Default Structs. Problem Solved:</p>
-    <h3>Before C# 11</h3>
+    <h3 id="sec-34-lec-8-auto-default-structs-before-c-11">Before C# 11</h3>
 <p>, structs had strict rules regarding constructors and field initialization:</p>
     <ul>
       <li><strong>No Parameterless Constructors:</strong> Structs could not declare an explicit parameterless constructor. The runtime provided an implicit one that would zero-initialize all fields.</li>
@@ -1707,9 +1707,9 @@ public static class RequiredInheritanceDemo
       <li><strong>Explicit Parameterless Constructors:</strong> Structs can now declare an explicit parameterless constructor.</li>
       <li>Automatic Zero-Initialization: If a constructor (explicit or implicit) does not explicitly initialize all fields, any uninitialized fields are automatically set to their default value (e.g., 0 for numeric types, false for bool, null for reference types, default for other value types).</li>
     </ul>
-    <h3>Syntax: and Behavior:</h3>
+    <h3 id="sec-34-lec-8-auto-default-structs-syntax">Syntax: and Behavior:</h3>
 <p>There's no new keyword; it's a change in how the compiler handles struct initialization.</p>
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-8-auto-default-structs-example">Example</h3>
 <p>1: Parameterless Constructor in Structs (C# 11+)</p>
 
     <div class="code-block-container">
@@ -1720,7 +1720,7 @@ public static class RequiredInheritanceDemo
           Copy
         </button>
       </div>
-      <pre><code>public struct Point3D
+      <pre><code class="language-csharp">public struct Point3D
 {
     public int X;
     public int Y;
@@ -1772,7 +1772,7 @@ public static class AutoDefaultStructsDemo
     <ul>
       <li>Point3D p3 = new Point3D { X = 5, Z = 15, Label = &quot;Custom&quot; }; uses an object initializer. Y is not set here, so it automatically defaults to 0.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-34-lec-8-auto-default-structs-example">Example</h3>
 <p>2: Interaction with required Members The required members feature (discussed previously) works synergistically with auto-default structs. If a struct has required members, they must still be explicitly initialized, either in a constructor or an object initializer, overriding the auto-defaulting behavior for those specific members.</p>
 
     <div class="code-block-container">
@@ -1783,7 +1783,7 @@ public static class AutoDefaultStructsDemo
           Copy
         </button>
       </div>
-      <pre><code>public struct Person
+      <pre><code class="language-csharp">public struct Person
 {
     public required string FirstName { get; set; } // Required
     public required string LastName { get; set; } // Required
@@ -1854,7 +1854,7 @@ public static class AutoDefaultAndRequiredStructsDemo
       <li>Directly embed references to other stack-allocated data.</li>
       <li>More effectively represent views into unmanaged or stack-allocated memory without copying.</li>
     </ul>
-    <h3>Syntax</h3>
+    <h3 id="sec-34-lec-9-ref-fields-syntax">Syntax</h3>
 <p>You declare a ref field by using the ref keyword before the field's type:</p>
 
     <div class="code-block-container">
@@ -1865,14 +1865,14 @@ public static class AutoDefaultAndRequiredStructsDemo
           Copy
         </button>
       </div>
-      <pre><code>public ref struct MyRefStruct
+      <pre><code class="language-csharp">public ref struct MyRefStruct
 {
     public ref int ValueRef; // A ref field pointing to an int
     public ref readonly string MessageRef; // A ref readonly field
 }</code></pre>
     </div>
   
-    <h3>Key Characteristics and Rules</h3>
+    <h3 id="sec-34-lec-9-ref-fields-key-characteristics-and-rules">Key Characteristics and Rules</h3>
 <p>of ref Fields:</p>
     <ol>
       <li><strong>Must be in a ref struct:</strong> ref fields are only allowed within ref struct types. They cannot be used in regular structs or classes.</li>
@@ -1890,7 +1890,7 @@ public static class AutoDefaultAndRequiredStructsDemo
       <li>No Default Constructor for ref struct with ref fields (usually): If a ref struct contains ref fields, it generally cannot have a parameterless constructor (implicit or explicit) because ref fields must be initialized to a valid reference at construction, which default or an empty constructor cannot guarantee.</li>
       <li>Pointers vs. References: ref fields are managed references, not unmanaged pointers. They benefit from garbage collection safety, but within the strict ref struct context.</li>
     </ol>
-    <h3>Real-World Example (Simplified): Custom Span-like Type</h3>
+    <h3 id="sec-34-lec-9-ref-fields-real-world-example-simplified">Real-World Example (Simplified): Custom Span-like Type</h3>
 <p>This example demonstrates how ref fields could be used to build a custom Span-like structure. This is simplified and primarily for conceptual understanding, as Span&lt;T&gt; itself is highly optimized.</p>
 
     <div class="code-block-container">
@@ -1901,7 +1901,7 @@ public static class AutoDefaultAndRequiredStructsDemo
           Copy
         </button>
       </div>
-      <pre><code>using System;</code></pre>
+      <pre><code class="language-csharp">using System;</code></pre>
     </div>
   
 <p>memory</p>
@@ -1914,7 +1914,7 @@ public static class AutoDefaultAndRequiredStructsDemo
           Copy
         </button>
       </div>
-      <pre><code>// A ref struct that uses a ref field to represent a &quot;view&quot; into an array public ref struct CustomSlice&lt;T&gt;
+      <pre><code class="language-csharp">// A ref struct that uses a ref field to represent a &quot;view&quot; into an array public ref struct CustomSlice&lt;T&gt;
 {
     // A ref field that points to the first element of the underlying array/span.
     // This allows CustomSlice to hold a reference without copying the data.
@@ -2077,7 +2077,30 @@ public static class RefFieldsDemo
       <li><strong>Remember:</strong> A very advanced, low-level feature primarily for performance-critical scenarios. Requires strict adherence to ref safety rules to prevent memory issues. Most application developers will consume APIs that use these internally, rather than directly implementing them. C# 11 reinforces the language's strengths in both high-level productivity and low-level performance, offering tools for a wide range of programming challenges.</li>
     </ul>
 
+      <h2 id="sec-34-comparison-table">Managed References (ref / ref struct) vs. Unmanaged Pointers (*) Comparison</h2>
+      <p>Comparison between modern C# type-safe managed memory semantics and unmanaged pointers:</p>
+      
+    <div class="table-responsive">
+      <table>
+        <thead><tr><th>Aspect</th><th>Managed References (ref / ref struct)</th><th>Unmanaged Pointers (* in unsafe)</th></tr></thead>
+        <tbody><tr><td>Safety & Verification</td><td>100% memory safe. Verified by C# Roslyn compiler and CLR type safety.</td><td>Unsafe. Disables CLR memory safety checks. Can cause memory corruption and crashes.</td></tr><tr><td>GC Tracking</td><td>CLR GC tracks interior pointers accurately during compaction and relocation.</td><td>GC has no knowledge of pointer addresses; object may be collected or moved unless pinned.</td></tr><tr><td>Keyword & Context</td><td>Safe code: <code>ref</code>, <code>in</code>, <code>out</code>, <code>ref struct</code> (no unsafe keyword needed).</td><td>Requires <code>unsafe</code> compiler flag and <code>unsafe</code> block or method.</td></tr><tr><td>Lifetime Rules</td><td>Escape analysis enforced by compiler: cannot outlive target object or stack frame.</td><td>No lifetime tracking. Susceptible to dangling pointers, buffer overflows, and memory leaks.</td></tr><tr><td>Use Cases</td><td>High-performance zero-allocation parsing with <code>Span&lt;T&gt;</code> and <code>ReadOnlySpan&lt;T&gt;</code>.</td><td>Direct OS memory-mapped I/O, C/C++ interop (P/Invoke), hardware driver buffers.</td></tr></tbody>
+      </table>
+    </div>
+  
+    
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="34" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -2107,44 +2130,196 @@ public static class RefFieldsDemo
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-34-lec-1-overview-of-c-11" class="toc-link">1. Overview of C# 11</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-34-lec-2-raw-string-literals" class="toc-link">2. Raw String Literals</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-2-raw-string-literals-before-c-11" class="toc-link">Before C# 11</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-2-raw-string-literals-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-2-raw-string-literals-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-2-raw-string-literals-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-2-raw-string-literals-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-2-raw-string-literals-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-34-lec-3-list-pattern" class="toc-link">3. List Pattern</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-3-list-pattern-before-c-11" class="toc-link">Before C# 11</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-3-list-pattern-syntax" class="toc-link">Syntax: and Features:</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-3-list-pattern-real-world-examples" class="toc-link">Real-World Examples</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-3-list-pattern-example" class="toc-link">Example: 1: Checking Command Line A</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-3-list-pattern-example" class="toc-link">Example: 2: Analyzing Log Entries</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-3-list-pattern-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-34-lec-4-slice-pattern" class="toc-link">4. Slice Pattern</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-4-slice-pattern-syntax" class="toc-link">Syntax: and Behavior:</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-4-slice-pattern-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-4-slice-pattern-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-34-lec-5-var-pattern" class="toc-link">5. Var Pattern</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-5-var-pattern-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-5-var-pattern-syntax" class="toc-link">Syntax: and Behavior:</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-5-var-pattern-example" class="toc-link">Example: s:</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-5-var-pattern-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-5-var-pattern-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-34-lec-6-file-local-types" class="toc-link">6. File Local Types</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-6-file-local-types-before-c-11" class="toc-link">Before C# 11</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-6-file-local-types-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-6-file-local-types-key-characteristics" class="toc-link">Key Characteristics</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-6-file-local-types-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-34-lec-7-required-members" class="toc-link">7. Required Members</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-7-required-members-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-7-required-members-key-characteristics-and-rules" class="toc-link">Key Characteristics and Rules</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-7-required-members-example" class="toc-link">Example: Scenarios:</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-7-required-members-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-7-required-members-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-7-required-members-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-34-lec-8-auto-default-structs" class="toc-link">8. Auto Default Structs</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-8-auto-default-structs-before-c-11" class="toc-link">Before C# 11</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-8-auto-default-structs-syntax" class="toc-link">Syntax: and Behavior:</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-8-auto-default-structs-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-8-auto-default-structs-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-34-lec-9-ref-fields" class="toc-link">9. Ref Fields</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-9-ref-fields-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-9-ref-fields-key-characteristics-and-rules" class="toc-link">Key Characteristics and Rules</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-34-lec-9-ref-fields-real-world-example-simplified" class="toc-link">Real-World Example (Simplified): Cu</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-34-lec-10-points-to-remember" class="toc-link">10. Points to Remember</a>
+      </li>
+    
+      <li class="toc-item ">
+        <a href="#sec-34-comparison-table" class="toc-link">Managed ref vs Unmanaged Pointers</a>
       </li>
     
       </ul>
@@ -2155,6 +2330,7 @@ public static class RefFieldsDemo
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

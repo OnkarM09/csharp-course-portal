@@ -448,14 +448,14 @@
     <h2 id="sec-20-lec-1-events">Events</h2>
 
     <h2 id="sec-20-lec-2-intro-to-delegates">Lecture 1: Intro to Delegates</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-2-intro-to-delegates-introduction">Introduction</h3>
 <p>A delegate is a special and powerful type in C# that acts as a type-safe function pointer. Unlike regular data types that hold data, a delegate variable holds a reference to one or more methods. The key feature is that a delegate is type-safe: it can only hold references to methods that have a matching signature (the same return type and the same parameter types).</p>
 <p>Delegates are the foundation for many advanced C# features, including event handling, callbacks, and LINQ. They allow you to treat methods as first-class citizens—meaning you can pass a method as an argument to another method, store it in a variable, and call it later. This enables a much more flexible and decoupled software architecture.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-20-lec-2-intro-to-delegates-how-it-works">How It Works</h3>
 <p>Defining a Delegate Type You define a delegate using the delegate keyword. This line of code does not create a method itself; it creates a new type, a blueprint for a reference that can point to other methods.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-20-lec-2-intro-to-delegates-syntax">Syntax</h3>
 <p>access_modifier delegate return_type DelegateName(parameter_list);</p>
-    <h3>Example</h3>
+    <h3 id="sec-20-lec-2-intro-to-delegates-example">Example</h3>
 <p>Let's define a delegate type that can hold a reference to any method that takes two integers as input and returns an integer. public delegate int MathOperation(int a, int b); This creates a new type named MathOperation. We can now declare variables of this type, just like we would with int or string.</p>
 <p>Why and When to Use It Use a delegate when you want to make a piece of your code extensible or when you need to decouple components.</p>
     <ul>
@@ -465,9 +465,9 @@
     </ul>
 
     <h2 id="sec-20-lec-3-single-cast-delegates">Lecture 2: Single Cast Delegates</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-3-single-cast-delegates-introduction">Introduction</h3>
 <p>A single-cast delegate is a delegate that holds a reference to exactly one method. When you invoke it, that single method is executed. This is the simplest form of delegate usage.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-20-lec-3-single-cast-delegates-how-it-works">How It Works</h3>
 <p>The Four Steps Using a single-cast delegate involves four distinct steps:</p>
     <ol>
       <li><strong>Define the Delegate Type:</strong> Create the blueprint for the method signature.</li>
@@ -475,7 +475,7 @@
       <li><strong>Instantiate the Delegate:</strong> Create an object of the delegate type, passing the name of your matching method to its constructor. This &quot;wires up&quot; the delegate to point to your method.</li>
       <li><strong>Invoke the Delegate:</strong> Call the delegate variable as if it were a method itself.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-20-lec-3-single-cast-delegates-example">Example</h3>
 <p>Let's use the MathOperation delegate we defined earlier.</p>
 
     <div class="code-block-container">
@@ -486,7 +486,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// 1. Define the delegate type (already done).
+      <pre><code class="language-csharp">// 1. Define the delegate type (already done).
 public delegate int MathOperation(int a, int b);
 public class Calculator
 {
@@ -516,18 +516,18 @@ Console.WriteLine($&quot;Result: {result}&quot;); // Output: Result: 5</code></p
   
 
     <h2 id="sec-20-lec-4-multi-cast-delegates">Lecture 3: Multi Cast Delegates</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-4-multi-cast-delegates-introduction">Introduction</h3>
 <p>A multicast delegate is a delegate that holds references to multiple methods in an internal list, called an invocation list. When you invoke a multicast delegate, all the methods in its list are called in the order they were added. All delegate types in C# are implicitly multicast-capable.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-20-lec-4-multi-cast-delegates-how-it-works">How It Works</h3>
 <p>The +, +=, -, and -= Operators You don't use a special type for multicast delegates; you build them by combining single-cast delegates.</p>
     <ul>
       <li>+ or += (Subscribe): These operators are used to add a method reference to the delegate's invocation list.</li>
       <li>or -= (Unsubscribe): These operators are used to remove a method reference from the list.</li>
     </ul>
-    <h3>Important Note</h3>
+    <h3 id="sec-20-lec-4-multi-cast-delegates-important-note">Important Note</h3>
 <p>on Return Values This is a critical interview point. , int), and you invoke it, multiple methods will run and each will return a value. What is the final result of the invocation?</p>
 <p>The answer is: it is the return value of the last method in the invocation list. All previous return values are discarded. For this reason, multicast delegates are most commonly used with methods that have a void return type.</p>
-    <h3>Example</h3>
+    <h3 id="sec-20-lec-4-multi-cast-delegates-example">Example</h3>
 <p>Let's create a logging system where a single message can be sent to multiple destinations (the console and a file).</p>
 
     <div class="code-block-container">
@@ -538,7 +538,7 @@ Console.WriteLine($&quot;Result: {result}&quot;); // Output: Result: 5</code></p
           Copy
         </button>
       </div>
-      <pre><code>// A delegate for logging methods. 'void' is ideal for multicast.
+      <pre><code class="language-csharp">// A delegate for logging methods. 'void' is ideal for multicast.
 public delegate void LogAction(string message);
 public class Logger
 {
@@ -569,11 +569,11 @@ loggers -= logger.LogToConsole;
 loggers(&quot;System is shutting down.&quot;);</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-20-lec-4-multi-cast-delegates-output">Output</h3>
 <p>CONSOLE LOG: System is starting up. FILE LOG: System is starting up. --- Removing Console Logger --- FILE LOG: System is shutting down.</p>
 
     <h2 id="sec-20-lec-5-events">Lecture 4: Events</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-5-events-introduction">Introduction</h3>
 <p>An event is a mechanism that enables a class (the publisher) to provide notifications to other classes (the subscribers) when something interesting happens. Events are a specialized language feature that uses delegates to manage subscriptions in a safe and encapsulated way. The Problem Events Solve: Encapsulation Why not just use a public multicast delegate?</p>
 
     <div class="code-block-container">
@@ -584,7 +584,7 @@ loggers(&quot;System is shutting down.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class BadPublisher { public LogAction SomethingHappened; }</code></pre>
+      <pre><code class="language-csharp">public class BadPublisher { public LogAction SomethingHappened; }</code></pre>
     </div>
   
 <p>This is a terrible idea for two reasons:</p>
@@ -592,14 +592,14 @@ loggers(&quot;System is shutting down.&quot;);</code></pre>
       <li><strong>No Encapsulation:</strong> Any external class can completely wipe out all existing subscribers by writing myPublisher.SomethingHappened = null;.</li>
       <li><strong>No Control:</strong> Any external class can directly invoke the delegate (myPublisher.SomethingHappened(&quot;Fake event&quot;);), pretending to be the publisher. The event keyword solves these problems. It creates a wrapper around the delegate, exposing only the safe += (subscribe) and -= (unsubscribe) operations to the public. Only the publishing class itself is allowed to invoke the event.</li>
     </ol>
-    <h3>How It Works</h3>
+    <h3 id="sec-20-lec-5-events-how-it-works">How It Works</h3>
 <p>The Full Implementation This shows what the compiler does behind the scenes and is useful when you need custom subscription logic.</p>
     <ol>
       <li>You declare a private delegate field to hold the subscribers.</li>
       <li>You declare a public event using the event keyword.</li>
       <li>You implement the add and remove accessors for the event, which simply use += and -= on your private delegate field.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-20-lec-5-events-example">Example</h3>
 <p>Let's create a Stock class that raises an event whenever its price changes.</p>
 
     <div class="code-block-container">
@@ -610,7 +610,7 @@ loggers(&quot;System is shutting down.&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// A delegate for the event handler.
+      <pre><code class="language-csharp">// A delegate for the event handler.
 public delegate void PriceChangedHandler(decimal oldPrice, decimal
 newPrice);
 public class Stock
@@ -655,17 +655,17 @@ public class Stock
   
 
     <h2 id="sec-20-lec-6-auto-implemented-events">Lecture 5: Auto-Implemented Events</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-6-auto-implemented-events-introduction">Introduction</h3>
 <p>Just as auto-properties simplify property declaration, auto-implemented events provide a concise syntax for declaring an event without needing to manually write the add/remove logic or the private delegate field.</p>
-    <h3>How It Works: Compiler Magic</h3>
+    <h3 id="sec-20-lec-6-auto-implemented-events-how-it-works">How It Works: Compiler Magic</h3>
 <p>When you use the auto-implemented event syntax, the C# compiler does the work for you. When you write this: public event PriceChangedHandler PriceChanged; The compiler automatically generates this behind the scenes:</p>
     <ol>
       <li>A private, compiler-generated delegate field to hold the subscribers.</li>
       <li>The full add and remove accessor implementations that safely add and remove subscribers from that hidden field.</li>
     </ol>
-    <h3>When to Use It</h3>
+    <h3 id="sec-20-lec-6-auto-implemented-events-when-to-use-it">When to Use It</h3>
 <p>This is the standard and default way to declare events in modern C#. You should always use this concise syntax unless you need to add custom, specialized logic to the subscription or unsubscription process (which is extremely rare).</p>
-    <h3>Example</h3>
+    <h3 id="sec-20-lec-6-auto-implemented-events-example">Example</h3>
 <p>Refactoring the Stock Class Let's simplify our Stock class using an auto-implemented event. public delegate void PriceChangedHandler(decimal oldPrice, decimal newPrice);</p>
 
     <div class="code-block-container">
@@ -676,7 +676,7 @@ public class Stock
           Copy
         </button>
       </div>
-      <pre><code>public class Stock
+      <pre><code class="language-csharp">public class Stock
 {
     private string _symbol;
     private decimal _price;
@@ -721,11 +721,11 @@ tesla.Price = 925;</code></pre>
   
 
     <h2 id="sec-20-lec-7-anonymous-methods">Lecture 6: Anonymous Methods</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-7-anonymous-methods-introduction">Introduction</h3>
 <p>Anonymous methods were introduced in C# 2.0 as a way to write an &quot;inline&quot; block of code directly where a delegate instance is expected. It allows you to define a method's implementation without having to formally declare it with a name in your class. It's a way to attach a small, one-off piece of logic to a delegate or event.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-20-lec-7-anonymous-methods-how-it-works">How It Works</h3>
 <p>The delegate Keyword as an Expression You create an anonymous method using the delegate keyword, followed by an optional parameter list and a method body in curly braces.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-20-lec-7-anonymous-methods-syntax">Syntax</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -735,13 +735,13 @@ tesla.Price = 925;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>delegate (parameter_list) { ... method body ... }</code></pre>
+      <pre><code class="language-csharp">delegate (parameter_list) { ... method body ... }</code></pre>
     </div>
   
 <p>You assign this entire expression to a delegate variable or use it to subscribe to an event. Why and When to Use It Anonymous methods were created to reduce the &quot;ceremony&quot; of event handling. Before them, even for a trivial, one-line event handler, you had to create a full, named method in your class. Anonymous methods allowed you to place that logic right where it was needed.</p>
-    <h3>Important Note</h3>
+    <h3 id="sec-20-lec-7-anonymous-methods-important-note">Important Note</h3>
 <p>While it's important to recognize this syntax in older C# codebases, anonymous methods have been almost entirely superseded by the more concise and powerful Lambda Expressions (covered in the next lecture) in modern C# development.</p>
-    <h3>Example</h3>
+    <h3 id="sec-20-lec-7-anonymous-methods-example">Example</h3>
 <p>Here is how you might see it used in older UI code.</p>
 
     <div class="code-block-container">
@@ -752,7 +752,7 @@ tesla.Price = 925;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Assume we have a button in a UI application.
+      <pre><code class="language-csharp">// Assume we have a button in a UI application.
 Button myButton = new Button();
 // Using an anonymous method to handle the Click event.
 myButton.Click += delegate (object sender, EventArgs e)
@@ -763,18 +763,18 @@ myButton.Click += delegate (object sender, EventArgs e)
   
 
     <h2 id="sec-20-lec-8-lambda-expressions">Lecture 7: Lambda Expressions</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-8-lambda-expressions-introduction">Introduction</h3>
 <p>Lambda expressions, introduced in C# 3.0, are a much more concise, expressive, and powerful syntax for creating anonymous functions. They are the heart of functional programming in C# and are the preferred modern way to write inline code wherever a delegate is required. They have largely replaced anonymous methods for all new development.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-20-lec-8-lambda-expressions-how-it-works">How It Works</h3>
 <p>The Lambda Operator =&gt; The core of a lambda expression is the lambda operator =&gt;, which is read as &quot;goes to&quot;. It separates the input parameters on the left from the expression or statement block on the right.</p>
-    <h3>Syntax</h3>
+    <h3 id="sec-20-lec-8-lambda-expressions-syntax">Syntax</h3>
 <p>(input_parameters) =&gt; expression_or_statement_block Key Features:</p>
     <ul>
       <li><strong>Type Inference:</strong> The compiler can almost always infer the types of the input parameters, so you usually don't need to write them. (int x, int y) can just be written as (x, y).</li>
       <li><strong>Expression Lambdas:</strong> For a single-line lambda that returns a value, you can omit the curly braces {} and the return keyword. The compiler handles it for you. This makes them extremely concise.</li>
       <li><strong>Statement Lambdas:</strong> For lambdas with multiple lines of code, you use curly braces just like a regular method body.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-20-lec-8-lambda-expressions-example">Example</h3>
 <p>Refactoring with Lambdas Let's refactor our previous delegate and anonymous method examples.</p>
 
     <div class="code-block-container">
@@ -785,7 +785,7 @@ myButton.Click += delegate (object sender, EventArgs e)
           Copy
         </button>
       </div>
-      <pre><code>// 1. For a MathOperation delegate
+      <pre><code class="language-csharp">// 1. For a MathOperation delegate
 public delegate int MathOperation(int a, int b);
 // Old way: new MathOperation(Add);
 // Lambda way: The compiler understands that a and b are ints.</code></pre>
@@ -801,7 +801,7 @@ public delegate int MathOperation(int a, int b);
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(add(10, 5)); // Output: 15
+      <pre><code class="language-csharp">Console.WriteLine(add(10, 5)); // Output: 15
 // 2. For the button click event handler
 // The compiler infers that sender is an object and e is EventArgs.
 myButton.Click += (sender, e) =&gt;
@@ -814,11 +814,11 @@ myButton.Click += (sender, e) =&gt;
   
 
     <h2 id="sec-20-lec-9-inline-lambda-expressions">Lecture 8: Inline Lambda Expressions</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-9-inline-lambda-expressions-introduction">Introduction</h3>
 <p>While you can assign a lambda expression to a delegate variable, their true power is realized when they are used inline, passed directly as an argument to a method that accepts a delegate. This is the most common pattern you will see in modern C#, especially with LINQ.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-20-lec-9-inline-lambda-expressions-how-it-works">How It Works</h3>
 <p>Many methods in the .NET framework, particularly LINQ extension methods, are designed to take a delegate as a parameter to allow the caller to inject custom logic. Instead of defining a named method or even a separate delegate variable, you can write the lambda expression directly inside the method call's parentheses.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-20-lec-9-inline-lambda-expressions-when-to-use-it">When to Use It</h3>
 <p>This is the standard pattern for working with LINQ. Methods like .Where(), .Count(), .Select(), .OrderBy(), etc., all take delegates (usually</p>
 
     <div class="code-block-container">
@@ -829,10 +829,10 @@ myButton.Click += (sender, e) =&gt;
           Copy
         </button>
       </div>
-      <pre><code>Func or Action) to perform their work.</code></pre>
+      <pre><code class="language-csharp">Func or Action) to perform their work.</code></pre>
     </div>
   
-    <h3>Example: Using LINQ</h3>
+    <h3 id="sec-20-lec-9-inline-lambda-expressions-example">Example: Using LINQ</h3>
 <p>Let's find all the even numbers in a list and count how many there are.</p>
 
     <div class="code-block-container">
@@ -843,7 +843,7 @@ myButton.Click += (sender, e) =&gt;
           Copy
         </button>
       </div>
-      <pre><code>List&lt;int&gt; numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+      <pre><code class="language-csharp">List&lt;int&gt; numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 // --- Using an inline lambda expression with Count() ---
 // The Count method accepts a delegate that takes an int and returns a bool.
 // We provide the logic for that delegate directly as a lambda expression.
@@ -860,9 +860,9 @@ evenNumbers));</code></pre>
   
 
     <h2 id="sec-20-lec-10-func">Lecture 9: Func</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-10-func-introduction">Introduction</h3>
 <p>purpose is to represent a method that takes zero or more input parameters and always returns a value. Using Func saves you from having to define your own custom delegate type for methods that return a value.</p>
-    <h3>How It Works: Signature</h3>
+    <h3 id="sec-20-lec-10-func-how-it-works">How It Works: Signature</h3>
 <p>The Func delegate has multiple overloaded forms. The key rule is that the last generic type parameter is always the return type.</p>
     <ul>
       <li>Func&lt;TResult&gt;: Represents a method that takes 0 parameters and returns a value of type TResult.</li>
@@ -870,7 +870,7 @@ evenNumbers));</code></pre>
       <li>Func&lt;T1, T2, TResult&gt;: Represents a method that takes 2 parameters of types T1 and T2, and returns a value of type TResult.</li>
       <li>...and so on, up to 16 input parameters.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-20-lec-10-func-example">Example</h3>
 <p>Instead of defining public delegate int MathOperation(int a, int b);, we can just use the built-in Func.</p>
 
     <div class="code-block-container">
@@ -881,7 +881,7 @@ evenNumbers));</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// This Func represents a method that takes two ints and returns an int.
+      <pre><code class="language-csharp">// This Func represents a method that takes two ints and returns an int.
 // It is functionally identical to our custom MathOperation delegate.
 Func&lt;int, int, int&gt; addOperation = (x, y) =&gt; x + y;
 Console.WriteLine($&quot;Result: {addOperation(20, 22)}&quot;); // Output: 42
@@ -892,9 +892,9 @@ Console.WriteLine(getGreeting());</code></pre>
   
 
     <h2 id="sec-20-lec-11-action">Lecture 10: Action</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-11-action-introduction">Introduction</h3>
 <p>Its purpose is to represent a method that takes zero or more input parameters but does not return a value (i.e., its return type is void).</p>
-    <h3>How It Works: Signature</h3>
+    <h3 id="sec-20-lec-11-action-how-it-works">How It Works: Signature</h3>
 <p>Like Func, Action has multiple overloaded forms. Since it never returns a value, all its generic type parameters represent input parameters.</p>
     <ul>
       <li><strong>Action:</strong> Represents a method that takes 0 parameters and returns void.</li>
@@ -902,7 +902,7 @@ Console.WriteLine(getGreeting());</code></pre>
       <li>Action&lt;T1, T2&gt;: Represents a method that takes 2 parameters of types T1 and T2, and returns void.</li>
       <li>...and so on, up to 16 input parameters.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-20-lec-11-action-example">Example</h3>
 <p>Instead of defining public delegate void LogAction(string message);, we can use the built-in Action.</p>
 
     <div class="code-block-container">
@@ -913,7 +913,7 @@ Console.WriteLine(getGreeting());</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// This Action represents any method that takes a single string and returns void.
+      <pre><code class="language-csharp">// This Action represents any method that takes a single string and returns void.
 Action&lt;string&gt; logToConsole = (message) =&gt; Console.WriteLine($&quot;LOG:
 {message}&quot;);
 logToConsole(&quot;Application has started.&quot;);
@@ -929,9 +929,9 @@ showMenu();</code></pre>
   
 
     <h2 id="sec-20-lec-12-predicate">Lecture 11: Predicate</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-12-predicate-introduction">Introduction</h3>
 <p>NET framework. Its specific purpose is to represent a method that takes a single input parameter and returns a bool. The name &quot;predicate&quot; comes from formal logic, where it means a statement about a subject that can be evaluated as either true or false. In programming, a predicate is used to test if an item meets a certain condition.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-20-lec-12-predicate-how-it-works">How It Works</h3>
 <p>The Predicate&lt;T&gt; delegate is functionally equivalent to Func&lt;T, bool&gt;. It's simply a more descriptive name for this very common scenario. Signature: public delegate bool Predicate&lt;in T&gt;(T obj); It takes one parameter of type T and must return a bool.</p>
 <p>Why and When to Use It Use a Predicate&lt;T&gt; when the sole purpose of your delegate is to test a condition. It makes the code more self-documenting because the name Predicate clearly communicates that a test is being performed. NET methods that filter or search collections specifically accept a Predicate&lt;T&gt;. FindAll() method is a perfect example. , for which the predicate returns true).</p>
 
@@ -943,7 +943,7 @@ showMenu();</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Our list of data
+      <pre><code class="language-csharp">// Our list of data
 List&lt;int&gt; numbers = new List&lt;int&gt; { 10, 45, 52, 88, 95, 23 };
 // --- Using a named method ---
 // 1. Define a method that matches the Predicate&lt;int&gt; signature. public bool IsGreaterThan50(int number)
@@ -966,9 +966,9 @@ foreach (int num in highNumbersLambda)
   
 
     <h2 id="sec-20-lec-13-eventhandler">Lecture 12: EventHandler</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-13-eventhandler-introduction">Introduction</h3>
 <p>EventHandler and its generic counterpart, EventHandler, are the standard, official delegate types that should be used for all events in the .NET framework. By adhering to this standard, you ensure that your custom events are predictable and can be easily consumed by other developers and integrated with UI frameworks that expect this pattern.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-20-lec-13-eventhandler-how-it-works">How It Works</h3>
 <p>The Standard Event Signature This pattern defines a very specific method signature that all event handlers should follow:</p>
 
     <div class="code-block-container">
@@ -979,14 +979,14 @@ foreach (int num in highNumbersLambda)
           Copy
         </button>
       </div>
-      <pre><code>void MethodName(object sender, EventArgs e)</code></pre>
+      <pre><code class="language-csharp">void MethodName(object sender, EventArgs e)</code></pre>
     </div>
   
     <ul>
       <li><strong>object sender:</strong> This parameter always holds a reference to the object that raised the event. This allows the subscriber to know where the event came from and, if necessary, to interact with the publisher object (e.g., to get more information from it).</li>
       <li><strong>EventArgs e:</strong> This parameter is an object that contains event data. The base EventArgs class is empty and is used when an event doesn't need to pass any extra information. For events that do need to pass data, you create a custom class that inherits from EventArgs. The Generic EventHandler&lt;TEventArgs&gt; This is the modern, type-safe version. TEventArgs must be a type that inherits from EventArgs. This approach is better because it avoids the need for the subscriber to cast the e parameter to get the custom event data.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-20-lec-13-eventhandler-example">Example</h3>
 <p>The Stock Class Revisited Let's refactor our Stock class to use this standard pattern.</p>
 
     <div class="code-block-container">
@@ -997,7 +997,7 @@ foreach (int num in highNumbersLambda)
           Copy
         </button>
       </div>
-      <pre><code>// 1. Create a custom class for our event data, inheriting from EventArgs.</code></pre>
+      <pre><code class="language-csharp">// 1. Create a custom class for our event data, inheriting from EventArgs.</code></pre>
     </div>
   
 
@@ -1009,7 +1009,7 @@ foreach (int num in highNumbersLambda)
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     public decimal OldPrice { get; }
     public decimal NewPrice { get; }
     public PriceChangedEventArgs(decimal oldPrice, decimal newPrice)
@@ -1058,10 +1058,10 @@ e)
   
 
     <h2 id="sec-20-lec-14-expression-trees">Lecture 13: Expression Trees</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-14-expression-trees-introduction">Introduction</h3>
 <p>This is an advanced but powerful topic. An Expression Tree is a special data structure that represents code as data. When you assign a lambda expression to a delegate type like Func, the compiler converts it into executable IL code.</p>
 <p>&gt;&gt;, the compiler does something completely different: it translates the lambda into a tree-like object structure where each node represents a part of the code—an operation, a parameter, a constant, etc.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-20-lec-14-expression-trees-how-it-works">How It Works</h3>
 <p>Consider this lambda: x =&gt; x &gt; 5.</p>
     <ul>
       <li>As a Func&lt;int, bool&gt;: It becomes compiled, executable code that takes an integer and returns true or false.</li>
@@ -1070,7 +1070,7 @@ e)
       <li><strong>Left Child:</strong> A &quot;ParameterExpression&quot; named &quot;x&quot;.</li>
       <li><strong>Right Child:</strong> A &quot;ConstantExpression&quot; with the value 5. Why and When to Use It The primary use case is for libraries that need to analyze, inspect, and translate code into another language or format. The most famous real-world</li>
     </ul>
-    <h3>example</h3>
+    <h3 id="sec-20-lec-14-expression-trees-example">example</h3>
 <p>is LINQ to SQL and Entity Framework Core. When you write a query like:</p>
 
     <div class="code-block-container">
@@ -1081,7 +1081,7 @@ e)
           Copy
         </button>
       </div>
-      <pre><code>var users = dbContext.Users.Where(u =&gt; u.Age &gt; 18);
+      <pre><code class="language-csharp">var users = dbContext.Users.Where(u =&gt; u.Age &gt; 18);
 The .Where() method does not take a Func&lt;User, bool&gt;. It takes an
 Expression&lt;Func&lt;User, bool&gt;&gt;. Entity Framework then inspects the</code></pre>
     </div>
@@ -1109,9 +1109,9 @@ Expression&lt;Func&lt;User, bool&gt;&gt;. Entity Framework then inspects the</co
   
 
     <h2 id="sec-20-lec-15-expression-bodied-members">Lecture 14: Expression-Bodied Members</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-15-expression-bodied-members-introduction">Introduction</h3>
 <p>Expression-bodied members are a concise C# syntax feature that allows you to define the body of a method, property, constructor, or other member using a lambda-like =&gt; syntax. This is purely syntactic sugar for members that consist of only a single statement or expression.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-20-lec-15-expression-bodied-members-how-it-works">How It Works</h3>
 <p>It provides a shorter, more readable alternative to using a full block body { ... } for simple members. Common Examples</p>
     <ul>
       <li>Methods:</li>
@@ -1129,9 +1129,9 @@ Expression&lt;Func&lt;User, bool&gt;&gt;. Entity Framework then inspects the</co
     </ul>
 
     <h2 id="sec-20-lec-16-switch-expression">Lecture 15: Switch Expression</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-20-lec-16-switch-expression-introduction">Introduction</h3>
 <p>A switch expression, introduced in C# 8.0, is a modern, concise, and expression-based alternative to the traditional switch statement. Since it is an expression, it must always produce a value.</p>
-    <h3>How It Works: Syntax</h3>
+    <h3 id="sec-20-lec-16-switch-expression-how-it-works">How It Works: Syntax</h3>
 <p>The new syntax is much more compact:</p>
     <ul>
       <li>It starts with the variable being switched on, followed by the switch keyword.</li>
@@ -1139,7 +1139,7 @@ Expression&lt;Func&lt;User, bool&gt;&gt;. Entity Framework then inspects the</co
       <li>Each arm is a pattern =&gt; result, (a pattern, a lambda arrow, the result for that pattern, and a comma).</li>
       <li>The _ (discard pattern) is used as the default case and is required if the compiler cannot prove that all possible inputs are handled. Why and When to Use It Use a switch expression when you need to get a single value based on a series of pattern matches. It is far cleaner than a traditional switch statement where every case block contains a return statement.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-20-lec-16-switch-expression-example">Example</h3>
 <p>Refactoring a Grade Calculator</p>
 
     <div class="code-block-container">
@@ -1150,7 +1150,7 @@ Expression&lt;Func&lt;User, bool&gt;&gt;. Entity Framework then inspects the</co
           Copy
         </button>
       </div>
-      <pre><code>// --- Traditional switch statement --- public string GetGrade(int score)
+      <pre><code class="language-csharp">// --- Traditional switch statement --- public string GetGrade(int score)
 {
     switch (score)
     {
@@ -1201,6 +1201,18 @@ public string GetGradeModern(int score) =&gt; score switch
   
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="20" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -1229,71 +1241,275 @@ public string GetGradeModern(int score) =&gt; score switch
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-20-lec-1-events" class="toc-link">Events</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-20-lec-2-intro-to-delegates" class="toc-link">Lecture 1: Intro to Delegates</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-2-intro-to-delegates-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-2-intro-to-delegates-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-2-intro-to-delegates-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-2-intro-to-delegates-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-3-single-cast-delegates" class="toc-link">Lecture 2: Single Cast Delegates</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-3-single-cast-delegates-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-3-single-cast-delegates-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-3-single-cast-delegates-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-4-multi-cast-delegates" class="toc-link">Lecture 3: Multi Cast Delegates</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-4-multi-cast-delegates-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-4-multi-cast-delegates-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-4-multi-cast-delegates-important-note" class="toc-link">Important Note</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-4-multi-cast-delegates-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-4-multi-cast-delegates-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-5-events" class="toc-link">Lecture 4: Events</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-5-events-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-5-events-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-5-events-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-6-auto-implemented-events" class="toc-link">Lecture 5: Auto-Implemented Events</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-6-auto-implemented-events-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-6-auto-implemented-events-how-it-works" class="toc-link">How It Works: Compiler Magic</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-6-auto-implemented-events-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-6-auto-implemented-events-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-7-anonymous-methods" class="toc-link">Lecture 6: Anonymous Methods</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-7-anonymous-methods-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-7-anonymous-methods-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-7-anonymous-methods-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-7-anonymous-methods-important-note" class="toc-link">Important Note</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-7-anonymous-methods-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-8-lambda-expressions" class="toc-link">Lecture 7: Lambda Expressions</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-8-lambda-expressions-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-8-lambda-expressions-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-8-lambda-expressions-syntax" class="toc-link">Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-8-lambda-expressions-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-9-inline-lambda-expressions" class="toc-link">Lecture 8: Inline Lambda Expressions</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-9-inline-lambda-expressions-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-9-inline-lambda-expressions-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-9-inline-lambda-expressions-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-9-inline-lambda-expressions-example" class="toc-link">Example: Using LINQ</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-10-func" class="toc-link">Lecture 9: Func</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-10-func-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-10-func-how-it-works" class="toc-link">How It Works: Signature</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-10-func-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-11-action" class="toc-link">Lecture 10: Action</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-11-action-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-11-action-how-it-works" class="toc-link">How It Works: Signature</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-11-action-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-12-predicate" class="toc-link">Lecture 11: Predicate</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-12-predicate-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-12-predicate-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-13-eventhandler" class="toc-link">Lecture 12: EventHandler</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-13-eventhandler-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-13-eventhandler-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-13-eventhandler-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-14-expression-trees" class="toc-link">Lecture 13: Expression Trees</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-14-expression-trees-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-14-expression-trees-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-14-expression-trees-example" class="toc-link">example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-15-expression-bodied-members" class="toc-link">Lecture 14: Expression-Bodied Members</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-15-expression-bodied-members-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-15-expression-bodied-members-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-16-switch-expression" class="toc-link">Lecture 15: Switch Expression</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-16-switch-expression-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-16-switch-expression-how-it-works" class="toc-link">How It Works: Syntax</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-20-lec-16-switch-expression-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-20-lec-17-things-to-remember" class="toc-link">Lecture 16: Things to Remember</a>
       </li>
     
@@ -1305,6 +1521,7 @@ public string GetGradeModern(int score) =&gt; score switch
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

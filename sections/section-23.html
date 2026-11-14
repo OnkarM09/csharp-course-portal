@@ -446,9 +446,9 @@
       <article class="docs-content">
         
     <h2 id="sec-23-lec-1-anonymous-types">Lecture 1: Anonymous Types</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-23-lec-1-anonymous-types-introduction">Introduction</h3>
 <p>An anonymous type is a feature in C# that allows you to create a simple object to hold a set of read-only properties without having to explicitly define a full class first. It's a convenient, on-the-fly way to create a temporary data structure. The compiler generates a class for you behind the scenes, but this class is &quot;anonymous&quot; because it has no name that you can use in your code.</p>
-    <h3>How It Works: Compiler Generation</h3>
+    <h3 id="sec-23-lec-1-anonymous-types-how-it-works">How It Works: Compiler Generation</h3>
 <p>The var keyword is essential when working with anonymous types. Because you don't know the name of the class the compiler is about to create, you need var to hold a reference to the object. When you write this:</p>
 
     <div class="code-block-container">
@@ -459,7 +459,7 @@
           Copy
         </button>
       </div>
-      <pre><code>var user = new { Name = &quot;Alice&quot;, Age = 30 };</code></pre>
+      <pre><code class="language-csharp">var user = new { Name = &quot;Alice&quot;, Age = 30 };</code></pre>
     </div>
   
 <p>The C# compiler does this behind the scenes:</p>
@@ -475,7 +475,7 @@
           Copy
         </button>
       </div>
-      <pre><code>internal class &lt;&gt;f__AnonymousType0
+      <pre><code class="language-csharp">internal class &lt;&gt;f__AnonymousType0
 {
     public string Name { get; }
     public int Age { get; }
@@ -492,14 +492,14 @@
       <li>It then replaces your original line with:</li>
     </ol>
 <p>30); Because you can't type that mangled name, var is the only practical way to declare the variable.</p>
-    <h3>Key Characteristics</h3>
+    <h3 id="sec-23-lec-1-anonymous-types-key-characteristics">Key Characteristics</h3>
     <ul>
       <li>Read-Only: All properties of an anonymous type are read-only. Once created, the object is immutable.</li>
       <li><strong>Type Inference:</strong> The compiler infers the property names and types from the initialization syntax.</li>
       <li><strong>Reference Type:</strong> The generated type is a class (a reference type) that inherits directly from System.Object.</li>
       <li><strong>Compiler Optimization:</strong> If you create two anonymous types in the same assembly that have the same properties with the same types in the same order, the compiler is smart enough to reuse the same generated class definition. Why and When to Use It The primary use case is for holding temporary, intermediate data, especially in LINQ queries. When you use a .Select() clause to project data from a larger object into a smaller, temporary shape, an anonymous type is perfect.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-23-lec-1-anonymous-types-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -509,7 +509,7 @@
           Copy
         </button>
       </div>
-      <pre><code>var product = new
+      <pre><code class="language-csharp">var product = new
 {
     Name = &quot;Laptop&quot;,
     Price = 1200.50M,
@@ -523,11 +523,11 @@ Console.WriteLine($&quot;Price: {product.Price:C}&quot;);
   
 
     <h2 id="sec-23-lec-2-nested-anonymous-types">Lecture 2: Nested Anonymous Types</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-23-lec-2-nested-anonymous-types-introduction">Introduction</h3>
 <p>An anonymous type is not limited to holding only primitive types. One of its properties can be another anonymous type, allowing you to create simple, nested, hierarchical data structures on the fly.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-23-lec-2-nested-anonymous-types-how-it-works">How It Works</h3>
 <p>This works naturally because the compiler infers a property's type from the value it is assigned. If you assign a new anonymous type object as a property value, the compiler will generate the necessary nested class structure for you.</p>
-    <h3>Example</h3>
+    <h3 id="sec-23-lec-2-nested-anonymous-types-example">Example</h3>
 <p>Let's create an anonymous type for a user that includes a nested Address object.</p>
 
     <div class="code-block-container">
@@ -538,7 +538,7 @@ Console.WriteLine($&quot;Price: {product.Price:C}&quot;);
           Copy
         </button>
       </div>
-      <pre><code>var userProfile = new
+      <pre><code class="language-csharp">var userProfile = new
 {
     UserId = 101,
     Username = &quot;jane.doe&quot;,
@@ -559,11 +559,11 @@ Console.WriteLine($&quot;Phone: {contact.PhoneNumber}&quot;);</code></pre>
   
 
     <h2 id="sec-23-lec-3-anonymous-arrays">Lecture 3: Anonymous Arrays</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-23-lec-3-anonymous-arrays-introduction">Introduction</h3>
 <p>An anonymous array is an array whose element type is implicitly inferred by the compiler from the elements you place inside the array initializer. It's a convenient shorthand that saves you from having to specify the type explicitly.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-23-lec-3-anonymous-arrays-how-it-works">How It Works</h3>
 <p>You create an anonymous array using the new[] { ... } syntax, without putting a type name before the square brackets. The compiler will look at all the elements in the initializer and determine the best common type for them.</p>
-    <h3>Rules</h3>
+    <h3 id="sec-23-lec-3-anonymous-arrays-rules">Rules</h3>
     <ol>
       <li>All elements in an anonymous array initializer must be of the same type, or be implicitly convertible to a single common type.</li>
     </ol>
@@ -575,7 +575,7 @@ Console.WriteLine($&quot;Phone: {contact.PhoneNumber}&quot;);</code></pre>
     <ol>
       <li>You can create an array of anonymous types. The compiler will check that all anonymous objects in the initializer have the same property names and types.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-23-lec-3-anonymous-arrays-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -585,7 +585,7 @@ Console.WriteLine($&quot;Phone: {contact.PhoneNumber}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Compiler infers this is an int[] array.
+      <pre><code class="language-csharp">// Compiler infers this is an int[] array.
 var numbers = new[] { 2, 4, 6, 8 };
 // Create an array of anonymous types.
 var products = new[]
@@ -616,7 +616,7 @@ var products = new[]
           Copy
         </button>
       </div>
-      <pre><code>// Example with LINQ
+      <pre><code class="language-csharp">// Example with LINQ
 var productNamesAndPrices = productList.Select(p =&gt; new { p.Name,
 p.Price });</code></pre>
     </div>
@@ -627,6 +627,18 @@ p.Price });</code></pre>
     </ul>
 
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="23" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -656,19 +668,63 @@ p.Price });</code></pre>
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-23-lec-1-anonymous-types" class="toc-link">Lecture 1: Anonymous Types</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-23-lec-1-anonymous-types-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-23-lec-1-anonymous-types-how-it-works" class="toc-link">How It Works: Compiler Generation</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-23-lec-1-anonymous-types-key-characteristics" class="toc-link">Key Characteristics</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-23-lec-1-anonymous-types-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-23-lec-2-nested-anonymous-types" class="toc-link">Lecture 2: Nested Anonymous Types</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-23-lec-2-nested-anonymous-types-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-23-lec-2-nested-anonymous-types-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-23-lec-2-nested-anonymous-types-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-23-lec-3-anonymous-arrays" class="toc-link">Lecture 3: Anonymous Arrays</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-23-lec-3-anonymous-arrays-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-23-lec-3-anonymous-arrays-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-23-lec-3-anonymous-arrays-rules" class="toc-link">Rules</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-23-lec-3-anonymous-arrays-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-23-lec-4-points-to-remember" class="toc-link">Lecture 4: Points to Remember</a>
       </li>
     
@@ -680,6 +736,7 @@ p.Price });</code></pre>
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

@@ -446,7 +446,7 @@
       <article class="docs-content">
         
     <h2 id="sec-22-lec-1-introduction-to-collections">Lecture 1: Introduction to Collections</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-1-introduction-to-collections-introduction">Introduction</h3>
 <p>While arrays are fundamental, they have one major limitation: they are fixed- size. Once you create an array, you cannot change its length. In most real- world applications, you don't know ahead of time how many items you'll need to store, or that number might need to change as the program runs.</p>
 <p>Collections are classes designed to solve this problem. They are dynamic data structures created to efficiently store, manage, and manipulate groups of objects. Their key advantage over arrays is that they can grow and shrink in size as needed.</p>
 <p>Generic namespaces. Why and When to Use Them You should use a collection whenever you are working with a group of objects and:</p>
@@ -457,10 +457,10 @@
     </ul>
 
     <h2 id="sec-22-lec-2-list-t">Lecture 2: List&lt;T&gt;</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-2-list-t-introduction">Introduction</h3>
 <p>NET. It is essentially a dynamically-sized array. It gives you the benefits of an array—fast, indexed access to elements—with the flexibility of being able to easily add and remove items.</p>
 <p>If you need a simple list of items and you're not sure which collection to use, List&lt;T&gt; is almost always the right choice to start with.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-2-list-t-how-it-works">How It Works</h3>
 <p>The Internal Array and Capacity This is a critical concept for understanding its performance. A List&lt;T&gt; is a clever wrapper around an underlying array.</p>
     <ol>
       <li>When you create a new List&lt;T&gt;, it allocates a small internal array (e.g., with a capacity of 4).</li>
@@ -471,7 +471,7 @@
       <li><strong>Count:</strong> Gets the number of elements currently contained in the list. This is what you will use most often.</li>
       <li><strong>Capacity:</strong> Gets or sets the total number of elements the internal data structure can hold without resizing. Count is always less than or equal to Capacity. Understanding this distinction is important for performance tuning with very large lists.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-2-list-t-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -481,7 +481,7 @@
           Copy
         </button>
       </div>
-      <pre><code>List&lt;string&gt; shoppingList = new List&lt;string&gt;();
+      <pre><code class="language-csharp">List&lt;string&gt; shoppingList = new List&lt;string&gt;();
 Console.WriteLine($&quot;Initial Count: {shoppingList.Count}, Initial Capacity:
 {shoppingList.Capacity}&quot;);
 shoppingList.Add(&quot;Apples&quot;);
@@ -493,7 +493,7 @@ Capacity: {shoppingList.Capacity}&quot;);
   
 
     <h2 id="sec-22-lec-3-add-and-addrange">Lecture 3: Add and AddRange</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-3-add-and-addrange-introduction">Introduction</h3>
 <p>These are the primary methods for adding new elements to the end of a List&lt;T&gt;. Add(T item)</p>
     <ul>
       <li><strong>What it does:</strong> Adds a single item to the end of the list.</li>
@@ -501,7 +501,7 @@ Capacity: {shoppingList.Capacity}&quot;);
       <li><strong>What it does:</strong> Efficiently adds all the elements from another collection (like an array or another list) to the end of the list.</li>
       <li><strong>How it Works:</strong> It's more efficient than calling Add in a loop because it can calculate the total new size required, perform a single resizing operation if needed, and then copy the elements over in a highly optimized block operation.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-3-add-and-addrange-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -511,7 +511,7 @@ Capacity: {shoppingList.Capacity}&quot;);
           Copy
         </button>
       </div>
-      <pre><code>// Start with a list of numbers.
+      <pre><code class="language-csharp">// Start with a list of numbers.
 List&lt;int&gt; numbers = new List&lt;int&gt; { 10, 20 };
 // Use Add to add a single element.
 numbers.Add(30);
@@ -526,7 +526,7 @@ Console.WriteLine(&quot;Final list: &quot; + string.Join(&quot;, &quot;, numbers
   
 
     <h2 id="sec-22-lec-4-insert-and-insertrange">Lecture 4: Insert and InsertRange</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-4-insert-and-insertrange-introduction">Introduction</h3>
 <p>While Add and AddRange always work at the end of the list, Insert and InsertRange give you the power to add elements at a specific index. Insert(int index, T item)</p>
     <ul>
       <li><strong>What it does:</strong> Inserts a single item into the list at the specified zero- based index.</li>
@@ -534,7 +534,7 @@ Console.WriteLine(&quot;Final list: &quot; + string.Join(&quot;, &quot;, numbers
       <li><strong>What it does:</strong> Inserts the elements of another collection into the list at the specified index.</li>
       <li><strong>Performance:</strong> Like Insert, this can also be slow due to the shifting of existing elements.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-4-insert-and-insertrange-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -544,7 +544,7 @@ Console.WriteLine(&quot;Final list: &quot; + string.Join(&quot;, &quot;, numbers
           Copy
         </button>
       </div>
-      <pre><code>List&lt;string&gt; guests = new List&lt;string&gt; { &quot;Alice&quot;, &quot;Charlie&quot;, &quot;David&quot; };
+      <pre><code class="language-csharp">List&lt;string&gt; guests = new List&lt;string&gt; { &quot;Alice&quot;, &quot;Charlie&quot;, &quot;David&quot; };
 Console.WriteLine(&quot;Original guest list: &quot; + string.Join(&quot;, &quot;, guests));
 // We forgot Bob! Let's insert him at the correct position (index 1).
 guests.Insert(1, &quot;Bob&quot;);
@@ -555,7 +555,7 @@ Console.WriteLine(&quot;Corrected guest list: &quot; + string.Join(&quot;, &quot
   
 
     <h2 id="sec-22-lec-5-remove-removeat-removerange-removeall-clear">Lecture 5: Remove, RemoveAt, RemoveRange, RemoveAll, Clear</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-5-remove-removeat-removerange-removeall-clear-introduction">Introduction</h3>
 <p>These methods provide a comprehensive toolkit for deleting elements from a List&lt;T&gt;. Methods for Deletion</p>
     <ul>
       <li>Remove(T item)</li>
@@ -573,7 +573,7 @@ Console.WriteLine(&quot;Corrected guest list: &quot; + string.Join(&quot;, &quot
       <li><strong>What it does:</strong> Removes all elements from the list.</li>
       <li><strong>How it Works:</strong> It sets the Count property to 0 but does not change the Capacity. The internal array is not deallocated, which is an optimization if you intend to immediately start adding new items to the list again.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-5-remove-removeat-removerange-removeall-clear-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -583,7 +583,7 @@ Console.WriteLine(&quot;Corrected guest list: &quot; + string.Join(&quot;, &quot
           Copy
         </button>
       </div>
-      <pre><code>List&lt;int&gt; scores = new List&lt;int&gt; { 10, 25, 88, 42, 95, 15, 88 };
+      <pre><code class="language-csharp">List&lt;int&gt; scores = new List&lt;int&gt; { 10, 25, 88, 42, 95, 15, 88 };
 Console.WriteLine(&quot;Original: &quot; + string.Join(&quot;, &quot;, scores));
 // Remove the first occurrence of the number 88.
 scores.Remove(88);
@@ -602,7 +602,7 @@ Console.WriteLine($&quot;After Clear: Count is {scores.Count}, Capacity is
   
 
     <h2 id="sec-22-lec-6-indexof-binarysearch-contains">Lecture 6: IndexOf, BinarySearch, Contains</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-6-indexof-binarysearch-contains-introduction">Introduction</h3>
 <p>These methods are used to find elements within a list. Methods for Searching</p>
     <ul>
       <li>IndexOf(T item)</li>
@@ -621,7 +621,7 @@ Console.WriteLine($&quot;After Clear: Count is {scores.Count}, Capacity is
       <li><strong>How it Works:</strong> It uses the &quot;divide and conquer&quot; binary search algorithm (O(log n)), which is much faster than a linear search for large lists.</li>
       <li><strong>Return Value:</strong> If found, it returns the index. If not found, it returns a negative number that can be used to determine where the item would be inserted.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-6-indexof-binarysearch-contains-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -631,7 +631,7 @@ Console.WriteLine($&quot;After Clear: Count is {scores.Count}, Capacity is
           Copy
         </button>
       </div>
-      <pre><code>List&lt;string&gt; planets = new List&lt;string&gt; { &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;,
+      <pre><code class="language-csharp">List&lt;string&gt; planets = new List&lt;string&gt; { &quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;,
 &quot;Mars&quot; };
 // Contains
 bool hasEarth = planets.Contains(&quot;Earth&quot;);
@@ -651,7 +651,7 @@ Console.WriteLine($&quot;After sorting, the index of Venus is: {venusIndex}&quot
   
 
     <h2 id="sec-22-lec-7-sort-and-reverse">Lecture 7: Sort and Reverse</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-7-sort-and-reverse-introduction">Introduction</h3>
 <p>These are two essential instance methods on the List&lt;T&gt; class that allow you to rearrange the order of elements directly within the list. Both of these methods modify the list in place, meaning they do not create a new list but rather reorder the elements of the original one. Sort()</p>
     <ul>
       <li><strong>What it does:</strong> Sorts the elements in the entire list.</li>
@@ -660,13 +660,13 @@ Console.WriteLine($&quot;After sorting, the index of Venus is: {venusIndex}&quot
       <li>For your own custom class objects, the class must implement the IComparable&lt;T&gt; interface to define its &quot;natural&quot; sort order. If it doesn't, calling Sort() will throw an exception. Alternatively, you can pass a custom sorting logic (an IComparer&lt;T&gt; or a Comparison&lt;T&gt; delegate) as a parameter to the Sort method.</li>
       <li><strong>When to Use It:</strong> Whenever you need to order the elements of a list, for</li>
     </ul>
-    <h3>example</h3>
+    <h3 id="sec-22-lec-7-sort-and-reverse-example">example</h3>
 <p>, to display a list of names alphabetically or a list of scores from lowest to highest. Reverse()</p>
     <ul>
       <li><strong>What it does:</strong> Reverses the sequence of the elements in the entire list. The first element becomes the last, the second becomes the second-to- last, and so on.</li>
       <li><strong>How it Works:</strong> It swaps the elements in place, making it a very efficient operation.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-7-sort-and-reverse-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -676,7 +676,7 @@ Console.WriteLine($&quot;After sorting, the index of Venus is: {venusIndex}&quot
           Copy
         </button>
       </div>
-      <pre><code>List&lt;int&gt; scores = new List&lt;int&gt; { 88, 54, 95, 72, 68 };
+      <pre><code class="language-csharp">List&lt;int&gt; scores = new List&lt;int&gt; { 88, 54, 95, 72, 68 };
 Console.WriteLine(&quot;Original list: &quot; + string.Join(&quot;, &quot;, scores));
 // Sort the list in place (ascending).
 scores.Sort();
@@ -686,13 +686,13 @@ scores.Reverse();
 Console.WriteLine(&quot;After Reverse(): &quot; + string.Join(&quot;, &quot;, scores));</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-22-lec-7-sort-and-reverse-output">Output</h3>
 <p>Original list: 88, 54, 95, 72, 68</p>
 <p>After Sort(): 54, 68, 72, 88, 95</p>
 <p>After Reverse(): 95, 88, 72, 68, 54</p>
 
     <h2 id="sec-22-lec-8-toarray-and-foreach">Lecture 8: ToArray and ForEach</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-8-toarray-and-foreach-introduction">Introduction</h3>
 <p>These are two useful utility methods on the List&lt;T&gt; class for converting the list and performing actions on its elements. ToArray()</p>
     <ul>
       <li><strong>What it does:</strong> Creates and returns a new array of type T[] containing all the elements from the list in the same order.</li>
@@ -702,7 +702,7 @@ Console.WriteLine(&quot;After Reverse(): &quot; + string.Join(&quot;, &quot;, sc
       <li><strong>What it does:</strong> Executes a given action on each element of the list. The action is provided as a delegate, almost always as a concise lambda expression.</li>
       <li><strong>How it differs from a foreach loop:</strong> This is a common interview point. A foreach loop is a C# language construct that works on any collection that implements IEnumerable&lt;T&gt;. The ForEach() method is a specific method that only exists on the List&lt;T&gt; class. While they can achieve similar results, the foreach loop is generally considered more readable and is universally applicable, making it the preferred choice in most style guides.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-8-toarray-and-foreach-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -712,7 +712,7 @@ Console.WriteLine(&quot;After Reverse(): &quot; + string.Join(&quot;, &quot;, sc
           Copy
         </button>
       </div>
-      <pre><code>List&lt;string&gt; technologies = new List&lt;string&gt; { &quot;C#&quot;, &quot;SQL&quot;, &quot;Azure&quot; };
+      <pre><code class="language-csharp">List&lt;string&gt; technologies = new List&lt;string&gt; { &quot;C#&quot;, &quot;SQL&quot;, &quot;Azure&quot; };
 // --- Using ToArray ---
 string[] techArray = technologies.ToArray();
 Console.WriteLine($&quot;The type of techArray is:
@@ -724,7 +724,7 @@ technologies.ForEach(tech =&gt; Console.WriteLine($&quot;- {tech}&quot;));</code
   
 
     <h2 id="sec-22-lec-9-the-find-family-of-methods">Lecture 9: The Find Family of Methods</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-9-the-find-family-of-methods-introduction">Introduction</h3>
 <p>This group of powerful methods allows you to search a list for elements that match a specific condition. They all take a Predicate&lt;T&gt; as a parameter, which is a delegate that takes an element T and returns a bool. You will almost always provide this condition as a lambda expression. The Methods</p>
     <ul>
       <li>Exists(Predicate&lt;T&gt; match): Returns true if at least one element in the list matches the predicate. It stops searching as soon as it finds a match.</li>
@@ -734,7 +734,7 @@ technologies.ForEach(tech =&gt; Console.WriteLine($&quot;- {tech}&quot;));</code
       <li>FindIndex(Predicate&lt;T&gt; match): Returns the zero-based index of the first element that matches the predicate. Returns -1 if no match is found.</li>
       <li>FindLastIndex(Predicate&lt;T&gt; match): Same as FindIndex, but it searches backwards from the end.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-9-the-find-family-of-methods-example">Example</h3>
 <p>Let's use a list of Product objects to demonstrate these methods.</p>
 
     <div class="code-block-container">
@@ -745,7 +745,7 @@ technologies.ForEach(tech =&gt; Console.WriteLine($&quot;- {tech}&quot;));</code
           Copy
         </button>
       </div>
-      <pre><code>public class Product { public string Name; public decimal Price; }
+      <pre><code class="language-csharp">public class Product { public string Name; public decimal Price; }
 List&lt;Product&gt; products = new List&lt;Product&gt;
 {
     new Product { Name = &quot;Laptop&quot;, Price = 1200 },
@@ -768,7 +768,7 @@ Console.WriteLine($&quot;Are there any expensive products?</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// --- Find ---
+      <pre><code class="language-csharp">// --- Find ---
 Product cheapItem = products.Find(p =&gt; p.Price &lt; 50);
 Console.WriteLine($&quot;First cheap item found: {cheapItem.Name}&quot;); //
 Mouse
@@ -786,15 +786,15 @@ Console.WriteLine($&quot;\nThe index of Keyboard is: {keyboardIndex}&quot;); // 
   
 
     <h2 id="sec-22-lec-10-convertall">Lecture 10: ConvertAll</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-10-convertall-introduction">Introduction</h3>
 <p>The ConvertAll method is a specific feature of the List&lt;T&gt; class that creates a new list by converting every element from the original list to a new type. It applies a specified conversion logic to each element individually.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-10-convertall-how-it-works">How It Works</h3>
 <p>It takes a Converter&lt;TInput, TOutput&gt; delegate as its parameter. This delegate is essentially a Func&lt;TInput, TOutput&gt;—it takes an item of the input type and returns a corresponding item of the output type. ConvertAll iterates through the source list, calls your converter delegate for each item, and adds the returned value to the new list it creates.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-22-lec-10-convertall-when-to-use-it">When to Use It</h3>
 <p>&amp; The LINQ Select Method ConvertAll is useful when you need to project or transform every item in a list into a new form. For example, getting a list of all product names from a list of Product objects.</p>
-    <h3>Important Note</h3>
+    <h3 id="sec-22-lec-10-convertall-important-note">Important Note</h3>
 <p>In modern C#, this operation is more commonly performed using the LINQ extension method .Select(). The .Select() method does the exact same thing but has the advantage of working on any collection that implements IEnumerable&lt;T&gt;, not just List&lt;T&gt;. Understanding ConvertAll is good, but for new code, .Select() is generally preferred for its versatility.</p>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-10-convertall-example">Example</h3>
 <p>Let's convert a list of number strings into a list of actual integers.</p>
 
     <div class="code-block-container">
@@ -805,7 +805,7 @@ Console.WriteLine($&quot;\nThe index of Keyboard is: {keyboardIndex}&quot;); // 
           Copy
         </button>
       </div>
-      <pre><code>List&lt;string&gt; numberStrings = new List&lt;string&gt; { &quot;10&quot;, &quot;25&quot;, &quot;50&quot;, &quot;100&quot; };
+      <pre><code class="language-csharp">List&lt;string&gt; numberStrings = new List&lt;string&gt; { &quot;10&quot;, &quot;25&quot;, &quot;50&quot;, &quot;100&quot; };
 // Use ConvertAll with a lambda expression that calls int.Parse.
 List&lt;int&gt; integers = numberStrings.ConvertAll(s =&gt; int.Parse(s));
 // The 'integers' list is now a new List&lt;int&gt; { 10, 25, 50, 100 }.
@@ -819,9 +819,9 @@ Console.WriteLine($&quot;The sum is: {sum}&quot;); // Output: 185</code></pre>
   
 
     <h2 id="sec-22-lec-11-dictionary">Lecture 11: Dictionary</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-11-dictionary-introduction">Introduction</h3>
 <p>A Dictionary is a collection of key-value pairs. Think of it like a real-world dictionary: you use a unique word (the key) to look up its definition (the value). In C#, every key in a Dictionary&lt;TKey, TValue&gt; must be unique, and it is used to store and retrieve its corresponding value. Dictionaries are incredibly powerful and are one ofthe most widely used collection types for high-speed data lookups.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-11-dictionary-how-it-works">How It Works</h3>
 <p>The Hash Table Internally, a Dictionary is implemented using a hash table. This is a critical concept for understanding its performance. When you add a key-value pair:</p>
     <ol>
       <li>The dictionary calls the key's GetHashCode() method to generate an integer hash code.</li>
@@ -842,7 +842,7 @@ Console.WriteLine($&quot;The sum is: {sum}&quot;); // Output: 185</code></pre>
       <li>Iterating:</li>
       <li>You can iterate over myDict.Keys, myDict.Values, or the dictionary itself, which gives you KeyValuePair&lt;TKey, TValue&gt; objects.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-11-dictionary-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -852,7 +852,7 @@ Console.WriteLine($&quot;The sum is: {sum}&quot;); // Output: 185</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// Create a dictionary to store student IDs and names.
+      <pre><code class="language-csharp">// Create a dictionary to store student IDs and names.
 Dictionary&lt;int, string&gt; studentRoster = new Dictionary&lt;int, string&gt;();
 // Add items using the Add method and the indexer.
 studentRoster.Add(101, &quot;Alice&quot;);
@@ -879,9 +879,9 @@ foreach (KeyValuePair&lt;int, string&gt; student in studentRoster)
   
 
     <h2 id="sec-22-lec-12-sortedlist">Lecture 12: SortedList</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-12-sortedlist-introduction">Introduction</h3>
 <p>A SortedList&lt;TKey, TValue&gt; is a collection of key-value pairs that maintains its elements sorted by the key. Whenever you add a new item, it is automatically inserted into the correct position to keep the entire collection sorted.</p>
-    <h3>How It Works: Internal Arrays</h3>
+    <h3 id="sec-22-lec-12-sortedlist-how-it-works">How It Works: Internal Arrays</h3>
 <p>Unlike a Dictionary's hash table, a SortedList internally uses two separate arrays: one to store the keys and one to store the values. It keeps these arrays synchronized and sorted at all times. Performance Trade-offs This internal structure leads to a very specific performance profile, which is a key interview topic.</p>
     <ul>
       <li><strong>Additions and Removals are SLOW (O(n)):</strong> To add a new item, the SortedList may have to shift a large number of elements in its internal arrays to make room in the correct sorted position.</li>
@@ -891,7 +891,7 @@ foreach (KeyValuePair&lt;int, string&gt; student in studentRoster)
       <li>You need your collection to always remain sorted by key.</li>
       <li>Your usage pattern involves many more lookups than insertions or deletions. If you just need fast lookups and don't care about sort order, Dictionary&lt;TKey, TValue&gt; is almost always the better choice due to its faster add/remove performance.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-12-sortedlist-example">Example</h3>
 <p>SortedList&lt;int, string&gt; appointmentSchedule = new SortedList&lt;int, string&gt;();</p>
 
     <div class="code-block-container">
@@ -902,7 +902,7 @@ foreach (KeyValuePair&lt;int, string&gt; student in studentRoster)
           Copy
         </button>
       </div>
-      <pre><code>// Items are added and automatically sorted by the key (the time).
+      <pre><code class="language-csharp">// Items are added and automatically sorted by the key (the time).
 appointmentSchedule.Add(1100, &quot;Meet with Bob&quot;);
 appointmentSchedule.Add(900, &quot;Team Standup&quot;);
 appointmentSchedule.Add(1400, &quot;Deploy to Production&quot;);
@@ -913,13 +913,13 @@ foreach (var appointment in appointmentSchedule)
 }</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-22-lec-12-sortedlist-output">Output</h3>
 <p>--- Today's Schedule (Sorted) --- 900: Team Standup 1100: Meet with Bob 1400: Deploy to Production</p>
 
     <h2 id="sec-22-lec-13-hashtable">Lecture 13: Hashtable</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-13-hashtable-introduction">Introduction</h3>
 <p>A Hashtable is the non-generic, legacy version of Dictionary&lt;TKey, TValue&gt;. It comes from the System.Collections namespace and was heavily used before generics were introduced in C# 2.0.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-13-hashtable-how-it-works">How It Works</h3>
 <p>It functions similarly to a Dictionary, using a hash table for fast lookups. The crucial difference is that it stores both its keys and values as the object type. Disadvantages and Why Not to Use It You should avoid using Hashtable in all modern C# code. The generic Dictionary&lt;TKey, TValue&gt; is superior in every way.</p>
     <ol>
       <li>Not Type-Safe: You can add keys and values of any type to the same Hashtable, which can lead to logical errors. myHashtable.Add(1, &quot;Alice&quot;); // int key, string value myHashtable.Add(&quot;Bob&quot;, 2); // string key, int value</li>
@@ -932,9 +932,9 @@ foreach (var appointment in appointmentSchedule)
     </ul>
 
     <h2 id="sec-22-lec-14-hashset">Lecture 14: HashSet</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-14-hashset-introduction">Introduction</h3>
 <p>A HashSet&lt;T&gt; is a collection that contains unique elements in no particular order. It is designed for high-performance set operations and to enforce uniqueness among its items. Think of it as a bag where you can only have one of each specific item.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-14-hashset-how-it-works">How It Works</h3>
 <p>A Hash Table for Uniqueness Like a Dictionary, a HashSet&lt;T&gt; is based on a hash table internally. This allows it to perform additions, removals, and—most importantly—checks for containment at an extremely fast, average O(1) speed. Its key feature is that it automatically enforces uniqueness.</p>
 <p>If you try to add an item that, according to its Equals() method, already exists in the set, the Add method simply returns false and the collection remains unchanged. No exception is thrown. Why and When to Use It</p>
     <ol>
@@ -942,7 +942,7 @@ foreach (var appointment in appointmentSchedule)
       <li>High-Speed Lookups: When your primary need is to quickly check if an item exists in a collection, without needing to store a &quot;value&quot; like in a Dictionary. myHashSet.Contains(item) is much faster than myList.Contains(item) for large collections.</li>
       <li><strong>Set Operations:</strong> It provides efficient methods for mathematical set operations like UnionWith, IntersectWith, and ExceptWith.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-14-hashset-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -952,7 +952,7 @@ foreach (var appointment in appointmentSchedule)
           Copy
         </button>
       </div>
-      <pre><code>// Create a hash set to store unique tags for a blog post.
+      <pre><code class="language-csharp">// Create a hash set to store unique tags for a blog post.
 HashSet&lt;string&gt; tags = new HashSet&lt;string&gt;();
 tags.Add(&quot;c#&quot;);
 tags.Add(&quot;programming&quot;);
@@ -970,7 +970,7 @@ tags.Add(&quot;guide&quot;);
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Was 'c#' added again? {wasAdded}&quot;);
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Was 'c#' added again? {wasAdded}&quot;);
 Console.WriteLine($&quot;Total unique tags: {tags.Count}&quot;); // The count is still
 3.
 Console.WriteLine(&quot;\nFinal Tags:&quot;);
@@ -990,16 +990,16 @@ foreach (string tag in tags)
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(&quot;\nThe post is filed under 'guide'.&quot;);
 }</code></pre>
     </div>
   
 
     <h2 id="sec-22-lec-15-arraylist">Lecture 15: ArrayList</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-15-arraylist-introduction">Introduction</h3>
 <p>An ArrayList is the non-generic, legacy version of List&lt;T&gt;. It comes from the older System.Collections namespace and was the primary tool for creating dynamically-sized collections before generics were introduced in C# 2.0.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-15-arraylist-how-it-works">How It Works</h3>
 <p>It functions similarly to a List&lt;T&gt;, using a dynamic internal array that resizes itself as needed. The crucial difference is that it stores all of its elements as the base type object. Disadvantages and Why Not to Use It You should avoid using ArrayList in all modern C# code.</p>
 <p>The generic List&lt;T&gt; is superior in every way for these critical reasons: Not Type-Safe: You can add any type of data to the same ArrayList, which can lead to logical errors and messy code.</p>
 
@@ -1011,7 +1011,7 @@ foreach (string tag in tags)
           Copy
         </button>
       </div>
-      <pre><code>ArrayList mixedList = new ArrayList();</code></pre>
+      <pre><code class="language-csharp">ArrayList mixedList = new ArrayList();</code></pre>
     </div>
   
 <p>Add(new Product()); // A custom object Performance Issues (Boxing): If you add value types (like int, double, bool, or structs), they must be boxed into an object to be stored on the heap. This causes significant performance degradation. Requires Casting: When you retrieve an item, it comes back as object.</p>
@@ -1039,7 +1039,7 @@ foreach (string tag in tags)
   
 
     <h2 id="sec-22-lec-16-stack">Lecture 16: Stack</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-16-stack-introduction">Introduction</h3>
 <p>A Stack&lt;T&gt; is a generic collection that operates on a LIFO (Last-In, First-Out) principle. You can visualize it as a stack of plates or a pile of books. You can only add a new item to the top, and you can only remove an item from the top. The last item you pushed onto the stack is the first item you can pop off. Key Methods</p>
     <ul>
       <li><strong>Push(T item):</strong> Adds an item to the top of the stack.</li>
@@ -1047,14 +1047,14 @@ foreach (string tag in tags)
       <li><strong>Peek():</strong> Returns the item at the top of the stack without removing it. This is useful for inspecting the next item without consuming it. It also throws an exception if the stack is empty.</li>
       <li><strong>Count:</strong> A property that gets the number of items currently in the stack.</li>
     </ul>
-    <h3>When to Use It</h3>
+    <h3 id="sec-22-lec-16-stack-when-to-use-it">When to Use It</h3>
 <p>Use a stack for any problem that requires LIFO logic.</p>
     <ul>
       <li><strong>Undo Functionality:</strong> In a text editor, each action (typing, deleting) is pushed onto an &quot;undo&quot; stack. When the user hits &quot;Undo,&quot; you pop the last action off the stack and reverse it.</li>
       <li><strong>Expression Parsing:</strong> Compilers use stacks to evaluate mathematical expressions.</li>
       <li><strong>Managing Function Calls:</strong> The .NET call stack itself operates on this principle.</li>
     </ul>
-    <h3>Example: Browser History &quot;Back&quot; Button</h3>
+    <h3 id="sec-22-lec-16-stack-example">Example: Browser History &quot;Back&quot; Button</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1064,7 +1064,7 @@ foreach (string tag in tags)
           Copy
         </button>
       </div>
-      <pre><code>Stack&lt;string&gt; browserHistory = new Stack&lt;string&gt;();
+      <pre><code class="language-csharp">Stack&lt;string&gt; browserHistory = new Stack&lt;string&gt;();
 // User navigates through pages.
 browserHistory.Push(&quot;google.com&quot;);</code></pre>
     </div>
@@ -1079,7 +1079,7 @@ browserHistory.Push(&quot;google.com&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine($&quot;Currently on page: {browserHistory.Peek()}&quot;);
+      <pre><code class="language-csharp">Console.WriteLine($&quot;Currently on page: {browserHistory.Peek()}&quot;);
 // User clicks the &quot;Back&quot; button.
 string previousPage = browserHistory.Pop();
 Console.WriteLine($&quot;\nClicked Back. Left page: {previousPage}&quot;);
@@ -1088,7 +1088,7 @@ Console.WriteLine($&quot;Now on page: {browserHistory.Peek()}&quot;);</code></pr
   
 
     <h2 id="sec-22-lec-17-queue">Lecture 17: Queue</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-17-queue-introduction">Introduction</h3>
 <p>A Queue&lt;T&gt; is a generic collection that operates on a FIFO (First-In, First- Out) principle. You can visualize it as a checkout line at a store or a queue for a rollercoaster. The first item that goes into the queue is the first item to come out. Key Methods</p>
     <ul>
       <li><strong>Enqueue(T item):</strong> Adds an item to the end (the &quot;back&quot;) of the queue.</li>
@@ -1096,14 +1096,14 @@ Console.WriteLine($&quot;Now on page: {browserHistory.Peek()}&quot;);</code></pr
       <li><strong>Peek():</strong> Returns the item at the beginning of the queue without removing it. It also throws an exception if the queue is empty.</li>
       <li><strong>Count:</strong> A property that gets the number of items currently in the queue.</li>
     </ul>
-    <h3>When to Use It</h3>
+    <h3 id="sec-22-lec-17-queue-when-to-use-it">When to Use It</h3>
 <p>Use a queue for any problem where items must be processed in the order they were received.</p>
     <ul>
       <li><strong>Task Scheduling:</strong> Processing print jobs, network requests, or messages in the order they arrive.</li>
       <li><strong>Customer Service:</strong> Handling support tickets in the order they were submitted.</li>
       <li><strong>Algorithms:</strong> Implementing a Breadth-First Search (BFS) on a tree or graph.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-17-queue-example">Example</h3>
 <p>A Print Job Queue</p>
 
     <div class="code-block-container">
@@ -1114,7 +1114,7 @@ Console.WriteLine($&quot;Now on page: {browserHistory.Peek()}&quot;);</code></pr
           Copy
         </button>
       </div>
-      <pre><code>Queue&lt;string&gt; printQueue = new Queue&lt;string&gt;();
+      <pre><code class="language-csharp">Queue&lt;string&gt; printQueue = new Queue&lt;string&gt;();
 // Users send documents to the printer.
 printQueue.Enqueue(&quot;DocumentA.docx&quot;);
 printQueue.Enqueue(&quot;Presentation.pptx&quot;);
@@ -1130,12 +1130,12 @@ Console.WriteLine($&quot;Jobs in queue: {printQueue.Count}&quot;);</code></pre>
   
 
     <h2 id="sec-22-lec-18-collection-of-objects">Lecture 18: Collection of Objects</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-18-collection-of-objects-introduction">Introduction</h3>
 <p>All the generic collections we have discussed (List&lt;T&gt;, Dictionary&lt;TKey, TValue&gt;, etc.) can, of course, hold objects of your own custom classes. This is one of their most powerful features, allowing you to create dynamic, type-safe collections of complex data.</p>
-    <h3>How It Works: Storing References, Not Objects</h3>
+    <h3 id="sec-22-lec-18-collection-of-objects-how-it-works">How It Works: Storing References, Not Objects</h3>
 <p>This is a crucial clarification that builds on our understanding of reference types. When you create a collection of a class type, such as List&lt;Student&gt;, the list's internal array does not store the full Student objects themselves. Instead, it stores references (memory addresses) to the Student objects, which live separately on the heap.</p>
 <p>The Implication: If you retrieve an object from a list and modify it, you are modifying the original object. This is because both your local variable and the list's internal slot are pointing to the exact same object in memory.</p>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-18-collection-of-objects-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1145,7 +1145,7 @@ Console.WriteLine($&quot;Jobs in queue: {printQueue.Count}&quot;);</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Student
+      <pre><code class="language-csharp">public class Student
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -1170,11 +1170,11 @@ Console.WriteLine($&quot;The major for student {students[0].Id} is now:
   
 
     <h2 id="sec-22-lec-19-object-relations">Lecture 19: Object Relations</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-19-object-relations-introduction">Introduction</h3>
 <p>A very common and important task in object-oriented design is modeling relationships between different types of objects. Collections are the primary tool for modeling &quot;one-to-many&quot; or &quot;has-a&quot; relationships. For example, a Team &quot;has a&quot; list of Players.</p>
 <p>An Author &quot;has a&quot; collection of Books. How to Implement You model this relationship by creating a class that contains a collection as one of its properties or fields. A Team class would have a List&lt;Player&gt; property.</p>
 <p>Best Practice: It is a strong best practice to initialize the collection property either at the point of declaration or in the constructor. This prevents the property from being null and saves you from NullReferenceException errors. It is also good practice to expose the collection as a read-only property ({ get; }) and provide public methods (AddPlayer, RemovePlayer) to manage it. This gives the containing class full control over its internal list, which is better for encapsulation.</p>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-19-object-relations-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1184,7 +1184,7 @@ Console.WriteLine($&quot;The major for student {students[0].Id} is now:
           Copy
         </button>
       </div>
-      <pre><code>public class Player
+      <pre><code class="language-csharp">public class Player
 {
     public string Name { get; set; }
 }
@@ -1212,7 +1212,7 @@ Console.WriteLine($&quot;\nThere are {myTeam.Players.Count} players on the
   
 
     <h2 id="sec-22-lec-20-built-in-collection-classes-and-interfaces-hi">Lecture 20: Built-in Collection Classes and Interfaces Hierarchy</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-20-built-in-collection-classes-and-interfaces-hi-introduction">Introduction</h3>
 <p>The .NET collections are built on a rich hierarchy of interfaces that define common capabilities. Understanding this hierarchy allows you to write more flexible and polymorphic code by programming against an interface rather than a concrete class. The Key Interfaces</p>
     <ul>
       <li>IEnumerable&lt;T&gt; (The base of everything)</li>
@@ -1234,13 +1234,13 @@ Console.WriteLine($&quot;\nThere are {myTeam.Players.Count} players on the
       <li><strong>Adds Members:</strong> Keys, Values, and an indexer this[TKey key].</li>
       <li><strong>Primary Implementation:</strong> Dictionary&lt;TKey, TValue&gt;.</li>
     </ul>
-    <h3>Why It Matters</h3>
+    <h3 id="sec-22-lec-20-built-in-collection-classes-and-interfaces-hi-why-it-matters">Why It Matters</h3>
 <p>By writing a method that accepts an IEnumerable&lt;string&gt;, you can pass it a List&lt;string&gt;, a string[] array, or a Queue&lt;string&gt;, making your method incredibly versatile.</p>
 
     <h2 id="sec-22-lec-21-ienumerable-and-ienumerator-introduction">Lecture 21: IEnumerable and IEnumerator Introduction</h2>
 <p>NET. The IEnumerable&lt;T&gt; interface is the most basic collection interface. It represents a sequence of items that can be iterated over (or &quot;enumerated&quot;).</p>
 <p>Its single purpose is to provide a standard way to get an &quot;iterator&quot; for the sequence. &quot; The object that actually performs the iteration is called an enumerator, and it is defined by the IEnumerator&lt;T&gt; interface.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-21-ienumerable-and-ienumerator-introduction-how-it-works">How It Works</h3>
 <p>The Iterator Pattern The relationship between these two interfaces forms the Iterator Design Pattern:</p>
     <ol>
       <li>The collection class (the Enumerable) implements IEnumerable&lt;T&gt;. Its only job is to have one method called GetEnumerator().</li>
@@ -1261,7 +1261,7 @@ Console.WriteLine($&quot;\nThere are {myTeam.Players.Count} players on the
           Copy
         </button>
       </div>
-      <pre><code>foreach (int number in myList)
+      <pre><code class="language-csharp">foreach (int number in myList)
 {
     Console.WriteLine(number);
 }</code></pre>
@@ -1277,7 +1277,7 @@ Console.WriteLine($&quot;\nThere are {myTeam.Players.Count} players on the
           Copy
         </button>
       </div>
-      <pre><code>IEnumerator&lt;int&gt; enumerator = myList.GetEnumerator();
+      <pre><code class="language-csharp">IEnumerator&lt;int&gt; enumerator = myList.GetEnumerator();
 try
 {
     while (enumerator.MoveNext())
@@ -1299,9 +1299,9 @@ finally
 <p>Why this design? Decoupling the collection (IEnumerable) from the iteration process (IEnumerator) allows multiple iterations to happen over the same collection simultaneously and independently. Two different foreach loops on the same list will each get their own separate enumerator object, so they won't interfere with each other.</p>
 
     <h2 id="sec-22-lec-22-iterator-and-yield-return">Lecture 22: Iterator and Yield Return</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-22-iterator-and-yield-return-introduction">Introduction</h3>
 <p>While you can manually create a class that implements IEnumerable&lt;T&gt; and IEnumerator&lt;T&gt;, it is complex and tedious. To simplify this, C# provides a powerful language feature called an iterator. An iterator is a special kind of method that uses the yield return keyword to implement an IEnumerable&lt;T&gt; sequence easily.</p>
-    <h3>How It Works: Compiler Magic and State Machines</h3>
+    <h3 id="sec-22-lec-22-iterator-and-yield-return-how-it-works">How It Works: Compiler Magic and State Machines</h3>
 <p>When the compiler sees a method with a yield return statement, it does something amazing. It automatically generates a hidden state machine class behind the scenes. This generated class implements both IEnumerable&lt;T&gt; and IEnumerator&lt;T&gt; for you.</p>
     <ul>
       <li>When you first call the iterator method, it doesn't run any code. It just returns the new enumerator object.</li>
@@ -1310,7 +1310,7 @@ finally
       <li>The next time MoveNext() is called, your method resumes execution right where it left off, and continues until it hits the next yield return.</li>
       <li>This continues until the method finishes, at which point MoveNext() will return false. Deferred Execution A key benefit of this is deferred execution. The code in your iterator method does not run until you actually start iterating over it. This is extremely efficient, especially for large or infinite sequences, as you only generate the items as they are needed.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-22-iterator-and-yield-return-example">Example</h3>
 <p>Let's create a method that generates all even numbers up to a maximum, without having to create a big list in memory first.</p>
 
     <div class="code-block-container">
@@ -1321,7 +1321,7 @@ finally
           Copy
         </button>
       </div>
-      <pre><code>// This method is an iterator. It returns an IEnumerable&lt;int&gt;.
+      <pre><code class="language-csharp">// This method is an iterator. It returns an IEnumerable&lt;int&gt;.
 public IEnumerable&lt;int&gt; GetEvenNumbers(int maxNumber)
 {
     Console.WriteLine(&quot;--- Iterator method started ---&quot;);
@@ -1345,7 +1345,7 @@ public IEnumerable&lt;int&gt; GetEvenNumbers(int maxNumber)
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(&quot;About to start foreach loop...&quot;);
+      <pre><code class="language-csharp">Console.WriteLine(&quot;About to start foreach loop...&quot;);
 // The code inside GetEvenNumbers will only execute as the loop asks for items.
 foreach (int number in evenNumbers)
 {
@@ -1353,15 +1353,15 @@ foreach (int number in evenNumbers)
 }</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-22-lec-22-iterator-and-yield-return-output">Output</h3>
 <p>About to start foreach loop... --- Iterator method started --- Yielding 2 Received 2 in the loop. Yielding 4 Received 4 in the loop. Yielding 6 Received 6 in the loop. Yielding 8 Received 8 in the loop. Yielding 10 Received 10 in the loop. --- Iterator method finished ---</p>
 
     <h2 id="sec-22-lec-23-custom-collections">Lecture 23: Custom Collections</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-23-custom-collections-introduction">Introduction</h3>
 <p>By implementing the IEnumerable&lt;T&gt; interface, you can make your own custom classes compatible with the foreach loop and LINQ, allowing them to be treated like standard collections.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-23-custom-collections-how-it-works">How It Works</h3>
 <p>The simplest way to implement IEnumerable&lt;T&gt; on a custom class that already uses an internal collection (like a List&lt;T&gt;) is to simply &quot;pass through&quot; the request. Your class's GetEnumerator() method can just return the result of calling GetEnumerator() on the internal list. You will also need to implement the non-generic IEnumerable.GetEnumerator() as well, which can just call the generic version.</p>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-23-custom-collections-example">Example</h3>
 <p>A Custom Playlist Class</p>
 
     <div class="code-block-container">
@@ -1372,7 +1372,7 @@ foreach (int number in evenNumbers)
           Copy
         </button>
       </div>
-      <pre><code>public class Song
+      <pre><code class="language-csharp">public class Song
 {
     public string Title { get; set; }
 }
@@ -1388,7 +1388,7 @@ foreach (int number in evenNumbers)
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     private List&lt;Song&gt; _songs = new List&lt;Song&gt;();
     public void AddSong(Song song)
     {
@@ -1416,27 +1416,27 @@ myPlaylist.AddSong(new Song { Title = &quot;Stairway to Heaven&quot; });
   
 
     <h2 id="sec-22-lec-24-custom-collection-with-ilist">Lecture 24: Custom Collection with IList</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-24-custom-collection-with-ilist-introduction">Introduction</h3>
 <p>If you want your custom collection to have full list-like capabilities, including indexed access (myCollection[i]), you would implement the IList&lt;T&gt; interface.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-24-custom-collection-with-ilist-how-it-works">How It Works</h3>
 <p>This is a much more advanced task because IList&lt;T&gt; inherits from ICollection&lt;T&gt; and IEnumerable&lt;T&gt;. This means you must provide an implementation for all of their members, including Count, Add, Remove, Clear, IndexOf, the indexer this[int], and more. For most real-world scenarios, it is far simpler and more effective to use a List&lt;T&gt; as a private backing field and expose the functionality you need through your own public methods, rather than re-implementing the entire IList&lt;T&gt; interface from scratch.</p>
 
     <h2 id="sec-22-lec-25-custom-collection-with-idictionary">Lecture 25: Custom Collection with IDictionary</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-25-custom-collection-with-idictionary-introduction">Introduction</h3>
 <p>Similarly, if you want to create a custom key-value collection, you would implement the IDictionary&lt;TKey, TValue&gt; interface.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-25-custom-collection-with-idictionary-how-it-works">How It Works</h3>
 <p>Like IList&lt;T&gt;, this is a complex interface that requires you to implement all the functionality of a dictionary, including an indexer for keys, Add, Remove, ContainsKey, and properties like Keys and Values. Again, this is rarely necessary. The built-in Dictionary&lt;TKey, TValue&gt; is highly optimized and sufficient for almost all use cases. It is generally better to use a Dictionary internally and expose its functionality in a controlled way.</p>
 
     <h2 id="sec-22-lec-26-iequatable">Lecture 26: IEquatable</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-26-iequatable-introduction">Introduction</h3>
 <p>The IEquatable&lt;T&gt; interface provides a type-safe method for determining value equality. While all objects inherit the Equals(object obj) method from System.Object, implementing the generic IEquatable&lt;T&gt; interface is a best practice that offers better performance and type safety.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-26-iequatable-how-it-works">How It Works</h3>
 <p>This interface defines a single method: bool Equals(T other). The benefits of implementing this are:</p>
     <ol>
       <li><strong>Type Safety:</strong> The other parameter is strongly typed to your class or struct (T). This means you do not need to perform a type check or cast other from object, making your code cleaner and safer.</li>
       <li><strong>Performance for Value Types:</strong> When a value type (a struct) is passed to the object.Equals(object obj) method, it must be boxed, which hurts performance. The IEquatable&lt;T&gt;.Equals(T other) method takes the struct directly as a value type, completely avoiding the boxing penalty. Many collection methods, like List&lt;T&gt;.Contains(), are optimized to use this interface if it's available. Best Practice The standard best practice is to have your type implement both IEquatable&lt;T&gt; and override object.Equals. Your overridden object.Equals should simply call your type-safe IEquatable&lt;T&gt;.Equals implementation. And remember the golden rule: If you implement equality, you must also override GetHashCode().</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-26-iequatable-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1446,7 +1446,7 @@ myPlaylist.AddSong(new Song { Title = &quot;Stairway to Heaven&quot; });
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     public int X { get; set; }
     public int Y { get; set; }
     // Implementation of the IEquatable&lt;T&gt; interface public bool Equals(Point other)
@@ -1471,18 +1471,18 @@ myPlaylist.AddSong(new Song { Title = &quot;Stairway to Heaven&quot; });
   
 
     <h2 id="sec-22-lec-27-icomparable">Lecture 27: IComparable</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-27-icomparable-introduction">Introduction</h3>
 <p>The IComparable&lt;T&gt; interface allows you to define a type's natural sort order. By implementing this interface, you are telling the .NET framework how instances of your type should be compared to one another to determine which one comes &quot;first&quot; in a sorted list.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-27-icomparable-how-it-works">How It Works</h3>
 <p>This interface defines a single method: int CompareTo(T other). The integer value that this method returns has a specific meaning:</p>
     <ul>
       <li><strong>Less than 0:</strong> The current instance comes before the other instance in the sort order.</li>
       <li><strong>Zero:</strong> The instances are considered equal in sort order.</li>
       <li><strong>Greater than 0:</strong> The current instance comes after the other instance in the sort order.</li>
     </ul>
-    <h3>When to Use It</h3>
+    <h3 id="sec-22-lec-27-icomparable-when-to-use-it">When to Use It</h3>
 <p>You should implement IComparable&lt;T&gt; on your custom objects when you want built-in methods like List&lt;T&gt;.Sort() or Array.Sort() to work &quot;out of the box&quot; without needing to provide any extra sorting logic. It defines the default, most logical way to order your objects.</p>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-27-icomparable-example">Example</h3>
 <p>Let's make our Product class sortable by its Price by default.</p>
 
     <div class="code-block-container">
@@ -1493,7 +1493,7 @@ myPlaylist.AddSong(new Song { Title = &quot;Stairway to Heaven&quot; });
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     public string Name { get; set; }
     public decimal Price { get; set; }
     // Implement the CompareTo method to define the natural sort order. public int CompareTo(Product other)
@@ -1520,16 +1520,16 @@ products.ForEach(p =&gt; Console.WriteLine(p));</code></pre>
   
 
     <h2 id="sec-22-lec-28-icomparer">Lecture 28: IComparer</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-28-icomparer-introduction">Introduction</h3>
 <p>The IComparer&lt;T&gt; interface is used to create an external helper class that provides a custom or secondary sort order. This decouples the sorting logic from the object itself, allowing you to sort the same collection of objects in many different ways.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-28-icomparer-how-it-works">How It Works</h3>
 <p>This interface defines a single method: int Compare(T x, T y). The return value has the same meaning as in IComparable: return &lt; 0 if x comes before y, 0 if they are equal, and &gt; 0 if x comes after y.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-22-lec-28-icomparer-when-to-use-it">When to Use It</h3>
     <ol>
       <li>When the class you want to sort does not implement IComparable&lt;T&gt;, and you cannot modify its source code (e.g., it's from a third-party library).</li>
       <li>When you want to sort the same collection of objects in multiple different ways. For example, you might want to sort a list of Product objects sometimes by price, sometimes by name, and sometimes by stock level.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-28-icomparer-example">Example</h3>
 <p>Let's create a custom comparer to sort our Product objects by name, ignoring their natural sort order (which is by price).</p>
 
     <div class="code-block-container">
@@ -1540,7 +1540,7 @@ products.ForEach(p =&gt; Console.WriteLine(p));</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// 1. Create a separate class that implements IComparer&lt;T&gt;.</code></pre>
+      <pre><code class="language-csharp">// 1. Create a separate class that implements IComparer&lt;T&gt;.</code></pre>
     </div>
   
 
@@ -1552,7 +1552,7 @@ products.ForEach(p =&gt; Console.WriteLine(p));</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     public int Compare(Product x, Product y)
     {
         // Use the string's built-in CompareTo method for alphabetical sorting.
@@ -1571,12 +1571,12 @@ products.ForEach(p =&gt; Console.WriteLine(p));</code></pre>
   
 
     <h2 id="sec-22-lec-29-covariance">Lecture 29: Covariance</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-29-covariance-introduction">Introduction</h3>
 <p>Covariance is an advanced generics concept that provides more flexibility in assignments. It allows you to use a more derived type than specified by the generic parameter. Covariance applies to &quot;output&quot; scenarios, like method return types.</p>
 <p>The core idea is based on the &quot;is-a&quot; relationship: a string is an object, so a sequence of strings should be usable where a sequence of objects is expected.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-29-covariance-how-it-works">How It Works</h3>
 <p>The out Generic Modifier For an interface or delegate to be covariant, its generic type parameter T must be marked with the out keyword (IEnumerable&lt;out T&gt;). This signals to the compiler that the type T is only ever used in output positions (e.g., as a return value of a method) and never as an input parameter. The IEnumerable&lt;T&gt; interface is the classic example of a covariant interface.</p>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-29-covariance-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1586,7 +1586,7 @@ products.ForEach(p =&gt; Console.WriteLine(p));</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// A list of strings is created.
+      <pre><code class="language-csharp">// A list of strings is created.
 IEnumerable&lt;string&gt; strings = new List&lt;string&gt; { &quot;hello&quot;, &quot;world&quot; };
 // This assignment is allowed because IEnumerable&lt;T&gt; is covariant.
 // You can assign a sequence of a more derived type (string)
@@ -1603,11 +1603,11 @@ IEnumerable&lt;object&gt; objects = strings;
   
 
     <h2 id="sec-22-lec-30-contravariance">Lecture 30: Contravariance</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-22-lec-30-contravariance-introduction">Introduction</h3>
 <p>Contravariance is the logical opposite of covariance. It allows you to use a less derived (more general) type than specified by the generic parameter. Contravariance applies to &quot;input&quot; scenarios, like method parameters.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-22-lec-30-contravariance-how-it-works">How It Works</h3>
 <p>The in Generic Modifier For an interface or delegate to be contravariant, its generic type parameter T must be marked with the in keyword (Action&lt;in T&gt;). This signals that the type T is only ever used in input positions (as a parameter to a method). &quot; If you need a method that takes a Giraffe, it is perfectly safe to provide a method that can take any Animal, because a Giraffe &quot;is an&quot; Animal. The Action&lt;T&gt; delegate is the classic example of a contravariant delegate.</p>
-    <h3>Example</h3>
+    <h3 id="sec-22-lec-30-contravariance-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -1617,7 +1617,7 @@ IEnumerable&lt;object&gt; objects = strings;
           Copy
         </button>
       </div>
-      <pre><code>// 1. Create an Action that can work on any object (the more general type).
+      <pre><code class="language-csharp">// 1. Create an Action that can work on any object (the more general type).
 Action&lt;object&gt; printObject = obj =&gt;
 Console.WriteLine(obj.GetHashCode());
 // 2. We need an Action that works on strings (the more derived type).
@@ -1651,6 +1651,18 @@ printString(&quot;Hello, World!&quot;);</code></pre>
 
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="22" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -1679,127 +1691,451 @@ printString(&quot;Hello, World!&quot;);</code></pre>
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-22-lec-1-introduction-to-collections" class="toc-link">Lecture 1: Introduction to Collections</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-1-introduction-to-collections-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-2-list-t" class="toc-link">Lecture 2: List&lt;T&gt;</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-2-list-t-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-2-list-t-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-2-list-t-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-3-add-and-addrange" class="toc-link">Lecture 3: Add and AddRange</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-3-add-and-addrange-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-3-add-and-addrange-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-4-insert-and-insertrange" class="toc-link">Lecture 4: Insert and InsertRange</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-4-insert-and-insertrange-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-4-insert-and-insertrange-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-5-remove-removeat-removerange-removeall-clear" class="toc-link">Lecture 5: Remove, RemoveAt, RemoveRange, Remove</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-5-remove-removeat-removerange-removeall-clear-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-5-remove-removeat-removerange-removeall-clear-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-6-indexof-binarysearch-contains" class="toc-link">Lecture 6: IndexOf, BinarySearch, Contains</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-6-indexof-binarysearch-contains-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-6-indexof-binarysearch-contains-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-7-sort-and-reverse" class="toc-link">Lecture 7: Sort and Reverse</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-7-sort-and-reverse-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-7-sort-and-reverse-example" class="toc-link">example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-7-sort-and-reverse-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-7-sort-and-reverse-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-8-toarray-and-foreach" class="toc-link">Lecture 8: ToArray and ForEach</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-8-toarray-and-foreach-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-8-toarray-and-foreach-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-9-the-find-family-of-methods" class="toc-link">Lecture 9: The Find Family of Methods</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-9-the-find-family-of-methods-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-9-the-find-family-of-methods-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-10-convertall" class="toc-link">Lecture 10: ConvertAll</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-10-convertall-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-10-convertall-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-10-convertall-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-10-convertall-important-note" class="toc-link">Important Note</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-10-convertall-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-11-dictionary" class="toc-link">Lecture 11: Dictionary</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-11-dictionary-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-11-dictionary-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-11-dictionary-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-12-sortedlist" class="toc-link">Lecture 12: SortedList</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-12-sortedlist-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-12-sortedlist-how-it-works" class="toc-link">How It Works: Internal Arrays</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-12-sortedlist-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-12-sortedlist-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-13-hashtable" class="toc-link">Lecture 13: Hashtable</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-13-hashtable-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-13-hashtable-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-14-hashset" class="toc-link">Lecture 14: HashSet</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-14-hashset-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-14-hashset-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-14-hashset-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-15-arraylist" class="toc-link">Lecture 15: ArrayList</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-15-arraylist-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-15-arraylist-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-16-stack" class="toc-link">Lecture 16: Stack</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-16-stack-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-16-stack-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-16-stack-example" class="toc-link">Example: Browser History &quot;Back&quot; But</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-17-queue" class="toc-link">Lecture 17: Queue</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-17-queue-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-17-queue-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-17-queue-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-18-collection-of-objects" class="toc-link">Lecture 18: Collection of Objects</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-18-collection-of-objects-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-18-collection-of-objects-how-it-works" class="toc-link">How It Works: Storing References, N</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-18-collection-of-objects-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-19-object-relations" class="toc-link">Lecture 19: Object Relations</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-19-object-relations-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-19-object-relations-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-20-built-in-collection-classes-and-interfaces-hi" class="toc-link">Lecture 20: Built-in Collection Classes and Inte</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-20-built-in-collection-classes-and-interfaces-hi-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-20-built-in-collection-classes-and-interfaces-hi-why-it-matters" class="toc-link">Why It Matters</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-21-ienumerable-and-ienumerator-introduction" class="toc-link">Lecture 21: IEnumerable and IEnumerator Introduc</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-21-ienumerable-and-ienumerator-introduction-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-22-iterator-and-yield-return" class="toc-link">Lecture 22: Iterator and Yield Return</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-22-iterator-and-yield-return-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-22-iterator-and-yield-return-how-it-works" class="toc-link">How It Works: Compiler Magic and St</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-22-iterator-and-yield-return-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-22-iterator-and-yield-return-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-23-custom-collections" class="toc-link">Lecture 23: Custom Collections</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-23-custom-collections-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-23-custom-collections-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-23-custom-collections-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-24-custom-collection-with-ilist" class="toc-link">Lecture 24: Custom Collection with IList</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-24-custom-collection-with-ilist-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-24-custom-collection-with-ilist-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-25-custom-collection-with-idictionary" class="toc-link">Lecture 25: Custom Collection with IDictionary</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-25-custom-collection-with-idictionary-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-25-custom-collection-with-idictionary-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-26-iequatable" class="toc-link">Lecture 26: IEquatable</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-26-iequatable-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-26-iequatable-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-26-iequatable-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-27-icomparable" class="toc-link">Lecture 27: IComparable</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-27-icomparable-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-27-icomparable-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-27-icomparable-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-27-icomparable-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-28-icomparer" class="toc-link">Lecture 28: IComparer</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-28-icomparer-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-28-icomparer-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-28-icomparer-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-28-icomparer-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-29-covariance" class="toc-link">Lecture 29: Covariance</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-29-covariance-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-29-covariance-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-29-covariance-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-30-contravariance" class="toc-link">Lecture 30: Contravariance</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-30-contravariance-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-30-contravariance-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-22-lec-30-contravariance-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-22-lec-31-imp-points-to-remember" class="toc-link">Lecture 31: IMP Points to Remember</a>
       </li>
     
@@ -1811,6 +2147,7 @@ printString(&quot;Hello, World!&quot;);</code></pre>
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

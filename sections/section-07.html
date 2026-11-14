@@ -446,7 +446,7 @@
       <article class="docs-content">
         
     <h2 id="sec-7-lec-1-overview-of-type-conversion">Lecture 1: Overview of Type Conversion</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-7-lec-1-overview-of-type-conversion-introduction">Introduction</h3>
 <p>Type conversion, also known as type casting, is the process of converting a variable from one data type to another. This is a fundamental and frequent requirement in programming. You often receive data in one format but need it in another to perform operations.</p>
 <p>For instance, you might get a user's age as string text from a console input, but you need to convert it to an int to perform mathematical calculations with it. C# is a statically-typed language, meaning the compiler must know the type of every variable. Type conversion is the mechanism that allows us to work within this system flexibly. &quot;</p>
     <ol>
@@ -460,11 +460,11 @@
     </ul>
 
     <h2 id="sec-7-lec-2-implicit-casting">Lecture 2: Implicit Casting</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-7-lec-2-implicit-casting-introduction">Introduction</h3>
 <p>Implicit casting is the simplest form of type conversion. It is performed automatically by the C# compiler when it can verify that the conversion is guaranteed to be safe and that no data will be lost. It's often called a widening conversion because you are moving a value into a data type that has a wider range or greater precision.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-7-lec-2-implicit-casting-how-it-works">How It Works</h3>
 <p>The compiler allows this to happen automatically because the destination type can fully represent every possible value of the source type. For example, the long data type has a much larger range than the int data type. Therefore, any possible int value can fit comfortably inside a long without any risk of overflow. The compiler recognizes this and performs the conversion without requiring any special syntax from you.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-7-lec-2-implicit-casting-when-to-use-it">When to Use It</h3>
 <p>You don't &quot;choose&quot; to use it; it simply happens whenever you assign a variable of a smaller compatible type to a variable of a larger type. Common Examples</p>
     <ul>
       <li><strong>int to long:</strong> C#</li>
@@ -478,7 +478,7 @@
           Copy
         </button>
       </div>
-      <pre><code>int numberOfUsers = 50000;</code></pre>
+      <pre><code class="language-csharp">int numberOfUsers = 50000;</code></pre>
     </div>
   
 <p>long bigNumberOfUsers = numberOfUsers; // Implicitly cast. No data loss possible.</p>
@@ -491,7 +491,7 @@
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(bigNumberOfUsers);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(bigNumberOfUsers);</code></pre>
     </div>
   
     <ul>
@@ -506,7 +506,7 @@
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(itemCountAsDouble);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(itemCountAsDouble);</code></pre>
     </div>
   
 <p>```</p>
@@ -522,7 +522,7 @@
           Copy
         </button>
       </div>
-      <pre><code>float price = 49.95F;</code></pre>
+      <pre><code class="language-csharp">float price = 49.95F;</code></pre>
     </div>
   
 <p>double morePrecisePrice = price; // Implicitly cast.</p>
@@ -535,7 +535,7 @@
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(morePrecisePrice);</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(morePrecisePrice);</code></pre>
     </div>
   
 
@@ -563,9 +563,9 @@
   
 
     <h2 id="sec-7-lec-3-explicit-casting">Lecture 3: Explicit Casting</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-7-lec-3-explicit-casting-introduction">Introduction</h3>
 <p>Explicit casting is a conversion that you must manually request from the compiler. You do this when you are converting from a &quot;larger&quot; type to a &quot;smaller&quot; type, a process known as a narrowing conversion. This action is potentially unsafe because it can result in data loss or, in more complex scenarios, throw an exception at run-time.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-7-lec-3-explicit-casting-how-it-works">How It Works</h3>
 <p>The Cast Operator (type) You perform an explicit cast by placing the destination data type in parentheses</p>
 <p>before the variable you want to convert. By doing this, you are effectively telling the compiler: &quot;I am aware that this conversion might lose data, but I accept the risk and I am taking responsibility for the result.&quot; Common Scenarios and Data Loss</p>
     <ol>
@@ -580,7 +580,7 @@
           Copy
         </button>
       </div>
-      <pre><code>double myDouble = 9.99;</code></pre>
+      <pre><code class="language-csharp">double myDouble = 9.99;</code></pre>
     </div>
   
 <p>int myInt = (int)myDouble; // You MUST use the (int) cast operator.</p>
@@ -593,7 +593,7 @@
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(myInt); 	// Output: 9. The .99 is completely lost.</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(myInt); 	// Output: 9. The .99 is completely lost.</code></pre>
     </div>
   
     <ol>
@@ -608,7 +608,7 @@
           Copy
         </button>
       </div>
-      <pre><code>long myLong = 100;</code></pre>
+      <pre><code class="language-csharp">long myLong = 100;</code></pre>
     </div>
   
 <p>int myIntFromLong = (int)myLong; // This is safe.</p>
@@ -621,7 +621,7 @@
           Copy
         </button>
       </div>
-      <pre><code>Console.WriteLine(myIntFromLong); // Output: 100</code></pre>
+      <pre><code class="language-csharp">Console.WriteLine(myIntFromLong); // Output: 100</code></pre>
     </div>
   
 <p>long veryLargeLong = 3000000000L; // This is larger than int.MaxValue</p>
@@ -634,7 +634,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// The following line would result in an overflow and an incorrect value.
+      <pre><code class="language-csharp">// The following line would result in an overflow and an incorrect value.
 // int overflowedInt = (int)veryLargeLong; InvalidCastException</code></pre>
     </div>
   
@@ -662,12 +662,12 @@
   
 
     <h2 id="sec-7-lec-4-parse">Lecture 4: Parse</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-7-lec-4-parse-introduction">Introduction</h3>
 <p>Parsing is the specific process of converting the string representation of a value into its actual data type. This is extremely common because data from external sources—user input, text files, web responses—almost always arrives as a string. Every primitive type in C# (int, double, bool, etc.) provides a static Parse method to handle this.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-7-lec-4-parse-how-it-works">How It Works</h3>
 <p>The Parse method takes a string as input and attempts to interpret it as a value of its type. Parse() expects a string containing only digits (and possibly a leading minus sign). &quot; It assumes the string will be in a valid format.</p>
 <p>If it is not, the method will fail by throwing a FormatException. If this exception is not handled (with a try-catch block, a more advanced topic), your entire application will crash.</p>
-    <h3>When to Use It</h3>
+    <h3 id="sec-7-lec-4-parse-when-to-use-it">When to Use It</h3>
 <p>You should only use Parse when you are absolutely certain that the string source is reliable and will always contain a valid value. For example, reading from a configuration file that you control, or after you have already validated the string through other means. You should never use Parse on direct user input. Common Examples C#</p>
 
     <div class="code-block-container">
@@ -678,7 +678,7 @@
           Copy
         </button>
       </div>
-      <pre><code>string numberString = &quot;123&quot;;</code></pre>
+      <pre><code class="language-csharp">string numberString = &quot;123&quot;;</code></pre>
     </div>
   
 <p>int parsedInt = int.Parse(numberString); // Works perfectly. parsedInt is 123.</p>
@@ -691,7 +691,7 @@
           Copy
         </button>
       </div>
-      <pre><code>string boolString = &quot;true&quot;;</code></pre>
+      <pre><code class="language-csharp">string boolString = &quot;true&quot;;</code></pre>
     </div>
   
 <p>bool parsedBool = bool.Parse(boolString); // Works perfectly. parsedBool is true.</p>
@@ -704,16 +704,16 @@
           Copy
         </button>
       </div>
-      <pre><code>string invalidNumberString = &quot;123a&quot;;
+      <pre><code class="language-csharp">string invalidNumberString = &quot;123a&quot;;
 // The following line will THROW a FormatException and crash the program if not handled.
 // int errorInt = int.Parse(invalidNumberString);</code></pre>
     </div>
   
 
     <h2 id="sec-7-lec-5-tryparse">Lecture 5: TryParse</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-7-lec-5-tryparse-introduction">Introduction</h3>
 <p>The TryParse method is the safe, robust, and preferred alternative to Parse for converting strings, especially when dealing with unreliable data like user input. Instead of throwing an exception upon failure, it gracefully returns a bool indicating whether the conversion succeeded or not.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-7-lec-5-tryparse-how-it-works">How It Works</h3>
 <p>The out Parameter The TryParse method has a very distinct signature, typically bool TryParse(string s, out T result), where T is the type.</p>
     <ol>
       <li>It attempts to parse the input string s.</li>
@@ -721,7 +721,7 @@
       <li>If the conversion fails, it returns false and places the default value for the type (e.g., 0 for an int) into the result variable.</li>
       <li>Crucially, no exception is ever thrown, allowing you to handle failures elegantly with a simple if statement.</li>
     </ol>
-    <h3>When to Use It</h3>
+    <h3 id="sec-7-lec-5-tryparse-when-to-use-it">When to Use It</h3>
 <p>Almost always. This should be your default choice for converting strings from any external source (user input, files, network data). It allows you to build robust applications that don't crash due to invalid input. Common Example: Handling User Input C#</p>
 
     <div class="code-block-container">
@@ -732,7 +732,7 @@
           Copy
         </button>
       </div>
-      <pre><code>Console.Write(&quot;Please enter your age: &quot;);
+      <pre><code class="language-csharp">Console.Write(&quot;Please enter your age: &quot;);
 string userInput = Console.ReadLine();
 // We use the modern 'out variable' declaration here. if (int.TryParse(userInput, out int age))
 {
@@ -749,9 +749,9 @@ else
   
 
     <h2 id="sec-7-lec-6-conversion-methods-the-convert-class">Lecture 6: Conversion Methods (The Convert Class)</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-7-lec-6-conversion-methods-the-convert-class-introduction">Introduction</h3>
 <p>C# provides a dedicated static helper class, System.Convert, which contains a rich set of methods for converting between the base data types. It offers more flexibility and different behaviors compared to casting or parsing.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-7-lec-6-conversion-methods-the-convert-class-how-it-works">How It Works</h3>
 <p>The Convert class provides a consistent set of methods, such as Convert.ToInt32(), Convert.ToDouble(), Convert.ToString(), and Convert.ToBoolean(). ToInt32 is the method for converting to a standard int. Key Differences and Behaviors</p>
     <ol>
       <li>Rounding vs. Truncation (Critical Difference):</li>
@@ -772,7 +772,7 @@ else
           Copy
         </button>
       </div>
-      <pre><code>double d = 9.7;</code></pre>
+      <pre><code class="language-csharp">double d = 9.7;</code></pre>
     </div>
   
 <p>int castedInt = (int)d; // Result: 9 int convertedInt = Convert.ToInt32(d); // Result: 10</p>
@@ -783,7 +783,7 @@ else
       <li>int.Parse(null) will throw an exception.</li>
       <li>Convert.ToInt32(null) will gracefully return 0.</li>
     </ul>
-    <h3>When to Use It</h3>
+    <h3 id="sec-7-lec-6-conversion-methods-the-convert-class-when-to-use-it">When to Use It</h3>
     <ul>
       <li>When you are converting between different non-string types (like double to int) and you prefer rounding behavior over truncation.</li>
       <li>When you are converting from an object type and need to handle null values gracefully without a try-catch block. Interview Perspective</li>
@@ -809,6 +809,18 @@ else
     </ul>
 
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="7" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -838,31 +850,91 @@ else
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-7-lec-1-overview-of-type-conversion" class="toc-link">Lecture 1: Overview of Type Conversion</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-1-overview-of-type-conversion-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-7-lec-2-implicit-casting" class="toc-link">Lecture 2: Implicit Casting</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-2-implicit-casting-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-2-implicit-casting-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-2-implicit-casting-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-7-lec-3-explicit-casting" class="toc-link">Lecture 3: Explicit Casting</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-3-explicit-casting-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-3-explicit-casting-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-7-lec-4-parse" class="toc-link">Lecture 4: Parse</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-4-parse-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-4-parse-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-4-parse-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-7-lec-5-tryparse" class="toc-link">Lecture 5: TryParse</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-5-tryparse-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-5-tryparse-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-5-tryparse-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-7-lec-6-conversion-methods-the-convert-class" class="toc-link">Lecture 6: Conversion Methods (The Convert Class</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-6-conversion-methods-the-convert-class-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-6-conversion-methods-the-convert-class-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-7-lec-6-conversion-methods-the-convert-class-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-7-lec-7-imp-points-to-remember" class="toc-link">Lecture 7: IMP Points to remember</a>
       </li>
     
@@ -874,6 +946,7 @@ else
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

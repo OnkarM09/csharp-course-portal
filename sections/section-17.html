@@ -446,12 +446,12 @@
       <article class="docs-content">
         
     <h2 id="sec-17-lec-1-what-is-null">Lecture 1: What is null</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-17-lec-1-what-is-null-introduction">Introduction</h3>
 <p>In C#, null is a special literal that represents the absence of a value. It is used with reference types (like string, object, or any class instance) to signify that a variable does not point to any object in memory on the heap. It means the reference is empty or non-existent.</p>
 <p>By default, any variable of a reference type that has not been assigned an object is initialized to null. NET programming.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-17-lec-1-what-is-null-how-it-works">How It Works</h3>
 <p>The NullReferenceException The danger of null is that it leads to the dreaded NullReferenceException. This exception occurs at run-time when you try to access a member (a method, property, or field) on a variable that is currently null. You are essentially trying to press a button on a remote control that doesn't exist. The C# compiler cannot always detect this situation, so the program compiles fine but crashes when it runs.</p>
-    <h3>Example</h3>
+    <h3 id="sec-17-lec-1-what-is-null-example">Example</h3>
 <p>Let's look at a simple scenario that causes this error. C#</p>
 
     <div class="code-block-container">
@@ -462,7 +462,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public class Program
+      <pre><code class="language-csharp">public class Program
 {
     public static void Main(string[] args)
     {
@@ -490,7 +490,7 @@
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     Console.WriteLine(name.Length);
 }
 else
@@ -505,18 +505,18 @@ else
     </ul>
 
     <h2 id="sec-17-lec-2-nullable-types">Lecture 2: Nullable Types</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-17-lec-2-nullable-types-introduction">Introduction</h3>
 <p>) cannot be null. This is because they are not references; a variable of a value type always contains the value itself. An int variable always contains a number, even if it's just 0.</p>
 <p>&quot; For example, in a database, a Price or DateOfBirth column might allow NULL values. To represent this in C#, the language provides nullable value types.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-17-lec-2-nullable-types-how-it-works">How It Works</h3>
 <p>The ? Syntax and Nullable&lt;T&gt; You make a value type nullable by adding a question mark (?) after its name.</p>
-    <h3>Syntax: int?, double?, bool?</h3>
+    <h3 id="sec-17-lec-2-nullable-types-syntax">Syntax: int?, double?, bool?</h3>
 <p>This shorthand is an alias for a special generic struct called System.Nullable&lt;T&gt;. So, int? is just a cleaner way of writing Nullable&lt;int&gt;. This struct wraps your value type and adds two important properties:</p>
     <ol>
       <li><strong>HasValue:</strong> A bool property that is true if the variable holds an actual value and false if it is null.</li>
       <li><strong>Value:</strong> A property of type T that gets the underlying value. You should only access this property after checking that HasValue is true, otherwise you will get an InvalidOperationException.</li>
     </ol>
-    <h3>Example</h3>
+    <h3 id="sec-17-lec-2-nullable-types-example">Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -526,7 +526,7 @@ else
           Copy
         </button>
       </div>
-      <pre><code>public class SurveyResponse
+      <pre><code class="language-csharp">public class SurveyResponse
 {
     // A rating might be optional, so we use a nullable int.
     public int? Rating { get; set; }
@@ -556,22 +556,22 @@ public class Program
 }</code></pre>
     </div>
   
-    <h3>Output</h3>
+    <h3 id="sec-17-lec-2-nullable-types-output">Output</h3>
 <p>Rating provided: 5 No rating was provided.</p>
 
     <h2 id="sec-17-lec-3-null-coalescing-operator">Lecture 3: Null Coalescing Operator (??)</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-17-lec-3-null-coalescing-operator-introduction">Introduction</h3>
 <p>The null coalescing operator ?? is a concise binary operator used to provide a default value for a nullable type or a reference type if it is null. It's a clean and highly readable shortcut for a common type of if check.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-17-lec-3-null-coalescing-operator-how-it-works">How It Works</h3>
 <p>The operator works on two operands: A ?? B</p>
     <ol>
       <li>It evaluates the left-hand operand (A).</li>
       <li>If A is not null, the expression returns the value of A.</li>
       <li>If A is null, the expression returns the value of the right-hand operand (B).</li>
     </ol>
-    <h3>When to Use It</h3>
+    <h3 id="sec-17-lec-3-null-coalescing-operator-when-to-use-it">When to Use It</h3>
 <p>Use this operator whenever you want to use a variable's value but fall back to a default value if the variable is null. It makes your code much shorter and more expressive.</p>
-    <h3>Example</h3>
+    <h3 id="sec-17-lec-3-null-coalescing-operator-example">Example</h3>
 <p>Let's say we want to get a user's nickname to display, but if they haven't set one, we should use their full name as a fallback. C#</p>
 
     <div class="code-block-container">
@@ -582,7 +582,7 @@ public class Program
           Copy
         </button>
       </div>
-      <pre><code>public class User
+      <pre><code class="language-csharp">public class User
 {
     public string FullName { get; set; }
     public string Nickname { get; set; } // This can be null
@@ -603,7 +603,7 @@ string displayName1;</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>{
+      <pre><code class="language-csharp">{
     displayName1 = user1.Nickname;
 }
 else
@@ -620,15 +620,15 @@ Smith</code></pre>
   
 
     <h2 id="sec-17-lec-4-null-propagation-operator">Lecture 4: Null Propagation Operator (?.)</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-17-lec-4-null-propagation-operator-introduction">Introduction</h3>
 <p>The null propagation operator ?. (also known as the null-conditional operator) is a modern C# feature designed to make navigating object chains with potential null values much safer and more concise. It helps you avoid writing deeply nested if statements just to check for null at each step.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-17-lec-4-null-propagation-operator-how-it-works">How It Works</h3>
 <p>When you use ?. to access a member (a property or method), C# first checks if the object on the left of the ?. is null.</p>
     <ul>
       <li>If it is null, the entire expression immediately short-circuits and returns null. It never attempts to access the member on the right, thus avoiding a NullReferenceException.</li>
       <li>If it is not null, it proceeds to access the member as usual. This operator can be chained. If any part of the chain A?.B?.C is null, the entire expression gracefully evaluates to null. There is also a version for accessing indexers, called the null-conditional indexer (?[]).</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-17-lec-4-null-propagation-operator-example">Example</h3>
 <p>Consider a common scenario where you need to get a customer's postal code. The customer might be null, or their address might be null. C#</p>
 
     <div class="code-block-container">
@@ -639,7 +639,7 @@ Smith</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public class Address { public string PostalCode { get; set; } }
+      <pre><code class="language-csharp">public class Address { public string PostalCode { get; set; } }
 public class Customer { public Address ShippingAddress { get; set; } }
 public class Program
 {
@@ -692,6 +692,18 @@ public class Program
 
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="17" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -720,23 +732,83 @@ public class Program
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-17-lec-1-what-is-null" class="toc-link">Lecture 1: What is null</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-1-what-is-null-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-1-what-is-null-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-1-what-is-null-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-17-lec-2-nullable-types" class="toc-link">Lecture 2: Nullable Types</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-2-nullable-types-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-2-nullable-types-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-2-nullable-types-syntax" class="toc-link">Syntax: int?, double?, bool?</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-2-nullable-types-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-2-nullable-types-output" class="toc-link">Output</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-17-lec-3-null-coalescing-operator" class="toc-link">Lecture 3: Null Coalescing Operator (??)</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-3-null-coalescing-operator-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-3-null-coalescing-operator-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-3-null-coalescing-operator-when-to-use-it" class="toc-link">When to Use It</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-3-null-coalescing-operator-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-17-lec-4-null-propagation-operator" class="toc-link">Lecture 4: Null Propagation Operator (?.)</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-4-null-propagation-operator-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-4-null-propagation-operator-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-17-lec-4-null-propagation-operator-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-17-lec-5-imp-points-to-remember" class="toc-link">Lecture 5: IMP Points to Remember</a>
       </li>
     
@@ -748,6 +820,7 @@ public class Program
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

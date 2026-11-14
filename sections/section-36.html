@@ -456,7 +456,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// Zero-allocation invocation with ReadOnlySpan&lt;T&gt;:
+      <pre><code class="language-csharp">// Zero-allocation invocation with ReadOnlySpan&lt;T&gt;:
 public void LogMessages(params ReadOnlySpan&lt;string&gt; messages)
 {
     foreach (var msg in messages)
@@ -481,7 +481,7 @@ LogMessages(&quot;Init&quot;, &quot;Processing&quot;, &quot;Complete&quot;);</co
           Copy
         </button>
       </div>
-      <pre><code>public class AccountService
+      <pre><code class="language-csharp">public class AccountService
 {
     private readonly Lock _gate = new();
 
@@ -497,6 +497,18 @@ LogMessages(&quot;Init&quot;, &quot;Processing&quot;, &quot;Complete&quot;);</co
   
     
       </article>
+
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="36" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
 
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
@@ -526,11 +538,11 @@ LogMessages(&quot;Init&quot;, &quot;Processing&quot;, &quot;Complete&quot;);</co
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-36-params-collections" class="toc-link">1. Enhanced params Collections</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-36-system-threading-lock" class="toc-link">2. New System.Threading.Lock</a>
       </li>
     
@@ -542,6 +554,7 @@ LogMessages(&quot;Init&quot;, &quot;Processing&quot;, &quot;Complete&quot;);</co
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

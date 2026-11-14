@@ -448,9 +448,9 @@
     <h2 id="sec-13-lec-1-classes-enumerations">Classes, 	Enumerations</h2>
 
     <h2 id="sec-13-lec-2-partial-classes">Lecture 1: Partial Classes</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-13-lec-2-partial-classes-introduction">Introduction</h3>
 <p>A partial class is a special feature in C# that allows the definition of a single class to be split across multiple physical .cs files. When you compile your application, the C# compiler finds all the separate parts of the partial class and combines them into a single, complete class. This is purely a compile-time feature; at run-time, there is no difference between a regular class and a partial class.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-13-lec-2-partial-classes-how-it-works">How It Works</h3>
 <p>The partial Keyword To create a partial class, you use the partial keyword just before the class keyword in each file where a part of the class is defined. All parts must:</p>
     <ul>
       <li>Use the partial keyword.</li>
@@ -465,7 +465,7 @@
     <ul>
       <li><strong>Best Practice Note:</strong> While this is possible, a class that is so large it needs to be split often indicates a violation of the Single Responsibility Principle. It's usually a sign that the class is doing too much and should be refactored into several smaller, more focused classes.</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-13-lec-2-partial-classes-example">Example</h3>
 <p>Let's split a User class definition across two files. File 1: User.Data.cs C#</p>
 
     <div class="code-block-container">
@@ -476,7 +476,7 @@
           Copy
         </button>
       </div>
-      <pre><code>namespace MyWebApp
+      <pre><code class="language-csharp">namespace MyWebApp
 {
     // The first part of the User class, focusing on data. public partial class User
     {
@@ -497,7 +497,7 @@
           Copy
         </button>
       </div>
-      <pre><code>namespace MyWebApp
+      <pre><code class="language-csharp">namespace MyWebApp
 {
     // The second part of the User class, focusing on behavior. public partial class User
     {
@@ -513,9 +513,9 @@
 <p>At compile time, these two parts are combined into a single User class that has all four members.</p>
 
     <h2 id="sec-13-lec-3-partial-methods">Lecture 2: Partial Methods</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-13-lec-3-partial-methods-introduction">Introduction</h3>
 <p>A partial method is a special kind of method whose definition can be separated from its implementation. The signature (the declaration) of the method can be defined in one part of a partial class, and the implementation (the method body) can be optionally provided in another part of the same partial class.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-13-lec-3-partial-methods-how-it-works">How It Works</h3>
 <p>&amp; The &quot;Magic&quot; of Unimplemented Methods A partial method is declared with the partial keyword, must have a void return type, and is implicitly private. File 1 (e.g., a generated file): The Declaration C#</p>
 
     <div class="code-block-container">
@@ -526,7 +526,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public partial class MyComponent
+      <pre><code class="language-csharp">public partial class MyComponent
 {
     // This defines the SIGNATURE of the partial method. It's a &quot;hook&quot;.
     partial void OnNameChanged(string newName);
@@ -541,7 +541,7 @@
   
 <p>The key feature: If no other part of the MyComponent class provides an implementation for OnNameChanged, the C# compiler completely removes the method declaration AND all calls to it. The call OnNameChanged(name); is erased from the final compiled code. This means there is zero performance overhead for an unimplemented partial method.</p>
 <p>Why and When to Use It This feature is used almost exclusively by source generators. The generator defines a partial method as an &quot;optional hook&quot; that the developer can choose to implement. It allows the generated code to provide customizable entry points without forcing the developer to implement them if they are not needed.</p>
-    <h3>Example</h3>
+    <h3 id="sec-13-lec-3-partial-methods-example">Example</h3>
 <p>Implementing the Partial Method File 2 (e.g., your handwritten file): The Optional Implementation C#</p>
 
     <div class="code-block-container">
@@ -552,7 +552,7 @@
           Copy
         </button>
       </div>
-      <pre><code>public partial class MyComponent
+      <pre><code class="language-csharp">public partial class MyComponent
 {
     // We provide the IMPLEMENTATION for the partial method here.
     // Because this exists, the compiler will keep the call in SetName(). partial void OnNameChanged(string newName)
@@ -564,21 +564,21 @@
   
 
     <h2 id="sec-13-lec-4-static-classes">Lecture 3: Static Classes</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-13-lec-4-static-classes-introduction">Introduction</h3>
 <p>A static class is a class that cannot be instantiated and cannot be inherited. It can only contain static members (fields, properties, and methods). It acts as a simple container for a group of related utility functions or constants that do not depend on any object state.</p>
-    <h3>How It Works</h3>
+    <h3 id="sec-13-lec-4-static-classes-how-it-works">How It Works</h3>
 <p>A Compile-Time Construct Marking a class as static is primarily a way of telling the compiler to enforce two strict rules:</p>
     <ol>
       <li>All members of this class must also be declared as static. The compiler will give an error if you try to declare an instance member inside a static class.</li>
       <li>No one can create an instance of this class using the new keyword, and no other class can inherit from it. You don't need to create an object; you access the members directly through the class name. Why and When to Use It Use a static class when you have a collection of helper or utility methods that are logically related but do not need to be associated with a specific object's state.</li>
     </ol>
-    <h3>Real-World Examples from the .NET Framework</h3>
+    <h3 id="sec-13-lec-4-static-classes-real-world-examples-from-the-n">Real-World Examples from the .NET Framework</h3>
     <ul>
       <li>System.Math: Contains methods for mathematical operations like Sqrt(), Max(), Sin(). You don't need a Math object to calculate a square root.</li>
       <li>System.Console: Contains methods for interacting with the console window like WriteLine() and ReadKey().</li>
       <li>System.IO.File: Contains utility methods for working with files like ReadAllText() and Exists().</li>
     </ul>
-    <h3>Example</h3>
+    <h3 id="sec-13-lec-4-static-classes-example">Example</h3>
 <p>A Custom Utility Class C#</p>
 
     <div class="code-block-container">
@@ -589,7 +589,7 @@
           Copy
         </button>
       </div>
-      <pre><code>// 'static' ensures this class cannot be instantiated. public static class UnitConverter
+      <pre><code class="language-csharp">// 'static' ensures this class cannot be instantiated. public static class UnitConverter
 {
     private const double KmsInAMile = 1.60934;
     // All members must also be static. public static double KilometersToMiles(double km)
@@ -609,10 +609,10 @@ Console.WriteLine($&quot;10km is approximately {miles:F2} miles.&quot;);</code><
   
 
     <h2 id="sec-13-lec-5-enumerations">Lecture 4: Enumerations</h2>
-    <h3>Introduction</h3>
+    <h3 id="sec-13-lec-5-enumerations-introduction">Introduction</h3>
 <p>An enumeration, or enum, is a special value type that allows you to define a set of named integral constants. It provides a way to create a distinct type that represents a fixed set of related values, making your code more readable, maintainable, and type-safe. Why and When to Use It The primary purpose of an enum is to avoid &quot;magic numbers&quot; and improve code readability.</p>
 <p>Suspended). This is self-documenting and far less error-prone. It restricts a variable to a known set of allowed values, preventing bugs where an invalid integer might be assigned.</p>
-    <h3>How It Works: Underlying Values</h3>
+    <h3 id="sec-13-lec-5-enumerations-how-it-works">How It Works: Underlying Values</h3>
 <p>By default, an enum's underlying data type is int. The compiler assigns values to the members starting from 0 and incrementing by one. C#</p>
 
     <div class="code-block-container">
@@ -623,7 +623,7 @@ Console.WriteLine($&quot;10km is approximately {miles:F2} miles.&quot;);</code><
           Copy
         </button>
       </div>
-      <pre><code>public enum DayOfWeek // Starts at 0
+      <pre><code class="language-csharp">public enum DayOfWeek // Starts at 0
 {
     Sunday, 	// 0
     Monday, 	// 1
@@ -648,7 +648,7 @@ Console.WriteLine($&quot;10km is approximately {miles:F2} miles.&quot;);</code><
           Copy
         </button>
       </div>
-      <pre><code>public enum Month { January = 1, February = 2, /* ... */ }</code></pre>
+      <pre><code class="language-csharp">public enum Month { January = 1, February = 2, /* ... */ }</code></pre>
     </div>
   
     <ol>
@@ -663,7 +663,7 @@ Console.WriteLine($&quot;10km is approximately {miles:F2} miles.&quot;);</code><
           Copy
         </button>
       </div>
-      <pre><code>public enum ErrorCode : ushort { NotFound = 404, ServerError =
+      <pre><code class="language-csharp">public enum ErrorCode : ushort { NotFound = 404, ServerError =
 500 }
 Example</code></pre>
     </div>
@@ -677,7 +677,7 @@ Example</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>public enum ShippingStatus
+      <pre><code class="language-csharp">public enum ShippingStatus
 {
     Ordered,
     Processing,
@@ -728,6 +728,18 @@ public class ShippingService
 
       </article>
 
+      <!-- Section Completion Tracker -->
+      <div class="completion-bar">
+        <div class="completion-info">
+          <span style="font-size: 1.2rem;">🎓</span>
+          <span>Finished studying this section? Track your progress across the curriculum:</span>
+        </div>
+        <button class="completion-btn" id="completionBtn" data-section="13" aria-pressed="false">
+          <span class="completion-icon">○</span>
+          <span class="completion-text">Mark Section Complete</span>
+        </button>
+      </div>
+
       <!-- Bottom Navigation Prev / Next -->
       <nav class="bottom-nav">
         
@@ -756,27 +768,75 @@ public class ShippingService
       <div class="toc-title">On This Page</div>
       <ul class="toc-list">
         
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-13-lec-1-classes-enumerations" class="toc-link">Classes, 	Enumerations</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item ">
         <a href="#sec-13-lec-2-partial-classes" class="toc-link">Lecture 1: Partial Classes</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-13-lec-2-partial-classes-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-13-lec-2-partial-classes-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-13-lec-2-partial-classes-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-13-lec-3-partial-methods" class="toc-link">Lecture 2: Partial Methods</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-13-lec-3-partial-methods-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-13-lec-3-partial-methods-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-13-lec-3-partial-methods-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-13-lec-4-static-classes" class="toc-link">Lecture 3: Static Classes</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-13-lec-4-static-classes-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-13-lec-4-static-classes-how-it-works" class="toc-link">How It Works</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-13-lec-4-static-classes-real-world-examples-from-the-n" class="toc-link">Real-World Examples from the .NET Framewor</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-13-lec-4-static-classes-example" class="toc-link">Example</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-13-lec-5-enumerations" class="toc-link">Lecture 4: Enumerations</a>
       </li>
     
-      <li class="toc-item">
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-13-lec-5-enumerations-introduction" class="toc-link">Introduction</a>
+      </li>
+    
+      <li class="toc-item toc-sub-item">
+        <a href="#sec-13-lec-5-enumerations-how-it-works" class="toc-link">How It Works: Underlying Values</a>
+      </li>
+    
+      <li class="toc-item ">
         <a href="#sec-13-lec-6-imp-points-to-remember" class="toc-link">Lecture 5: IMP Points to Remember</a>
       </li>
     
@@ -788,6 +848,7 @@ public class ShippingService
   <!-- Scripts -->
   <script src="../assets/js/search-index.js"></script>
   <script src="../assets/js/search-engine.js"></script>
+  <script src="../assets/js/prism-csharp.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>
