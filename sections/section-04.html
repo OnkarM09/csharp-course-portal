@@ -447,19 +447,29 @@
         
     <h2 id="sec-4-lec-1-understanding-oop-fundamentals">Lecture 1: Understanding OOP Fundamentals</h2>
     <h3>Introduction</h3>
-    <p>Object-Oriented Programming (OOP) is a fundamental shift in how we think about and structure our programs. Before OOP, the dominant style was procedural programming, where a program was essentially a long list of instructions or functions that acted upon data. This works for small programs, but as applications grow in size and complexity, it becomes incredibly difficult to manage. Changes in one part of the code can unpredictably break other parts, leading to what is often called &quot;spaghetti code.&quot; OOP was created to solve this problem of complexity. The core idea is simple yet powerful: instead of separating data and the operations that act on that data, we bundle them together into conceptual &quot;objects.&quot; We stop thinking about our program as a sequence of steps and start thinking about it as a collection of interacting objects, where each object models a distinct entity from the problem we're trying to solve. The Core Idea: Modeling the World An &quot;object&quot; in programming represents a person, place, thing, or even an abstract concept. Think about a simple e-commerce application. A procedural approach might have separate variables for product names, prices, and inventory counts, and separate functions to update inventory or calculate totals. An OOP approach would model this differently:</p>
+<p>Object-Oriented Programming (OOP) is a fundamental shift in how we think about and structure our programs. Before OOP, the dominant style was procedural programming, where a program was essentially a long list of instructions or functions that acted upon data. This works for small programs, but as applications grow in size and complexity, it becomes incredibly difficult to manage.</p>
+<p>&quot; OOP was created to solve this problem of complexity. &quot; We stop thinking about our program as a sequence of steps and start thinking about it as a collection of interacting objects, where each object models a distinct entity from the problem we're trying to solve. The Core Idea: Modeling the World An &quot;object&quot; in programming represents a person, place, thing, or even an abstract concept.</p>
+<p>Think about a simple e-commerce application. A procedural approach might have separate variables for product names, prices, and inventory counts, and separate functions to update inventory or calculate totals. An OOP approach would model this differently:</p>
     <ul>
       <li>We would create a Product object. This single object would contain its own data: its name, its price, and its stockLevel.</li>
-      <li>It would also contain its own behavior: methods like Purchase(quantity) or IsInStock().</li>
+      <li><strong>It would also contain its own behavior:</strong> methods like Purchase(quantity) or IsInStock().</li>
       <li>Similarly, we would have a Customer object with its own data (name, address) and behavior (PlaceOrder()).</li>
-      <li>We could have a ShoppingCart object with its own data (a list of products) and behavior (AddItem(), CalculateTotal(). The program then becomes a simulation of these objects interacting: a Customer object PlaceOrder(), which might involve a ShoppingCart object that checks if each Product object IsInStock() before finalizing the purchase. The Three Core Concepts of an Object Every object in OOP has three key characteristics: 1. Identity: Each object is a unique entity, distinct from all other objects, even if they are of the same type and have the same data. When we create two different Product objects, they occupy different spaces in memory. 2. State: This is the data or attributes that describe an object at any given moment. A Car object's state would include its current color, currentSpeed, and fuelLevel. The state is stored in fields (variables) within the object. 3. Behavior: This is what an object can do. The behavior of a Car object would be defined by its methods, such as Accelerate(), Brake(), and Refuel(). These methods are typically used to modify the object's internal state. Interview Perspective</li>
-      <li>Question: &quot;Can you explain what Object-Oriented Programming is at a high level?&quot;</li>
-      <li>Ideal Answer: &quot;OOP is a programming paradigm that organizes software design around data, or 'objects,' rather than functions and logic. It's a way of managing complexity by bundling data (state) and the methods that operate on that data (behavior) into a single unit. Instead of a top-down procedural approach, an OOP application is modeled as a collection of interacting objects, which often represent real-world entities. This makes the code more modular, reusable, and easier to maintain as it grows.&quot;</li>
+      <li>We could have a ShoppingCart object with its own data (a list of products) and behavior (AddItem(), CalculateTotal(). The program then becomes a simulation of these objects interacting: a Customer object PlaceOrder(), which might involve a ShoppingCart object that checks if each Product object IsInStock() before finalizing the purchase. The Three Core Concepts of an Object Every object in OOP has three key characteristics:</li>
+    </ul>
+    <ol>
+      <li><strong>Identity:</strong> Each object is a unique entity, distinct from all other objects, even if they are of the same type and have the same data. When we create two different Product objects, they occupy different spaces in memory.</li>
+      <li><strong>State:</strong> This is the data or attributes that describe an object at any given moment. A Car object's state would include its current color, currentSpeed, and fuelLevel. The state is stored in fields (variables) within the object.</li>
+      <li><strong>Behavior:</strong> This is what an object can do. The behavior of a Car object would be defined by its methods, such as Accelerate(), Brake(), and Refuel(). These methods are typically used to modify the object's internal state. Interview Perspective</li>
+    </ol>
+    <ul>
+      <li><strong>Question:</strong> &quot;Can you explain what Object-Oriented Programming is at a high level?&quot;</li>
+      <li><strong>Ideal Answer:</strong> &quot;OOP is a programming paradigm that organizes software design around data, or 'objects,' rather than functions and logic. It's a way of managing complexity by bundling data (state) and the methods that operate on that data (behavior) into a single unit. Instead of a top-down procedural approach, an OOP application is modeled as a collection of interacting objects, which often represent real-world entities. This makes the code more modular, reusable, and easier to maintain as it grows.&quot;</li>
     </ul>
 
     <h2 id="sec-4-lec-2-creating-classes-objects">Lecture 2: Creating Classes &amp; Objects</h2>
     <h3>Introduction</h3>
-    <p>Now that we understand the concept of an &quot;object,&quot; we need a way to define what our objects will look like and how they will behave. This is the role of a class. A class is the blueprint, the template, or the design for an object. An object is the actual concrete instance that is built from that blueprint. You can have one Car class (the blueprint), but you can use it to build thousands of individual Car objects, each with its own unique state (one might be a red Ferrari, another a blue Ford). Defining a Class A class is defined using the class keyword, followed by the name of the class (which should be in PascalCase). Inside the curly braces {}, we define its members: fields and methods.</p>
+<p>Now that we understand the concept of an &quot;object,&quot; we need a way to define what our objects will look like and how they will behave. This is the role of a class. A class is the blueprint, the template, or the design for an object.</p>
+<p>An object is the actual concrete instance that is built from that blueprint. You can have one Car class (the blueprint), but you can use it to build thousands of individual Car objects, each with its own unique state (one might be a red Ferrari, another a blue Ford). Defining a Class A class is defined using the class keyword, followed by the name of the class (which should be in PascalCase). Inside the curly braces {}, we define its members: fields and methods. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -469,87 +479,138 @@
           Copy
         </button>
       </div>
-      <pre><code>// This is the blueprint for all Car objects.
-public class Car
+      <pre><code>// This is the blueprint for all Car objects. public class Car
 {
-// 1. Fields: These are variables that store the state of an object.
-// By convention, we make fields private to protect them (Encapsulation).
-// The underscore prefix (_) is a common naming convention for private
-fields.
-private string _color;
-private string _model;
-private int _currentSpeed;
-// 2. Methods: These are functions that define the object's behavior.
-// We make them public so other parts of our code can use them.
-public void Accelerate()
+    // 1. Fields: These are variables that store the state of an object.
+    // By convention, we make fields private to protect them (Encapsulation).
+    // The underscore prefix (_) is a common naming convention for private fields.
+    private string _color;
+    private string _model;
+    private int _currentSpeed;
+    // 2. Methods: These are functions that define the object's behavior.
+    // We make them public so other parts of our code can use them. public void Accelerate()
+    {
+        // This method modifies the object's internal state.
+        _currentSpeed += 10;
+        Console.WriteLine($&quot;Accelerating. Current speed: {_currentSpeed} km/
+        h&quot;);
+    }
+    public void Brake()
+    {
+        if (_currentSpeed &gt; 0)
+        {
+            _currentSpeed -= 5;
+            Console.WriteLine($&quot;Braking. Current speed: {_currentSpeed} km/
+            h&quot;);
+        }
+    }
+    // A method to provide controlled access to a private field's value. public string GetColor()
+    {
+        return _color;
+    }
+    // A method to provide controlled modification of a private field's value. public void SetColor(string newColor)
+    {
+        // We could add validation here if we wanted.
+        _color = newColor;
+    }
+}
+Creating an Object (Instantiation)</code></pre>
+    </div>
+  
+<p>Once you have the class (blueprint), you can create objects from it. This process is called instantiation. We use the new keyword to do this. C#</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// The Main method where our program runs static void Main(string[] args)
 {
-// This method modifies the object's internal state.
-_currentSpeed += 10;
-Console.WriteLine($&quot;Accelerating. Current speed: {_currentSpeed} km/
-h&quot;);
+    // 1. Declaration: Declare a variable that can hold a reference to a Car object.
+    Car myFirstCar;
+    // 2. Instantiation: Use the 'new' keyword to create a new Car object in memory
+    // 	and assign its memory address to our variable.
+    myFirstCar = new Car();
+    // Or, more commonly, do it all in one line:
+    Car mySecondCar = new Car();
+    // Now we have two distinct Car objects in memory.
 }
-public void Brake()
-{
-if (_currentSpeed &gt; 0)
-{
-_currentSpeed -= 5;
-Console.WriteLine($&quot;Braking. Current speed: {_currentSpeed} km/
-h&quot;);
-}
-}
-// A method to provide controlled access to a private field's value.
-public string GetColor()
-{
-return _color;
-}
-// A method to provide controlled modification of a private field's value.
-public void SetColor(string newColor)
-{
-// We could add validation here if we wanted.
-_color = newColor;
-}
-}
-Creating an Object (Instantiation)
-Once you have the class (blueprint), you can create objects from it. This process is
-called instantiation. We use the new keyword to do this.
-C#
-// The Main method where our program runs
-static void Main(string[] args)
-{
-// 1. Declaration: Declare a variable that can hold a reference to a Car
-object.
-Car myFirstCar;
-// 2. Instantiation: Use the 'new' keyword to create a new Car object in
-memory
-//  and assign its memory address to our variable.
-myFirstCar = new Car();
-// Or, more commonly, do it all in one line:
-Car mySecondCar = new Car();
-// Now we have two distinct Car objects in memory.
-}
-Accessing Members
-You interact with an object's public members using the dot operator (.).
-C#
-// Continuing in the Main method...
+Accessing Members</code></pre>
+    </div>
+  
+<p>You interact with an object's public members using the dot operator (.). C#</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Continuing in the Main method...
 // Use the public methods to set the state of the first car.
 myFirstCar.SetColor(&quot;Red&quot;);
-// Call methods to change its behavior.
-myFirstCar.Accelerate(); // Output: Accelerating. Current speed: 10 km/h
-myFirstCar.Accelerate(); // Output: Accelerating. Current speed: 20 km/h
-myFirstCar.Brake();  // Output: Braking. Current speed: 15 km/h
-// Now, interact with the second car. It is completely separate.
-mySecondCar.SetColor(&quot;Blue&quot;);
-mySecondCar.Accelerate(); // Output: Accelerating. Current speed: 10 km/h
-// Getting the color of the first car does not affect the second.
-Console.WriteLine($&quot;My first car's color is: {myFirstCar.GetColor()}&quot;);  //
-Output: Red
-Console.WriteLine($&quot;My second car's color is: {mySecondCar.GetColor()}&quot;); //
-Output: Blue
-// IMPORTANT: You cannot access private fields directly from outside the
-class.
+// Call methods to change its behavior.</code></pre>
+    </div>
+  
+<p>myFirstCar.Accelerate(); // Output: Accelerating. Current speed: 10 km/h myFirstCar.Accelerate(); // Output: Accelerating. Current speed: 20 km/h myFirstCar.Brake(); // Output: Braking. Current speed: 15 km/h</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Now, interact with the second car. It is completely separate.
+mySecondCar.SetColor(&quot;Blue&quot;);</code></pre>
+    </div>
+  
+<p>mySecondCar.Accelerate(); // Output: Accelerating. Current speed: 10 km/h</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Getting the color of the first car does not affect the second.
+Console.WriteLine($&quot;My first car's color is: {myFirstCar.GetColor()}&quot;); 	//</code></pre>
+    </div>
+  
+    <h3>Output: Red</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;My second car's color is: {mySecondCar.GetColor()}&quot;); //</code></pre>
+    </div>
+  
+    <h3>Output: Blue</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// IMPORTANT: You cannot access private fields directly from outside the class.
 // The following line would cause a compiler error:
-// myFirstCar._currentSpeed = 100; // ERROR! '_currentSpeed' is
-inaccessible.</code></pre>
+// myFirstCar._currentSpeed = 100; // ERROR! '_currentSpeed' is inaccessible.</code></pre>
     </div>
   
 
@@ -559,17 +620,28 @@ inaccessible.</code></pre>
         
       </div>
       <div class="callout-content">
-        <ul><li>Question: &quot;What is the difference between a class and an object?&quot;</li><li>Ideal Answer: &quot;A class is a blueprint or template that defines the properties</li></ul><p>and behaviors for a type of thing. It exists at compile-time and doesn't</p><p>occupy memory itself. An object is a concrete instance of a class, created at</p><p>run-time. It's the actual thing that occupies memory and has its own state.</p><p>You can create many objects from a single class, just like you can build</p><p>many houses from one blueprint.&quot;</p>
+        <ul>
+  <li>Question: &quot;What is the difference between a class and an object?&quot;</li>
+  <li>Ideal Answer: &quot;A class is a blueprint or template that defines the properties</li>
+</ul>
+  <p>and behaviors for a type of thing. It exists at compile-time and doesn't</p>
+  <p>occupy memory itself. An object is a concrete instance of a class, created at</p>
+  <p>run-time. It's the actual thing that occupies memory and has its own state.</p>
+  <p>You can create many objects from a single class, just like you can build</p>
+  <p>many houses from one blueprint.&quot;</p>
+
       </div>
     </div>
   
 
     <h2 id="sec-4-lec-3-imp-points-to-remember-about-classes-and-obje">Lecture 3: IMP Points to remember about Classes and Objects</h2>
     <h3>Introduction</h3>
-    <p>Understanding a few crucial, behind-the-scenes concepts about classes and objects is vital. These points are frequently the subject of interview questions because they test for a deeper understanding beyond just the basic syntax.</p>
+<p>Understanding a few crucial, behind-the-scenes concepts about classes and objects is vital. These points are frequently the subject of interview questions because they test for a deeper understanding beyond just the basic syntax.</p>
     <ol>
-      <li>A Class is a Reference Type This is the single most important concept to understand at this stage. When you create a variable of a class type, the variable does not hold the object itself. Instead, it holds a reference—which is essentially the memory address—to where the object is stored. The actual object lives on a region of memory called the heap. How It Works &amp; Why It Matters: Because the variable holds a reference, not the object, you can have multiple variables referencing the same object.</li>
+      <li>A Class is a Reference Type This is the single most important concept to understand at this stage. When you create a variable of a class type, the variable does not hold the object itself. Instead, it holds a reference—which is essentially the memory address—to where the object is stored. The actual object lives on a region of memory called the heap.</li>
     </ol>
+    <h3>How It Works: &amp; Why It Matters:</h3>
+<p>Because the variable holds a reference, not the object, you can have multiple variables referencing the same object. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -606,10 +678,37 @@ Console.WriteLine($&quot;Car B color: {carB.GetColor()}&quot;); // Output: Yello
         
       </div>
       <div class="callout-content">
-        <ul><li>Question: &quot;What happens when you assign one object variable to another?</li></ul><p>Does it create a copy of the object?&quot;</p><ul><li>Ideal Answer: &quot;No, it does not create a copy of the object. Since a class is a</li></ul><p>reference type, the variable holds a reference to the object's location in</p><p>memory. When you assign one variable to another, you are only copying the</p><p>reference. Both variables will then point to the same single object on the</p><p>heap. Any changes made to the object through one variable will be visible</p><p>through the other.&quot;</p><ul><li>The new Keyword Deconstructed</li></ul><p>The new keyword is more than just a piece of syntax; it performs three distinct</p><p>operations in order:</p><ul><li>Memory Allocation: It allocates a block of memory on the heap large</li></ul><p>enough to hold all the fields defined in the class.</p><ul><li>Constructor Execution: It calls a special method on the class called a</li></ul><p>constructor (more on this in a later section). The constructor's job is to</p><p>initialize the object's fields to a valid starting state.</p><ul><li>Return Reference: After the object is initialized, the new operator returns</li></ul><p>the memory address (the reference) of the newly created object, which is</p><p>then stored in your variable.</p><ul><li>Members of a Class</li></ul><p>So far we have seen two types of members: fields and methods. However, a class</p><p>can contain several other kinds of members, which you will learn about later. It's</p><p>good to be aware of the terminology:</p><ul><li>Fields: Variables that store the object's state.</li><li>Methods: Functions that define the object's behavior.</li><li>Properties: A more advanced way to expose data that combines the</li></ul><p>simplicity of a field with the control of a method (often used instead of</p><p>Get... and Set... methods).</p><ul><li>Constructors: Special methods used to initialize a new object when it's</li></ul><p>created.</p><ul><li>Events: A mechanism for an object to provide notifications to other objects.</li><li>And more... (like finalizers, indexers, and nested types).</li></ul>
+        <ul>
+  <li>Question: &quot;What happens when you assign one object variable to another?</li>
+</ul>
+  <p>Does it create a copy of the object?&quot;</p>
+<ul>
+  <li>Ideal Answer: &quot;No, it does not create a copy of the object. Since a class is a</li>
+</ul>
+  <p>reference type, the variable holds a reference to the object's location in</p>
+  <p>memory. When you assign one variable to another, you are only copying the</p>
+  <p>reference. Both variables will then point to the same single object on the</p>
+  <p>heap. Any changes made to the object through one variable will be visible</p>
+  <p>through the other.&quot;</p>
+
       </div>
     </div>
   
+    <ol>
+      <li>The new Keyword Deconstructed The new keyword is more than just a piece of syntax; it performs three distinct operations in order:</li>
+      <li><strong>Memory Allocation:</strong> It allocates a block of memory on the heap large enough to hold all the fields defined in the class.</li>
+      <li><strong>Constructor Execution:</strong> It calls a special method on the class called a constructor (more on this in a later section). The constructor's job is to initialize the object's fields to a valid starting state.</li>
+      <li><strong>Return Reference:</strong> After the object is initialized, the new operator returns the memory address (the reference) of the newly created object, which is then stored in your variable.</li>
+      <li>Members of a Class So far we have seen two types of members: fields and methods. However, a class can contain several other kinds of members, which you will learn about later. It's good to be aware of the terminology:</li>
+    </ol>
+    <ul>
+      <li><strong>Fields:</strong> Variables that store the object's state.</li>
+      <li><strong>Methods:</strong> Functions that define the object's behavior.</li>
+      <li><strong>Properties:</strong> A more advanced way to expose data that combines the simplicity of a field with the control of a method (often used instead of Get... and Set... methods).</li>
+      <li><strong>Constructors:</strong> Special methods used to initialize a new object when it's created.</li>
+      <li><strong>Events:</strong> A mechanism for an object to provide notifications to other objects.</li>
+      <li>And more... (like finalizers, indexers, and nested types).</li>
+    </ul>
 
     <div class="diagram-container">
       <div class="diagram-title">📊 Diagram: Class Blueprint vs Object Memory Layout</div>

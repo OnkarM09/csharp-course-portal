@@ -447,7 +447,12 @@
         
     <h2 id="sec-10-lec-1-intro-to-inheritance">Lecture 1: Intro to Inheritance</h2>
     <h3>Introduction</h3>
-    <p>Inheritance is a fundamental pillar of Object-Oriented Programming (OOP) that allows us to create a new class (known as the derived or child class) that acquires the properties and behaviors of an existing class (known as the base or parent class). This mechanism models a hierarchical &quot;is-a&quot; relationship. For example, a Manager &quot;is an&quot; Employee, a Car &quot;is a&quot; Vehicle, and a Dog &quot;is an&quot; Animal. The primary purpose and benefit of inheritance is code reuse. Instead of duplicating common logic and data fields across multiple similar classes, we can place all the shared functionality into a single base class. The derived classes then automatically inherit this functionality and can add their own unique features or modify the inherited behaviors. This leads to a more organized, maintainable, and logical code structure. How It Works: Syntax and Member Access You establish an inheritance relationship in C# using a colon (:) in the class declaration. Syntax:</p>
+<p>Inheritance is a fundamental pillar of Object-Oriented Programming (OOP) that allows us to create a new class (known as the derived or child class) that acquires the properties and behaviors of an existing class (known as the base or parent class). This mechanism models a hierarchical &quot;is-a&quot; relationship.</p>
+<p>For example, a Manager &quot;is an&quot; Employee, a Car &quot;is a&quot; Vehicle, and a Dog &quot;is an&quot; Animal. The primary purpose and benefit of inheritance is code reuse. Instead of duplicating common logic and data fields across multiple similar classes, we can place all the shared functionality into a single base class.</p>
+<p>The derived classes then automatically inherit this functionality and can add their own unique features or modify the inherited behaviors. This leads to a more organized, maintainable, and logical code structure.</p>
+    <h3>How It Works: Syntax and Member Access</h3>
+<p>You establish an inheritance relationship in C# using a colon (:) in the class declaration.</p>
+    <h3>Syntax</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -459,45 +464,81 @@
       </div>
       <pre><code>public class BaseClass
 {
-// ... members ...
+    // ... members ...
+}</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // ... additional members ...
 }
-public class DerivedClass : BaseClass
+When DerivedClass inherits from BaseClass, it automatically gains access to all</code></pre>
+    </div>
+  
+<p>of BaseClass's public and protected members. It's crucial to remember that private members of the base class are not inherited; they remain completely hidden and inaccessible to the derived class, preserving the base class's encapsulation.</p>
+    <h3>Example</h3>
+<p>Let's model a simple hierarchy. All employees in a company have a name and an ID. A manager is a specific type of employee who also has a team size. C#</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// The base class with common fields and methods. public class Employee
 {
-// ... additional members ...
-}
-When DerivedClass inherits from BaseClass, it automatically gains access to all
-of BaseClass's public and protected members. It's crucial to remember that
-private members of the base class are not inherited; they remain completely
-hidden and inaccessible to the derived class, preserving the base class's
-encapsulation.
-Example
-Let's model a simple hierarchy. All employees in a company have a name and an
-ID. A manager is a specific type of employee who also has a team size.
-C#
-// The base class with common fields and methods.
-public class Employee
-{
-public string Name { get; set; }
-public int EmployeeId { get; set; }
-public void Work()
-{
-Console.WriteLine($&quot;{Name} is working.&quot;);
-}
+    public string Name { get; set; }
+    public int EmployeeId { get; set; }
+    public void Work()
+    {
+        Console.WriteLine($&quot;{Name} is working.&quot;);
+    }
 }
 // The derived class inherits from Employee.
-// A Manager &quot;is-an&quot; Employee.
-public class Manager : Employee
-{
-// A property specific only to the Manager class.
-public int TeamSize { get; set; }
+// A Manager &quot;is-an&quot; Employee.</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // A property specific only to the Manager class.
+    public int TeamSize { get; set; }
 }
 // --- In your Main method ---
 Manager manager = new Manager();
 // Accessing members inherited from the Employee class.
 manager.Name = &quot;Jane Doe&quot;;
-manager.EmployeeId = 101;
-manager.Work(); // This method was defined in the Employee class.
-// Accessing members specific to the Manager class.
+manager.EmployeeId = 101;</code></pre>
+    </div>
+  
+<p>manager.Work(); // This method was defined in the Employee class.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Accessing members specific to the Manager class.
 manager.TeamSize = 12;
 Console.WriteLine($&quot;{manager.Name} manages a team of
 {manager.TeamSize}.&quot;);</code></pre>
@@ -506,14 +547,14 @@ Console.WriteLine($&quot;{manager.Name} manages a team of
 
     <h2 id="sec-10-lec-2-types-of-inheritance">Lecture 2: Types of Inheritance</h2>
     <h3>Introduction</h3>
-    <p>While inheritance is a broad concept, C# has specific rules about how it can be implemented. Understanding these supported (and unsupported) types is crucial for designing correct class hierarchies. Supported Types of Inheritance in C#</p>
+<p>While inheritance is a broad concept, C# has specific rules about how it can be implemented. Understanding these supported (and unsupported) types is crucial for designing correct class hierarchies. Supported Types of Inheritance in C#</p>
     <ul>
       <li>Single Inheritance</li>
-      <li>What it is: A class can only inherit directly from one other class. This is a strict rule in C#.</li>
-      <li>Why: This rule exists to prevent the &quot;Diamond Problem&quot;—a situation that can occur in languages that allow multiple inheritance. If a ClassD inherits from both ClassB and ClassC, and both B and C inherit from a common ClassA that has a method DoWork(), which version of DoWork() should ClassD inherit? C#'s single inheritance model completely avoids this ambiguity.</li>
+      <li><strong>What it is:</strong> A class can only inherit directly from one other class. This is a strict rule in C#.</li>
+      <li><strong>Why:</strong> This rule exists to prevent the &quot;Diamond Problem&quot;—a situation that can occur in languages that allow multiple inheritance. If a ClassD inherits from both ClassB and ClassC, and both B and C inherit from a common ClassA that has a method DoWork(), which version of DoWork() should ClassD inherit? C#'s single inheritance model completely avoids this ambiguity.</li>
       <li>Multi-level Inheritance</li>
-      <li>What it is: A class can be derived from another class, which is itself derived from another class. This creates a chain of inheritance.</li>
-      <li>Example:</li>
+      <li><strong>What it is:</strong> A class can be derived from another class, which is itself derived from another class. This creates a chain of inheritance.</li>
+      <li><strong>Example:</strong> C#</li>
     </ul>
 
     <div class="code-block-container">
@@ -525,16 +566,15 @@ Console.WriteLine($&quot;{manager.Name} manages a team of
         </button>
       </div>
       <pre><code>public class Animal { }
-public class Mammal : Animal { }
-public class Dog : Mammal { } // Dog inherits from Mammal and
-Animal.</code></pre>
+public class Mammal : Animal { }</code></pre>
     </div>
   
+<p>Animal.</p>
     <ul>
       <li></li>
       <li>Hierarchical Inheritance</li>
-      <li>What it is: Multiple classes inherit from a single base class. This is a very common structure.</li>
-      <li>Example:</li>
+      <li><strong>What it is:</strong> Multiple classes inherit from a single base class. This is a very common structure.</li>
+      <li><strong>Example:</strong> C#</li>
     </ul>
 
     <div class="code-block-container">
@@ -548,26 +588,28 @@ Animal.</code></pre>
       <pre><code>public class Vehicle { }
 public class Car : Vehicle { }
 public class Motorcycle : Vehicle { }
-public class Bus : Vehicle { }
-Unsupported Types of Inheritance in C#</code></pre>
+public class Bus : Vehicle { }</code></pre>
     </div>
   
+<p>Unsupported Types of Inheritance in C#</p>
     <ul>
       <li>Multiple Inheritance (for classes)</li>
-      <li>What it is: The ability for a single class to inherit from more than one base class directly.</li>
+      <li><strong>What it is:</strong> The ability for a single class to inherit from more than one base class directly.</li>
       <li>C# Status: As mentioned, C# does not support this for classes.</li>
-      <li>The Alternative: This functionality is achieved in C# through the use of Interfaces. A class can inherit from only one base class, but it can implement multiple interfaces. Interview Perspective</li>
-      <li>Question: &quot;Does C# support multiple inheritance?&quot;</li>
-      <li>Ideal Answer: &quot;No, C# does not support multiple inheritance for classes, primarily to avoid issues like the Diamond Problem. It enforces a single inheritance model. However, similar functionality can be achieved by a class implementing multiple interfaces.&quot;</li>
+      <li><strong>The Alternative:</strong> This functionality is achieved in C# through the use of Interfaces. A class can inherit from only one base class, but it can implement multiple interfaces. Interview Perspective</li>
+      <li><strong>Question:</strong> &quot;Does C# support multiple inheritance?&quot;</li>
+      <li><strong>Ideal Answer:</strong> &quot;No, C# does not support multiple inheritance for classes, primarily to avoid issues like the Diamond Problem. It enforces a single inheritance model. However, similar functionality can be achieved by a class implementing multiple interfaces.&quot;</li>
     </ul>
 
     <h2 id="sec-10-lec-3-base-keyword">Lecture 3: base Keyword</h2>
     <h3>Introduction</h3>
-    <p>The base keyword is a special reference, available only within a derived class, that allows you to access members of its direct base (parent) class. It's your way of reaching &quot;up&quot; the inheritance chain to use functionality from the parent that might have been hidden or needs to be augmented in the child class. Why and When to Use It</p>
+<p>The base keyword is a special reference, available only within a derived class, that allows you to access members of its direct base (parent) class. It's your way of reaching &quot;up&quot; the inheritance chain to use functionality from the parent that might have been hidden or needs to be augmented in the child class. Why and When to Use It</p>
     <ol>
       <li>To call a method in the base class that has been hidden or overridden in the derived class.</li>
-      <li>To call a specific constructor of the base class from a derived class's constructor (covered in the next lecture). Example: Calling a Base Class Method Let's imagine a Report base class and a more specific FinancialReport class. Both will have a Print() method. The financial report needs to print the standard header first, then its own specific content.</li>
+      <li>To call a specific constructor of the base class from a derived class's constructor (covered in the next lecture).</li>
     </ol>
+    <h3>Example</h3>
+<p>Calling a Base Class Method Let's imagine a Report base class and a more specific FinancialReport class. Both will have a Print() method. The financial report needs to print the standard header first, then its own specific content. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -579,49 +621,58 @@ Unsupported Types of Inheritance in C#</code></pre>
       </div>
       <pre><code>public class Report
 {
-public string Title { get; set; }
-public virtual void Print() // Marked as virtual for potential overriding
-{
-Console.WriteLine(&quot;--- Report Header ---&quot;);
-Console.WriteLine($&quot;Title: {Title}&quot;);
-Console.WriteLine(&quot;---------------------&quot;);
-}
-}
-public class FinancialReport : Report
-{
-public decimal Revenue { get; set; }
-public override void Print() // Overriding the base method
-{
-// 1. Use 'base' to call the Print() method from the Report class first.
-base.Print();
-// 2. Then, add the specific functionality of the derived class.
-Console.WriteLine($&quot;Revenue: {Revenue:C}&quot;);
-Console.WriteLine(&quot;--- End of Financials ---&quot;);
-}
+    public string Title { get; set; }
+    public virtual void Print() // Marked as virtual for potential overriding
+    {
+        Console.WriteLine(&quot;--- Report Header ---&quot;);
+        Console.WriteLine($&quot;Title: {Title}&quot;);
+        Console.WriteLine(&quot;---------------------&quot;);
+    }
+}</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    public decimal Revenue { get; set; }
+    public override void Print() // Overriding the base method
+    {
+        // 1. Use 'base' to call the Print() method from the Report class first.
+        base.Print();
+        // 2. Then, add the specific functionality of the derived class.
+        Console.WriteLine($&quot;Revenue: {Revenue:C}&quot;);
+        Console.WriteLine(&quot;--- End of Financials ---&quot;);
+    }
 }
 // --- In your Main method ---
 FinancialReport report = new FinancialReport();
 report.Title = &quot;Q2 Financials&quot;;
 report.Revenue = 500000;
-report.Print();
-Output:
---- Report Header ---
-Title: Q2 Financials
----------------------
-Revenue: $500,000.00
---- End of Financials ---</code></pre>
+report.Print();</code></pre>
     </div>
   
+    <h3>Output</h3>
+<p>--- Report Header --- Title: Q2 Financials --------------------- Revenue: $500,000.00 --- End of Financials ---</p>
 
-    <h2 id="sec-10-lec-4-parent-class-s-constructor">Lecture 4: Parent Class's Constructor</h2>
-    <h3>Introduction</h3>
-    <p>When you create an object of a derived class, the .NET runtime ensures that the state of the entire object, including the part inherited from the base class, is properly initialized. This means a constructor from the base class is always called before the constructor of the derived class runs. How It Works: The Constructor Chain</p>
+    <h2 id="sec-10-lec-4-parent-class-s-constructor-introduction">Lecture 4: Parent Class's Constructor Introduction</h2>
+<p>When you create an object of a derived class, the .NET runtime ensures that the state of the entire object, including the part inherited from the base class, is properly initialized. This means a constructor from the base class is always called before the constructor of the derived class runs.</p>
+    <h3>How It Works</h3>
+<p>The Constructor Chain</p>
     <ol>
       <li>When you write new DerivedClass(), the runtime looks at the DerivedClass constructor.</li>
       <li>Before executing the body of the DerivedClass constructor, it first calls a constructor from the BaseClass.</li>
       <li>By default, it will try to call the public, parameterless constructor of the base class.</li>
-      <li>After the base class constructor completes, the body of the derived class constructor is executed. The : base(...) Syntax What if the base class does not have a parameterless constructor? Or what if you need to call a specific parameterized constructor on the base class to pass up required data? In this case, you must use the : base(...) syntax in the derived class's constructor definition. This explicitly tells the compiler which base class constructor to call and what arguments to pass to it. Example Let's make our Employee class require a name and ID upon creation.</li>
+      <li>After the base class constructor completes, the body of the derived class constructor is executed. The : base(...) Syntax What if the base class does not have a parameterless constructor? Or what if you need to call a specific parameterized constructor on the base class to pass up required data? In this case, you must use the : base(...) syntax in the derived class's constructor definition. This explicitly tells the compiler which base class constructor to call and what arguments to pass to it.</li>
     </ol>
+    <h3>Example</h3>
+<p>Let's make our Employee class require a name and ID upon creation. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -633,38 +684,45 @@ Revenue: $500,000.00
       </div>
       <pre><code>public class Employee
 {
-public string Name { get; private set; }
-public int EmployeeId { get; private set; }
-// The base class ONLY has a parameterized constructor.
-public Employee(string name, int employeeId)
-{
-Console.WriteLine(&quot;Base Employee constructor called.&quot;);
-this.Name = name;
-this.EmployeeId = employeeId;
-}
-}
-public class Manager : Employee
-{
-public int TeamSize { get; set; }
-// The Manager constructor must now call the Employee constructor.
-// We use the ': base(...)' syntax to pass the values up the chain.
-public Manager(string name, int employeeId, int teamSize) : base(name,
-employeeId)
-{
-Console.WriteLine(&quot;Derived Manager constructor called.&quot;);
-// The base constructor has already set the name and ID.
-// We only need to set the field specific to this class.
-this.TeamSize = teamSize;
-}
-}
-// --- In your Main method ---
-Manager manager = new Manager(&quot;Jane Doe&quot;, 101, 12);
-Output:
-Base Employee constructor called.
-Derived Manager constructor called.
-Notice the order of execution. The base constructor runs first.</code></pre>
+    public string Name { get; private set; }
+    public int EmployeeId { get; private set; }
+    // The base class ONLY has a parameterized constructor. public Employee(string name, int employeeId)
+    {
+        Console.WriteLine(&quot;Base Employee constructor called.&quot;);
+        this.Name = name;
+        this.EmployeeId = employeeId;
+    }
+}</code></pre>
     </div>
   
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    public int TeamSize { get; set; }
+    // The Manager constructor must now call the Employee constructor.
+    // We use the ': base(...)' syntax to pass the values up the chain.
+    public Manager(string name, int employeeId, int teamSize) : base(name,
+    employeeId)
+    {
+        Console.WriteLine(&quot;Derived Manager constructor called.&quot;);
+        // The base constructor has already set the name and ID.
+        // We only need to set the field specific to this class.
+        this.TeamSize = teamSize;
+    }
+}
+// --- In your Main method ---
+Manager manager = new Manager(&quot;Jane Doe&quot;, 101, 12);</code></pre>
+    </div>
+  
+    <h3>Output</h3>
+<p>Base Employee constructor called. Derived Manager constructor called. Notice the order of execution. The base constructor runs first.</p>
 
     <div class="callout callout-tip">
       <div class="callout-header">
@@ -672,14 +730,25 @@ Notice the order of execution. The base constructor runs first.</code></pre>
         
       </div>
       <div class="callout-content">
-        <ul><li>Question: &quot;What happens if a base class only has a private constructor?&quot;</li><li>Ideal Answer: &quot;If a class only has private constructors, it cannot be</li></ul><p>inherited from. A derived class would not be able to call the base</p><p>constructor, which is a requirement, so it would result in a compile-time</p><p>error.&quot;</p>
+        <ul>
+  <li>Question: &quot;What happens if a base class only has a private constructor?&quot;</li>
+  <li>Ideal Answer: &quot;If a class only has private constructors, it cannot be</li>
+</ul>
+  <p>inherited from. A derived class would not be able to call the base</p>
+  <p>constructor, which is a requirement, so it would result in a compile-time</p>
+  <p>error.&quot;</p>
+
       </div>
     </div>
   
 
     <h2 id="sec-10-lec-5-method-hiding">Lecture 5: Method Hiding</h2>
     <h3>Introduction</h3>
-    <p>Method hiding, also known as shadowing, occurs when a derived class defines a method with the exact same name and signature as a method in its base class, but without using the override keyword. By doing this, the derived class's method hides the base class's method. This is not a way to change the base class's behavior; it's a way to provide a completely new, separate method that happens to share the same name. How It Works: The new Keyword and Compile-Time Resolution While not strictly required, you should always use the new keyword on the derived class's method to explicitly tell the compiler that you intend to hide the base method. This suppresses a compiler warning and makes your intent clear. The most critical concept to understand about method hiding is that the version of the method that gets called is determined at compile-time, based on the type of the reference variable you are using, not the actual type of the object stored in that variable. Example Let's see how the reference type dictates the outcome.</p>
+<p>Method hiding, also known as shadowing, occurs when a derived class defines a method with the exact same name and signature as a method in its base class, but without using the override keyword. By doing this, the derived class's method hides the base class's method. This is not a way to change the base class's behavior; it's a way to provide a completely new, separate method that happens to share the same name.</p>
+    <h3>How It Works</h3>
+<p>The new Keyword and Compile-Time Resolution While not strictly required, you should always use the new keyword on the derived class's method to explicitly tell the compiler that you intend to hide the base method. This suppresses a compiler warning and makes your intent clear. The most critical concept to understand about method hiding is that the version of the method that gets called is determined at compile-time, based on the type of the reference variable you are using, not the actual type of the object stored in that variable.</p>
+    <h3>Example</h3>
+<p>Let's see how the reference type dictates the outcome. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -691,33 +760,52 @@ Notice the order of execution. The base constructor runs first.</code></pre>
       </div>
       <pre><code>public class Animal
 {
-public void PrintInfo()
-{
-Console.WriteLine(&quot;This is an Animal.&quot;);
-}
-}
-public class Dog : Animal
-{
-// 'new' explicitly hides the base class PrintInfo() method.
-public new void PrintInfo()
-{
-Console.WriteLine(&quot;This is a Dog.&quot;);
-}
+    public void PrintInfo()
+    {
+        Console.WriteLine(&quot;This is an Animal.&quot;);
+    }
+}</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // 'new' explicitly hides the base class PrintInfo() method. public new void PrintInfo()
+    {
+        Console.WriteLine(&quot;This is a Dog.&quot;);
+    }
 }
 // --- In your Main method ---
 // 1. Create a Dog object and hold it in a Dog reference.
 Dog dogReference = new Dog();
-// The compiler sees the reference type is 'Dog', so it binds the call to
-Dog.PrintInfo().
-dogReference.PrintInfo(); // Output: This is a Dog.
-Console.WriteLine(&quot;--------------------&quot;);
+// The compiler sees the reference type is 'Dog', so it binds the call to Dog.PrintInfo().</code></pre>
+    </div>
+  
+<p>dogReference.PrintInfo(); // Output: This is a Dog.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine(&quot;--------------------&quot;);
 // 2. Create a Dog object but hold it in an Animal reference.
 Animal animalReference = new Dog();
 // The compiler sees the reference type is 'Animal'. Even though the object
-// is a Dog, the compiler binds the call to Animal.PrintInfo().
-animalReference.PrintInfo(); // Output: This is an Animal.</code></pre>
+// is a Dog, the compiler binds the call to Animal.PrintInfo().</code></pre>
     </div>
   
+<p>animalReference.PrintInfo(); // Output: This is an Animal.</p>
 
     <div class="callout callout-tip">
       <div class="callout-header">
@@ -725,18 +813,30 @@ animalReference.PrintInfo(); // Output: This is an Animal.</code></pre>
         
       </div>
       <div class="callout-content">
-        <ul><li>Question: &quot;What is method hiding in C#?&quot;</li><li>Ideal Answer: &quot;Method hiding is when a derived class defines a method</li></ul><p>with the same signature as a base class method, using the new keyword.</p><p>This creates a new method that is separate from the base method. The key</p><p>characteristic is that the method call is resolved at compile-time based on</p><p>the type of the reference variable, not the run-time type of the object.&quot;</p>
+        <ul>
+  <li>Question: &quot;What is method hiding in C#?&quot;</li>
+  <li>Ideal Answer: &quot;Method hiding is when a derived class defines a method</li>
+</ul>
+  <p>with the same signature as a base class method, using the new keyword.</p>
+  <p>This creates a new method that is separate from the base method. The key</p>
+  <p>characteristic is that the method call is resolved at compile-time based on</p>
+  <p>the type of the reference variable, not the run-time type of the object.&quot;</p>
+
       </div>
     </div>
   
 
     <h2 id="sec-10-lec-6-method-overriding">Lecture 6: Method Overriding</h2>
     <h3>Introduction</h3>
-    <p>Method overriding is a fundamental technique for achieving run-time polymorphism. It allows a derived class to provide a new, specific implementation for a method that is already defined in its base class. Unlike hiding, which creates a new method, overriding provides a replacement implementation for the existing base method within the inheritance hierarchy. How It Works: The virtual and override Contract Method overriding requires a contract between the base and derived classes using two essential keywords:</p>
+<p>Method overriding is a fundamental technique for achieving run-time polymorphism. It allows a derived class to provide a new, specific implementation for a method that is already defined in its base class. Unlike hiding, which creates a new method, overriding provides a replacement implementation for the existing base method within the inheritance hierarchy.</p>
+    <h3>How It Works</h3>
+<p>The virtual and override Contract Method overriding requires a contract between the base and derived classes using two essential keywords:</p>
     <ol>
-      <li>virtual (in the base class): The method in the base class must be marked with the virtual keyword (or abstract or override itself). This signals, &quot;I am aware that a derived class might want to provide its own version of this method.&quot;</li>
-      <li>override (in the derived class): The method in the derived class must be marked with the override keyword and must have the exact same signature as the virtual method in the base class. This signals, &quot;I am intentionally replacing the implementation of the base class's virtual method.&quot; Run-Time Polymorphism This is the critical difference from method hiding. With overriding, the version of the method that gets called is determined at run-time, based on the actual type of the object stored on the heap, regardless of the type of the reference variable pointing to it. Example: A Classic Polymorphism Scenario</li>
+      <li><strong>virtual (in the base class):</strong> The method in the base class must be marked with the virtual keyword (or abstract or override itself). This signals, &quot;I am aware that a derived class might want to provide its own version of this method.&quot;</li>
+      <li><strong>override (in the derived class):</strong> The method in the derived class must be marked with the override keyword and must have the exact same signature as the virtual method in the base class. This signals, &quot;I am intentionally replacing the implementation of the base class's virtual method.&quot; Run-Time Polymorphism This is the critical difference from method hiding. With overriding, the version of the method that gets called is determined at run-time, based on the actual type of the object stored on the heap, regardless of the type of the reference variable pointing to it.</li>
     </ol>
+    <h3>Example</h3>
+<p>A Classic Polymorphism Scenario C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -748,27 +848,44 @@ animalReference.PrintInfo(); // Output: This is an Animal.</code></pre>
       </div>
       <pre><code>public class Animal
 {
-// Mark this method as 'virtual' so it can be overridden.
-public virtual void MakeSound()
-{
-Console.WriteLine(&quot;The animal makes a generic sound.&quot;);
-}
-}
-public class Dog : Animal
-{
-// Use 'override' to provide a specific implementation for Dog.
-public override void MakeSound()
-{
-Console.WriteLine(&quot;Woof!&quot;);
-}
-}
-public class Cat : Animal
-{
-// Use 'override' to provide a specific implementation for Cat.
-public override void MakeSound()
-{
-Console.WriteLine(&quot;Meow!&quot;);
-}
+    // Mark this method as 'virtual' so it can be overridden. public virtual void MakeSound()
+    {
+        Console.WriteLine(&quot;The animal makes a generic sound.&quot;);
+    }
+}</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // Use 'override' to provide a specific implementation for Dog. public override void MakeSound()
+    {
+        Console.WriteLine(&quot;Woof!&quot;);
+    }
+}</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // Use 'override' to provide a specific implementation for Cat. public override void MakeSound()
+    {
+        Console.WriteLine(&quot;Meow!&quot;);
+    }
 }
 // --- In your Main method ---
 // We create a list that holds 'Animal' references.
@@ -777,24 +894,22 @@ List&lt;Animal&gt; pets = new List&lt;Animal&gt;();
 pets.Add(new Dog());
 pets.Add(new Cat());
 pets.Add(new Animal());
-// Now, we loop through the list and call the same method on each object.
-foreach (Animal pet in pets)
+// Now, we loop through the list and call the same method on each object. foreach (Animal pet in pets)
 {
-// At run-time, the CLR checks the actual type of the object 'pet' points
-to
-// and calls the appropriate overridden method. This is polymorphism.
-pet.MakeSound();
-}
-Output:
-Woof!
-Meow!
-The animal makes a generic sound.</code></pre>
+    // At run-time, the CLR checks the actual type of the object 'pet' points to
+    // and calls the appropriate overridden method. This is polymorphism.
+    pet.MakeSound();
+}</code></pre>
     </div>
   
+    <h3>Output</h3>
+<p>Woof! Meow! The animal makes a generic sound.</p>
 
     <h2 id="sec-10-lec-7-sealed-classes">Lecture 7: Sealed Classes</h2>
     <h3>Introduction</h3>
-    <p>The sealed keyword is a modifier that, when applied to a class, prevents any other class from inheriting from it. It effectively stops the inheritance chain at that point, marking the class as final and not designed for further extension. How It Works This is a simple compile-time restriction. If you attempt to derive from a class that has been marked as sealed, the C# compiler will generate an error.</p>
+<p>The sealed keyword is a modifier that, when applied to a class, prevents any other class from inheriting from it. It effectively stops the inheritance chain at that point, marking the class as final and not designed for further extension.</p>
+    <h3>How It Works</h3>
+<p>This is a simple compile-time restriction. If you attempt to derive from a class that has been marked as sealed, the C# compiler will generate an error. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -804,53 +919,61 @@ The animal makes a generic sound.</code></pre>
           Copy
         </button>
       </div>
-      <pre><code>// The 'sealed' keyword prevents inheritance.
-public sealed class FinalConfiguration
+      <pre><code>// The 'sealed' keyword prevents inheritance. public sealed class FinalConfiguration
 {
-// ... members ...
+    // ... members ...
 }
 // The following line will cause a compiler error:
-// 'MyConfig': cannot derive from sealed type 'FinalConfiguration'
-public class MyConfig : FinalConfiguration // ERROR!
-{
-// ...
-}
-Why and When to Use It
-1.  Design Intent: To clearly communicate that a class is &quot;complete&quot; and not
-designed for extension. It prevents misuse of a class that wasn't built to be
-a parent. The most famous example in the .NET framework is the
-System.String class, which is sealed.
-2.  Security: To protect classes with security-sensitive logic. By sealing the
-class, you prevent other developers from deriving from it and overriding its
-behavior in a way that could bypass security checks.
-3.  Performance: There can be minor performance benefits. When the Just-In-
-Time (JIT) compiler encounters a method call on a sealed class instance, it
-knows that the method can never be an overridden version. This allows it to
-perform optimizations like devirtualization, where it can make a more
-direct and faster method call.</code></pre>
+// 'MyConfig': cannot derive from sealed type 'FinalConfiguration'</code></pre>
     </div>
   
 
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // ...
+}
+Why and When to Use It</code></pre>
+    </div>
+  
+    <ol>
+      <li><strong>Design Intent:</strong> To clearly communicate that a class is &quot;complete&quot; and not designed for extension. It prevents misuse of a class that wasn't built to be a parent. The most famous example in the .NET framework is the System.String class, which is sealed.</li>
+      <li><strong>Security:</strong> To protect classes with security-sensitive logic. By sealing the class, you prevent other developers from deriving from it and overriding its behavior in a way that could bypass security checks.</li>
+      <li><strong>Performance:</strong> There can be minor performance benefits. When the Just-In- Time (JIT) compiler encounters a method call on a sealed class instance, it knows that the method can never be an overridden version. This allows it to perform optimizations like devirtualization, where it can make a more direct and faster method call.</li>
+    </ol>
+
     <h2 id="sec-10-lec-8-imp-points-to-remember">Lecture 8: IMP Points to Remember</h2>
     <h3>Introduction</h3>
-    <p>This lecture summarizes the most critical, practical, and interview-worthy points about inheritance in C#.</p>
+<p>This lecture summarizes the most critical, practical, and interview-worthy points about inheritance in C#.</p>
     <ol>
       <li>Inheritance Models an &quot;is-a&quot; Relationship This is the core conceptual model. Use inheritance when one class truly is a more specific version of another. Don't force an inheritance relationship where it doesn't naturally fit.</li>
       <li>C# Supports Single Inheritance for Classes A class can only have one direct base class. This is a fundamental rule to avoid ambiguity. Multiple inheritance of behavior is achieved by implementing multiple interfaces.</li>
-      <li>Base Class Constructors Always Run First When you instantiate a derived class, a base class constructor is always executed before the derived class constructor. Use the : base(...) syntax to explicitly control which base constructor is called and to pass necessary data up the inheritance chain.</li>
+      <li>Base Class Constructors Always Run First When you instantiate a derived class, a base class constructor is always executed</li>
+    </ol>
+<p>before the derived class constructor. Use the : base(...) syntax to explicitly control which base constructor is called and to pass necessary data up the inheritance chain.</p>
+    <ol>
       <li>Method Hiding vs. Method Overriding: The Core Interview Question This is one of the most important topics in C# OOP interviews. You must be able to clearly articulate the differences.</li>
     </ol>
     <ul>
       <li>Keywords:</li>
-      <li>Hiding: Uses the new keyword on the derived method (optional, but a best practice). The base method does not need any special keyword.</li>
-      <li>Overriding: Requires the virtual (or abstract) keyword on the base method and the override keyword on the derived method.</li>
+      <li><strong>Hiding:</strong> Uses the new keyword on the derived method (optional, but a best practice). The base method does not need any special keyword.</li>
+      <li><strong>Overriding:</strong> Requires the virtual (or abstract) keyword on the base method and the override keyword on the derived method.</li>
       <li>Method Resolution (The Key Difference):</li>
-      <li>Hiding: The method to be called is determined at compile-time based on the type of the reference variable.</li>
-      <li>Overriding: The method to be called is determined at run-time based on the actual type of the object stored on the heap. This is run-time polymorphism.</li>
+      <li><strong>Hiding:</strong> The method to be called is determined at compile-time based on the type of the reference variable.</li>
+      <li><strong>Overriding:</strong> The method to be called is determined at run-time based on the actual type of the object stored on the heap. This is run-time polymorphism.</li>
       <li>Purpose:</li>
-      <li>Hiding: You are introducing a new, separate method in the derived class that happens to have the same name. It does not replace the base method; it just hides it.</li>
-      <li>Overriding: You are providing a replacement implementation for an existing base method, honoring the polymorphic contract set by the virtual keyword. 5. sealed Provides Finality Use the sealed keyword to explicitly prevent a class from being inherited. This communicates design intent, can improve security, and may offer minor performance optimizations.</li>
+      <li><strong>Hiding:</strong> You are introducing a new, separate method in the derived class that happens to have the same name. It does not replace the base method; it just hides it.</li>
+      <li><strong>Overriding:</strong> You are providing a replacement implementation for an existing base method, honoring the polymorphic contract set by the virtual keyword.</li>
     </ul>
+    <ol>
+      <li>sealed Provides Finality Use the sealed keyword to explicitly prevent a class from being inherited. This communicates design intent, can improve security, and may offer minor performance optimizations.</li>
+    </ol>
 
     <div class="diagram-container">
       <div class="diagram-title">📊 Diagram: Virtual Method Dispatch via VTable</div>
@@ -904,7 +1027,7 @@ direct and faster method call.</code></pre>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-10-lec-4-parent-class-s-constructor" class="toc-link">Lecture 4: Parent Class's Constructor</a>
+        <a href="#sec-10-lec-4-parent-class-s-constructor-introduction" class="toc-link">Lecture 4: Parent Class's Constructor Introducti</a>
       </li>
     
       <li class="toc-item">

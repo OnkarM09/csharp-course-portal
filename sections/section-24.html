@@ -447,41 +447,173 @@
         
     <h2 id="sec-24-lec-1-tuple-class">Lecture 1: Tuple class</h2>
     <h3>Introduction</h3>
-    <p>The System.Tuple class was the original way of creating tuples in the .NET Framework, before modern language improvements. A tuple is a data structure that holds a specific number and sequence of elements of potentially different types. It's a simple way to group a small, fixed set of related data points together without needing to create a custom class. How It Works Tuple is a reference type (a class). This means when you create a Tuple, memory is allocated on the heap, which can be less performant than stack allocation for small data structures. The elements within a Tuple are accessed through read-only properties with generic, non-descriptive names: Item1, Item2, Item3, and so on. Why It's a &quot;Legacy&quot; Type While functional, the System.Tuple class has two significant drawbacks that have led to it being almost entirely replaced by the modern ValueTuple.</p>
+<p>The System.Tuple class was the original way of creating tuples in the .NET Framework, before modern language improvements. A tuple is a data structure that holds a specific number and sequence of elements of potentially different types. It's a simple way to group a small, fixed set of related data points together without needing to create a custom class.</p>
+    <h3>How It Works</h3>
+<p>Tuple is a reference type (a class). This means when you create a Tuple, memory is allocated on the heap, which can be less performant than stack allocation for small data structures. The elements within a Tuple are accessed through read-only properties with generic, non-descriptive names: Item1, Item2, Item3, and so on. Tuple class has two significant drawbacks that have led to it being almost entirely replaced by the modern ValueTuple.</p>
     <ol>
-      <li>Poor Performance: Being a class, it requires heap allocation and can create pressure on the garbage collector.</li>
-      <li>Poor Readability: The property names Item1, Item2, etc., provide no semantic meaning. When you read product.Item1, you have no idea what that data represents without looking up the original declaration. Example // Creating an instance of the Tuple class. Tuple&lt;string, int, decimal&gt; product = new Tuple&lt;string, int, decimal&gt;(&quot;Laptop&quot;, 15, 1299.99M); // Accessing elements is verbose and not very readable. string productName = product.Item1; int quantity = product.Item2; decimal price = product.Item3; Console.WriteLine($&quot;Product: {productName}, Quantity: {quantity}, Price: {price:C}&quot;);</li>
+      <li><strong>Poor Performance:</strong> Being a class, it requires heap allocation and can create pressure on the garbage collector.</li>
+      <li><strong>Poor Readability:</strong> The property names Item1, Item2, etc., provide no semantic meaning. When you read product.Item1, you have no idea what that data represents without looking up the original declaration.</li>
     </ol>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Creating an instance of the Tuple class.
+Tuple&lt;string, int, decimal&gt; product = new Tuple&lt;string, int,
+decimal&gt;(&quot;Laptop&quot;, 15, 1299.99M);
+// Accessing elements is verbose and not very readable.
+string productName = product.Item1;
+int quantity = product.Item2;
+decimal price = product.Item3;
+Console.WriteLine($&quot;Product: {productName}, Quantity: {quantity}, Price:
+{price:C}&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-24-lec-2-value-tuples">Lecture 2: Value Tuples</h2>
     <h3>Introduction</h3>
-    <p>Value Tuples, introduced in C# 7.0, are the modern, lightweight, and preferred way to work with tuples. They were designed specifically to overcome the performance and readability limitations of the System.Tuple class. How It Works The most crucial difference is that a value tuple is a value type (a struct). This makes it far more efficient for temporary data grouping, as it is typically allocated on the stack, avoiding heap allocation and garbage collection overhead. Syntax and Features</p>
+<p>Value Tuples, introduced in C# 7.0, are the modern, lightweight, and preferred way to work with tuples. They were designed specifically to overcome the performance and readability limitations of the System.Tuple class.</p>
+    <h3>How It Works</h3>
+<p>The most crucial difference is that a value tuple is a value type (a struct). This makes it far more efficient for temporary data grouping, as it is typically allocated on the stack, avoiding heap allocation and garbage collection overhead.</p>
+    <h3>Syntax: and Features</h3>
     <ul>
-      <li>Literal Syntax: You create a value tuple using a simple and clean literal syntax with parentheses.</li>
-      <li>Named Elements: This is their biggest advantage. You can give meaningful names to the elements, which dramatically improves code readability. These names are available through IntelliSense.</li>
-      <li>Mutability: Unlike anonymous types, the elements of a value tuple are mutable public fields. Why and When to Use It The primary and most powerful use case for value tuples is as a return type from a method. It provides a clean and efficient way to return multiple values without the ceremony of creating a custom class or using multiple out parameters. Example public (string, int) GetUser() // The method's return type is a value tuple. { string name = &quot;Alice&quot;; int age = 30; return (name, age); } // --- In your Main method --- // 1. Creating a value tuple with semantic names. (string name, int age) person = (&quot;Bob&quot;, 42); // 2. Accessing elements using the meaningful names. Console.WriteLine($&quot;Name: {person.name}, Age: {person.age}&quot;); // You can still access them by their default names if you want. Console.WriteLine($&quot;Item1: {person.Item1}, Item2: {person.Item2}&quot;); // 3. Receiving a tuple from a method. var user = GetUser(); Console.WriteLine($&quot;User from method: {user.Item1} is {user.Item2} years old.&quot;);</li>
+      <li><strong>Literal Syntax:</strong> You create a value tuple using a simple and clean literal</li>
     </ul>
+    <h3>syntax</h3>
+<p>with parentheses.</p>
+    <ul>
+      <li><strong>Named Elements:</strong> This is their biggest advantage. You can give meaningful names to the elements, which dramatically improves code readability. These names are available through IntelliSense.</li>
+      <li><strong>Mutability:</strong> Unlike anonymous types, the elements of a value tuple are mutable public fields. Why and When to Use It The primary and most powerful use case for value tuples is as a return type from a method. It provides a clean and efficient way to return multiple values without the ceremony of creating a custom class or using multiple out parameters.</li>
+    </ul>
+    <h3>Example</h3>
+<p>public (string, int) GetUser() // The method's return type is a value tuple.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    string name = &quot;Alice&quot;;
+    int age = 30;
+    return (name, age);
+}
+// --- In your Main method ---
+// 1. Creating a value tuple with semantic names.
+(string name, int age) person = (&quot;Bob&quot;, 42);
+// 2. Accessing elements using the meaningful names.
+Console.WriteLine($&quot;Name: {person.name}, Age: {person.age}&quot;);
+// You can still access them by their default names if you want.
+Console.WriteLine($&quot;Item1: {person.Item1}, Item2: {person.Item2}&quot;);
+// 3. Receiving a tuple from a method.
+var user = GetUser();
+Console.WriteLine($&quot;User from method: {user.Item1} is {user.Item2} years
+old.&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-24-lec-3-deconstructing">Lecture 3: Deconstructing</h2>
     <h3>Introduction</h3>
-    <p>Deconstruction is the process of &quot;unpacking&quot; the elements of a tuple (or another compatible object) into separate, distinct variables. It provides a convenient syntax to get the individual components of a grouped data structure into their own clearly named local variables. How It Works: Syntax Variations</p>
+<p>Deconstruction is the process of &quot;unpacking&quot; the elements of a tuple (or another compatible object) into separate, distinct variables. It provides a convenient syntax to get the individual components of a grouped data structure into their own clearly named local variables.</p>
+    <h3>How It Works: Syntax Variations</h3>
     <ol>
-      <li>Deconstructing into Newly Declared Variables: This is the most common form. You declare the types and names of the variables you want to create on the left side of the assignment. (string name, int age) = GetUser(); Console.WriteLine($&quot;Deconstructed name: {name}&quot;);</li>
-      <li>Deconstructing with var: You can use the var keyword for a more concise syntax. The compiler will infer the correct types for the new variables. var (name, age) = GetUser();</li>
-      <li>Deconstructing into Existing Variables: You can also deconstruct into variables that have already been declared. string existingName; int existingAge; (existingName, existingAge) = GetUser(); Deconstructing Other Types This feature is not limited to tuples. Any type can be made deconstructible by implementing a special Deconstruct method. For example, KeyValuePair&lt;TKey, TValue&gt; from a dictionary supports deconstruction. Example var userScores = new Dictionary&lt;string, int&gt; { { &quot;Alice&quot;, 95 } }; // A foreach loop over a dictionary yields KeyValuePair objects. // We can deconstruct the KeyValuePair directly in the loop! foreach ((string name, int score) in userScores) { Console.WriteLine($&quot;{name} scored {score}.&quot;); }</li>
+      <li>Deconstructing into Newly Declared Variables: This is the most common form. You declare the types and names of the variables you want to create on the left side of the assignment. (string name, int age) = GetUser();</li>
     </ol>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;Deconstructed name: {name}&quot;);</code></pre>
+    </div>
+  
+    <ol>
+      <li><strong>Deconstructing with var:</strong> You can use the var keyword for a more concise syntax. The compiler will infer the correct types for the new variables. var (name, age) = GetUser();</li>
+      <li><strong>Deconstructing into Existing Variables:</strong> You can also deconstruct into variables that have already been declared. string existingName; int existingAge; (existingName, existingAge) = GetUser(); Deconstructing Other Types This feature is not limited to tuples. Any type can be made deconstructible by implementing a special Deconstruct method. For example, KeyValuePair&lt;TKey, TValue&gt; from a dictionary supports deconstruction.</li>
+    </ol>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>var userScores = new Dictionary&lt;string, int&gt; { { &quot;Alice&quot;, 95 } };
+// A foreach loop over a dictionary yields KeyValuePair objects.
+// We can deconstruct the KeyValuePair directly in the loop! foreach ((string name, int score) in userScores)
+{
+    Console.WriteLine($&quot;{name} scored {score}.&quot;);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-24-lec-4-discards">Lecture 4: Discards</h2>
     <h3>Introduction</h3>
-    <p>A discard, represented by the underscore character _, is a special placeholder variable that you use when you are required to provide a variable but you intentionally want to ignore its value. How It Works The underscore is not a real variable with a memory location. It's a signal to the compiler that &quot;a value will be produced here, but I don't care about it and will never use it.&quot; The compiler can often use this information to generate more efficient code by avoiding the allocation of memory for the discarded value. Why and When to Use It The most common use case is with deconstruction when you only care about some of the values being returned. It allows you to selectively unpack a tuple. It's also frequently used with out parameters when you call a method for its return value but don't need the out argument. Example // This method returns three values. public (string, string, int) GetUserDetails() { return (&quot;John&quot;, &quot;Doe&quot;, 42); } // --- In your Main method --- // Scenario 1: We only care about the first name and age. // We use a discard '_' to ignore the last name. (string firstName, _, int age) = GetUserDetails(); Console.WriteLine($&quot;{firstName} is {age} years old.&quot;); // Scenario 2: We only care if a string is a valid number, not the number itself. // We can discard the 'out' parameter. if (int.TryParse(&quot;123&quot;, out _)) { Console.WriteLine(&quot;The string is a valid number.&quot;); }</p>
+<p>A discard, represented by the underscore character _, is a special placeholder variable that you use when you are required to provide a variable but you intentionally want to ignore its value.</p>
+    <h3>How It Works</h3>
+<p>The underscore is not a real variable with a memory location. &quot; The compiler can often use this information to generate more efficient code by avoiding the allocation of memory for the discarded value. Why and When to Use It The most common use case is with deconstruction when you only care about some of the values being returned.</p>
+<p>It allows you to selectively unpack a tuple. It's also frequently used with out parameters when you call a method for its return value but don't need the out argument.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// This method returns three values. public (string, string, int) GetUserDetails()
+{
+    return (&quot;John&quot;, &quot;Doe&quot;, 42);
+}
+// --- In your Main method ---
+// Scenario 1: We only care about the first name and age.
+// We use a discard '_' to ignore the last name.
+(string firstName, _, int age) = GetUserDetails();
+Console.WriteLine($&quot;{firstName} is {age} years old.&quot;);
+// Scenario 2: We only care if a string is a valid number, not the number itself.
+// We can discard the 'out' parameter.</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    Console.WriteLine(&quot;The string is a valid number.&quot;);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-24-lec-5-imp-points-to-remember">Lecture 5: IMP Points to Remember</h2>
     <ul>
-      <li>ValueTuple is the Modern Standard: Always prefer the modern value tuple syntax, e.g. (int, string), over the legacy System.Tuple class. ValueTuple provides vastly better performance due to stack allocation and superior readability due to named elements.</li>
-      <li>Primary Use Case: Returning Multiple Values: The killer feature of value tuples is providing a clean, simple, and efficient way to return multiple values from a single method call. It is almost always a better choice than using multiple out parameters.</li>
-      <li>Tuples are for Temporary Data Grouping: Tuples are excellent for intermediate, local data that you don't want to create a full class or struct for. However, if a data structure is complex, long-lived, or needs to be passed through multiple layers of your application, that is a strong sign that you should define a proper, named class or struct instead.</li>
+      <li><strong>ValueTuple is the Modern Standard:</strong> Always prefer the modern value tuple syntax, e.g. (int, string), over the legacy System.Tuple class. ValueTuple provides vastly better performance due to stack allocation and superior readability due to named elements.</li>
+      <li><strong>Primary Use Case:</strong> Returning Multiple Values: The killer feature of value tuples is providing a clean, simple, and efficient way to return multiple values from a single method call. It is almost always a better choice than using multiple out parameters.</li>
+      <li><strong>Tuples are for Temporary Data Grouping:</strong> Tuples are excellent for intermediate, local data that you don't want to create a full class or struct for. However, if a data structure is complex, long-lived, or needs to be passed through multiple layers of your application, that is a strong sign that you should define a proper, named class or struct instead.</li>
       <li>Deconstruction and Discards Improve Readability: Use deconstruction var (name, age) = ... to immediately unpack tuple results into clearly named local variables. Use the discard _ to explicitly signal that you are intentionally ignoring a part of a result, which makes your code's intent clearer to other developers.</li>
-      <li>Mutability: Remember that the elements of a value tuple are mutable public fields by default (myTuple.Name = &quot;New Name&quot;;), which is a key difference from anonymous types where properties are read-only.</li>
+      <li><strong>Mutability:</strong> Remember that the elements of a value tuple are mutable public fields by default (myTuple.Name = &quot;New Name&quot;;), which is a key difference from anonymous types where properties are read-only.</li>
     </ul>
 
       </article>

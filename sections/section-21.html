@@ -447,7 +447,33 @@
         
     <h2 id="sec-21-lec-1-intro-to-arrays">Lecture 1: Intro to Arrays</h2>
     <h3>Introduction</h3>
-    <p>An array is one of the most fundamental data structures in computer science and programming. It is a fixed-size, sequential collection of elements that are all of the same type. Think of it as a numbered row of boxes in a warehouse, where each box holds the same kind of item. There are two key characteristics you must always remember about arrays in</p>
+<p>An array is one of the most fundamental data structures in computer science and programming. It is a fixed-size, sequential collection of elements that are all of the same type. Think of it as a numbered row of boxes in a warehouse, where each box holds the same kind of item. There are two key characteristics you must always remember about arrays in C#:</p>
+    <ol>
+      <li><strong>Fixed Size:</strong> When you create an array, you must specify its size. That size cannot be changed for the lifetime of the array. If you need a dynamic collection that can grow or shrink, you would use a List&lt;T&gt; instead.</li>
+      <li>Zero-Based Indexing: The elements in an array are accessed by an index, which is their numerical position. The first element is always at index 0, the second at index 1, and so on. The last element is at index Length - 1.</li>
+    </ol>
+    <h3>How It Works</h3>
+<p>Understanding how arrays are stored in memory is key to understanding why they are so fast. When you create an array, for example new int[10], the .NET runtime allocates a single, contiguous block of memory on the heap.</p>
+    <ul>
+      <li><strong>Contiguous Block:</strong> This means all the elements of the array are stored right next to each other in memory, with no gaps.</li>
+      <li><strong>The Array Variable:</strong> The array variable itself (e.g., int[] myNumbers) lives on the stack and holds only a reference (a memory address) to the beginning of this contiguous block on the heap.</li>
+      <li><strong>Metadata:</strong> Along with the elements, the runtime also stores some metadata with the array, such as its total length and the type of its elements. This contiguous memory layout is what makes array access incredibly fast. When you request myNumbers[5], the runtime doesn't have to search for the element. It can perform a simple mathematical calculation: (start_address) + (index * size_of_element). This allows it to jump directly to the correct memory location, which is an O(1) operation—one of the fastest operations possible. Why and When to Use It Use an array when you have a collection of items whose size is known</li>
+    </ul>
+<p>beforehand and will not change. Because of their memory layout, they offer the highest possible performance for accessing elements by their index. They are perfect for storing data read from a file of a known size, a set of lookup values, or image pixel data.</p>
+
+    <h2 id="sec-21-lec-2-working-with-single-dimensional-arrays">Lecture 2: Working with Single-Dimensional Arrays</h2>
+    <h3>Introduction</h3>
+<p>A single-dimensional array is the simplest and most common type of array. It represents a single, linear list of elements.</p>
+    <h3>Syntax</h3>
+<p>Declaration, Instantiation, and Initialization Working with arrays involves three steps, which can sometimes be combined.</p>
+    <ol>
+      <li><strong>Declaration:</strong> You declare a variable that can hold a reference to an array of a specific type. int[] scores;</li>
+      <li><strong>Instantiation:</strong> You use the new keyword to allocate memory for the array on the heap, specifying its fixed size. scores = new int[5]; // This array can hold exactly 5 integers.</li>
+      <li><strong>Initialization:</strong> You assign values to the elements of the array.</li>
+    </ol>
+    <ul>
+      <li><strong>After Instantiation:</strong> You can access each element by its index to assign a value. scores[0] = 88; scores[1] = 95;</li>
+    </ul>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -457,77 +483,214 @@
           Copy
         </button>
       </div>
-      <pre><code>1.  Fixed Size: When you create an array, you must specify its size. That size
-cannot be changed for the lifetime of the array. If you need a dynamic
-collection that can grow or shrink, you would use a List&lt;T&gt; instead.
-2.  Zero-Based Indexing: The elements in an array are accessed by an
-index, which is their numerical position. The first element is always at
-index 0, the second at index 1, and so on. The last element is at index
-Length - 1.
-How It Works:
-Understanding how arrays are stored in memory is key to understanding why
-they are so fast. When you create an array, for example new int[10], the .NET
-runtime allocates a single, contiguous block of memory on the heap.</code></pre>
+      <pre><code>// ...and so on.</code></pre>
     </div>
   
     <ul>
-      <li>Contiguous Block: This means all the elements of the array are stored right next to each other in memory, with no gaps.</li>
-      <li>The Array Variable: The array variable itself (e.g., int[] myNumbers) lives on the stack and holds only a reference (a memory address) to the beginning of this contiguous block on the heap.</li>
-      <li>Metadata: Along with the elements, the runtime also stores some metadata with the array, such as its total length and the type of its elements. This contiguous memory layout is what makes array access incredibly fast. When you request myNumbers[5], the runtime doesn't have to search for the element. It can perform a simple mathematical calculation: (start_address) + (index * size_of_element). This allows it to jump directly to the correct memory location, which is an O(1) operation—one of the fastest operations possible. Why and When to Use It Use an array when you have a collection of items whose size is known beforehand and will not change. Because of their memory layout, they offer the highest possible performance for accessing elements by their index. They are perfect for storing data read from a file of a known size, a set of lookup values, or image pixel data.</li>
+      <li><strong>Collection Initializer Shorthand:</strong> You can declare, instantiate, and initialize an array in a single, concise line. The compiler will automatically figure out the size. string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot; }; // Creates a string array of size 3. Accessing Elements You get or set the value of an element using its zero-based index inside square brackets [].</li>
     </ul>
+    <h3>Important Note</h3>
+<p>If you try to access an index that is outside the valid range of the array (e.g., trying to access names[3] in the array above, where the valid indices are 0, 1, and 2), your program will compile fine but will crash at run- time with an IndexOutOfRangeException.</p>
+    <h3>Example</h3>
 
-    <h2 id="sec-21-lec-2-working-with-single-dimensional-arrays">Lecture 2: Working with Single-Dimensional Arrays</h2>
-    <h3>Introduction</h3>
-    <p>A single-dimensional array is the simplest and most common type of array. It represents a single, linear list of elements. Syntax: Declaration, Instantiation, and Initialization Working with arrays involves three steps, which can sometimes be combined.</p>
-    <ol>
-      <li>Declaration: You declare a variable that can hold a reference to an array of a specific type. int[] scores;</li>
-      <li>Instantiation: You use the new keyword to allocate memory for the array on the heap, specifying its fixed size. scores = new int[5]; // This array can hold exactly 5 integers.</li>
-      <li>Initialization: You assign values to the elements of the array.</li>
-    </ol>
-    <ul>
-      <li>After Instantiation: You can access each element by its index to assign a value. scores[0] = 88; scores[1] = 95; // ...and so on.</li>
-      <li>Collection Initializer Shorthand: You can declare, instantiate, and initialize an array in a single, concise line. The compiler will automatically figure out the size. string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot; }; // Creates a string array of size 3. Accessing Elements You get or set the value of an element using its zero-based index inside square brackets []. Important Note: If you try to access an index that is outside the valid range of the array (e.g., trying to access names[3] in the array above, where the valid indices are 0, 1, and 2), your program will compile fine but will crash at run- time with an IndexOutOfRangeException. Example // Declare, instantiate, and initialize in one line. int[] highScores = { 980, 955, 940, 890, 875 }; // Access and read the first element (index 0). Console.WriteLine($&quot;The highest score is: {highScores[0]}&quot;); // Access and modify the third element (index 2). Console.WriteLine($&quot;The original third place score was: {highScores[2]}&quot;); highScores[2] = 942; Console.WriteLine($&quot;The new third place score is: {highScores[2]}&quot;); // Get the total number of elements using the Length property. Console.WriteLine($&quot;The array contains {highScores.Length} scores.&quot;);</li>
-    </ul>
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Declare, instantiate, and initialize in one line.
+int[] highScores = { 980, 955, 940, 890, 875 };
+// Access and read the first element (index 0).
+Console.WriteLine($&quot;The highest score is: {highScores[0]}&quot;);
+// Access and modify the third element (index 2).
+Console.WriteLine($&quot;The original third place score was: {highScores[2]}&quot;);
+highScores[2] = 942;
+Console.WriteLine($&quot;The new third place score is: {highScores[2]}&quot;);
+// Get the total number of elements using the Length property.
+Console.WriteLine($&quot;The array contains {highScores.Length} scores.&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-21-lec-3-arrays-with-for-loop">Lecture 3: Arrays with for loop</h2>
     <h3>Introduction</h3>
-    <p>The for loop is the classic and most flexible way to iterate over an array. It gives you complete control over the iteration process and, most importantly, gives you direct access to the index of each element. How It Works: The Standard Pattern The standard pattern for iterating over an array with a for loop is: for (int i = 0; i &lt; array.Length; i++) Let's break this down:</p>
+<p>The for loop is the classic and most flexible way to iterate over an array. It gives you complete control over the iteration process and, most importantly, gives you direct access to the index of each element.</p>
+    <h3>How It Works</h3>
+<p>The Standard Pattern The standard pattern for iterating over an array with a for loop is: for (int i = 0; i &lt; array.Length; i++) Let's break this down:</p>
     <ul>
       <li>int i = 0;: The initializer. We create a counter variable i and start it at 0, the index of the first element.</li>
-      <li>i &lt; array.Length;: The condition. The loop will continue as long as i is less than the total number of elements. This is crucial; using &lt; instead of &lt;= prevents an IndexOutOfRangeException by ensuring the loop stops before trying to access an index that doesn't exist.</li>
-      <li>i++: The iterator. At the end of each loop iteration, i is incremented, moving us to the next element. When to Use It You should use a for loop when:</li>
+      <li>i &lt; array.Length;: The condition. The loop will continue as long as i is less than the total number of elements. This is crucial; using &lt; instead of &lt;= prevents an IndexOutOfRangeException by ensuring the loop stops</li>
+    </ul>
+<p>before trying to access an index that doesn't exist.</p>
+    <ul>
+      <li>i++: The iterator. At the end of each loop iteration, i is incremented, moving us to the next element.</li>
+    </ul>
+    <h3>When to Use It</h3>
+<p>You should use a for loop when:</p>
+    <ul>
       <li>You need to know the index of the element you are processing.</li>
       <li>You need to modify the elements of the array in-place.</li>
-      <li>You need to iterate in a non-standard way, such as backwards (for (int i = array.Length - 1; i &gt;= 0; i--)), or by skipping elements (i += 2). Example string[] daysOfWeek = { &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;, &quot;Sunday&quot; }; Console.WriteLine(&quot;The days of the week are:&quot;); for (int i = 0; i &lt; daysOfWeek.Length; i++) { // We can use the index 'i' in our logic. Console.WriteLine($&quot; Day {i + 1}: {daysOfWeek[i]}&quot;); }</li>
+      <li>You need to iterate in a non-standard way, such as backwards (for (int i = array.Length - 1; i &gt;= 0; i--)), or by skipping elements (i += 2).</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string[] daysOfWeek = { &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;,
+&quot;Friday&quot;, &quot;Saturday&quot;, &quot;Sunday&quot; };
+Console.WriteLine(&quot;The days of the week are:&quot;);</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // We can use the index 'i' in our logic.
+    Console.WriteLine($&quot; Day {i + 1}: {daysOfWeek[i]}&quot;);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-21-lec-4-arrays-with-foreach-loop">Lecture 4: Arrays with foreach loop</h2>
     <h3>Introduction</h3>
-    <p>The foreach loop is a simpler, more readable, and less error-prone way to iterate over a collection like an array. It is designed for situations where you simply need to access the value of each element from start to finish, and you don't care about its index. How It Works The syntax is foreach (type variableName in collection). For each iteration, the next element in the collection is automatically assigned to the iteration variable. The loop continues until every element has been visited. Behind the scenes, the compiler translates this into code that uses a mechanism called an &quot;enumerator&quot; to safely visit each element. The &quot;Read-Only&quot; Limitation This is a critical concept to understand. The iteration variable in a foreach loop is effectively read-only. You cannot use it to assign a new value back into the array or collection. If you try, the compiler will give you an error. This is a safety feature designed to prevent accidental modification of the collection while you are iterating over it. When to Use It Use a foreach loop whenever you need to read and process each element in an array from start to finish and you do not need the index. It is the preferred loop for simple iteration because it is more declarative and eliminates the possibility of common &quot;off-by-one&quot; errors that can happen with for loops. Example int[] numbers = { 5, 10, 15, 20, 25 }; int sum = 0; // 'number' will hold the value of each element in turn (5, then 10, then 15...). foreach (int number in numbers) { sum += number; // The following line would cause a compiler error: // number = 0; // ERROR! Cannot assign to 'number' because it is a 'foreach iteration variable'. } Console.WriteLine($&quot;The sum of the numbers is: {sum}&quot;); // Output: 75</p>
+<p>The foreach loop is a simpler, more readable, and less error-prone way to iterate over a collection like an array. It is designed for situations where you simply need to access the value of each element from start to finish, and you don't care about its index.</p>
+    <h3>How It Works</h3>
+<p>The syntax is foreach (type variableName in collection). For each iteration, the next element in the collection is automatically assigned to the iteration variable. The loop continues until every element has been visited.</p>
+<p>Behind the scenes, the compiler translates this into code that uses a mechanism called an &quot;enumerator&quot; to safely visit each element. The &quot;Read-Only&quot; Limitation This is a critical concept to understand. The iteration variable in a foreach loop is effectively read-only.</p>
+<p>You cannot use it to assign a new value back into the array or collection. If you try, the compiler will give you an error. This is a safety feature designed to prevent accidental modification of the collection while you are iterating over it.</p>
+    <h3>When to Use It</h3>
+<p>Use a foreach loop whenever you need to read and process each element in an array from start to finish and you do not need the index. It is the preferred loop for simple iteration because it is more declarative and eliminates the possibility of common &quot;off-by-one&quot; errors that can happen with for loops.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int[] numbers = { 5, 10, 15, 20, 25 };
+int sum = 0;
+// 'number' will hold the value of each element in turn (5, then 10, then 15...).
+foreach (int number in numbers)
+{
+    sum += number;
+    // The following line would cause a compiler error:
+    // number = 0; // ERROR! Cannot assign to 'number' because it is a 'foreach iteration variable'.
+}
+Console.WriteLine($&quot;The sum of the numbers is: {sum}&quot;); // Output: 75</code></pre>
+    </div>
+  
 
     <h2 id="sec-21-lec-5-overview-of-system-array-class">Lecture 5: Overview of System.Array class</h2>
     <h3>Introduction</h3>
-    <p>In C#, every array you create, regardless of its element type (int[], string[], etc.), is actually an object. Every array type implicitly derives from the abstract base class System.Array. This means that every array automatically inherits a set of powerful properties and methods from this base class, which you can use to inspect and manipulate the array. Key Instance Properties These are properties you can call on an array instance (e.g., myArray.Length).</p>
+<p>), is actually an object. Array. This means that every array automatically inherits a set of powerful properties and methods from this base class, which you can use to inspect and manipulate the array. Length).</p>
     <ul>
       <li>.Length: Gets the total number of elements in the array across all its dimensions. This is the most commonly used property.</li>
       <li>.Rank: Gets the number of dimensions of the array. For a single- dimensional array, this is always 1. For a 2D array, it's 2.</li>
       <li>.IsFixedSize: Always returns true for arrays, indicating that their size cannot be changed.</li>
       <li>.IsReadOnly: Returns false for standard arrays, indicating you can change the values of their elements. Static vs. Instance Methods The System.Array class provides two kinds of methods:</li>
-      <li>Instance Methods: There are very few of these. The most common is GetLength(int dimension), which gets the size of a specific dimension in a multi-dimensional array.</li>
-      <li>Static Methods: This is where most of the functionality lies. These are utility methods that you call on the Array class itself, passing your array instance as a parameter (e.g., Array.Sort(myArray)). We will explore these in the next lectures. Example int[] numbers = { 10, 20, 30 }; Console.WriteLine($&quot;Total number of elements (Length): {numbers.Length}&quot;); // Output: 3 Console.WriteLine($&quot;Number of dimensions (Rank): {numbers.Rank}&quot;); // Output: 1</li>
+      <li><strong>Instance Methods:</strong> There are very few of these. The most common is GetLength(int dimension), which gets the size of a specific dimension in a multi-dimensional array.</li>
+      <li><strong>Static Methods:</strong> This is where most of the functionality lies. These are utility methods that you call on the Array class itself, passing your array instance as a parameter (e.g., Array.Sort(myArray)). We will explore these in the next lectures.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int[] numbers = { 10, 20, 30 };
+Console.WriteLine($&quot;Total number of elements (Length):</code></pre>
+    </div>
+  
+<p>{numbers.Length}&quot;); // Output: 3</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;Number of dimensions (Rank): {numbers.Rank}&quot;); 	//</code></pre>
+    </div>
+  
+    <h3>Output: 1</h3>
 
     <h2 id="sec-21-lec-6-system-array-indexof">Lecture 6: System.Array.IndexOf</h2>
     <h3>Introduction</h3>
-    <p>Array.IndexOf is a static helper method on the Array class that searches a single-dimensional array for a specific element. It is a straightforward way to find out if an element exists in an array and where it is located. How It Works This method performs a linear search, starting from the first element (index 0) and checking each element one by one until it finds a match. Because it checks every element in the worst case, its performance is O(n), meaning the time it takes to run is directly proportional to the size of the array. The method returns an integer representing the zero-based index of the first occurrence of the element. If it finds the element, it stops searching and returns that index. The Return Value: The &quot;-1&quot; Convention This is a critical point to remember.</p>
+<p>Array.IndexOf is a static helper method on the Array class that searches a single-dimensional array for a specific element. It is a straightforward way to find out if an element exists in an array and where it is located.</p>
+    <h3>How It Works</h3>
+<p>This method performs a linear search, starting from the first element (index 0) and checking each element one by one until it finds a match. Because it checks every element in the worst case, its performance is O(n), meaning the time it takes to run is directly proportional to the size of the array.</p>
+<p>The method returns an integer representing the zero-based index of the first occurrence of the element. If it finds the element, it stops searching and returns that index. The Return Value: The &quot;-1&quot; Convention This is a critical point to remember.</p>
     <ul>
       <li>If the element is found, it returns the index (0 or greater).</li>
-      <li>If the element is not found in the entire array, it returns -1. This -1 return value is a standard convention in many programming libraries to indicate &quot;not found.&quot; Example string[] heroes = { &quot;Iron Man&quot;, &quot;Captain America&quot;, &quot;Thor&quot;, &quot;Hulk&quot;, &quot;Thor&quot; }; // Search for an element that exists. int indexOfThor = Array.IndexOf(heroes, &quot;Thor&quot;); // This finds the FIRST occurrence at index 2. Console.WriteLine($&quot;Found 'Thor' at index: {indexOfThor}&quot;); // Output: 2 // Search for an element that does not exist. int indexOfBatman = Array.IndexOf(heroes, &quot;Batman&quot;); // 'Batman' is not in the array, so it returns -1. Console.WriteLine($&quot;Found 'Batman' at index: {indexOfBatman}&quot;); // Output: -1 if (indexOfBatman == -1) { Console.WriteLine(&quot;'Batman' is not in the Avengers array.&quot;); }</li>
+      <li>If the element is not found in the entire array, it returns -1. This -1 return value is a standard convention in many programming libraries to indicate &quot;not found.&quot;</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string[] heroes = { &quot;Iron Man&quot;, &quot;Captain America&quot;, &quot;Thor&quot;, &quot;Hulk&quot;, &quot;Thor&quot; };
+// Search for an element that exists.
+int indexOfThor = Array.IndexOf(heroes, &quot;Thor&quot;);
+// This finds the FIRST occurrence at index 2.
+Console.WriteLine($&quot;Found 'Thor' at index: {indexOfThor}&quot;); // Output: 2
+// Search for an element that does not exist.
+int indexOfBatman = Array.IndexOf(heroes, &quot;Batman&quot;);
+// 'Batman' is not in the array, so it returns -1.
+Console.WriteLine($&quot;Found 'Batman' at index: {indexOfBatman}&quot;); //</code></pre>
+    </div>
+  
+    <h3>Output: -1</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>if (indexOfBatman == -1)
+{
+    Console.WriteLine(&quot;'Batman' is not in the Avengers array.&quot;);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-21-lec-7-system-array-binarysearch">Lecture 7: System.Array.BinarySearch</h2>
     <h3>Introduction</h3>
-    <p>Array.BinarySearch is a highly efficient static method used to find an element within a sorted array. It is significantly faster than a linear search (IndexOf) for large arrays. The Prerequisite: The Array MUST Be Sorted This is the most important rule for this method. BinarySearch will only produce a correct and predictable result if the array has been sorted in ascending order beforehand. If you run it on an unsorted array, the return value will be meaningless and incorrect. How It Works: Divide and Conquer The binary search algorithm works by repeatedly dividing the search interval in half.</p>
+<p>BinarySearch is a highly efficient static method used to find an element within a sorted array. It is significantly faster than a linear search (IndexOf) for large arrays. The Prerequisite: The Array MUST Be Sorted This is the most important rule for this method.</p>
+<p>BinarySearch will only produce a correct and predictable result if the array has been sorted in ascending order beforehand. If you run it on an unsorted array, the return value will be meaningless and incorrect.</p>
+    <h3>How It Works: Divide and Conquer</h3>
+<p>The binary search algorithm works by repeatedly dividing the search interval in half.</p>
     <ol>
       <li>It compares the target value to the element in the middle of the array.</li>
       <li>If they are equal, the search is complete.</li>
@@ -536,81 +699,468 @@ runtime allocates a single, contiguous block of memory on the heap.</code></pre>
     </ol>
     <ul>
       <li>If the element is found, it returns the zero-based index.</li>
-      <li>If the element is not found, it returns a negative number. This number is significant: it is the bitwise complement (~) of the index of the first element that is larger than the value you searched for. In simpler terms, it tells you where the item would be inserted to maintain the sort order. Example int[] sortedNumbers = { 10, 20, 30, 40, 50, 60, 70, 80 }; // Search for a value that exists. int indexFound = Array.BinarySearch(sortedNumbers, 50); Console.WriteLine($&quot;Found 50 at index: {indexFound}&quot;); // Output: 4 // Search for a value that does not exist. int indexNotFound = Array.BinarySearch(sortedNumbers, 45); // 45 would be inserted at index 4 to maintain order. // The bitwise complement of 4 is -5. Console.WriteLine($&quot;Did not find 45. Returned: {indexNotFound}&quot;); // Output: -5</li>
+      <li>If the element is not found, it returns a negative number. This number is significant: it is the bitwise complement (~) of the index of the first element that is larger than the value you searched for. In simpler terms, it tells you where the item would be inserted to maintain the sort order.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int[] sortedNumbers = { 10, 20, 30, 40, 50, 60, 70, 80 };
+// Search for a value that exists.
+int indexFound = Array.BinarySearch(sortedNumbers, 50);
+Console.WriteLine($&quot;Found 50 at index: {indexFound}&quot;); // Output: 4
+// Search for a value that does not exist.
+int indexNotFound = Array.BinarySearch(sortedNumbers, 45);
+// 45 would be inserted at index 4 to maintain order.
+// The bitwise complement of 4 is -5.
+Console.WriteLine($&quot;Did not find 45. Returned: {indexNotFound}&quot;); //</code></pre>
+    </div>
+  
+    <h3>Output: -5</h3>
 
     <h2 id="sec-21-lec-8-system-array-clear">Lecture 8: System.Array.Clear</h2>
     <h3>Introduction</h3>
-    <p>Array.Clear is a static method that sets a range of elements in an array back to their default value. This method does not remove elements or change the size of the array; it simply resets their values. How It Works The default value depends on the element type:</p>
+<p>Array.Clear is a static method that sets a range of elements in an array back to their default value. This method does not remove elements or change the size of the array; it simply resets their values.</p>
+    <h3>How It Works</h3>
+<p>The default value depends on the element type:</p>
     <ul>
       <li>For numeric types (int, double), it's 0.</li>
       <li>For bool, it's false.</li>
       <li>For char, it's '\0'.</li>
-      <li>For all reference types (string, class objects), it's null. The method signature is Array.Clear(Array array, int index, int length), where index is the starting position and length is the number of elements to clear. When to Use It</li>
-      <li>Reusing Buffers: When you are using an array as a buffer (e.g., for network or file I/O) and want to clear it out before reusing it.</li>
-      <li>Security: To explicitly overwrite sensitive data in memory (like passwords or keys) after you are done with it, ensuring it cannot be recovered from a memory dump. Example string[] userNames = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eve&quot; }; Console.WriteLine(&quot;Original array: &quot; + string.Join(&quot;, &quot;, userNames)); // Clear 3 elements starting from index 1. Array.Clear(userNames, 1, 3); // Clears &quot;Bob&quot;, &quot;Charlie&quot;, and &quot;David&quot; // The elements are now null, but the array size is still 5. Console.WriteLine(&quot;Array after Clear: &quot; + string.Join(&quot;, &quot;, userNames)); Console.WriteLine($&quot;Array length is still: {userNames.Length}&quot;); Output: Original array: Alice, Bob, Charlie, David, Eve Array after Clear: Alice, , , , Eve Array length is still: 5</li>
+      <li>For all reference types (string, class objects), it's null. The method signature is Array.Clear(Array array, int index, int length), where index is the starting position and length is the number of elements to clear.</li>
     </ul>
+    <h3>When to Use It</h3>
+    <ul>
+      <li><strong>Reusing Buffers:</strong> When you are using an array as a buffer (e.g., for network or file I/O) and want to clear it out before reusing it.</li>
+      <li><strong>Security:</strong> To explicitly overwrite sensitive data in memory (like passwords or keys) after you are done with it, ensuring it cannot be recovered from a memory dump.</li>
+    </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string[] userNames = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eve&quot; };
+Console.WriteLine(&quot;Original array: &quot; + string.Join(&quot;, &quot;, userNames));
+// Clear 3 elements starting from index 1.</code></pre>
+    </div>
+  
+<p>Array.Clear(userNames, 1, 3); // Clears &quot;Bob&quot;, &quot;Charlie&quot;, and &quot;David&quot;</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// The elements are now null, but the array size is still 5.
+Console.WriteLine(&quot;Array after Clear: &quot; + string.Join(&quot;, &quot;, userNames));
+Console.WriteLine($&quot;Array length is still: {userNames.Length}&quot;);</code></pre>
+    </div>
+  
+    <h3>Output</h3>
+<p>Original array: Alice, Bob, Charlie, David, Eve Array after Clear: Alice, , , , Eve Array length is still: 5</p>
 
     <h2 id="sec-21-lec-9-system-array-resize">Lecture 9: System.Array.Resize</h2>
     <h3>Introduction</h3>
-    <p>Array.Resize is a static method that appears to change the number of elements in a single-dimensional array to a specified new size. However, this is somewhat of an illusion, as arrays are fundamentally fixed-size. How It Works: The &quot;Create and Copy&quot; Illusion This is a critical concept for interviews. Array.Resize does not actually resize the original block of memory. Instead, it performs these steps behind the scenes:</p>
+<p>Array.Resize is a static method that appears to change the number of elements in a single-dimensional array to a specified new size. However, this is somewhat of an illusion, as arrays are fundamentally fixed-size.</p>
+    <h3>How It Works</h3>
+<p>The &quot;Create and Copy&quot; Illusion This is a critical concept for interviews. Array.Resize does not actually resize the original block of memory. Instead, it performs these steps behind the scenes:</p>
     <ol>
       <li>It creates a brand new array of the desired size.</li>
       <li>It copies the elements from the old array over to the new array.</li>
     </ol>
     <ul>
       <li>If the new array is smaller, it copies elements up to the new size.</li>
-      <li>If the new array is larger, it copies all the old elements, and the new, extra elements are initialized to their default values. 3. It makes the original array variable (which is passed with the ref keyword) point to this new array. The old array is now unreferenced and will eventually be garbage collected. Performance Implications Because this method involves allocating a new array and copying all the elements, it can be an expensive operation for very large arrays. This is the primary reason why List&lt;T&gt; is generally preferred when you need a collection that must grow or shrink dynamically. Example int[] numbers = { 10, 20, 30 }; Console.WriteLine(&quot;Original array: &quot; + string.Join(&quot;, &quot;, numbers)); // Use Array.Resize to &quot;expand&quot; the array. // The 'ref' keyword means the 'numbers' variable itself will be changed. Array.Resize(ref numbers, 5); Console.WriteLine(&quot;Resized array: &quot; + string.Join(&quot;, &quot;, numbers)); Output: Original array: 10, 20, 30 Resized array: 10, 20, 30, 0, 0</li>
+      <li>If the new array is larger, it copies all the old elements, and the new, extra elements are initialized to their default values.</li>
     </ul>
+    <ol>
+      <li>It makes the original array variable (which is passed with the ref keyword) point to this new array. The old array is now unreferenced and will eventually be garbage collected. Performance Implications Because this method involves allocating a new array and copying all the elements, it can be an expensive operation for very large arrays. This is the primary reason why List&lt;T&gt; is generally preferred when you need a collection that must grow or shrink dynamically.</li>
+    </ol>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int[] numbers = { 10, 20, 30 };
+Console.WriteLine(&quot;Original array: &quot; + string.Join(&quot;, &quot;, numbers));
+// Use Array.Resize to &quot;expand&quot; the array.
+// The 'ref' keyword means the 'numbers' variable itself will be changed.
+Array.Resize(ref numbers, 5);
+Console.WriteLine(&quot;Resized array: &quot; + string.Join(&quot;, &quot;, numbers));</code></pre>
+    </div>
+  
+    <h3>Output</h3>
+<p>Original array: 10, 20, 30 Resized array: 10, 20, 30, 0, 0</p>
 
     <h2 id="sec-21-lec-10-system-array-sort">Lecture 10: System.Array.Sort</h2>
     <h3>Introduction</h3>
-    <p>Array.Sort is a powerful static method that sorts the elements in a single- dimensional array in place. This means it rearranges the elements within the original array rather than creating a new, sorted array. How It Works For primitive types like int and string, the sort is straightforward (ascending numerical or alphabetical order). The method uses a highly efficient, unstable sorting algorithm called Introsort, which is a hybrid of Quicksort, Heapsort, and Insertion sort. It starts with Quicksort but switches to Heapsort if the recursion depth gets too deep (to prevent worst-case scenarios) and switches to Insertion sort for very small partitions. Example // --- Sorting Numbers --- int[] numbers = { 5, 1, 9, 3, 7, 6 }; Console.WriteLine(&quot;Original numbers: &quot; + string.Join(&quot;, &quot;, numbers)); Array.Sort(numbers); Console.WriteLine(&quot;Sorted numbers: &quot; + string.Join(&quot;, &quot;, numbers)); Console.WriteLine(&quot;--------------------&quot;); // --- Sorting Strings --- string[] names = { &quot;Charlie&quot;, &quot;Alice&quot;, &quot;Eve&quot;, &quot;Bob&quot; }; Console.WriteLine(&quot;Original names: &quot; + string.Join(&quot;, &quot;, names)); Array.Sort(names); Console.WriteLine(&quot;Sorted names: &quot; + string.Join(&quot;, &quot;, names)); Output: Original numbers: 5, 1, 9, 3, 7, 6 Sorted numbers: 1, 3, 5, 6, 7, 9 -------------------- Original names: Charlie, Alice, Eve, Bob Sorted names: Alice, Bob, Charlie, Eve</p>
+<p>Array.Sort is a powerful static method that sorts the elements in a single- dimensional array in place. This means it rearranges the elements within the original array rather than creating a new, sorted array.</p>
+    <h3>How It Works</h3>
+<p>For primitive types like int and string, the sort is straightforward (ascending numerical or alphabetical order). The method uses a highly efficient, unstable sorting algorithm called Introsort, which is a hybrid of Quicksort, Heapsort, and Insertion sort. It starts with Quicksort but switches to Heapsort if the recursion depth gets too deep (to prevent worst-case scenarios) and switches to Insertion sort for very small partitions.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// --- Sorting Numbers ---
+int[] numbers = { 5, 1, 9, 3, 7, 6 };
+Console.WriteLine(&quot;Original numbers: &quot; + string.Join(&quot;, &quot;, numbers));
+Array.Sort(numbers);
+Console.WriteLine(&quot;Sorted numbers: 	&quot; + string.Join(&quot;, &quot;, numbers));
+Console.WriteLine(&quot;--------------------&quot;);
+// --- Sorting Strings ---
+string[] names = { &quot;Charlie&quot;, &quot;Alice&quot;, &quot;Eve&quot;, &quot;Bob&quot; };
+Console.WriteLine(&quot;Original names: &quot; + string.Join(&quot;, &quot;, names));
+Array.Sort(names);
+Console.WriteLine(&quot;Sorted names: 	&quot; + string.Join(&quot;, &quot;, names));</code></pre>
+    </div>
+  
+    <h3>Output</h3>
+<p>Original numbers: 5, 1, 9, 3, 7, 6 Sorted numbers: 1, 3, 5, 6, 7, 9 -------------------- Original names: Charlie, Alice, Eve, Bob Sorted names: Alice, Bob, Charlie, Eve</p>
 
     <h2 id="sec-21-lec-11-system-array-reverse">Lecture 11: System.Array.Reverse</h2>
     <h3>Introduction</h3>
-    <p>Array.Reverse is a simple static utility method that reverses the sequence of the elements in a single-dimensional array in place. How It Works The method swaps the first element with the last, the second element with the second-to-last, and so on, continuing until it reaches the middle of the array. The original array is modified directly. Example char[] letters = { 'A', 'B', 'C', 'D', 'E' }; Console.WriteLine(&quot;Original letters: &quot; + string.Join(&quot;, &quot;, letters)); Array.Reverse(letters); Console.WriteLine(&quot;Reversed letters: &quot; + string.Join(&quot;, &quot;, letters)); Output: Original letters: A, B, C, D, E Reversed letters: E, D, C, B, A</p>
+<p>Array.Reverse is a simple static utility method that reverses the sequence of the elements in a single-dimensional array in place.</p>
+    <h3>How It Works</h3>
+<p>The method swaps the first element with the last, the second element with the second-to-last, and so on, continuing until it reaches the middle of the array. The original array is modified directly.</p>
+    <h3>Example</h3>
+<p>char[] letters = { 'A', 'B', 'C', 'D', 'E' };</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine(&quot;Original letters: &quot; + string.Join(&quot;, &quot;, letters));
+Array.Reverse(letters);
+Console.WriteLine(&quot;Reversed letters: &quot; + string.Join(&quot;, &quot;, letters));</code></pre>
+    </div>
+  
+    <h3>Output</h3>
+<p>Original letters: A, B, C, D, E Reversed letters: E, D, C, B, A</p>
 
     <h2 id="sec-21-lec-12-multi-dimensional-arrays">Lecture 12: Multi-Dimensional Arrays</h2>
     <h3>Introduction</h3>
-    <p>A multi-dimensional array, also known as a rectangular array, is an array with more than one dimension. The most common type is a 2D array, which is used to represent a grid or a table of data with rows and columns. How It Works: Syntax and Memory A 2D array is declared with a comma inside the square brackets. Syntax: type[,] arrayName = new type[rows, columns]; Even though it has two dimensions, it is still stored as a single, contiguous block of memory on the heap. The size of this block is rows * columns. The compiler uses this information to calculate the exact memory offset when you access an element using arrayName[row, column]. Iteration To iterate through a 2D array, you use nested for loops. You must use the array.GetLength(dimension) method to get the size of each dimension.</p>
+<p>A multi-dimensional array, also known as a rectangular array, is an array with more than one dimension. The most common type is a 2D array, which is used to represent a grid or a table of data with rows and columns.</p>
+    <h3>How It Works: Syntax and Memory</h3>
+<p>A 2D array is declared with a comma inside the square brackets.</p>
+    <h3>Syntax</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>type[,] arrayName = new type[rows, columns];</code></pre>
+    </div>
+  
+<p>Even though it has two dimensions, it is still stored as a single, contiguous block of memory on the heap. The size of this block is rows * columns. The compiler uses this information to calculate the exact memory offset when you access an element using arrayName[row, column].</p>
+<p>Iteration To iterate through a 2D array, you use nested for loops. GetLength(dimension) method to get the size of each dimension.</p>
     <ul>
       <li>array.GetLength(0) returns the number of rows.</li>
-      <li>array.GetLength(1) returns the number of columns. Example: A Tic-Tac-Toe Board // A 3x3 grid to represent a Tic-Tac-Toe board. char[,] board = new char[3, 3] { { 'X', 'O', 'X' }, { ' ', 'X', ' ' }, { 'O', ' ', 'O' } }; // Accessing a specific element. board[1, 2] = 'O'; // Place an 'O' in the middle row, last column. Console.WriteLine(&quot;Current Board State:&quot;); // Use nested loops to iterate through the grid. for (int row = 0; row &lt; board.GetLength(0); row++) { for (int col = 0; col &lt; board.GetLength(1); col++) { Console.Write($&quot;[{board[row, col]}]&quot;); } Console.WriteLine(); // Newline after each row. }</li>
+      <li>array.GetLength(1) returns the number of columns.</li>
     </ul>
+    <h3>Example</h3>
+<p>A Tic-Tac-Toe Board</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// A 3x3 grid to represent a Tic-Tac-Toe board.
+char[,] board = new char[3, 3]
+{
+    { 'X', 'O', 'X' },
+    { ' ', 'X', ' ' },
+    { 'O', ' ', 'O' }
+};
+// Accessing a specific element.</code></pre>
+    </div>
+  
+<p>board[1, 2] = 'O'; // Place an 'O' in the middle row, last column.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine(&quot;Current Board State:&quot;);
+// Use nested loops to iterate through the grid.</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    for (int col = 0; col &lt; board.GetLength(1); col++)
+    {
+        Console.Write($&quot;[{board[row, col]}]&quot;);
+    }
+    Console.WriteLine(); // Newline after each row.
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-21-lec-13-jagged-arrays">Lecture 13: Jagged Arrays</h2>
     <h3>Introduction</h3>
-    <p>A jagged array is an &quot;array of arrays.&quot; Unlike a rectangular 2D array where every row must have the same number of columns, a jagged array allows each of its inner arrays to have a different length. You can visualize it as a collection of rows, where each row can be a different size. How It Works This is the key distinction from a multi-dimensional array. A jagged array is not a single contiguous block of memory. Instead:</p>
+<p>A jagged array is an &quot;array of arrays.&quot; Unlike a rectangular 2D array where every row must have the same number of columns, a jagged array allows each of its inner arrays to have a different length. You can visualize it as a collection of rows, where each row can be a different size.</p>
+    <h3>How It Works</h3>
+<p>This is the key distinction from a multi-dimensional array. A jagged array is not a single contiguous block of memory. Instead:</p>
     <ol>
       <li>The &quot;outer&quot; array is a single-dimensional array whose elements are themselves references to other arrays.</li>
-      <li>Each &quot;inner&quot; array is a separate, regular single-dimensional array allocated in its own block of memory on the heap. Because each inner array is a distinct object, each can have its own independent length. Syntax A jagged array is declared with multiple sets of square brackets. Instantiation is a two-step process: you must first create the outer array, and then you must create a new array for each of its elements. Declaration: int[][] jaggedArray; Instantiation: jaggedArray = new int[3][]; // Create the outer array to hold 3 inner arrays. jaggedArray[0] = new int[5]; // The first row is an array of 5 integers. jaggedArray[1] = new int[2]; // The second row is an array of 2 integers. jaggedArray[2] = new int[4]; // The third row is an array of 4 integers. Example: Storing Monthly Sales Data Imagine you want to store daily sales figures for a few months, but each month has a different number of days. A jagged array is perfect for this. // The outer array has 3 elements, one for each month. int[][] monthlySales = new int[3][]; // Initialize each inner array with the correct number of days. monthlySales[0] = new int[] { 5, 8, 12, 7, 3 }; // 5 days in this period monthlySales[1] = new int[] { 10, 11 }; // 2 days in this period monthlySales[2] = new int[] { 2, 4, 5, 9 }; // 4 days in this period // Use nested loops to iterate. for (int i = 0; i &lt; monthlySales.Length; i++) { Console.Write($&quot;Month {i + 1} Sales: &quot;); for (int j = 0; j &lt; monthlySales[i].Length; j++) { Console.Write(monthlySales[i][j] + &quot; &quot;); } Console.WriteLine(); }</li>
+      <li>Each &quot;inner&quot; array is a separate, regular single-dimensional array allocated in its own block of memory on the heap. Because each inner array is a distinct object, each can have its own independent length.</li>
     </ol>
+    <h3>Syntax</h3>
+<p>A jagged array is declared with multiple sets of square brackets. Instantiation is a two-step process: you must first create the outer array, and then you must create a new array for each of its elements. Declaration: int[][] jaggedArray; Instantiation: jaggedArray = new int[3][]; // Create the outer array to hold 3 inner arrays.</p>
+<p>jaggedArray[0] = new int[5]; // The first row is an array of 5 integers. jaggedArray[1] = new int[2]; // The second row is an array of 2 integers. jaggedArray[2] = new int[4]; // The third row is an array of 4 integers.</p>
+    <h3>Example: Storing Monthly Sales Data</h3>
+<p>Imagine you want to store daily sales figures for a few months, but each month has a different number of days. A jagged array is perfect for this.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// The outer array has 3 elements, one for each month.
+int[][] monthlySales = new int[3][];
+// Initialize each inner array with the correct number of days.</code></pre>
+    </div>
+  
+<p>monthlySales[0] = new int[] { 5, 8, 12, 7, 3 }; // 5 days in this period monthlySales[1] = new int[] { 10, 11 }; // 2 days in this period monthlySales[2] = new int[] { 2, 4, 5, 9 }; // 4 days in this period</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Use nested loops to iterate.</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    Console.Write($&quot;Month {i + 1} Sales: &quot;);
+    for (int j = 0; j &lt; monthlySales[i].Length; j++)
+    {
+        Console.Write(monthlySales[i][j] + &quot; &quot;);
+    }
+    Console.WriteLine();
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-21-lec-14-array-of-objects">Lecture 14: Array of Objects</h2>
     <h3>Introduction</h3>
-    <p>You can create an array where the element type is not a primitive like int or string, but a class that you have defined. This allows you to create a fixed-size collection of complex objects. How It Works: An Array of References This is a critical concept that trips up many beginners. When you create an array of a reference type, you are not creating the objects themselves. You are creating an array of references, and each element in that array is initialized to null. You must then iterate through the array and manually create a new instance of your object for each element. If you forget this second step and try to access a member of an element, you will get a NullReferenceException. Example public class Student { public string Name { get; set; } } public class Program { public static void Main(string[] args) { // STEP 1: Create the array. // This allocates memory for THREE Student REFERENCES, all set to null. // It does NOT create any Student objects. Student[] classroom = new Student[3]; // If you try this now, it will throw a NullReferenceException because classroom[0] is null. // classroom[0].Name = &quot;Alice&quot;; // CRASH! // STEP 2: You MUST instantiate an object for each element. for (int i = 0; i &lt; classroom.Length; i++) { classroom[i] = new Student(); // Create the actual object. } // Now it is safe to access the objects. classroom[0].Name = &quot;Alice&quot;; classroom[1].Name = &quot;Bob&quot;; classroom[2].Name = &quot;Charlie&quot;; foreach (var student in classroom) { Console.WriteLine($&quot;Student Name: {student.Name}&quot;); } } }</p>
+<p>You can create an array where the element type is not a primitive like int or string, but a class that you have defined. This allows you to create a fixed-size collection of complex objects.</p>
+    <h3>How It Works</h3>
+<p>An Array of References This is a critical concept that trips up many beginners. When you create an array of a reference type, you are not creating the objects themselves. You are creating an array of references, and each element in that array is initialized to null.</p>
+<p>You must then iterate through the array and manually create a new instance of your object for each element. If you forget this second step and try to access a member of an element, you will get a NullReferenceException.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class Student
+{
+    public string Name { get; set; }
+}
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // STEP 1: Create the array.
+        // This allocates memory for THREE Student REFERENCES, all set to null.
+        // It does NOT create any Student objects.
+        Student[] classroom = new Student[3];
+        // If you try this now, it will throw a NullReferenceException because classroom[0] is null.
+        // classroom[0].Name = &quot;Alice&quot;; // CRASH!
+        // STEP 2: You MUST instantiate an object for each element.
+        for (int i = 0; i &lt; classroom.Length; i++)
+        {
+            classroom[i] = new Student(); // Create the actual object.
+        }
+        // Now it is safe to access the objects.
+        classroom[0].Name = &quot;Alice&quot;;
+        classroom[1].Name = &quot;Bob&quot;;
+        classroom[2].Name = &quot;Charlie&quot;;
+        foreach (var student in classroom)
+        {
+            Console.WriteLine($&quot;Student Name: {student.Name}&quot;);
+        }
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-21-lec-15-copyto-and-clone">Lecture 15: CopyTo and Clone</h2>
     <h3>Introduction</h3>
-    <p>The System.Array class provides built-in methods for creating copies of arrays. However, it is crucial to understand that these methods perform a shallow copy, which has very different results for value types versus reference types. CopyTo(Array dest, int index)</p>
+<p>The System.Array class provides built-in methods for creating copies of arrays. However, it is crucial to understand that these methods perform a shallow copy, which has very different results for value types versus reference types. CopyTo(Array dest, int index)</p>
     <ul>
-      <li>What it does: This is an instance method that copies all the elements from the source array into a pre-existing destination array, starting at a specified destination index.</li>
-      <li>When to Use It: When you need to copy the contents of one array into a specific section of another, larger array. Clone()</li>
-      <li>What it does: This is an instance method that creates and returns a new array object containing all the elements of the original array. The return type is object, so you must cast it back to your array type.</li>
-      <li>How it Works: Shallow Copy: This is the most important concept. A shallow copy means:</li>
+      <li><strong>What it does:</strong> This is an instance method that copies all the elements from the source array into a pre-existing destination array, starting at a specified destination index.</li>
+      <li><strong>When to Use It:</strong> When you need to copy the contents of one array into a specific section of another, larger array. Clone()</li>
+      <li><strong>What it does:</strong> This is an instance method that creates and returns a new array object containing all the elements of the original array. The return type is object, so you must cast it back to your array type.</li>
+      <li><strong>How it Works:</strong> Shallow Copy: This is the most important concept. A shallow copy means:</li>
       <li>For an array of value types (like int[]), it creates a true, independent copy of the values.</li>
-      <li>For an array of reference types (like Student[]), it copies only the references (the memory addresses). The new array will contain references pointing to the exact same original objects as the first array. Example: Demonstrating Shallow Copy with Clone() public class Student { public string Name; } public class Program { public static void Main(string[] args) { Student[] originalClassroom = new Student[2]; originalClassroom[0] = new Student { Name = &quot;Alice&quot; }; originalClassroom[1] = new Student { Name = &quot;Bob&quot; }; // Clone() performs a shallow copy. Student[] clonedClassroom = (Student[])originalClassroom.Clone(); Console.WriteLine(&quot;--- Before any changes ---&quot;); Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;); Console.WriteLine($&quot;Cloned[0]: {clonedClassroom[0].Name}&quot;); // Now, change the name of the student in the CLONED array. clonedClassroom[0].Name = &quot;Alicia&quot;; Console.WriteLine(&quot;\n--- Changed name in CLONED array ---&quot;); // Because both arrays contain references to the SAME student object, // the change is reflected in the ORIGINAL array as well. Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;); // Output: Alicia Console.WriteLine($&quot;Cloned[0]: {clonedClassroom[0].Name}&quot;); // Output: Alicia } }</li>
+      <li>For an array of reference types (like Student[]), it copies only the references (the memory addresses). The new array will contain references pointing to the exact same original objects as the first array.</li>
     </ul>
+    <h3>Example</h3>
+<p>Demonstrating Shallow Copy with Clone()</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class Student { public string Name; }
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Student[] originalClassroom = new Student[2];
+        originalClassroom[0] = new Student { Name = &quot;Alice&quot; };
+        originalClassroom[1] = new Student { Name = &quot;Bob&quot; };
+        // Clone() performs a shallow copy.
+        Student[] clonedClassroom = (Student[])originalClassroom.Clone();
+        Console.WriteLine(&quot;--- Before any changes ---&quot;);
+        Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;);
+        Console.WriteLine($&quot;Cloned[0]: {clonedClassroom[0].Name}&quot;);
+        // Now, change the name of the student in the CLONED array.
+        clonedClassroom[0].Name = &quot;Alicia&quot;;
+        Console.WriteLine(&quot;\n--- Changed name in CLONED array ---&quot;);
+        // Because both arrays contain references to the SAME student object,
+        // the change is reflected in the ORIGINAL array as well.
+        Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;); //
+        Output: Alicia
+        Console.WriteLine($&quot;Cloned[0]: {clonedClassroom[0].Name}&quot;); 	//
+        Output: Alicia
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-21-lec-16-deep-copy">Lecture 16: Deep Copy</h2>
     <h3>Introduction</h3>
-    <p>A deep copy is the process of creating a new array and then creating a new copy of every single object referenced by that array. This results in a completely independent clone with no shared object references. A change to an object in the new array will not affect any object in the original array. How It Works C# does not provide a built-in method for a generic deep copy because it cannot know how to create a copy of your custom objects. You must implement the logic yourself. The standard way is to:</p>
+<p>A deep copy is the process of creating a new array and then creating a new copy of every single object referenced by that array. This results in a completely independent clone with no shared object references. A change to an object in the new array will not affect any object in the original array.</p>
+    <h3>How It Works</h3>
+<p>C# does not provide a built-in method for a generic deep copy because it cannot know how to create a copy of your custom objects. You must implement the logic yourself. The standard way is to:</p>
     <ol>
       <li>Create a new destination array of the same size.</li>
       <li>Iterate through the original array.</li>
-      <li>For each element in the original array, create a new object for the new array, copying the values from the original object. This is often done using a copy constructor. Example public class Student { public string Name; // A regular constructor public Student(string name) { this.Name = name; } // A copy constructor that creates a new student from an existing one. public Student(Student other) { this.Name = other.Name; } } public class Program { public static void Main(string[] args) { Student[] originalClassroom = { new Student(&quot;Alice&quot;), new Student(&quot;Bob&quot;) }; // --- Manual Deep Copy --- Student[] deepCopiedClassroom = new Student[originalClassroom.Length]; for (int i = 0; i &lt; originalClassroom.Length; i++) { // For each element, create a NEW student object using the copy constructor. deepCopiedClassroom[i] = new Student(originalClassroom[i]); } Console.WriteLine(&quot;--- Before any changes ---&quot;); Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;); Console.WriteLine($&quot;Deep Copy[0]: {deepCopiedClassroom[0].Name}&quot;); // Now, change the name of the student in the DEEP COPIED array. deepCopiedClassroom[0].Name = &quot;Alicia&quot;; Console.WriteLine(&quot;\n--- Changed name in DEEP COPIED array ---&quot;); // The original array is completely unaffected. Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;); // Output: Alice Console.WriteLine($&quot;Deep Copy[0]: {deepCopiedClassroom[0].Name}&quot;); // Output: Alicia } }</li>
+      <li>For each element in the original array, create a new object for the new array, copying the values from the original object. This is often done using a copy constructor.</li>
     </ol>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class Student
+{
+    public string Name;
+    // A regular constructor
+    public Student(string name) { this.Name = name; }
+    // A copy constructor that creates a new student from an existing one. public Student(Student other)
+    {
+        this.Name = other.Name;
+    }
+}
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Student[] originalClassroom = { new Student(&quot;Alice&quot;), new
+        Student(&quot;Bob&quot;) };
+        // --- Manual Deep Copy ---
+        Student[] deepCopiedClassroom = new
+        Student[originalClassroom.Length];
+        for (int i = 0; i &lt; originalClassroom.Length; i++)
+        {
+            // For each element, create a NEW student object using the copy constructor.
+            deepCopiedClassroom[i] = new Student(originalClassroom[i]);
+        }
+        Console.WriteLine(&quot;--- Before any changes ---&quot;);
+        Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;);
+        Console.WriteLine($&quot;Deep Copy[0]:
+        {deepCopiedClassroom[0].Name}&quot;);
+        // Now, change the name of the student in the DEEP COPIED array.
+        deepCopiedClassroom[0].Name = &quot;Alicia&quot;;
+        Console.WriteLine(&quot;\n--- Changed name in DEEP COPIED array ---&quot;);
+        // The original array is completely unaffected.
+        Console.WriteLine($&quot;Original[0]: {originalClassroom[0].Name}&quot;); //
+        Output: Alice
+        Console.WriteLine($&quot;Deep Copy[0]:
+        {deepCopiedClassroom[0].Name}&quot;); 	// Output: Alicia
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-21-lec-17-imp-points-to-remember">Lecture 17: IMP Points to Remember</h2>
     <ul>

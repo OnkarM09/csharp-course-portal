@@ -447,65 +447,315 @@
         
     <h2 id="sec-25-lec-1-intro-and-linq-basics">Lecture 1: Intro and LINQ Basics</h2>
     <h3>Introduction</h3>
-    <p>LINQ, which stands for Language-Integrated Query, is a powerful and unified set of features in C# that provides a consistent, SQL-like syntax for querying data. Before LINQ, if you wanted to get data from a database, an XML file, or an in-memory collection, you had to learn a completely different API for each one. LINQ provides a single, elegant way to work with all of them. The two key benefits of LINQ are:</p>
+<p>LINQ, which stands for Language-Integrated Query, is a powerful and unified set of features in C# that provides a consistent, SQL-like syntax for querying data. Before LINQ, if you wanted to get data from a database, an XML file, or an in-memory collection, you had to learn a completely different API for each one. LINQ provides a single, elegant way to work with all of them. The two key benefits of LINQ are:</p>
     <ol>
-      <li>Declarative Syntax: You describe what you want, not how to get it. You write a query that says &quot;give me all products where the price is over 100,&quot; and LINQ figures out the underlying loops and conditions for you.</li>
-      <li>Strong Typing: LINQ queries are part of the C# language itself. This means your queries are checked by the compiler for type errors, and you get full IntelliSense support, which prevents many common bugs. The Two Syntaxes You can write LINQ queries in two ways. Both are compiled into the exact same code, so the choice is a matter of readability and style.</li>
-      <li>Query Syntax (SQL-like): This syntax looks very similar to SQL. It's often preferred for more complex queries involving joins or multiple conditions because it can be easier to read. var results = from student in students where student.Score &gt; 90 select student.Name;</li>
-      <li>Method Syntax (Fluent API): This syntax uses a chain of extension methods called on the collection. This is the more common and powerful syntax, as every LINQ query is ultimately translated into this form by the compiler. All LINQ operators are available in this syntax. var results = students.Where(student =&gt; student.Score &gt; 90) .Select(student =&gt; student.Name); How It Works: Extension Methods &amp; Deferred Execution</li>
+      <li><strong>Declarative Syntax:</strong> You describe what you want, not how to get it. You write a query that says &quot;give me all products where the price is over 100,&quot; and LINQ figures out the underlying loops and conditions for you.</li>
+      <li><strong>Strong Typing:</strong> LINQ queries are part of the C# language itself. This means your queries are checked by the compiler for type errors, and you get full IntelliSense support, which prevents many common bugs. The Two Syntaxes You can write LINQ queries in two ways. Both are compiled into the exact same code, so the choice is a matter of readability and style.</li>
+      <li>Query Syntax (SQL-like): This syntax looks very similar to SQL. It's often preferred for more complex queries involving joins or multiple conditions because it can be easier to read.</li>
     </ol>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>var results = from student in students
+where student.Score &gt; 90
+select student.Name;</code></pre>
+    </div>
+  
+    <ol>
+      <li><strong>Method Syntax (Fluent API):</strong> This syntax uses a chain of extension methods called on the collection. This is the more common and powerful syntax, as every LINQ query is ultimately translated into this form by the compiler. All LINQ operators are available in this syntax.</li>
+    </ol>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>var results = students.Where(student =&gt; student.Score &gt; 90)
+.Select(student =&gt; student.Name);</code></pre>
+    </div>
+  
+    <h3>How It Works</h3>
+<p>Extension Methods &amp; Deferred Execution</p>
     <ul>
-      <li>Extension Methods: LINQ is built almost entirely on extension methods for the IEnumerable&lt;T&gt; interface. This is why you can call methods like .Where() and .Select() on any array or list. To access them, you must add the using System.Linq; directive to your file.</li>
-      <li>Deferred Execution: This is a critical concept. When you define a LINQ query, the query does not run immediately. It is only a &quot;plan&quot; for how to get the data. The query is only executed when you start iterating over its results, for example, by using a foreach loop or by calling a method like .ToList() or .Count(). This allows LINQ to be extremely efficient by combining multiple operations into a single pass over the data source.</li>
+      <li><strong>Extension Methods:</strong> LINQ is built almost entirely on extension methods for the IEnumerable&lt;T&gt; interface. This is why you can call methods like .Where() and .Select() on any array or list. To access them, you must add the using System.Linq; directive to your file.</li>
+      <li><strong>Deferred Execution:</strong> This is a critical concept. When you define a LINQ query, the query does not run immediately. It is only a &quot;plan&quot; for how to get the data. The query is only executed when you start iterating over its results, for example, by using a foreach loop or by calling a method like .ToList() or .Count(). This allows LINQ to be extremely efficient by combining multiple operations into a single pass over the data source.</li>
     </ul>
 
     <h2 id="sec-25-lec-2-linq-to-arrays-and-collections">Lecture 2: LINQ to Arrays and Collections</h2>
     <h3>Introduction</h3>
-    <p>The most common and straightforward use of LINQ is for querying in-memory collections like List&lt;T&gt; and arrays. This allows you to filter, sort, and transform your data with incredibly concise and readable code, replacing complex and error-prone for and if loops. How It Works To use LINQ on a collection, you first need the using System.Linq; directive at the top of your file. This brings all the LINQ extension methods into scope. You then simply call the desired methods on your collection variable. The result of most LINQ query operators (like Where and OrderBy) is another IEnumerable&lt;T&gt;. This allows you to chain operators together to build up a more complex query. Remember that due to deferred execution, this chain of operations is only a plan. The work isn't done until you materialize the results. Example Let's find all numbers greater than 50 in a list and display them. // The data source List&lt;int&gt; scores = new List&lt;int&gt; { 25, 88, 42, 95, 15, 71, 99 }; // --- Method Syntax (Preferred) --- // 1. Define the query. No work is done here yet. IEnumerable&lt;int&gt; highScoresQuery = scores.Where(score =&gt; score &gt; 50); // --- Query Syntax (Alternative) --- IEnumerable&lt;int&gt; highScoresQuerySql = from score in scores where score &gt; 50 select score; Console.WriteLine(&quot;Query has been defined. Now executing with foreach loop...&quot;); // 2. Execute the query by iterating over it. // The 'Where' filter is applied as the loop pulls each item. foreach (int score in highScoresQuery) { Console.WriteLine(score); } Output: Query has been defined. Now executing with foreach loop... 88 95 71 99</p>
+<p>The most common and straightforward use of LINQ is for querying in-memory collections like List&lt;T&gt; and arrays. This allows you to filter, sort, and transform your data with incredibly concise and readable code, replacing complex and error-prone for and if loops.</p>
+    <h3>How It Works</h3>
+<p>Linq; directive at the top of your file. This brings all the LINQ extension methods into scope. You then simply call the desired methods on your collection variable.</p>
+<p>The result of most LINQ query operators (like Where and OrderBy) is another IEnumerable&lt;T&gt;. This allows you to chain operators together to build up a more complex query. Remember that due to deferred execution, this chain of operations is only a plan. The work isn't done until you materialize the results.</p>
+    <h3>Example</h3>
+<p>Let's find all numbers greater than 50 in a list and display them.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// The data source
+List&lt;int&gt; scores = new List&lt;int&gt; { 25, 88, 42, 95, 15, 71, 99 };
+// --- Method Syntax (Preferred) ---
+// 1. Define the query. No work is done here yet.
+IEnumerable&lt;int&gt; highScoresQuery = scores.Where(score =&gt; score &gt; 50);
+// --- Query Syntax (Alternative) ---
+IEnumerable&lt;int&gt; highScoresQuerySql = from score in scores
+where score &gt; 50
+select score;
+Console.WriteLine(&quot;Query has been defined. Now executing with foreach
+loop...&quot;);
+// 2. Execute the query by iterating over it.
+// The 'Where' filter is applied as the loop pulls each item. foreach (int score in highScoresQuery)
+{
+    Console.WriteLine(score);
+}</code></pre>
+    </div>
+  
+    <h3>Output</h3>
+<p>Query has been defined. Now executing with foreach loop... 88 95 71 99</p>
 
     <h2 id="sec-25-lec-3-orderby">Lecture 3: OrderBy</h2>
     <h3>Introduction</h3>
-    <p>OrderBy and its counterpart OrderByDescending are the primary LINQ methods for sorting sequences. They allow you to order a collection based on a specific property or value of its elements. How It Works</p>
+<p>OrderBy and its counterpart OrderByDescending are the primary LINQ methods for sorting sequences. They allow you to order a collection based on a specific property or value of its elements.</p>
+    <h3>How It Works</h3>
     <ul>
-      <li>OrderBy(keySelector): Sorts the elements in ascending order.</li>
-      <li>OrderByDescending(keySelector): Sorts the elements in descending order. The keySelector is a lambda expression that tells the method what to sort by. For example, p =&gt; p.Price tells it to sort by the Price property. For secondary sorting, you can chain ThenBy() or ThenByDescending(). This allows you to sort by one criterion, and then for all items that are equal in that first sort, sort them by a second criterion. Example public class Product { public string Category; public string Name; } List&lt;Product&gt; products = new List&lt;Product&gt; { new Product { Category = &quot;Fruit&quot;, Name = &quot;Apple&quot; }, new Product { Category = &quot;Vegetable&quot;, Name = &quot;Carrot&quot; }, new Product { Category = &quot;Fruit&quot;, Name = &quot;Banana&quot; } }; // Sort by a single criterion: Name var sortedByName = products.OrderBy(p =&gt; p.Name); // Result: Apple, Banana, Carrot // Sort by Category (primary), then by Name (secondary) var sortedByCategoryThenName = products.OrderBy(p =&gt; p.Category) .ThenBy(p =&gt; p.Name); // Result: Apple (Fruit), Banana (Fruit), Carrot (Vegetable) // Note: Apple comes before Banana within the Fruit category. Console.WriteLine(&quot;--- Sorted by Category, then Name ---&quot;); foreach (var product in sortedByCategoryThenName) { Console.WriteLine($&quot;{product.Category.PadRight(10)} | {product.Name}&quot;); }</li>
+      <li><strong>OrderBy(keySelector):</strong> Sorts the elements in ascending order.</li>
+      <li><strong>OrderByDescending(keySelector):</strong> Sorts the elements in descending order. The keySelector is a lambda expression that tells the method what to sort by. For example, p =&gt; p.Price tells it to sort by the Price property. For secondary sorting, you can chain ThenBy() or ThenByDescending(). This allows you to sort by one criterion, and then for all items that are equal in that first sort, sort them by a second criterion.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class Product { public string Category; public string Name; }
+List&lt;Product&gt; products = new List&lt;Product&gt;
+{
+    new Product { Category = &quot;Fruit&quot;, Name = &quot;Apple&quot; },
+    new Product { Category = &quot;Vegetable&quot;, Name = &quot;Carrot&quot; },
+    new Product { Category = &quot;Fruit&quot;, Name = &quot;Banana&quot; }
+};
+// Sort by a single criterion: Name
+var sortedByName = products.OrderBy(p =&gt; p.Name);
+// Result: Apple, Banana, Carrot
+// Sort by Category (primary), then by Name (secondary)
+var sortedByCategoryThenName = products.OrderBy(p =&gt; p.Category)
+.ThenBy(p =&gt; p.Name);
+// Result: Apple (Fruit), Banana (Fruit), Carrot (Vegetable)
+// Note: Apple comes before Banana within the Fruit category.
+Console.WriteLine(&quot;--- Sorted by Category, then Name ---&quot;);
+foreach (var product in sortedByCategoryThenName)
+{
+    Console.WriteLine($&quot;{product.Category.PadRight(10)} |
+    {product.Name}&quot;);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-25-lec-4-first-and-firstordefault">Lecture 4: First and FirstOrDefault</h2>
     <h3>Introduction</h3>
-    <p>These are element operators used to retrieve the very first element from a sequence. Choosing between them depends on how you want to handle the case where the sequence is empty or no element matches your criteria. How It Works: The Critical Difference</p>
+<p>These are element operators used to retrieve the very first element from a sequence. Choosing between them depends on how you want to handle the case where the sequence is empty or no element matches your criteria.</p>
+    <h3>How It Works</h3>
+<p>The Critical Difference</p>
     <ul>
       <li>First()</li>
-      <li>Behavior: Returns the first element of a sequence.</li>
-      <li>Exception Handling: If the sequence is empty, it throws an InvalidOperationException.</li>
-      <li>With a Predicate: First(predicate) returns the first element that matches the condition. If no element matches, it also throws an InvalidOperationException.</li>
-      <li>When to Use: Use First() when your code expects and requires that an element exists. In this case, an empty sequence or no match is an exceptional error condition that should stop the program.</li>
+      <li><strong>Behavior:</strong> Returns the first element of a sequence.</li>
+      <li><strong>Exception Handling:</strong> If the sequence is empty, it throws an InvalidOperationException.</li>
+      <li><strong>With a Predicate:</strong> First(predicate) returns the first element that matches the condition. If no element matches, it also throws an InvalidOperationException.</li>
+      <li><strong>When to Use:</strong> Use First() when your code expects and requires that an element exists. In this case, an empty sequence or no match is an exceptional error condition that should stop the program.</li>
       <li>FirstOrDefault()</li>
-      <li>Behavior: Returns the first element of a sequence.</li>
-      <li>Exception Handling: If the sequence is empty, it gracefully returns the default value for the type (null for reference types, 0 for int, false for bool, etc.). It does not throw an exception.</li>
-      <li>With a Predicate: FirstOrDefault(predicate) returns the first element that matches. If no element matches, it also returns the default value.</li>
-      <li>When to Use: Use FirstOrDefault() when it is a normal, valid scenario for an element to be missing. This is the safer and more common choice. Example List&lt;int&gt; numbers = new List&lt;int&gt; { 10, 20, 30 }; List&lt;int&gt; emptyList = new List&lt;int&gt;(); // --- Successful Cases --- int firstNum = numbers.First(); // 10 int firstOrDefaultNum = numbers.FirstOrDefault(); // 10 // --- Unsuccessful Cases --- int? firstOrDefaultEmpty = emptyList.FirstOrDefault(); // Returns default(int), which is 0. No exception. try { int firstEmpty = emptyList.First(); // Throws InvalidOperationException! } catch (InvalidOperationException) { Console.WriteLine(&quot;First() threw an exception on an empty list, as expected.&quot;); }</li>
+      <li><strong>Behavior:</strong> Returns the first element of a sequence.</li>
+      <li><strong>Exception Handling:</strong> If the sequence is empty, it gracefully returns the default value for the type (null for reference types, 0 for int, false for bool, etc.). It does not throw an exception.</li>
+      <li><strong>With a Predicate:</strong> FirstOrDefault(predicate) returns the first element that matches. If no element matches, it also returns the default value.</li>
+      <li><strong>When to Use:</strong> Use FirstOrDefault() when it is a normal, valid scenario for an element to be missing. This is the safer and more common choice.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>List&lt;int&gt; numbers = new List&lt;int&gt; { 10, 20, 30 };
+List&lt;int&gt; emptyList = new List&lt;int&gt;();
+// --- Successful Cases ---</code></pre>
+    </div>
+  
+<p>int firstNum = numbers.First(); // 10 int firstOrDefaultNum = numbers.FirstOrDefault(); // 10</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// --- Unsuccessful Cases ---</code></pre>
+    </div>
+  
+<p>int? firstOrDefaultEmpty = emptyList.FirstOrDefault(); // Returns default(int), which is 0. No exception. try</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    int firstEmpty = emptyList.First(); // Throws InvalidOperationException!
+}
+catch (InvalidOperationException)
+{
+    Console.WriteLine(&quot;First() threw an exception on an empty list, as
+    expected.&quot;);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-25-lec-5-last-and-lastordefault">Lecture 5: Last and LastOrDefault</h2>
     <h3>Introduction</h3>
-    <p>These methods are the direct counterparts to First and FirstOrDefault. They are used to retrieve the very last element from a sequence. How It Works: Same Rules, Opposite End The exception handling rules are identical to First and FirstOrDefault:</p>
+<p>These methods are the direct counterparts to First and FirstOrDefault. They are used to retrieve the very last element from a sequence.</p>
+    <h3>How It Works: Same Rules, Opposite End</h3>
+<p>The exception handling rules are identical to First and FirstOrDefault:</p>
     <ul>
-      <li>Last(): Throws an InvalidOperationException if the sequence is empty or if no element matches the predicate.</li>
-      <li>LastOrDefault(): Gracefully returns the default value for the type if the sequence is empty or no element matches. Performance Note For simple collections like List&lt;T&gt; that know their count and can be indexed from the end, these operations are fast. However, for a generic IEnumerable&lt;T&gt; that can only be iterated forward, calling Last() might require iterating through the entire sequence to find the end, which can be a slow (O(n)) operation. Example List&lt;string&gt; names = new List&lt;string&gt; { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot; }; string lastName = names.Last(); // &quot;Charlie&quot; string lastOrDefaultName = names.LastOrDefault(); // &quot;Charlie&quot; // Find the last name that starts with &quot;A&quot; string lastA = names.LastOrDefault(name =&gt; name.StartsWith(&quot;A&quot;)); // &quot;Alice&quot; // Find the last name that starts with &quot;Z&quot; string lastZ = names.LastOrDefault(name =&gt; name.StartsWith(&quot;Z&quot;)); // null (default for string) Console.WriteLine($&quot;Last name starting with Z: {lastZ ?? &quot;Not Found&quot;}&quot;);</li>
+      <li><strong>Last():</strong> Throws an InvalidOperationException if the sequence is empty or if no element matches the predicate.</li>
+      <li><strong>LastOrDefault():</strong> Gracefully returns the default value for the type if the sequence is empty or no element matches. Performance Note For simple collections like List&lt;T&gt; that know their count and can be indexed from the end, these operations are fast. However, for a generic IEnumerable&lt;T&gt; that can only be iterated forward, calling Last() might require iterating through the entire sequence to find the end, which can be a slow (O(n)) operation.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>List&lt;string&gt; names = new List&lt;string&gt; { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot; };</code></pre>
+    </div>
+  
+<p>string lastName = names.Last(); // &quot;Charlie&quot; string lastOrDefaultName = names.LastOrDefault(); // &quot;Charlie&quot;</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Find the last name that starts with &quot;A&quot;</code></pre>
+    </div>
+  
+<p>string lastA = names.LastOrDefault(name =&gt; name.StartsWith(&quot;A&quot;)); // &quot;Alice&quot;</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Find the last name that starts with &quot;Z&quot;</code></pre>
+    </div>
+  
+<p>string lastZ = names.LastOrDefault(name =&gt; name.StartsWith(&quot;Z&quot;)); // null (default for string)</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;Last name starting with Z: {lastZ ?? &quot;Not Found&quot;}&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-25-lec-6-elementat-and-elementatordefault">Lecture 6: ElementAt and ElementAtOrDefault</h2>
     <h3>Introduction</h3>
-    <p>These are LINQ element operators used to retrieve an element at a specific zero-based index within a sequence. While this seems similar to using the array/list indexer (e.g., myList[5]), these methods have the advantage of working on any sequence that implements IEnumerable&lt;T&gt;, even those that don't have a built-in indexer. How It Works &amp; When to Use It The key difference is performance and applicability. The direct indexer (myList[index]) is an O(1) operation for lists and arrays because it can calculate the memory location directly. The ElementAt(index) method, when used on a simple forward-only IEnumerable&lt;T&gt;, may have to iterate through all the elements from the beginning up to the desired index, making it a potentially slow O(n) operation. You should use ElementAt when you are working with a generic IEnumerable&lt;T&gt; and need to get an element by its position. The Exception Handling Pattern These methods follow the same safety pattern as First and Last.</p>
+<p>These are LINQ element operators used to retrieve an element at a specific zero-based index within a sequence. While this seems similar to using the array/list indexer (e.g., myList[5]), these methods have the advantage of working on any sequence that implements IEnumerable&lt;T&gt;, even those that don't have a built-in indexer.</p>
+    <h3>How It Works</h3>
+<p>&amp; When to Use It The key difference is performance and applicability. The direct indexer (myList[index]) is an O(1) operation for lists and arrays because it can calculate the memory location directly. The ElementAt(index) method, when used on a simple forward-only IEnumerable&lt;T&gt;, may have to iterate through all the elements from the beginning up to the desired index, making it a potentially slow O(n) operation.</p>
+<p>You should use ElementAt when you are working with a generic IEnumerable&lt;T&gt; and need to get an element by its position. The Exception Handling Pattern These methods follow the same safety pattern as First and Last.</p>
     <ul>
-      <li>ElementAt(index): Returns the element at the specified index. If the index is negative or greater than or equal to the size of the collection, it throws an ArgumentOutOfRangeException.</li>
-      <li>ElementAtOrDefault(index): Returns the element at the specified index. If the index is out of bounds, it gracefully returns the default value for the type (null, 0, etc.) and does not throw an exception. Example string[] colors = { &quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot; }; // --- Successful Case --- string secondColor = colors.ElementAt(1); Console.WriteLine($&quot;The element at index 1 is: {secondColor}&quot;); // Output: Green // --- Unsuccessful Case --- // The valid indices are 0, 1, and 2. Index 5 is out of bounds. string nonExistentColor = colors.ElementAtOrDefault(5); // 'nonExistentColor' will be null (the default for string), no exception is thrown. Console.WriteLine($&quot;The element at index 5 is: {nonExistentColor ?? &quot;Not Found&quot;}&quot;); // Output: Not Found try { // This call will throw an exception. string errorColor = colors.ElementAt(5); } catch (ArgumentOutOfRangeException) { Console.WriteLine(&quot;ElementAt(5) threw an exception, as expected.&quot;); }</li>
+      <li><strong>ElementAt(index):</strong> Returns the element at the specified index. If the index is negative or greater than or equal to the size of the collection, it throws an ArgumentOutOfRangeException.</li>
+      <li><strong>ElementAtOrDefault(index):</strong> Returns the element at the specified index. If the index is out of bounds, it gracefully returns the default value for the type (null, 0, etc.) and does not throw an exception.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string[] colors = { &quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot; };
+// --- Successful Case ---
+string secondColor = colors.ElementAt(1);
+Console.WriteLine($&quot;The element at index 1 is: {secondColor}&quot;); // Output:
+Green
+// --- Unsuccessful Case ---
+// The valid indices are 0, 1, and 2. Index 5 is out of bounds.
+string nonExistentColor = colors.ElementAtOrDefault(5);
+// 'nonExistentColor' will be null (the default for string), no exception is thrown.
+Console.WriteLine($&quot;The element at index 5 is: {nonExistentColor ?? &quot;Not</code></pre>
+    </div>
+  
+<p>Found&quot;}&quot;); // Output: Not Found try</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // This call will throw an exception.
+    string errorColor = colors.ElementAt(5);
+}
+catch (ArgumentOutOfRangeException)
+{
+    Console.WriteLine(&quot;ElementAt(5) threw an exception, as expected.&quot;);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-25-lec-7-single-and-singleordefault">Lecture 7: Single and SingleOrDefault</h2>
     <h3>Introduction</h3>
-    <p>These are the strictest element operators in LINQ. They are used to retrieve the one and only element from a sequence that satisfies a condition. Their purpose is to enforce an assumption of uniqueness. If that assumption is violated (by finding zero elements, or more than one), they will throw an exception. How It Works: The Strict Rules This is a very common interview topic used to distinguish between First and Single.</p>
+<p>These are the strictest element operators in LINQ. They are used to retrieve the one and only element from a sequence that satisfies a condition. Their purpose is to enforce an assumption of uniqueness. If that assumption is violated (by finding zero elements, or more than one), they will throw an exception.</p>
+    <h3>How It Works</h3>
+<p>The Strict Rules This is a very common interview topic used to distinguish between First and Single.</p>
     <ul>
       <li>Single()</li>
       <li>Returns the element only if exactly one element exists in the sequence (or satisfies the predicate).</li>
@@ -514,36 +764,172 @@
       <li>SingleOrDefault()</li>
       <li>Returns the element only if exactly one element exists.</li>
       <li>Returns the default value (null, 0, etc.) if the sequence is empty.</li>
-      <li>Throws InvalidOperationException if more than one element is found. Why and When to Use It Use Single or SingleOrDefault when your business logic dictates that there must be exactly one (or zero-or-one) result. A classic example is looking up a record by its unique primary key in a database. You expect to find exactly one record. Finding zero is a problem, and finding more than one indicates data corruption. First would be wrong in this case, as it would happily return the first record and hide the fact that there were duplicates. Example List&lt;Product&gt; products = new List&lt;Product&gt; { new Product { Id = 10, Category = &quot;Electronics&quot; }, new Product { Id = 20, Category = &quot;Books&quot; }, new Product { Id = 30, Category = &quot;Electronics&quot; } }; // --- Successful Case --- // We expect exactly one product with ID 20. Product book = products.Single(p =&gt; p.Id == 20); Console.WriteLine($&quot;Found single product: {book.Category}&quot;); // --- &quot;More than one&quot; Exception --- try { // This will throw an exception because more than one element matches. Product elec = products.Single(p =&gt; p.Category == &quot;Electronics&quot;); } catch (InvalidOperationException) { Console.WriteLine(&quot;Single() failed for 'Electronics' because more than one was found.&quot;); } // --- &quot;Not Found&quot; Case with SingleOrDefault --- // We expect zero or one product with ID 99. Product notFound = products.SingleOrDefault(p =&gt; p.Id == 99); Console.WriteLine($&quot;Found product with ID 99? {notFound == null}&quot;); // True, returns null gracefully.</li>
+      <li>Throws InvalidOperationException if more than one element is found. Why and When to Use It Use Single or SingleOrDefault when your business logic dictates that there must be exactly one (or zero-or-one) result. A classic example is looking up a record by its unique primary key in a database. You expect to find exactly one record. Finding zero is a problem, and finding more than one indicates data corruption. First would be wrong in this case, as it would happily return the first record and hide the fact that there were duplicates.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>List&lt;Product&gt; products = new List&lt;Product&gt;
+{
+    new Product { Id = 10, Category = &quot;Electronics&quot; },
+    new Product { Id = 20, Category = &quot;Books&quot; },
+    new Product { Id = 30, Category = &quot;Electronics&quot; }
+};
+// --- Successful Case ---
+// We expect exactly one product with ID 20.
+Product book = products.Single(p =&gt; p.Id == 20);
+Console.WriteLine($&quot;Found single product: {book.Category}&quot;);
+// --- &quot;More than one&quot; Exception --- try
+{
+    // This will throw an exception because more than one element matches.
+    Product elec = products.Single(p =&gt; p.Category == &quot;Electronics&quot;);
+}
+catch (InvalidOperationException)
+{
+    Console.WriteLine(&quot;Single() failed for 'Electronics' because more than
+    one was found.&quot;);
+}
+// --- &quot;Not Found&quot; Case with SingleOrDefault ---
+// We expect zero or one product with ID 99.
+Product notFound = products.SingleOrDefault(p =&gt; p.Id == 99);
+Console.WriteLine($&quot;Found product with ID 99? {notFound == null}&quot;); //
+True, returns null gracefully.</code></pre>
+    </div>
+  
 
     <h2 id="sec-25-lec-8-select">Lecture 8: Select</h2>
     <h3>Introduction</h3>
-    <p>Select is the primary projection operator in LINQ. Its job is to take a sequence of elements and transform each element into a new form. It projects the data from one shape into another. This is one of the most powerful and frequently used LINQ methods. How It Works The Select method takes a lambda expression (Func&lt;TSource, TResult&gt;) that is applied to every element in the source collection. The value returned by your lambda expression for each element becomes an element in the new output sequence. The output sequence (IEnumerable&lt;TResult&gt;) can be of a completely different type than the input sequence (IEnumerable&lt;TSource&gt;). Why and When to Use It</p>
+<p>Select is the primary projection operator in LINQ. Its job is to take a sequence of elements and transform each element into a new form. It projects the data from one shape into another. This is one of the most powerful and frequently used LINQ methods.</p>
+    <h3>How It Works</h3>
+<p>The Select method takes a lambda expression (Func&lt;TSource, TResult&gt;) that is applied to every element in the source collection. The value returned by your lambda expression for each element becomes an element in the new output sequence. The output sequence (IEnumerable&lt;TResult&gt;) can be of a completely different type than the input sequence (IEnumerable&lt;TSource&gt;). Why and When to Use It</p>
     <ol>
-      <li>To select a single property from a collection of complex objects. For example, getting a list of just the names from a list of Product objects.</li>
-      <li>To transform each element into a new object. This is often used with anonymous types to create a new sequence containing only a subset of the original data. Example public class Product { public string Name; public decimal Price; } List&lt;Product&gt; products = new List&lt;Product&gt; { new Product { Name = &quot;Laptop&quot;, Price = 1200 }, new Product { Name = &quot;Mouse&quot;, Price = 25 } }; // --- Use Case 1: Select a single property (string) --- IEnumerable&lt;string&gt; productNames = products.Select(p =&gt; p.Name); // The result is an IEnumerable&lt;string&gt; Console.WriteLine(&quot;Product Names: &quot; + string.Join(&quot;, &quot;, productNames)); // --- Use Case 2: Project into a new anonymous type --- var productsWithTax = products.Select(p =&gt; new { ProductName = p.Name, PriceWithTax = p.Price * 1.08M // Add 8% tax }); // The result is an IEnumerable of the new anonymous type. Console.WriteLine(&quot;\nProducts with Tax:&quot;); foreach (var p in productsWithTax) { Console.WriteLine($&quot;- {p.ProductName} costs {p.PriceWithTax:C}&quot;); }</li>
+      <li>To select a single property from a collection of complex objects. For</li>
     </ol>
+    <h3>example</h3>
+<p>, getting a list of just the names from a list of Product objects.</p>
+    <ol>
+      <li>To transform each element into a new object. This is often used with anonymous types to create a new sequence containing only a subset of the original data.</li>
+    </ol>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class Product { public string Name; public decimal Price; }
+List&lt;Product&gt; products = new List&lt;Product&gt;
+{
+    new Product { Name = &quot;Laptop&quot;, Price = 1200 },
+    new Product { Name = &quot;Mouse&quot;, Price = 25 }
+};
+// --- Use Case 1: Select a single property (string) ---
+IEnumerable&lt;string&gt; productNames = products.Select(p =&gt; p.Name);
+// The result is an IEnumerable&lt;string&gt;
+Console.WriteLine(&quot;Product Names: &quot; + string.Join(&quot;, &quot;, productNames));
+// --- Use Case 2: Project into a new anonymous type ---
+var productsWithTax = products.Select(p =&gt; new
+{
+    ProductName = p.Name,
+    PriceWithTax = p.Price * 1.08M // Add 8% tax
+});
+// The result is an IEnumerable of the new anonymous type.
+Console.WriteLine(&quot;\nProducts with Tax:&quot;);
+foreach (var p in productsWithTax)
+{
+    Console.WriteLine($&quot;- {p.ProductName} costs {p.PriceWithTax:C}&quot;);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-25-lec-9-min-max-count-sum-average">Lecture 9: Min, Max, Count, Sum, Average</h2>
     <h3>Introduction</h3>
-    <p>These are the primary aggregate operators in LINQ. They take an entire sequence of values and compute a single, summary result from them. How They Work: Immediate Execution This is a key difference from most other LINQ operators. Aggregate operators do not use deferred execution. They must iterate through the entire sequence immediately to compute their value. They return a single value (like an int or double), not an IEnumerable&lt;T&gt;. The Methods</p>
+<p>These are the primary aggregate operators in LINQ. They take an entire sequence of values and compute a single, summary result from them. How They Work: Immediate Execution This is a key difference from most other LINQ operators.</p>
+<p>Aggregate operators do not use deferred execution. They must iterate through the entire sequence immediately to compute their value. They return a single value (like an int or double), not an IEnumerable&lt;T&gt;. The Methods</p>
     <ul>
-      <li>Count(): Returns the number of elements in a sequence as an int. It can also take a predicate to count only the elements that match a condition (e.g., numbers.Count(n =&gt; n &gt; 50)).</li>
-      <li>Min() and Max(): Returns the minimum or maximum value in a sequence. For sequences of objects, they can take a selector to find the min/max of a specific property (e.g., products.Max(p =&gt; p.Price)).</li>
-      <li>Sum(): Calculates the sum of a sequence of numeric values.</li>
-      <li>Average(): Calculates the average of a sequence of numeric values. Important Note: Calling Min, Max, or Average on an empty sequence will throw an InvalidOperationException. Count and Sum will gracefully return 0. Example int[] scores = { 88, 95, 72, 100, 65 }; // Count int totalScores = scores.Count(); // 5 int scoresOver90 = scores.Count(s =&gt; s &gt;= 90); // 2 // Min / Max int lowestScore = scores.Min(); // 65 int highestScore = scores.Max(); // 100 // Sum / Average int totalPoints = scores.Sum(); // 420 double averageScore = scores.Average(); // 84.0 Console.WriteLine($&quot;Total Scores: {totalScores}&quot;); Console.WriteLine($&quot;Number of A-grade scores: {scoresOver90}&quot;); Console.WriteLine($&quot;Highest score: {highestScore}&quot;); Console.WriteLine($&quot;Average score: {averageScore}&quot;);</li>
+      <li><strong>Count():</strong> Returns the number of elements in a sequence as an int. It can also take a predicate to count only the elements that match a condition (e.g., numbers.Count(n =&gt; n &gt; 50)).</li>
+      <li><strong>Min() and Max():</strong> Returns the minimum or maximum value in a sequence. For sequences of objects, they can take a selector to find the min/max of a specific property (e.g., products.Max(p =&gt; p.Price)).</li>
+      <li><strong>Sum():</strong> Calculates the sum of a sequence of numeric values.</li>
+      <li><strong>Average():</strong> Calculates the average of a sequence of numeric values.</li>
     </ul>
+    <h3>Important Note</h3>
+<p>Calling Min, Max, or Average on an empty sequence will throw an InvalidOperationException. Count and Sum will gracefully return 0.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int[] scores = { 88, 95, 72, 100, 65 };
+// Count</code></pre>
+    </div>
+  
+<p>int totalScores = scores.Count(); // 5 int scoresOver90 = scores.Count(s =&gt; s &gt;= 90); // 2</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Min / Max</code></pre>
+    </div>
+  
+<p>int lowestScore = scores.Min(); // 65 int highestScore = scores.Max(); // 100</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Sum / Average</code></pre>
+    </div>
+  
+<p>int totalPoints = scores.Sum(); // 420 double averageScore = scores.Average(); // 84.0</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;Total Scores: {totalScores}&quot;);
+Console.WriteLine($&quot;Number of A-grade scores: {scoresOver90}&quot;);
+Console.WriteLine($&quot;Highest score: {highestScore}&quot;);
+Console.WriteLine($&quot;Average score: {averageScore}&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-25-lec-10-things-to-remember">Lecture 10: Things to Remember</h2>
     <ul>
-      <li>LINQ is Declarative: LINQ allows you to write queries that describe what you want, not the step-by-step process of how to get it. This makes code more readable and less error-prone.</li>
-      <li>Deferred Execution is Key: Remember that most LINQ operators that return a sequence (like Where, Select, OrderBy) use deferred execution. The query is only executed when you iterate over it (e.g., with foreach) or materialize it (e.g., with .ToList() or .ToArray()). Aggregate operators (Count, Sum, etc.) execute immediately.</li>
+      <li><strong>LINQ is Declarative:</strong> LINQ allows you to write queries that describe what you want, not the step-by-step process of how to get it. This makes code more readable and less error-prone.</li>
+      <li><strong>Deferred Execution is Key:</strong> Remember that most LINQ operators that return a sequence (like Where, Select, OrderBy) use deferred execution. The query is only executed when you iterate over it (e.g., with foreach) or materialize it (e.g., with .ToList() or .ToArray()). Aggregate operators (Count, Sum, etc.) execute immediately.</li>
       <li>First() vs. Single(): A Critical Distinction: This is a classic interview question used to test your precision.</li>
-      <li>First(): Finds the first element that matches and stops. It's okay if there are more matching elements later in the sequence. Use it when you just need &quot;any&quot; match.</li>
-      <li>Single(): Finds an element that matches and then continues to the end of the sequence to ensure there are no others. It is used to enforce a uniqueness constraint. Finding more than one is an error.</li>
+      <li><strong>First():</strong> Finds the first element that matches and stops. It's okay if there are more matching elements later in the sequence. Use it when you just need &quot;any&quot; match.</li>
+      <li><strong>Single():</strong> Finds an element that matches and then continues to the end of the sequence to ensure there are no others. It is used to enforce a uniqueness constraint. Finding more than one is an error.</li>
       <li>...OrDefault() for Safety: Use FirstOrDefault(), SingleOrDefault(), LastOrDefault(), etc., whenever it is a normal, valid business scenario for no element to be found. This avoids exceptions and leads to cleaner conditional logic.</li>
-      <li>Select is for Projection: Select is your primary tool for transforming the shape of your data—whether it's picking a single property or creating a new anonymous type with a subset of data. It is arguably the most powerful and frequently used LINQ operator.</li>
+      <li><strong>Select is for Projection:</strong> Select is your primary tool for transforming the shape of your data—whether it's picking a single property or creating a new anonymous type with a subset of data. It is arguably the most powerful and frequently used LINQ operator.</li>
     </ul>
 
       </article>

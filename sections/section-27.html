@@ -449,7 +449,9 @@
 
     <h2 id="sec-27-lec-2-intro-to-number-systems">Lecture 1: Intro to Number Systems</h2>
     <h3>Introduction</h3>
-    <p>In our daily lives, we use the decimal (base-10) number system, which utilizes ten unique digits (0 through 9). However, computers operate on a fundamentally different system. Understanding the number systems that computers use— primarily binary (base-2)—and the human-readable representations like hexadecimal (base-16) is crucial for working with low-level data, memory, networking, and file formats. How It Works: The Concept of a &quot;Base&quot; The base (or radix) of a number system is the number of unique digits used to represent numbers. The position of a digit determines its value, which is based on powers of that base.</p>
+<p>In our daily lives, we use the decimal (base-10) number system, which utilizes ten unique digits (0 through 9). However, computers operate on a fundamentally different system. Understanding the number systems that computers use— primarily binary (base-2)—and the human-readable representations like hexadecimal (base-16) is crucial for working with low-level data, memory, networking, and file formats.</p>
+    <h3>How It Works</h3>
+<p>The Concept of a &quot;Base&quot; The base (or radix) of a number system is the number of unique digits used to represent numbers. The position of a digit determines its value, which is based on powers of that base.</p>
     <ul>
       <li>Decimal (Base-10): Uses 10 digits (0, 1, 2, 3, 4, 5, 6, 7, 8, 9). The place values are powers of 10: 1 (10^0), 10 (10^1), 100 (10^2), etc.</li>
       <li>Binary (Base-2): Uses 2 digits (0, 1). The place values are powers of 2.</li>
@@ -458,39 +460,137 @@
 
     <h2 id="sec-27-lec-3-binary-number-system">Lecture 2: Binary Number System</h2>
     <h3>Introduction</h3>
-    <p>The binary (base-2) number system is the native language of all digital computers. It uses only two digits, 0 and 1, to represent all data. Each binary digit is called a bit. Eight bits together form a byte, which is the standard unit of data storage in computing. How It Works: Place Values as Powers of 2 In a binary number, each position, reading from right to left, represents an increasing power of 2. Mathematical Conversions</p>
+<p>The binary (base-2) number system is the native language of all digital computers. It uses only two digits, 0 and 1, to represent all data. Each binary digit is called a bit. Eight bits together form a byte, which is the standard unit of data storage in computing.</p>
+    <h3>How It Works</h3>
+<p>Place Values as Powers of 2 In a binary number, each position, reading from right to left, represents an increasing power of 2. Mathematical Conversions</p>
     <ul>
-      <li>Binary to Decimal: To convert a binary number to decimal, you multiply each binary digit by its corresponding power-of-2 place value and add the results. Example: Convert binary 1101 to decimal. 1. (1 * 2^3) + (1 * 2^2) + (0 * 2^1) + (1 * 2^0) 2. (1 * 8) + (1 * 4) + (0 * 2) + (1 * 1) 3. 8 + 4 + 0 + 1 = 13. So, 1101 in binary is 13 in decimal.</li>
-      <li>Decimal to Binary: To convert a decimal number to binary, you use the method of repeated division by 2. You repeatedly divide the decimal number by 2, recording the remainder each time. The binary result is the sequence of remainders read from bottom to top. Example: Convert decimal 22 to binary. 1. 22 / 2 = 11, Remainder 0 2. 11 / 2 = 5, Remainder 1 3. 5 / 2 = 2, Remainder 1 4. 2 / 2 = 1, Remainder 0 5. 1 / 2 = 0, Remainder 1 Reading the remainders from bottom to top gives 10110. C# Syntax You can declare a binary literal in C# by prefixing the number with 0b. int myValue = 0b10110; // This is the integer 22 Console.WriteLine(myValue); Power of 2 128 (2^7) 64 (2^6) 32 (2^5) 16 (2^4) 8 (2^3) 4 (2^2) 2 (2^1) 1 (2^0) Binary Digit 0 1 0 1 1 0 1 0</li>
+      <li><strong>Binary to Decimal:</strong> To convert a binary number to decimal, you multiply each binary digit by its corresponding power-of-2 place value and add the results. Example: Convert binary 1101 to decimal.</li>
     </ul>
+    <ol>
+      <li>(1 * 2^3) + (1 * 2^2) + (0 * 2^1) + (1 * 2^0)</li>
+      <li>(1 * 8) + (1 * 4) + (0 * 2) + (1 * 1)</li>
+      <li>8 + 4 + 0 + 1 = 13. So, 1101 in binary is 13 in decimal.</li>
+    </ol>
+    <ul>
+      <li><strong>Decimal to Binary:</strong> To convert a decimal number to binary, you use the method of repeated division by 2. You repeatedly divide the decimal number by 2, recording the remainder each time. The binary result is the sequence of remainders read from bottom to top. Example: Convert decimal 22 to binary.</li>
+    </ul>
+    <ol>
+      <li>22 / 2 = 11, Remainder 0</li>
+      <li>11 / 2 = 5, Remainder 1</li>
+      <li>5 / 2 = 2, Remainder 1</li>
+      <li>2 / 2 = 1, Remainder 0</li>
+      <li>1 / 2 = 0, Remainder 1 Reading the remainders from bottom to top gives 10110. C# Syntax You can declare a binary literal in C# by prefixing the number with 0b. int myValue = 0b10110; // This is the integer 22</li>
+    </ol>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine(myValue);
+Power of
+2
+128</code></pre>
+    </div>
+  
+<p>(2^7) 64 (2^6) 32 (2^5) 16 (2^4) 8 (2^3) 4 (2^2) 2 (2^1) 1 (2^0) Binary Digit 0 1 0 1 1 0 1 0</p>
 
     <h2 id="sec-27-lec-4-octal-number-system">Lecture 3: Octal Number System</h2>
     <h3>Introduction</h3>
-    <p>The octal (base-8) number system uses eight unique digits: 0, 1, 2, 3, 4, 5, 6, and 7. It was more common in older computing systems because it provides a convenient way to represent binary numbers (since 8 = 2^3, one octal digit represents exactly three binary digits). How It Works: Place Values as Powers of 8 Each position in an octal number represents a power of 8 (1, 8, 64, 512, etc.). Mathematical Conversions</p>
+<p>The octal (base-8) number system uses eight unique digits: 0, 1, 2, 3, 4, 5, 6, and 7. It was more common in older computing systems because it provides a convenient way to represent binary numbers (since 8 = 2^3, one octal digit represents exactly three binary digits).</p>
+    <h3>How It Works</h3>
+<p>Place Values as Powers of 8 Each position in an octal number represents a power of 8 (1, 8, 64, 512, etc.). Mathematical Conversions</p>
     <ul>
-      <li>Octal to Decimal: Example: Convert octal 37 to decimal. 1. (3 * 8^1) + (7 * 8^0) 2. (3 * 8) + (7 * 1) 3. 24 + 7 = 31. So, 37 in octal is 31 in decimal.</li>
-      <li>Decimal to Octal: Use repeated division by 8. Example: Convert decimal 140 to octal. 1. 140 / 8 = 17, Remainder 4 2. 17 / 8 = 2, Remainder 1 3. 2 / 8 = 0, Remainder 2 Reading from bottom to top gives 214. C# Syntax C# does not have a native literal prefix for octal numbers. To work with them, you must convert from a string, specifying the base. string octalString = &quot;214&quot;; int myValue = Convert.ToInt32(octalString, 8); // The '8' specifies base-8. Console.WriteLine(myValue); // Output: 140</li>
+      <li><strong>Octal to Decimal:</strong> Example: Convert octal 37 to decimal.</li>
     </ul>
+    <ol>
+      <li>(3 * 8^1) + (7 * 8^0)</li>
+      <li>(3 * 8) + (7 * 1)</li>
+      <li>24 + 7 = 31. So, 37 in octal is 31 in decimal.</li>
+    </ol>
+    <ul>
+      <li><strong>Decimal to Octal:</strong> Use repeated division by 8. Example: Convert decimal 140 to octal.</li>
+    </ul>
+    <ol>
+      <li>140 / 8 = 17, Remainder 4</li>
+      <li>17 / 8 = 2, Remainder 1</li>
+      <li>2 / 8 = 0, Remainder 2 Reading from bottom to top gives 214. C# Syntax C# does not have a native literal prefix for octal numbers. To work with them, you must convert from a string, specifying the base.</li>
+    </ol>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string octalString = &quot;214&quot;;</code></pre>
+    </div>
+  
+<p>int myValue = Convert.ToInt32(octalString, 8); // The '8' specifies base-8.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine(myValue); // Output: 140</code></pre>
+    </div>
+  
 
     <h2 id="sec-27-lec-5-hexadecimal-number-system">Lecture 4: Hexadecimal Number System</h2>
     <h3>Introduction</h3>
-    <p>The hexadecimal (base-16) number system is extremely common in modern programming, especially for anything related to memory, graphics, and low-level data. It uses 16 unique symbols: the numbers 0-9 and the letters A-F.</p>
+<p>The hexadecimal (base-16) number system is extremely common in modern programming, especially for anything related to memory, graphics, and low-level data. It uses 16 unique symbols: the numbers 0-9 and the letters A-F.</p>
     <ul>
       <li>A = 10, B = 11, C = 12, D = 13, E = 14, F = 15 Why It's Used Hexadecimal provides a much more compact and human-readable way to represent binary data. Since 16 = 2^4, one hexadecimal digit represents exactly four binary digits (also known as a &quot;nibble&quot;). This makes it very easy to represent a full byte (FF in hex is 11111111 in binary). It's used everywhere for:</li>
-      <li>Memory Addresses: 0x00A1F8C0</li>
-      <li>Color Codes: #FF0000 for Red (FF for Red, 00 for Green, 00 for Blue)</li>
-      <li>Raw Byte Data: Displaying the contents of a file or network packet. Mathematical Conversions</li>
-      <li>Hex to Decimal: Example: Convert hex 1A to decimal. 1. (1 * 16^1) + (A * 16^0) 2. (1 * 16) + (10 * 1) 3. 16 + 10 = 26. So, 1A in hex is 26 in decimal.</li>
-      <li>Decimal to Hex: Use repeated division by 16. Example: Convert decimal 250 to hex. 1. 250 / 16 = 15, Remainder 10 (which is A) 2. 15 / 16 = 0, Remainder 15 (which is F) Reading from bottom to top gives FA. C# Syntax You declare a hexadecimal literal in C# by prefixing the number with 0x. int redComponent = 0xFF; // FF in hex is 255 in decimal Console.WriteLine(redComponent);</li>
+      <li><strong>Memory Addresses:</strong> 0x00A1F8C0</li>
+      <li><strong>Color Codes:</strong> #FF0000 for Red (FF for Red, 00 for Green, 00 for Blue)</li>
+      <li><strong>Raw Byte Data:</strong> Displaying the contents of a file or network packet. Mathematical Conversions</li>
+      <li><strong>Hex to Decimal:</strong> Example: Convert hex 1A to decimal.</li>
     </ul>
+    <ol>
+      <li>(1 * 16^1) + (A * 16^0)</li>
+      <li>(1 * 16) + (10 * 1)</li>
+      <li>16 + 10 = 26. So, 1A in hex is 26 in decimal.</li>
+    </ol>
+    <ul>
+      <li><strong>Decimal to Hex:</strong> Use repeated division by 16. Example: Convert decimal 250 to hex.</li>
+    </ul>
+    <ol>
+      <li>250 / 16 = 15, Remainder 10 (which is A)</li>
+      <li>15 / 16 = 0, Remainder 15 (which is F) Reading from bottom to top gives FA. C# Syntax You declare a hexadecimal literal in C# by prefixing the number with 0x. int redComponent = 0xFF; // FF in hex is 255 in decimal</li>
+    </ol>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine(redComponent);</code></pre>
+    </div>
+  
 
     <h2 id="sec-27-lec-6-intro-to-character-encoding">Lecture 5: Intro to Character Encoding</h2>
     <h3>Introduction</h3>
-    <p>Character encoding is a system that defines a mapping between characters (the letters, numbers, and symbols you see on screen) and the numerical values that a computer can actually store and process. This is necessary because computers fundamentally only understand numbers, specifically binary data (0s and 1s). An encoding standard provides the crucial link between the human-readable character 'A' and its binary representation, for example, 01000001. The Problem: Why So Many Encodings? Early encoding systems were simple and designed for a specific language (usually English). They didn't have enough room to represent all the characters from all the world's languages (like €, é, И, ⽇). This led to the development of different standards for different regions and, ultimately, to the creation of Unicode, a universal standard that aims to solve this problem once and for all.</p>
+<p>Character encoding is a system that defines a mapping between characters (the letters, numbers, and symbols you see on screen) and the numerical values that a computer can actually store and process. This is necessary because computers fundamentally only understand numbers, specifically binary data (0s and 1s).</p>
+<p>An encoding standard provides the crucial link between the human-readable character 'A' and its binary representation, for example, 01000001. The Problem: Why So Many Encodings? Early encoding systems were simple and designed for a specific language (usually English).</p>
+<p>They didn't have enough room to represent all the characters from all the world's languages (like €, é, И, ⽇). This led to the development of different standards for different regions and, ultimately, to the creation of Unicode, a universal standard that aims to solve this problem once and for all.</p>
 
     <h2 id="sec-27-lec-7-ascii-character-encoding">Lecture 6: ASCII Character Encoding</h2>
     <h3>Introduction</h3>
-    <p>ASCII (American Standard Code for Information Interchange) is one of the earliest and most influential character encoding standards. It formed the basis for most subsequent encodings. How It Works Standard ASCII is a 7-bit encoding scheme. With 7 bits, it can represent 2^7, or 128, unique characters. This is enough to include:</p>
+<p>ASCII (American Standard Code for Information Interchange) is one of the earliest and most influential character encoding standards. It formed the basis for most subsequent encodings.</p>
+    <h3>How It Works</h3>
+<p>Standard ASCII is a 7-bit encoding scheme. With 7 bits, it can represent 2^7, or 128, unique characters. This is enough to include:</p>
     <ul>
       <li>Uppercase English letters (A-Z)</li>
       <li>Lowercase English letters (a-z)</li>
@@ -501,7 +601,9 @@
 
     <h2 id="sec-27-lec-8-unicode-character-encoding">Lecture 7: Unicode Character Encoding</h2>
     <h3>Introduction</h3>
-    <p>Unicode is the modern, universal character encoding standard that solves the limitations of ASCII. Its goal is to provide a unique numerical value, called a code point, for every character from every language in the world, including a vast array of symbols, emojis, and historical scripts. How It Works: Unicode vs. UTF It's important to distinguish between the Unicode standard and its encoding schemes.</p>
+<p>Unicode is the modern, universal character encoding standard that solves the limitations of ASCII. Its goal is to provide a unique numerical value, called a code point, for every character from every language in the world, including a vast array of symbols, emojis, and historical scripts.</p>
+    <h3>How It Works</h3>
+<p>Unicode vs. UTF It's important to distinguish between the Unicode standard and its encoding schemes.</p>
     <ul>
       <li>Unicode is the standard itself—the giant table that maps characters like 'A' to the code point U+0041 or '€' to U+20AC.</li>
       <li>An encoding scheme (like UTF-8) defines how these numeric code points are actually stored as a sequence of bytes in memory or a file. The two most important encoding schemes are:</li>
@@ -512,109 +614,318 @@
       <li>UTF-16</li>
       <li>This is the native encoding used by the .NET char and string types internally.</li>
       <li>It is also variable-width, using 2 bytes for most common characters (covering most modern languages) and 4 bytes (a &quot;surrogate pair&quot;) for less common characters, like some emojis. Interview Perspective</li>
-      <li>Question: &quot;What character encoding does a C# string use internally?&quot;</li>
-      <li>Ideal Answer: &quot;A C# string represents text as a sequence of UTF-16 code units. This means each char in the string is a 16-bit value.&quot;</li>
-      <li>Question: &quot;What's the difference between ASCII and UTF-8?&quot;</li>
-      <li>Ideal Answer: &quot;ASCII is a very old, limited 7-bit character set that can only represent 128 English characters and symbols. UTF-8 is a modern, variable-width encoding scheme for the entire Unicode standard. It's backward compatible with ASCII, meaning any ASCII file is also a valid UTF-8 file, but it can also represent every character in the world by using multiple bytes for non-ASCII characters.&quot;</li>
+      <li><strong>Question:</strong> &quot;What character encoding does a C# string use internally?&quot;</li>
+      <li><strong>Ideal Answer:</strong> &quot;A C# string represents text as a sequence of UTF-16 code units. This means each char in the string is a 16-bit value.&quot;</li>
+      <li><strong>Question:</strong> &quot;What's the difference between ASCII and UTF-8?&quot;</li>
+      <li><strong>Ideal Answer:</strong> &quot;ASCII is a very old, limited 7-bit character set that can only represent 128 English characters and symbols. UTF-8 is a modern, variable-width encoding scheme for the entire Unicode standard. It's backward compatible with ASCII, meaning any ASCII file is also a valid UTF-8 file, but it can also represent every character in the world by using multiple bytes for non-ASCII characters.&quot;</li>
     </ul>
 
     <h2 id="sec-27-lec-9-intro-to-system-io-namespace">Lecture 8: Intro to System.IO namespace</h2>
     <h3>Introduction</h3>
-    <p>The System.IO namespace is the primary namespace in .NET for performing IO (Input/Output) operations. It contains a rich set of classes for working with the file system, including reading from and writing to files, manipulating directories, and working with data streams. Key Concepts There are two main approaches to working with files and directories provided by this namespace:</p>
+<p>The System.IO namespace is the primary namespace in .NET for performing IO (Input/Output) operations. It contains a rich set of classes for working with the file system, including reading from and writing to files, manipulating directories, and working with data streams. Key Concepts There are two main approaches to working with files and directories provided by this namespace:</p>
     <ol>
       <li>Static Helper Classes (File and Directory)</li>
     </ol>
     <ul>
       <li>These classes provide static methods for quick, one-off operations. For example, File.ReadAllText() reads an entire file in a single line of code.</li>
       <li>They are very simple to use for common tasks.</li>
-      <li>They can be less efficient for performing many repeated operations on the same file because security checks are performed each time a method is called. 2. Instance Classes (FileInfo and DirectoryInfo)</li>
+      <li>They can be less efficient for performing many repeated operations on the same file because security checks are performed each time a method is called.</li>
+    </ul>
+    <ol>
+      <li>Instance Classes (FileInfo and DirectoryInfo)</li>
+    </ol>
+    <ul>
       <li>These classes represent a specific file or directory as an object. You first create an instance of the class (e.g., FileInfo myFile = new FileInfo(&quot;path/to/file.txt&quot;);), and then you call instance methods on that object (e.g., myFile.Delete(), myFile.CopyTo(...)).</li>
       <li>This approach is more efficient for performing multiple operations on the same file or directory because the initial security checks are done only once when the object is created. The Concept of a Stream A Stream is a fundamental abstraction in System.IO. It represents a sequence of bytes that can be read from or written to. This is a powerful concept because it provides a unified way to handle data transfer. The source or destination of the bytes could be a file (FileStream), a network connection (NetworkStream), or even just a block of memory (MemoryStream), but your code can treat them all as a generic Stream.</li>
     </ul>
 
     <h2 id="sec-27-lec-10-file-class">Lecture 9: File class</h2>
     <h3>Introduction</h3>
-    <p>The File class is a static helper class that provides a set of simple, static methods for performing common file operations like reading, writing, copying, moving, and deleting files. You do not create an instance of the File class; you call its methods directly. When to Use It Use the File class for simple, single-shot operations on a file. If you just need to quickly read all the text from a small file or check if a file exists, the File class is the easiest and most readable way to do it. Key Static Methods</p>
+<p>The File class is a static helper class that provides a set of simple, static methods for performing common file operations like reading, writing, copying, moving, and deleting files. You do not create an instance of the File class; you call its methods directly.</p>
+    <h3>When to Use It</h3>
+<p>Use the File class for simple, single-shot operations on a file. If you just need to quickly read all the text from a small file or check if a file exists, the File class is the easiest and most readable way to do it. Key Static Methods</p>
     <ul>
-      <li>bool Exists(string path): Checks if a file exists at the specified path.</li>
-      <li>string ReadAllText(string path): Opens a file, reads its entire contents into a single string, and then closes the file.</li>
+      <li><strong>bool Exists(string path):</strong> Checks if a file exists at the specified path.</li>
+      <li><strong>string ReadAllText(string path):</strong> Opens a file, reads its entire contents into a single string, and then closes the file.</li>
       <li>string[] ReadAllLines(string path): Opens a file, reads all lines into a string[] array, and then closes the file.</li>
       <li>void WriteAllText(string path, string contents): Creates a new file (or overwrites an existing one) and writes the specified string to it.</li>
       <li>void AppendAllText(string path, string contents): Appends the specified string to the end of a file. If the file doesn't exist, it creates it.</li>
       <li>void WriteAllLines(string path, string[] contents): Writes each string from the array as a new line in a file.</li>
       <li>void Copy(string sourcePath, string destPath): Copies a file.</li>
       <li>void Move(string sourcePath, string destPath): Moves (or renames) a file.</li>
-      <li>void Delete(string path): Deletes a file.</li>
+      <li><strong>void Delete(string path):</strong> Deletes a file.</li>
     </ul>
 
     <h2 id="sec-27-lec-11-read-write-operations-using-file-class">Lecture 10: Read/Write Operations using File class</h2>
     <h3>Introduction</h3>
-    <p>This lecture provides practical examples of the most common read and write methods from the static File class. These methods are designed for simplicity and convenience, especially when dealing with text files. How It Works: Loading into Memory It's crucial to understand that the &quot;ReadAll&quot; methods (ReadAllText, ReadAllLines) load the entire contents of the file into memory at once. This makes them very easy to use but can be inefficient and consume a large amount of RAM if you are working with very large files (e.g., gigabytes in size). For large files, stream-based operations are the correct approach. Example 1: Writing and Appending to a Text File This example demonstrates how to create a file, write initial content, and then append more content without deleting what was already there. string filePath = &quot;MyLog.txt&quot;; // --- Writing to a file --- // This will create 'MyLog.txt' or overwrite it if it already exists. string initialContent = &quot;Log started at &quot; + DateTime.Now + &quot;\n&quot;; File.WriteAllText(filePath, initialContent); Console.WriteLine(&quot;Initial log created.&quot;); // --- Appending to a file --- // AppendAllText adds to the end of the file. If the file doesn't exist, it creates it. string nextEntry = &quot;User 'Alice' logged in.\n&quot;; File.AppendAllText(filePath, nextEntry); Console.WriteLine(&quot;New entry appended.&quot;); Example 2: Reading a Text File This example shows the two primary ways to read a text file's contents. string filePath = &quot;MyLog.txt&quot;; // Assuming this file was created by the above example. // --- Reading the entire file into a single string --- Console.WriteLine(&quot;\n--- Reading file with ReadAllText ---&quot;); if (File.Exists(filePath)) { string fileContents = File.ReadAllText(filePath); Console.WriteLine(fileContents); } // --- Reading the file into an array of strings, one per line --- Console.WriteLine(&quot;\n--- Reading file with ReadAllLines ---&quot;); if (File.Exists(filePath)) { string[] fileLines = File.ReadAllLines(filePath); Console.WriteLine($&quot;File has {fileLines.Length} lines.&quot;); // We can now process each line individually. foreach (string line in fileLines) { if (line.Contains(&quot;Alice&quot;)) { Console.WriteLine($&quot;Found user entry: '{line.Trim()}'&quot;); } } }</p>
+<p>This lecture provides practical examples of the most common read and write methods from the static File class. These methods are designed for simplicity and convenience, especially when dealing with text files.</p>
+    <h3>How It Works: Loading into Memory</h3>
+<p>It's crucial to understand that the &quot;ReadAll&quot; methods (ReadAllText, ReadAllLines) load the entire contents of the file into memory at once. This makes them very easy to use but can be inefficient and consume a large amount of RAM if you are working with very large files (e.g., gigabytes in size). For large files, stream-based operations are the correct approach.</p>
+    <h3>Example</h3>
+<p>1: Writing and Appending to a Text File This example demonstrates how to create a file, write initial content, and then append more content without deleting what was already there.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string filePath = &quot;MyLog.txt&quot;;
+// --- Writing to a file ---
+// This will create 'MyLog.txt' or overwrite it if it already exists.
+string initialContent = &quot;Log started at &quot; + DateTime.Now + &quot;\n&quot;;
+File.WriteAllText(filePath, initialContent);
+Console.WriteLine(&quot;Initial log created.&quot;);
+// --- Appending to a file ---
+// AppendAllText adds to the end of the file. If the file doesn't exist, it creates it.
+string nextEntry = &quot;User 'Alice' logged in.\n&quot;;
+File.AppendAllText(filePath, nextEntry);
+Console.WriteLine(&quot;New entry appended.&quot;);</code></pre>
+    </div>
+  
+    <h3>Example</h3>
+<p>2: Reading a Text File This example shows the two primary ways to read a text file's contents. string filePath = &quot;MyLog.txt&quot;; // Assuming this file was created by the above</p>
+    <h3>example</h3>
+<p>.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// --- Reading the entire file into a single string ---
+Console.WriteLine(&quot;\n--- Reading file with ReadAllText ---&quot;);
+if (File.Exists(filePath))
+{
+    string fileContents = File.ReadAllText(filePath);
+    Console.WriteLine(fileContents);
+}
+// --- Reading the file into an array of strings, one per line ---
+Console.WriteLine(&quot;\n--- Reading file with ReadAllLines ---&quot;);
+if (File.Exists(filePath))
+{
+    string[] fileLines = File.ReadAllLines(filePath);
+    Console.WriteLine($&quot;File has {fileLines.Length} lines.&quot;);
+    // We can now process each line individually. foreach (string line in fileLines)
+    {
+        if (line.Contains(&quot;Alice&quot;))
+        {
+            Console.WriteLine($&quot;Found user entry: '{line.Trim()}'&quot;);
+        }
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-27-lec-12-fileinfo-class">Lecture 11: FileInfo class</h2>
     <h3>Introduction</h3>
-    <p>The FileInfo class is an instance-based way to interact with a file. Instead of calling static methods on the File class, you first create a FileInfo object that represents a specific file on the disk. You then call instance methods and access properties on that object. Why and When to Use It Use a FileInfo object when you need to perform multiple operations on the same file or retrieve several pieces of information about it. It is more efficient than using the static File class repeatedly because the operating system security checks are performed only once when the FileInfo object is created, not on every single method call. Key Instance Properties and Methods</p>
+<p>The FileInfo class is an instance-based way to interact with a file. Instead of calling static methods on the File class, you first create a FileInfo object that represents a specific file on the disk. You then call instance methods and access properties on that object.</p>
+<p>Why and When to Use It Use a FileInfo object when you need to perform multiple operations on the same file or retrieve several pieces of information about it. It is more efficient than using the static File class repeatedly because the operating system security checks are performed only once when the FileInfo object is created, not on every single method call. Key Instance Properties and Methods</p>
     <ul>
       <li>Properties:</li>
-      <li>Exists: A boolean indicating if the file exists.</li>
-      <li>Name: The name of the file including the extension (e.g., &quot;MyFile.txt&quot;).</li>
-      <li>FullName: The full path to the file.</li>
-      <li>DirectoryName: The full path to the file's containing directory.</li>
-      <li>Length: The size of the file in bytes.</li>
-      <li>Extension: The file's extension (e.g., &quot;.txt&quot;).</li>
+      <li><strong>Exists:</strong> A boolean indicating if the file exists.</li>
+      <li><strong>Name:</strong> The name of the file including the extension (e.g., &quot;MyFile.txt&quot;).</li>
+      <li><strong>FullName:</strong> The full path to the file.</li>
+      <li><strong>DirectoryName:</strong> The full path to the file's containing directory.</li>
+      <li><strong>Length:</strong> The size of the file in bytes.</li>
+      <li><strong>Extension:</strong> The file's extension (e.g., &quot;.txt&quot;).</li>
       <li>CreationTime, LastAccessTime, LastWriteTime: DateTime objects for file timestamps.</li>
       <li>Methods:</li>
       <li>CopyTo(string destFileName)</li>
       <li>MoveTo(string destFileName)</li>
       <li>Delete()</li>
-      <li>OpenRead(), OpenWrite(), Open(): Methods to get a FileStream for the file. Example string filePath = &quot;MyLog.txt&quot;; // Create a FileInfo object. No disk access happens here yet. FileInfo fileInfo = new FileInfo(filePath); // Now, let's check its properties. The first property access will perform the security check. if (fileInfo.Exists) { Console.WriteLine($&quot;File Name: {fileInfo.Name}&quot;); Console.WriteLine($&quot;Full Path: {fileInfo.FullName}&quot;); Console.WriteLine($&quot;Size: {fileInfo.Length} bytes&quot;); Console.WriteLine($&quot;Last Modified: {fileInfo.LastWriteTime}&quot;); // Perform an action // fileInfo.CopyTo(&quot;MyLog_Backup.txt&quot;); } else { Console.WriteLine(&quot;File does not exist.&quot;); }</li>
+      <li>OpenRead(), OpenWrite(), Open(): Methods to get a FileStream for the file.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string filePath = &quot;MyLog.txt&quot;;
+// Create a FileInfo object. No disk access happens here yet.
+FileInfo fileInfo = new FileInfo(filePath);
+// Now, let's check its properties. The first property access will perform the security check.
+if (fileInfo.Exists)
+{
+    Console.WriteLine($&quot;File Name: {fileInfo.Name}&quot;);
+    Console.WriteLine($&quot;Full Path: {fileInfo.FullName}&quot;);
+    Console.WriteLine($&quot;Size: {fileInfo.Length} bytes&quot;);
+    Console.WriteLine($&quot;Last Modified: {fileInfo.LastWriteTime}&quot;);
+    // Perform an action
+    // fileInfo.CopyTo(&quot;MyLog_Backup.txt&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;File does not exist.&quot;);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-27-lec-13-directory-class">Lecture 12: Directory class</h2>
     <h3>Introduction</h3>
-    <p>The Directory class is the static helper class for working with directories (folders). It provides a simple set of static methods for creating, moving, deleting, and enumerating directories and their contents. When to Use It Use the Directory class for simple, single-shot directory operations, just like using the File class for files. Key Static Methods</p>
+<p>The Directory class is the static helper class for working with directories (folders). It provides a simple set of static methods for creating, moving, deleting, and enumerating directories and their contents.</p>
+    <h3>When to Use It</h3>
+<p>Use the Directory class for simple, single-shot directory operations, just like using the File class for files. Key Static Methods</p>
     <ul>
-      <li>bool Exists(string path): Checks if a directory exists.</li>
+      <li><strong>bool Exists(string path):</strong> Checks if a directory exists.</li>
       <li>DirectoryInfo CreateDirectory(string path): Creates all directories in the specified path if they don't already exist.</li>
       <li>void Delete(string path, bool recursive): Deletes a directory. The recursive parameter is crucial: if true, it deletes the directory and all its contents (subdirectories and files); if false (the default), it will only delete the directory if it is empty.</li>
       <li>void Move(string sourceDirName, string destDirName): Moves a directory and its contents to a new location.</li>
       <li>string[] GetFiles(string path): Returns an array of strings containing the full paths of the files in the specified directory.</li>
       <li>string[] GetDirectories(string path): Returns an array of strings containing the full paths of the subdirectories.</li>
-      <li>IEnumerable&lt;string&gt; EnumerateFiles(string path): A more efficient, LINQ-friendly version of GetFiles. It returns an IEnumerable&lt;string&gt; that allows you to start processing the file paths immediately, without waiting for the entire list to be gathered first. This is preferred for directories with a very large number of files. Example string newDirPath = @&quot;C:\Temp\MyNewDirectory&quot;; Console.WriteLine($&quot;Checking for directory: {newDirPath}&quot;); if (!Directory.Exists(newDirPath)) { Console.WriteLine(&quot;Directory does not exist. Creating it...&quot;); Directory.CreateDirectory(newDirPath); } // Now it exists. Let's get files from the current folder to demonstrate. string[] filesInCurrentFolder = Directory.GetFiles(&quot;.&quot;); // &quot;.&quot; means current directory Console.WriteLine($&quot;\nFound {filesInCurrentFolder.Length} files here.&quot;); // Clean up Console.WriteLine($&quot;\nDeleting directory: {newDirPath}&quot;); Directory.Delete(newDirPath);</li>
+      <li>IEnumerable&lt;string&gt; EnumerateFiles(string path): A more efficient, LINQ-friendly version of GetFiles. It returns an IEnumerable&lt;string&gt; that allows you to start processing the file paths immediately, without waiting for the entire list to be gathered first. This is preferred for directories with a very large number of files.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string newDirPath = @&quot;C:\Temp\MyNewDirectory&quot;;
+Console.WriteLine($&quot;Checking for directory: {newDirPath}&quot;);</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    Console.WriteLine(&quot;Directory does not exist. Creating it...&quot;);
+    Directory.CreateDirectory(newDirPath);
+}
+// Now it exists. Let's get files from the current folder to demonstrate.</code></pre>
+    </div>
+  
+<p>string[] filesInCurrentFolder = Directory.GetFiles(&quot;.&quot;); // &quot;.&quot; means current directory</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;\nFound {filesInCurrentFolder.Length} files here.&quot;);
+// Clean up
+Console.WriteLine($&quot;\nDeleting directory: {newDirPath}&quot;);
+Directory.Delete(newDirPath);</code></pre>
+    </div>
+  
 
     <h2 id="sec-27-lec-14-directoryinfo-class">Lecture 13: DirectoryInfo class</h2>
     <h3>Introduction</h3>
-    <p>The DirectoryInfo class is the instance-based counterpart to the static Directory class. It represents a specific directory as an object, which you can then query for properties and call methods on. When to Use It Use a DirectoryInfo object when you need to perform multiple operations or retrieve multiple pieces of information about the same directory. Like FileInfo, it is more efficient in these scenarios because the initial security checks are performed only once when the object is created. Key Instance Properties and Methods</p>
+<p>The DirectoryInfo class is the instance-based counterpart to the static Directory class. It represents a specific directory as an object, which you can then query for properties and call methods on.</p>
+    <h3>When to Use It</h3>
+<p>Use a DirectoryInfo object when you need to perform multiple operations or retrieve multiple pieces of information about the same directory. Like FileInfo, it is more efficient in these scenarios because the initial security checks are performed only once when the object is created. Key Instance Properties and Methods</p>
     <ul>
-      <li>Properties: Exists, Name, FullName, Parent (returns another DirectoryInfo object), Root.</li>
-      <li>Methods: Create(), Delete(bool recursive), MoveTo(string destDirName), GetFiles(), GetDirectories(), EnumerateFiles(). Example // Note: The '@' symbol creates a verbatim string literal, so we don't need to escape backslashes. string projectPath = @&quot;C:\Users\MyUser\Documents\MyProject&quot;; DirectoryInfo dirInfo = new DirectoryInfo(projectPath); if (dirInfo.Exists) { Console.WriteLine($&quot;Full Name: {dirInfo.FullName}&quot;); Console.WriteLine($&quot;Parent Directory: {dirInfo.Parent.Name}&quot;); Console.WriteLine(&quot;\n--- C# Files in this directory ---&quot;); // GetFiles() on a DirectoryInfo object returns an array of FileInfo objects. FileInfo[] csFiles = dirInfo.GetFiles(&quot;*.cs&quot;); // Use a search pattern foreach (FileInfo file in csFiles) { Console.WriteLine($&quot;- {file.Name} ({file.Length} bytes)&quot;); } }</li>
+      <li><strong>Properties:</strong> Exists, Name, FullName, Parent (returns another DirectoryInfo object), Root.</li>
+      <li><strong>Methods:</strong> Create(), Delete(bool recursive), MoveTo(string destDirName), GetFiles(), GetDirectories(), EnumerateFiles().</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Note: The '@' symbol creates a verbatim string literal, so we don't need to escape backslashes.
+string projectPath = @&quot;C:\Users\MyUser\Documents\MyProject&quot;;
+DirectoryInfo dirInfo = new DirectoryInfo(projectPath);
+if (dirInfo.Exists)
+{
+    Console.WriteLine($&quot;Full Name: {dirInfo.FullName}&quot;);
+    Console.WriteLine($&quot;Parent Directory: {dirInfo.Parent.Name}&quot;);
+    Console.WriteLine(&quot;\n--- C# Files in this directory ---&quot;);
+    // GetFiles() on a DirectoryInfo object returns an array of FileInfo objects.
+    FileInfo[] csFiles = dirInfo.GetFiles(&quot;*.cs&quot;); // Use a search pattern
+    foreach (FileInfo file in csFiles)
+    {
+        Console.WriteLine($&quot;- {file.Name} ({file.Length} bytes)&quot;);
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-27-lec-15-driveinfo-class">Lecture 14: DriveInfo class</h2>
     <h3>Introduction</h3>
-    <p>The DriveInfo class is a simple utility class used to retrieve information about the logical drives on a computer (e.g., C:, D:, etc.). How It Works You can get a list of all drives on the system using the static method DriveInfo.GetDrives(). Alternatively, you can get information about a specific drive by creating an instance and passing the drive letter to its constructor: DriveInfo cDrive = new DriveInfo(&quot;C&quot;);. Key Properties</p>
+<p>The DriveInfo class is a simple utility class used to retrieve information about the logical drives on a computer (e.g., C:, D:, etc.).</p>
+    <h3>How It Works</h3>
+<p>You can get a list of all drives on the system using the static method DriveInfo.GetDrives(). Alternatively, you can get information about a specific drive by creating an instance and passing the drive letter to its constructor: DriveInfo cDrive = new DriveInfo(&quot;C&quot;);. Key Properties</p>
     <ul>
-      <li>Name: The drive name, e.g., &quot;C:\&quot;.</li>
-      <li>DriveType: An enum that tells you the type of drive (e.g., Fixed, CDRom, Network, Removable).</li>
-      <li>IsReady: A boolean that is true if the drive is ready (e.g., a disk is in the CD-ROM drive). You should always check this before accessing other properties.</li>
-      <li>TotalSize: The total size of the drive in bytes.</li>
-      <li>TotalFreeSpace: The total amount of free space available on the drive in bytes.</li>
-      <li>AvailableFreeSpace: The amount of free space available to the current user (respecting quotas).</li>
-      <li>VolumeLabel: The user-defined volume label of the drive. Example // Get all logical drives on the system. DriveInfo[] allDrives = DriveInfo.GetDrives(); Console.WriteLine(&quot;--- Available Drives ---&quot;); foreach (DriveInfo d in allDrives) { Console.WriteLine($&quot;Drive {d.Name}&quot;); Console.WriteLine($&quot; Drive type: {d.DriveType}&quot;); // Only get more info if the drive is ready. if (d.IsReady == true) { Console.WriteLine($&quot; Volume label: {d.VolumeLabel}&quot;); long totalSizeGB = d.TotalSize / (1024 * 1024 * 1024); long freeSpaceGB = d.TotalFreeSpace / (1024 * 1024 * 1024); Console.WriteLine($&quot; Total size: {totalSizeGB} GB&quot;); Console.WriteLine($&quot; Available space: {freeSpaceGB} GB&quot;); } }</li>
+      <li><strong>Name:</strong> The drive name, e.g., &quot;C:\&quot;.</li>
+      <li><strong>DriveType:</strong> An enum that tells you the type of drive (e.g., Fixed, CDRom, Network, Removable).</li>
+      <li><strong>IsReady:</strong> A boolean that is true if the drive is ready (e.g., a disk is in the CD-ROM drive). You should always check this before accessing other properties.</li>
+      <li><strong>TotalSize:</strong> The total size of the drive in bytes.</li>
+      <li><strong>TotalFreeSpace:</strong> The total amount of free space available on the drive in bytes.</li>
+      <li><strong>AvailableFreeSpace:</strong> The amount of free space available to the current user (respecting quotas).</li>
+      <li><strong>VolumeLabel:</strong> The user-defined volume label of the drive.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Get all logical drives on the system.
+DriveInfo[] allDrives = DriveInfo.GetDrives();
+Console.WriteLine(&quot;--- Available Drives ---&quot;);
+foreach (DriveInfo d in allDrives)
+{
+    Console.WriteLine($&quot;Drive {d.Name}&quot;);
+    Console.WriteLine($&quot; 	Drive type: {d.DriveType}&quot;);
+    // Only get more info if the drive is ready.
+    if (d.IsReady == true)
+    {
+        Console.WriteLine($&quot; 	Volume label: {d.VolumeLabel}&quot;);
+        long totalSizeGB = d.TotalSize / (1024 * 1024 * 1024);
+        long freeSpaceGB = d.TotalFreeSpace / (1024 * 1024 * 1024);
+        Console.WriteLine($&quot; 	Total size: {totalSizeGB} GB&quot;);
+        Console.WriteLine($&quot; 	Available space: {freeSpaceGB} GB&quot;);
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-27-lec-16-filestream-class">Lecture 15: FileStream class</h2>
     <h3>Introduction</h3>
-    <p>The FileStream class is the primary class in the System.IO namespace for low- level, byte-by-byte reading and writing to a file. Unlike the static File class which performs single, complete operations, a FileStream gives you direct access to the underlying file handle and represents the file as a stream of bytes. This makes it the ideal and most efficient tool for working with very large files or for handling binary files where you need precise control. How It Works: Creating and Configuring a Stream You create a FileStream object by providing a file path and, most importantly, specifying how you intend to interact with the file using the FileMode and FileAccess enums.</p>
+<p>The FileStream class is the primary class in the System.IO namespace for low- level, byte-by-byte reading and writing to a file. Unlike the static File class which performs single, complete operations, a FileStream gives you direct access to the underlying file handle and represents the file as a stream of bytes. This makes it the ideal and most efficient tool for working with very large files or for handling binary files where you need precise control.</p>
+    <h3>How It Works</h3>
+<p>Creating and Configuring a Stream You create a FileStream object by providing a file path and, most importantly, specifying how you intend to interact with the file using the FileMode and FileAccess enums.</p>
     <ul>
-      <li>FileMode Enum: Tells the operating system how to open the file. Common values are:</li>
+      <li><strong>FileMode Enum:</strong> Tells the operating system how to open the file. Common values are:</li>
       <li>FileMode.Create: Creates a new file. If the file already exists, it will be overwritten.</li>
       <li>FileMode.CreateNew: Creates a new file. If the file already exists, it throws an exception.</li>
       <li>FileMode.Open: Opens an existing file. Throws an exception if the file does not exist.</li>
       <li>FileMode.OpenOrCreate: Opens a file if it exists; otherwise, creates a new one.</li>
       <li>FileMode.Append: Opens an existing file and places the cursor at the end, ready for writing.</li>
-      <li>FileAccess Enum: Tells the operating system what you plan to do with the file.</li>
+      <li><strong>FileAccess Enum:</strong> Tells the operating system what you plan to do with the file.</li>
       <li>FileAccess.Read: You can only read from the stream.</li>
       <li>FileAccess.Write: You can only write to the stream.</li>
       <li>FileAccess.ReadWrite: You can do both. Important: IDisposable A FileStream object holds onto a scarce, unmanaged operating system resource (a file handle). Therefore, it implements the IDisposable interface. It is critical that you always create and use a FileStream within a using statement or declaration to ensure the file handle is properly closed and released, even if errors occur.</li>
@@ -622,24 +933,117 @@
 
     <h2 id="sec-27-lec-17-read-write-operations-using-filestream-class">Lecture 16: Read/Write operations using FileStream class</h2>
     <h3>Introduction</h3>
-    <p>While you can read and write raw bytes directly with a FileStream, it's often cumbersome. A more common pattern is to wrap the FileStream with a higher- level helper class that is designed to work with streams, such as a StreamWriter or StreamReader for text. How It Works: Stream Helpers These helper classes take a Stream object in their constructor. They don't open the file themselves; they simply provide a more convenient API for interacting with the underlying stream provided to them. The using block should still manage the lifetime of the FileStream, and the helper will be disposed along with it. Example: Writing and Reading a Text File Line-by-Line This example demonstrates the robust way to handle text files of any size. string filePath = &quot;my_app_data.log&quot;; // --- Writing with StreamWriter --- // The using declaration ensures fs and writer are closed/disposed properly. using var fsWrite = new FileStream(filePath, FileMode.Create, FileAccess.Write); using var writer = new StreamWriter(fsWrite); Console.WriteLine(&quot;Writing data to file...&quot;); writer.WriteLine(&quot;Log Entry 1: Application Start&quot;); writer.WriteLine(&quot;Log Entry 2: User 'Alice' logged in.&quot;); writer.WriteLine(&quot;Log Entry 3: Data processed.&quot;); // The writer may buffer data; it gets flushed to the file when disposed. // --- Reading with StreamReader --- Console.WriteLine(&quot;\nReading data from file...&quot;); using var fsRead = new FileStream(filePath, FileMode.Open, FileAccess.Read); using var reader = new StreamReader(fsRead); string line; // The ReadLine() method returns null when it reaches the end of the file. // This is the standard pattern for reading a text file to the end. while ((line = reader.ReadLine()) != null) { Console.WriteLine(line); }</p>
+<p>While you can read and write raw bytes directly with a FileStream, it's often cumbersome. A more common pattern is to wrap the FileStream with a higher- level helper class that is designed to work with streams, such as a StreamWriter or StreamReader for text.</p>
+    <h3>How It Works: Stream Helpers</h3>
+<p>These helper classes take a Stream object in their constructor. They don't open the file themselves; they simply provide a more convenient API for interacting with the underlying stream provided to them. The using block should still manage the lifetime of the FileStream, and the helper will be disposed along with it.</p>
+    <h3>Example</h3>
+<p>Writing and Reading a Text File Line-by-Line This example demonstrates the robust way to handle text files of any size.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string filePath = &quot;my_app_data.log&quot;;
+// --- Writing with StreamWriter ---
+// The using declaration ensures fs and writer are closed/disposed properly.
+using var fsWrite = new FileStream(filePath, FileMode.Create,
+FileAccess.Write);
+using var writer = new StreamWriter(fsWrite);
+Console.WriteLine(&quot;Writing data to file...&quot;);
+writer.WriteLine(&quot;Log Entry 1: Application Start&quot;);
+writer.WriteLine(&quot;Log Entry 2: User 'Alice' logged in.&quot;);
+writer.WriteLine(&quot;Log Entry 3: Data processed.&quot;);
+// The writer may buffer data; it gets flushed to the file when disposed.
+// --- Reading with StreamReader ---
+Console.WriteLine(&quot;\nReading data from file...&quot;);
+using var fsRead = new FileStream(filePath, FileMode.Open,
+FileAccess.Read);
+using var reader = new StreamReader(fsRead);
+string line;
+// The ReadLine() method returns null when it reaches the end of the file.
+// This is the standard pattern for reading a text file to the end.</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    Console.WriteLine(line);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-27-lec-18-binarywriter-and-binaryreader">Lecture 17: BinaryWriter and BinaryReader</h2>
     <h3>Introduction</h3>
-    <p>BinaryWriter and BinaryReader are helper classes used to read and write primitive data types (like int, double, bool, string, etc.) to a stream as binary data. Unlike StreamWriter, which writes &quot;123&quot; as three text characters, BinaryWriter writes the four raw bytes that represent the integer 123. When to Use Them Use these classes when you want to create custom, compact binary file formats. This approach is much more efficient in terms of file size and parsing speed compared to text-based formats like XML or JSON. However, the major tradeoff is that the resulting file is not human-readable. How It Works You wrap a FileStream with a BinaryWriter or BinaryReader. It is absolutely critical that you read the data back in the exact same order and with the exact same data types as you used to write it. The binary format contains no metadata about the types; it's just a sequence of bytes that you must interpret correctly. Example string filePath = &quot;player.dat&quot;; string playerName = &quot;John&quot;; int level = 10; double health = 95.5; // --- Writing binary data --- using (var fs = new FileStream(filePath, FileMode.Create)) using (var writer = new BinaryWriter(fs)) { Console.WriteLine(&quot;Writing binary data...&quot;); writer.Write(playerName); writer.Write(level); writer.Write(health); } // --- Reading binary data --- using (var fs = new FileStream(filePath, FileMode.Open)) using (var reader = new BinaryReader(fs)) { Console.WriteLine(&quot;\nReading binary data...&quot;); // Must read back in the exact same order and type! string readName = reader.ReadString(); int readLevel = reader.ReadInt32(); double readHealth = reader.ReadDouble(); Console.WriteLine($&quot;Name: {readName}, Level: {readLevel}, Health: {readHealth}&quot;); }</p>
+<p>BinaryWriter and BinaryReader are helper classes used to read and write primitive data types (like int, double, bool, string, etc.) to a stream as binary data. Unlike StreamWriter, which writes &quot;123&quot; as three text characters, BinaryWriter writes the four raw bytes that represent the integer 123.</p>
+    <h3>When to Use: Them</h3>
+<p>Use these classes when you want to create custom, compact binary file formats. This approach is much more efficient in terms of file size and parsing speed compared to text-based formats like XML or JSON. However, the major tradeoff is that the resulting file is not human-readable.</p>
+    <h3>How It Works</h3>
+<p>You wrap a FileStream with a BinaryWriter or BinaryReader. It is absolutely critical that you read the data back in the exact same order and with the exact same data types as you used to write it. The binary format contains no metadata about the types; it's just a sequence of bytes that you must interpret correctly.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string filePath = &quot;player.dat&quot;;
+string playerName = &quot;John&quot;;
+int level = 10;
+double health = 95.5;
+// --- Writing binary data ---
+using (var fs = new FileStream(filePath, FileMode.Create))
+using (var writer = new BinaryWriter(fs))
+{
+    Console.WriteLine(&quot;Writing binary data...&quot;);
+    writer.Write(playerName);
+    writer.Write(level);
+    writer.Write(health);
+}
+// --- Reading binary data ---
+using (var fs = new FileStream(filePath, FileMode.Open))
+using (var reader = new BinaryReader(fs))
+{
+    Console.WriteLine(&quot;\nReading binary data...&quot;);
+    // Must read back in the exact same order and type!
+    string readName = reader.ReadString();
+    int readLevel = reader.ReadInt32();
+    double readHealth = reader.ReadDouble();
+    Console.WriteLine($&quot;Name: {readName}, Level: {readLevel}, Health:
+    {readHealth}&quot;);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-27-lec-19-intro-to-serialization">Lecture 18: Intro to Serialization</h2>
     <h3>Introduction</h3>
-    <p>Serialization is the process of converting an object's state (the values of its fields and properties) into a format that can be easily stored or transmitted. Deserialization is the reverse process: taking that stored data and using it to reconstruct the original object in memory. Why It's Used Serialization is a cornerstone of modern applications and is used everywhere:</p>
+<p>Serialization is the process of converting an object's state (the values of its fields and properties) into a format that can be easily stored or transmitted. Deserialization is the reverse process: taking that stored data and using it to reconstruct the original object in memory. Why It's Used Serialization is a cornerstone of modern applications and is used everywhere:</p>
     <ul>
-      <li>Persistence: Saving an object's state to a file on disk so it can be reloaded when the application starts again (e.g., saving game progress, application settings).</li>
-      <li>Communication: Sending a complex data object across a network to another service via a web API.</li>
-      <li>Caching: Storing a frequently used, expensive-to-create object in a cache (like Redis) for faster retrieval later. The most common serialization formats today are JSON and XML, because they are text-based and human-readable. A less common format is binary serialization.</li>
+      <li><strong>Persistence:</strong> Saving an object's state to a file on disk so it can be reloaded when the application starts again (e.g., saving game progress, application settings).</li>
+      <li><strong>Communication:</strong> Sending a complex data object across a network to another service via a web API.</li>
+      <li><strong>Caching:</strong> Storing a frequently used, expensive-to-create object in a cache (like Redis) for faster retrieval later. The most common serialization formats today are JSON and XML, because they are text-based and human-readable. A less common format is binary serialization.</li>
     </ul>
 
     <h2 id="sec-27-lec-20-binary-serialization">Lecture 19: Binary Serialization</h2>
     <h3>Introduction</h3>
-    <p>Binary serialization is the process of converting an object's state into a compact, non-human-readable stream of bytes. This format is typically smaller and faster to parse than text-based formats like JSON or XML. In the legacy .NET Framework, this was done using a class called the BinaryFormatter. How It Worked: The [Serializable] Attribute To make a class serializable with this older method, you had to mark the class with the [Serializable] attribute. This signaled to the runtime that it was allowed to access the class's fields (even private ones) to read their values during serialization and set them during deserialization. Important Note: Modern Status and Security Warning This is a critical point for any modern C# developer. The BinaryFormatter is now considered obsolete and insecure. Its use is highly discouraged by Microsoft and is disabled by default in new ASP.NET Core and .NET 5+ applications. Why is it insecure? A malicious actor could craft a binary payload that, when deserialized by BinaryFormatter, could execute arbitrary code on the server, leading to a serious security vulnerability.</p>
+<p>Binary serialization is the process of converting an object's state into a compact, non-human-readable stream of bytes. This format is typically smaller and faster to parse than text-based formats like JSON or XML. NET Framework, this was done using a class called the BinaryFormatter.</p>
+<p>How It Worked: The [Serializable] Attribute To make a class serializable with this older method, you had to mark the class with the [Serializable] attribute. This signaled to the runtime that it was allowed to access the class's fields (even private ones) to read their values during serialization and set them during deserialization.</p>
+    <h3>Important Note: Modern Status and Security Warning</h3>
+<p>This is a critical point for any modern C# developer. The BinaryFormatter is now considered obsolete and insecure. NET 5+ applications.</p>
+<p>Why is it insecure? A malicious actor could craft a binary payload that, when deserialized by BinaryFormatter, could execute arbitrary code on the server, leading to a serious security vulnerability.</p>
 
     <div class="callout callout-tip">
       <div class="callout-header">
@@ -647,32 +1051,136 @@
         
       </div>
       <div class="callout-content">
-        <ul><li>Question: &quot;When would you use binary serialization?&quot;</li><li>Ideal Answer: &quot;In modern development, you generally shouldn't. The</li></ul><p>standard BinaryFormatter has known security vulnerabilities and is</p><p>obsolete. For most use cases, the modern standard is JSON serialization</p><p>using a library like System.Text.Json or Newtonsoft.Json. If a compact</p><p>binary format is absolutely required for performance, a safer, contract-</p><p>based binary serializer like protobuf-net would be the appropriate choice</p><p>over the old BinaryFormatter.&quot;</p>
+        <ul>
+  <li>Question: &quot;When would you use binary serialization?&quot;</li>
+  <li>Ideal Answer: &quot;In modern development, you generally shouldn't. The</li>
+</ul>
+  <p>standard BinaryFormatter has known security vulnerabilities and is</p>
+  <p>obsolete. For most use cases, the modern standard is JSON serialization</p>
+  <p>using a library like System.Text.Json or Newtonsoft.Json. If a compact</p>
+  <p>binary format is absolutely required for performance, a safer, contract-</p>
+  <p>based binary serializer like protobuf-net would be the appropriate choice</p>
+  <p>over the old BinaryFormatter.&quot;</p>
+
       </div>
     </div>
   
 
     <h2 id="sec-27-lec-21-json-serialization">Lecture 20: Json Serialization</h2>
     <h3>Introduction</h3>
-    <p>JSON (JavaScript Object Notation) is the modern, de facto standard for data interchange on the web and in software applications. It is a lightweight, human- readable text format that represents data as a collection of key-value pairs (like a dictionary) and ordered lists (like an array). In modern .NET, the built-in, high-performance library for handling JSON is System.Text.Json. How It Works The static JsonSerializer class provides two primary methods:</p>
+<p>JSON (JavaScript Object Notation) is the modern, de facto standard for data interchange on the web and in software applications. It is a lightweight, human- readable text format that represents data as a collection of key-value pairs (like a dictionary) and ordered lists (like an array). In modern .NET, the built-in, high-performance library for handling JSON is System.Text.Json.</p>
+    <h3>How It Works</h3>
+<p>The static JsonSerializer class provides two primary methods:</p>
     <ul>
       <li>JsonSerializer.Serialize(object): This method takes an object instance and returns its JSON string representation.</li>
-      <li>JsonSerializer.Deserialize&lt;T&gt;(string): This generic method takes a JSON string and reconstructs it into a new object of the specified type T. The serializer automatically maps the properties of your C# object to the keys in the JSON text. When to Use It This is the default choice for almost all modern serialization tasks:</li>
+      <li>JsonSerializer.Deserialize&lt;T&gt;(string): This generic method takes a JSON string and reconstructs it into a new object of the specified type T. The serializer automatically maps the properties of your C# object to the keys in the JSON text.</li>
+    </ul>
+    <h3>When to Use It</h3>
+<p>This is the default choice for almost all modern serialization tasks:</p>
+    <ul>
       <li>Creating and consuming web APIs (REST APIs).</li>
       <li>Writing and reading configuration files.</li>
-      <li>Storing simple object data in text files or databases. Example public class User { public int Id { get; set; } public string Username { get; set; } public bool IsActive { get; set; } } // --- In your Main method --- User user = new User { Id = 101, Username = &quot;alice&quot;, IsActive = true }; // 1. Serialize the object to a JSON string string jsonString = JsonSerializer.Serialize(user, new JsonSerializerOptions { WriteIndented = true }); Console.WriteLine(&quot;--- Serialized JSON ---&quot;); Console.WriteLine(jsonString); // 2. Deserialize the JSON string back into a new object User newUser = JsonSerializer.Deserialize&lt;User&gt;(jsonString); Console.WriteLine(&quot;\n--- Deserialized Object ---&quot;); Console.WriteLine($&quot;ID: {newUser.Id}, Username: {newUser.Username}&quot;); Output: --- Serialized JSON --- { &quot;Id&quot;: 101, &quot;Username&quot;: &quot;alice&quot;, &quot;IsActive&quot;: true } --- Deserialized Object --- ID: 101, Username: alice</li>
+      <li>Storing simple object data in text files or databases.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class User
+{
+    public int Id { get; set; }
+    public string Username { get; set; }
+    public bool IsActive { get; set; }
+}
+// --- In your Main method ---
+User user = new User { Id = 101, Username = &quot;alice&quot;, IsActive = true };
+// 1. Serialize the object to a JSON string
+string jsonString = JsonSerializer.Serialize(user, new JsonSerializerOptions
+{ WriteIndented = true });
+Console.WriteLine(&quot;--- Serialized JSON ---&quot;);
+Console.WriteLine(jsonString);
+// 2. Deserialize the JSON string back into a new object
+User newUser = JsonSerializer.Deserialize&lt;User&gt;(jsonString);
+Console.WriteLine(&quot;\n--- Deserialized Object ---&quot;);
+Console.WriteLine($&quot;ID: {newUser.Id}, Username: {newUser.Username}&quot;);</code></pre>
+    </div>
+  
+    <h3>Output</h3>
+<p>--- Serialized JSON ---</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    &quot;Id&quot;: 101,
+    &quot;Username&quot;: &quot;alice&quot;,
+    &quot;IsActive&quot;: true
+}
+--- Deserialized Object ---</code></pre>
+    </div>
+  
+<p>ID: 101, Username: alice</p>
 
     <h2 id="sec-27-lec-22-xml-serialization">Lecture 21: Xml Serialization</h2>
     <h3>Introduction</h3>
-    <p>XML (eXtensible Markup Language) is another text-based format for representing data. It uses tags enclosed in angle brackets to create a hierarchical, tree-like structure. While JSON has become more popular for web APIs due to its simplicity, XML is still heavily used in many enterprise environments, configuration files (like .csproj), and for standards like SOAP web services. How It Works: The XmlSerializer In C#, you work with XML serialization primarily using the System.Xml.Serialization.XmlSerializer class. Unlike the JSON serializer, it has some specific constraints:</p>
+<p>XML (eXtensible Markup Language) is another text-based format for representing data. It uses tags enclosed in angle brackets to create a hierarchical, tree-like structure. While JSON has become more popular for web APIs due to its simplicity, XML is still heavily used in many enterprise environments, configuration files (like .csproj), and for standards like SOAP web services.</p>
+    <h3>How It Works</h3>
+<p>The XmlSerializer In C#, you work with XML serialization primarily using the System.Xml.Serialization.XmlSerializer class. Unlike the JSON serializer, it has some specific constraints:</p>
     <ul>
       <li>The class being serialized must have a public, parameterless constructor.</li>
-      <li>It only serializes public fields and public properties. When to Use It</li>
+      <li>It only serializes public fields and public properties.</li>
+    </ul>
+    <h3>When to Use It</h3>
+    <ul>
       <li>When interacting with legacy enterprise systems or web services that require XML.</li>
       <li>For complex configuration files where XML's structure, support for comments, and schemas are beneficial.</li>
-      <li>When working with standards that are built on XML, like SAML for authentication. Example Let's serialize the same User object to XML to see the difference. public class User // Must have a public parameterless constructor for XmlSerializer { public int Id { get; set; } public string Username { get; set; } public bool IsActive { get; set; } } // --- In your Main method --- User user = new User { Id = 101, Username = &quot;alice&quot;, IsActive = true }; XmlSerializer serializer = new XmlSerializer(typeof(User)); // To write to the console, we can use a StringWriter. using (var writer = new StringWriter()) { serializer.Serialize(writer, user); string xmlString = writer.ToString(); Console.WriteLine(&quot;--- Serialized XML ---&quot;); Console.WriteLine(xmlString); } Output: --- Serialized XML --- &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt; &lt;User xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt; &lt;Id&gt;101&lt;/Id&gt; &lt;Username&gt;alice&lt;/Username&gt; &lt;IsActive&gt;true&lt;/IsActive&gt; &lt;/User&gt; As you can see, XML is significantly more verbose than JSON for the same data.</li>
+      <li>When working with standards that are built on XML, like SAML for authentication.</li>
     </ul>
+    <h3>Example</h3>
+<p>Let's serialize the same User object to XML to see the difference.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class User // Must have a public parameterless constructor for
+XmlSerializer
+{
+    public int Id { get; set; }
+    public string Username { get; set; }
+    public bool IsActive { get; set; }
+}
+// --- In your Main method ---
+User user = new User { Id = 101, Username = &quot;alice&quot;, IsActive = true };
+XmlSerializer serializer = new XmlSerializer(typeof(User));
+// To write to the console, we can use a StringWriter.
+using (var writer = new StringWriter())
+{
+    serializer.Serialize(writer, user);
+    string xmlString = writer.ToString();
+    Console.WriteLine(&quot;--- Serialized XML ---&quot;);
+    Console.WriteLine(xmlString);
+}</code></pre>
+    </div>
+  
+    <h3>Output</h3>
+<p>--- Serialized XML ---</p>
+<p>&lt;User xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt; &lt;Id&gt;101&lt;/Id&gt; &lt;Username&gt;alice&lt;/Username&gt; &lt;IsActive&gt;true&lt;/IsActive&gt; &lt;/User&gt; As you can see, XML is significantly more verbose than JSON for the same data.</p>
 
       </article>
 

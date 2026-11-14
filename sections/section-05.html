@@ -447,7 +447,12 @@
         
     <h2 id="sec-5-lec-1-introduction-to-fields">Lecture 1: Introduction to Fields</h2>
     <h3>Introduction</h3>
-    <p>In Object-Oriented Programming, fields are variables declared directly inside a class. They are the fundamental building blocks for storing data and represent the state, or attributes, of an object. If a class is a blueprint for a Student, the fields would be the lines on that blueprint for name, studentId, and dateOfBirth. Every object created from the class gets its own copy of these fields to store its unique state. How It Works: Memory Allocation and Object Isolation This is a critical concept. When you create an object using the new keyword, the .NET runtime allocates a block of memory on a region called the heap. This block is sized to hold all of the instance fields defined in that object's class. The most important takeaway is that each object gets its own, separate block of memory. This ensures that objects are isolated from one another. Modifying the state (the field values) of one object has no effect on the state of another object of the same class. Example 1: Demonstrating Object Isolation This example proves that two objects have separate memory for their fields.</p>
+<p>In Object-Oriented Programming, fields are variables declared directly inside a class. They are the fundamental building blocks for storing data and represent the state, or attributes, of an object. If a class is a blueprint for a Student, the fields would be the lines on that blueprint for name, studentId, and dateOfBirth. Every object created from the class gets its own copy of these fields to store its unique state.</p>
+    <h3>How It Works</h3>
+<p>Memory Allocation and Object Isolation This is a critical concept. NET runtime allocates a block of memory on a region called the heap. This block is sized to hold all of the instance fields defined in that object's class.</p>
+<p>The most important takeaway is that each object gets its own, separate block of memory. This ensures that objects are isolated from one another. Modifying the state (the field values) of one object has no effect on the state of another object of the same class.</p>
+    <h3>Example: 1: Demonstrating Object Isolation</h3>
+<p>This example proves that two objects have separate memory for their fields. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -459,67 +464,70 @@
       </div>
       <pre><code>public class Student
 {
-// Fields to store the state of a single student.
-// We use public here only for a clear demonstration.
-public int studentId;
-public string name;
+    // Fields to store the state of a single student.
+    // We use public here only for a clear demonstration.
+    public int studentId;
+    public string name;
 }
 public class Program
 {
-public static void Main(string[] args)
+    public static void Main(string[] args)
+    {
+        // Create the first Student object. A block of memory is allocated on the heap for it.
+        Student student1 = new Student();
+        student1.studentId = 101;
+        student1.name = &quot;Alice&quot;;
+        // Create a second, completely separate Student object.
+        // A NEW block of memory is allocated on the heap for this one.
+        Student student2 = new Student();
+        student2.studentId = 102;
+        student2.name = &quot;Bob&quot;;
+        Console.WriteLine($&quot;Student 1 Info: ID={student1.studentId},
+        Name={student1.name}&quot;);
+        Console.WriteLine($&quot;Student 2 Info: ID={student2.studentId},
+        Name={student2.name}&quot;);
+        // Now, let's change the name of the first student.
+        student1.name = &quot;Alicia&quot;;
+        Console.WriteLine(&quot;\n--- Changed student1's name ---&quot;);
+        // The change only affects the first object because they have separate memory.
+        Console.WriteLine($&quot;Student 1 Info: ID={student1.studentId},
+        Name={student1.name}&quot;); // Name is now Alicia
+        Console.WriteLine($&quot;Student 2 Info: ID={student2.studentId},
+        Name={student2.name}&quot;); // Name is still Bob
+    }
+}</code></pre>
+    </div>
+  
+    <h3>How It Works: Copying Object References</h3>
+<p>A class is a reference type. This means the variable (student1) does not hold the object itself, but rather the memory address (a reference) to the object on the heap. When you assign one object variable to another, you are only copying this memory address.</p>
+    <h3>Example: 2: Demonstrating Reference Sharing</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public static void Main(string[] args)
 {
-// Create the first Student object. A block of memory is allocated on
-the heap for it.
-Student student1 = new Student();
-student1.studentId = 101;
-student1.name = &quot;Alice&quot;;
-// Create a second, completely separate Student object.
-// A NEW block of memory is allocated on the heap for this one.
-Student student2 = new Student();
-student2.studentId = 102;
-student2.name = &quot;Bob&quot;;
-Console.WriteLine($&quot;Student 1 Info: ID={student1.studentId},
-Name={student1.name}&quot;);
-Console.WriteLine($&quot;Student 2 Info: ID={student2.studentId},
-Name={student2.name}&quot;);
-// Now, let's change the name of the first student.
-student1.name = &quot;Alicia&quot;;
-Console.WriteLine(&quot;\n--- Changed student1's name ---&quot;);
-// The change only affects the first object because they have separate
-memory.
-Console.WriteLine($&quot;Student 1 Info: ID={student1.studentId},
-Name={student1.name}&quot;); // Name is now Alicia
-Console.WriteLine($&quot;Student 2 Info: ID={student2.studentId},
-Name={student2.name}&quot;); // Name is still Bob
-}
-}
-How It Works: Copying Object References
-A class is a reference type. This means the variable (student1) does not hold the
-object itself, but rather the memory address (a reference) to the object on the
-heap. When you assign one object variable to another, you are only copying this
-memory address.
-Example 2: Demonstrating Reference Sharing
-C#
-public static void Main(string[] args)
-{
-// studentA holds a reference to a new Student object in memory.
-Student studentA = new Student();
-studentA.name = &quot;Charles&quot;;
-// studentB is created, and the REFERENCE from studentA is copied into
-it.
-// Both variables now point to the EXACT SAME object on the heap.
-Student studentB = studentA;
-Console.WriteLine($&quot;Student A's Name: {studentA.name}&quot;); // Output:
-Charles
-Console.WriteLine($&quot;Student B's Name: {studentB.name}&quot;); // Output:
-Charles
-// Let's change the name using the studentB reference.
-studentB.name = &quot;Charlie&quot;;
-Console.WriteLine(&quot;\n--- Changed name via studentB ---&quot;);
-// Because they both point to the same object, the change is visible
-through studentA.
-Console.WriteLine($&quot;Student A's Name: {studentA.name}&quot;); // Output:
-Charlie
+    // studentA holds a reference to a new Student object in memory.
+    Student studentA = new Student();
+    studentA.name = &quot;Charles&quot;;
+    // studentB is created, and the REFERENCE from studentA is copied into it.
+    // Both variables now point to the EXACT SAME object on the heap.
+    Student studentB = studentA;
+    Console.WriteLine($&quot;Student A's Name: {studentA.name}&quot;); // Output:
+    Charles
+    Console.WriteLine($&quot;Student B's Name: {studentB.name}&quot;); // Output:
+    Charles
+    // Let's change the name using the studentB reference.
+    studentB.name = &quot;Charlie&quot;;
+    Console.WriteLine(&quot;\n--- Changed name via studentB ---&quot;);
+    // Because they both point to the same object, the change is visible through studentA.
+    Console.WriteLine($&quot;Student A's Name: {studentA.name}&quot;); // Output:
+    Charlie
 }</code></pre>
     </div>
   
@@ -530,43 +538,60 @@ Charlie
         
       </div>
       <div class="callout-content">
-        <p>You must be able to clearly explain the difference between the two scenarios</p><p>above.</p><ul><li>Question: &quot;What is the difference between creating two new objects versus</li></ul><p>assigning one object variable to another?&quot;</p><ul><li>Ideal Answer: &quot;Creating two objects with new allocates two separate blocks</li></ul><p>of memory on the heap, making them independent. Assigning one object</p><p>variable to another does not create a new object; it only copies the memory</p><p>reference. As a result, both variables point to the same single object, and a</p><p>change made through one variable is visible through the other.&quot;</p>
+          <p>You must be able to clearly explain the difference between the two scenarios</p>
+  <p>above.</p>
+<ul>
+  <li>Question: &quot;What is the difference between creating two new objects versus</li>
+</ul>
+  <p>assigning one object variable to another?&quot;</p>
+<ul>
+  <li>Ideal Answer: &quot;Creating two objects with new allocates two separate blocks</li>
+</ul>
+  <p>of memory on the heap, making them independent. Assigning one object</p>
+  <p>variable to another does not create a new object; it only copies the memory</p>
+  <p>reference. As a result, both variables point to the same single object, and a</p>
+  <p>change made through one variable is visible through the other.&quot;</p>
+
       </div>
     </div>
   
 
     <h2 id="sec-5-lec-2-access-modifiers-for-fields">Lecture 2: Access Modifiers for Fields</h2>
     <h3>Introduction</h3>
-    <p>Access modifiers are keywords that define the visibility of a class member. They are the core mechanism for enforcing encapsulation, which dictates that an object's internal data should be protected from direct, uncontrolled external access. The golden rule is to make your fields as private as possible. List and Explanation of Access Modifiers</p>
+<p>Access modifiers are keywords that define the visibility of a class member. They are the core mechanism for enforcing encapsulation, which dictates that an object's internal data should be protected from direct, uncontrolled external access. The golden rule is to make your fields as private as possible. List and Explanation of Access Modifiers</p>
     <ul>
       <li>public</li>
-      <li>Accessibility: Can be accessed from anywhere.</li>
-      <li>When to Use: Almost never for fields. Making a field public breaks encapsulation entirely. It's only used for constants or in simple Data Transfer Objects (DTOs).</li>
+      <li><strong>Accessibility:</strong> Can be accessed from anywhere.</li>
+      <li><strong>When to Use:</strong> Almost never for fields. Making a field public breaks encapsulation entirely. It's only used for constants or in simple Data Transfer Objects (DTOs).</li>
       <li>private</li>
-      <li>Accessibility: Can only be accessed by code within the same class. This is the default modifier if you don't specify one.</li>
-      <li>When to Use: This should be your default choice for all fields. It is the cornerstone of encapsulation. It forces all interaction with the data to go through public methods or properties.</li>
+      <li><strong>Accessibility:</strong> Can only be accessed by code within the same class. This is the default modifier if you don't specify one.</li>
+      <li><strong>When to Use:</strong> This should be your default choice for all fields. It is the cornerstone of encapsulation. It forces all interaction with the data to go through public methods or properties.</li>
       <li>protected</li>
-      <li>Accessibility: Can be accessed within the containing class and by any derived (child) classes, even if those child classes are in a different project.</li>
-      <li>When to Use: When designing a class to be inherited, and you want to give child classes direct access to certain helper fields or data.</li>
+      <li><strong>Accessibility:</strong> Can be accessed within the containing class and by any derived (child) classes, even if those child classes are in a different project.</li>
+      <li><strong>When to Use:</strong> When designing a class to be inherited, and you want to give child classes direct access to certain helper fields or data.</li>
       <li>internal</li>
-      <li>Accessibility: Can be accessed from any code within the same project (assembly).</li>
-      <li>When to Use: For utility classes or helper fields that need to be shared within a project but should not be part of its public API.</li>
+      <li><strong>Accessibility:</strong> Can be accessed from any code within the same project (assembly).</li>
+      <li><strong>When to Use:</strong> For utility classes or helper fields that need to be shared within a project but should not be part of its public API.</li>
       <li>protected internal</li>
-      <li>Accessibility: A combination of protected OR internal. Can be accessed by any code in the same project, OR by derived classes in any other project.</li>
+      <li><strong>Accessibility:</strong> A combination of protected OR internal. Can be accessed by any code in the same project, OR by derived classes in any other project.</li>
       <li>private protected</li>
-      <li>Accessibility: A combination of private AND protected. The field can be accessed only by derived classes that are declared in the same project (assembly). Interview Perspective</li>
-      <li>Question: &quot;Explain the difference between protected and private protected.&quot;</li>
-      <li>Ideal Answer: &quot;protected allows access by any derived class, regardless of which project it's in. private protected is more restrictive; it allows access only by derived classes that are located within the same project as the base class.&quot;</li>
+      <li><strong>Accessibility:</strong> A combination of private AND protected. The field can be accessed only by derived classes that are declared in the same project (assembly). Interview Perspective</li>
+      <li><strong>Question:</strong> &quot;Explain the difference between protected and private protected.&quot;</li>
+      <li><strong>Ideal Answer:</strong> &quot;protected allows access by any derived class, regardless of which project it's in. private protected is more restrictive; it allows access only by derived classes that are located within the same project as the base class.&quot;</li>
     </ul>
 
     <h2 id="sec-5-lec-3-static-fields">Lecture 3: Static Fields</h2>
     <h3>Introduction</h3>
-    <p>A static field belongs to the class itself, not to any individual object instance. No matter how many objects of the class you create, there is only one copy of the static field in memory, and it is shared by all of them. How It Works: Memory While instance fields are stored on the heap with their respective objects, a static field is stored in a special area of memory associated with the type's metadata (often on a special section of the heap called the High-Frequency Heap). It is initialized only once, before the type is first used. You access it using the ClassName.FieldName syntax. When to Use &amp; Real-World Examples</p>
+<p>A static field belongs to the class itself, not to any individual object instance. No matter how many objects of the class you create, there is only one copy of the static field in memory, and it is shared by all of them.</p>
+    <h3>How It Works: Memory</h3>
+<p>While instance fields are stored on the heap with their respective objects, a static field is stored in a special area of memory associated with the type's metadata (often on a special section of the heap called the High-Frequency Heap). It is initialized only once, before the type is first used. You access it using the ClassName.FieldName syntax.</p>
+    <h3>When to Use: &amp; Real-World Examples</h3>
     <ul>
-      <li>Counters: To keep track of how many objects of a class have been created.</li>
-      <li>Shared Resources: Storing a single database connection string or a logger instance that all objects of the class should share.</li>
-      <li>Singleton Pattern: A design pattern where a static field holds the single instance of a class. Example</li>
+      <li><strong>Counters:</strong> To keep track of how many objects of a class have been created.</li>
+      <li><strong>Shared Resources:</strong> Storing a single database connection string or a logger instance that all objects of the class should share.</li>
+      <li><strong>Singleton Pattern:</strong> A design pattern where a static field holds the single instance of a class.</li>
     </ul>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -578,40 +603,58 @@ Charlie
       </div>
       <pre><code>public class User
 {
-public string name;
-public static int userCount = 0; // One counter shared by ALL User
-objects.
-public User(string name)
-{
-this.name = name;
-userCount++; // Increment the shared static counter.
-}
+    public string name;
+    public static int userCount = 0; // One counter shared by ALL User
+    objects.
+    public User(string name)
+    {
+        this.name = name;
+        userCount++; // Increment the shared static counter.
+    }
 }
 public class Program
 {
-public static void Main(string[] args)
-{
-Console.WriteLine($&quot;Initial user count: {User.userCount}&quot;); // Access
-via class name
-User user1 = new User(&quot;Alice&quot;);
-User user2 = new User(&quot;Bob&quot;);
-// The count is shared across all instances.
-Console.WriteLine($&quot;User count after creating users:
-{User.userCount}&quot;); // Output: 2
-}
+    public static void Main(string[] args)
+    {
+        Console.WriteLine($&quot;Initial user count: {User.userCount}&quot;); // Access
+        via class name
+        User user1 = new User(&quot;Alice&quot;);
+        User user2 = new User(&quot;Bob&quot;);
+        // The count is shared across all instances.
+        Console.WriteLine($&quot;User count after creating users:
+        {User.userCount}&quot;); // Output: 2
+    }
 }</code></pre>
     </div>
   
 
     <h2 id="sec-5-lec-4-constant-fields-const">Lecture 4: Constant Fields (const)</h2>
     <h3>Introduction</h3>
-    <p>A const (constant) field declares a value that can never be changed. Its value is fixed at compile-time. How It Works: Compilation The C# compiler replaces every usage of the const field in your code with its literal value directly in the Intermediate Language (IL). It's essentially a compile- time &quot;find and replace&quot; operation. For this reason, a const field is implicitly static and must be initialized at the time of declaration. When to Use &amp; Real-World Examples</p>
+<p>A const (constant) field declares a value that can never be changed. Its value is fixed at compile-time.</p>
+    <h3>How It Works: Compilation</h3>
+<p>The C# compiler replaces every usage of the const field in your code with its literal value directly in the Intermediate Language (IL). It's essentially a compile- time &quot;find and replace&quot; operation. For this reason, a const field is implicitly static and must be initialized at the time of declaration.</p>
+    <h3>When to Use: &amp; Real-World Examples</h3>
     <ul>
-      <li>Mathematical Constants: When a value is universally and eternally fixed. public const double PI = 3.14159;</li>
-      <li>Physical Constants: public const int SpeedOfLight = 299792458;</li>
-      <li>Fixed Conversion Factors: public const int SecondsInHour = 3600;</li>
-      <li>Application-wide Keys: When you have a key for a dictionary or configuration that should never change. public const string ApiKeyName = &quot;MyApp:ApiKey&quot;; Example</li>
+      <li><strong>Mathematical Constants:</strong> When a value is universally and eternally fixed.</li>
     </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public const double PI = 3.14159;</code></pre>
+    </div>
+  
+    <ul>
+      <li><strong>Physical Constants:</strong> public const int SpeedOfLight = 299792458;</li>
+      <li><strong>Fixed Conversion Factors:</strong> public const int SecondsInHour = 3600;</li>
+      <li>Application-wide Keys: When you have a key for a dictionary or configuration that should never change. public const string ApiKeyName = &quot;MyApp:ApiKey&quot;;</li>
+    </ul>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -623,27 +666,32 @@ Console.WriteLine($&quot;User count after creating users:
       </div>
       <pre><code>public class Configuration
 {
-public const int DefaultTimeoutSeconds = 30;
+    public const int DefaultTimeoutSeconds = 30;
 }
 public class Program
 {
-public static void Main(string[] args)
-{
-Console.WriteLine($&quot;The default timeout is
-{Configuration.DefaultTimeoutSeconds} seconds.&quot;);
-}
+    public static void Main(string[] args)
+    {
+        Console.WriteLine($&quot;The default timeout is
+        {Configuration.DefaultTimeoutSeconds} seconds.&quot;);
+    }
 }</code></pre>
     </div>
   
 
     <h2 id="sec-5-lec-5-readonly-fields-readonly">Lecture 5: Readonly Fields (readonly)</h2>
     <h3>Introduction</h3>
-    <p>A readonly field's value can only be assigned once. This assignment can happen either at its declaration or within the constructor of the same class. After the constructor finishes, the field becomes &quot;read-only&quot; and cannot be changed. How It Works: Initialization Unlike const, a readonly field's value is fixed at run-time. This is a crucial difference. It allows each instance of an object to have its own unique, immutable value that is determined when the object is created. When to Use &amp; Real-World Examples This is perfect for per-object values that should not change after creation.</p>
+<p>A readonly field's value can only be assigned once. This assignment can happen either at its declaration or within the constructor of the same class. After the constructor finishes, the field becomes &quot;read-only&quot; and cannot be changed.</p>
+    <h3>How It Works: Initialization</h3>
+<p>Unlike const, a readonly field's value is fixed at run-time. This is a crucial difference. It allows each instance of an object to have its own unique, immutable value that is determined when the object is created.</p>
+    <h3>When to Use: &amp; Real-World Examples</h3>
+<p>This is perfect for per-object values that should not change after creation.</p>
     <ul>
-      <li>Unique IDs: public readonly Guid transactionId;</li>
-      <li>Creation Timestamps: public readonly DateTime creationDate;</li>
-      <li>Dependency Injection: When a service is injected via the constructor and should be used for the lifetime of the object without being replaced. private readonly ILogger _logger; Example</li>
+      <li><strong>Unique IDs:</strong> public readonly Guid transactionId;</li>
+      <li><strong>Creation Timestamps:</strong> public readonly DateTime creationDate;</li>
+      <li><strong>Dependency Injection:</strong> When a service is injected via the constructor and should be used for the lifetime of the object without being replaced. private readonly ILogger _logger;</li>
     </ul>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -655,24 +703,26 @@ Console.WriteLine($&quot;The default timeout is
       </div>
       <pre><code>public class LogEntry
 {
-public readonly Guid entryId;
-public readonly DateTime entryTime;
-public string message;
-public LogEntry(string message)
-{
-// The readonly fields are assigned here, in the constructor, at run-
-time.
-this.entryId = Guid.NewGuid();
-this.entryTime = DateTime.UtcNow;
-this.message = message;
-}
+    public readonly Guid entryId;
+    public readonly DateTime entryTime;
+    public string message;
+    public LogEntry(string message)
+    {
+        // The readonly fields are assigned here, in the constructor, at run- time.
+        this.entryId = Guid.NewGuid();
+        this.entryTime = DateTime.UtcNow;
+        this.message = message;
+    }
 }</code></pre>
     </div>
   
 
     <h2 id="sec-5-lec-6-local-constants">Lecture 6: Local Constants</h2>
     <h3>Introduction</h3>
-    <p>You can also declare constants that are local to a method. The const keyword, when used inside a method, creates a local variable whose value is fixed for the duration of that method call. When to Use It To improve readability and maintainability by giving a descriptive name to a &quot;magic number&quot; or &quot;magic string&quot; that is used within a method. It also prevents accidental modification of a value that should remain fixed. Example</p>
+<p>You can also declare constants that are local to a method. The const keyword, when used inside a method, creates a local variable whose value is fixed for the duration of that method call.</p>
+    <h3>When to Use It</h3>
+<p>To improve readability and maintainability by giving a descriptive name to a &quot;magic number&quot; or &quot;magic string&quot; that is used within a method. It also prevents accidental modification of a value that should remain fixed.</p>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -684,17 +734,16 @@ this.message = message;
       </div>
       <pre><code>public decimal CalculateSalesTax(decimal amount)
 {
-// Instead of using a magic number like '0.0875', we declare a local
-constant.
-const decimal SalesTaxRate = 0.0875M;
-return amount * SalesTaxRate;
+    // Instead of using a magic number like '0.0875', we declare a local constant.
+    const decimal SalesTaxRate = 0.0875M;
+    return amount * SalesTaxRate;
 }</code></pre>
     </div>
   
 
     <h2 id="sec-5-lec-7-imp-points-to-remember-about-fields">Lecture 7: IMP Points to remember about Fields</h2>
     <h3>Introduction</h3>
-    <p>This lecture summarizes the most critical, practical, and interview-worthy points about working with fields in C#.</p>
+<p>This lecture summarizes the most critical, practical, and interview-worthy points about working with fields in C#.</p>
     <ol>
       <li>Fields Represent State Remember that fields are the &quot;nouns&quot; or &quot;adjectives&quot; of your class. They hold the data that defines the current state of any given object.</li>
       <li>Default to private This is the golden rule of encapsulation. Always declare your fields as private. Expose them in a controlled manner using public methods or properties.</li>
@@ -702,8 +751,11 @@ return amount * SalesTaxRate;
     </ol>
     <ul>
       <li>Instance Fields (readonly, public, private, etc.): A copy of this field exists for every object you create. They live on the heap with their object.</li>
-      <li>Static Fields (static): Only one copy of this field exists, and it's associated with the class itself. It lives in a separate memory area and is shared by all objects. 4. const vs. readonly: The Core Interview Question You will almost certainly be asked to compare these. Be ready with a clear, multi- point answer. When Set Const: At compile-time. Must be initialized at declaration. Readonly: At run-time. Can be set at declaration or in the constructor. Scope Const: Implicitly static. Belongs to the class. Readonly: Can be either instance (belongs to the object) or static. Per-Object Const: No. One value for the entire application. Readonly: Yes (if instance). Each object can have a different readonly value. Types Const: Limited to built-in value types, enums, and strings. Readonly: Can be any type, including complex objects. Use Case Const: Universal, unchanging constants (e.g., Math.PI). Readonly: Per-object immutable values set at creation (e.g., a unique TransactionID).</li>
+      <li><strong>Static Fields (static):</strong> Only one copy of this field exists, and it's associated with the class itself. It lives in a separate memory area and is shared by all objects.</li>
     </ul>
+    <ol>
+      <li>const vs. readonly: The Core Interview Question You will almost certainly be asked to compare these. Be ready with a clear, multi- point answer. When Set Const: At compile-time. Must be initialized at declaration. Readonly: At run-time. Can be set at declaration or in the constructor. Scope Const: Implicitly static. Belongs to the class. Readonly: Can be either instance (belongs to the object) or static. Per-Object Const: No. One value for the entire application. Readonly: Yes (if instance). Each object can have a different readonly value. Types Const: Limited to built-in value types, enums, and strings. Readonly: Can be any type, including complex objects. Use Case Const: Universal, unchanging constants (e.g., Math.PI). Readonly: Per-object immutable values set at creation (e.g., a unique TransactionID).</li>
+    </ol>
 
       </article>
 

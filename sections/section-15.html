@@ -447,25 +447,34 @@
         
     <h2 id="sec-15-lec-1-overview-of-system-object-class">Lecture 1: Overview of System.Object class</h2>
     <h3>Introduction</h3>
-    <p>In the .NET type system, System.Object (or its C# alias, object) is the most important class. It is the ultimate base class, the universal ancestor from which every single type in C# implicitly derives. Whether you create a class, a struct, an enum, or even use a primitive type like int or double, they all ultimately trace their lineage back to System.Object. This design choice is the foundation of C#'s powerful and unified type system. Internal Class Hierarchy and Design The hierarchy ensures that every type shares a common foundation. Here's how it's structured:</p>
+<p>Object (or its C# alias, object) is the most important class. It is the ultimate base class, the universal ancestor from which every single type in C# implicitly derives. Object.</p>
+<p>This design choice is the foundation of C#'s powerful and unified type system. Internal Class Hierarchy and Design The hierarchy ensures that every type shares a common foundation. Here's how it's structured:</p>
     <ul>
       <li>System.Object: The root of everything.</li>
       <li>Reference Types (class, delegate, string, etc.): These types inherit directly from System.Object.</li>
-      <li>Value Types (struct, enum, int, double, etc.): These types inherit from a special abstract class called System.ValueType, which in turn inherits directly from System.Object. Why was it designed like that? The Unified Type System The primary reason for this design is to create a unified type system. By having a single, common base class, the .NET framework guarantees that every single variable, regardless of its specific type, shares a baseline set of functionalities. This provides several powerful benefits: 1. Polymorphism: It allows you to write methods that can operate on any type. You can create a variable of type object and assign literally any value to it, because everything &quot;is an&quot; object. 2. Common Services: It ensures that every object has access to a fundamental set of methods for basic operations like comparing for equality (Equals), getting a string representation (ToString), and retrieving type information (GetType). 3. General-Purpose Collections: Before generics, this design allowed for the creation of collections like ArrayList that could store a mix of any data types, because they could all be treated as their base object type. (This led to boxing/unboxing, which we'll cover soon). Interview Perspective</li>
-      <li>Question: &quot;What is the role of System.Object in C#?&quot;</li>
-      <li>Ideal Answer: &quot;System.Object is the ultimate base class for all types in the .NET framework, creating a unified type system. Every type, including both reference types and value types, implicitly inherits from it. This design guarantees that every object has a common set of methods like ToString(), Equals(), and GetHashCode(), enabling a powerful level of polymorphism where any type can be treated as an object.&quot;</li>
+      <li>Value Types (struct, enum, int, double, etc.): These types inherit from a special abstract class called System.ValueType, which in turn inherits directly from System.Object. Why was it designed like that? The Unified Type System The primary reason for this design is to create a unified type system. By having a single, common base class, the .NET framework guarantees that every single variable, regardless of its specific type, shares a baseline set of functionalities. This provides several powerful benefits:</li>
+    </ul>
+    <ol>
+      <li><strong>Polymorphism:</strong> It allows you to write methods that can operate on any type. You can create a variable of type object and assign literally any value to it, because everything &quot;is an&quot; object.</li>
+      <li><strong>Common Services:</strong> It ensures that every object has access to a fundamental set of methods for basic operations like comparing for equality (Equals), getting a string representation (ToString), and retrieving type information (GetType).</li>
+      <li>General-Purpose Collections: Before generics, this design allowed for the creation of collections like ArrayList that could store a mix of any data types, because they could all be treated as their base object type. (This led to boxing/unboxing, which we'll cover soon). Interview Perspective</li>
+    </ol>
+    <ul>
+      <li><strong>Question:</strong> &quot;What is the role of System.Object in C#?&quot;</li>
+      <li><strong>Ideal Answer:</strong> &quot;System.Object is the ultimate base class for all types in the .NET framework, creating a unified type system. Every type, including both reference types and value types, implicitly inherits from it. This design guarantees that every object has a common set of methods like ToString(), Equals(), and GetHashCode(), enabling a powerful level of polymorphism where any type can be treated as an object.&quot;</li>
     </ul>
 
     <h2 id="sec-15-lec-2-understanding-and-overriding-methods-of-objec">Lecture 2: Understanding and Overriding Methods of Object class</h2>
     <h3>Introduction</h3>
-    <p>Since every class you create implicitly inherits from System.Object, it also inherits its public and protected instance methods. These methods provide foundational behavior, but their default implementations are often too generic. To make your classes behave intelligently, you will frequently override these methods to provide your own custom logic. The Four Important Instance Methods</p>
+<p>Object, it also inherits its public and protected instance methods. These methods provide foundational behavior, but their default implementations are often too generic. To make your classes behave intelligently, you will frequently override these methods to provide your own custom logic. The Four Important Instance Methods</p>
     <ol>
       <li>ToString()</li>
     </ol>
     <ul>
-      <li>Default Behavior: The default implementation of ToString() is not very useful. It simply returns a string containing the fully qualified name of the type (e.g., &quot;MyProject.Person&quot;).</li>
-      <li>Overriding (virtual): This method is marked as virtual, meaning it is designed to be overridden. You should override ToString() in your classes to provide a meaningful, human-readable string representation of the object's current state. This is invaluable for logging and debugging. Example:</li>
+      <li><strong>Default Behavior:</strong> The default implementation of ToString() is not very useful. It simply returns a string containing the fully qualified name of the type (e.g., &quot;MyProject.Person&quot;).</li>
+      <li><strong>Overriding (virtual):</strong> This method is marked as virtual, meaning it is designed to be overridden. You should override ToString() in your classes to provide a meaningful, human-readable string representation of the object's current state. This is invaluable for logging and debugging.</li>
     </ul>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -477,26 +486,27 @@
       </div>
       <pre><code>public class Car
 {
-public string Model { get; set; }
-public int Year { get; set; }
-// Override ToString() to provide a useful description.
-public override string ToString()
-{
-return $&quot;{Year} {Model}&quot;;
-}
+    public string Model { get; set; }
+    public int Year { get; set; }
+    // Override ToString() to provide a useful description. public override string ToString()
+    {
+        return $&quot;{Year} {Model}&quot;;
+    }
 }
 // --- In Main ---
 Car myCar = new Car { Model = &quot;Mustang&quot;, Year = 2023 };
-Console.WriteLine(myCar.ToString()); // Output: 2023 Mustang
-2. Equals(object obj)</code></pre>
+Console.WriteLine(myCar.ToString()); // Output: 2023 Mustang</code></pre>
     </div>
   
+    <ol>
+      <li>Equals(object obj)</li>
+    </ol>
     <ul>
-      <li>Default Behavior: This is a critical interview topic. The default behavior depends on the type:</li>
+      <li><strong>Default Behavior:</strong> This is a critical interview topic. The default behavior depends on the type:</li>
       <li>For reference types (class), it performs reference equality. It returns true only if two variables point to the exact same object in memory.</li>
       <li>For value types (struct), it performs value equality. It uses reflection to compare all fields of the two structs for equality.</li>
-      <li>Overriding (virtual): You override Equals() to define a custom meaning of &quot;equality&quot; for your class, usually by comparing the values of key fields or properties.</li>
-      <li>Example:</li>
+      <li><strong>Overriding (virtual):</strong> You override Equals() to define a custom meaning of &quot;equality&quot; for your class, usually by comparing the values of key fields or properties.</li>
+      <li><strong>Example:</strong> C#</li>
     </ul>
 
     <div class="code-block-container">
@@ -509,31 +519,40 @@ Console.WriteLine(myCar.ToString()); // Output: 2023 Mustang
       </div>
       <pre><code>public class Point
 {
-public int X { get; set; }
-public int Y { get; set; }
-public override bool Equals(object obj)
-{
-// Check for null and if the types match
-if (obj == null || this.GetType() != obj.GetType()) return false;
-Point other = (Point)obj;
-// Define equality as having the same X and Y values.
-return (this.X == other.X) &amp;&amp; (this.Y == other.Y);
-}
+    public int X { get; set; }
+    public int Y { get; set; }
+    public override bool Equals(object obj)
+    {
+        // Check for null and if the types match
+        if (obj == null || this.GetType() != obj.GetType()) return false;
+        Point other = (Point)obj;
+        // Define equality as having the same X and Y values.
+        return (this.X == other.X) &amp;&amp; (this.Y == other.Y);
+    }
 }
 Point p1 = new Point { X = 10, Y = 20 };
 Point p2 = new Point { X = 10, Y = 20 };
 Point p3 = new Point { X = 5, Y = 5 };
 Console.WriteLine(p1.Equals(p2)); // Output: True
-Console.WriteLine(p1.Equals(p3)); // Output: False
-3. GetHashCode()</code></pre>
+Console.WriteLine(p1.Equals(p3)); // Output: False</code></pre>
     </div>
   
+    <ol>
+      <li>GetHashCode()</li>
+    </ol>
     <ul>
       <li>What is a Hash Code? A hash code is a numeric value of a fixed size that is generated from an object. It's not unique, but a good hashing algorithm will produce a wide distribution of values, minimizing collisions (when two different objects produce the same hash code). The primary purpose of a hash code is to enable high-performance lookups in hash-based collections like Dictionary&lt;TKey, TValue&gt; and HashSet&lt;T&gt;.</li>
-      <li>How do Hash-Based Collections Work? When you add an item to a Dictionary, the dictionary doesn't loop through all its existing items to see if the key is already there. Instead: 1. It calls the key's GetHashCode() method to get an integer. 2. It uses this integer to calculate an index, which points to a specific &quot;bucket&quot; or &quot;slot&quot; in its internal array. 3. It places the key-value pair in that bucket. When you look up a key, it repeats the process: it calculates the hash code, goes directly to the correct bucket, and then uses the Equals() method to check only the very few items within that bucket. This is what makes dictionary lookups incredibly fast (averaging O(1) time complexity).</li>
-      <li>The Golden Rule of Overriding: If you override Equals(), you MUST also override GetHashCode().</li>
+      <li>How do Hash-Based Collections Work? When you add an item to a Dictionary, the dictionary doesn't loop through all its existing items to see if the key is already there. Instead:</li>
+    </ul>
+    <ol>
+      <li>It calls the key's GetHashCode() method to get an integer.</li>
+      <li>It uses this integer to calculate an index, which points to a specific &quot;bucket&quot; or &quot;slot&quot; in its internal array.</li>
+      <li>It places the key-value pair in that bucket. When you look up a key, it repeats the process: it calculates the hash code, goes directly to the correct bucket, and then uses the Equals() method to check only the very few items within that bucket. This is what makes dictionary lookups incredibly fast (averaging O(1) time complexity).</li>
+    </ol>
+    <ul>
+      <li><strong>The Golden Rule of Overriding:</strong> If you override Equals(), you MUST also override GetHashCode().</li>
       <li>Why? If two objects are considered equal by your Equals() method but they produce different hash codes, the hash-based collection will break. It might place them in different buckets. When you try to look up one of them, the dictionary would go to the wrong bucket, fail to find the object (even though an &quot;equal&quot; one exists elsewhere), and incorrectly report that the item is not in the collection. The contract is: if a.Equals(b) is true, then a.GetHashCode() must equal b.GetHashCode().</li>
-      <li>Example:</li>
+      <li><strong>Example:</strong> C#</li>
     </ul>
 
     <div class="code-block-container">
@@ -546,20 +565,22 @@ Console.WriteLine(p1.Equals(p3)); // Output: False
       </div>
       <pre><code>public class Point // Continuing from above
 {
-// ... X and Y properties and Equals method ...
-public override int GetHashCode()
-{
-// A modern, simple, and effective way to combine hash codes.
-return HashCode.Combine(X, Y);
-}
-}
-4. GetType()</code></pre>
+    // ... X and Y properties and Equals method ... public override int GetHashCode()
+    {
+        // A modern, simple, and effective way to combine hash codes.
+        return HashCode.Combine(X, Y);
+    }
+}</code></pre>
     </div>
   
+    <ol>
+      <li>GetType()</li>
+    </ol>
     <ul>
-      <li>Behavior: This method is not virtual and cannot be overridden. It always returns a Type object containing detailed metadata about the object's exact runtime type.</li>
-      <li>When to Use It: When you need to inspect an object's type at runtime, often for reflection (a more advanced topic). Example:</li>
+      <li><strong>Behavior:</strong> This method is not virtual and cannot be overridden. It always returns a Type object containing detailed metadata about the object's exact runtime type.</li>
+      <li><strong>When to Use It:</strong> When you need to inspect an object's type at runtime, often for reflection (a more advanced topic).</li>
     </ul>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -577,14 +598,17 @@ Console.WriteLine($&quot;The object is of type: {carType.FullName}&quot;);</code
 
     <h2 id="sec-15-lec-3-boxing">Lecture 3: Boxing</h2>
     <h3>Introduction</h3>
-    <p>Boxing is the process of converting a value type instance (like an int, double, or a custom struct) into a reference type (object or an interface it implements). This allows value types, which normally live on the fast stack, to be treated like objects and stored on the heap, enabling them to be used in collections or methods that expect an object. How It Works: The Internal Mechanics When a value type is boxed, the .NET runtime performs these steps behind the scenes:</p>
+<p>Boxing is the process of converting a value type instance (like an int, double, or a custom struct) into a reference type (object or an interface it implements). This allows value types, which normally live on the fast stack, to be treated like objects and stored on the heap, enabling them to be used in collections or methods that expect an object.</p>
+    <h3>How It Works</h3>
+<p>The Internal Mechanics When a value type is boxed, the .NET runtime performs these steps behind the scenes:</p>
     <ol>
-      <li>Memory Allocation: A small amount of memory is allocated on the heap. This memory block will act as the &quot;box.&quot;</li>
-      <li>Value Copy: The value of the value type variable (which is on the stack) is copied into the newly allocated box on the heap.</li>
-      <li>Reference Return: The resulting variable is now a reference (a memory address) that points to this new box object on the heap. When It Happens Boxing happens implicitly whenever you assign a value type to a variable of type object or an interface type. Performance Implications Boxing is a computationally expensive operation and should be avoided in performance-critical code. The cost comes from two places:</li>
+      <li><strong>Memory Allocation:</strong> A small amount of memory is allocated on the heap. This memory block will act as the &quot;box.&quot;</li>
+      <li><strong>Value Copy:</strong> The value of the value type variable (which is on the stack) is copied into the newly allocated box on the heap.</li>
+      <li><strong>Reference Return:</strong> The resulting variable is now a reference (a memory address) that points to this new box object on the heap. When It Happens Boxing happens implicitly whenever you assign a value type to a variable of type object or an interface type. Performance Implications Boxing is a computationally expensive operation and should be avoided in performance-critical code. The cost comes from two places:</li>
       <li>The memory allocation on the heap is significantly slower than stack allocation.</li>
-      <li>The newly created box object on the heap puts pressure on the Garbage Collector (GC), which will eventually have to clean it up. Example</li>
+      <li>The newly created box object on the heap puts pressure on the Garbage Collector (GC), which will eventually have to clean it up.</li>
     </ol>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -604,18 +628,23 @@ object o = i;
 // - The value 123 was copied from the stack into the heap box.
 // - The variable 'o' now holds the memory address of that box.
 // The most common historical example was with non-generic collections.
-System.Collections.ArrayList list = new System.Collections.ArrayList();
-list.Add(456); // Boxing occurs here! 456 is put in a box on the heap.</code></pre>
+System.Collections.ArrayList list = new System.Collections.ArrayList();</code></pre>
     </div>
   
+<p>list.Add(456); // Boxing occurs here! 456 is put in a box on the heap.</p>
 
     <h2 id="sec-15-lec-4-unboxing">Lecture 4: Unboxing</h2>
     <h3>Introduction</h3>
-    <p>Unboxing is the reverse process of boxing. It is the explicit conversion of an object reference (that points to a boxed value type) back into its original value type. How It Works: The Internal Mechanics Unboxing is also a multi-step, potentially costly operation:</p>
+<p>Unboxing is the reverse process of boxing. It is the explicit conversion of an object reference (that points to a boxed value type) back into its original value type.</p>
+    <h3>How It Works</h3>
+<p>The Internal Mechanics Unboxing is also a multi-step, potentially costly operation:</p>
     <ol>
-      <li>Type Check: The runtime first checks if the object being unboxed is actually a boxed instance of the exact target value type. If the object is null or is a boxed value of a different type, an InvalidCastException is thrown.</li>
-      <li>Value Copy: If the type check passes, the value is copied from the box on the heap back into a new value type variable, which is allocated on the stack. Syntax Unboxing is an explicit conversion and requires a cast. Performance Implications Unboxing also has a performance cost due to the type checking and the memory copy operation, though it is generally slightly cheaper than boxing as it doesn't involve heap allocation. Example</li>
+      <li><strong>Type Check:</strong> The runtime first checks if the object being unboxed is actually a boxed instance of the exact target value type. If the object is null or is a boxed value of a different type, an InvalidCastException is thrown.</li>
+      <li><strong>Value Copy:</strong> If the type check passes, the value is copied from the box on the heap back into a new value type variable, which is allocated on the stack.</li>
     </ol>
+    <h3>Syntax</h3>
+<p>Unboxing is an explicit conversion and requires a cast. Performance Implications Unboxing also has a performance cost due to the type checking and the memory copy operation, though it is generally slightly cheaper than boxing as it doesn't involve heap allocation.</p>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -633,28 +662,37 @@ int j = (int)o;
 // 1. The runtime checked if 'o' actually points to a boxed 'int'. It does.
 // 2. The value 123 was copied from the heap box to the stack variable 'j'.
 Console.WriteLine($&quot;Unboxed value: {j}&quot;);
-// --- Example of a FAILED unboxing ---
-object anotherObject = 456; // Boxed int
-try
-{
-// This will FAIL. You cannot unbox to a different type, even if
-// the conversion would normally be safe (like int to long).
-// You must unbox to the exact original type first.
-long l = (long)anotherObject;
+// --- Example of a FAILED unboxing ---</code></pre>
+    </div>
+  
+<p>object anotherObject = 456; // Boxed int try</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // This will FAIL. You cannot unbox to a different type, even if
+    // the conversion would normally be safe (like int to long).
+    // You must unbox to the exact original type first.
+    long l = (long)anotherObject;
 }
 catch (InvalidCastException ex)
 {
-Console.WriteLine(&quot;\nError: &quot; + ex.Message);
+    Console.WriteLine(&quot;\nError: &quot; + ex.Message);
 }
-// The correct way to do the above conversion:
-long correctLong = (int)anotherObject; // 1. Unbox to int, 2. Implicitly cast
-int to long.</code></pre>
+// The correct way to do the above conversion:</code></pre>
     </div>
   
+<p>long correctLong = (int)anotherObject; // 1. Unbox to int, 2. Implicitly cast int to long.</p>
 
     <h2 id="sec-15-lec-5-imp-points-to-remember">Lecture 5: IMP Points to Remember</h2>
     <ul>
-      <li>Object is the Universal Ancestor: Every type in .NET derives from System.Object. This creates a unified type system where any variable can be treated as an object, enabling a powerful form of polymorphism.</li>
+      <li><strong>Object is the Universal Ancestor:</strong> Every type in .NET derives from System.Object. This creates a unified type system where any variable can be treated as an object, enabling a powerful form of polymorphism.</li>
       <li>Override ToString() for Meaningful Debugging: It is a fundamental best practice to override the ToString() method in all your custom classes. A good ToString() implementation significantly simplifies logging and debugging by providing a clear, human-readable representation of an object's state.</li>
       <li>The Equals() and GetHashCode() Contract: This is a critical interview topic. If you override Equals() to provide value-based equality, you MUST also override GetHashCode(). The rule is simple: two objects that are considered equal must return the same hash code. Failing to do this will break the functionality of hash-based collections like Dictionary&lt;TKey, TValue&gt; and HashSet&lt;T&gt;.</li>
       <li>Boxing and Unboxing are Performance Traps: Be acutely aware that these operations are computationally expensive operations due to heap allocation, garbage collector pressure, and type checking. The introduction of Generics (e.g., List&lt;int&gt; instead of ArrayList) was a major language feature designed specifically to eliminate these hidden performance costs by creating type-safe collections that don't require boxing for value types.</li>

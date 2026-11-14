@@ -130,7 +130,7 @@ window.SEARCH_INDEX = [
       "BCL",
       "Architecture"
     ],
-    "snippet": "Section 1: Introduction to C#"
+    "snippet": "C# (pronounced \"C Sharp\") is the modern, powerful, and versatile programming language you will be learning. Its single most important charac..."
   },
   {
     "sectionId": 1,
@@ -178,7 +178,7 @@ window.SEARCH_INDEX = [
       "BCL",
       "Architecture"
     ],
-    "snippet": "Every C# instruction is composed of smaller pieces called tokens. Let's analyze a single line of code: int userAge = 30; This line contains ..."
+    "snippet": "Every C# instruction is composed of smaller pieces called tokens. Let's analyze a single line of code:..."
   },
   {
     "sectionId": 1,
@@ -322,7 +322,7 @@ window.SEARCH_INDEX = [
       "Operators",
       "Control Flow"
     ],
-    "snippet": "Simple if Statement When to Use: When you want to execute a block of code only if a single condition is true, and do nothing otherwise...."
+    "snippet": "Best Practice: Avoid nesting if statements too deeply (more than 2 or 3 levels) as it can make the code very difficult to read and understan..."
   },
   {
     "sectionId": 2,
@@ -338,7 +338,7 @@ window.SEARCH_INDEX = [
       "Operators",
       "Control Flow"
     ],
-    "snippet": "else if ladder when you are checking a single variable against a series of specific, constant values...."
+    "snippet": "Section 2: Lecture 8: switch-case"
   },
   {
     "sectionId": 2,
@@ -354,7 +354,7 @@ window.SEARCH_INDEX = [
       "Operators",
       "Control Flow"
     ],
-    "snippet": "know the exact number of iterations beforehand...."
+    "snippet": "Section 2: Lecture 9: while Loop"
   },
   {
     "sectionId": 2,
@@ -370,7 +370,7 @@ window.SEARCH_INDEX = [
       "Operators",
       "Control Flow"
     ],
-    "snippet": "body executes at least once...."
+    "snippet": "Section 2: Lecture 10: do-while Loop"
   },
   {
     "sectionId": 2,
@@ -402,7 +402,7 @@ window.SEARCH_INDEX = [
       "Operators",
       "Control Flow"
     ],
-    "snippet": "When to Use Them: To manually alter the flow of a loop from within its body...."
+    "snippet": "Section 2: Lecture 12: break and continue"
   },
   {
     "sectionId": 2,
@@ -418,14 +418,14 @@ window.SEARCH_INDEX = [
       "Operators",
       "Control Flow"
     ],
-    "snippet": "a grid, a multiplication table, or a game board...."
+    "snippet": "Section 2: Lecture 13: Nested for Loops"
   },
   {
     "sectionId": 2,
-    "title": "Lecture 14: goto",
+    "title": "Lecture 14: goto Introduction and Warning: The goto statement provides an unconditional jump",
     "sectionTitle": "Section 02: C# Language Basics & Syntax",
     "url": "sections/section-02.html",
-    "anchor": "sec-2-lec-14-goto",
+    "anchor": "sec-2-lec-14-goto-introduction-and-warning-the-goto-statem",
     "module": "Module 1: Foundations & Architecture",
     "keywords": [
       "Syntax",
@@ -434,7 +434,7 @@ window.SEARCH_INDEX = [
       "Operators",
       "Control Flow"
     ],
-    "snippet": "Introduction and Warning: The goto statement provides an unconditional jump to a label. While it is part of the language, its use is extreme..."
+    "snippet": "to a label. While it is part of the language, its use is extremely discouraged in modern programming. It creates \"spaghetti code\" that is di..."
   },
   {
     "sectionId": 2,
@@ -450,7 +450,7 @@ window.SEARCH_INDEX = [
       "Operators",
       "Control Flow"
     ],
-    "snippet": "Introduction: This is a classic exercise to demonstrate your command of nested loops and algorithmic thinking. Example 1: Right-Angled Trian..."
+    "snippet": "Introduction: This is a classic exercise to demonstrate your command of nested loops and algorithmic thinking...."
   },
   {
     "sectionId": 3,
@@ -467,214 +467,6 @@ window.SEARCH_INDEX = [
       "Debugging"
     ],
     "snippet": "will introduce you to the core ideas and the tools of the trade. Our goal here is to understand the \"what\" and \"why\" behind C# development, ..."
-  },
-  {
-    "sectionId": 3,
-    "title": "1.  The Base Class Library (BCL): Your Giant Toolbox of Pre-built Code",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-2-1-the-base-class-library-bcl-your-giant-toolb",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "Imagine being asked to build an application that needs to display the current date. This seemingly simple task involves asking the computer'..."
-  },
-  {
-    "sectionId": 3,
-    "title": "2.  This lets you focus on solving your unique problem, rather than re-solving",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-3-2-this-lets-you-focus-on-solving-your-unique-",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "common problems that Microsoft's engineers have already perfected...."
-  },
-  {
-    "sectionId": 3,
-    "title": "3.  The Runtime: Your Code's Guardian and Manager",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-4-3-the-runtime-your-code-s-guardian-and-manage",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "The other half of .NET is the runtime environment that executes your code, called the Common Language Runtime (CLR). It acts as the engine o..."
-  },
-  {
-    "sectionId": 3,
-    "title": "1.  The Intermediate Step (CIL): Your C# source code is first compiled into",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-5-1-the-intermediate-step-cil-your-c-source-cod",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "Common Intermediate Language (CIL). CIL is not tied to any specific operating system or processor. It’s a universal, platform-agnostic langu..."
-  },
-  {
-    "sectionId": 3,
-    "title": "2.  The \"Just-In-Time\" (JIT) Compilation: When you run your program and a",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-6-2-the-just-in-time-jit-compilation-when-you-r",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "method is called for the very first time, the CLR's JIT Compiler translates the CIL for that specific method into the native machine code fo..."
-  },
-  {
-    "sectionId": 3,
-    "title": "3.  Efficiency and Caching: This \"Just-In-Time\" approach is highly efficient",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-7-3-efficiency-and-caching-this-just-in-time-ap",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "because it only translates code that is actually needed. After translating a method once, the CLR caches the resulting native code. The next..."
-  },
-  {
-    "sectionId": 3,
-    "title": "1.  Creating the Blueprint (The Class)",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-8-1-creating-the-blueprint-the-class",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "You, the programmer, write a class. A class is a text file that acts as the blueprint. Inside the class, you define its components:..."
-  },
-  {
-    "sectionId": 3,
-    "title": "2.  Building Real Things from the Blueprint (Objects)",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-9-2-building-real-things-from-the-blueprint-obj",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "In your main program, you use the new keyword to create an object, which is a real instance of the class constructed in the computer's memor..."
-  },
-  {
-    "sectionId": 3,
-    "title": "3.  Interacting with Objects",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-10-3-interacting-with-objects",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "Each object you create is independent. If you create car1 and car2 from the Car class, setting the color field of car1 to \"Red\" has no effec..."
-  },
-  {
-    "sectionId": 3,
-    "title": "1. int: A Keyword that specifies a data type for an integer number.",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-11-1-int-a-keyword-that-specifies-a-data-type-fo",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "Section 3: 1. int: A Keyword that specifies a data type for an integer number."
-  },
-  {
-    "sectionId": 3,
-    "title": "2. userAge: An Identifier, the name you chose for your variable.",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-12-2-userage-an-identifier-the-name-you-chose-fo",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "Section 3: 2. userAge: An Identifier, the name you chose for your variable."
-  },
-  {
-    "sectionId": 3,
-    "title": "1.  PascalCase: Capitalize the first letter of every word. Use for \"big\" or \"public\"",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-13-1-pascalcase-capitalize-the-first-letter-of-e",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "Section 3: 1.  PascalCase: Capitalize the first letter of every word. Use for \"big\" or \"public\""
-  },
-  {
-    "sectionId": 3,
-    "title": "2.  camelCase: The first letter is lowercase; the first letter of every following",
-    "sectionTitle": "Section 03: Development Environment, .NET CLI & First Program",
-    "url": "sections/section-03.html",
-    "anchor": "sec-3-lec-14-2-camelcase-the-first-letter-is-lowercase-the",
-    "module": "Module 1: Foundations & Architecture",
-    "keywords": [
-      "IDE",
-      "Visual Studio",
-      "dotnet CLI",
-      "Compilation",
-      "Debugging"
-    ],
-    "snippet": "word is capitalized. Use for \"local\" or \"private\" things...."
   },
   {
     "sectionId": 4,
@@ -782,7 +574,7 @@ window.SEARCH_INDEX = [
       "Encapsulation",
       "State"
     ],
-    "snippet": "A const (constant) field declares a value that can never be changed. Its value is fixed at compile-time. How It Works: Compilation The C# co..."
+    "snippet": "A const (constant) field declares a value that can never be changed. Its value is fixed at compile-time...."
   },
   {
     "sectionId": 5,
@@ -1065,10 +857,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 6,
-    "title": "Lecture 14: Parameter Modifiers - in",
+    "title": "Lecture 14: Parameter Modifiers - in Introduction",
     "sectionTitle": "Section 06: Methods & Parameters",
     "url": "sections/section-06.html",
-    "anchor": "sec-6-lec-14-parameter-modifiers-in",
+    "anchor": "sec-6-lec-14-parameter-modifiers-in-introduction",
     "module": "Module 2: Object-Oriented Fundamentals",
     "keywords": [
       "Methods",
@@ -1151,7 +943,7 @@ window.SEARCH_INDEX = [
       "Params",
       "Overloading"
     ],
-    "snippet": "A static local function is a local function that is marked with the static keyword. This adds one important restriction to its behavior. How..."
+    "snippet": "A static local function is a local function that is marked with the static keyword. This adds one important restriction to its behavior...."
   },
   {
     "sectionId": 6,
@@ -1319,10 +1111,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 8,
-    "title": "Lecture 2: Static Constructor",
+    "title": "Lecture 2: Static Constructor Introduction",
     "sectionTitle": "Section 08: Constructors (Basics & Chaining)",
     "url": "sections/section-08.html",
-    "anchor": "sec-8-lec-2-static-constructor",
+    "anchor": "sec-8-lec-2-static-constructor-introduction",
     "module": "Module 2: Object-Oriented Fundamentals",
     "keywords": [
       "Constructors",
@@ -1335,10 +1127,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 8,
-    "title": "Lecture 3: Types of Constructor",
+    "title": "Lecture 3: Types of Constructor Introduction",
     "sectionTitle": "Section 08: Constructors (Basics & Chaining)",
     "url": "sections/section-08.html",
-    "anchor": "sec-8-lec-3-types-of-constructor",
+    "anchor": "sec-8-lec-3-types-of-constructor-introduction",
     "module": "Module 2: Object-Oriented Fundamentals",
     "keywords": [
       "Constructors",
@@ -1395,7 +1187,7 @@ window.SEARCH_INDEX = [
       "this()",
       "base()"
     ],
-    "snippet": "Section 8: Lecture 6: IMP Points to Remember"
+    "snippet": "before the class is first used. Used to initialize static fields...."
   },
   {
     "sectionId": 9,
@@ -1610,10 +1402,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 10,
-    "title": "Lecture 4: Parent Class's Constructor",
+    "title": "Lecture 4: Parent Class's Constructor Introduction",
     "sectionTitle": "Section 10: Inheritance, Hiding & Overriding",
     "url": "sections/section-10.html",
-    "anchor": "sec-10-lec-4-parent-class-s-constructor",
+    "anchor": "sec-10-lec-4-parent-class-s-constructor-introduction",
     "module": "Module 3: Advanced Class Design & Type System",
     "keywords": [
       "Inheritance",
@@ -1935,7 +1727,7 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 13,
-    "title": "Classes,  Enumerations",
+    "title": "Classes, \tEnumerations",
     "sectionTitle": "Section 13: Partial Classes, Static Classes & Enums",
     "url": "sections/section-13.html",
     "anchor": "sec-13-lec-1-classes-enumerations",
@@ -1946,7 +1738,7 @@ window.SEARCH_INDEX = [
       "Enumerations",
       "Flags Attribute"
     ],
-    "snippet": "Section 13: Classes,  Enumerations"
+    "snippet": "Section 13: Classes, \tEnumerations"
   },
   {
     "sectionId": 13,
@@ -2021,7 +1813,7 @@ window.SEARCH_INDEX = [
       "Enumerations",
       "Flags Attribute"
     ],
-    "snippet": "Section 13: Lecture 5: IMP Points to Remember"
+    "snippet": "before the program runs. At run-time, the CLR has no concept of a \"partial class.\"..."
   },
   {
     "sectionId": 14,
@@ -2527,7 +2319,7 @@ window.SEARCH_INDEX = [
       "Dispose Pattern",
       "using statement"
     ],
-    "snippet": "Calling Dispose() manually is possible, but it's risky. What if an exception occurs before the Dispose() line is reached? The resource would..."
+    "snippet": "Calling Dispose() manually is possible, but it's risky. What if an exception occurs..."
   },
   {
     "sectionId": 19,
@@ -2723,7 +2515,7 @@ window.SEARCH_INDEX = [
       "event",
       "Event Handling"
     ],
-    "snippet": "Func is a built-in, generic delegate type provided by the .NET framework. Its purpose is to represent a method that takes zero or more input..."
+    "snippet": "purpose is to represent a method that takes zero or more input parameters and always returns a value. Using Func saves you from having to de..."
   },
   {
     "sectionId": 20,
@@ -2741,7 +2533,7 @@ window.SEARCH_INDEX = [
       "event",
       "Event Handling"
     ],
-    "snippet": "Action is another built-in, generic delegate type. It is the counterpart to Func. Its purpose is to represent a method that takes zero or mo..."
+    "snippet": "Its purpose is to represent a method that takes zero or more input parameters but does not return a value (i.e., its return type is void)...."
   },
   {
     "sectionId": 20,
@@ -2879,7 +2671,7 @@ window.SEARCH_INDEX = [
       "Jagged Arrays",
       "Array Class Methods"
     ],
-    "snippet": "A single-dimensional array is the simplest and most common type of array. It represents a single, linear list of elements. Syntax: Declarati..."
+    "snippet": "A single-dimensional array is the simplest and most common type of array. It represents a single, linear list of elements...."
   },
   {
     "sectionId": 21,
@@ -3014,7 +2806,7 @@ window.SEARCH_INDEX = [
       "Jagged Arrays",
       "Array Class Methods"
     ],
-    "snippet": "Array.Reverse is a simple static utility method that reverses the sequence of the elements in a single-dimensional array in place. How It Wo..."
+    "snippet": "Array.Reverse is a simple static utility method that reverses the sequence of the elements in a single-dimensional array in place...."
   },
   {
     "sectionId": 21,
@@ -3448,10 +3240,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 22,
-    "title": "Lecture 21: IEnumerable and IEnumerator",
+    "title": "Lecture 21: IEnumerable and IEnumerator Introduction",
     "sectionTitle": "Section 22: Collections (Lists, Dictionaries, Sets, Queues)",
     "url": "sections/section-22.html",
-    "anchor": "sec-22-lec-21-ienumerable-and-ienumerator",
+    "anchor": "sec-22-lec-21-ienumerable-and-ienumerator-introduction",
     "module": "Module 5: Functional Constructs & Collections",
     "keywords": [
       "List<T>",
@@ -3529,7 +3321,7 @@ window.SEARCH_INDEX = [
       "Stack",
       "Big-O"
     ],
-    "snippet": "Similarly, if you want to create a custom key-value collection, you would implement the IDictionary<TKey, TValue> interface. How It Works Li..."
+    "snippet": "Similarly, if you want to create a custom key-value collection, you would implement the IDictionary<TKey, TValue> interface...."
   },
   {
     "sectionId": 22,
@@ -3851,7 +3643,7 @@ window.SEARCH_INDEX = [
       "Where",
       "GroupBy"
     ],
-    "snippet": "These methods are the direct counterparts to First and FirstOrDefault. They are used to retrieve the very last element from a sequence. How ..."
+    "snippet": "These methods are the direct counterparts to First and FirstOrDefault. They are used to retrieve the very last element from a sequence...."
   },
   {
     "sectionId": 25,
@@ -4128,7 +3920,7 @@ window.SEARCH_INDEX = [
       "TimeSpan",
       "System.Math"
     ],
-    "snippet": "The ToCharArray() method is a simple instance method that converts a string into a character array (char[]). How It Works It creates a new c..."
+    "snippet": "The ToCharArray() method is a simple instance method that converts a string into a character array (char[])...."
   },
   {
     "sectionId": 26,
@@ -4148,10 +3940,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 26,
-    "title": "Lecture 13: Join",
+    "title": "Lecture 13: Join Introduction",
     "sectionTitle": "Section 26: String Manipulation, DateTime & Math",
     "url": "sections/section-26.html",
-    "anchor": "sec-26-lec-14-join",
+    "anchor": "sec-26-lec-14-join-introduction",
     "module": "Module 6: Base Class Library & Resilience",
     "keywords": [
       "StringBuilder",
@@ -4208,7 +4000,7 @@ window.SEARCH_INDEX = [
       "TimeSpan",
       "System.Math"
     ],
-    "snippet": "The Contains method is a boolean instance method that checks if a specified substring exists anywhere within the string. How It Works It ret..."
+    "snippet": "The Contains method is a boolean instance method that checks if a specified substring exists anywhere within the string...."
   },
   {
     "sectionId": 26,
@@ -4591,7 +4383,7 @@ window.SEARCH_INDEX = [
       "JSON Serialization",
       "UTF8"
     ],
-    "snippet": "The DriveInfo class is a simple utility class used to retrieve information about the logical drives on a computer (e.g., C:, D:, etc.). How ..."
+    "snippet": "The DriveInfo class is a simple utility class used to retrieve information about the logical drives on a computer (e.g., C:, D:, etc.)...."
   },
   {
     "sectionId": 27,
@@ -5380,10 +5172,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 30,
-    "title": "Lecture 6: Null-Forgiving Operator",
+    "title": "Lecture 6: Null-Forgiving Operator Introduction",
     "sectionTitle": "Section 30: C# 9 & C# 10 Features (.NET 5 & 6)",
     "url": "sections/section-30.html",
-    "anchor": "sec-30-lec-7-null-forgiving-operator",
+    "anchor": "sec-30-lec-7-null-forgiving-operator-introduction",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Records",
@@ -5648,7 +5440,7 @@ window.SEARCH_INDEX = [
       "Target-Typed new",
       "Global Usings"
     ],
-    "snippet": "Before C# 10, developers could not declare their own parameterless constructor for a struct. Every struct had an implicit, unchangeable para..."
+    "snippet": "You can now declare a public, parameterless constructor in a struct to provide custom default initialization logic. However, the system's im..."
   },
   {
     "sectionId": 30,
@@ -5728,7 +5520,7 @@ window.SEARCH_INDEX = [
       "Target-Typed new",
       "Global Usings"
     ],
-    "snippet": "The with expression is a special feature for records that provides a simple syntax for performing non-destructive mutation. Since records ar..."
+    "snippet": "The with expression is a special feature for records that provides a simple..."
   },
   {
     "sectionId": 30,
@@ -5856,7 +5648,7 @@ window.SEARCH_INDEX = [
       "Target-Typed new",
       "Global Usings"
     ],
-    "snippet": "This C# 9 feature is a performance optimization that allows you to add the static modifier to a lambda expression or an anonymous method. Ho..."
+    "snippet": "This C# 9 feature is a performance optimization that allows you to add the static modifier to a lambda expression or an anonymous method...."
   },
   {
     "sectionId": 30,
@@ -5872,7 +5664,7 @@ window.SEARCH_INDEX = [
       "Target-Typed new",
       "Global Usings"
     ],
-    "snippet": "This is a quality-of-life feature from C# 10. It allows you to declare const strings that are built using string interpolation ($\"\"). How It..."
+    "snippet": "This is a quality-of-life feature from C# 10. It allows you to declare const strings that are built using string interpolation ($\"\")...."
   },
   {
     "sectionId": 30,
@@ -5892,10 +5684,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 30,
-    "title": "Lecture 38: Index-From-End Operator",
+    "title": "Lecture 38: Index-From-End Operator Introduction",
     "sectionTitle": "Section 30: C# 9 & C# 10 Features (.NET 5 & 6)",
     "url": "sections/section-30.html",
-    "anchor": "sec-30-lec-39-index-from-end-operator",
+    "anchor": "sec-30-lec-39-index-from-end-operator-introduction",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Records",
@@ -5936,7 +5728,7 @@ window.SEARCH_INDEX = [
       "Target-Typed new",
       "Global Usings"
     ],
-    "snippet": "Section 30: Lecture 40: Things to Remember"
+    "snippet": "towards safer, immutable designs. Understanding and advocating for immutability is a sign of a modern developer...."
   },
   {
     "sectionId": 31,
@@ -6066,10 +5858,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 31,
-    "title": "Lecture 8: Thread.Join",
+    "title": "Lecture 8: Thread.Join Introduction",
     "sectionTitle": "Section 31: Threading & Synchronization Primitives",
     "url": "sections/section-31.html",
-    "anchor": "sec-31-lec-8-thread-join",
+    "anchor": "sec-31-lec-8-thread-join-introduction",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Thread",
@@ -6228,10 +6020,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 31,
-    "title": "Lecture 17: Monitor",
+    "title": "Lecture 17: Monitor Introduction",
     "sectionTitle": "Section 31: Threading & Synchronization Primitives",
     "url": "sections/section-31.html",
-    "anchor": "sec-31-lec-17-monitor",
+    "anchor": "sec-31-lec-17-monitor-introduction",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Thread",
@@ -6465,7 +6257,7 @@ window.SEARCH_INDEX = [
     "title": "1. Drawbacks of Traditional Threading",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-1-1-drawbacks-of-traditional-threading",
+    "anchor": "sec-32-lec-1-drawbacks-of-traditional-threading",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6482,7 +6274,7 @@ window.SEARCH_INDEX = [
     "title": "2. Introduction to Tasks",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-2-2-introduction-to-tasks",
+    "anchor": "sec-32-lec-2-introduction-to-tasks",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6499,7 +6291,7 @@ window.SEARCH_INDEX = [
     "title": "3. Advantages of the Task Parallel Library (TPL)",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-3-3-advantages-of-the-task-parallel-library-tpl",
+    "anchor": "sec-32-lec-3-advantages-of-the-task-parallel-library-tpl",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6516,7 +6308,7 @@ window.SEARCH_INDEX = [
     "title": "4. Task Class and its Important Members",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-4-4-task-class-and-its-important-members",
+    "anchor": "sec-32-lec-4-task-class-and-its-important-members",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6533,7 +6325,7 @@ window.SEARCH_INDEX = [
     "title": "5. Task.Run vs. Task.Factory.StartNew",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-5-5-task-run-vs-task-factory-startnew",
+    "anchor": "sec-32-lec-5-task-run-vs-task-factory-startnew",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6550,7 +6342,7 @@ window.SEARCH_INDEX = [
     "title": "6. Stopwatch Class",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-6-6-stopwatch-class",
+    "anchor": "sec-32-lec-6-stopwatch-class",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6567,7 +6359,7 @@ window.SEARCH_INDEX = [
     "title": "7. Task<TResult> - Tasks with Return Values",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-7-7-task-tresult-tasks-with-return-values",
+    "anchor": "sec-32-lec-7-task-tresult-tasks-with-return-values",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6584,7 +6376,7 @@ window.SEARCH_INDEX = [
     "title": "8. Returning Complex Types from Tasks",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-8-8-returning-complex-types-from-tasks",
+    "anchor": "sec-32-lec-8-returning-complex-types-from-tasks",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6601,7 +6393,7 @@ window.SEARCH_INDEX = [
     "title": "9. Task Exception Handling",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-9-9-task-exception-handling",
+    "anchor": "sec-32-lec-9-task-exception-handling",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6615,61 +6407,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "1.  Exception Capture: When a task throws an unhandled exception, the",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-10-1-exception-capture-when-a-task-throws-an-unh",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "task's Status changes to Faulted...."
-  },
-  {
-    "sectionId": 32,
-    "title": "2.  AggregateException: All exceptions thrown within a single task (if there",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-11-2-aggregateexception-all-exceptions-thrown-wi",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "are multiple) or from multiple tasks awaited with Task.WhenAll are wrapped inside an System.AggregateException. This exception type is desig..."
-  },
-  {
-    "sectionId": 32,
-    "title": "3.  Observing Exceptions: Exceptions are not re-thrown until the task's",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-12-3-observing-exceptions-exceptions-are-not-re-",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "result or completion is \"observed\" by the calling code. Observing can happen in a few ways:..."
-  },
-  {
-    "sectionId": 32,
     "title": "10. Continuation Chain (Task.ContinueWith)",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-13-10-continuation-chain-task-continuewith",
+    "anchor": "sec-32-lec-10-continuation-chain-task-continuewith",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6686,7 +6427,7 @@ window.SEARCH_INDEX = [
     "title": "11. Task Cancellation",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-14-11-task-cancellation",
+    "anchor": "sec-32-lec-11-task-cancellation",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6700,10 +6441,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 32,
-    "title": "1.  Create a CancellationTokenSource: This is the controller for",
+    "title": "12. File IO Example with Tasks (Illustrating I/O- Bound Operations)",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-15-1-create-a-cancellationtokensource-this-is-th",
+    "anchor": "sec-32-lec-12-file-io-example-with-tasks-illustrating-i-o-b",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6713,116 +6454,14 @@ window.SEARCH_INDEX = [
       "PLINQ",
       "CancellationToken"
     ],
-    "snippet": "cancellation. using var cts = new CancellationTokenSource();..."
-  },
-  {
-    "sectionId": 32,
-    "title": "2.  Get a CancellationToken: Pass this token to the cancellable task.",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-16-2-get-a-cancellationtoken-pass-this-token-to-",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "CancellationToken token = cts.Token;..."
-  },
-  {
-    "sectionId": 32,
-    "title": "3.  Pass the CancellationToken to the Task: The task's delegate should",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-17-3-pass-the-cancellationtoken-to-the-task-the-",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "accept a CancellationToken parameter. Task longRunningTask = Task.Run(() => MyCancellableOperation(token), token); Note: The second token ar..."
-  },
-  {
-    "sectionId": 32,
-    "title": "4.  In the Task's Logic, Monitor the Token: Periodically check",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-18-4-in-the-task-s-logic-monitor-the-token-perio",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "token.IsCancellationRequested or call token.ThrowIfCancellationRequested(). public static void MyCancellableOperation(CancellationToken canc..."
-  },
-  {
-    "sectionId": 32,
-    "title": "5.  Signal Cancellation: Call Cancel() on the CancellationTokenSource",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-19-5-signal-cancellation-call-cancel-on-the-canc",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "when you want to request the task to stop. cts.Cancel();..."
-  },
-  {
-    "sectionId": 32,
-    "title": "6.  Handle OperationCanceledException:",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-20-6-handle-operationcanceledexception",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "Section 32: 6.  Handle OperationCanceledException:"
-  },
-  {
-    "sectionId": 32,
-    "title": "12. File IO Example with Tasks (Illustrating I/O-",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-21-12-file-io-example-with-tasks-illustrating-i-",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "Bound Operations) Tasks are incredibly powerful for handling I/O-bound operations (like file access, network requests, database queries). Th..."
+    "snippet": "Tasks are incredibly powerful for handling I/O-bound operations (like file access, network requests, database queries). The key benefit here..."
   },
   {
     "sectionId": 32,
     "title": "13. Points to Remember (Interview Focus)",
     "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
     "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-22-13-points-to-remember-interview-focus",
+    "anchor": "sec-32-lec-13-points-to-remember-interview-focus",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "Task",
@@ -6835,181 +6474,11 @@ window.SEARCH_INDEX = [
     "snippet": "This section summarizes the key takeaways and often-asked interview points regarding Tasks. Mastering these concepts will position you well ..."
   },
   {
-    "sectionId": 32,
-    "title": "1.  Task vs. Thread:",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-23-1-task-vs-thread",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "Section 32: 1.  Task vs. Thread:"
-  },
-  {
-    "sectionId": 32,
-    "title": "2.  CPU-Bound vs. I/O-Bound Operations:",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-24-2-cpu-bound-vs-i-o-bound-operations",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "Section 32: 2.  CPU-Bound vs. I/O-Bound Operations:"
-  },
-  {
-    "sectionId": 32,
-    "title": "3.  async and await:",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-25-3-async-and-await",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "Section 32: 3.  async and await:"
-  },
-  {
-    "sectionId": 32,
-    "title": "4.  Task.Run vs. Task.Factory.StartNew:",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-26-4-task-run-vs-task-factory-startnew",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "Section 32: 4.  Task.Run vs. Task.Factory.StartNew:"
-  },
-  {
-    "sectionId": 32,
-    "title": "5.  Blocking Operations (Wait, Result) vs. Non-Blocking (await,",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-27-5-blocking-operations-wait-result-vs-non-bloc",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "ContinueWith, WhenAll, WhenAny):..."
-  },
-  {
-    "sectionId": 32,
-    "title": "6.  Exception Handling:",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-28-6-exception-handling",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "Section 32: 6.  Exception Handling:"
-  },
-  {
-    "sectionId": 32,
-    "title": "7.  Task Cancellation:",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-29-7-task-cancellation",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "Section 32: 7.  Task Cancellation:"
-  },
-  {
-    "sectionId": 32,
-    "title": "8.  Task<TResult>:",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-30-8-task-tresult",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "Section 32: 8.  Task<TResult>:"
-  },
-  {
-    "sectionId": 32,
-    "title": "9.  Task.ContinueWith:",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-31-9-task-continuewith",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "Section 32: 9.  Task.ContinueWith:"
-  },
-  {
-    "sectionId": 32,
-    "title": "10.  Synchronization Context:",
-    "sectionTitle": "Section 32: Tasks & Task Parallel Library (TPL)",
-    "url": "sections/section-32.html",
-    "anchor": "sec-32-lec-32-10-synchronization-context",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "Task",
-      "Task<T>",
-      "Task.Run",
-      "Parallel.For",
-      "PLINQ",
-      "CancellationToken"
-    ],
-    "snippet": "Section 32: 10.  Synchronization Context:"
-  },
-  {
     "sectionId": 33,
-    "title": "Programming",
+    "title": "1. Introduction to Asynchronous Programming",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-1-programming",
+    "anchor": "sec-33-lec-1-introduction-to-asynchronous-programming",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "async",
@@ -7019,31 +6488,14 @@ window.SEARCH_INDEX = [
       "ConfigureAwait",
       "ValueTask"
     ],
-    "snippet": "Section 33: Programming"
-  },
-  {
-    "sectionId": 33,
-    "title": "1. Introduction to Asynchronous",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-2-1-introduction-to-asynchronous",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Programming Asynchronous programming is a paradigm that allows a program to initiate a long-running operation and then continue executing ot..."
+    "snippet": "Asynchronous programming is a paradigm that allows a program to initiate a long-running operation and then continue executing other tasks wi..."
   },
   {
     "sectionId": 33,
     "title": "2. Async and Await",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-3-2-async-and-await",
+    "anchor": "sec-33-lec-2-async-and-await",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "async",
@@ -7057,129 +6509,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "1.  The async method yields control back to its caller.",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-4-1-the-async-method-yields-control-back-to-its",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 1.  The async method yields control back to its caller."
-  },
-  {
-    "sectionId": 33,
-    "title": "2.  The thread that was executing the async method is returned to its",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-5-2-the-thread-that-was-executing-the-async-met",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "pool (for I/O-bound operations) or is freed to do other work (for CPU- bound operations that use Task.Run)...."
-  },
-  {
-    "sectionId": 33,
-    "title": "3.  A \"continuation\" is scheduled to resume the async method from",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-6-3-a-continuation-is-scheduled-to-resume-the-a",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "the point of await once the awaited task completes...."
-  },
-  {
-    "sectionId": 33,
-    "title": "4.  If a SynchronizationContext was captured at the point of await",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-7-4-if-a-synchronizationcontext-was-captured-at",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "(e.g., in a UI application), the continuation will try to resume on that same context (e.g., the UI thread). Otherwise (e.g., in a console a..."
-  },
-  {
-    "sectionId": 33,
-    "title": "1.  If it completed successfully (RanToCompletion), the await",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-8-1-if-it-completed-successfully-rantocompletio",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "expression evaluates to the result of the Task<TResult> (or void for a non-generic Task)...."
-  },
-  {
-    "sectionId": 33,
-    "title": "2.  If it faulted (Faulted), the await expression re-throws the task's",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-9-2-if-it-faulted-faulted-the-await-expression-",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "exception (unwrapping the AggregateException to its first inner exception)...."
-  },
-  {
-    "sectionId": 33,
-    "title": "3.  If it was canceled (Canceled), the await expression re-throws an",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-10-3-if-it-was-canceled-canceled-the-await-expre",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "OperationCanceledException...."
-  },
-  {
-    "sectionId": 33,
     "title": "3. Error Handling in Async Methods",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-11-3-error-handling-in-async-methods",
+    "anchor": "sec-33-lec-3-error-handling-in-async-methods",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "async",
@@ -7193,61 +6526,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "1.  Task Faults: When an unhandled exception occurs within a Task that is",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-12-1-task-faults-when-an-unhandled-exception-occ",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "being awaited, that task's Status changes to TaskStatus.Faulted. The exception (or multiple exceptions if using Task.WhenAll) is captured wi..."
-  },
-  {
-    "sectionId": 33,
-    "title": "2.  await Unwraps: When the await expression is reached, and the awaited",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-13-2-await-unwraps-when-the-await-expression-is-",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "task has faulted, the await keyword effectively unwraps the AggregateException and re-throws the first inner exception of that AggregateExce..."
-  },
-  {
-    "sectionId": 33,
-    "title": "3.  Standard try-catch: This re-thrown exception can then be caught by a",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-14-3-standard-try-catch-this-re-thrown-exception",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "standard try-catch block surrounding the await call. Example 1: Basic Error Handling with try-catch using System; using System.Threading.Tas..."
-  },
-  {
-    "sectionId": 33,
     "title": "4. Debugging Async Methods",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-15-4-debugging-async-methods",
+    "anchor": "sec-33-lec-4-debugging-async-methods",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "async",
@@ -7261,163 +6543,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 33,
-    "title": "1.  Tasks Window (Debug > Windows > Tasks):",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-16-1-tasks-window-debug-windows-tasks",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 1.  Tasks Window (Debug > Windows > Tasks):"
-  },
-  {
-    "sectionId": 33,
-    "title": "2.  Parallel Stacks Window (Debug > Windows > Parallel Stacks):",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-17-2-parallel-stacks-window-debug-windows-parall",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 2.  Parallel Stacks Window (Debug > Windows > Parallel Stacks):"
-  },
-  {
-    "sectionId": 33,
-    "title": "3.  Breakpoints:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-18-3-breakpoints",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 3.  Breakpoints:"
-  },
-  {
-    "sectionId": 33,
-    "title": "4.  Immediate Window/Watch Window:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-19-4-immediate-window-watch-window",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 4.  Immediate Window/Watch Window:"
-  },
-  {
-    "sectionId": 33,
-    "title": "5.  Thread.CurrentThread.ManagedThreadId:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-20-5-thread-currentthread-managedthreadid",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 5.  Thread.CurrentThread.ManagedThreadId:"
-  },
-  {
-    "sectionId": 33,
-    "title": "1.  Set Breakpoints:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-21-1-set-breakpoints",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 1.  Set Breakpoints:"
-  },
-  {
-    "sectionId": 33,
-    "title": "2.  Start Debugging: Run the application in debug mode (F5).",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-22-2-start-debugging-run-the-application-in-debu",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 2.  Start Debugging: Run the application in debug mode (F5)."
-  },
-  {
-    "sectionId": 33,
-    "title": "3.  Observe Execution Flow:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-23-3-observe-execution-flow",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 3.  Observe Execution Flow:"
-  },
-  {
-    "sectionId": 33,
-    "title": "4.  Use Debugging Windows:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-24-4-use-debugging-windows",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 4.  Use Debugging Windows:"
-  },
-  {
-    "sectionId": 33,
     "title": "5. Points to Remember",
     "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
     "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-25-5-points-to-remember",
+    "anchor": "sec-33-lec-5-points-to-remember",
     "module": "Module 7: Concurrency & Asynchronous Programming",
     "keywords": [
       "async",
@@ -7430,197 +6559,11 @@ window.SEARCH_INDEX = [
     "snippet": "To solidify your understanding of asynchronous programming in C# with async and await, here are the crucial points to remember, especially f..."
   },
   {
-    "sectionId": 33,
-    "title": "1.  Purpose of Asynchronous Programming:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-26-1-purpose-of-asynchronous-programming",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 1.  Purpose of Asynchronous Programming:"
-  },
-  {
-    "sectionId": 33,
-    "title": "2.  async and await are Keywords, not Threads:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-27-2-async-and-await-are-keywords-not-threads",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 2.  async and await are Keywords, not Threads:"
-  },
-  {
-    "sectionId": 33,
-    "title": "3.  async Method Return Types:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-28-3-async-method-return-types",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 3.  async Method Return Types:"
-  },
-  {
-    "sectionId": 33,
-    "title": "4.  Task.Run for CPU-Bound Work:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-29-4-task-run-for-cpu-bound-work",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 4.  Task.Run for CPU-Bound Work:"
-  },
-  {
-    "sectionId": 33,
-    "title": "5.  await for I/O-Bound Work:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-30-5-await-for-i-o-bound-work",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 5.  await for I/O-Bound Work:"
-  },
-  {
-    "sectionId": 33,
-    "title": "6.  try-catch-finally Works Natively:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-31-6-try-catch-finally-works-natively",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 6.  try-catch-finally Works Natively:"
-  },
-  {
-    "sectionId": 33,
-    "title": "7.  Cooperative Cancellation:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-32-7-cooperative-cancellation",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 7.  Cooperative Cancellation:"
-  },
-  {
-    "sectionId": 33,
-    "title": "8.  SynchronizationContext and ConfigureAwait(false):",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-33-8-synchronizationcontext-and-configureawait-f",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 8.  SynchronizationContext and ConfigureAwait(false):"
-  },
-  {
-    "sectionId": 33,
-    "title": "9.  Debugging Async Code:",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-34-9-debugging-async-code",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 9.  Debugging Async Code:"
-  },
-  {
-    "sectionId": 33,
-    "title": "10. Avoid Mixing Blocking and Async Code (Async over Sync / Sync over",
-    "sectionTitle": "Section 33: Asynchronous Programming (Async & Await)",
-    "url": "sections/section-33.html",
-    "anchor": "sec-33-lec-35-10-avoid-mixing-blocking-and-async-code-async",
-    "module": "Module 7: Concurrency & Asynchronous Programming",
-    "keywords": [
-      "async",
-      "await",
-      "SynchronizationContext",
-      "Deadlocks",
-      "ConfigureAwait",
-      "ValueTask"
-    ],
-    "snippet": "Section 33: 10. Avoid Mixing Blocking and Async Code (Async over Sync / Sync over"
-  },
-  {
-    "sectionId": 34,
-    "title": "Features",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-1-features",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: Features"
-  },
-  {
     "sectionId": 34,
     "title": "1. Overview of C# 11",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-2-1-overview-of-c-11",
+    "anchor": "sec-34-lec-1-overview-of-c-11",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Raw String Literals",
@@ -7636,7 +6579,7 @@ window.SEARCH_INDEX = [
     "title": "2. Raw String Literals",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-3-2-raw-string-literals",
+    "anchor": "sec-34-lec-2-raw-string-literals",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Raw String Literals",
@@ -7652,7 +6595,7 @@ window.SEARCH_INDEX = [
     "title": "3. List Pattern",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-4-3-list-pattern",
+    "anchor": "sec-34-lec-3-list-pattern",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Raw String Literals",
@@ -7668,7 +6611,7 @@ window.SEARCH_INDEX = [
     "title": "4. Slice Pattern",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-5-4-slice-pattern",
+    "anchor": "sec-34-lec-4-slice-pattern",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Raw String Literals",
@@ -7684,7 +6627,7 @@ window.SEARCH_INDEX = [
     "title": "5. Var Pattern",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-6-5-var-pattern",
+    "anchor": "sec-34-lec-5-var-pattern",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Raw String Literals",
@@ -7700,7 +6643,7 @@ window.SEARCH_INDEX = [
     "title": "6. File Local Types",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-7-6-file-local-types",
+    "anchor": "sec-34-lec-6-file-local-types",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Raw String Literals",
@@ -7713,42 +6656,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "1.  private nested type: This tightly couples the helper type to a specific",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-8-1-private-nested-type-this-tightly-couples-th",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "outer class, making it inaccessible to other top-level types in the same file...."
-  },
-  {
-    "sectionId": 34,
-    "title": "2.  internal type: This makes the type visible across the entire assembly. This",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-9-2-internal-type-this-makes-the-type-visible-a",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: 2.  internal type: This makes the type visible across the entire assembly. This"
-  },
-  {
-    "sectionId": 34,
     "title": "7. Required Members",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-10-7-required-members",
+    "anchor": "sec-34-lec-7-required-members",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Raw String Literals",
@@ -7761,74 +6672,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "1.  Directly in a constructor: The constructor explicitly assigns a value",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-11-1-directly-in-a-constructor-the-constructor-e",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: 1.  Directly in a constructor: The constructor explicitly assigns a value"
-  },
-  {
-    "sectionId": 34,
-    "title": "2.  Via an object initializer: When using new MyClass { Name = \"...\",",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-12-2-via-an-object-initializer-when-using-new-my",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Id = ... }, all required members must be present in the initializer list...."
-  },
-  {
-    "sectionId": 34,
-    "title": "1.  required members are inherited. If a base class has a required",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-13-1-required-members-are-inherited-if-a-base-cl",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "member, derived classes also inherit this requirement...."
-  },
-  {
-    "sectionId": 34,
-    "title": "2.  Derived classes do not need to re-declare a base required member",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-14-2-derived-classes-do-not-need-to-re-declare-a",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "as required (though they can if they shadow it). The requirement from the base class applies to derived instances...."
-  },
-  {
-    "sectionId": 34,
     "title": "8. Auto Default Structs",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-15-8-auto-default-structs",
+    "anchor": "sec-34-lec-8-auto-default-structs",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Raw String Literals",
@@ -7844,7 +6691,7 @@ window.SEARCH_INDEX = [
     "title": "9. Ref Fields",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-16-9-ref-fields",
+    "anchor": "sec-34-lec-9-ref-fields",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Raw String Literals",
@@ -7857,138 +6704,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 34,
-    "title": "1.  Must be in a ref struct: ref fields are only allowed within ref struct types.",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-17-1-must-be-in-a-ref-struct-ref-fields-are-only",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "They cannot be used in regular structs or classes...."
-  },
-  {
-    "sectionId": 34,
-    "title": "2.  ref readonly: You can declare a ref readonly field, meaning the",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-18-2-ref-readonly-you-can-declare-a-ref-readonly",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "reference itself can be reassigned (if not also readonly), but the data it points to cannot be modified through this field...."
-  },
-  {
-    "sectionId": 34,
-    "title": "3.  Definite Assignment: Like all fields, ref fields must be definitely assigned",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-19-3-definite-assignment-like-all-fields-ref-fie",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: 3.  Definite Assignment: Like all fields, ref fields must be definitely assigned"
-  },
-  {
-    "sectionId": 34,
-    "title": "4.  ref local variables: ref fields are similar in concept to ref local variables",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-20-4-ref-local-variables-ref-fields-are-similar-",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: 4.  ref local variables: ref fields are similar in concept to ref local variables"
-  },
-  {
-    "sectionId": 34,
-    "title": "5.  Lifetime Safety: The compiler strictly enforces ref safety rules (similar to",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-21-5-lifetime-safety-the-compiler-strictly-enfor",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Span<T>) to ensure that a ref field does not outlive the memory it refers to. This prevents dangling pointers...."
-  },
-  {
-    "sectionId": 34,
-    "title": "6.  No static or readonly ref fields (initially): A ref field cannot be static. A",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-22-6-no-static-or-readonly-ref-fields-initially-",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "ref field can be readonly if it is always initialized to a valid reference in the constructor and never changed afterward...."
-  },
-  {
-    "sectionId": 34,
-    "title": "7.  No Default Constructor for ref struct with ref fields (usually): If a ref",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-23-7-no-default-constructor-for-ref-struct-with-",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "struct contains ref fields, it generally cannot have a parameterless constructor (implicit or explicit) because ref fields must be initializ..."
-  },
-  {
-    "sectionId": 34,
-    "title": "8.  Pointers vs. References: ref fields are managed references, not",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-24-8-pointers-vs-references-ref-fields-are-manag",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "unmanaged pointers. They benefit from garbage collection safety, but within the strict ref struct context. Real-World Example (Simplified): ..."
-  },
-  {
-    "sectionId": 34,
     "title": "10. Points to Remember",
     "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
     "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-25-10-points-to-remember",
+    "anchor": "sec-34-lec-10-points-to-remember",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Raw String Literals",
@@ -8000,155 +6719,11 @@ window.SEARCH_INDEX = [
     "snippet": "C# 11 introduces a mix of quality-of-life improvements and powerful, low-level features. Here's a summary of the key takeaways for each feat..."
   },
   {
-    "sectionId": 34,
-    "title": "1.  Raw String Literals:",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-26-1-raw-string-literals",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: 1.  Raw String Literals:"
-  },
-  {
-    "sectionId": 34,
-    "title": "2.  List Pattern:",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-27-2-list-pattern",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: 2.  List Pattern:"
-  },
-  {
-    "sectionId": 34,
-    "title": "3.  Slice Pattern (..):",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-28-3-slice-pattern",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: 3.  Slice Pattern (..):"
-  },
-  {
-    "sectionId": 34,
-    "title": "4.  Var Pattern (in Property Patterns):",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-29-4-var-pattern-in-property-patterns",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: 4.  Var Pattern (in Property Patterns):"
-  },
-  {
-    "sectionId": 34,
-    "title": "5.  File Local Types:",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-30-5-file-local-types",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: 5.  File Local Types:"
-  },
-  {
-    "sectionId": 34,
-    "title": "6.  Required Members:",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-31-6-required-members",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: 6.  Required Members:"
-  },
-  {
-    "sectionId": 34,
-    "title": "7.  Auto Default Structs:",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-32-7-auto-default-structs",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: 7.  Auto Default Structs:"
-  },
-  {
-    "sectionId": 34,
-    "title": "8.  Ref Fields:",
-    "sectionTitle": "Section 34: C# 11 New Features (.NET 7)",
-    "url": "sections/section-34.html",
-    "anchor": "sec-34-lec-33-8-ref-fields",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Raw String Literals",
-      "Generic Math",
-      "Required Members",
-      "List Patterns",
-      "UTF-8 String Literals"
-    ],
-    "snippet": "Section 34: 8.  Ref Fields:"
-  },
-  {
-    "sectionId": 35,
-    "title": "Features",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-1-features",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "Section 35: Features"
-  },
-  {
     "sectionId": 35,
     "title": "1. Primary Constructors in Classes",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-2-1-primary-constructors-in-classes",
+    "anchor": "sec-35-lec-1-primary-constructors-in-classes",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Primary Constructors",
@@ -8161,106 +6736,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 35,
-    "title": "1.  Parameter Scope: Parameters declared in the primary constructor are in",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-3-1-parameter-scope-parameters-declared-in-the-",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "scope throughout the entire class body, including:..."
-  },
-  {
-    "sectionId": 35,
-    "title": "2.  Field/Property Initialization: You can directly initialize properties or fields",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-4-2-field-property-initialization-you-can-direc",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "using the primary constructor parameters. If a parameter is not used to initialize a field or property, it is only available within the cons..."
-  },
-  {
-    "sectionId": 35,
-    "title": "3.  No Automatic Property Creation: Unlike record types, primary",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-5-3-no-automatic-property-creation-unlike-recor",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "constructors in classes do not automatically create public properties for each parameter. You must explicitly define and initialize properti..."
-  },
-  {
-    "sectionId": 35,
-    "title": "4.  Base Class Constructors: You can pass primary constructor parameters",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-6-4-base-class-constructors-you-can-pass-primar",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "directly to a base class constructor using the base(...) syntax: public class BaseClass(int id) { public int Id { get; } = id; } public clas..."
-  },
-  {
-    "sectionId": 35,
-    "title": "5.  Coexistence with Other Constructors:",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-7-5-coexistence-with-other-constructors",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "Section 35: 5.  Coexistence with Other Constructors:"
-  },
-  {
-    "sectionId": 35,
-    "title": "6.  Lifetime of Parameters: Primary constructor parameters are effectively",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-8-6-lifetime-of-parameters-primary-constructor-",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "\"promoted\" to fields if they are captured by instance members (e.g., used to initialize a property or accessed in a method). This ensures th..."
-  },
-  {
-    "sectionId": 35,
     "title": "2. Collection Expressions",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-9-2-collection-expressions",
+    "anchor": "sec-35-lec-2-collection-expressions",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Primary Constructors",
@@ -8276,7 +6755,7 @@ window.SEARCH_INDEX = [
     "title": "3. Default Parameters in Lambda Expressions",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-10-3-default-parameters-in-lambda-expressions",
+    "anchor": "sec-35-lec-3-default-parameters-in-lambda-expressions",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Primary Constructors",
@@ -8289,58 +6768,10 @@ window.SEARCH_INDEX = [
   },
   {
     "sectionId": 35,
-    "title": "1.  Define multiple lambda overloads: Not directly possible, you'd define",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-11-1-define-multiple-lambda-overloads-not-direct",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "different lambda expressions or delegates for different numbers of arguments...."
-  },
-  {
-    "sectionId": 35,
-    "title": "2.  Use conditional logic: Check for null or specific values within the lambda",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-12-2-use-conditional-logic-check-for-null-or-spe",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "Section 35: 2.  Use conditional logic: Check for null or specific values within the lambda"
-  },
-  {
-    "sectionId": 35,
-    "title": "3.  Define a separate method: Convert the lambda logic into a full method",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-13-3-define-a-separate-method-convert-the-lambda",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "with default parameters and then reference that method. This could make simple lambda expressions more verbose or less intuitive. Syntax and..."
-  },
-  {
-    "sectionId": 35,
     "title": "4. Alias Any Type",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-14-4-alias-any-type",
+    "anchor": "sec-35-lec-4-alias-any-type",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Primary Constructors",
@@ -8356,7 +6787,7 @@ window.SEARCH_INDEX = [
     "title": "5. Points to Remember",
     "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
     "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-15-5-points-to-remember",
+    "anchor": "sec-35-lec-5-points-to-remember",
     "module": "Module 8: Modern C# Evolution",
     "keywords": [
       "Primary Constructors",
@@ -8366,70 +6797,6 @@ window.SEARCH_INDEX = [
       "Alias Any Type"
     ],
     "snippet": "C# 12 continues the trend of blending language enhancements for conciseness and readability with features that provide more control for adva..."
-  },
-  {
-    "sectionId": 35,
-    "title": "1.  Primary Constructors in Classes:",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-16-1-primary-constructors-in-classes",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "Section 35: 1.  Primary Constructors in Classes:"
-  },
-  {
-    "sectionId": 35,
-    "title": "2.  Collection Expressions:",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-17-2-collection-expressions",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "Section 35: 2.  Collection Expressions:"
-  },
-  {
-    "sectionId": 35,
-    "title": "3.  Default Parameters in Lambda Expressions:",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-18-3-default-parameters-in-lambda-expressions",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "Section 35: 3.  Default Parameters in Lambda Expressions:"
-  },
-  {
-    "sectionId": 35,
-    "title": "4.  Alias Any Type:",
-    "sectionTitle": "Section 35: C# 12 New Features (.NET 8)",
-    "url": "sections/section-35.html",
-    "anchor": "sec-35-lec-19-4-alias-any-type",
-    "module": "Module 8: Modern C# Evolution",
-    "keywords": [
-      "Primary Constructors",
-      "Collection Expressions",
-      "Inline Arrays",
-      "Default Lambda Params",
-      "Alias Any Type"
-    ],
-    "snippet": "Section 35: 4.  Alias Any Type:"
   },
   {
     "sectionId": 36,

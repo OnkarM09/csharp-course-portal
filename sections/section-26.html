@@ -449,15 +449,63 @@
 
     <h2 id="sec-26-lec-2-intro-to-strings">Lecture 1: Intro to Strings</h2>
     <h3>Introduction</h3>
-    <p>The string data type is one of the most fundamental and frequently used types in any programming language. In C#, a string represents a sequence of characters. While it often feels like a simple, primitive type, it is actually a complex and highly optimized reference type with some very special behaviors. Understanding these nuances is critical for writing efficient and correct code. The Two Most Important Characteristics of a String</p>
+<p>The string data type is one of the most fundamental and frequently used types in any programming language. In C#, a string represents a sequence of characters. While it often feels like a simple, primitive type, it is actually a complex and highly optimized reference type with some very special behaviors.</p>
+<p>Understanding these nuances is critical for writing efficient and correct code. The Two Most Important Characteristics of a String</p>
     <ol>
-      <li>It is a Reference Type: When you create a string variable, the variable itself holds a reference to the actual sequence of characters, which is stored on the heap. However...</li>
-      <li>It Exhibits Value-Type Behavior (It is Immutable): This is the most crucial concept to grasp about strings. Strings in C# are immutable. This means that once a string object has been created in memory, its content can never be changed. Any operation that appears to modify a string—like converting it to uppercase or replacing a character—does not change the original string. Instead, it creates a brand new string object in memory with the modified content and returns a reference to that new object. Example: Demonstrating Immutability string originalMessage = &quot;Hello&quot;; Console.WriteLine($&quot;Original message: '{originalMessage}'&quot;); // The ToUpper() method does NOT change the original string. // It creates a NEW string in memory and returns a reference to it. string upperMessage = originalMessage.ToUpper(); Console.WriteLine($&quot;'originalMessage' is still: '{originalMessage}'&quot;); // Output: Hello Console.WriteLine($&quot;'upperMessage' is a new string: '{upperMessage}'&quot;); // Output: HELLO This immutable nature ensures that strings are predictable and safe to pass between different parts of an application without fear that one part will unexpectedly change the string for another.</li>
+      <li><strong>It is a Reference Type:</strong> When you create a string variable, the variable itself holds a reference to the actual sequence of characters, which is stored on the heap. However...</li>
+      <li>It Exhibits Value-Type Behavior (It is Immutable): This is the most crucial concept to grasp about strings. Strings in C# are immutable. This means that once a string object has been created in memory, its content can never be changed. Any operation that appears to modify a string—like converting it to uppercase or replacing a character—does not change the original string. Instead, it creates a brand new string object in memory with the modified content and returns a reference to that new object.</li>
     </ol>
+    <h3>Example: Demonstrating Immutability</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string originalMessage = &quot;Hello&quot;;
+Console.WriteLine($&quot;Original message: '{originalMessage}'&quot;);
+// The ToUpper() method does NOT change the original string.
+// It creates a NEW string in memory and returns a reference to it.
+string upperMessage = originalMessage.ToUpper();
+Console.WriteLine($&quot;'originalMessage' is still: '{originalMessage}'&quot;); //</code></pre>
+    </div>
+  
+    <h3>Output: Hello</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;'upperMessage' is a new string:</code></pre>
+    </div>
+  
+<p>'{upperMessage}'&quot;); // Output: HELLO This immutable nature ensures that strings are predictable and safe to pass between different parts of an application without fear that one part will unexpectedly change the string for another.</p>
 
     <h2 id="sec-26-lec-3-how-string-objects-are-created">Lecture 2: How String Objects are Created</h2>
     <h3>Introduction</h3>
-    <p>There are several ways to create a string object, but the most common method involves a special optimization by the .NET runtime called the intern pool. How It Works: String Literals and the Intern Pool When you declare a string using a string literal (text enclosed in double quotes), the CLR performs a special check. string s1 = &quot;Hello World&quot;; string s2 = &quot;Hello World&quot;;</p>
+<p>There are several ways to create a string object, but the most common method involves a special optimization by the .NET runtime called the intern pool.</p>
+    <h3>How It Works</h3>
+<p>String Literals and the Intern Pool When you declare a string using a string literal (text enclosed in double quotes), the CLR performs a special check.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string s1 = &quot;Hello World&quot;;
+string s2 = &quot;Hello World&quot;;</code></pre>
+    </div>
+  
     <ol>
       <li>When the line for s1 is encountered, the CLR checks a special internal table called the intern pool to see if the string literal &quot;Hello World&quot; already exists.</li>
       <li>Since it doesn't, the CLR creates the &quot;Hello World&quot; string object on the heap and places a reference to it in the intern pool. The variable s1 gets a reference to this object.</li>
@@ -465,96 +513,524 @@
       <li>Instead of creating a new object, the CLR gives s2 a reference to the exact same object that s1 points to. This process is a memory optimization that ensures identical string literals only occupy one location in memory for the entire application. Creating Strings with new You can also create a string using the new keyword, just like any other class. When you do this, you are explicitly telling the runtime to bypass the intern pool and create a new object on the heap, even if an identical string already exists. This is rarely necessary. string s3 = new string(&quot;Hello World&quot;); // This creates a new object. Interview Perspective</li>
     </ol>
     <ul>
-      <li>Question: &quot;What is the difference between string s1 = &quot;text&quot;; and string s2 = new string(&quot;text&quot;);?&quot;</li>
-      <li>Ideal Answer: &quot;Declaring a string with a literal (&quot;text&quot;) utilizes the .NET intern pool. If an identical string already exists in the pool, the new variable will get a reference to the existing object. Using new string(&quot;text&quot;) explicitly bypasses the intern pool and always creates a new string object on the heap, even if an identical one already exists.&quot;</li>
+      <li><strong>Question:</strong> &quot;What is the difference between string s1 = &quot;text&quot;; and string s2 = new string(&quot;text&quot;);?&quot;</li>
+      <li><strong>Ideal Answer:</strong> &quot;Declaring a string with a literal (&quot;text&quot;) utilizes the .NET intern pool. If an identical string already exists in the pool, the new variable will get a reference to the existing object. Using new string(&quot;text&quot;) explicitly bypasses the intern pool and always creates a new string object on the heap, even if an identical one already exists.&quot;</li>
     </ul>
 
     <h2 id="sec-26-lec-4-the-system-string-class">Lecture 3: The System.String class</h2>
     <h3>Introduction</h3>
-    <p>The string keyword in C# is not a true primitive type; it is a convenient alias for the System.String class. This is a fundamental concept. Because string is an alias for a class, every string variable you create is a true object, which gives it access to a rich set of powerful instance methods for manipulation and inspection. How It Works When you write string name = &quot;John&quot;;, the compiler treats it exactly as if you had written System.String name = &quot;John&quot;;. This means you can call methods directly on the variable or even on a string literal. string greeting = &quot;Hello, World!&quot;; // Calling an instance method on the string variable. int length = greeting.Length; // .Length is actually a property // You can even call methods on a literal. bool startsWithHello = &quot;Hello, World!&quot;.StartsWith(&quot;Hello&quot;); This design provides the best of both worlds: the simple, intuitive feel of a primitive type with the power and functionality of a full-featured class. In the following lectures, we will explore the most important methods of this class.</p>
+<p>The string keyword in C# is not a true primitive type; it is a convenient alias for the System.String class. This is a fundamental concept. Because string is an alias for a class, every string variable you create is a true object, which gives it access to a rich set of powerful instance methods for manipulation and inspection.</p>
+    <h3>How It Works</h3>
+<p>When you write string name = &quot;John&quot;;, the compiler treats it exactly as if you had written System.String name = &quot;John&quot;;. This means you can call methods directly on the variable or even on a string literal.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string greeting = &quot;Hello, World!&quot;;
+// Calling an instance method on the string variable.</code></pre>
+    </div>
+  
+<p>int length = greeting.Length; // .Length is actually a property</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// You can even call methods on a literal.
+bool startsWithHello = &quot;Hello, World!&quot;.StartsWith(&quot;Hello&quot;);</code></pre>
+    </div>
+  
+<p>This design provides the best of both worlds: the simple, intuitive feel of a primitive type with the power and functionality of a full-featured class. In the following lectures, we will explore the most important methods of this class.</p>
 
     <h2 id="sec-26-lec-5-toupper-and-tolower">Lecture 4: ToUpper() and ToLower()</h2>
     <h3>Introduction</h3>
-    <p>These are two simple but essential methods for case conversion. Methods</p>
+<p>These are two simple but essential methods for case conversion. Methods</p>
     <ul>
-      <li>string ToUpper(): Returns a new string in which all the characters of the original string are converted to uppercase.</li>
-      <li>string ToLower(): Returns a new string in which all the characters of the original string are converted to lowercase. How It Works &amp; Immutability It is crucial to remember that strings are immutable. These methods do not change the original string. They create a new string in memory with the converted case and return a reference to it. When to Use It Case conversion is vital for performing case-insensitive comparisons. Before comparing two strings, a common practice is to convert both to a consistent case (usually upper or lower) to ensure that &quot;Apple&quot; and &quot;apple&quot; are treated as equal. Example string userInput = &quot;CSharp&quot;; string dbValue = &quot;csharp&quot;; Console.WriteLine($&quot;Original userInput: {userInput}&quot;); // To perform a case-insensitive comparison if (userInput.ToUpper() == dbValue.ToUpper()) { Console.WriteLine(&quot;The strings are equal when ignoring case.&quot;); } // Remember to capture the result of the conversion string lowerCaseVersion = userInput.ToLower(); Console.WriteLine($&quot;Lowercase version: {lowerCaseVersion}&quot;); Console.WriteLine($&quot;Original userInput is still unchanged: {userInput}&quot;);</li>
+      <li><strong>string ToUpper():</strong> Returns a new string in which all the characters of the original string are converted to uppercase.</li>
+      <li><strong>string ToLower():</strong> Returns a new string in which all the characters of the original string are converted to lowercase.</li>
     </ul>
+    <h3>How It Works: &amp; Immutability</h3>
+<p>It is crucial to remember that strings are immutable. These methods do not change the original string. They create a new string in memory with the converted case and return a reference to it.</p>
+    <h3>When to Use It</h3>
+<p>Case conversion is vital for performing case-insensitive comparisons. Before comparing two strings, a common practice is to convert both to a consistent case (usually upper or lower) to ensure that &quot;Apple&quot; and &quot;apple&quot; are treated as equal.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string userInput = &quot;CSharp&quot;;
+string dbValue = &quot;csharp&quot;;
+Console.WriteLine($&quot;Original userInput: {userInput}&quot;);
+// To perform a case-insensitive comparison
+if (userInput.ToUpper() == dbValue.ToUpper())
+{
+    Console.WriteLine(&quot;The strings are equal when ignoring case.&quot;);
+}
+// Remember to capture the result of the conversion
+string lowerCaseVersion = userInput.ToLower();
+Console.WriteLine($&quot;Lowercase version: {lowerCaseVersion}&quot;);
+Console.WriteLine($&quot;Original userInput is still unchanged: {userInput}&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-6-substring">Lecture 5: Substring()</h2>
     <h3>Introduction</h3>
-    <p>The Substring() method allows you to extract a portion of a string, creating a new string from a part of the original. Method Overloads</p>
+<p>The Substring() method allows you to extract a portion of a string, creating a new string from a part of the original. Method Overloads</p>
     <ol>
-      <li>string Substring(int startIndex): Returns a new string that is a substring of the original. The substring starts at the specified startIndex and continues to the end of the string.</li>
-      <li>string Substring(int startIndex, int length): Returns a new string that is a substring of the original. The substring starts at startIndex and has a specified length. How It Works Like all string manipulation methods, Substring is immutable. It allocates new memory for the new, shorter string and returns a reference to it. The original string remains untouched. Example string data = &quot;ID:12345-USERNAME:JohnDoe&quot;; // Find the starting position of the username. int userStartIndex = data.IndexOf(&quot;USERNAME:&quot;) + &quot;USERNAME:&quot;.Length; // Extract the username from that position to the end of the string. string username = data.Substring(userStartIndex); Console.WriteLine($&quot;Extracted Username: {username}&quot;); // Output: JohnDoe // Extract just the ID number (which has a fixed length of 5). int idStartIndex = data.IndexOf(&quot;:&quot;) + 1; string id = data.Substring(idStartIndex, 5); Console.WriteLine($&quot;Extracted ID: {id}&quot;); // Output: 12345</li>
+      <li><strong>string Substring(int startIndex):</strong> Returns a new string that is a substring of the original. The substring starts at the specified startIndex and continues to the end of the string.</li>
+      <li>string Substring(int startIndex, int length): Returns a new string that is a substring of the original. The substring starts at startIndex and has a specified length.</li>
     </ol>
+    <h3>How It Works</h3>
+<p>Like all string manipulation methods, Substring is immutable. It allocates new memory for the new, shorter string and returns a reference to it. The original string remains untouched.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string data = &quot;ID:12345-USERNAME:JohnDoe&quot;;
+// Find the starting position of the username.
+int userStartIndex = data.IndexOf(&quot;USERNAME:&quot;) + &quot;USERNAME:&quot;.Length;
+// Extract the username from that position to the end of the string.
+string username = data.Substring(userStartIndex);
+Console.WriteLine($&quot;Extracted Username: {username}&quot;); // Output:
+JohnDoe
+// Extract just the ID number (which has a fixed length of 5).
+int idStartIndex = data.IndexOf(&quot;:&quot;) + 1;
+string id = data.Substring(idStartIndex, 5);
+Console.WriteLine($&quot;Extracted ID: {id}&quot;); // Output: 12345</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-7-replace">Lecture 6: Replace()</h2>
     <h3>Introduction</h3>
-    <p>The Replace() method is used to find all occurrences of a specified character or string within the current string and replace them with another character or string. Method Overloads</p>
+<p>The Replace() method is used to find all occurrences of a specified character or string within the current string and replace them with another character or string. Method Overloads</p>
     <ul>
       <li>string Replace(char oldChar, char newChar): Replaces all occurrences of a character.</li>
-      <li>string Replace(string oldValue, string newValue): Replaces all occurrences of a string. How It Works This method is case-sensitive. It returns a new string with the replacements made. If the oldValue is not found in the string, it returns a reference to the original, unchanged string. Example string reportText = &quot;This report is incomplete and contains incomplete data.&quot;; // Replace all occurrences of the word &quot;incomplete&quot;. string correctedText = reportText.Replace(&quot;incomplete&quot;, &quot;preliminary&quot;); Console.WriteLine($&quot;Original: {reportText}&quot;); Console.WriteLine($&quot;Corrected: {correctedText}&quot;); string filePath = &quot;C:\\Users\\MyUser\\Documents&quot;; // A common use is to normalize directory separators. string webPath = filePath.Replace('\\', '/'); Console.WriteLine($&quot;Web-friendly path: {webPath}&quot;);</li>
+      <li>string Replace(string oldValue, string newValue): Replaces all occurrences of a string.</li>
     </ul>
+    <h3>How It Works</h3>
+<p>This method is case-sensitive. It returns a new string with the replacements made. If the oldValue is not found in the string, it returns a reference to the original, unchanged string.</p>
+    <h3>Example</h3>
+<p>string reportText = &quot;This report is incomplete and contains incomplete data.&quot;;</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Replace all occurrences of the word &quot;incomplete&quot;.
+string correctedText = reportText.Replace(&quot;incomplete&quot;, &quot;preliminary&quot;);
+Console.WriteLine($&quot;Original: {reportText}&quot;);
+Console.WriteLine($&quot;Corrected: {correctedText}&quot;);
+string filePath = &quot;C:\\Users\\MyUser\\Documents&quot;;
+// A common use is to normalize directory separators.
+string webPath = filePath.Replace('\\', '/');
+Console.WriteLine($&quot;Web-friendly path: {webPath}&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-8-format">Lecture 7: Format()</h2>
     <h3>Introduction</h3>
-    <p>String.Format() is a powerful static method that allows you to create a new string by inserting formatted values into placeholders within a template string. This technique is known as composite formatting. How It Works The method takes a format string containing numbered placeholders (e.g., {0}, {1}) and a list of arguments. It replaces each placeholder with the string representation of the corresponding argument from the list. You can also include format specifiers to control how the value is displayed (e.g., formatting a number as currency or a date in a specific style). String Interpolation ($) - The Modern Alternative While String.Format is powerful, string interpolation, introduced in C# 6.0, is the modern, more readable, and preferred way to format strings. You prefix the string with a $ and place the variable names directly inside curly braces {}. The compiler translates this into String.Format calls behind the scenes. Example string name = &quot;Alice&quot;; int score = 95; decimal price = 24.99m; // --- Using String.Format (The Old Way) --- string formattedString = String.Format(&quot;User {0} scored {1} points. The item costs {2:C}.&quot;, name, score, price); // {2:C} formats the third argument as Currency. // --- Using String Interpolation (The Modern, Preferred Way) --- string interpolatedString = $&quot;User {name} scored {score} points. The item costs {price:C}.&quot;; Console.WriteLine(interpolatedString); // Output: User Alice scored 95 points. The item costs $24.99.</p>
+<p>String.Format() is a powerful static method that allows you to create a new string by inserting formatted values into placeholders within a template string. This technique is known as composite formatting.</p>
+    <h3>How It Works</h3>
+<p>, {0}, {1}) and a list of arguments. It replaces each placeholder with the string representation of the corresponding argument from the list. , formatting a number as currency or a date in a specific style).</p>
+<p>0, is the modern, more readable, and preferred way to format strings. You prefix the string with a $ and place the variable names directly inside curly braces {}. Format calls behind the scenes.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string name = &quot;Alice&quot;;
+int score = 95;
+decimal price = 24.99m;
+// --- Using String.Format (The Old Way) ---</code></pre>
+    </div>
+  
+<p>string formattedString = String.Format(&quot;User {0} scored {1} points. The item costs {2:C}.&quot;, name, score, price);</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// {2:C} formats the third argument as Currency.
+// --- Using String Interpolation (The Modern, Preferred Way) ---</code></pre>
+    </div>
+  
+<p>string interpolatedString = $&quot;User {name} scored {score} points. The item costs {price:C}.&quot;;</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine(interpolatedString);
+// Output: User Alice scored 95 points. The item costs $24.99.</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-9-isnullorempty">Lecture 8: IsNullOrEmpty</h2>
     <h3>Introduction</h3>
-    <p>String.IsNullOrEmpty is a static utility method that provides a convenient and safe way to check if a string is either null or an empty string (&quot;&quot;). It combines two common checks into a single, highly readable method call. How It Works This method is a simple shortcut for the common condition: if (myString == null || myString == &quot;&quot;). By using IsNullOrEmpty, you first guard against a NullReferenceException (by checking for null) and then check if the string has any characters. When to Use It This should be your standard way to check for empty or non-existent string data, especially when validating method parameters or user input. It prevents NullReferenceException errors and makes your code's intent clearer than writing out the full || condition. Example public void ProcessUsername(string username) { // Use IsNullOrEmpty as a &quot;guard clause&quot; at the beginning of the method. if (String.IsNullOrEmpty(username)) { Console.WriteLine(&quot;Username cannot be empty. Process halted.&quot;); return; } Console.WriteLine($&quot;Processing user: {username}&quot;); // ... continue with processing ... } // --- In your Main method --- ProcessUsername(&quot;JohnDoe&quot;); // Output: Processing user: JohnDoe ProcessUsername(&quot;&quot;); // Output: Username cannot be empty. Process halted. ProcessUsername(null); // Output: Username cannot be empty. Process halted.</p>
+<p>String.IsNullOrEmpty is a static utility method that provides a convenient and safe way to check if a string is either null or an empty string (&quot;&quot;). It combines two common checks into a single, highly readable method call.</p>
+    <h3>How It Works</h3>
+<p>This method is a simple shortcut for the common condition: if (myString == null || myString == &quot;&quot;). By using IsNullOrEmpty, you first guard against a NullReferenceException (by checking for null) and then check if the string has any characters.</p>
+    <h3>When to Use It</h3>
+<p>This should be your standard way to check for empty or non-existent string data, especially when validating method parameters or user input. It prevents NullReferenceException errors and makes your code's intent clearer than writing out the full || condition.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public void ProcessUsername(string username)
+{
+    // Use IsNullOrEmpty as a &quot;guard clause&quot; at the beginning of the method.
+    if (String.IsNullOrEmpty(username))
+    {
+        Console.WriteLine(&quot;Username cannot be empty. Process halted.&quot;);
+        return;
+    }
+    Console.WriteLine($&quot;Processing user: {username}&quot;);
+    // ... continue with processing ...
+}
+// --- In your Main method ---</code></pre>
+    </div>
+  
+<p>ProcessUsername(&quot;JohnDoe&quot;); // Output: Processing user: JohnDoe ProcessUsername(&quot;&quot;); // Output: Username cannot be empty. Process halted. ProcessUsername(null); // Output: Username cannot be empty. Process halted.</p>
 
     <h2 id="sec-26-lec-10-split">Lecture 9: Split</h2>
     <h3>Introduction</h3>
-    <p>The Split() method is an instance method that breaks a string into an array of substrings based on a specified set of delimiters. It is an essential tool for parsing structured string data. How It Works The most common overload takes an array of characters (char[]) to use as delimiters. A very useful second parameter is StringSplitOptions.RemoveEmptyEntries, which tells the method to discard any empty strings that result from the split. This is helpful when your data might have multiple delimiters next to each other (e.g., &quot;apple,,banana&quot;). When to Use It Use Split whenever you need to parse a single string that contains multiple pieces of data separated by a consistent character. The most common use case is parsing a line from a comma-separated value (CSV) file. Example // A string representing a row of comma-separated data. // Note the extra space after the comma. string csvLine = &quot;John,Doe,35,New York&quot;; // Define the character to split on. char[] delimiters = { ',' }; // Split the string into an array of substrings. string[] dataParts = csvLine.Split(delimiters); Console.WriteLine(&quot;Data parts found:&quot;); foreach (string part in dataParts) { // We will need to trim the whitespace later. Console.WriteLine($&quot;- '{part}'&quot;); } // Example with multiple delimiters and removing empty entries string tags = &quot;c#; programming,.net; guide&quot;; char[] tagDelimiters = { ';', ',', '.' }; string[] cleanTags = tags.Split(tagDelimiters, StringSplitOptions.RemoveEmptyEntries); Console.WriteLine(&quot;\nClean tags: &quot; + String.Join(&quot;, &quot;, cleanTags));</p>
+<p>The Split() method is an instance method that breaks a string into an array of substrings based on a specified set of delimiters. It is an essential tool for parsing structured string data.</p>
+    <h3>How It Works</h3>
+<p>The most common overload takes an array of characters (char[]) to use as delimiters. A very useful second parameter is StringSplitOptions.RemoveEmptyEntries, which tells the method to discard any empty strings that result from the split. This is helpful when your data might have multiple delimiters next to each other (e.g., &quot;apple,,banana&quot;).</p>
+    <h3>When to Use It</h3>
+<p>Use Split whenever you need to parse a single string that contains multiple pieces of data separated by a consistent character. The most common use case is parsing a line from a comma-separated value (CSV) file.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// A string representing a row of comma-separated data.
+// Note the extra space after the comma.
+string csvLine = &quot;John,Doe,35,New York&quot;;
+// Define the character to split on.
+char[] delimiters = { ',' };
+// Split the string into an array of substrings.
+string[] dataParts = csvLine.Split(delimiters);
+Console.WriteLine(&quot;Data parts found:&quot;);
+foreach (string part in dataParts)
+{
+    // We will need to trim the whitespace later.
+    Console.WriteLine($&quot;- '{part}'&quot;);
+}
+// Example with multiple delimiters and removing empty entries
+string tags = &quot;c#; programming,.net; guide&quot;;
+char[] tagDelimiters = { ';', ',', '.' };
+string[] cleanTags = tags.Split(tagDelimiters,
+StringSplitOptions.RemoveEmptyEntries);
+Console.WriteLine(&quot;\nClean tags: &quot; + String.Join(&quot;, &quot;, cleanTags));</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-11-trim">Lecture 10: Trim</h2>
     <h3>Introduction</h3>
-    <p>The Trim() method is an instance method used to create a new string by removing all leading and trailing whitespace characters from the original string. How It Works &quot;Whitespace&quot; includes common characters like spaces, tabs (\t), and newlines (\n). The Trim() method does not affect whitespace within the middle of the string. It has two variations:</p>
+<p>The Trim() method is an instance method used to create a new string by removing all leading and trailing whitespace characters from the original string.</p>
+    <h3>How It Works</h3>
+<p>&quot;Whitespace&quot; includes common characters like spaces, tabs (\t), and newlines (\n). The Trim() method does not affect whitespace within the middle of the string. It has two variations:</p>
     <ul>
-      <li>TrimStart(): Removes whitespace only from the beginning of the string.</li>
-      <li>TrimEnd(): Removes whitespace only from the end of thestring. Like all string methods, it is immutable and returns a new string. When to Use It It is essential for cleaning up user input before processing or saving it. Users frequently add accidental leading or trailing spaces when typing. Trim() ensures that these extra spaces don't cause issues in comparisons, database lookups, or file paths. Example string rawUserInput = &quot; John Doe &quot;; Console.WriteLine($&quot;Raw: '{rawUserInput}'&quot;); // Use Trim to clean up the input. string cleanedInput = rawUserInput.Trim(); Console.WriteLine($&quot;Cleaned: '{cleanedInput}'&quot;); // Using TrimStart and TrimEnd string messyPath = &quot; C:\\MyFiles\\ &quot;; string cleanStart = messyPath.TrimStart(); // &quot;C:\\MyFiles\\ &quot; string cleanEnd = messyPath.TrimEnd(); // &quot; C:\\MyFiles\\&quot;</li>
+      <li><strong>TrimStart():</strong> Removes whitespace only from the beginning of the string.</li>
+      <li><strong>TrimEnd():</strong> Removes whitespace only from the end of thestring. Like all string methods, it is immutable and returns a new string.</li>
     </ul>
+    <h3>When to Use It</h3>
+<p>It is essential for cleaning up user input before processing or saving it. Users frequently add accidental leading or trailing spaces when typing. Trim() ensures that these extra spaces don't cause issues in comparisons, database lookups, or file paths.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string rawUserInput = &quot; 	John Doe 	&quot;;
+Console.WriteLine($&quot;Raw: '{rawUserInput}'&quot;);
+// Use Trim to clean up the input.
+string cleanedInput = rawUserInput.Trim();
+Console.WriteLine($&quot;Cleaned: '{cleanedInput}'&quot;);
+// Using TrimStart and TrimEnd
+string messyPath = &quot; 	C:\\MyFiles\\ 	&quot;;</code></pre>
+    </div>
+  
+<p>string cleanStart = messyPath.TrimStart(); // &quot;C:\\MyFiles\\ &quot; string cleanEnd = messyPath.TrimEnd(); // &quot; C:\\MyFiles\\&quot;</p>
 
     <h2 id="sec-26-lec-12-tochararray">Lecture 11: ToCharArray</h2>
     <h3>Introduction</h3>
-    <p>The ToCharArray() method is a simple instance method that converts a string into a character array (char[]). How It Works It creates a new character array where each element of the array is a character from the original string, in the same order. When to Use It You would use this when you need to perform complex, character-by- character manipulation that is easier or more efficient to do with an array. Since strings are immutable, you can't change individual characters. But you can convert the string to a mutable char array, perform your modifications on the array, and then convert it back to a string. Example Let's manually reverse a string using this technique. string original = &quot;Hello&quot;; // 1. Convert the string to a char array. char[] chars = original.ToCharArray(); // 2. Perform manipulations on the array (e.g., Array.Reverse). Array.Reverse(chars); // 3. Convert the modified char array back into a new string. string reversed = new string(chars); Console.WriteLine($&quot;Original: {original}&quot;); Console.WriteLine($&quot;Reversed: {reversed}&quot;); // Output: olleH</p>
+<p>The ToCharArray() method is a simple instance method that converts a string into a character array (char[]).</p>
+    <h3>How It Works</h3>
+<p>It creates a new character array where each element of the array is a character from the original string, in the same order.</p>
+    <h3>When to Use It</h3>
+<p>You would use this when you need to perform complex, character-by- character manipulation that is easier or more efficient to do with an array. Since strings are immutable, you can't change individual characters. But you can convert the string to a mutable char array, perform your modifications on the array, and then convert it back to a string.</p>
+    <h3>Example</h3>
+<p>Let's manually reverse a string using this technique.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string original = &quot;Hello&quot;;
+// 1. Convert the string to a char array.
+char[] chars = original.ToCharArray();
+// 2. Perform manipulations on the array (e.g., Array.Reverse).
+Array.Reverse(chars);
+// 3. Convert the modified char array back into a new string.
+string reversed = new string(chars);
+Console.WriteLine($&quot;Original: {original}&quot;);
+Console.WriteLine($&quot;Reversed: {reversed}&quot;); // Output: olleH</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-13-equals">Lecture 12: Equals</h2>
     <h3>Introduction</h3>
-    <p>Comparing strings for equality is a very common task, and the string type provides multiple ways to do it, each with different performance and correctness implications. The == Operator This is a critical interview point. For most reference types, the == operator performs reference equality (checking if two variables point to the same object). However, the string type overloads this operator to perform a value equality check. This means s1 == s2 will compare the actual character contents of the strings. This is done because it is the intuitive and expected behavior for strings. The comparison it performs is case-sensitive and culture- aware. The String.Equals() Method For more control, you should use the static String.Equals() method. Its most robust overload is: public static bool Equals(string a, string b, StringComparison comparisonType) The StringComparison Enum This enum is crucial for specifying how the comparison should be done.</p>
+<p>Comparing strings for equality is a very common task, and the string type provides multiple ways to do it, each with different performance and correctness implications. The == Operator This is a critical interview point. For most reference types, the == operator performs reference equality (checking if two variables point to the same object).</p>
+<p>However, the string type overloads this operator to perform a value equality check. This means s1 == s2 will compare the actual character contents of the strings. This is done because it is the intuitive and expected behavior for strings.</p>
+<p>The comparison it performs is case-sensitive and culture- aware. Equals() method. Its most robust overload is: public static bool Equals(string a, string b, StringComparison comparisonType) The StringComparison Enum This enum is crucial for specifying how the comparison should be done.</p>
     <ul>
       <li>StringComparison.Ordinal: This performs a fast, byte-by-byte comparison. It does not consider linguistic rules. It is the best choice for performance and should be used when comparing things that are not for human display, like file paths, API keys, or protocol identifiers.</li>
       <li>StringComparison.OrdinalIgnoreCase: Same as Ordinal, but case- insensitive. This is the recommended choice for most case-insensitive comparisons.</li>
       <li>StringComparison.CurrentCulture: This performs a slower comparison that respects the linguistic rules of the user's current operating system culture (e.g., how different cultures sort characters).</li>
-      <li>StringComparison.CurrentCultureIgnoreCase: Same as CurrentCulture, but case-insensitive. Use this when comparing strings for display to an end-user where cultural context matters. Example string s1 = &quot;Strasse&quot;; string s2 = &quot;Straße&quot;; // A German character that is equivalent to &quot;ss&quot; in some contexts. // Using the default == operator (culture-aware) // In some cultures, this might be true. In an Ordinal compare, it's false. // --- The robust way --- // Ordinal compare: Are the bytes identical? bool areEqualOrdinal = String.Equals(s1, s2, StringComparison.Ordinal); Console.WriteLine($&quot;Ordinal comparison: {areEqualOrdinal}&quot;); // Output: False // Culture-aware compare: Do these represent the same word in this culture? bool areEqualCulture = String.Equals(s1, s2, StringComparison.CurrentCulture); Console.WriteLine($&quot;Current Culture comparison: {areEqualCulture}&quot;); // Can be True on systems with German culture settings.</li>
+      <li>StringComparison.CurrentCultureIgnoreCase: Same as CurrentCulture, but case-insensitive. Use this when comparing strings for display to an end-user where cultural context matters.</li>
     </ul>
+    <h3>Example</h3>
 
-    <h2 id="sec-26-lec-14-join">Lecture 13: Join</h2>
-    <h3>Introduction</h3>
-    <p>String.Join is a powerful static method that does the opposite of Split. It concatenates the elements of a collection (like an array or List&lt;string&gt;) into a single new string, inserting a specified separator between each element. How It Works It takes a separator string and a collection of items. It iterates through the collection, efficiently building a new string by appending each item's string representation and the separator. When to Use It Use String.Join anytime you need to create a formatted, delimited string from a list of items. It is far more efficient and cleaner than using a loop and manually appending strings with a + operator. Common uses include creating a comma-separated list for display or generating a line for a CSV file. Example string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot; }; // Join the names with a comma and a space. string commaSeparatedNames = String.Join(&quot;, &quot;, names); Console.WriteLine(commaSeparatedNames); // Output: Alice, Bob, Charlie, David // Join file path segments. string[] pathSegments = { &quot;C:&quot;, &quot;Users&quot;, &quot;JohnDoe&quot;, &quot;Documents&quot; }; string fullPath = String.Join(&quot;\\&quot;, pathSegments); Console.WriteLine(fullPath); // Output: C:\Users\JohnDoe\Documents</p>
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string s1 = &quot;Strasse&quot;;</code></pre>
+    </div>
+  
+<p>string s2 = &quot;Straße&quot;; // A German character that is equivalent to &quot;ss&quot; in some contexts.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Using the default == operator (culture-aware)
+// In some cultures, this might be true. In an Ordinal compare, it's false.
+// --- The robust way ---
+// Ordinal compare: Are the bytes identical?
+bool areEqualOrdinal = String.Equals(s1, s2, StringComparison.Ordinal);
+Console.WriteLine($&quot;Ordinal comparison: {areEqualOrdinal}&quot;); // Output:
+False
+// Culture-aware compare: Do these represent the same word in this</code></pre>
+    </div>
+  
+<p>culture?</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>bool areEqualCulture = String.Equals(s1, s2,
+StringComparison.CurrentCulture);
+Console.WriteLine($&quot;Current Culture comparison: {areEqualCulture}&quot;); //</code></pre>
+    </div>
+  
+<p>Can be True on systems with German culture settings.</p>
+
+    <h2 id="sec-26-lec-14-join-introduction">Lecture 13: Join Introduction</h2>
+<p>String.Join is a powerful static method that does the opposite of Split. It concatenates the elements of a collection (like an array or List&lt;string&gt;) into a single new string, inserting a specified separator between each element.</p>
+    <h3>How It Works</h3>
+<p>It takes a separator string and a collection of items. It iterates through the collection, efficiently building a new string by appending each item's string representation and the separator.</p>
+    <h3>When to Use It</h3>
+<p>Use String.Join anytime you need to create a formatted, delimited string from a list of items. It is far more efficient and cleaner than using a loop and manually appending strings with a + operator. Common uses include creating a comma-separated list for display or generating a line for a CSV file.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot; };
+// Join the names with a comma and a space.
+string commaSeparatedNames = String.Join(&quot;, &quot;, names);
+Console.WriteLine(commaSeparatedNames); // Output: Alice, Bob,
+Charlie, David
+// Join file path segments.
+string[] pathSegments = { &quot;C:&quot;, &quot;Users&quot;, &quot;JohnDoe&quot;, &quot;Documents&quot; };
+string fullPath = String.Join(&quot;\\&quot;, pathSegments);
+Console.WriteLine(fullPath); // Output: C:\Users\JohnDoe\Documents</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-15-compareto">Lecture 14: CompareTo</h2>
     <h3>Introduction</h3>
-    <p>The CompareTo method is an instance method that compares the current string object to another string to determine their relative position in a sort order. This method is the implementation of the IComparable interface for strings, and it's what methods like Array.Sort and List&lt;T&gt;.Sort use under the hood to sort strings alphabetically. How It Works: The Return Value CompareTo returns an integer with a specific meaning:</p>
+<p>The CompareTo method is an instance method that compares the current string object to another string to determine their relative position in a sort order. This method is the implementation of the IComparable interface for strings, and it's what methods like Array.Sort and List&lt;T&gt;.Sort use under the hood to sort strings alphabetically.</p>
+    <h3>How It Works</h3>
+<p>The Return Value CompareTo returns an integer with a specific meaning:</p>
     <ul>
-      <li>Less than 0: The current string instance comes before the other string in the sort order (e.g., &quot;Apple&quot; comes before &quot;Banana&quot;).</li>
-      <li>Zero: The strings are equal in sort order.</li>
-      <li>Greater than 0: The current string instance comes after the other string in the sort order (e.g., &quot;Cat&quot; comes after &quot;Banana&quot;). The comparison is culture-aware and case-sensitive by default. Example string s1 = &quot;Apple&quot;; string s2 = &quot;Banana&quot;; string s3 = &quot;Apple&quot;; int result1 = s1.CompareTo(s2); // &quot;Apple&quot; comes before &quot;Banana&quot;, so the result will be a negative number. Console.WriteLine($&quot;Comparing '{s1}' to '{s2}': {result1}&quot;); int result2 = s2.CompareTo(s1); // &quot;Banana&quot; comes after &quot;Apple&quot;, so the result will be a positive number. Console.WriteLine($&quot;Comparing '{s2}' to '{s1}': {result2}&quot;); int result3 = s1.CompareTo(s3); // The strings are equal. Console.WriteLine($&quot;Comparing '{s1}' to '{s3}': {result3}&quot;); // Output: 0</li>
+      <li><strong>Less than 0:</strong> The current string instance comes before the other string in the sort order (e.g., &quot;Apple&quot; comes before &quot;Banana&quot;).</li>
+      <li><strong>Zero:</strong> The strings are equal in sort order.</li>
+      <li><strong>Greater than 0:</strong> The current string instance comes after the other string in the sort order (e.g., &quot;Cat&quot; comes after &quot;Banana&quot;). The comparison is culture-aware and case-sensitive by default.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string s1 = &quot;Apple&quot;;
+string s2 = &quot;Banana&quot;;
+string s3 = &quot;Apple&quot;;
+int result1 = s1.CompareTo(s2);
+// &quot;Apple&quot; comes before &quot;Banana&quot;, so the result will be a negative number.
+Console.WriteLine($&quot;Comparing '{s1}' to '{s2}': {result1}&quot;);
+int result2 = s2.CompareTo(s1);
+// &quot;Banana&quot; comes after &quot;Apple&quot;, so the result will be a positive number.
+Console.WriteLine($&quot;Comparing '{s2}' to '{s1}': {result2}&quot;);
+int result3 = s1.CompareTo(s3);
+// The strings are equal.
+Console.WriteLine($&quot;Comparing '{s1}' to '{s3}': {result3}&quot;); // Output: 0</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-16-startswith-and-endswith">Lecture 15: StartsWith and EndsWith</h2>
     <h3>Introduction</h3>
-    <p>These are simple but very useful boolean instance methods for checking if a string begins or ends with a specific substring. How They Work</p>
+<p>These are simple but very useful boolean instance methods for checking if a string begins or ends with a specific substring. How They Work</p>
     <ul>
-      <li>bool StartsWith(string value): Returns true if the string instance begins with the specified substring.</li>
-      <li>bool EndsWith(string value): Returns true if the string instance ends with the specified substring. By default, these comparisons are case-sensitive. However, they have important overloads that accept a StringComparison enum value, allowing you to easily perform case-insensitive checks. Example string filename = &quot;MyReport.PDF&quot;; // Case-sensitive check (default) bool endsWithPdfLower = filename.EndsWith(&quot;.pdf&quot;); Console.WriteLine($&quot;Ends with '.pdf'? {endsWithPdfLower}&quot;); // Output: False // Case-insensitive check (best practice) bool endsWithPdfIgnoreCase = filename.EndsWith(&quot;.pdf&quot;, StringComparison.OrdinalIgnoreCase); Console.WriteLine($&quot;Ends with '.pdf' (ignore case)? {endsWithPdfIgnoreCase}&quot;); // Output: True string url = &quot;[https://www.google.com](https://www.google.com)&quot;; if (url.StartsWith(&quot;https://&quot;)) { Console.WriteLine(&quot;URL is secure.&quot;); }</li>
+      <li><strong>bool StartsWith(string value):</strong> Returns true if the string instance begins with the specified substring.</li>
+      <li><strong>bool EndsWith(string value):</strong> Returns true if the string instance ends with the specified substring. By default, these comparisons are case-sensitive. However, they have important overloads that accept a StringComparison enum value, allowing you to easily perform case-insensitive checks.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string filename = &quot;MyReport.PDF&quot;;
+// Case-sensitive check (default)
+bool endsWithPdfLower = filename.EndsWith(&quot;.pdf&quot;);
+Console.WriteLine($&quot;Ends with '.pdf'? {endsWithPdfLower}&quot;); // Output:
+False
+// Case-insensitive check (best practice)</code></pre>
+    </div>
+  
+<p>StringComparison.OrdinalIgnoreCase);</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;Ends with '.pdf' (ignore case)?</code></pre>
+    </div>
+  
+<p>{endsWithPdfIgnoreCase}&quot;); // Output: True</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string url = &quot;[https://www.google.com](https://www.google.com)&quot;;</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    Console.WriteLine(&quot;URL is secure.&quot;);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-17-contains">Lecture 16: Contains</h2>
     <h3>Introduction</h3>
-    <p>The Contains method is a boolean instance method that checks if a specified substring exists anywhere within the string. How It Works It returns true if the substring is found, and false otherwise. Like StartsWith and EndsWith, it is case-sensitive by default. Modern versions of .NET include an overload that accepts a StringComparison enum for case-insensitive checks.</p>
+<p>The Contains method is a boolean instance method that checks if a specified substring exists anywhere within the string.</p>
+    <h3>How It Works</h3>
+<p>It returns true if the substring is found, and false otherwise. Like StartsWith and EndsWith, it is case-sensitive by default. Modern versions of .NET include an overload that accepts a StringComparison enum for case-insensitive checks.</p>
 
     <div class="callout callout-tip">
       <div class="callout-header">
@@ -562,51 +1038,682 @@
         
       </div>
       <div class="callout-content">
-        <p>insensitive overload. The common workaround, and a good thing to know for</p><p>an interview, was to use myString.IndexOf(&quot;substring&quot;,</p><p>StringComparison.OrdinalIgnoreCase) &gt;= 0.</p><p>Example</p><p>string sentence = &quot;The quick brown fox jumps over the lazy dog.&quot;;</p><p>bool hasFox = sentence.Contains(&quot;fox&quot;);</p><p>Console.WriteLine($&quot;Contains 'fox'? {hasFox}&quot;); // Output: True</p><p>bool hasCat = sentence.Contains(&quot;cat&quot;);</p><p>Console.WriteLine($&quot;Contains 'cat'? {hasCat}&quot;); // Output: False</p><p>// Case-insensitive check</p><p>bool hasQuickIgnoreCase = sentence.Contains(&quot;QUICK&quot;,</p><p>StringComparison.OrdinalIgnoreCase);</p><p>Console.WriteLine($&quot;Contains 'QUICK' (ignore case)?</p><p>{hasQuickIgnoreCase}&quot;); // Output: True</p>
+          <p>insensitive overload. The common workaround, and a good thing to know for</p>
+  <p>an interview, was to use myString.IndexOf(&quot;substring&quot;,</p>
+  <p>StringComparison.OrdinalIgnoreCase) &gt;= 0.</p>
+  <p>Example</p>
+  <p>string sentence = &quot;The quick brown fox jumps over the lazy dog.&quot;;</p>
+  <p>bool hasFox = sentence.Contains(&quot;fox&quot;);</p>
+  <p>Console.WriteLine($&quot;Contains 'fox'? {hasFox}&quot;); // Output: True</p>
+  <p>bool hasCat = sentence.Contains(&quot;cat&quot;);</p>
+  <p>Console.WriteLine($&quot;Contains 'cat'? {hasCat}&quot;); // Output: False</p>
+  <p>// Case-insensitive check</p>
+  <p>bool hasQuickIgnoreCase = sentence.Contains(&quot;QUICK&quot;,</p>
+  <p>StringComparison.OrdinalIgnoreCase);</p>
+  <p>Console.WriteLine($&quot;Contains 'QUICK' (ignore case)?</p>
+  <p>{hasQuickIgnoreCase}&quot;); // Output: True</p>
+
       </div>
     </div>
   
 
     <h2 id="sec-26-lec-18-indexof-and-lastindexof">Lecture 17: IndexOf and LastIndexOf</h2>
     <h3>Introduction</h3>
-    <p>These instance methods are used to find the position of a character or substring within a string.</p>
+<p>These instance methods are used to find the position of a character or substring within a string.</p>
     <ul>
-      <li>IndexOf(char/string value): Searches the string from beginning to end and returns the zero-based index of the first occurrence of the specified character or substring.</li>
-      <li>LastIndexOf(char/string value): Searches the string from end to beginning and returns the zero-based index of the last occurrence of the specified character or substring. How It Works If the specified character or substring is not found, both methods return -1. They also have overloads that allow you to specify a starting index for the search, giving you more control over where the search begins. Example string path = &quot;C:\\Users\\JohnDoe\\Documents\\MyFile.txt&quot;; // Find the first occurrence of 'o' int firstO = path.IndexOf('o'); Console.WriteLine($&quot;First 'o' is at index: {firstO}&quot;); // Output: 10 // Find the last occurrence of 'o' int lastO = path.LastIndexOf('o'); Console.WriteLine($&quot;Last 'o' is at index: {lastO}&quot;); // Output: 22 // Find the index of the file extension dot. int lastBackslash = path.LastIndexOf('\\'); string filename = path.Substring(lastBackslash + 1); Console.WriteLine($&quot;Filename is: {filename}&quot;); // Output: MyFile.txt</li>
+      <li><strong>IndexOf(char/string value):</strong> Searches the string from beginning to end and returns the zero-based index of the first occurrence of the specified character or substring.</li>
+      <li><strong>LastIndexOf(char/string value):</strong> Searches the string from end to beginning and returns the zero-based index of the last occurrence of the specified character or substring.</li>
     </ul>
+    <h3>How It Works</h3>
+<p>If the specified character or substring is not found, both methods return -1. They also have overloads that allow you to specify a starting index for the search, giving you more control over where the search begins.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string path = &quot;C:\\Users\\JohnDoe\\Documents\\MyFile.txt&quot;;
+// Find the first occurrence of 'o'
+int firstO = path.IndexOf('o');
+Console.WriteLine($&quot;First 'o' is at index: {firstO}&quot;); // Output: 10
+// Find the last occurrence of 'o'
+int lastO = path.LastIndexOf('o');
+Console.WriteLine($&quot;Last 'o' is at index: {lastO}&quot;); // Output: 22
+// Find the index of the file extension dot.
+int lastBackslash = path.LastIndexOf('\\');
+string filename = path.Substring(lastBackslash + 1);
+Console.WriteLine($&quot;Filename is: {filename}&quot;); // Output: MyFile.txt</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-19-isnullorwhitespace">Lecture 18: IsNullOrWhiteSpace</h2>
     <h3>Introduction</h3>
-    <p>String.IsNullOrWhiteSpace is a static utility method that provides a robust check for &quot;empty&quot; strings. It is an enhancement over String.IsNullOrEmpty. How It Works This method returns true if a string is:</p>
+<p>String.IsNullOrWhiteSpace is a static utility method that provides a robust check for &quot;empty&quot; strings. It is an enhancement over String.IsNullOrEmpty.</p>
+    <h3>How It Works</h3>
+<p>This method returns true if a string is:</p>
     <ul>
       <li>null</li>
       <li>An empty string (&quot;&quot;)</li>
-      <li>Consists only of whitespace characters (spaces, tabs, newlines, etc.). This is what makes it more powerful than IsNullOrEmpty, which would return false for a string like &quot; &quot;. When to Use It This should be your preferred method for validating user input or any string that should contain actual content. It correctly handles cases where a user might enter just spaces into a required text field. Example string s1 = null; string s2 = &quot;&quot;; string s3 = &quot; \t &quot;; // Just whitespace string s4 = &quot;Hello&quot;; Console.WriteLine($&quot;s1 is null or whitespace? {String.IsNullOrWhiteSpace(s1)}&quot;); // True Console.WriteLine($&quot;s2 is null or whitespace? {String.IsNullOrWhiteSpace(s2)}&quot;); // True Console.WriteLine($&quot;s3 is null or whitespace? {String.IsNullOrWhiteSpace(s3)}&quot;); // True Console.WriteLine($&quot;s4 is null or whitespace? {String.IsNullOrWhiteSpace(s4)}&quot;); // False</li>
+      <li>Consists only of whitespace characters (spaces, tabs, newlines, etc.). This is what makes it more powerful than IsNullOrEmpty, which would return false for a string like &quot; &quot;.</li>
     </ul>
+    <h3>When to Use It</h3>
+<p>This should be your preferred method for validating user input or any string that should contain actual content. It correctly handles cases where a user might enter just spaces into a required text field.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string s1 = null;
+string s2 = &quot;&quot;;</code></pre>
+    </div>
+  
+<p>string s3 = &quot; \t &quot;; // Just whitespace</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string s4 = &quot;Hello&quot;;
+Console.WriteLine($&quot;s1 is null or whitespace?</code></pre>
+    </div>
+  
+<p>{String.IsNullOrWhiteSpace(s1)}&quot;); // True</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;s2 is null or whitespace?</code></pre>
+    </div>
+  
+<p>{String.IsNullOrWhiteSpace(s2)}&quot;); // True</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;s3 is null or whitespace?</code></pre>
+    </div>
+  
+<p>{String.IsNullOrWhiteSpace(s3)}&quot;); // True</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;s4 is null or whitespace?</code></pre>
+    </div>
+  
+<p>{String.IsNullOrWhiteSpace(s4)}&quot;); // False</p>
 
     <h2 id="sec-26-lec-20-strings-with-for-loop">Lecture 19: Strings with For Loop</h2>
     <h3>Introduction</h3>
-    <p>While C# and its LINQ library provide many high-level, convenient methods for string manipulation, interviewers often ask you to solve string problems using basic loops. This isn't because you would do it this way in daily work, but because it tests your fundamental problem-solving skills, your logical thinking, and your ability to handle edge cases manually. A string can be treated like a read-only array of characters (char). You can access any character by its index using myString[i] and get its total length with myString.Length. This makes the for loop a perfect tool for low-level string manipulation. This lecture covers a comprehensive set of classic interview problems solved using this fundamental approach. Category 1: Basic Manipulation &amp; Counting These examples cover fundamental iteration and conditional logic. Example 1: Count a Specific Character</p>
+<p>While C# and its LINQ library provide many high-level, convenient methods for string manipulation, interviewers often ask you to solve string problems using basic loops. This isn't because you would do it this way in daily work, but because it tests your fundamental problem-solving skills, your logical thinking, and your ability to handle edge cases manually.</p>
+<p>A string can be treated like a read-only array of characters (char). Length. This makes the for loop a perfect tool for low-level string manipulation.</p>
+<p>This lecture covers a comprehensive set of classic interview problems solved using this fundamental approach. Category 1: Basic Manipulation &amp; Counting These examples cover fundamental iteration and conditional logic.</p>
+    <h3>Example</h3>
+<p>1: Count a Specific Character</p>
     <ul>
-      <li>Task: Write a function to count how many times a specific character appears in a string.</li>
-      <li>Logic: Initialize a counter to zero. Loop through each character of the string. In each iteration, if the character at the current index matches the target character, increment the counter. public int CountCharacter(string input, char charToFind) { if (string.IsNullOrEmpty(input)) { return 0; } int count = 0; for (int i = 0; i &lt; input.Length; i++) { if (input[i] == charToFind) { count++; } } return count; } Example 2: Count Vowels and Consonants Task: Write a function that counts the number of vowels and consonants in a string. Logic: Iterate through the string. For each character, first check if it's a letter. If it is, then check if it's one of the vowels (a, e, i, o, u). If so, increment the vowel counter; otherwise, increment the consonant counter. It's best practice to convert the character to lowercase first to simplify the vowel check. public void CountVowelsAndConsonants(string input, out int vowelCount, out int consonantCount) { vowelCount = 0; consonantCount = 0; if (string.IsNullOrEmpty(input)) return; string vowels = &quot;aeiou&quot;; for (int i = 0; i &lt; input.Length; i++) { char c = char.ToLower(input[i]); if (char.IsLetter(c)) { if (vowels.Contains(c)) { vowelCount++; } else { consonantCount++; } } } } Example 3: Extract All Digits from a String Task: Write a function that takes a string and returns a new string containing only the digits found in the original. Logic: Use a StringBuilder for efficient string building. Iterate through the input string. For each character, use the built-in char.IsDigit() method to check if it's a number. If it is, append it to the StringBuilder. public string ExtractDigits(string input) { if (string.IsNullOrEmpty(input)) return &quot;&quot;; StringBuilder digitsOnly = new StringBuilder(); for (int i = 0; i &lt; input.Length; i++) { if (char.IsDigit(input[i])) { digitsOnly.Append(input[i]); } } return digitsOnly.ToString(); } Category 2: Reversing &amp; Palindromes These examples test classic algorithmic patterns. Example 4: Reverse a String Manually Task: Write a function that returns a new string with its characters in reverse order. Logic: The most efficient way is to iterate through the original string from back to front and build a new string using a StringBuilder. public string ReverseString(string input) { if (string.IsNullOrEmpty(input)) return input; StringBuilder reversedString = new StringBuilder(input.Length); for (int i = input.Length - 1; i &gt;= 0; i--) { reversedString.Append(input[i]); } return reversedString.ToString(); } Example 5: Check for a Palindrome Task: Write a function that returns true if a string is a palindrome (reads the same forwards and backwards). Logic: Use a &quot;two-pointer&quot; approach. One pointer starts at the beginning (left) and one starts at the end (right). Compare the characters at each pointer. If they don't match, it's not a palindrome. If they do, move both pointers one step closer to the middle and repeat until they cross. public bool IsPalindrome(string input) { if (string.IsNullOrEmpty(input)) return true; int left = 0; int right = input.Length - 1; while (left &lt; right) { if (char.ToLower(input[left]) != char.ToLower(input[right])) { return false; } left++; right--; } return true; } Example 6: Check if Two Strings are Anagrams Task: Determine if two strings are anagrams of each other (i.e., they contain the same characters in different orders, like &quot;listen&quot; and &quot;silent&quot;). Logic: A common approach is to use frequency count arrays. If both strings have the same counts of each character, they are anagrams. public bool AreAnagrams(string s1, string s2) { if (s1.Length != s2.Length) return false; int[] charCounts = new int[256]; // For ASCII characters // Count characters for the first string for (int i = 0; i &lt; s1.Length; i++) { charCounts[s1[i]]++; } // Decrement counts for the second string for (int i = 0; i &lt; s2.Length; i++) { charCounts[s2[i]]--; } // If they are anagrams, all counts should be zero. for (int i = 0; i &lt; charCounts.Length; i++) { if (charCounts[i] != 0) { return false; } } return true; } Category 3: Character Frequency &amp; Duplicates These examples test your ability to use helper data structures to track information. Example 7: Find the Most Frequent Character Task: Find the character that appears most often in a string. Logic: Use a frequency map (an integer array) to store the count for each possible character. Iterate through the string once to populate the map, then iterate through the map to find the character with the highest count. public char FindMostFrequentCharacter(string input) { if (string.IsNullOrEmpty(input)) throw new ArgumentException(&quot;Input is empty.&quot;); int[] charCounts = new int[256]; for (int i = 0; i &lt; input.Length; i++) { charCounts[input[i]]++; } int maxCount = -1; char maxChar = ' '; for (int i = 0; i &lt; charCounts.Length; i++) { if (charCounts[i] &gt; maxCount) { maxCount = charCounts[i]; maxChar = (char)i; } } return maxChar; } Example 8: Remove Duplicate Characters Task: Return a new string with all duplicate characters removed (e.g., &quot;programming&quot; becomes &quot;progamin&quot;). Logic: Iterate through the input string. Use a HashSet&lt;char&gt; to keep track of characters you have already &quot;seen&quot; and added to your result. A HashSet provides an extremely fast Contains check. public string RemoveDuplicates(string input) { if (string.IsNullOrEmpty(input)) return input; StringBuilder result = new StringBuilder(); HashSet&lt;char&gt; seenCharacters = new HashSet&lt;char&gt;(); for (int i = 0; i &lt; input.Length; i++) { if (!seenCharacters.Contains(input[i])) { seenCharacters.Add(input[i]); result.Append(input[i]); } } return result.ToString(); } Example 9: Find the First Non-Repeated Character Task: Find the first character in a string that does not repeat itself anywhere else in the string. Logic: This often requires two passes. The first pass populates a frequency map (like a Dictionary&lt;char, int&gt;). The second pass iterates through the original string again and returns the first character it finds that has a count of 1 in the frequency map. public char? FindFirstNonRepeatedChar(string input) { if (string.IsNullOrEmpty(input)) return null; var charCounts = new Dictionary&lt;char, int&gt;(); for (int i = 0; i &lt; input.Length; i++) { char c = input[i]; if (charCounts.ContainsKey(c)) { charCounts[c]++; } else { charCounts[c] = 1; } } for (int i = 0; i &lt; input.Length; i++) { if (charCounts[input[i]] == 1) { return input[i]; } } return null; // No non-repeated character found } Category 4: Word &amp; Sentence Manipulation These examples test your ability to break a problem down into smaller steps. Example 10: Reverse the Order of Words in a Sentence Task: Given &quot;the quick brown fox&quot;, return &quot;fox brown quick the&quot;. Logic: This is not a simple character reversal. First, split the string into an array of words. Then, iterate through that array backwards, appending each word to a StringBuilder. public string ReverseWords(string sentence) { if (string.IsNullOrEmpty(sentence)) return sentence; string[] words = sentence.Split(' '); StringBuilder reversedSentence = new StringBuilder(); for (int i = words.Length - 1; i &gt;= 0; i--) { reversedSentence.Append(words[i]); if (i &gt; 0) // Add a space unless it's the last word { reversedSentence.Append(&quot; &quot;); } } return reversedSentence.ToString(); } Example 11: Capitalize the First Letter of Each Word Task: Convert a string to &quot;title case&quot; where the first letter of each word is capitalized. Logic: Split the sentence into an array of words. Loop through the array. For each word, create a new word string by taking the first character, converting it to uppercase, and appending the rest of the word's substring. Join the modified words back together. public string ToTitleCase(string sentence) { if (string.IsNullOrWhiteSpace(sentence)) return sentence; string[] words = sentence.Split(' '); for (int i = 0; i &lt; words.Length; i++) { if(words[i].Length &gt; 0) { words[i] = char.ToUpper(words[i][0]) + words[i].Substring(1); } } return string.Join(&quot; &quot;, words); } Example 12: Find the Longest Word in a Sentence Task: Find and return the longest word from a given sentence. Logic: Split the sentence into an array of words. Initialize a variable longestWord to an empty string. Loop through the words array. In each iteration, if the current word's length is greater than the length of longestWord, update longestWord. public string FindLongestWord(string sentence) { if (string.IsNullOrWhiteSpace(sentence)) return &quot;&quot;; string[] words = sentence.Split(' '); string longestWord = &quot;&quot;; for(int i = 0; i &lt; words.Length; i++) { if (words[i].Length &gt; longestWord.Length) { longestWord = words[i]; } } return longestWord; } Category 5: Advanced String Logic These examples mimic more difficult interview challenges. Example 13: String to Integer (atoi) Task: Manually implement the int.Parse method without using built-in parsing functions. Logic: This is complex. You need to handle optional leading whitespace, an optional sign (+ or -), and then build the number digit by digit while checking for overflow. // Note: This is a simplified version. A full implementation is much more complex. public int Atoi(string s) { if (string.IsNullOrEmpty(s)) return 0; long result = 0; int sign = 1; int i = 0; while (i &lt; s.Length &amp;&amp; s[i] == ' ') i++; // Skip whitespace if (i &lt; s.Length &amp;&amp; (s[i] == '+' || s[i] == '-')) { sign = (s[i] == '-') ? -1 : 1; i++; } while (i &lt; s.Length &amp;&amp; char.IsDigit(s[i])) { result = result * 10 + (s[i] - '0'); // 'char' - '0' gives the int value if (result * sign &gt; int.MaxValue) return int.MaxValue; if (result * sign &lt; int.MinValue) return int.MinValue; i++; } return (int)(result * sign); } Example 14: Find a Substring (Implement IndexOf) Task: Manually implement string.IndexOf to find the starting index of a substring (needle) within a larger string (haystack). Logic: Use nested loops. The outer loop iterates through the haystack. The inner loop starts from the current outer loop position and checks if the characters match the needle sequentially. public int IndexOf(string haystack, string needle) { if (string.IsNullOrEmpty(needle)) return 0; if (haystack.Length &lt; needle.Length) return -1; for (int i = 0; i &lt;= haystack.Length - needle.Length; i++) { int j; for (j = 0; j &lt; needle.Length; j++) { if (haystack[i + j] != needle[j]) { break; // Mismatch, break inner loop } } // If the inner loop completed without a break, we found a match. if (j == needle.Length) { return i; } } return -1; // Not found } Example 15: Validate an IP Address String Task: Check if a string is a valid IPv4 address (e.g., &quot;192.168.1.1&quot;). Logic: An IP address must have four parts separated by three dots. Each part must be a number between 0 and 255 and cannot have leading zeros (unless it's just &quot;0&quot;). public bool IsValidIpAddress(string ip) { string[] parts = ip.Split('.'); if (parts.Length != 4) return false; for (int i = 0; i &lt; parts.Length; i++) { // Use TryParse for safe number conversion if (!int.TryParse(parts[i], out int num)) return false; // Check range 0-255 if (num &lt; 0 || num &gt; 255) return false; // Check for leading zeros (e.g., &quot;01&quot; is invalid) if (parts[i].Length &gt; 1 &amp;&amp; parts[i][0] == '0') return false; } return true; }</li>
+      <li><strong>Task:</strong> Write a function to count how many times a specific character appears in a string.</li>
+      <li><strong>Logic:</strong> Initialize a counter to zero. Loop through each character of the string. In each iteration, if the character at the current index matches the target character, increment the counter.</li>
     </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public int CountCharacter(string input, char charToFind)
+{
+    if (string.IsNullOrEmpty(input))
+    {
+        return 0;
+    }
+    int count = 0;
+    for (int i = 0; i &lt; input.Length; i++)
+    {
+        if (input[i] == charToFind)
+        {
+            count++;
+        }
+    }
+    return count;
+}</code></pre>
+    </div>
+  
+    <h3>Example: 2: Count Vowels and Consonants</h3>
+<p>Task: Write a function that counts the number of vowels and consonants in a string. Logic: Iterate through the string. For each character, first check if it's a letter.</p>
+<p>If it is, then check if it's one of the vowels (a, e, i, o, u). If so, increment the vowel counter; otherwise, increment the consonant counter. It's best practice to convert the character to lowercase first to simplify the vowel check.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public void CountVowelsAndConsonants(string input, out int
+vowelCount, out int consonantCount)
+{
+    vowelCount = 0;
+    consonantCount = 0;
+    if (string.IsNullOrEmpty(input)) return;
+    string vowels = &quot;aeiou&quot;;
+    for (int i = 0; i &lt; input.Length; i++)
+    {
+        char c = char.ToLower(input[i]);
+        if (char.IsLetter(c))
+        {
+            if (vowels.Contains(c))
+            {
+                vowelCount++;
+            }
+            else
+            {
+                consonantCount++;
+            }
+        }
+    }
+}</code></pre>
+    </div>
+  
+    <h3>Example</h3>
+<p>3: Extract All Digits from a String Task: Write a function that takes a string and returns a new string containing only the digits found in the original. Logic: Use a StringBuilder for efficient string building. Iterate through the input string. IsDigit() method to check if it's a number. If it is, append it to the StringBuilder.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public string ExtractDigits(string input)
+{
+    if (string.IsNullOrEmpty(input)) return &quot;&quot;;
+    StringBuilder digitsOnly = new StringBuilder();
+    for (int i = 0; i &lt; input.Length; i++)
+    {
+        if (char.IsDigit(input[i]))
+        {
+            digitsOnly.Append(input[i]);
+        }
+    }
+    return digitsOnly.ToString();
+}</code></pre>
+    </div>
+  
+<p>Category 2: Reversing &amp; Palindromes These examples test classic algorithmic patterns.</p>
+    <h3>Example</h3>
+<p>4: Reverse a String Manually Task: Write a function that returns a new string with its characters in reverse order. Logic: The most efficient way is to iterate through the original string from back to front and build a new string using a StringBuilder.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public string ReverseString(string input)
+{
+    if (string.IsNullOrEmpty(input)) return input;
+    StringBuilder reversedString = new StringBuilder(input.Length);
+    for (int i = input.Length - 1; i &gt;= 0; i--)
+    {
+        reversedString.Append(input[i]);
+    }
+    return reversedString.ToString();
+}</code></pre>
+    </div>
+  
+    <h3>Example</h3>
+<p>5: Check for a Palindrome Task: Write a function that returns true if a string is a palindrome (reads the same forwards and backwards). Logic: Use a &quot;two-pointer&quot; approach. One pointer starts at the beginning (left) and one starts at the end (right).</p>
+<p>Compare the characters at each pointer. If they don't match, it's not a palindrome. If they do, move both pointers one step closer to the middle and repeat until they cross.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public bool IsPalindrome(string input)
+{
+    if (string.IsNullOrEmpty(input)) return true;
+    int left = 0;
+    int right = input.Length - 1;
+    while (left &lt; right)
+    {
+        if (char.ToLower(input[left]) != char.ToLower(input[right]))
+        {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true;
+}</code></pre>
+    </div>
+  
+    <h3>Example</h3>
+<p>6: Check if Two Strings are Anagrams Task: Determine if two strings are anagrams of each other (i.e., they contain the same characters in different orders, like &quot;listen&quot; and &quot;silent&quot;). Logic: A common approach is to use frequency count arrays. If both strings have the same counts of each character, they are anagrams.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public bool AreAnagrams(string s1, string s2)
+{
+    if (s1.Length != s2.Length) return false;
+    int[] charCounts = new int[256]; // For ASCII characters
+    // Count characters for the first string
+    for (int i = 0; i &lt; s1.Length; i++)
+    {
+        charCounts[s1[i]]++;
+    }
+    // Decrement counts for the second string
+    for (int i = 0; i &lt; s2.Length; i++)
+    {
+        charCounts[s2[i]]--;
+    }
+    // If they are anagrams, all counts should be zero.
+    for (int i = 0; i &lt; charCounts.Length; i++)
+    {
+        if (charCounts[i] != 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}</code></pre>
+    </div>
+  
+<p>Category 3: Character Frequency &amp; Duplicates These examples test your ability to use helper data structures to track information.</p>
+    <h3>Example</h3>
+<p>7: Find the Most Frequent Character Task: Find the character that appears most often in a string. Logic: Use a frequency map (an integer array) to store the count for each possible character. Iterate through the string once to populate the map, then iterate through the map to find the character with the highest count. public char FindMostFrequentCharacter(string input)</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    if (string.IsNullOrEmpty(input)) throw new
+    ArgumentException(&quot;Input is empty.&quot;);
+    int[] charCounts = new int[256];
+    for (int i = 0; i &lt; input.Length; i++)
+    {
+        charCounts[input[i]]++;
+    }
+    int maxCount = -1;
+    char maxChar = ' ';
+    for (int i = 0; i &lt; charCounts.Length; i++)
+    {
+        if (charCounts[i] &gt; maxCount)
+        {
+            maxCount = charCounts[i];
+            maxChar = (char)i;
+        }
+    }
+    return maxChar;
+}</code></pre>
+    </div>
+  
+    <h3>Example: 8: Remove Duplicate Characters</h3>
+<p>Task: Return a new string with all duplicate characters removed (e.g., &quot;programming&quot; becomes &quot;progamin&quot;). Logic: Iterate through the input string. Use a HashSet&lt;char&gt; to keep track of characters you have already &quot;seen&quot; and added to your result. A HashSet provides an extremely fast Contains check.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public string RemoveDuplicates(string input)
+{
+    if (string.IsNullOrEmpty(input)) return input;
+    StringBuilder result = new StringBuilder();
+    HashSet&lt;char&gt; seenCharacters = new HashSet&lt;char&gt;();
+    for (int i = 0; i &lt; input.Length; i++)
+    {
+        if (!seenCharacters.Contains(input[i]))
+        {
+            seenCharacters.Add(input[i]);
+            result.Append(input[i]);
+        }
+    }
+    return result.ToString();
+}</code></pre>
+    </div>
+  
+    <h3>Example</h3>
+<p>9: Find the First Non-Repeated Character Task: Find the first character in a string that does not repeat itself anywhere else in the string. Logic: This often requires two passes. The first pass populates a frequency map (like a Dictionary&lt;char, int&gt;).</p>
+<p>The second pass iterates through the original string again and returns the first character it finds that has a count of 1 in the frequency map. public char? FindFirstNonRepeatedChar(string input)</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    if (string.IsNullOrEmpty(input)) return null;
+    var charCounts = new Dictionary&lt;char, int&gt;();
+    for (int i = 0; i &lt; input.Length; i++)
+    {
+        char c = input[i];
+        if (charCounts.ContainsKey(c))
+        {
+            charCounts[c]++;
+        }
+        else
+        {
+            charCounts[c] = 1;
+        }
+    }
+    for (int i = 0; i &lt; input.Length; i++)
+    {
+        if (charCounts[input[i]] == 1)
+        {
+            return input[i];
+        }
+    }
+    return null; // No non-repeated character found
+}</code></pre>
+    </div>
+  
+<p>Category 4: Word &amp; Sentence Manipulation These examples test your ability to break a problem down into smaller steps.</p>
+    <h3>Example</h3>
+<p>10: Reverse the Order of Words in a Sentence Task: Given &quot;the quick brown fox&quot;, return &quot;fox brown quick the&quot;. Logic: This is not a simple character reversal. First, split the string into an array of words. Then, iterate through that array backwards, appending each word to a StringBuilder.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public string ReverseWords(string sentence)
+{
+    if (string.IsNullOrEmpty(sentence)) return sentence;
+    string[] words = sentence.Split(' ');
+    StringBuilder reversedSentence = new StringBuilder();
+    for (int i = words.Length - 1; i &gt;= 0; i--)
+    {
+        reversedSentence.Append(words[i]);
+        if (i &gt; 0) // Add a space unless it's the last word
+        {
+            reversedSentence.Append(&quot; &quot;);
+        }
+    }
+    return reversedSentence.ToString();
+}</code></pre>
+    </div>
+  
+    <h3>Example</h3>
+<p>11: Capitalize the First Letter of Each Word Task: Convert a string to &quot;title case&quot; where the first letter of each word is capitalized. Logic: Split the sentence into an array of words. Loop through the array.</p>
+<p>For each word, create a new word string by taking the first character, converting it to uppercase, and appending the rest of the word's substring. Join the modified words back together.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public string ToTitleCase(string sentence)
+{
+    if (string.IsNullOrWhiteSpace(sentence)) return sentence;
+    string[] words = sentence.Split(' ');
+    for (int i = 0; i &lt; words.Length; i++)
+    {
+        if(words[i].Length &gt; 0)
+        {
+            words[i] = char.ToUpper(words[i][0]) + words[i].Substring(1);
+        }
+    }
+    return string.Join(&quot; &quot;, words);
+}</code></pre>
+    </div>
+  
+    <h3>Example</h3>
+<p>12: Find the Longest Word in a Sentence Task: Find and return the longest word from a given sentence. Logic: Split the sentence into an array of words. Initialize a variable longestWord to an empty string.</p>
+<p>Loop through the words array. In each iteration, if the current word's length is greater than the length of longestWord, update longestWord.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public string FindLongestWord(string sentence)
+{
+    if (string.IsNullOrWhiteSpace(sentence)) return &quot;&quot;;
+    string[] words = sentence.Split(' ');
+    string longestWord = &quot;&quot;;
+    for(int i = 0; i &lt; words.Length; i++)
+    {
+        if (words[i].Length &gt; longestWord.Length)
+        {
+            longestWord = words[i];
+        }
+    }
+    return longestWord;
+}</code></pre>
+    </div>
+  
+<p>Category 5: Advanced String Logic These examples mimic more difficult interview challenges.</p>
+    <h3>Example</h3>
+<p>13: String to Integer (atoi) Task: Manually implement the int.Parse method without using built-in parsing functions. Logic: This is complex. You need to handle optional leading whitespace, an optional sign (+ or -), and then build the number digit by digit while checking for overflow.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Note: This is a simplified version. A full implementation is much more complex.
+public int Atoi(string s)
+{
+    if (string.IsNullOrEmpty(s)) return 0;
+    long result = 0;
+    int sign = 1;
+    int i = 0;
+    while (i &lt; s.Length &amp;&amp; s[i] == ' ') i++; // Skip whitespace
+    if (i &lt; s.Length &amp;&amp; (s[i] == '+' || s[i] == '-'))
+    {
+        sign = (s[i] == '-') ? -1 : 1;
+        i++;
+    }
+    while (i &lt; s.Length &amp;&amp; char.IsDigit(s[i]))
+    {
+        result = result * 10 + (s[i] - '0'); // 'char' - '0' gives the int value
+        if (result * sign &gt; int.MaxValue) return int.MaxValue;
+        if (result * sign &lt; int.MinValue) return int.MinValue;
+        i++;
+    }
+    return (int)(result * sign);
+}</code></pre>
+    </div>
+  
+    <h3>Example</h3>
+<p>IndexOf to find the starting index of a substring (needle) within a larger string (haystack). Logic: Use nested loops. The outer loop iterates through the haystack. The inner loop starts from the current outer loop position and checks if the characters match the needle sequentially.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public int IndexOf(string haystack, string needle)
+{
+    if (string.IsNullOrEmpty(needle)) return 0;
+    if (haystack.Length &lt; needle.Length) return -1;
+    for (int i = 0; i &lt;= haystack.Length - needle.Length; i++)
+    {
+        int j;
+        for (j = 0; j &lt; needle.Length; j++)
+        {
+            if (haystack[i + j] != needle[j])
+            {
+                break; // Mismatch, break inner loop
+            }
+        }
+        // If the inner loop completed without a break, we found a match.
+        if (j == needle.Length)
+        {
+            return i;
+        }
+    }
+    return -1; // Not found
+}</code></pre>
+    </div>
+  
+    <h3>Example</h3>
+<p>15: Validate an IP Address String Task: Check if a string is a valid IPv4 address (e.g., &quot;192.168.1.1&quot;). Logic: An IP address must have four parts separated by three dots. Each part must be a number between 0 and 255 and cannot have leading zeros (unless it's just &quot;0&quot;).</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public bool IsValidIpAddress(string ip)
+{
+    string[] parts = ip.Split('.');
+    if (parts.Length != 4) return false;
+    for (int i = 0; i &lt; parts.Length; i++)
+    {
+        // Use TryParse for safe number conversion
+        if (!int.TryParse(parts[i], out int num)) return false;
+        // Check range 0-255
+        if (num &lt; 0 || num &gt; 255) return false;
+        // Check for leading zeros (e.g., &quot;01&quot; is invalid)
+        if (parts[i].Length &gt; 1 &amp;&amp; parts[i][0] == '0') return false;
+    }
+    return true;
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-21-stringbuilder">Lecture 20: StringBuilder</h2>
     <h3>Introduction</h3>
-    <p>The StringBuilder class, found in the System.Text namespace, is a crucial tool for building and manipulating strings efficiently. Unlike the standard string class which is immutable, StringBuilder represents a mutable sequence of characters. Why and When to Use It: Performance This is the most important reason to use a StringBuilder. Because strings are immutable, performing many concatenations in a loop (e.g., result = result + nextString;) is extremely inefficient. Each + operation creates a brand new string object in memory, leading to a large number of temporary objects that the Garbage Collector must clean up. A StringBuilder avoids this by using a single, mutable internal buffer (an array of characters). When you append text, it adds to this buffer. If the buffer gets full, it allocates a new, larger buffer and copies the content, but this resizing happens far less frequently than with simple string concatenation. Best Practice: Any time you are building a string within a loop or through a significant number of concatenations, you should use a StringBuilder. Key Methods</p>
+<p>Text namespace, is a crucial tool for building and manipulating strings efficiently. Unlike the standard string class which is immutable, StringBuilder represents a mutable sequence of characters. Why and When to Use It: Performance This is the most important reason to use a StringBuilder.</p>
+<p>, result = result + nextString;) is extremely inefficient. Each + operation creates a brand new string object in memory, leading to a large number of temporary objects that the Garbage Collector must clean up. A StringBuilder avoids this by using a single, mutable internal buffer (an array of characters).</p>
+<p>When you append text, it adds to this buffer. If the buffer gets full, it allocates a new, larger buffer and copies the content, but this resizing happens far less frequently than with simple string concatenation. Best Practice: Any time you are building a string within a loop or through a significant number of concatenations, you should use a StringBuilder. Key Methods</p>
     <ul>
-      <li>Append(value): Adds text or the string representation of an object to the end of the buffer.</li>
-      <li>AppendLine(value): Adds text followed by a new line character.</li>
+      <li><strong>Append(value):</strong> Adds text or the string representation of an object to the end of the buffer.</li>
+      <li><strong>AppendLine(value):</strong> Adds text followed by a new line character.</li>
       <li>Insert(index, value): Inserts text at a specific position.</li>
       <li>Remove(startIndex, length): Removes a specified number of characters.</li>
       <li>Replace(oldValue, newValue): Replaces all occurrences of a string with another.</li>
-      <li>ToString(): This is the final step. It converts the mutable StringBuilder content into a regular, immutable string. Example: Efficient String Concatenation // Inefficient way using string concatenation // string s = &quot;&quot;; // for (int i = 0; i &lt; 10000; i++) // { // s += i; // Creates 10,000 temporary string objects! Very slow. // } // Efficient way using StringBuilder Console.WriteLine(&quot;Building a long string efficiently...&quot;); StringBuilder sb = new StringBuilder(); for (int i = 0; i &lt; 10000; i++) { sb.Append(i); // Modifies the internal buffer. Very fast. sb.Append(&quot;, &quot;); } string finalResult = sb.ToString(); // Create the final string only once. Console.WriteLine(&quot;Done. The final string is very long.&quot;); // Console.WriteLine(finalResult);</li>
+      <li><strong>ToString():</strong> This is the final step. It converts the mutable StringBuilder content into a regular, immutable string.</li>
     </ul>
+    <h3>Example: Efficient String Concatenation</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Inefficient way using string concatenation
+// string s = &quot;&quot;;
+// for (int i = 0; i &lt; 10000; i++)
+// {
+    // 	s += i; // Creates 10,000 temporary string objects! Very slow.
+    // }
+    // Efficient way using StringBuilder
+    Console.WriteLine(&quot;Building a long string efficiently...&quot;);
+    StringBuilder sb = new StringBuilder();</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    sb.Append(i); // Modifies the internal buffer. Very fast.
+    sb.Append(&quot;, &quot;);
+}</code></pre>
+    </div>
+  
+<p>string finalResult = sb.ToString(); // Create the final string only once.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine(&quot;Done. The final string is very long.&quot;);
+// Console.WriteLine(finalResult);</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-22-datetime">Lecture 21: DateTime</h2>
     <h3>Introduction</h3>
-    <p>The DateTime struct is the primary type in .NET for representing a specific moment in time, including both the date and the time of day. As it is a struct, it is a value type and cannot be null (though DateTime? can be). Creating DateTime Instances</p>
+<p>The DateTime struct is the primary type in .NET for representing a specific moment in time, including both the date and the time of day. As it is a struct, it is a value type and cannot be null (though DateTime? can be). Creating DateTime Instances</p>
     <ul>
       <li>Current Time:</li>
       <li>DateTime.Now: Gets a DateTime object set to the current date and time on the local machine, respecting its time zone settings. Use this for display purposes for the user.</li>
@@ -617,22 +1724,94 @@
       <li>.Hour, .Minute, .Second, .Millisecond</li>
       <li>.DayOfWeek: Returns a DayOfWeek enum value (e.g., DayOfWeek.Saturday).</li>
       <li>.DayOfYear: Returns the day number of the year (1 to 366).</li>
-      <li>.TimeOfDay: Returns a TimeSpan representing just the time portion of the date. Formatting for Display The .ToString() method is very powerful and accepts format specifiers to control how the date is displayed. DateTime now = DateTime.Now; // Standard formats Console.WriteLine($&quot;Short date (d): {now.ToString(&quot;d&quot;)}&quot;); Console.WriteLine($&quot;Long date (D): {now.ToString(&quot;D&quot;)}&quot;); Console.WriteLine($&quot;Full (G): {now.ToString(&quot;G&quot;)}&quot;); // Custom format for logging or APIs Console.WriteLine($&quot;ISO 8601 Style (s): {now.ToString(&quot;s&quot;)}&quot;); Console.WriteLine($&quot;Custom yyyy-MM-dd: {now.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;)}&quot;);</li>
+      <li>.TimeOfDay: Returns a TimeSpan representing just the time portion of the date. Formatting for Display The .ToString() method is very powerful and accepts format specifiers to control how the date is displayed.</li>
     </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>DateTime now = DateTime.Now;
+// Standard formats
+Console.WriteLine($&quot;Short date (d): {now.ToString(&quot;d&quot;)}&quot;);
+Console.WriteLine($&quot;Long date (D): {now.ToString(&quot;D&quot;)}&quot;);
+Console.WriteLine($&quot;Full (G): {now.ToString(&quot;G&quot;)}&quot;);
+// Custom format for logging or APIs
+Console.WriteLine($&quot;ISO 8601 Style (s): {now.ToString(&quot;s&quot;)}&quot;);
+Console.WriteLine($&quot;Custom yyyy-MM-dd: {now.ToString(&quot;yyyy-MM-dd
+HH:mm:ss&quot;)}&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-23-date-subtraction-and-addition">Lecture 22: Date Subtraction and Addition</h2>
     <h3>Introduction</h3>
-    <p>Performing calculations with DateTime objects is a common requirement, such as finding the duration between two events or calculating a future date. Date Subtraction When you subtract one DateTime from another (date2 - date1), the result is not another DateTime. The result is a TimeSpan object, which represents a duration or interval of time. The TimeSpan object has useful properties to get the duration in different units:</p>
+<p>Performing calculations with DateTime objects is a common requirement, such as finding the duration between two events or calculating a future date. Date Subtraction When you subtract one DateTime from another (date2 - date1), the result is not another DateTime. The result is a TimeSpan object, which represents a duration or interval of time. The TimeSpan object has useful properties to get the duration in different units:</p>
     <ul>
       <li>TotalDays</li>
       <li>TotalHours</li>
       <li>TotalMinutes</li>
-      <li>TotalSeconds Example: DateTime projectStartDate = new DateTime(2025, 1, 15); DateTime projectEndDate = new DateTime(2025, 7, 12); TimeSpan projectDuration = projectEndDate - projectStartDate; Console.WriteLine($&quot;The project has been running for {projectDuration.Days} days.&quot;); Console.WriteLine($&quot;Which is {projectDuration.TotalHours} hours in total.&quot;); Date Addition You cannot add two DateTime objects together. Instead, you add a TimeSpan to a DateTime, or you use the built-in Add... methods. Since DateTime is a value type, these methods are immutable; they return a new DateTime object with the result and do not modify the original. Example: DateTime today = new DateTime(2025, 7, 12); // Using Add methods is very readable DateTime nextWeek = today.AddDays(7); DateTime lastMonth = today.AddMonths(-1); // Use negative numbers to subtract DateTime twoHoursAndThirtyMinutesLater = today.AddHours(2).AddMinutes(30); Console.WriteLine($&quot;Today is: {today:d}&quot;); Console.WriteLine($&quot;One week from now will be: {nextWeek:d}&quot;); Console.WriteLine($&quot;One month ago was: {lastMonth:d}&quot;);</li>
+      <li>TotalSeconds</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>DateTime projectStartDate = new DateTime(2025, 1, 15);
+DateTime projectEndDate = new DateTime(2025, 7, 12);
+TimeSpan projectDuration = projectEndDate - projectStartDate;
+Console.WriteLine($&quot;The project has been running for
+{projectDuration.Days} days.&quot;);
+Console.WriteLine($&quot;Which is {projectDuration.TotalHours} hours in
+total.&quot;);
+Date Addition
+You cannot add two DateTime objects together. Instead, you add a TimeSpan</code></pre>
+    </div>
+  
+<p>to a DateTime, or you use the built-in Add... methods. Since DateTime is a value type, these methods are immutable; they return a new DateTime object with the result and do not modify the original.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>DateTime today = new DateTime(2025, 7, 12);
+// Using Add methods is very readable
+DateTime nextWeek = today.AddDays(7);</code></pre>
+    </div>
+  
+<p>DateTime lastMonth = today.AddMonths(-1); // Use negative numbers to subtract DateTime twoHoursAndThirtyMinutesLater = today.AddHours(2).AddMinutes(30);</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;Today is: {today:d}&quot;);
+Console.WriteLine($&quot;One week from now will be: {nextWeek:d}&quot;);
+Console.WriteLine($&quot;One month ago was: {lastMonth:d}&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-26-lec-24-math">Lecture 23: Math</h2>
     <h3>Introduction</h3>
-    <p>System.Math is a built-in static class that provides constants and static methods for common trigonometric, logarithmic, and other mathematical functions. You do not create an instance of the Math class; you call its methods directly on the class name. Common Constants and Methods</p>
+<p>System.Math is a built-in static class that provides constants and static methods for common trigonometric, logarithmic, and other mathematical functions. You do not create an instance of the Math class; you call its methods directly on the class name. Common Constants and Methods</p>
     <ul>
       <li>Constants:</li>
       <li>Math.PI: The ratio of the circumference of a circle to its diameter (3.14159...).</li>
@@ -655,7 +1834,7 @@
 
     <h2 id="sec-26-lec-25-regular-expressions">Lecture 24: Regular Expressions</h2>
     <h3>Introduction</h3>
-    <p>Regular Expressions (or Regex) are a powerful, standardized mini-language for pattern matching in text. They are used for complex validation, searching, finding, and replacing text that would be difficult or impossible with standard string methods. The Regex Class In C#, you work with regular expressions using the System.Text.RegularExpressions.Regex class. The most common methods are static helpers on this class. Common Regex Characters (a mini-dictionary)</p>
+<p>Regular Expressions (or Regex) are a powerful, standardized mini-language for pattern matching in text. They are used for complex validation, searching, finding, and replacing text that would be difficult or impossible with standard string methods. Regex class. The most common methods are static helpers on this class. Common Regex Characters (a mini-dictionary)</p>
     <ul>
       <li>Characters:</li>
       <li>.: Matches any single character except newline.</li>
@@ -673,12 +1852,46 @@
       <li>Groups and Ranges:</li>
       <li>[...]: Matches any single character within the brackets (e.g., [aeiou]).</li>
       <li>(...): Creates a capturing group.</li>
-      <li>|: Acts as an OR operator. Real-World Examples</li>
-      <li>Example 1: Validating a US Phone Number</li>
-      <li>Task: Check if a string matches the format XXX-XXX-XXXX. string pattern = @&quot;^\d{3}-\d{3}-\d{4}$&quot;; string phone1 = &quot;555-123-4567&quot;; // Valid string phone2 = &quot;555-123-456&quot;; // Invalid Console.WriteLine(&quot;Is′phone1′avalidphonenumber? Regex.IsMatch(phone1,pattern)&quot;);Console.WriteLine(&quot;Is '{phone2}' a valid phone number? {Regex.IsMatch(phone2, pattern)}&quot;);</li>
-      <li>Example 2: Extracting a Key and Value</li>
-      <li>Task: Extract the key and value from a string like &quot;ApiKey=xyz123;&quot;. string input = &quot;ApiKey=xyz123;&quot;; string pattern = @&quot;^(? Match match = Regex.Match(input, pattern); if (match.Success) { string key = match.Groups[&quot;key&quot;].Value; string value = match.Groups[&quot;value&quot;].Value; Console.WriteLine($&quot;\nFound Key: {key}, Value: {value}&quot;); }</li>
+      <li>|: Acts as an OR operator.</li>
     </ul>
+    <h3>Real-World Examples</h3>
+    <ul>
+      <li><strong>Example 1:</strong> Validating a US Phone Number</li>
+      <li><strong>Task:</strong> Check if a string matches the format XXX-XXX-XXXX. string pattern = @&quot;^\d{3}-\d{3}-\d{4}$&quot;; string phone1 = &quot;555-123-4567&quot;; // Valid string phone2 = &quot;555-123-456&quot;; // Invalid</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine(&quot;Is′phone1′avalidphonenumber?
+Regex.IsMatch(phone1,pattern)&quot;);Console.WriteLine(&quot;Is '{phone2}' a
+valid phone number? {Regex.IsMatch(phone2, pattern)}&quot;);</code></pre>
+    </div>
+  
+    <ul>
+      <li><strong>Example 2:</strong> Extracting a Key and Value</li>
+      <li><strong>Task:</strong> Extract the key and value from a string like &quot;ApiKey=xyz123;&quot;. string input = &quot;ApiKey=xyz123;&quot;; string pattern = @&quot;^(?</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Match match = Regex.Match(input, pattern);
+if (match.Success) { string key = match.Groups[&quot;key&quot;].Value; string
+value = match.Groups[&quot;value&quot;].Value; Console.WriteLine($&quot;\nFound
+Key: {key}, Value: {value}&quot;); }</code></pre>
+    </div>
+  
 
       </article>
 
@@ -763,7 +1976,7 @@
       </li>
     
       <li class="toc-item">
-        <a href="#sec-26-lec-14-join" class="toc-link">Lecture 13: Join</a>
+        <a href="#sec-26-lec-14-join-introduction" class="toc-link">Lecture 13: Join Introduction</a>
       </li>
     
       <li class="toc-item">

@@ -447,15 +447,20 @@
         
     <h2 id="sec-8-lec-1-instance-constructors">Lecture 1: Instance Constructors</h2>
     <h3>Introduction</h3>
-    <p>An instance constructor is a special method within a class that is automatically called whenever an object of that class is created using the new keyword. Its primary and most critical purpose is to initialize the object's fields and put the object into a valid, consistent, and usable initial state. A constructor ensures that no object starts its life with random or null data where a specific value is required. It's the first piece of code that runs for a new object instance. How It Works: Syntax and Execution Flow A constructor is defined like a method but with two strict rules:</p>
+<p>An instance constructor is a special method within a class that is automatically called whenever an object of that class is created using the new keyword. Its primary and most critical purpose is to initialize the object's fields and put the object into a valid, consistent, and usable initial state.</p>
+<p>A constructor ensures that no object starts its life with random or null data where a specific value is required. It's the first piece of code that runs for a new object instance.</p>
+    <h3>How It Works: Syntax and Execution Flow</h3>
+<p>A constructor is defined like a method but with two strict rules:</p>
     <ol>
       <li>It must have the exact same name as the class.</li>
       <li>It must not have a return type, not even void. The process when new MyClass() is called is as follows:</li>
       <li>The .NET runtime allocates a block of memory on the heap for the new object. All fields in this block are initially set to their default values (0 for numbers, false for bools, null for reference types).</li>
       <li>The appropriate instance constructor is called.</li>
       <li>The code inside the constructor executes, typically assigning initial values to the instance fields.</li>
-      <li>After the constructor completes, the reference to the newly created and initialized object is returned. The Default Constructor This is a critical concept often tested in interviews. If you do not define any constructor in your class, the C# compiler will automatically provide one for you behind the scenes. This is called the default constructor. It is always public and has no parameters. Its only job is to create the object and leave the fields with their default values. However, the moment you define any constructor yourself (e.g., a constructor that takes parameters), the compiler no longer provides the automatic default constructor. If you still need a parameterless constructor in that case, you must write one explicitly. Example: A Class With a Parameterized Constructor</li>
+      <li>After the constructor completes, the reference to the newly created and initialized object is returned. The Default Constructor This is a critical concept often tested in interviews. If you do not define any constructor in your class, the C# compiler will automatically provide one for you behind the scenes. This is called the default constructor. It is always public and has no parameters. Its only job is to create the object and leave the fields with their default values. However, the moment you define any constructor yourself (e.g., a constructor that takes parameters), the compiler no longer provides the automatic default constructor. If you still need a parameterless constructor in that case, you must write one explicitly.</li>
     </ol>
+    <h3>Example</h3>
+<p>A Class With a Parameterized Constructor C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -467,48 +472,61 @@
       </div>
       <pre><code>public class Car
 {
-// Private instance fields
-private string _model;
-private string _color;
-private int _year;
-// This is a public, parameterized instance constructor.
-// Its job is to force every new Car object to have a model, color, and
-year.
-public Car(string model, string color, int year)
-{
-Console.WriteLine(&quot;Car object is being created...&quot;);
-// Use 'this' to assign the parameter values to the private fields.
-this._model = model;
-this._color = color;
-this._year = year;
-}
-public void DisplayInfo()
-{
-Console.WriteLine($&quot;Car Info: {_year} {_color} {_model}&quot;);
-}
+    // Private instance fields
+    private string _model;
+    private string _color;
+    private int _year;
+    // This is a public, parameterized instance constructor.
+    // Its job is to force every new Car object to have a model, color, and year.
+    public Car(string model, string color, int year)
+    {
+        Console.WriteLine(&quot;Car object is being created...&quot;);
+        // Use 'this' to assign the parameter values to the private fields.
+        this._model = model;
+        this._color = color;
+        this._year = year;
+    }
+    public void DisplayInfo()
+    {
+        Console.WriteLine($&quot;Car Info: {_year} {_color} {_model}&quot;);
+    }
 }
 // --- In your Main method ---
-// Create an object using the constructor. We MUST provide the required
-arguments.
-Car myCar = new Car(&quot;Ford Mustang&quot;, &quot;Red&quot;, 2023);
-myCar.DisplayInfo(); // Output: Car Info: 2023 Red Ford Mustang
-// The following line would now cause a compiler error because the default
+// Create an object using the constructor. We MUST provide the required arguments.
+Car myCar = new Car(&quot;Ford Mustang&quot;, &quot;Red&quot;, 2023);</code></pre>
+    </div>
+  
+<p>myCar.DisplayInfo(); // Output: Car Info: 2023 Red Ford Mustang</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// The following line would now cause a compiler error because the default
 // parameterless constructor is no longer available.
-// Car anotherCar = new Car(); // ERROR! No constructor takes 0
-arguments.</code></pre>
+// Car anotherCar = new Car(); // ERROR! No constructor takes 0 arguments.</code></pre>
     </div>
   
 
-    <h2 id="sec-8-lec-2-static-constructor">Lecture 2: Static Constructor</h2>
-    <h3>Introduction</h3>
-    <p>A static constructor is a special constructor used to initialize static members of a class or to perform a one-time action required for the class itself, before any instances are created or any other static members are accessed. How It Works &amp; Rules The behavior of a static constructor is very specific and is a common source of interview questions.</p>
+    <h2 id="sec-8-lec-2-static-constructor-introduction">Lecture 2: Static Constructor Introduction</h2>
+<p>A static constructor is a special constructor used to initialize static members of a class or to perform a one-time action required for the class itself, before any instances are created or any other static members are accessed.</p>
+    <h3>How It Works: &amp; Rules</h3>
+<p>The behavior of a static constructor is very specific and is a common source of interview questions.</p>
     <ul>
-      <li>Syntax: It is declared with the static keyword, has the same name as the class, has no access modifiers (it's effectively private), and cannot have any parameters.</li>
-      <li>Execution: It is called automatically by the .NET runtime. You cannot call it directly from your code.</li>
-      <li>Timing: It is guaranteed to be called only once during the lifetime of your application. This call happens at some point before the first instance of the class is created or before any static members (fields or methods) of the class are referenced. The exact timing is determined by the runtime, but the &quot;before first use&quot; guarantee is what matters. When to Use &amp; Real-World Examples</li>
-      <li>Initializing Complex Static Fields: If a static field needs some logic to get its initial value (e.g., reading from a configuration file, getting a value from the operating system), you do this in the static constructor.</li>
-      <li>Setting up Singleton Instances: In the Singleton design pattern, the static constructor is the perfect place to create the single, shared instance of the class. Example</li>
+      <li><strong>Syntax:</strong> It is declared with the static keyword, has the same name as the class, has no access modifiers (it's effectively private), and cannot have any parameters.</li>
+      <li><strong>Execution:</strong> It is called automatically by the .NET runtime. You cannot call it directly from your code.</li>
+      <li><strong>Timing:</strong> It is guaranteed to be called only once during the lifetime of your application. This call happens at some point before the first instance of the class is created or before any static members (fields or methods) of the class are referenced. The exact timing is determined by the runtime, but the &quot;before first use&quot; guarantee is what matters.</li>
     </ul>
+    <h3>When to Use: &amp; Real-World Examples</h3>
+    <ul>
+      <li><strong>Initializing Complex Static Fields:</strong> If a static field needs some logic to get its initial value (e.g., reading from a configuration file, getting a value from the operating system), you do this in the static constructor.</li>
+      <li><strong>Setting up Singleton Instances:</strong> In the Singleton design pattern, the static constructor is the perfect place to create the single, shared instance of the class.</li>
+    </ul>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -520,56 +538,59 @@ arguments.</code></pre>
       </div>
       <pre><code>public class AppConfig
 {
-// A static field to hold a configuration value.
-public static readonly string LogFilePath;
-// A static constructor to initialize the static field.
-static AppConfig()
-{
-// This code runs only ONCE in the entire application.
-Console.WriteLine(&quot;--- Static Constructor Called: Initializing App
-Settings ---&quot;);
-// In a real app, this might read from a file or the environment.
-LogFilePath = &quot;C:\\logs\\application.log&quot;;
-}
-public static void LogMessage(string message)
-{
-Console.WriteLine($&quot;Logging to {LogFilePath}: {message}&quot;);
-}
+    // A static field to hold a configuration value.
+    public static readonly string LogFilePath;
+    // A static constructor to initialize the static field. static AppConfig()
+    {
+        // This code runs only ONCE in the entire application.
+        Console.WriteLine(&quot;--- Static Constructor Called: Initializing App
+        Settings ---&quot;);
+        // In a real app, this might read from a file or the environment.
+        LogFilePath = &quot;C:\\logs\\application.log&quot;;
+    }
+    public static void LogMessage(string message)
+    {
+        Console.WriteLine($&quot;Logging to {LogFilePath}: {message}&quot;);
+    }
 }
 // --- In your Main method ---
-Console.WriteLine(&quot;Program starting...&quot;);
-AppConfig.LogMessage(&quot;First log message.&quot;); // The static constructor is
-called automatically before this line.
-AppConfig.LogMessage(&quot;Second log message.&quot;); // The static constructor is
-NOT called again.
-Console.WriteLine(&quot;Program finished.&quot;);
-Output:
-Program starting...
---- Static Constructor Called: Initializing App Settings ---
-Logging to C:\logs\application.log: First log message.
-Logging to C:\logs\application.log: Second log message.
-Program finished.</code></pre>
+Console.WriteLine(&quot;Program starting...&quot;);</code></pre>
     </div>
   
+<p>AppConfig.LogMessage(&quot;First log message.&quot;); // The static constructor is called automatically before this line. AppConfig.LogMessage(&quot;Second log message.&quot;); // The static constructor is NOT called again.</p>
 
-    <h2 id="sec-8-lec-3-types-of-constructor">Lecture 3: Types of Constructor</h2>
-    <h3>Introduction</h3>
-    <p>While we've seen instance and static constructors, it's useful to categorize the different forms and patterns of constructors you will encounter and write.</p>
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine(&quot;Program finished.&quot;);</code></pre>
+    </div>
+  
+    <h3>Output</h3>
+<p>Program starting... --- Static Constructor Called: Initializing App Settings --- Logging to C:\logs\application.log: First log message. Logging to C:\logs\application.log: Second log message. Program finished.</p>
+
+    <h2 id="sec-8-lec-3-types-of-constructor-introduction">Lecture 3: Types of Constructor Introduction</h2>
+<p>While we've seen instance and static constructors, it's useful to categorize the different forms and patterns of constructors you will encounter and write.</p>
     <ul>
       <li>Default Constructor</li>
-      <li>What it is: The parameterless constructor that the C# compiler automatically generates for a class if and only if you do not declare any other constructors.</li>
-      <li>Its Job: To initialize all instance fields to their default system values (0, false, null, etc.).</li>
-      <li>Key Point: As soon as you write even one constructor, the automatic default constructor is gone.</li>
+      <li><strong>What it is:</strong> The parameterless constructor that the C# compiler automatically generates for a class if and only if you do not declare any other constructors.</li>
+      <li><strong>Its Job:</strong> To initialize all instance fields to their default system values (0, false, null, etc.).</li>
+      <li><strong>Key Point:</strong> As soon as you write even one constructor, the automatic default constructor is gone.</li>
       <li>Parameterless Constructor</li>
-      <li>What it is: A constructor that you explicitly write yourself which takes no parameters.</li>
-      <li>When to Use: When you want to allow the creation of an object in a default, empty, or pre-defined state. If you have other parameterized constructors but still want to allow new MyClass(), you must provide an explicit public parameterless constructor.</li>
+      <li><strong>What it is:</strong> A constructor that you explicitly write yourself which takes no parameters.</li>
+      <li><strong>When to Use:</strong> When you want to allow the creation of an object in a default, empty, or pre-defined state. If you have other parameterized constructors but still want to allow new MyClass(), you must provide an explicit public parameterless constructor.</li>
       <li>Parameterized Constructor</li>
-      <li>What it is: A constructor that accepts one or more parameters.</li>
-      <li>When to Use: This is the most common and useful type of constructor. It allows you to enforce that an object is created with all the necessary data to be in a valid state right from the beginning.</li>
+      <li><strong>What it is:</strong> A constructor that accepts one or more parameters.</li>
+      <li><strong>When to Use:</strong> This is the most common and useful type of constructor. It allows you to enforce that an object is created with all the necessary data to be in a valid state right from the beginning.</li>
       <li>Copy Constructor</li>
-      <li>What it is: This is a common programming pattern, not a special C# feature. It's a parameterized constructor that takes another object of the same class as its parameter.</li>
-      <li>Its Job: To create a new object by copying the values from the existing object, creating a duplicate. Example:</li>
+      <li><strong>What it is:</strong> This is a common programming pattern, not a special C# feature. It's a parameterized constructor that takes another object of the same class as its parameter.</li>
+      <li><strong>Its Job:</strong> To create a new object by copying the values from the existing object, creating a duplicate.</li>
     </ul>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -581,38 +602,39 @@ Program finished.</code></pre>
       </div>
       <pre><code>public class Car
 {
-public string Model;
-// ... other fields
-// Parameterized constructor
-public Car(string model) { this.Model = model; }
-// Copy Constructor
-public Car(Car otherCar)
-{
-this.Model = otherCar.Model;
+    public string Model;
+    // ... other fields
+    // Parameterized constructor
+    public Car(string model) { this.Model = model; }
+    // Copy Constructor public Car(Car otherCar)
+    {
+        this.Model = otherCar.Model;
+    }
 }
-}
-Car originalCar = new Car(&quot;Mustang&quot;);
-Car copiedCar = new Car(originalCar); // Creates a new object with
-the same data.</code></pre>
+Car originalCar = new Car(&quot;Mustang&quot;);</code></pre>
     </div>
   
+<p>Car copiedCar = new Car(originalCar); // Creates a new object with the same data.</p>
     <ul>
       <li>Static Constructor</li>
-      <li>What it is: A special constructor used for one-time initialization of a class's static members. It's parameterless, has no access modifier, and is called automatically by the runtime.</li>
+      <li><strong>What it is:</strong> A special constructor used for one-time initialization of a class's static members. It's parameterless, has no access modifier, and is called automatically by the runtime.</li>
       <li>Private Constructor</li>
-      <li>What it is: A constructor declared with the private access modifier.</li>
-      <li>Its Job: Making the constructor private prevents anyone outside the class from creating an instance of it using the new keyword.</li>
-      <li>When to Use: Primarily used in specific design patterns, most notably the Singleton Pattern (where you want to ensure only one instance of a class ever exists) or in utility classes that only contain static members (like System.Math) to prevent them from being instantiated.</li>
+      <li><strong>What it is:</strong> A constructor declared with the private access modifier.</li>
+      <li><strong>Its Job:</strong> Making the constructor private prevents anyone outside the class from creating an instance of it using the new keyword.</li>
+      <li><strong>When to Use:</strong> Primarily used in specific design patterns, most notably the Singleton Pattern (where you want to ensure only one instance of a class ever exists) or in utility classes that only contain static members (like System.Math) to prevent them from being instantiated.</li>
     </ul>
 
     <h2 id="sec-8-lec-4-constructor-overloading">Lecture 4: Constructor Overloading</h2>
     <h3>Introduction</h3>
-    <p>Constructor overloading is the practice of having multiple constructors in the same class, each with a different signature (i.e., a different number or type of parameters). This provides flexibility, allowing an object to be created in several different ways depending on the information the caller has available. Why and When to Use It Use constructor overloading to provide convenient ways to create an object. For example, you might create a User object:</p>
+<p>, a different number or type of parameters). This provides flexibility, allowing an object to be created in several different ways depending on the information the caller has available. Why and When to Use It Use constructor overloading to provide convenient ways to create an object. For</p>
+    <h3>example</h3>
+<p>, you might create a User object:</p>
     <ul>
       <li>With just an email address (and generate a default username).</li>
       <li>With an email and a username.</li>
-      <li>With an email, username, and a specific ID. Instead of forcing the user to pass null or default values, you provide a dedicated constructor for each common scenario. Constructor Chaining with : this(...) A critical best practice when overloading constructors is to avoid duplicating initialization logic. If you have three constructors that all set the name field, and you later need to change how name is processed, you'd have to update three places. To solve this, you use constructor chaining. The : this(...) syntax allows one constructor to call another constructor in the same class. The best practice is to have one &quot;master&quot; constructor that does all the real work, and have the simpler constructors call it, providing default values for the parameters they don't have. Example</li>
+      <li>With an email, username, and a specific ID. Instead of forcing the user to pass null or default values, you provide a dedicated constructor for each common scenario. Constructor Chaining with : this(...) A critical best practice when overloading constructors is to avoid duplicating initialization logic. If you have three constructors that all set the name field, and you later need to change how name is processed, you'd have to update three places. To solve this, you use constructor chaining. The : this(...) syntax allows one constructor to call another constructor in the same class. The best practice is to have one &quot;master&quot; constructor that does all the real work, and have the simpler constructors call it, providing default values for the parameters they don't have.</li>
     </ul>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -624,65 +646,47 @@ the same data.</code></pre>
       </div>
       <pre><code>public class User
 {
-private string _username;
-private string _email;
-private bool _isActive;
-// 1. The simplest constructor.
-// It provides a default value for 'isActive' and calls the next constructor.
-public User(string username, string email) : this(username, email, true)
-{
-// This body is empty because the work is done by the constructor it
-calls.
-Console.WriteLine(&quot;Two-parameter constructor called.&quot;);
-}
-// 2. The &quot;master&quot; constructor. This is where all the initialization logic
-lives.
-public User(string username, string email, bool isActive)
-{
-// This is the single point of logic.
-Console.WriteLine(&quot;Master three-parameter constructor called.&quot;);
-this._username = username;
-this._email = email;
-this._isActive = isActive;
-}
+    private string _username;
+    private string _email;
+    private bool _isActive;
+    // 1. The simplest constructor.
+    // It provides a default value for 'isActive' and calls the next constructor.
+    public User(string username, string email) : this(username, email, true)
+    {
+        // This body is empty because the work is done by the constructor it calls.
+        Console.WriteLine(&quot;Two-parameter constructor called.&quot;);
+    }
+    // 2. The &quot;master&quot; constructor. This is where all the initialization logic lives.
+    public User(string username, string email, bool isActive)
+    {
+        // This is the single point of logic.
+        Console.WriteLine(&quot;Master three-parameter constructor called.&quot;);
+        this._username = username;
+        this._email = email;
+        this._isActive = isActive;
+    }
 }
 // --- In your Main method ---
 // This call matches the first constructor. It will execute, then immediately
 // chain to the master constructor before its own body runs.
-User user1 = new User(&quot;alice&quot;, &quot;alice@example.com&quot;);
-Output:
-Master three-parameter constructor called.
-Two-parameter constructor called.</code></pre>
+User user1 = new User(&quot;alice&quot;, &quot;alice@example.com&quot;);</code></pre>
     </div>
   
+    <h3>Output</h3>
+<p>Master three-parameter constructor called. Two-parameter constructor called.</p>
 
     <h2 id="sec-8-lec-5-object-initializer">Lecture 5: Object Initializer</h2>
     <h3>Introduction</h3>
-    <p>Object initializers are a feature introduced in C# 3.0 that provides a concise, readable, and flexible syntax for creating an object and setting its public properties or fields at the same time. How It Works: Syntactic Sugar The object initializer syntax is syntactic sugar. This means it doesn't introduce new functionality but provides a cleaner way to write code. When you write: Book myBook = new Book { Title = &quot;The Hobbit&quot;, Author = &quot;J.R.R. Tolkien&quot; }; The C# compiler translates this behind the scenes into the following equivalent code:</p>
-
-    <div class="code-block-container">
-      <div class="code-header">
-        <span class="code-lang-label">C#</span>
-        <button class="copy-btn" aria-label="Copy code">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copy
-        </button>
-      </div>
-      <pre><code>Book myBook = new Book(); // 1. First, the parameterless constructor is
-called.
-myBook.Title = &quot;The Hobbit&quot;;  // 2. Then, a separate assignment for each
-property.
-myBook.Author = &quot;J.R.R. Tolkien&quot;;
-Because the compiler must call the parameterless constructor first, a class must
-have an accessible parameterless constructor (either the automatic default one
-or one you've written explicitly) to be used with object initializer syntax.
-Why and When to Use It</code></pre>
-    </div>
-  
+<p>Object initializers are a feature introduced in C# 3.0 that provides a concise, readable, and flexible syntax for creating an object and setting its public properties or fields at the same time.</p>
+    <h3>How It Works: Syntactic Sugar</h3>
+<p>The object initializer syntax is syntactic sugar. This means it doesn't introduce new functionality but provides a cleaner way to write code. R.</p>
+<p>Tolkien&quot; }; The C# compiler translates this behind the scenes into the following equivalent code: C# Book myBook = new Book(); // 1. First, the parameterless constructor is called. Title = &quot;The Hobbit&quot;; // 2.</p>
+<p>Then, a separate assignment for each property. R. Tolkien&quot;; Because the compiler must call the parameterless constructor first, a class must have an accessible parameterless constructor (either the automatic default one or one you've written explicitly) to be used with object initializer syntax. Why and When to Use It</p>
     <ul>
-      <li>Flexibility: It's perfect for creating objects when you don't want to create a specific constructor for every possible combination of properties you might want to set.</li>
-      <li>Readability: It creates highly readable, declarative code, especially when creating Data Transfer Objects (DTOs) or model objects. Example</li>
+      <li><strong>Flexibility:</strong> It's perfect for creating objects when you don't want to create a specific constructor for every possible combination of properties you might want to set.</li>
+      <li><strong>Readability:</strong> It creates highly readable, declarative code, especially when creating Data Transfer Objects (DTOs) or model objects.</li>
     </ul>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -694,9 +698,9 @@ Why and When to Use It</code></pre>
       </div>
       <pre><code>public class Book
 {
-public string Title { get; set; }
-public string Author { get; set; }
-public int PublicationYear { get; set; }
+    public string Title { get; set; }
+    public string Author { get; set; }
+    public int PublicationYear { get; set; }
 }
 // --- In your Main method ---
 // The &quot;old&quot; way without object initializers
@@ -707,23 +711,28 @@ book1.PublicationYear = 1949;
 // The modern, clean way with an object initializer
 Book book2 = new Book
 {
-Title = &quot;1984&quot;,
-Author = &quot;George Orwell&quot;,
-PublicationYear = 1949
+    Title = &quot;1984&quot;,
+    Author = &quot;George Orwell&quot;,
+    PublicationYear = 1949
 };</code></pre>
     </div>
   
 
     <h2 id="sec-8-lec-6-imp-points-to-remember">Lecture 6: IMP Points to Remember</h2>
     <ul>
-      <li>Primary Role of Constructors: The main purpose of a constructor is to enforce invariants and ensure an object is created in a valid initial state. A well-designed constructor guarantees that the object is usable immediately after it's created.</li>
-      <li>The Default Constructor Gotcha: This is a frequent source of bugs for beginners and a good interview topic. The C# compiler only provides a public, parameterless default constructor if you have written no other constructors. As soon as you define even one constructor, the automatic one disappears.</li>
+      <li><strong>Primary Role of Constructors:</strong> The main purpose of a constructor is to enforce invariants and ensure an object is created in a valid initial state. A well-designed constructor guarantees that the object is usable immediately after it's created.</li>
+      <li><strong>The Default Constructor Gotcha:</strong> This is a frequent source of bugs for beginners and a good interview topic. The C# compiler only provides a public, parameterless default constructor if you have written no other constructors. As soon as you define even one constructor, the automatic one disappears.</li>
       <li>Use Constructor Chaining for Maintainability: Always use : this(...) to chain overloaded constructors. This avoids duplicating initialization logic, reduces the chance of bugs, and makes your code easier to maintain by creating a single &quot;master&quot; constructor responsible for the core logic.</li>
       <li>Static vs. Instance Constructors:</li>
-      <li>Instance Constructor: Runs for every new object created with new. Used to initialize instance fields.</li>
-      <li>Static Constructor: Runs only once for the entire application lifetime, before the class is first used. Used to initialize static fields.</li>
-      <li>Object Initializers Require a Parameterless Constructor: Remember that object initializer syntax (new Book { ... }) is syntactic sugar that first calls the parameterless constructor and then sets the properties. If your class does not have an accessible parameterless constructor, you cannot use this syntax.</li>
+      <li><strong>Instance Constructor:</strong> Runs for every new object created with new. Used to initialize instance fields.</li>
+      <li><strong>Static Constructor:</strong> Runs only once for the entire application lifetime,</li>
     </ul>
+<p>before the class is first used. Used to initialize static fields.</p>
+    <ul>
+      <li>Object Initializers Require a Parameterless Constructor: Remember that object initializer syntax (new Book { ... }) is syntactic sugar that first calls the parameterless constructor and then sets the properties. If your class does not have an accessible parameterless constructor, you cannot use this</li>
+    </ul>
+    <h3>syntax</h3>
+<p>.</p>
 
       </article>
 
@@ -760,11 +769,11 @@ PublicationYear = 1949
       </li>
     
       <li class="toc-item">
-        <a href="#sec-8-lec-2-static-constructor" class="toc-link">Lecture 2: Static Constructor</a>
+        <a href="#sec-8-lec-2-static-constructor-introduction" class="toc-link">Lecture 2: Static Constructor Introduction</a>
       </li>
     
       <li class="toc-item">
-        <a href="#sec-8-lec-3-types-of-constructor" class="toc-link">Lecture 3: Types of Constructor</a>
+        <a href="#sec-8-lec-3-types-of-constructor-introduction" class="toc-link">Lecture 3: Types of Constructor Introduction</a>
       </li>
     
       <li class="toc-item">

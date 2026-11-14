@@ -446,80 +446,85 @@
       <article class="docs-content">
         
     <h2 id="sec-3-lec-1-welcome-to-your-first-step-into-the-world-of-">Welcome to your first step into the world of programming with C#. This section</h2>
-    <p>will introduce you to the core ideas and the tools of the trade. Our goal here is to understand the &quot;what&quot; and &quot;why&quot; behind C# development, which will make learning the &quot;how&quot; much easier. Introduction to .NET When you decide to write a C# program, you are not just using the C# language by itself. You are using it within a powerful ecosystem called .NET. For a developer, .NET is the most important asset you have. Think of .NET as a contract between you and the computer. You agree to write code according to the rules of C#, and in return, the .NET platform provides a staggering amount of power and safety, handling the most complex tasks for you. This power comes in two main forms:</p>
-
-    <h2 id="sec-3-lec-2-1-the-base-class-library-bcl-your-giant-toolb">1.  The Base Class Library (BCL): Your Giant Toolbox of Pre-built Code</h2>
-    <p>Imagine being asked to build an application that needs to display the current date. This seemingly simple task involves asking the computer's operating system for its internal clock, getting the raw data, and then formatting it correctly. This is complex. Instead of you having to write this difficult code, the .NET BCL provides a pre-built &quot;tool&quot; for it. You simply write one line of C# to ask the BCL's DateTime tool for the current time, and it does all the hard work for you. The BCL is a gigantic library containing thousands of such tools, all organized neatly into namespaces. It contains tested, reliable code for:</p>
+<p>will introduce you to the core ideas and the tools of the trade. Our goal here is to understand the &quot;what&quot; and &quot;why&quot; behind C# development, which will make learning the &quot;how&quot; much easier. NET When you decide to write a C# program, you are not just using the C# language by itself.</p>
+<p>NET. NET is the most important asset you have. NET as a contract between you and the computer.</p>
+<p>NET platform provides a staggering amount of power and safety, handling the most complex tasks for you. This power comes in two main forms:</p>
+    <ol>
+      <li><strong>The Base Class Library (BCL):</strong> Your Giant Toolbox of Pre-built Code Imagine being asked to build an application that needs to display the current date. This seemingly simple task involves asking the computer's operating system for its internal clock, getting the raw data, and then formatting it correctly. This is complex. Instead of you having to write this difficult code, the .NET BCL provides a pre-built &quot;tool&quot; for it. You simply write one line of C# to ask the BCL's DateTime tool for the current time, and it does all the hard work for you. The BCL is a gigantic library containing thousands of such tools, all organized neatly into namespaces. It contains tested, reliable code for:</li>
+    </ol>
     <ul>
-      <li>Mathematics: You don't need to write logic for finding a square root. You just use the tools in the System.Math namespace.</li>
-      <li>Text Manipulation: Joining, splitting, or searching through text is made simple by the string and System.Text tools.</li>
-      <li>Data Structures: The System.Collections.Generic namespace gives you powerful tools like List for managing collections of items that can grow and shrink automatically.</li>
-      <li>File and Network Operations: The BCL provides robust tools to read files or download content from a website, handling the complexity behind the scenes.</li>
+      <li><strong>Mathematics:</strong> You don't need to write logic for finding a square root. You just use the tools in the System.Math namespace.</li>
+      <li><strong>Text Manipulation:</strong> Joining, splitting, or searching through text is made simple by the string and System.Text tools.</li>
+      <li><strong>Data Structures:</strong> The System.Collections.Generic namespace gives you powerful tools like List for managing collections of items that can grow and shrink automatically.</li>
+      <li><strong>File and Network Operations:</strong> The BCL provides robust tools to read files or download content from a website, handling the complexity behind the scenes.</li>
     </ul>
-
-    <h2 id="sec-3-lec-3-2-this-lets-you-focus-on-solving-your-unique-">2.  This lets you focus on solving your unique problem, rather than re-solving</h2>
-    <p>common problems that Microsoft's engineers have already perfected.</p>
-
-    <h2 id="sec-3-lec-4-3-the-runtime-your-code-s-guardian-and-manage">3.  The Runtime: Your Code's Guardian and Manager</h2>
-    <p>The other half of .NET is the runtime environment that executes your code, called the Common Language Runtime (CLR). It acts as the engine of your application. CLR (Common Language Runtime) The CLR is the heart of the .NET platform. It’s a sophisticated program that manages your C# application while it's running. It acts as a protective bubble, a translator, and a manager. A computer's processor only understands its own native machine code; it does not understand C#. The CLR's primary job is to bridge this gap. The Translation Process (JIT Compilation)</p>
-
-    <h2 id="sec-3-lec-5-1-the-intermediate-step-cil-your-c-source-cod">1.  The Intermediate Step (CIL): Your C# source code is first compiled into</h2>
-    <p>Common Intermediate Language (CIL). CIL is not tied to any specific operating system or processor. It’s a universal, platform-agnostic language. Your compiled program file (a .dll or .exe) is a container for this CIL code.</p>
-
-    <h2 id="sec-3-lec-6-2-the-just-in-time-jit-compilation-when-you-r">2.  The &quot;Just-In-Time&quot; (JIT) Compilation: When you run your program and a</h2>
-    <p>method is called for the very first time, the CLR's JIT Compiler translates the CIL for that specific method into the native machine code for the processor it's currently running on.</p>
-
-    <h2 id="sec-3-lec-7-3-efficiency-and-caching-this-just-in-time-ap">3.  Efficiency and Caching: This &quot;Just-In-Time&quot; approach is highly efficient</h2>
-    <p>because it only translates code that is actually needed. After translating a method once, the CLR caches the resulting native code. The next time the method is called, the CLR skips the translation and executes the super-fast native code directly. The Other Jobs of the CLR: Your Free Safety Net Besides translation, the CLR provides critical services that make C# development safer and more productive:</p>
+    <ol>
+      <li>This lets you focus on solving your unique problem, rather than re-solving common problems that Microsoft's engineers have already perfected.</li>
+      <li><strong>The Runtime:</strong> Your Code's Guardian and Manager The other half of .NET is the runtime environment that executes your code, called the Common Language Runtime (CLR). It acts as the engine of your application. CLR (Common Language Runtime) The CLR is the heart of the .NET platform. It’s a sophisticated program that manages your C# application while it's running. It acts as a protective bubble, a translator, and a manager. A computer's processor only understands its own native machine code; it does not understand C#. The CLR's primary job is to bridge this gap. The Translation Process (JIT Compilation)</li>
+      <li><strong>The Intermediate Step (CIL):</strong> Your C# source code is first compiled into Common Intermediate Language (CIL). CIL is not tied to any specific operating system or processor. It’s a universal, platform-agnostic language. Your compiled program file (a .dll or .exe) is a container for this CIL code.</li>
+      <li>The &quot;Just-In-Time&quot; (JIT) Compilation: When you run your program and a method is called for the very first time, the CLR's JIT Compiler translates the CIL for that specific method into the native machine code for the processor it's currently running on.</li>
+      <li><strong>Efficiency and Caching:</strong> This &quot;Just-In-Time&quot; approach is highly efficient because it only translates code that is actually needed. After translating a method once, the CLR caches the resulting native code. The next time the method is called, the CLR skips the translation and executes the super-fast native code directly. The Other Jobs of the CLR: Your Free Safety Net Besides translation, the CLR provides critical services that make C# development safer and more productive:</li>
+    </ol>
     <ul>
-      <li>Memory Management: The CLR automatically handles allocating memory for your objects and, crucially, cleaning it up when you're done (a process called Garbage Collection). This prevents a major source of bugs common in older languages.</li>
-      <li>Security Enforcement: The CLR acts like a security guard, preventing your code from doing inherently dangerous things, like accessing another program's memory.</li>
-      <li>Exception Handling: It provides a structured way to handle errors that occur while your program is running, preventing your application from simply crashing. .NET Framework Architecture To understand modern .NET, it helps to know the structure of its predecessor, the classic .NET Framework. Think of its architecture as a layered cake, where each layer builds upon the one below it.</li>
-      <li>Layer 1: The Foundation - Common Language Runtime (CLR) At the very bottom is the CLR, sitting directly on top of the Windows Operating System and acting as the fundamental execution engine.</li>
-      <li>Layer 2: The Core Structure - Base Class Library (BCL) The next layer is the BCL, providing the fundamental &quot;building materials&quot; like file I/O and data collections that all applications use.</li>
-      <li>Layer 3: The Specialized Frameworks On top of the BCL, the .NET Framework provided several powerful, specialized frameworks for building specific kinds of applications on Windows:</li>
+      <li><strong>Memory Management:</strong> The CLR automatically handles allocating memory for your objects and, crucially, cleaning it up when you're done (a process called Garbage Collection). This prevents a major source of bugs common in older languages.</li>
+      <li><strong>Security Enforcement:</strong> The CLR acts like a security guard, preventing your code from doing inherently dangerous things, like accessing another program's memory.</li>
+      <li><strong>Exception Handling:</strong> It provides a structured way to handle errors that occur while your program is running, preventing your application from simply crashing. .NET Framework Architecture To understand modern .NET, it helps to know the structure of its predecessor, the classic .NET Framework. Think of its architecture as a layered cake, where each layer builds upon the one below it.</li>
+      <li><strong>Layer 1:</strong> The Foundation - Common Language Runtime (CLR) At the very bottom is the CLR, sitting directly on top of the Windows Operating System and acting as the fundamental execution engine.</li>
+      <li><strong>Layer 2:</strong> The Core Structure - Base Class Library (BCL) The next layer is the BCL, providing the fundamental &quot;building materials&quot; like file I/O and data collections that all applications use.</li>
+      <li><strong>Layer 3:</strong> The Specialized Frameworks On top of the BCL, the .NET Framework provided several powerful, specialized frameworks for building specific kinds of applications on Windows:</li>
       <li>ASP.NET: For building web applications and websites.</li>
       <li>Windows Presentation Foundation (WPF) &amp; Windows Forms: For building desktop applications with graphical user interfaces.</li>
       <li>ADO.NET: For connecting to and working with databases. The key takeaway is that the .NET Framework was a monolithic, tightly integrated system designed specifically for Windows. Modern .NET has evolved from this architecture to be more modular and cross-platform. Versions of .NET Framework and .NET Core The history of .NET is a tale of two platforms: the original, Windows-only framework and the modern, cross-platform successor.</li>
       <li>.NET Framework (The Legacy Platform)</li>
-      <li>Versions: Ranged from 1.0 (2002) to the final version, 4.8 (2019).</li>
-      <li>Platform: Windows only.</li>
-      <li>Status: It is now in maintenance mode. It receives security updates, but no new features are being added. You will still find it in many established enterprise applications.</li>
+      <li><strong>Versions:</strong> Ranged from 1.0 (2002) to the final version, 4.8 (2019).</li>
+      <li><strong>Platform:</strong> Windows only.</li>
+      <li><strong>Status:</strong> It is now in maintenance mode. It receives security updates, but no new features are being added. You will still find it in many established enterprise applications.</li>
       <li>.NET Core and modern .NET (The Successor)</li>
-      <li>The Rewrite: Microsoft created .NET Core from the ground up to be open-source, high-performance, and cross-platform (working on Windows, macOS, and Linux). Its versions ran from 1.0 to 3.1.</li>
-      <li>The Unification: Starting with .NET 5 (released in 2020), Microsoft dropped the &quot;Core&quot; and &quot;Framework&quot; branding to create a single, unified platform going forward. All new development happens on this platform.</li>
-      <li>Current Versions: Releases are now annual: .NET 6, .NET 7, .NET 8, and so on. Even-numbered versions (like .NET 8) are designated LTS (Long-Term Support), meaning they are guaranteed support for three years, making them the best choice for new projects. Introduction to Visual Studio Visual Studio is a world-class Integrated Development Environment (IDE). It is your command center for writing, managing, and debugging C# code. Getting comfortable in this environment is key to your productivity.</li>
-      <li>The Code Editor: This is the &quot;smart&quot; text editor where you'll write your code. Its most powerful feature is IntelliSense, which actively helps you as you type by providing auto-completion, parameter info, and lists of available actions (methods) on your objects. It's a discovery tool as much as a writing tool.</li>
-      <li>Solution Explorer: This window (typically on the right) is your project's table of contents. It shows you every file and folder that makes up your application. This is how you navigate your project.</li>
-      <li>Error List: This window (typically at the bottom) is your personal quality inspector. If you make a mistake, a detailed error message will appear in this list instantly, often telling you the exact file and line number where the problem exists.</li>
-      <li>The Debugger: Your Most Powerful Tool The Debugger allows you to pause your program at any point and inspect what's happening.</li>
-      <li>Breakpoints: You can click in the margin next to a line of code to set a breakpoint. When you run your program, it will pause execution completely when it hits that line.</li>
-      <li>Inspection: While paused, you can hover your mouse over any variable to see the value it contains at that exact moment. This is how you find logical errors. You can then step through your code line-by- line to see exactly how values change and pinpoint where things went wrong. Mastering the debugger is the fastest way to solve problems in your code. Introduction to C# C# (pronounced &quot;C Sharp&quot;) is the modern, powerful, and versatile programming language you will be learning. Its single most important characteristic is that it is statically-typed. This means that when you create a variable (a named storage location), you must declare the type of data it will hold. If you create a variable to hold a number, you can only ever put numbers in it. If you try to put text in it, the C# compiler will immediately show you an error before you even run the program. This compile- time checking is like having a vigilant assistant who proofreads your work, catching a massive category of bugs for you automatically. The Building Blocks: Class, Object, Fields, and Methods Object-Oriented Programming (OOP) is the paradigm C# is built on. It's a way of structuring your code around the concepts of &quot;blueprints&quot; and &quot;objects.&quot;</li>
+      <li><strong>The Rewrite:</strong> Microsoft created .NET Core from the ground up to be open-source, high-performance, and cross-platform (working on Windows, macOS, and Linux). Its versions ran from 1.0 to 3.1.</li>
+      <li><strong>The Unification:</strong> Starting with .NET 5 (released in 2020), Microsoft dropped the &quot;Core&quot; and &quot;Framework&quot; branding to create a single, unified platform going forward. All new development happens on this platform.</li>
+      <li><strong>Current Versions:</strong> Releases are now annual: .NET 6, .NET 7, .NET 8, and so on. Even-numbered versions (like .NET 8) are designated LTS (Long-Term Support), meaning they are guaranteed support for three years, making them the best choice for new projects. Introduction to Visual Studio Visual Studio is a world-class Integrated Development Environment (IDE). It is your command center for writing, managing, and debugging C# code. Getting comfortable in this environment is key to your productivity.</li>
+      <li><strong>The Code Editor:</strong> This is the &quot;smart&quot; text editor where you'll write your code. Its most powerful feature is IntelliSense, which actively helps you as you type by providing auto-completion, parameter info, and lists of available actions (methods) on your objects. It's a discovery tool as much as a writing tool.</li>
+      <li><strong>Solution Explorer:</strong> This window (typically on the right) is your project's table of contents. It shows you every file and folder that makes up your application. This is how you navigate your project.</li>
+      <li><strong>Error List:</strong> This window (typically at the bottom) is your personal quality inspector. If you make a mistake, a detailed error message will appear in this list instantly, often telling you the exact file and line number where the problem exists.</li>
+      <li><strong>The Debugger:</strong> Your Most Powerful Tool The Debugger allows you to pause your program at any point and inspect what's happening.</li>
+      <li><strong>Breakpoints:</strong> You can click in the margin next to a line of code to set a breakpoint. When you run your program, it will pause execution completely when it hits that line.</li>
+      <li><strong>Inspection:</strong> While paused, you can hover your mouse over any variable to see the value it contains at that exact moment. This is how you find logical errors. You can then step through your code line-by- line to see exactly how values change and pinpoint where things went wrong. Mastering the debugger is the fastest way to solve problems in your code. Introduction to C# C# (pronounced &quot;C Sharp&quot;) is the modern, powerful, and versatile programming language you will be learning. Its single most important characteristic is that it is statically-typed. This means that when you create a variable (a named storage location), you must declare the type of data it will hold. If you create a variable to hold a number, you can only ever put numbers in it. If you try to put text in it, the C# compiler will immediately show you an error before you even run the program. This compile- time checking is like having a vigilant assistant who proofreads your work, catching a massive category of bugs for you automatically.</li>
     </ul>
-
-    <h2 id="sec-3-lec-8-1-creating-the-blueprint-the-class">1.  Creating the Blueprint (The Class)</h2>
-    <p>You, the programmer, write a class. A class is a text file that acts as the blueprint. Inside the class, you define its components:</p>
+    <h3>The Building Blocks: Class, Object, Fields, and Methods</h3>
+<p>Object-Oriented Programming (OOP) is the paradigm C# is built on. It's a way of structuring your code around the concepts of &quot;blueprints&quot; and &quot;objects.&quot;</p>
+    <ol>
+      <li>Creating the Blueprint (The Class) You, the programmer, write a class. A class is a text file that acts as the blueprint. Inside the class, you define its components:</li>
+    </ol>
     <ul>
-      <li>Fields: These are variables that hold the state or data of each individual object created from the class (e.g., color, model, currentSpeed).</li>
-      <li>Methods: These are blocks of code that define the actions an object can perform (e.g., Accelerate(), Brake()).</li>
+      <li><strong>Fields:</strong> These are variables that hold the state or data of each individual object created from the class (e.g., color, model, currentSpeed).</li>
+      <li><strong>Methods:</strong> These are blocks of code that define the actions an object can perform (e.g., Accelerate(), Brake()).</li>
     </ul>
-
-    <h2 id="sec-3-lec-9-2-building-real-things-from-the-blueprint-obj">2.  Building Real Things from the Blueprint (Objects)</h2>
-    <p>In your main program, you use the new keyword to create an object, which is a real instance of the class constructed in the computer's memory. You can create as many objects as you want from a single class blueprint.</p>
-
-    <h2 id="sec-3-lec-10-3-interacting-with-objects">3.  Interacting with Objects</h2>
-    <p>Each object you create is independent. If you create car1 and car2 from the Car class, setting the color field of car1 to &quot;Red&quot; has no effect on car2. Calling the Accelerate() method on car2 only changes the currentSpeed field of car2. This allows you to model complex, real-world systems in a clean and organized way. Introduction to Namespaces A namespace is a way to organize code and prevent naming conflicts. In a large application, you might have hundreds of classes, and some could have the same name. Namespaces group related classes together, like putting files into folders. Imagine you have two classes named Logger, one for writing to a file and one for writing to a database. You could place them in different namespaces:</p>
+    <ol>
+      <li>Building Real Things from the Blueprint (Objects) In your main program, you use the new keyword to create an object, which is a real instance of the class constructed in the computer's memory. You can create as many objects as you want from a single class blueprint.</li>
+      <li>Interacting with Objects Each object you create is independent. If you create car1 and car2 from the Car class, setting the color field of car1 to &quot;Red&quot; has no effect on car2. Calling the Accelerate() method on car2 only changes the currentSpeed field of car2. This allows you to model complex, real-world systems in a clean and organized way. Introduction to Namespaces A namespace is a way to organize code and prevent naming conflicts. In a large application, you might have hundreds of classes, and some could have the same name. Namespaces group related classes together, like putting files into folders. Imagine you have two classes named Logger, one for writing to a file and one for writing to a database. You could place them in different namespaces:</li>
+    </ol>
     <ul>
       <li>MyProject.FileLogging.Logger</li>
-      <li>MyProject.DatabaseLogging.Logger Their full names are now unique. At the top of a code file, you can add a using directive (e.g., using MyProject.FileLogging;) to tell the compiler which &quot;folder&quot; of classes you intend to use. The Grammar of Code: C# Language Tokens Every C# instruction is composed of smaller pieces called tokens. Let's analyze a single line of code: int userAge = 30; This line contains five distinct tokens:</li>
+      <li>MyProject.DatabaseLogging.Logger Their full names are now unique. At the top of a code file, you can add a using directive (e.g., using MyProject.FileLogging;) to tell the compiler which &quot;folder&quot; of classes you intend to use. The Grammar of Code: C# Language Tokens Every C# instruction is composed of smaller pieces called tokens. Let's analyze a single line of code:</li>
     </ul>
 
-    <h2 id="sec-3-lec-11-1-int-a-keyword-that-specifies-a-data-type-fo">1. int: A Keyword that specifies a data type for an integer number.</h2>
-
-    <h2 id="sec-3-lec-12-2-userage-an-identifier-the-name-you-chose-fo">2. userAge: An Identifier, the name you chose for your variable.</h2>
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>int userAge = 30;</code></pre>
+    </div>
+  
+<p>This line contains five distinct tokens:</p>
     <ol>
+      <li><strong>int:</strong> A Keyword that specifies a data type for an integer number.</li>
+      <li><strong>userAge:</strong> An Identifier, the name you chose for your variable.</li>
       <li>=: An Operator used to assign a value.</li>
-      <li>30: A Literal, a fixed value written directly in the code.</li>
+      <li><strong>30:</strong> A Literal, a fixed value written directly in the code.</li>
       <li>;: A Punctuator used to mark the end of the statement. Recognizing these helps you read code and decipher compiler errors. The Evolution of a Language: Versions of C# The C# language is constantly evolving. Each new version gives developers better tools to write more expressive, concise, and safer code.</li>
     </ol>
     <ul>
@@ -529,19 +534,19 @@
       <li>C# 5.0: Another landmark that introduced async and await, which made writing responsive, non-blocking applications far easier.</li>
       <li>C# 6.0 and beyond: More recent versions have focused on developer productivity, adding dozens of features to let you achieve the same results with less code. As a new developer, you get the benefit of two decades of language refinement from day one. Professional Habits: C# Naming Conventions Following a consistent naming style is not required by the compiler, but it is essential for writing professional, readable code.</li>
     </ul>
-
-    <h2 id="sec-3-lec-13-1-pascalcase-capitalize-the-first-letter-of-e">1.  PascalCase: Capitalize the first letter of every word. Use for &quot;big&quot; or &quot;public&quot;</h2>
-    <p>things.</p>
+    <ol>
+      <li><strong>PascalCase:</strong> Capitalize the first letter of every word. Use for &quot;big&quot; or &quot;public&quot; things.</li>
+    </ol>
     <ul>
-      <li>Class names: ClientManager, UserPermissions</li>
-      <li>Method names: GetData, CalculateFinalScore</li>
+      <li><strong>Class names:</strong> ClientManager, UserPermissions</li>
+      <li><strong>Method names:</strong> GetData, CalculateFinalScore</li>
     </ul>
-
-    <h2 id="sec-3-lec-14-2-camelcase-the-first-letter-is-lowercase-the">2.  camelCase: The first letter is lowercase; the first letter of every following</h2>
-    <p>word is capitalized. Use for &quot;local&quot; or &quot;private&quot; things.</p>
+    <ol>
+      <li><strong>camelCase:</strong> The first letter is lowercase; the first letter of every following word is capitalized. Use for &quot;local&quot; or &quot;private&quot; things.</li>
+    </ol>
     <ul>
-      <li>Local variables (inside a method): int itemCounter = 0;</li>
-      <li>Method parameters (inputs to a method): public void SetAge(int newAge) Adopting these conventions from the very beginning is one of the best habits you can form.</li>
+      <li><strong>Local variables (inside a method):</strong> int itemCounter = 0;</li>
+      <li><strong>Method parameters (inputs to a method):</strong> public void SetAge(int newAge) Adopting these conventions from the very beginning is one of the best habits you can form.</li>
     </ul>
 
       </article>
@@ -576,58 +581,6 @@
         
       <li class="toc-item">
         <a href="#sec-3-lec-1-welcome-to-your-first-step-into-the-world-of-" class="toc-link">Welcome to your first step into the world of pro</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-2-1-the-base-class-library-bcl-your-giant-toolb" class="toc-link">1.  The Base Class Library (BCL): Your Giant Too</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-3-2-this-lets-you-focus-on-solving-your-unique-" class="toc-link">2.  This lets you focus on solving your unique p</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-4-3-the-runtime-your-code-s-guardian-and-manage" class="toc-link">3.  The Runtime: Your Code's Guardian and Manage</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-5-1-the-intermediate-step-cil-your-c-source-cod" class="toc-link">1.  The Intermediate Step (CIL): Your C# source </a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-6-2-the-just-in-time-jit-compilation-when-you-r" class="toc-link">2.  The &quot;Just-In-Time&quot; (JIT) Compilation: When y</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-7-3-efficiency-and-caching-this-just-in-time-ap" class="toc-link">3.  Efficiency and Caching: This &quot;Just-In-Time&quot; </a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-8-1-creating-the-blueprint-the-class" class="toc-link">1.  Creating the Blueprint (The Class)</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-9-2-building-real-things-from-the-blueprint-obj" class="toc-link">2.  Building Real Things from the Blueprint (Obj</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-10-3-interacting-with-objects" class="toc-link">3.  Interacting with Objects</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-11-1-int-a-keyword-that-specifies-a-data-type-fo" class="toc-link">1. int: A Keyword that specifies a data type for</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-12-2-userage-an-identifier-the-name-you-chose-fo" class="toc-link">2. userAge: An Identifier, the name you chose fo</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-13-1-pascalcase-capitalize-the-first-letter-of-e" class="toc-link">1.  PascalCase: Capitalize the first letter of e</a>
-      </li>
-    
-      <li class="toc-item">
-        <a href="#sec-3-lec-14-2-camelcase-the-first-letter-is-lowercase-the" class="toc-link">2.  camelCase: The first letter is lowercase; th</a>
       </li>
     
       </ul>

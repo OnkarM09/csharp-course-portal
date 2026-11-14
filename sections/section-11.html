@@ -449,18 +449,25 @@
 
     <h2 id="sec-11-lec-2-abstraction">Lecture 1: Abstraction</h2>
     <h3>Introduction</h3>
-    <p>Abstraction is one of the four fundamental pillars of Object-Oriented Programming. Its core principle is to hide complex implementation details while exposing only the essential, high-level functionalities. It allows us to manage complexity by creating a simplified model of a system. The goal is to separate what an object does from how it does it. A perfect real-world analogy is driving a car. To make the car go faster, you press the accelerator pedal. You interact with a simple, abstract interface (the pedal). You don't need to know the complex mechanics happening under the hood—the fuel injection, the spark plugs firing, the pistons moving, the transmission shifting gears. All of that complexity is abstracted away, allowing you to use the car effectively without being an expert mechanic. In C#, abstraction is not just a concept; it's a practical tool we use to design flexible and maintainable software. The two primary mechanisms for implementing abstraction are abstract classes and interfaces. They allow us to define &quot;contracts&quot; that other classes must follow, ensuring a level of consistency and predictability without dictating the specific implementation details.</p>
+<p>Abstraction is one of the four fundamental pillars of Object-Oriented Programming. Its core principle is to hide complex implementation details while exposing only the essential, high-level functionalities. It allows us to manage complexity by creating a simplified model of a system.</p>
+<p>The goal is to separate what an object does from how it does it. A perfect real-world analogy is driving a car. To make the car go faster, you press the accelerator pedal.</p>
+<p>You interact with a simple, abstract interface (the pedal). You don't need to know the complex mechanics happening under the hood—the fuel injection, the spark plugs firing, the pistons moving, the transmission shifting gears. All of that complexity is abstracted away, allowing you to use the car effectively without being an expert mechanic.</p>
+<p>In C#, abstraction is not just a concept; it's a practical tool we use to design flexible and maintainable software. The two primary mechanisms for implementing abstraction are abstract classes and interfaces. They allow us to define &quot;contracts&quot; that other classes must follow, ensuring a level of consistency and predictability without dictating the specific implementation details.</p>
 
     <h2 id="sec-11-lec-3-abstract-classes">Lecture 2: Abstract Classes</h2>
     <h3>Introduction</h3>
-    <p>An abstract class is a special type of base class that is incomplete and cannot be instantiated on its own. Its purpose is to serve as a common blueprint for a group of related derived classes. It acts as a hybrid, allowing you to provide some shared, concrete implementation (common methods and fields) while also defining a contract of abstract members that its derived classes are required to implement. How It Works &amp; Rules</p>
+<p>An abstract class is a special type of base class that is incomplete and cannot be instantiated on its own. Its purpose is to serve as a common blueprint for a group of related derived classes. It acts as a hybrid, allowing you to provide some shared, concrete implementation (common methods and fields) while also defining a contract of abstract members that its derived classes are required to implement.</p>
+    <h3>How It Works: &amp; Rules</h3>
     <ul>
-      <li>Declaration: You declare a class as abstract using the abstract keyword: public abstract class Shape { ... }.</li>
-      <li>Instantiation: You cannot create an object of an abstract class. The line new Shape(); will result in a compiler error. It only exists to be inherited from.</li>
-      <li>Contents: An abstract class can contain everything a normal class can: fields, properties, constructors, and regular methods with full implementation.</li>
-      <li>Abstract Members: Its unique feature is that it can also contain abstract methods and properties, which we will cover in the next lecture.</li>
-      <li>Inheritance: Non-abstract child classes that inherit from an abstract class must provide an implementation for all of the inherited abstract members. Why and When to Use It Use an abstract class when you want to model an &quot;is-a&quot; relationship for a group of closely related classes that share common code. If you have several classes (Circle, Rectangle, Triangle) that are all types of Shape, and they all share a common property like Color or a common method like DisplayInfo(), an abstract class is the perfect choice. It allows you to write the common code once in the base class, avoiding duplication. Example</li>
+      <li><strong>Declaration:</strong> You declare a class as abstract using the abstract keyword:</li>
     </ul>
+    <ul>
+      <li><strong>Instantiation:</strong> You cannot create an object of an abstract class. The line new Shape(); will result in a compiler error. It only exists to be inherited from.</li>
+      <li><strong>Contents:</strong> An abstract class can contain everything a normal class can: fields, properties, constructors, and regular methods with full implementation.</li>
+      <li><strong>Abstract Members:</strong> Its unique feature is that it can also contain abstract methods and properties, which we will cover in the next lecture.</li>
+      <li><strong>Inheritance:</strong> Non-abstract child classes that inherit from an abstract class must provide an implementation for all of the inherited abstract members. Why and When to Use It Use an abstract class when you want to model an &quot;is-a&quot; relationship for a group of closely related classes that share common code. If you have several classes (Circle, Rectangle, Triangle) that are all types of Shape, and they all share a common property like Color or a common method like DisplayInfo(), an abstract class is the perfect choice. It allows you to write the common code once in the base class, avoiding duplication.</li>
+    </ul>
+    <h3>Example</h3>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -470,39 +477,40 @@
           Copy
         </button>
       </div>
-      <pre><code>// This class cannot be instantiated directly. It's a conceptual blueprint.
-public abstract class Shape
+      <pre><code>// This class cannot be instantiated directly. It's a conceptual blueprint. public abstract class Shape
 {
-// 1. Can have fields and properties with implementation.
-// This is common logic shared by all shapes.
-public string Color { get; set; }
-// 2. Can have a constructor, which is called by derived classes.
-public Shape(string color)
-{
-this.Color = color;
-Console.WriteLine(&quot;Shape constructor called.&quot;);
-}
-// 3. Can have regular, concrete methods.
-public void DisplayColor()
-{
-Console.WriteLine($&quot;The color of this shape is {Color}.&quot;);
-}
-// 4. Can have abstract members (the contract).
-// This method has no body and must be implemented by derived
-classes.
-public abstract double CalculateArea();
+    // 1. Can have fields and properties with implementation.
+    // This is common logic shared by all shapes.
+    public string Color { get; set; }
+    // 2. Can have a constructor, which is called by derived classes. public Shape(string color)
+    {
+        this.Color = color;
+        Console.WriteLine(&quot;Shape constructor called.&quot;);
+    }
+    // 3. Can have regular, concrete methods. public void DisplayColor()
+    {
+        Console.WriteLine($&quot;The color of this shape is {Color}.&quot;);
+    }
+    // 4. Can have abstract members (the contract).
+    // This method has no body and must be implemented by derived classes.
+    public abstract double CalculateArea();
 }</code></pre>
     </div>
   
 
     <h2 id="sec-11-lec-4-abstract-methods">Lecture 3: Abstract Methods</h2>
     <h3>Introduction</h3>
-    <p>An abstract method is a method that is declared inside an abstract class but has no implementation body. It consists only of a signature (access modifier, return type, name, and parameters) followed by a semicolon. How It Works: The Contract An abstract method establishes a mandatory contract. By declaring public abstract double CalculateArea();, the Shape abstract class is stating: &quot;Any concrete class that wants to be considered a Shape must provide its own specific implementation of how to calculate its area. I, the Shape class, cannot provide a generic implementation because the formula is different for every shape.&quot; Rules</p>
+<p>An abstract method is a method that is declared inside an abstract class but has no implementation body. It consists only of a signature (access modifier, return type, name, and parameters) followed by a semicolon.</p>
+    <h3>How It Works</h3>
+<p>The Contract An abstract method establishes a mandatory contract. By declaring public abstract double CalculateArea();, the Shape abstract class is stating: &quot;Any concrete class that wants to be considered a Shape must provide its own specific implementation of how to calculate its area. I, the Shape class, cannot provide a generic implementation because the formula is different for every shape.&quot;</p>
+    <h3>Rules</h3>
     <ul>
       <li>An abstract method can only exist inside an abstract class.</li>
       <li>It is declared with the abstract keyword and has no curly braces {} or method body.</li>
-      <li>Any non-abstract class that inherits from the abstract class must provide an implementation for all inherited abstract methods using the override keyword. Example Let's create concrete classes that inherit from Shape and fulfill its contract.</li>
+      <li>Any non-abstract class that inherits from the abstract class must provide an implementation for all inherited abstract methods using the override keyword.</li>
     </ul>
+    <h3>Example</h3>
+<p>Let's create concrete classes that inherit from Shape and fulfill its contract. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -512,56 +520,89 @@ public abstract double CalculateArea();
           Copy
         </button>
       </div>
-      <pre><code>public class Circle : Shape
-{
-public double Radius { get; set; }
-// Call the base constructor to initialize the 'Color' property.
-public Circle(string color, double radius) : base(color)
-{
-this.Radius = radius;
-}
-// We MUST provide an implementation for the abstract method.
-// We use the 'override' keyword.
-public override double CalculateArea()
-{
-return Math.PI * Radius * Radius;
-}
-}
-public class Rectangle : Shape
-{
-public double Width { get; set; }
-public double Height { get; set; }
-public Rectangle(string color, double width, double height) : base(color)
-{
-this.Width = width;
-this.Height = height;
-}
-// Provide the specific implementation for a rectangle's area.
-public override double CalculateArea()
-{
-return Width * Height;
-}
+      <pre><code>{
+    public double Radius { get; set; }
+    // Call the base constructor to initialize the 'Color' property.
+    public Circle(string color, double radius) : base(color)
+    {
+        this.Radius = radius;
+    }
+    // We MUST provide an implementation for the abstract method.
+    // We use the 'override' keyword. public override double CalculateArea()
+    {
+        return Math.PI * Radius * Radius;
+    }
+}</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    public double Width { get; set; }
+    public double Height { get; set; }
+    public Rectangle(string color, double width, double height) : base(color)
+    {
+        this.Width = width;
+        this.Height = height;
+    }
+    // Provide the specific implementation for a rectangle's area. public override double CalculateArea()
+    {
+        return Width * Height;
+    }
 }
 // --- In your Main method ---
 Circle myCircle = new Circle(&quot;Red&quot;, 10);
-Rectangle myRectangle = new Rectangle(&quot;Blue&quot;, 5, 10);
-myCircle.DisplayColor(); // Calls the concrete method from the base Shape
-class.
-Console.WriteLine($&quot;Circle Area: {myCircle.CalculateArea()}&quot;); // Calls the
-overridden method in the Circle class.
-myRectangle.DisplayColor();
-Console.WriteLine($&quot;Rectangle Area: {myRectangle.CalculateArea()}&quot;);</code></pre>
+Rectangle myRectangle = new Rectangle(&quot;Blue&quot;, 5, 10);</code></pre>
+    </div>
+  
+<p>myCircle.DisplayColor(); // Calls the concrete method from the base Shape class.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;Circle Area: {myCircle.CalculateArea()}&quot;); // Calls the</code></pre>
+    </div>
+  
+<p>overridden method in the Circle class. myRectangle.DisplayColor();</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;Rectangle Area: {myRectangle.CalculateArea()}&quot;);</code></pre>
     </div>
   
 
     <h2 id="sec-11-lec-5-interfaces">Lecture 4: Interfaces</h2>
     <h3>Introduction</h3>
-    <p>An interface is a pure contract. It defines a set of related public members (methods, properties, events, or indexers) but provides no implementation for any of them. A class or struct that implements an interface makes a guarantee to the compiler that it will provide a public implementation for all members defined in that interface. If an abstract class models an &quot;is-a&quot; relationship (a Circle is a Shape), an interface models a &quot;can-do&quot; capability (a Car, a Person, and a Document can all be ISerializable—they all have the capability of being saved). How It Works &amp; Rules</p>
+<p>An interface is a pure contract. It defines a set of related public members (methods, properties, events, or indexers) but provides no implementation for any of them. A class or struct that implements an interface makes a guarantee to the compiler that it will provide a public implementation for all members defined in that interface.</p>
+<p>If an abstract class models an &quot;is-a&quot; relationship (a Circle is a Shape), an interface models a &quot;can-do&quot; capability (a Car, a Person, and a Document can all be ISerializable—they all have the capability of being saved).</p>
+    <h3>How It Works: &amp; Rules</h3>
     <ul>
-      <li>Declaration: You use the interface keyword. By convention, interface names start with a capital I, for example, ILogger or IDisposable.</li>
-      <li>Contents: Members inside an interface definition have no body and no access modifiers. They are all implicitly public.</li>
-      <li>Implementation: A class implements an interface using the colon (:) syntax, just like inheritance. The class must then provide a public implementation for every member defined in the interface. When to Use It Use an interface when you want to define a common capability that can be shared across unrelated classes. For example, you might have Car, Bird, and Drone classes. They have no logical &quot;is-a&quot; relationship, so they shouldn't share a common base class. However, they all have the ability to move, so they could all implement an IMovable interface. Example Let's define a contract for anything that can be saved.</li>
+      <li><strong>Declaration:</strong> You use the interface keyword. By convention, interface names start with a capital I, for example, ILogger or IDisposable.</li>
+      <li><strong>Contents:</strong> Members inside an interface definition have no body and no access modifiers. They are all implicitly public.</li>
+      <li><strong>Implementation:</strong> A class implements an interface using the colon (:) syntax, just like inheritance. The class must then provide a public implementation for every member defined in the interface.</li>
     </ul>
+    <h3>When to Use It</h3>
+<p>Use an interface when you want to define a common capability that can be shared across unrelated classes. For example, you might have Car, Bird, and Drone classes. They have no logical &quot;is-a&quot; relationship, so they shouldn't share a common base class. However, they all have the ability to move, so they could all implement an IMovable interface.</p>
+    <h3>Example</h3>
+<p>Let's define a contract for anything that can be saved. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -571,37 +612,61 @@ Console.WriteLine($&quot;Rectangle Area: {myRectangle.CalculateArea()}&quot;);</
           Copy
         </button>
       </div>
-      <pre><code>// The interface defines the &quot;what&quot; (the contract), not the &quot;how&quot;.
-public interface ISaveable
+      <pre><code>// The interface defines the &quot;what&quot; (the contract), not the &quot;how&quot;. public interface ISaveable
 {
-void Save(); // No body, no access modifier.
+    void Save(); // No body, no access modifier.
 }
-// First class that implements the contract.
-public class Document : ISaveable
-{
-public string Text { get; set; }
-// It MUST provide a public implementation of the Save method.
-public void Save()
-{
-Console.WriteLine(&quot;Saving document to a .txt file...&quot;);
+// First class that implements the contract.</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    public string Text { get; set; }
+    // It MUST provide a public implementation of the Save method. public void Save()
+    {
+        Console.WriteLine(&quot;Saving document to a .txt file...&quot;);
+    }
 }
-}
-// A completely unrelated class that also implements the contract.
-public class PlayerProgress : ISaveable
-{
-public int Level { get; set; }
-// It provides its own specific implementation of Save.
-public void Save()
-{
-Console.WriteLine(&quot;Saving player progress to the cloud...&quot;);
-}
+// A completely unrelated class that also implements the contract.</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    public int Level { get; set; }
+    // It provides its own specific implementation of Save. public void Save()
+    {
+        Console.WriteLine(&quot;Saving player progress to the cloud...&quot;);
+    }
 }</code></pre>
     </div>
   
 
     <h2 id="sec-11-lec-6-dynamic-polymorphism-using-interfaces">Lecture 5: Dynamic Polymorphism using Interfaces</h2>
     <h3>Introduction</h3>
-    <p>One of the most powerful features of interfaces is their ability to enable polymorphism among completely unrelated classes. Polymorphism allows us to write code that can work with objects of different classes in a uniform way, as long as they all share a common interface. This means you can create more flexible, decoupled, and maintainable systems. How It Works You can create variables, method parameters, or collections (like a List) of an interface type (e.g., List&lt;ISaveable&gt;). These can hold a reference to an object of any class that implements that interface. When you call a method through the interface reference (e.g., item.Save()), the .NET runtime performs a dynamic lookup. It checks the actual type of the object at that moment and executes the specific implementation of the method provided by that object's class. When to Use It Use this pattern whenever you need to perform a common action on a group of different objects. For example, you might want to save the state of various parts of your application (the user's progress, the document they are editing, the application settings) in one go. As long as each of these classes implements ISaveable, you can handle them all with the same code. Example Let's use the ISaveable interface and the Document and PlayerProgress classes from the previous lecture. We'll create a single method that can save any object that implements the contract.</p>
+<p>One of the most powerful features of interfaces is their ability to enable polymorphism among completely unrelated classes. Polymorphism allows us to write code that can work with objects of different classes in a uniform way, as long as they all share a common interface. This means you can create more flexible, decoupled, and maintainable systems.</p>
+    <h3>How It Works</h3>
+<p>, List&lt;ISaveable&gt;). These can hold a reference to an object of any class that implements that interface. NET runtime performs a dynamic lookup.</p>
+<p>It checks the actual type of the object at that moment and executes the specific implementation of the method provided by that object's class.</p>
+    <h3>When to Use It</h3>
+<p>Use this pattern whenever you need to perform a common action on a group of different objects. For example, you might want to save the state of various parts of your application (the user's progress, the document they are editing, the application settings) in one go. As long as each of these classes implements ISaveable, you can handle them all with the same code.</p>
+    <h3>Example</h3>
+<p>Let's use the ISaveable interface and the Document and PlayerProgress classes from the previous lecture. We'll create a single method that can save any object that implements the contract. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -613,38 +678,57 @@ Console.WriteLine(&quot;Saving player progress to the cloud...&quot;);
       </div>
       <pre><code>public interface ISaveable
 {
-void Save();
-}
-public class Document : ISaveable
-{
-public void Save()
-{
-Console.WriteLine(&quot;Saving document to a .txt file...&quot;);
-}
-}
-public class PlayerProgress : ISaveable
-{
-public void Save()
-{
-Console.WriteLine(&quot;Saving player progress to the cloud...&quot;);
-}
+    void Save();
+}</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    public void Save()
+    {
+        Console.WriteLine(&quot;Saving document to a .txt file...&quot;);
+    }
+}</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    public void Save()
+    {
+        Console.WriteLine(&quot;Saving player progress to the cloud...&quot;);
+    }
 }
 public class ProgressManager
 {
-// This method works with ANY object that implements ISaveable.
-// It is decoupled from the concrete Document and PlayerProgress
-classes.
-public void SaveAll(List&lt;ISaveable&gt; itemsToSave)
-{
-Console.WriteLine(&quot;\n--- Starting Save All Operation ---&quot;);
-foreach (ISaveable item in itemsToSave)
-{
-// At runtime, C# will call the correct Save() method
-// based on the actual object type of 'item'.
-item.Save();
-}
-Console.WriteLine(&quot;--- Save All Operation Complete ---&quot;);
-}
+    // This method works with ANY object that implements ISaveable.
+    // It is decoupled from the concrete Document and PlayerProgress classes.
+    public void SaveAll(List&lt;ISaveable&gt; itemsToSave)
+    {
+        Console.WriteLine(&quot;\n--- Starting Save All Operation ---&quot;);
+        foreach (ISaveable item in itemsToSave)
+        {
+            // At runtime, C# will call the correct Save() method
+            // based on the actual object type of 'item'.
+            item.Save();
+        }
+        Console.WriteLine(&quot;--- Save All Operation Complete ---&quot;);
+    }
 }
 // --- In your Main method ---
 Document myDoc = new Document();
@@ -655,18 +739,22 @@ List&lt;ISaveable&gt; saveableItems = new List&lt;ISaveable&gt;();
 saveableItems.Add(myDoc);
 saveableItems.Add(myProgress);
 ProgressManager manager = new ProgressManager();
-manager.SaveAll(saveableItems);
-Output:
---- Starting Save All Operation ---
-Saving document to a .txt file...
-Saving player progress to the cloud...
---- Save All Operation Complete ---</code></pre>
+manager.SaveAll(saveableItems);</code></pre>
     </div>
   
+    <h3>Output</h3>
+<p>--- Starting Save All Operation --- Saving document to a .txt file... Saving player progress to the cloud... --- Save All Operation Complete ---</p>
 
     <h2 id="sec-11-lec-7-multiple-inheritance-using-interfaces">Lecture 6: Multiple Inheritance using Interfaces</h2>
     <h3>Introduction</h3>
-    <p>As we learned in the Inheritance section, C# enforces single inheritance for classes—a class can only inherit from one other base class. This rule prevents many complex problems. However, there are many situations where an object logically has multiple distinct roles or capabilities. Interfaces are the C# solution for achieving this form of multiple inheritance. How It Works A class can implement multiple interfaces. You simply list the interfaces after the colon, separated by commas. By doing so, the class promises to provide a public implementation for all members from all the interfaces it implements. This allows a class to inherit a primary identity from its single base class (the &quot;is- a&quot; relationship) while also inheriting multiple sets of capabilities from various interfaces (the &quot;can-do&quot; relationships). When to Use It Use this pattern when you have a class that needs to conform to several different, unrelated contracts. A real-world example is an all-in-one printer/scanner/fax machine. It's one device, but it has multiple, distinct functionalities. Example Let's model a modern smartphone. It &quot;is an&quot; ElectronicDevice (its base identity), but it &quot;can do&quot; the job of a phone, a camera, and a GPS navigator.</p>
+<p>As we learned in the Inheritance section, C# enforces single inheritance for classes—a class can only inherit from one other base class. This rule prevents many complex problems. However, there are many situations where an object logically has multiple distinct roles or capabilities. Interfaces are the C# solution for achieving this form of multiple inheritance.</p>
+    <h3>How It Works</h3>
+<p>A class can implement multiple interfaces. You simply list the interfaces after the colon, separated by commas. By doing so, the class promises to provide a public implementation for all members from all the interfaces it implements.</p>
+<p>This allows a class to inherit a primary identity from its single base class (the &quot;is- a&quot; relationship) while also inheriting multiple sets of capabilities from various interfaces (the &quot;can-do&quot; relationships).</p>
+    <h3>When to Use It</h3>
+<p>Use this pattern when you have a class that needs to conform to several different, unrelated contracts. A real-world example is an all-in-one printer/scanner/fax machine. It's one device, but it has multiple, distinct functionalities.</p>
+    <h3>Example</h3>
+<p>Let's model a modern smartphone. It &quot;is an&quot; ElectronicDevice (its base identity), but it &quot;can do&quot; the job of a phone, a camera, and a GPS navigator. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -676,54 +764,65 @@ Saving player progress to the cloud...
           Copy
         </button>
       </div>
-      <pre><code>// --- The Contracts (Interfaces) ---
-public interface IPhone
+      <pre><code>// --- The Contracts (Interfaces) --- public interface IPhone
 {
-void MakeCall(string number);
+    void MakeCall(string number);
 }
 public interface ICamera
 {
-void TakePhoto();
+    void TakePhoto();
 }
 public interface IGps
 {
-string GetCurrentLocation();
+    string GetCurrentLocation();
 }
-// --- The Base Class ---
-public class ElectronicDevice
+// --- The Base Class --- public class ElectronicDevice
 {
-public int BatteryLevel { get; protected set; } = 100;
+    public int BatteryLevel { get; protected set; } = 100;
 }
 // --- The Concrete Class Implementing Multiple Interfaces ---
-// It inherits from ONE base class, but implements THREE interfaces.
-public class SmartPhone : ElectronicDevice, IPhone, ICamera, IGps
-{
-// Implementation for IPhone contract
-public void MakeCall(string number)
-{
-Console.WriteLine($&quot;Calling {number}...&quot;);
-BatteryLevel -= 5;
-}
-// Implementation for ICamera contract
-public void TakePhoto()
-{
-Console.WriteLine(&quot;Taking a photo...&quot;);
-BatteryLevel -= 2;
-}
-// Implementation for IGps contract
-public string GetCurrentLocation()
-{
-Console.WriteLine(&quot;Finding current location...&quot;);
-BatteryLevel -= 3;
-return &quot;Kuntloor, Telangana, India&quot;;
-}
+// It inherits from ONE base class, but implements THREE interfaces.</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // Implementation for IPhone contract public void MakeCall(string number)
+    {
+        Console.WriteLine($&quot;Calling {number}...&quot;);
+        BatteryLevel -= 5;
+    }
+    // Implementation for ICamera contract public void TakePhoto()
+    {
+        Console.WriteLine(&quot;Taking a photo...&quot;);
+        BatteryLevel -= 2;
+    }
+    // Implementation for IGps contract public string GetCurrentLocation()
+    {
+        Console.WriteLine(&quot;Finding current location...&quot;);
+        BatteryLevel -= 3;
+        return &quot;Kuntloor, Telangana, India&quot;;
+    }
 }</code></pre>
     </div>
   
 
     <h2 id="sec-11-lec-8-interface-inheritance">Lecture 7: Interface Inheritance</h2>
     <h3>Introduction</h3>
-    <p>Just as classes can inherit from other classes, interfaces can also inherit from other interfaces. This allows you to build more complex contracts from smaller, more reusable ones, creating a logical hierarchy of capabilities. How It Works When a derived interface inherits from a base interface, it incorporates all the members of that base interface into its own contract. Consequently, any class that implements the derived interface must provide an implementation for all members from both the derived interface and all of its base interfaces. When to Use It Use interface inheritance to create layered or tiered API contracts. You can have a very basic interface and then create more specialized interfaces that add more functionality, allowing classes to choose the level of complexity they want to implement. Example Let's model a data access contract. Some data sources might be read-only, while others are read-write.</p>
+<p>Just as classes can inherit from other classes, interfaces can also inherit from other interfaces. This allows you to build more complex contracts from smaller, more reusable ones, creating a logical hierarchy of capabilities.</p>
+    <h3>How It Works</h3>
+<p>When a derived interface inherits from a base interface, it incorporates all the members of that base interface into its own contract. Consequently, any class that implements the derived interface must provide an implementation for all members from both the derived interface and all of its base interfaces.</p>
+    <h3>When to Use It</h3>
+<p>Use interface inheritance to create layered or tiered API contracts. You can have a very basic interface and then create more specialized interfaces that add more functionality, allowing classes to choose the level of complexity they want to implement.</p>
+    <h3>Example</h3>
+<p>Let's model a data access contract. Some data sources might be read-only, while others are read-write. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -733,46 +832,78 @@ return &quot;Kuntloor, Telangana, India&quot;;
           Copy
         </button>
       </div>
-      <pre><code>// 1. The base contract: anything readable.
-public interface IReadable
+      <pre><code>// 1. The base contract: anything readable. public interface IReadable
 {
-string Read(int id);
+    string Read(int id);
 }
-// 2. A contract for anything writeable.
-public interface IWriteable
+// 2. A contract for anything writeable. public interface IWriteable
 {
-void Write(string data);
+    void Write(string data);
 }
 // 3. A derived interface that inherits from BOTH base interfaces.
-// This creates a more complex contract for full read/write access.
-public interface IReadWrite : IReadable, IWriteable
-{
-// It can also add its own new members if needed.
-void Delete(int id);
+// This creates a more complex contract for full read/write access.</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // It can also add its own new members if needed.
+    void Delete(int id);
 }
-// This class only needs to be readable.
-public class ConfigurationReader : IReadable
-{
-public string Read(int id) { /* ... logic ... */ return &quot;config_value&quot;; }
+// This class only needs to be readable.</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    public string Read(int id) { /* ... logic ... */ return &quot;config_value&quot;; }
 }
 // This class needs the full read/write/delete functionality.
-// By implementing IReadWrite, it MUST implement all three methods.
-public class DatabaseConnection : IReadWrite
-{
-public string Read(int id) { /* ... logic ... */ return &quot;db_record&quot;; }
-public void Write(string data) { /* ... logic ... */ }
-public void Delete(int id) { /* ... logic ... */ }
+// By implementing IReadWrite, it MUST implement all three methods.</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    public string Read(int id) { /* ... logic ... */ return &quot;db_record&quot;; }
+    public void Write(string data) { /* ... logic ... */ }
+    public void Delete(int id) { /* ... logic ... */ }
 }</code></pre>
     </div>
   
 
     <h2 id="sec-11-lec-9-explicit-interface-implementation">Lecture 8: Explicit Interface Implementation</h2>
     <h3>Introduction</h3>
-    <p>Explicit interface implementation is a technique where a class member that implements an interface member is not made public on the class itself. The member can only be accessed by first casting the object to the specific interface type. How It Works: Syntax To explicitly implement an interface member, you prefix the member name with the InterfaceName. and you do not use an access modifier (like public). void IMyInterface.MyMethod() { ... } Why and When to Use It There are two primary reasons to use this technique:</p>
+<p>Explicit interface implementation is a technique where a class member that implements an interface member is not made public on the class itself. The member can only be accessed by first casting the object to the specific interface type.</p>
+    <h3>How It Works: Syntax</h3>
+<p>To explicitly implement an interface member, you prefix the member name with the InterfaceName. and you do not use an access modifier (like public). void IMyInterface.MyMethod() { ... } Why and When to Use It There are two primary reasons to use this technique:</p>
     <ol>
-      <li>To Resolve Naming Collisions: This is the most common reason. It's used when a class implements two or more interfaces that happen to declare a member with the exact same name and signature. Explicit implementation allows the class to provide a separate implementation for each interface's member without conflict.</li>
-      <li>To Hide Interface Members: Sometimes, an interface member is highly specialized or not part of the class's core public API. You can explicitly implement it to hide it from the class's main public surface, keeping the class's own API clean. The member is still accessible, but only to consumers who are specifically working with the interface. Example: Resolving a Naming Collision Imagine you have two interfaces for logging, both with a Log method, but they are expected to behave differently.</li>
+      <li><strong>To Resolve Naming Collisions:</strong> This is the most common reason. It's used when a class implements two or more interfaces that happen to declare a member with the exact same name and signature. Explicit implementation allows the class to provide a separate implementation for each interface's member without conflict.</li>
+      <li><strong>To Hide Interface Members:</strong> Sometimes, an interface member is highly specialized or not part of the class's core public API. You can explicitly implement it to hide it from the class's main public surface, keeping the class's own API clean. The member is still accessible, but only to consumers who are specifically working with the interface.</li>
     </ol>
+    <h3>Example</h3>
+<p>Resolving a Naming Collision Imagine you have two interfaces for logging, both with a Log method, but they are expected to behave differently. C#</p>
 
     <div class="code-block-container">
       <div class="code-header">
@@ -784,57 +915,74 @@ public void Delete(int id) { /* ... logic ... */ }
       </div>
       <pre><code>public interface IFileLogger
 {
-void Log(string message);
+    void Log(string message);
 }
 public interface IDatabaseLogger
 {
-void Log(string message);
-}
-public class ReportGenerator : IFileLogger, IDatabaseLogger
-{
-// Explicit implementation for IFileLogger.
-// Note: No 'public' access modifier.
-void IFileLogger.Log(string message)
-{
-Console.WriteLine($&quot;Writing to file: {message}&quot;);
-}
-// Explicit implementation for IDatabaseLogger.
-void IDatabaseLogger.Log(string message)
-{
-Console.WriteLine($&quot;Writing to database: {message}&quot;);
-}
-}
-// --- In your Main method ---
-ReportGenerator report = new ReportGenerator();
-// This would cause a compiler error because Log is not a public member of
-the class.
-// report.Log(&quot;My message&quot;); // ERROR!
-// To call the methods, you must first cast the object to the specific
-interface.
-IFileLogger fileLogger = report;
-fileLogger.Log(&quot;File log entry.&quot;); // Output: Writing to file: File log entry.
-IDatabaseLogger dbLogger = report;
-dbLogger.Log(&quot;Database log entry.&quot;); // Output: Writing to database:
-Database log entry.</code></pre>
+    void Log(string message);
+}</code></pre>
     </div>
   
 
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // Explicit implementation for IFileLogger.
+    // Note: No 'public' access modifier. void IFileLogger.Log(string message)
+    {
+        Console.WriteLine($&quot;Writing to file: {message}&quot;);
+    }
+    // Explicit implementation for IDatabaseLogger. void IDatabaseLogger.Log(string message)
+    {
+        Console.WriteLine($&quot;Writing to database: {message}&quot;);
+    }
+}
+// --- In your Main method ---
+ReportGenerator report = new ReportGenerator();
+// This would cause a compiler error because Log is not a public member of the class.
+// report.Log(&quot;My message&quot;); // ERROR!
+// To call the methods, you must first cast the object to the specific interface.
+IFileLogger fileLogger = report;</code></pre>
+    </div>
+  
+<p>fileLogger.Log(&quot;File log entry.&quot;); // Output: Writing to file: File log entry.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>IDatabaseLogger dbLogger = report;</code></pre>
+    </div>
+  
+<p>dbLogger.Log(&quot;Database log entry.&quot;); // Output: Writing to database: Database log entry.</p>
+
     <h2 id="sec-11-lec-10-imp-points-to-remember">Lecture 9: IMP Points to Remember</h2>
     <h3>Introduction</h3>
-    <p>This lecture summarizes the most critical, practical, and interview-worthy points about abstract classes and interfaces. The ability to articulate their differences is a hallmark of a proficient C# developer. Abstract Class vs. Interface: The Core Interview Question This is one of the most common C# OOP interview questions. You must be able to compare them clearly.</p>
+<p>This lecture summarizes the most critical, practical, and interview-worthy points about abstract classes and interfaces. The ability to articulate their differences is a hallmark of a proficient C# developer. Abstract Class vs.</p>
+<p>Interface: The Core Interview Question This is one of the most common C# OOP interview questions. You must be able to compare them clearly.</p>
     <ul>
       <li>Core Purpose:</li>
-      <li>Abstract Class: To provide a common base for a group of closely related classes. It models an &quot;is-a&quot; relationship (a Dog is an Animal).</li>
-      <li>Interface: To define a common capability or contract that can be implemented by unrelated classes. It models a &quot;can-do&quot; relationship (a Car and a Document can both be ISaveable).</li>
+      <li><strong>Abstract Class:</strong> To provide a common base for a group of closely related classes. It models an &quot;is-a&quot; relationship (a Dog is an Animal).</li>
+      <li><strong>Interface:</strong> To define a common capability or contract that can be implemented by unrelated classes. It models a &quot;can-do&quot; relationship (a Car and a Document can both be ISaveable).</li>
       <li>Implementation:</li>
-      <li>Abstract Class: Can contain implementation details: fields, constructors, and methods with full bodies.</li>
-      <li>Interface: Is a pure contract and traditionally cannot contain implementation. (Note: Modern C# allows default interface methods, but for interview purposes, stick to the classic definition unless asked about new features).</li>
+      <li><strong>Abstract Class:</strong> Can contain implementation details: fields, constructors, and methods with full bodies.</li>
+      <li><strong>Interface:</strong> Is a pure contract and traditionally cannot contain implementation. (Note: Modern C# allows default interface methods, but for interview purposes, stick to the classic definition unless asked about new features).</li>
       <li>Inheritance:</li>
-      <li>Abstract Class: A class can inherit from only one abstract class (single inheritance).</li>
-      <li>Interface: A class can implement multiple interfaces.</li>
+      <li><strong>Abstract Class:</strong> A class can inherit from only one abstract class (single inheritance).</li>
+      <li><strong>Interface:</strong> A class can implement multiple interfaces.</li>
       <li>Members:</li>
-      <li>Abstract Class: Can have public, protected, private, etc. members. Can have static members and const fields.</li>
-      <li>Interface: All members are implicitly public. Cannot have instance fields or instance constructors. abstract vs. virtual Methods This is another common point of confusion.</li>
+      <li><strong>Abstract Class:</strong> Can have public, protected, private, etc. members. Can have static members and const fields.</li>
+      <li><strong>Interface:</strong> All members are implicitly public. Cannot have instance fields or instance constructors. abstract vs. virtual Methods This is another common point of confusion.</li>
       <li>An abstract method has no implementation and must be overridden by the first non-abstract derived class.</li>
       <li>A virtual method has an implementation in the base class, and derived classes can optionally override it if they need to provide a more specific behavior. Interfaces are Contracts for Decoupling The primary power of interfaces is decoupling. When your code depends on an interface (ILogger) instead of a concrete class (FileLogger), you can easily swap out the implementation (e.g., change to a DatabaseLogger) without changing the code that uses it. This makes your applications more flexible, modular, and easier to test.</li>
     </ul>

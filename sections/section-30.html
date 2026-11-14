@@ -449,26 +449,208 @@
 
     <h2 id="sec-30-lec-2-top-level-statements">Lecture 1: Top-Level Statements</h2>
     <h3>Introduction</h3>
-    <p>Top-level statements, introduced in C# 9, are a major feature designed to simplify the creation of simple programs and make C# more approachable for beginners. This feature allows you to write your main program's executable code directly in a Program.cs file, eliminating the need for the traditional boilerplate ceremony of a Program class and a static void Main method. How It Works: Compiler Generation This feature is powerful syntactic sugar. When you write code using top-level statements, you are not changing how .NET programs fundamentally work. Behind the scenes, the C# compiler takes your statements and generates the familiar Program class and Main method for you. You only write the code that would have gone inside the Main method. Rules</p>
+<p>Top-level statements, introduced in C# 9, are a major feature designed to simplify the creation of simple programs and make C# more approachable for beginners. This feature allows you to write your main program's executable code directly in a Program.cs file, eliminating the need for the traditional boilerplate ceremony of a Program class and a static void Main method.</p>
+    <h3>How It Works: Compiler Generation</h3>
+<p>This feature is powerful syntactic sugar. NET programs fundamentally work. Behind the scenes, the C# compiler takes your statements and generates the familiar Program class and Main method for you. You only write the code that would have gone inside the Main method.</p>
+    <h3>Rules</h3>
     <ul>
       <li>You can only use top-level statements in one file per project.</li>
       <li>That file becomes the entry point for your application.</li>
-      <li>You can still define methods and classes in the same file, but they must appear after the top-level statements. Example: Before and After Before (Traditional C#): using System; namespace MySimpleApp { class Program { static void Main(string[] args) { Console.WriteLine(&quot;Hello, World!&quot;); } } } After (Modern C# with Top-Level Statements): using System; Console.WriteLine(&quot;Hello, World!&quot;); // You can access command line args via the magic 'args' variable. Console.WriteLine($&quot;There are {args.Length} arguments.&quot;); Interview Perspective</li>
-      <li>Question: &quot;What are top-level statements?&quot;</li>
-      <li>Ideal Answer: &quot;Top-level statements are a C# 9 feature that allows you to write the entry point of a console application without the traditional Program class and Main method boilerplate. It's syntactic sugar where the compiler generates that class structure for you, making simple programs and scripts much cleaner and easier to write.&quot;</li>
+      <li>You can still define methods and classes in the same file, but they must appear after the top-level statements.</li>
     </ul>
+    <h3>Example: Before and After</h3>
+    <h3>Before (Traditional C#)</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>using System;
+namespace MySimpleApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(&quot;Hello, World!&quot;);
+        }
+    }
+}</code></pre>
+    </div>
+  
+    <h3>After (Modern C# with Top-Level Statements)</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>using System;
+Console.WriteLine(&quot;Hello, World!&quot;);
+// You can access command line args via the magic 'args' variable.
+Console.WriteLine($&quot;There are {args.Length} arguments.&quot;);</code></pre>
+    </div>
+  
+
+    <div class="callout callout-tip">
+      <div class="callout-header">
+        <span>🟢 Best Practice & Architecture Tip</span>
+        
+      </div>
+      <div class="callout-content">
+        <ul>
+  <li>Question: &quot;What are top-level statements?&quot;</li>
+  <li>Ideal Answer: &quot;Top-level statements are a C# 9 feature that allows you to</li>
+</ul>
+  <p>write the entry point of a console application without the traditional</p>
+  <p>Program class and Main method boilerplate. It's syntactic sugar where</p>
+  <p>the compiler generates that class structure for you, making simple</p>
+  <p>programs and scripts much cleaner and easier to write.&quot;</p>
+
+      </div>
+    </div>
+  
 
     <h2 id="sec-30-lec-3-file-scoped-namespaces">Lecture 2: File-Scoped Namespaces</h2>
     <h3>Introduction</h3>
-    <p>File-scoped namespaces, introduced in C# 10, are a stylistic improvement that allows you to declare a namespace for an entire file without needing to wrap your code in curly braces {}. How It Works You declare the namespace at the very top of the file, ending the line with a semicolon. Everything in the file below this declaration is considered part of that namespace. Syntax: namespace MyProject.MyFeature; Why and When to Use It The sole purpose is to reduce horizontal nesting and boilerplate code. This makes your code files cleaner, less indented, and slightly easier to read. It is the recommended style for all new C# 10+ projects. Example: Before and After Before (Block-Scoped Namespace): namespace MyProject { public class MyClass { public void MyMethod() { // Code is indented one level deep } } } After (File-Scoped Namespace): namespace MyProject; // No opening brace public class MyClass { public void MyMethod() { // Code is not indented, leading to cleaner files. } } // No closing brace</p>
+<p>File-scoped namespaces, introduced in C# 10, are a stylistic improvement that allows you to declare a namespace for an entire file without needing to wrap your code in curly braces {}.</p>
+    <h3>How It Works</h3>
+<p>You declare the namespace at the very top of the file, ending the line with a semicolon. Everything in the file below this declaration is considered part of that namespace.</p>
+    <h3>Syntax</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>namespace MyProject.MyFeature;</code></pre>
+    </div>
+  
+<p>Why and When to Use It The sole purpose is to reduce horizontal nesting and boilerplate code. This makes your code files cleaner, less indented, and slightly easier to read. It is the recommended style for all new C# 10+ projects.</p>
+    <h3>Example: Before and After</h3>
+    <h3>Before (Block-Scoped Namespace)</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>namespace MyProject
+{
+    public class MyClass
+    {
+        public void MyMethod()
+        {
+            // Code is indented one level deep
+        }
+    }
+}</code></pre>
+    </div>
+  
+    <h3>After (File-Scoped Namespace)</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class MyClass
+{
+    public void MyMethod()
+    {
+        // Code is not indented, leading to cleaner files.
+    }
+}
+// No closing brace</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-4-global-using">Lecture 3: Global Using</h2>
     <h3>Introduction</h3>
-    <p>The global using directive, introduced in C# 10, is a powerful feature that allows you to declare a using directive in one place and have it apply to your entire project. How It Works You prefix a standard using directive with the global keyword. When the compiler sees this, it treats that using statement as if it were present at the top of every single .cs file in the project. Best Practice: It is common practice to create a single, dedicated file (e.g., GlobalUsings.cs) to hold all of your global using directives for better organization. Why and When to Use It Its purpose is to significantly reduce boilerplate code. In any given project, you often repeat the same using directives (using System;, using System.Linq;, using System.Collections.Generic;) in dozens or hundreds of files. global using eliminates this repetition completely. Example Step 1: Create a GlobalUsings.cs file: // This using statement now applies to every file in the project. global using System.Linq; global using System.Collections.Generic; Step 2: Write your class files without repeating the directives. File: ProductService.cs // No need for 'using System.Linq;' or 'using System.Collections.Generic;' here. public class ProductService { public List&lt;string&gt; GetProductNames(List&lt;Product&gt; products) { // We can directly use List&lt;T&gt; and LINQ's .Select() method. return products.Select(p =&gt; p.Name).ToList(); } } File: UserService.cs // No need for 'using System.Linq;' or 'using System.Collections.Generic;' here either. public class UserService { public int CountActiveUsers(List&lt;User&gt; users) { // We can directly use List&lt;T&gt; and LINQ's .Count() method. return users.Count(u =&gt; u.IsActive); } }</p>
+<p>The global using directive, introduced in C# 10, is a powerful feature that allows you to declare a using directive in one place and have it apply to your entire project.</p>
+    <h3>How It Works</h3>
+<p>You prefix a standard using directive with the global keyword. cs file in the project. cs) to hold all of your global using directives for better organization.</p>
+<p>Why and When to Use It Its purpose is to significantly reduce boilerplate code. Generic;) in dozens or hundreds of files. global using eliminates this repetition completely.</p>
+    <h3>Example</h3>
+<p>Step 1: Create a GlobalUsings.cs file:</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// This using statement now applies to every file in the project.
+global using System.Linq;
+global using System.Collections.Generic;</code></pre>
+    </div>
+  
+<p>Step 2: Write your class files without repeating the directives. File: ProductService.cs</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// No need for 'using System.Linq;' or 'using System.Collections.Generic;' here.
+public class ProductService
+{
+    public List&lt;string&gt; GetProductNames(List&lt;Product&gt; products)
+    {
+        // We can directly use List&lt;T&gt; and LINQ's .Select() method.
+        return products.Select(p =&gt; p.Name).ToList();
+    }
+}</code></pre>
+    </div>
+  
+<p>File: UserService.cs</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// No need for 'using System.Linq;' or 'using System.Collections.Generic;' here either.
+public class UserService
+{
+    public int CountActiveUsers(List&lt;User&gt; users)
+    {
+        // We can directly use List&lt;T&gt; and LINQ's .Count() method.
+        return users.Count(u =&gt; u.IsActive);
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-5-module-initializers">Lecture 4: Module Initializers</h2>
     <h3>Introduction</h3>
-    <p>A module initializer is an advanced C# 9 feature that allows you to write code that will run once when an entire assembly (a module, e.g., a .dll or .exe) is loaded by the .NET runtime. How It Works You create a method and mark it with the [ModuleInitializer] attribute. This method must adhere to three rules:</p>
+<p>A module initializer is an advanced C# 9 feature that allows you to write code that will run once when an entire assembly (a module, e.g., a .dll or .exe) is loaded by the .NET runtime.</p>
+    <h3>How It Works</h3>
+<p>You create a method and mark it with the [ModuleInitializer] attribute. This method must adhere to three rules:</p>
     <ol>
       <li>It must be static.</li>
       <li>It must be parameterless.</li>
@@ -476,251 +658,1370 @@
     </ol>
     <ul>
       <li>Pre-caching data: A library could start pre-caching required data as soon as it's loaded.</li>
-      <li>Complex Setup: Running one-time setup logic, like registering components with a dependency injection framework or setting up interop with native libraries. Example using System.Runtime.CompilerServices; class MyLibrary { // This method will run automatically when the assembly is loaded. [ModuleInitializer] internal static void Initialize() { Console.WriteLine(&quot;MyLibrary module is initializing...&quot;); // Perform one-time setup here. } }</li>
+      <li><strong>Complex Setup:</strong> Running one-time setup logic, like registering components with a dependency injection framework or setting up interop with native libraries.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>using System.Runtime.CompilerServices;
+class MyLibrary
+{
+    // This method will run automatically when the assembly is loaded. [ModuleInitializer]
+    internal static void Initialize()
+    {
+        Console.WriteLine(&quot;MyLibrary module is initializing...&quot;);
+        // Perform one-time setup here.
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-6-nullable-reference-types">Lecture 5: Nullable Reference Types</h2>
     <h3>Introduction</h3>
-    <p>This is a major language feature (introduced in C# 8, but central to modern C#) that redefines how reference types work in order to help developers prevent NullReferenceException errors at compile time. How It Works: Flipping the Default Assumption When you enable this feature in your project file (&lt;Nullable&gt;enable&lt;/ Nullable&gt;), the compiler's default assumption about reference types flips.</p>
+<p>This is a major language feature (introduced in C# 8, but central to modern C#) that redefines how reference types work in order to help developers prevent NullReferenceException errors at compile time.</p>
+    <h3>How It Works</h3>
+<p>Flipping the Default Assumption When you enable this feature in your project file (&lt;Nullable&gt;enable&lt;/ Nullable&gt;), the compiler's default assumption about reference types flips.</p>
     <ul>
       <li>Non-Nullable by Default (string) A standard reference type like string is now considered non-nullable. The compiler expects it to always hold a valid object reference. It will issue a warning if you:</li>
       <li>Try to assign null to it.</li>
       <li>Don't initialize it to a non-null value before use.</li>
-      <li>Explicitly Nullable (string?) To declare a reference type that is allowed to be null, you must explicitly use the nullable annotation ?. When you do this, the compiler then enforces a new rule: it will warn you if you try to use this variable without first checking if it is null. Why It's Important This feature moves null-related errors from unpredictable run-time crashes to predictable compile-time warnings. It forces you to be explicit and conscious about where null is allowed in your program, making your code dramatically safer and more robust. Example // In a project with &lt;Nullable&gt;enable&lt;/Nullable&gt; public void PrintName(string firstName, string? middleName, string lastName) { // The compiler trusts that 'firstName' and 'lastName' are not null. Console.WriteLine($&quot;First: {firstName.ToUpper()}&quot;); // The compiler gives a WARNING on the next line because 'middleName' could be null. // Console.WriteLine($&quot;Middle initial: {middleName.First()}&quot;); // This is the correct, safe way to handle the nullable type. if (middleName != null) { Console.WriteLine($&quot;Middle initial: {middleName.First()}&quot;); } Console.WriteLine($&quot;Last: {lastName.ToUpper()}&quot;); }</li>
+      <li>Explicitly Nullable (string?) To declare a reference type that is allowed to be null, you must explicitly use the nullable annotation ?. When you do this, the compiler then enforces a new rule: it will warn you if you try to use this variable without first checking if it is null. Why It's Important This feature moves null-related errors from unpredictable run-time crashes to predictable compile-time warnings. It forces you to be explicit and conscious about where null is allowed in your program, making your code dramatically safer and more robust.</li>
     </ul>
+    <h3>Example</h3>
 
-    <h2 id="sec-30-lec-7-null-forgiving-operator">Lecture 6: Null-Forgiving Operator</h2>
-    <h3>Introduction</h3>
-    <p>The null-forgiving operator (also known as the null-suppression operator) is the exclamation mark (!). It is a special operator used only when you have enabled Nullable Reference Types. Its purpose is to tell the C# compiler to suppress a possible &quot;may be null&quot; warning. How It Works: A Promise to the Compiler This operator has no effect at run-time. It does not check for null or prevent a NullReferenceException. It is purely a compile-time instruction. When you use myNullableVariable!, you are making a promise to the compiler: &quot;I, the developer, know more than your static analysis in this specific situation. I have performed a check or have other knowledge that guarantees this value is not null right here. Please stop warning me about it.&quot; If your guarantee is wrong and the variable is null at run-time, your program will still crash with a NullReferenceException. You are taking on the responsibility for the null check yourself. Why and When to Use It (With Caution) You should use this operator sparingly. Overusing it defeats the entire purpose of the nullable reference types feature. The primary valid use case is when you have checked for null in a way that the compiler's flow analysis cannot understand. Example: Using a Helper Method The compiler can't see inside the IsNotNull method, so it doesn't know that user is safe to use after the call. public void ProcessUser(User? user) { // This helper method throws an exception if the user is null. EnsureNotNull(user); // Even after the check, the compiler still warns that 'user' may be null here. // We use the null-forgiving operator '!' to tell the compiler it's safe. Console.WriteLine($&quot;Processing user: {user!.Name}&quot;); } public void EnsureNotNull(object? obj) { if (obj == null) { throw new ArgumentNullException(); } }</p>
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// In a project with &lt;Nullable&gt;enable&lt;/Nullable&gt;</code></pre>
+    </div>
+  
+<p>lastName)</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // The compiler trusts that 'firstName' and 'lastName' are not null.
+    Console.WriteLine($&quot;First: {firstName.ToUpper()}&quot;);
+    // The compiler gives a WARNING on the next line because 'middleName' could be null.
+    // Console.WriteLine($&quot;Middle initial: {middleName.First()}&quot;);
+    // This is the correct, safe way to handle the nullable type.
+    if (middleName != null)
+    {
+        Console.WriteLine($&quot;Middle initial: {middleName.First()}&quot;);
+    }
+    Console.WriteLine($&quot;Last: {lastName.ToUpper()}&quot;);
+}</code></pre>
+    </div>
+  
+
+    <h2 id="sec-30-lec-7-null-forgiving-operator-introduction">Lecture 6: Null-Forgiving Operator Introduction</h2>
+<p>The null-forgiving operator (also known as the null-suppression operator) is the exclamation mark (!). It is a special operator used only when you have enabled Nullable Reference Types. Its purpose is to tell the C# compiler to suppress a possible &quot;may be null&quot; warning.</p>
+    <h3>How It Works</h3>
+<p>A Promise to the Compiler This operator has no effect at run-time. It does not check for null or prevent a NullReferenceException. It is purely a compile-time instruction.</p>
+<p>, you are making a promise to the compiler: &quot;I, the developer, know more than your static analysis in this specific situation. I have performed a check or have other knowledge that guarantees this value is not null right here. &quot; If your guarantee is wrong and the variable is null at run-time, your program will still crash with a NullReferenceException.</p>
+<p>You are taking on the responsibility for the null check yourself. Why and When to Use It (With Caution) You should use this operator sparingly. Overusing it defeats the entire purpose of the nullable reference types feature.</p>
+<p>The primary valid use case is when you have checked for null in a way that the compiler's flow analysis cannot understand.</p>
+    <h3>Example</h3>
+<p>Using a Helper Method The compiler can't see inside the IsNotNull method, so it doesn't know that user is safe to use after the call.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // This helper method throws an exception if the user is null.
+    EnsureNotNull(user);
+    // Even after the check, the compiler still warns that 'user' may be null here.
+    // We use the null-forgiving operator '!' to tell the compiler it's safe.
+    Console.WriteLine($&quot;Processing user: {user!.Name}&quot;);
+}</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    if (obj == null)
+    {
+        throw new ArgumentNullException();
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-8-target-typed-new-expressions">Lecture 7: Target-Typed 'new' Expressions</h2>
     <h3>Introduction</h3>
-    <p>This C# 9 feature provides a more concise syntax for object instantiation. It allows you to omit the type name in a new expression when the compiler can already infer the type from the context (i.e., from the variable declaration or method parameter). How It Works If the compiler already knows what type of object needs to be created, you can simply use new() instead of new MyClassName(). Why and When to Use It It reduces code repetition and boilerplate, especially when working with long type names or generic types. It's most useful in two common scenarios:</p>
+<p>This C# 9 feature provides a more concise syntax for object instantiation. It allows you to omit the type name in a new expression when the compiler can already infer the type from the context (i.e., from the variable declaration or method parameter).</p>
+    <h3>How It Works</h3>
+<p>If the compiler already knows what type of object needs to be created, you can simply use new() instead of new MyClassName(). Why and When to Use It It reduces code repetition and boilerplate, especially when working with long type names or generic types. It's most useful in two common scenarios:</p>
     <ol>
-      <li>Initializing Fields and Properties: When declaring a field or property, the type is already specified on the left side.</li>
-      <li>Passing Arguments to Methods: When passing a new object as an argument, the method's parameter type provides the context. Example // A class to demonstrate with public class User { public User(string name) { Name = name; } public string Name; } public class UserManager { // Use Case 1: Initializing a field. // Before: private List&lt;User&gt; _users = new List&lt;User&gt;(); private List&lt;User&gt; _users = new(); // C# 9: Type is inferred from '_users'. public void AddUser() { // Use Case 2: Declaring a local variable. // Before: User newUser = new User(&quot;Alice&quot;); User newUser = new(&quot;Alice&quot;); // C# 9: Type is inferred from 'newUser'. _users.Add(newUser); } }</li>
+      <li><strong>Initializing Fields and Properties:</strong> When declaring a field or property, the type is already specified on the left side.</li>
+      <li><strong>Passing Arguments to Methods:</strong> When passing a new object as an argument, the method's parameter type provides the context.</li>
     </ol>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// A class to demonstrate with
+public class User { public User(string name) { Name = name; } public
+string Name; }
+public class UserManager
+{
+    // Use Case 1: Initializing a field.
+    // Before: private List&lt;User&gt; _users = new List&lt;User&gt;();
+    private List&lt;User&gt; _users = new(); // C# 9: Type is inferred from '_users'.
+    public void AddUser()
+    {
+        // Use Case 2: Declaring a local variable.
+        // Before: User newUser = new User(&quot;Alice&quot;);
+        User newUser = new(&quot;Alice&quot;); // C# 9: Type is inferred from 'newUser'.
+        _users.Add(newUser);
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-9-intro-why-to-use-pattern-matching">Lecture 8: Intro &amp; Why to use Pattern Matching</h2>
     <h3>Introduction</h3>
-    <p>Pattern matching is a powerful suite of features in modern C# that provides a more declarative and readable way to check if a variable conforms to a certain &quot;shape&quot; or &quot;pattern,&quot; and to extract information from it if it does. Why Use It: Beyond Simple Equality Before pattern matching, if and switch statements were limited. You could check for equality (if (x == 5)), or check a type (if (x is MyClass)), but combining these checks was often verbose and clunky. Pattern matching evolves this by allowing you to express complex conditional logic based on both the type of an object and its state (the values of its properties) in a single, concise expression. It fundamentally makes your code more declarative—you describe the &quot;pattern&quot; of the data you're interested in, rather than writing a long series of imperative checks. This leads to code that is often more readable, less error-prone, and easier to maintain. The following lectures will explore the specific patterns that make this possible.</p>
+<p>Pattern matching is a powerful suite of features in modern C# that provides a more declarative and readable way to check if a variable conforms to a certain &quot;shape&quot; or &quot;pattern,&quot; and to extract information from it if it does. Why Use It: Beyond Simple Equality</p>
+<p>Before pattern matching, if and switch statements were limited. You could check for equality (if (x == 5)), or check a type (if (x is MyClass)), but combining these checks was often verbose and clunky. Pattern matching evolves this by allowing you to express complex conditional logic based on both the type of an object and its state (the values of its properties) in a single, concise expression.</p>
+<p>It fundamentally makes your code more declarative—you describe the &quot;pattern&quot; of the data you're interested in, rather than writing a long series of imperative checks. This leads to code that is often more readable, less error-prone, and easier to maintain. The following lectures will explore the specific patterns that make this possible.</p>
 
     <h2 id="sec-30-lec-10-pattern-matching-type-pattern">Lecture 9: Pattern Matching - Type Pattern</h2>
     <h3>Introduction</h3>
-    <p>The type pattern is the most fundamental pattern. It improves upon the old is operator by not only checking the run-time type of an object but also, if the check succeeds, assigning that object to a new, strongly-typed variable that is immediately available for use. How It Works This pattern avoids the old, clunky two-step process of checking a type and then casting it. The Old Way: if (myObject is string) { string s = (string)myObject; Console.WriteLine($&quot;The string has {s.Length} characters.&quot;); } The Modern Type Pattern: is Type variableName if (myObject is string s) // Check and assign in one step. { // The variable 's' is now in scope and is strongly-typed as a string. Console.WriteLine($&quot;The string has {s.Length} characters.&quot;); } Example public void ProcessValue(object value) { // Use the type pattern to handle different data types gracefully. if (value is string s) { Console.WriteLine($&quot;Received a string with length: {s.Length}&quot;); } else if (value is int i) { Console.WriteLine($&quot;Received an integer. Its square is: {i * i}&quot;); } }</p>
+<p>The type pattern is the most fundamental pattern. It improves upon the old is operator by not only checking the run-time type of an object but also, if the check succeeds, assigning that object to a new, strongly-typed variable that is immediately available for use.</p>
+    <h3>How It Works</h3>
+<p>This pattern avoids the old, clunky two-step process of checking a type and then casting it. The Old Way:</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    string s = (string)myObject;
+    Console.WriteLine($&quot;The string has {s.Length} characters.&quot;);
+}</code></pre>
+    </div>
+  
+<p>The Modern Type Pattern: is Type variableName if (myObject is string s) // Check and assign in one step.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    // The variable 's' is now in scope and is strongly-typed as a string.
+    Console.WriteLine($&quot;The string has {s.Length} characters.&quot;);
+}
+Example
+public void ProcessValue(object value)
+{
+    // Use the type pattern to handle different data types gracefully. if (value is string s)
+    {
+        Console.WriteLine($&quot;Received a string with length: {s.Length}&quot;);
+    }
+    else if (value is int i)
+    {
+        Console.WriteLine($&quot;Received an integer. Its square is: {i * i}&quot;);
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-11-pattern-matching-switch-case-pattern">Lecture 10: Pattern Matching - Switch-Case Pattern</h2>
     <h3>Introduction</h3>
-    <p>Starting in C# 7.0, the traditional switch statement was enhanced to support pattern matching, allowing it to switch on the type of an object, not just constant values like integers or strings. How It Works You can use the type pattern directly in a case label. This provides a much cleaner and more readable alternative to a long chain of if-else if statements when you need to perform different actions based on an object's runtime type. Syntax: case Type variableName: Example Let's refactor the previous example to use a switch statement, which is often more organized when there are many types to check. public abstract class Shape { } public class Circle : Shape { public double Radius; } public class Rectangle : Shape { public double Width, Height; } public void PrintShapeInfo(Shape shape) { switch (shape) { case Circle c: // If 'shape' is a Circle, assign it to 'c'. Console.WriteLine($&quot;This is a circle with radius {c.Radius}.&quot;); break; case Rectangle r: // If 'shape' is a Rectangle, assign it to 'r'. Console.WriteLine($&quot;This is a rectangle with width {r.Width}.&quot;); break; case null: // You can even specifically check for null. Console.WriteLine(&quot;The shape is null.&quot;); break; default: Console.WriteLine(&quot;This is an unknown shape.&quot;); break; } }</p>
+<p>Starting in C# 7.0, the traditional switch statement was enhanced to support pattern matching, allowing it to switch on the type of an object, not just constant values like integers or strings.</p>
+    <h3>How It Works</h3>
+<p>You can use the type pattern directly in a case label. This provides a much cleaner and more readable alternative to a long chain of if-else if statements when you need to perform different actions based on an object's runtime type.</p>
+    <h3>Syntax: case Type variableName:</h3>
+    <h3>Example</h3>
+<p>Let's refactor the previous example to use a switch statement, which is often more organized when there are many types to check.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public abstract class Shape { }
+public class Circle : Shape { public double Radius; }
+public class Rectangle : Shape { public double Width, Height; }
+public void PrintShapeInfo(Shape shape)
+{
+    switch (shape)
+    {
+        case Circle c: // If 'shape' is a Circle, assign it to 'c'.
+        Console.WriteLine($&quot;This is a circle with radius {c.Radius}.&quot;);
+        break;
+        case Rectangle r: // If 'shape' is a Rectangle, assign it to 'r'.
+        Console.WriteLine($&quot;This is a rectangle with width {r.Width}.&quot;);
+        break;
+        case null: // You can even specifically check for null.
+        Console.WriteLine(&quot;The shape is null.&quot;);
+        break;
+        default:
+        Console.WriteLine(&quot;This is an unknown shape.&quot;);
+        break;
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-12-pattern-matching-when-pattern">Lecture 11: Pattern Matching - when Pattern</h2>
     <h3>Introduction</h3>
-    <p>The when keyword can be used to add an additional boolean condition, or filter, to a case in a switch statement. This allows you to create much more specific and powerful case labels. How It Works A case with a when clause will only be executed if both the primary pattern (e.g., the type pattern) matches and the condition in the when clause evaluates to true. Syntax: case Type variableName when (condition): When to Use It Use a when clause to distinguish between objects of the same type but with different states. For example, you can have one case for a Product when its IsOnSale property is true, and another case for the same Product type when it's false. Example public class Order { public decimal Total; } public void ProcessOrder(object order) { switch (order) { // This case ONLY matches if the object is an Order AND its Total is over 5000. case Order o when o.Total &gt; 5000: Console.WriteLine(&quot;Applying high-value order protocol.&quot;); break; // This case matches any other Order that didn't match the case above. case Order o: Console.WriteLine(&quot;Processing standard order.&quot;); break; default: Console.WriteLine(&quot;Not a valid order object.&quot;); break; } }</p>
+<p>The when keyword can be used to add an additional boolean condition, or filter, to a case in a switch statement. This allows you to create much more specific and powerful case labels.</p>
+    <h3>How It Works</h3>
+<p>A case with a when clause will only be executed if both the primary pattern (e.g., the type pattern) matches and the condition in the when clause evaluates to true.</p>
+    <h3>Syntax</h3>
+<p>case Type variableName when (condition):</p>
+    <h3>When to Use It</h3>
+<p>Use a when clause to distinguish between objects of the same type but with different states. For example, you can have one case for a Product when its IsOnSale property is true, and another case for the same Product type when it's false.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class Order { public decimal Total; }
+public void ProcessOrder(object order)
+{
+    switch (order)
+    {
+        // This case ONLY matches if the object is an Order AND its Total is over 5000.
+        case Order o when o.Total &gt; 5000:
+        Console.WriteLine(&quot;Applying high-value order protocol.&quot;);
+        break;
+        // This case matches any other Order that didn't match the case above.
+        case Order o:
+        Console.WriteLine(&quot;Processing standard order.&quot;);
+        break;
+        default:
+        Console.WriteLine(&quot;Not a valid order object.&quot;);
+        break;
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-13-pattern-matching-switch-expression">Lecture 12: Pattern Matching - Switch Expression</h2>
     <h3>Introduction</h3>
-    <p>A switch expression, introduced in C# 8.0 and enhanced in later versions, is a modern, concise, and expression-based alternative to the traditional switch statement. The key difference is that a switch statement performs actions, while a switch expression produces a value. How It Works: Syntax The syntax is much more compact and functional in style: variableToInspect switch { pattern1 =&gt; result1, pattern2 =&gt; result2, _ =&gt; defaultResult };</p>
+<p>A switch expression, introduced in C# 8.0 and enhanced in later versions, is a modern, concise, and expression-based alternative to the traditional switch statement. The key difference is that a switch statement performs actions, while a switch expression produces a value.</p>
+    <h3>How It Works: Syntax</h3>
+<p>The syntax is much more compact and functional in style: variableToInspect switch { pattern1 =&gt; result1, pattern2 =&gt; result2, _ =&gt; defaultResult };</p>
     <ul>
       <li>variable switch { ... }: The variable being checked comes first.</li>
       <li>pattern =&gt; result,: Each line is an &quot;arm.&quot; It consists of a pattern, the =&gt; operator, the result to produce if the pattern matches, and a comma.</li>
-      <li>_: The discard pattern acts as the default case and is often required by the compiler to ensure the expression is exhaustive (handles all possible inputs). Why and When to Use It Use a switch expression when you need to get a single value based on a series of pattern matches. It is far cleaner and less error-prone than a traditional switch statement where every case block contains a return statement. Example Let's refactor our Shape example to a method that returns a descriptive string for each shape type. public string GetShapeDescription(Shape shape) =&gt; shape switch { // The pattern is on the left, the result is on the right. Circle c =&gt; $&quot;A red circle with radius {c.Radius}&quot;, Rectangle r =&gt; $&quot;A blue rectangle with width {r.Width}&quot;, _ =&gt; &quot;An unknown shape.&quot; // The discard pattern for the default case. };</li>
+      <li>_: The discard pattern acts as the default case and is often required by the compiler to ensure the expression is exhaustive (handles all possible inputs). Why and When to Use It Use a switch expression when you need to get a single value based on a series of pattern matches. It is far cleaner and less error-prone than a traditional switch statement where every case block contains a return statement.</li>
     </ul>
+    <h3>Example</h3>
+<p>Let's refactor our Shape example to a method that returns a descriptive string for each shape type.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public string GetShapeDescription(Shape shape) =&gt; shape switch
+{
+    // The pattern is on the left, the result is on the right.
+    Circle c =&gt; $&quot;A red circle with radius {c.Radius}&quot;,
+    Rectangle r =&gt; $&quot;A blue rectangle with width {r.Width}&quot;,
+    _ =&gt; &quot;An unknown shape.&quot; // The discard pattern for the default case.
+};</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-14-pattern-matching-relational-and-logical-patte">Lecture 13: Pattern Matching - Relational and Logical Patterns</h2>
     <h3>Introduction</h3>
-    <p>C# 9 significantly enhanced pattern matching by introducing relational patterns (&lt;, &gt;, &lt;=, &gt;=) and logical patterns (and, or, not). These allow you to use comparisons and combine patterns directly within a case or switch expression arm. How It Works These keywords allow you to create powerful, declarative checks that are highly readable.</p>
+<p>C# 9 significantly enhanced pattern matching by introducing relational patterns (&lt;, &gt;, &lt;=, &gt;=) and logical patterns (and, or, not). These allow you to use comparisons and combine patterns directly within a case or switch expression arm.</p>
+    <h3>How It Works</h3>
+<p>These keywords allow you to create powerful, declarative checks that are highly readable.</p>
     <ul>
-      <li>Relational Patterns: Compare a value against a constant.</li>
-      <li>Logical Patterns: Combine other patterns. and requires both patterns to match. or requires either pattern to match. not negates a pattern. Example: A Temperature Categorizer public string CategorizeTemperature(double temp) =&gt; temp switch { &lt; -10.0 =&gt; &quot;Extreme cold&quot;, &gt;= -10.0 and &lt; 0 =&gt; &quot;Freezing&quot;, &gt;= 0 and &lt; 15.0 =&gt; &quot;Cold&quot;, &gt;= 15.0 and &lt; 25.0 =&gt; &quot;Moderate&quot;, &gt;= 25.0 and &lt;= 35.0 =&gt; &quot;Hot&quot;, &gt; 35.0 =&gt; &quot;Extreme heat&quot; }; Console.WriteLine(CategorizeTemperature(20)); // Output: Moderate Console.WriteLine(CategorizeTemperature(32)); // Output: Hot</li>
+      <li><strong>Relational Patterns:</strong> Compare a value against a constant.</li>
+      <li><strong>Logical Patterns:</strong> Combine other patterns. and requires both patterns to match. or requires either pattern to match. not negates a pattern.</li>
     </ul>
+    <h3>Example</h3>
+<p>A Temperature Categorizer</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public string CategorizeTemperature(double temp) =&gt; temp switch
+{
+    &lt; -10.0 =&gt; &quot;Extreme cold&quot;,
+    &gt;= -10.0 and &lt; 0 =&gt; &quot;Freezing&quot;,
+    &gt;= 0 and &lt; 15.0 =&gt; &quot;Cold&quot;,
+    &gt;= 15.0 and &lt; 25.0 =&gt; &quot;Moderate&quot;,
+    &gt;= 25.0 and &lt;= 35.0 =&gt; &quot;Hot&quot;,
+    &gt; 35.0 =&gt; &quot;Extreme heat&quot;
+};
+Console.WriteLine(CategorizeTemperature(20)); // Output: Moderate
+Console.WriteLine(CategorizeTemperature(32)); // Output: Hot</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-15-pattern-matching-property-pattern">Lecture 14: Pattern Matching - Property Pattern</h2>
     <h3>Introduction</h3>
-    <p>The property pattern allows you to match an object based on the values of its public properties or fields. This lets your conditional logic depend not just on the type of an object, but on its internal state. How It Works You use curly braces { } to specify the properties you want to check. Inside the braces, you list the property names followed by a colon and another pattern to match against. Syntax: { PropertyName1: pattern1, PropertyName2: pattern2 } Example: Calculating Vehicle Toll Let's create a method that calculates a vehicle toll based on its type and properties. public abstract class Vehicle { } public class Car : Vehicle { public int PassengerCount { get; set; } } public class Bus : Vehicle { public int Capacity { get; set; } } public class DeliveryTruck : Vehicle { public int WeightKg { get; set; } } public decimal CalculateToll(Vehicle vehicle) =&gt; vehicle switch { // Property pattern checks the PassengerCount property. Car { PassengerCount: 0 } =&gt; 2.00m + 0.50m, // Empty car extra charge Car { PassengerCount: 1 } =&gt; 2.00m, Car { PassengerCount: 2 } =&gt; 1.50m, // Property pattern with a relational pattern. Bus { Capacity: &gt; 40 } =&gt; 5.00m, Bus =&gt; 3.50m, // Matches any other bus // Property pattern with a 'when' clause for more complex logic. DeliveryTruck t when t.WeightKg &gt; 5000 =&gt; 7.50m, DeliveryTruck =&gt; 4.50m, _ =&gt; 2.50m // Default for unknown vehicles };</p>
+<p>The property pattern allows you to match an object based on the values of its public properties or fields. This lets your conditional logic depend not just on the type of an object, but on its internal state.</p>
+    <h3>How It Works</h3>
+<p>You use curly braces { } to specify the properties you want to check. Inside the braces, you list the property names followed by a colon and another pattern to match against.</p>
+    <h3>Syntax</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{ PropertyName1: pattern1, PropertyName2: pattern2 }</code></pre>
+    </div>
+  
+    <h3>Example: Calculating Vehicle Toll</h3>
+<p>Let's create a method that calculates a vehicle toll based on its type and properties.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public abstract class Vehicle { }
+public class Car : Vehicle { public int PassengerCount { get; set; } }
+public class Bus : Vehicle { public int Capacity { get; set; } }
+public class DeliveryTruck : Vehicle { public int WeightKg { get; set; } }
+public decimal CalculateToll(Vehicle vehicle) =&gt; vehicle switch
+{
+    // Property pattern checks the PassengerCount property.
+    Car { PassengerCount: 0 } =&gt; 2.00m + 0.50m, // Empty car extra charge
+    Car { PassengerCount: 1 } =&gt; 2.00m,
+    Car { PassengerCount: 2 } =&gt; 1.50m,
+    // Property pattern with a relational pattern.
+    Bus { Capacity: &gt; 40 } =&gt; 5.00m,
+    Bus =&gt; 3.50m, // Matches any other bus
+    // Property pattern with a 'when' clause for more complex logic.
+    DeliveryTruck t when t.WeightKg &gt; 5000 =&gt; 7.50m,
+    DeliveryTruck =&gt; 4.50m,
+    _ =&gt; 2.50m // Default for unknown vehicles
+};</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-16-pattern-matching-tuple-pattern">Lecture 15: Pattern Matching - Tuple Pattern</h2>
     <h3>Introduction</h3>
-    <p>The tuple pattern allows you to perform pattern matching on the elements of a tuple. You can match against literal values or use other patterns for each element of the tuple. How It Works You use parentheses (pattern1, pattern2, ...) to match the corresponding elements of an input tuple. This is extremely powerful in switch expressions where the input is a tuple representing a combination of states. Example: Rock-Paper-Scissors Game Logic public string GetGameResult(string player1Move, string player2Move) =&gt; (player1Move, player2Move) switch { // Player 1 wins (&quot;rock&quot;, &quot;scissors&quot;) =&gt; &quot;Player 1 wins&quot;, (&quot;scissors&quot;, &quot;paper&quot;) =&gt; &quot;Player 1 wins&quot;, (&quot;paper&quot;, &quot;rock&quot;) =&gt; &quot;Player 1 wins&quot;, // Player 2 wins (&quot;scissors&quot;, &quot;rock&quot;) =&gt; &quot;Player 2 wins&quot;, (&quot;paper&quot;, &quot;scissors&quot;) =&gt; &quot;Player 2 wins&quot;, (&quot;rock&quot;, &quot;paper&quot;) =&gt; &quot;Player 2 wins&quot;, // Draw (using a 'when' clause for a more complex condition) (var p1, var p2) when p1 == p2 =&gt; &quot;It's a draw&quot;, // Default case _ =&gt; &quot;Invalid moves&quot; }; Console.WriteLine(GetGameResult(&quot;rock&quot;, &quot;scissors&quot;)); // Output: Player 1 wins Console.WriteLine(GetGameResult(&quot;paper&quot;, &quot;paper&quot;)); // Output: It's a draw</p>
+<p>The tuple pattern allows you to perform pattern matching on the elements of a tuple. You can match against literal values or use other patterns for each element of the tuple.</p>
+    <h3>How It Works</h3>
+<p>You use parentheses (pattern1, pattern2, ...) to match the corresponding elements of an input tuple. This is extremely powerful in switch expressions where the input is a tuple representing a combination of states.</p>
+    <h3>Example: Rock-Paper-Scissors Game Logic</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public string GetGameResult(string player1Move, string player2Move) =&gt;
+(player1Move, player2Move) switch
+{
+    // Player 1 wins
+    (&quot;rock&quot;, &quot;scissors&quot;) =&gt; &quot;Player 1 wins&quot;,
+    (&quot;scissors&quot;, &quot;paper&quot;) =&gt; &quot;Player 1 wins&quot;,
+    (&quot;paper&quot;, &quot;rock&quot;) =&gt; &quot;Player 1 wins&quot;,
+    // Player 2 wins
+    (&quot;scissors&quot;, &quot;rock&quot;) =&gt; &quot;Player 2 wins&quot;,
+    (&quot;paper&quot;, &quot;scissors&quot;) =&gt; &quot;Player 2 wins&quot;,
+    (&quot;rock&quot;, &quot;paper&quot;) =&gt; &quot;Player 2 wins&quot;,
+    // Draw (using a 'when' clause for a more complex condition)
+    (var p1, var p2) when p1 == p2 =&gt; &quot;It's a draw&quot;,
+    // Default case
+    _ =&gt; &quot;Invalid moves&quot;
+};
+Console.WriteLine(GetGameResult(&quot;rock&quot;, &quot;scissors&quot;)); // Output: Player 1
+wins
+Console.WriteLine(GetGameResult(&quot;paper&quot;, &quot;paper&quot;)); // Output: It's a
+draw</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-17-pattern-matching-positional-pattern">Lecture 16: Pattern Matching - Positional Pattern</h2>
     <h3>Introduction</h3>
-    <p>The positional pattern provides another way to deconstruct an object and match against its values. It relies on an accessible Deconstruct method being present on the object's type. How It Works Instead of using property names in curly braces, you use parentheses (pattern1, pattern2, ...) to match the values that would be returned by the Deconstruct method in order. record types (which we'll see later) are perfect for this as they get a Deconstruct method automatically. Example Let's define a Point with a Deconstruct method and use positional patterns. public class Point { public int X { get; set; } public int Y { get; set; } // This method enables positional pattern matching. public void Deconstruct(out int x, out int y) { x = this.X; y = this.Y; } } public string CheckPoint(Point p) =&gt; p switch { // Positional pattern to check if the point is at the origin. (0, 0) =&gt; &quot;At the origin&quot;, // Positional pattern using relational patterns. (&gt; 0, &gt; 0) =&gt; &quot;In the first quadrant&quot;, // Positional pattern capturing a value. (var x, 0) =&gt; $&quot;On the X-axis at {x}&quot;, // Default case _ =&gt; &quot;Somewhere else&quot; };</p>
+<p>The positional pattern provides another way to deconstruct an object and match against its values. It relies on an accessible Deconstruct method being present on the object's type.</p>
+    <h3>How It Works</h3>
+<p>Instead of using property names in curly braces, you use parentheses (pattern1, pattern2, ...) to match the values that would be returned by the Deconstruct method in order. record types (which we'll see later) are perfect for this as they get a Deconstruct method automatically.</p>
+    <h3>Example</h3>
+<p>Let's define a Point with a Deconstruct method and use positional patterns.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class Point
+{
+    public int X { get; set; }
+    public int Y { get; set; }
+    // This method enables positional pattern matching. public void Deconstruct(out int x, out int y)
+    {
+        x = this.X;
+        y = this.Y;
+    }
+}
+public string CheckPoint(Point p) =&gt; p switch
+{
+    // Positional pattern to check if the point is at the origin.
+    (0, 0) =&gt; &quot;At the origin&quot;,
+    // Positional pattern using relational patterns.
+    (&gt; 0, &gt; 0) =&gt; &quot;In the first quadrant&quot;,
+    // Positional pattern capturing a value.
+    (var x, 0) =&gt; $&quot;On the X-axis at {x}&quot;,
+    // Default case
+    _ =&gt; &quot;Somewhere else&quot;
+};</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-18-pattern-matching-extended-property-pattern">Lecture 17: Pattern Matching - Extended Property Pattern</h2>
     <h3>Introduction</h3>
-    <p>The extended property pattern, introduced in C# 10, is a simplification that makes it easier to write patterns that check nested properties. How It Works Instead of nesting property patterns, you can now use a &quot;dot&quot; notation directly within a single set of curly braces. The Old Way (before C# 10): { Customer: { Address: { Country: &quot;USA&quot; } } } The New, Flatter Way (C# 10+): { Customer.Address.Country: &quot;USA&quot; } Example public class Address { public string Country { get; set; } } public class Customer { public Address Address { get; set; } } public class Order { public Customer Customer { get; set; } } public decimal GetShippingRate(Order order) =&gt; order switch { // Using the extended property pattern is much cleaner. { Customer.Address.Country: &quot;USA&quot; } =&gt; 5.00m, { Customer.Address.Country: &quot;Canada&quot; } =&gt; 10.00m, _ =&gt; 25.00m };</p>
+<p>The extended property pattern, introduced in C# 10, is a simplification that makes it easier to write patterns that check nested properties.</p>
+    <h3>How It Works</h3>
+<p>Instead of nesting property patterns, you can now use a &quot;dot&quot; notation directly within a single set of curly braces. The Old Way (before C# 10): { Customer: { Address: { Country: &quot;USA&quot; } } } The New, Flatter Way (C# 10+): { Customer.Address.Country: &quot;USA&quot; }</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class Address { public string Country { get; set; } }
+public class Customer { public Address Address { get; set; } }
+public class Order { public Customer Customer { get; set; } }
+public decimal GetShippingRate(Order order) =&gt; order switch
+{
+    // Using the extended property pattern is much cleaner.
+    { Customer.Address.Country: &quot;USA&quot; } =&gt; 5.00m,
+    { Customer.Address.Country: &quot;Canada&quot; } =&gt; 10.00m,
+    _ =&gt; 25.00m
+};</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-19-need-of-immutable-classes">Lecture 18: Need of Immutable Classes</h2>
     <h3>Introduction</h3>
-    <p>Immutability is a programming concept where an object's state cannot be changed after it has been created. In contrast, a mutable object is one whose state can be modified after creation. While mutability is the default for most classes in C#, creating immutable types is a powerful technique for writing safer, more predictable, and more maintainable code. The Problem with Mutability Mutable objects can introduce significant complexity and bugs, especially in large applications.</p>
+<p>Immutability is a programming concept where an object's state cannot be changed after it has been created. In contrast, a mutable object is one whose state can be modified after creation. While mutability is the default for most classes in C#, creating immutable types is a powerful technique for writing safer, more predictable, and more maintainable code.</p>
+<p>The Problem with Mutability Mutable objects can introduce significant complexity and bugs, especially in large applications.</p>
     <ol>
-      <li>Unpredictable State Changes: When a mutable object is passed around to different parts of an application, any part of that application can change the object's properties. This can lead to unexpected side effects where a change in one system causes a bug in a completely different, seemingly unrelated system. Debugging these issues can be a nightmare because you have to track down every piece of code that could have possibly touched the object.</li>
+      <li><strong>Unpredictable State Changes:</strong> When a mutable object is passed around to different parts of an application, any part of that application can change the object's properties. This can lead to unexpected side effects where a change in one system causes a bug in a completely different, seemingly unrelated system. Debugging these issues can be a nightmare because you have to track down every piece of code that could have possibly touched the object.</li>
       <li>Multi-threading Issues: When multiple threads try to read from and write to the same mutable object concurrently, it can lead to race conditions and data corruption. Protecting mutable state in a multi- threaded environment requires complex and error-prone locking mechanisms (lock statements). The Benefit of Immutability Immutable objects solve these problems.</li>
     </ol>
     <ul>
-      <li>Predictability: If you have a reference to an immutable object, you can be 100% certain that its data is the same as when it was created. It can be passed around freely without fear of side effects.</li>
+      <li><strong>Predictability:</strong> If you have a reference to an immutable object, you can be 100% certain that its data is the same as when it was created. It can be passed around freely without fear of side effects.</li>
       <li>Inherent Thread-Safety: Since their state can never change, immutable objects are inherently thread-safe. Multiple threads can read from the same immutable object concurrently without any need for locks. This leads to code that is simpler to reason about and eliminates a whole class of common bugs.</li>
     </ul>
 
     <h2 id="sec-30-lec-20-immutable-classes">Lecture 19: Immutable Classes</h2>
     <h3>Introduction</h3>
-    <p>Before the new features in C# 9, creating an immutable class required a significant amount of boilerplate code and strict adherence to a specific pattern. Understanding this traditional pattern helps appreciate the modern features like init properties and records. How to Implement (The Traditional Way) To make a class immutable, you must ensure that its state cannot be changed after the object has been constructed. This involves these key steps:</p>
+<p>Before the new features in C# 9, creating an immutable class required a significant amount of boilerplate code and strict adherence to a specific pattern. Understanding this traditional pattern helps appreciate the modern features like init properties and records. How to Implement (The Traditional Way) To make a class immutable, you must ensure that its state cannot be changed</p>
+<p>after the object has been constructed. This involves these key steps:</p>
     <ol>
-      <li>Make all private fields readonly: This is the most important step. A readonly field can only be assigned a value at the time of its declaration or within the constructor.</li>
+      <li><strong>Make all private fields readonly:</strong> This is the most important step. A readonly field can only be assigned a value at the time of its declaration or within the constructor.</li>
       <li>Provide only get accessors for all public properties: By omitting the set accessor, you prevent external code from changing the property's value.</li>
-      <li>Initialize all fields via the constructor: The constructor becomes the one and only place where the object's state is set. Example public class Point { // 1. All fields are private and readonly. private readonly int _x; private readonly int _y; // 2. Properties only have a 'get' accessor. public int X { get { return _x; } } public int Y { get { return _y; } } // 3. State is set only once, in the constructor. public Point(int x, int y) { _x = x; _y = y; } } // --- In your Main method --- Point p1 = new Point(10, 20); // p1.X = 30; // ERROR! Property or indexer 'Point.X' cannot be assigned to — it is read only.</li>
+      <li>Initialize all fields via the constructor: The constructor becomes the one and only place where the object's state is set.</li>
     </ol>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class Point
+{
+    // 1. All fields are private and readonly.
+    private readonly int _x;
+    private readonly int _y;
+    // 2. Properties only have a 'get' accessor.
+    public int X { get { return _x; } }
+    public int Y { get { return _y; } }
+    // 3. State is set only once, in the constructor. public Point(int x, int y)
+    {
+        _x = x;
+        _y = y;
+    }
+}
+// --- In your Main method ---
+Point p1 = new Point(10, 20);
+// p1.X = 30; // ERROR! Property or indexer 'Point.X' cannot be assigned to</code></pre>
+    </div>
+  
+<p>-- it is read only.</p>
 
     <h2 id="sec-30-lec-21-init-only-properties">Lecture 20: Init-Only Properties</h2>
     <h3>Introduction</h3>
-    <p>Init-only properties, introduced in C# 9, simplify the creation of immutable objects. An init accessor is a new type of property accessor that can only be called during object initialization. How It Works An init accessor acts like a set accessor, but with a crucial restriction. You can only assign a value to an init-only property:</p>
+<p>Init-only properties, introduced in C# 9, simplify the creation of immutable objects. An init accessor is a new type of property accessor that can only be called during object initialization.</p>
+    <h3>How It Works</h3>
+<p>An init accessor acts like a set accessor, but with a crucial restriction. You can only assign a value to an init-only property:</p>
     <ul>
       <li>In the object initializer syntax (when you use new { ... }).</li>
-      <li>In the constructor of the class. Once the object's construction is complete, the init-only property becomes effectively readonly. Why and When to Use It init solves a major problem with traditional immutable classes. To use the convenient object initializer syntax (new Point { X = 10, Y = 20 }), properties needed to have a public set accessor, which meant they weren't truly immutable. init gives you the best of both worlds: the flexibility of object initializers with the safety of immutability. Example public class WeatherObservation { // These properties can be set during initialization, but not after. public DateTime ObservationTime { get; init; } public double TemperatureCelsius { get; init; } public double WindSpeedKph { get; init; } } // --- In your Main method --- // We can use the convenient object initializer syntax. var observation = new WeatherObservation { ObservationTime = DateTime.UtcNow, TemperatureCelsius = 25.0, WindSpeedKph = 15.5 }; // But after initialization, any attempt to change the properties // will result in a compiler error. // observation.TemperatureCelsius = 26.0; // ERROR! Init-only property can only be assigned in an object initializer...</li>
+      <li>In the constructor of the class. Once the object's construction is complete, the init-only property becomes effectively readonly. Why and When to Use It init solves a major problem with traditional immutable classes. To use the convenient object initializer syntax (new Point { X = 10, Y = 20 }), properties needed to have a public set accessor, which meant they weren't truly immutable. init gives you the best of both worlds: the flexibility of object initializers with the safety of immutability.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class WeatherObservation
+{
+    // These properties can be set during initialization, but not after.
+    public DateTime ObservationTime { get; init; }
+    public double TemperatureCelsius { get; init; }
+    public double WindSpeedKph { get; init; }
+}
+// --- In your Main method ---
+// We can use the convenient object initializer syntax.
+var observation = new WeatherObservation
+{
+    ObservationTime = DateTime.UtcNow,
+    TemperatureCelsius = 25.0,
+    WindSpeedKph = 15.5
+};
+// But after initialization, any attempt to change the properties
+// will result in a compiler error.
+// observation.TemperatureCelsius = 26.0; // ERROR! Init-only property can only be assigned in an object initializer...</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-22-readonly-structs">Lecture 21: Readonly Structs</h2>
     <h3>Introduction</h3>
-    <p>The readonly modifier can be applied to an entire struct declaration to create a fully immutable value type. This is a powerful feature for creating small, lightweight data containers that are guaranteed to be safe from modification. How It Works When you add the readonly modifier to a struct declaration (public readonly struct Point), the C# compiler enforces two rules:</p>
+<p>The readonly modifier can be applied to an entire struct declaration to create a fully immutable value type. This is a powerful feature for creating small, lightweight data containers that are guaranteed to be safe from modification.</p>
+    <h3>How It Works</h3>
+<p>When you add the readonly modifier to a struct declaration (public readonly struct Point), the C# compiler enforces two rules:</p>
     <ol>
       <li>All instance fields within the struct must also be declared as readonly.</li>
-      <li>All instance properties must be read-only (i.e., they can only have a get accessor). This creates a compile-time guarantee that once an instance of the struct is created, its state can never change. Why and When to Use It Use a readonly struct when you want to represent a &quot;value&quot; that is small and should not change. It's perfect for things like coordinates, colors, or complex numbers. Because they are both immutable and value types (stack-allocated), they can lead to very safe and high-performance code, especially in multi- threaded or mathematical applications. Example // 'readonly' guarantees the entire struct is immutable. public readonly struct RgbColor { // All fields must also be readonly. public readonly byte R; public readonly byte G; public readonly byte B; public RgbColor(byte r, byte g, byte b) { this.R = r; this.G = g; this.B = b; } }</li>
+      <li>All instance properties must be read-only (i.e., they can only have a get accessor). This creates a compile-time guarantee that once an instance of the struct is created, its state can never change. Why and When to Use It Use a readonly struct when you want to represent a &quot;value&quot; that is small and should not change. It's perfect for things like coordinates, colors, or complex numbers. Because they are both immutable and value types (stack-allocated), they can lead to very safe and high-performance code, especially in multi- threaded or mathematical applications.</li>
     </ol>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// 'readonly' guarantees the entire struct is immutable. public readonly struct RgbColor
+{
+    // All fields must also be readonly.
+    public readonly byte R;
+    public readonly byte G;
+    public readonly byte B;
+    public RgbColor(byte r, byte g, byte b)
+    {
+        this.R = r;
+        this.G = g;
+        this.B = b;
+    }
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-23-parameterless-struct-constructors">Lecture 22: Parameterless Struct Constructors</h2>
     <h3>Introduction</h3>
-    <p>Before C# 10, developers could not declare their own parameterless constructor for a struct. Every struct had an implicit, unchangeable parameterless constructor that simply initialized all its fields to their default system values (0, false, etc.). C# 10 removed this restriction. How It Works (C# 10 and later) You can now declare a public, parameterless constructor in a struct to provide custom default initialization logic. However, the system's implicit default constructor (which zeroes out memory) still exists and will be used when you create an array of structs, for example. When to Use It Use this feature when you want an instance of a struct created with new MyStruct() to have a different, more sensible default state than all zeros. Example Let's create a Point struct where the default new() constructor places it at (1, 1) instead of (0, 0). public struct Point { public int X { get; set; } public int Y { get; set; } // C# 10 allows this explicit parameterless constructor. public Point() { X = 1; Y = 1; } } // --- In your Main method --- // This now calls our custom parameterless constructor. Point p1 = new Point(); Console.WriteLine($&quot;p1 is at ({p1.X}, {p1.Y})&quot;); // Output: (1, 1) // However, creating an array still uses the implicit default constructor. Point[] points = new Point[1]; Point p2 = points[0]; Console.WriteLine($&quot;p2 is at ({p2.X}, {p2.Y})&quot;); // Output: (0, 0)</p>
+    <h3>Before C# 10</h3>
+<p>, developers could not declare their own parameterless constructor for a struct. Every struct had an implicit, unchangeable parameterless constructor that simply initialized all its fields to their default system values (0, false, etc.). C# 10 removed this restriction.</p>
+    <h3>How It Works: (C# 10 and later)</h3>
+<p>You can now declare a public, parameterless constructor in a struct to provide custom default initialization logic. However, the system's implicit default constructor (which zeroes out memory) still exists and will be used when you create an array of structs, for example.</p>
+    <h3>When to Use It</h3>
+<p>Use this feature when you want an instance of a struct created with new MyStruct() to have a different, more sensible default state than all zeros.</p>
+    <h3>Example</h3>
+<p>Let's create a Point struct where the default new() constructor places it at (1, 1) instead of (0, 0).</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public struct Point
+{
+    public int X { get; set; }
+    public int Y { get; set; }
+    // C# 10 allows this explicit parameterless constructor. public Point()
+    {
+        X = 1;
+        Y = 1;
+    }
+}
+// --- In your Main method ---
+// This now calls our custom parameterless constructor.
+Point p1 = new Point();
+Console.WriteLine($&quot;p1 is at ({p1.X}, {p1.Y})&quot;); // Output: (1, 1)
+// However, creating an array still uses the implicit default constructor.
+Point[] points = new Point[1];
+Point p2 = points[0];
+Console.WriteLine($&quot;p2 is at ({p2.X}, {p2.Y})&quot;); // Output: (0, 0)</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-24-intro-and-working-with-records">Lecture 23: Intro and Working with Records</h2>
     <h3>Introduction</h3>
-    <p>Record types, introduced in C# 9, are a new kind of reference type designed specifically for creating immutable data models. A record is essentially syntactic sugar that tells the compiler to automatically generate a lot of the boilerplate code that you would normally have to write by hand for a data- centric, immutable class. How It Works: Positional Records and Generated Code The most concise way to declare a record is using positional syntax. When you write this single line: public record Person(string FirstName, string LastName); The C# compiler generates the following for you:</p>
+<p>Record types, introduced in C# 9, are a new kind of reference type designed specifically for creating immutable data models. A record is essentially syntactic sugar that tells the compiler to automatically generate a lot of the boilerplate code that you would normally have to write by hand for a data- centric, immutable class.</p>
+    <h3>How It Works</h3>
+<p>Positional Records and Generated Code The most concise way to declare a record is using positional syntax. When you write this single line:</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public record Person(string FirstName, string LastName);</code></pre>
+    </div>
+  
+<p>The C# compiler generates the following for you:</p>
     <ol>
       <li>A constructor that takes FirstName and LastName.</li>
       <li>Public init-only properties for FirstName and LastName.</li>
       <li>A Deconstruct method, allowing you to easily unpack the object into variables.</li>
       <li>An overridden ToString() method that provides a clean, readable output of the object's state.</li>
-      <li>Overridden Equals() and GetHashCode() methods that perform value- based equality, not the default reference equality of classes. This is a major feature. Example // This one line of code generates all the features mentioned above. public record Person(string FirstName, string LastName); // --- In your Main method --- Person person1 = new Person(&quot;John&quot;, &quot;Doe&quot;); // 1. The generated ToString() is automatically used by WriteLine. Console.WriteLine(person1); // Output: Person { FirstName = John, LastName = Doe } // 2. The properties are init-only, making the object immutable. // person1.FirstName = &quot;Jane&quot;; // ERROR! Init-only property.</li>
+      <li>Overridden Equals() and GetHashCode() methods that perform value- based equality, not the default reference equality of classes. This is a major feature.</li>
     </ol>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// This one line of code generates all the features mentioned above.
+public record Person(string FirstName, string LastName);
+// --- In your Main method ---
+Person person1 = new Person(&quot;John&quot;, &quot;Doe&quot;);
+// 1. The generated ToString() is automatically used by WriteLine.
+Console.WriteLine(person1); // Output: Person { FirstName = John,
+LastName = Doe }
+// 2. The properties are init-only, making the object immutable.
+// person1.FirstName = &quot;Jane&quot;; // ERROR! Init-only property.</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-25-nested-records">Lecture 24: Nested Records</h2>
     <h3>Introduction</h3>
-    <p>Just as you can nest a class inside another class, you can also define a record type within the scope of another class or record. This follows the same logic as nested classes. Why and When to Use It Use a nested record when a small, immutable data container is tightly coupled to and only ever used by its containing class. This is an organizational tool that keeps the helper data structure close to the only class that uses it, preventing it from &quot;polluting&quot; the public namespace. Example Imagine an Order class that needs to store shipping information. The ShippingAddress is a simple data structure only relevant to the Order. public class Order { // This is a nested record. It's only accessible through the Order class. public record Address(string Street, string City, string PostalCode); public int OrderId { get; init; } public Address ShippingDestination { get; init; } public void PrintShippingLabel() { // We can use the nested record's properties here. Console.WriteLine($&quot;--- SHIPPING LABEL for Order #{OrderId} ---&quot;); Console.WriteLine(ShippingDestination.Street); Console.WriteLine($&quot;{ShippingDestination.City}, {ShippingDestination.PostalCode}&quot;); } } // --- In your Main method --- // To create an instance, you must qualify it with the containing class name. var shippingAddress = new Order.Address(&quot;123 Main St&quot;, &quot;Anytown&quot;, &quot;12345&quot;); var order = new Order { OrderId = 101, ShippingDestination = shippingAddress }; order.PrintShippingLabel();</p>
+<p>Just as you can nest a class inside another class, you can also define a record type within the scope of another class or record. This follows the same logic as nested classes. Why and When to Use It Use a nested record when a small, immutable data container is tightly coupled to and only ever used by its containing class.</p>
+<p>This is an organizational tool that keeps the helper data structure close to the only class that uses it, preventing it from &quot;polluting&quot; the public namespace.</p>
+    <h3>Example</h3>
+<p>Imagine an Order class that needs to store shipping information. The ShippingAddress is a simple data structure only relevant to the Order.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public class Order
+{
+    // This is a nested record. It's only accessible through the Order class.
+    public record Address(string Street, string City, string PostalCode);
+    public int OrderId { get; init; }
+    public Address ShippingDestination { get; init; }
+    public void PrintShippingLabel()
+    {
+        // We can use the nested record's properties here.
+        Console.WriteLine($&quot;--- SHIPPING LABEL for Order #{OrderId} ---&quot;);
+        Console.WriteLine(ShippingDestination.Street);
+        Console.WriteLine($&quot;{ShippingDestination.City},
+        {ShippingDestination.PostalCode}&quot;);
+    }
+}
+// --- In your Main method ---
+// To create an instance, you must qualify it with the containing class name.</code></pre>
+    </div>
+  
+<p>&quot;12345&quot;);</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>var order = new Order { OrderId = 101, ShippingDestination =
+shippingAddress };
+order.PrintShippingLabel();</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-26-understanding-immutability-of-records">Lecture 25: Understanding Immutability of Records</h2>
     <h3>Introduction</h3>
-    <p>Records are designed from the ground up to support immutability. This means that once a record object is created, its state should not change. This is primarily achieved through init-only properties and non-destructive mutation. However, it is crucial to understand that this immutability is shallow by default when reference types are involved. How they are Immutable</p>
+<p>Records are designed from the ground up to support immutability. This means that once a record object is created, its state should not change. This is primarily achieved through init-only properties and non-destructive mutation.</p>
+<p>However, it is crucial to understand that this immutability is shallow by default when reference types are involved. How they are Immutable</p>
     <ol>
       <li>Init-Only Properties: When you use the concise positional syntax (public record Person(string Name);), the compiler generates init-only properties. This prevents you from changing the value after the object has been initialized.</li>
-      <li>with Expressions: As we'll see next, instead of changing a record, you create a new record with modified values using a with expression. This is called non-destructive mutation. Shallow Immutability: The Important Caveat This is a critical interview point. If a record contains a property that is a mutable reference type (like a List&lt;T&gt;), the record itself is only shallowly immutable.</li>
+      <li><strong>with Expressions:</strong> As we'll see next, instead of changing a record, you create a new record with modified values using a with expression. This is called non-destructive mutation. Shallow Immutability: The Important Caveat This is a critical interview point. If a record contains a property that is a mutable reference type (like a List&lt;T&gt;), the record itself is only shallowly immutable.</li>
     </ol>
     <ul>
       <li>The reference to the list cannot be changed. You cannot assign a completely new list to the property.</li>
-      <li>However, the contents of the list itself can still be modified. You can still call .Add() or .Remove() on the list, which mutates the state of the original record object. Example // A record with a mutable collection property. public record BlogPost(string Title, List&lt;string&gt; Tags); // --- In your Main method --- var post = new BlogPost(&quot;My First Post&quot;, new List&lt;string&gt; { &quot;c#&quot;, &quot;learning&quot; }); Console.WriteLine(post); // Output: BlogPost { Title = My First Post, Tags = System.Collections.Generic.List`1[System.String] } // This would be an error because 'Tags' is an init-only property. // post.Tags = new List&lt;string&gt;(); // ERROR! // BUT, we can still modify the *contents* of the list that the record points to. post.Tags.Add(&quot;new&quot;); // The original 'post' object has now been mutated. Console.WriteLine(post); // Output: BlogPost { Title = My First Post, Tags = System.Collections.Generic.List`1[System.String] } // (Note: The ToString() doesn't show list contents, but the list now has 3 items)</li>
+      <li>However, the contents of the list itself can still be modified. You can still call .Add() or .Remove() on the list, which mutates the state of the original record object.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// A record with a mutable collection property.
+public record BlogPost(string Title, List&lt;string&gt; Tags);
+// --- In your Main method ---
+var post = new BlogPost(&quot;My First Post&quot;, new List&lt;string&gt; { &quot;c#&quot;,
+&quot;learning&quot; });
+Console.WriteLine(post);
+// Output: BlogPost { Title = My First Post, Tags =
+System.Collections.Generic.List`1[System.String] }
+// This would be an error because 'Tags' is an init-only property.
+// post.Tags = new List&lt;string&gt;(); // ERROR!
+// BUT, we can still modify the *contents* of the list that the record points to.
+post.Tags.Add(&quot;new&quot;);
+// The original 'post' object has now been mutated.
+Console.WriteLine(post);
+// Output: BlogPost { Title = My First Post, Tags =
+System.Collections.Generic.List`1[System.String] }
+// (Note: The ToString() doesn't show list contents, but the list now has 3 items)</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-27-records-equality">Lecture 26: Records - Equality</h2>
     <h3>Introduction</h3>
-    <p>One of the most powerful and important features of records is that they exhibit value-based equality by default. This is a major departure from classes, which use reference equality by default. How It Works The C# compiler automatically overrides the Equals() method and the == and ! = operators for record types.</p>
+<p>One of the most powerful and important features of records is that they exhibit value-based equality by default. This is a major departure from classes, which use reference equality by default.</p>
+    <h3>How It Works</h3>
+<p>The C# compiler automatically overrides the Equals() method and the == and ! = operators for record types.</p>
     <ul>
-      <li>Reference Equality (for classes): classA == classB is only true if both variables point to the exact same object in memory.</li>
-      <li>Value-Based Equality (for records): recordA == recordB is true if the two records are of the same type and the values of all their corresponding public properties are equal. The compiler also generates a matching GetHashCode() override based on the values of all public properties, satisfying the rule that equal objects must have equal hash codes. Example public record Person(string FirstName, string LastName); // --- In your Main method --- var p1 = new Person(&quot;John&quot;, &quot;Doe&quot;); var p2 = new Person(&quot;John&quot;, &quot;Doe&quot;); // A separate object with the same data. var p3 = new Person(&quot;Jane&quot;, &quot;Doe&quot;); // For regular classes, p1 == p2 would be FALSE. // For records, it's TRUE because their values are the same. Console.WriteLine($&quot;p1 == p2: {p1 == p2}&quot;); // Output: True Console.WriteLine($&quot;p1.Equals(p2): {p1.Equals(p2)}&quot;); // Output: True Console.WriteLine($&quot;p1 == p3: {p1 == p3}&quot;); // Output: False</li>
+      <li><strong>Reference Equality (for classes):</strong> classA == classB is only true if both variables point to the exact same object in memory.</li>
+      <li>Value-Based Equality (for records): recordA == recordB is true if the two records are of the same type and the values of all their corresponding public properties are equal. The compiler also generates a matching GetHashCode() override based on the values of all public properties, satisfying the rule that equal objects must have equal hash codes.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public record Person(string FirstName, string LastName);
+// --- In your Main method ---
+var p1 = new Person(&quot;John&quot;, &quot;Doe&quot;);</code></pre>
+    </div>
+  
+<p>var p2 = new Person(&quot;John&quot;, &quot;Doe&quot;); // A separate object with the same data.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>var p3 = new Person(&quot;Jane&quot;, &quot;Doe&quot;);
+// For regular classes, p1 == p2 would be FALSE.
+// For records, it's TRUE because their values are the same.
+Console.WriteLine($&quot;p1 == p2: {p1 == p2}&quot;); // Output: True
+Console.WriteLine($&quot;p1.Equals(p2): {p1.Equals(p2)}&quot;); // Output: True
+Console.WriteLine($&quot;p1 == p3: {p1 == p3}&quot;); // Output: False</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-28-records-with-expression">Lecture 27: Records - 'with' Expression</h2>
     <h3>Introduction</h3>
-    <p>The with expression is a special feature for records that provides a simple syntax for performing non-destructive mutation. Since records are meant to be immutable, you don't change them directly. Instead, you create a copy of the record with one or more properties changed to new values. How It Works The with expression creates a shallow copy of the original record object and then applies the property changes specified in the object initializer block. The original record object is left completely untouched. Syntax: var newRecord = oldRecord with { PropertyName = newValue }; Example public record Book(string Title, string Author, int PublicationYear); // --- In your Main method --- var originalBook = new Book(&quot;The Hobbit&quot;, &quot;J.R.R. Tolkien&quot;, 1937); // Let's create a new record for a &quot;revised edition&quot;. // It creates a copy of originalBook and then changes the PublicationYear. var revisedEdition = originalBook with { PublicationYear = 2007 }; Console.WriteLine(originalBook); // Output: Book { Title = The Hobbit, Author = J.R.R. Tolkien, PublicationYear = 1937 } Console.WriteLine(revisedEdition); // Output: Book { Title = The Hobbit, Author = J.R.R. Tolkien, PublicationYear = 2007 } // The original object is unchanged. Console.WriteLine($&quot;Original year is still: {originalBook.PublicationYear}&quot;);</p>
+<p>The with expression is a special feature for records that provides a simple</p>
+    <h3>syntax</h3>
+<p>for performing non-destructive mutation. Since records are meant to be immutable, you don't change them directly. Instead, you create a copy of the record with one or more properties changed to new values.</p>
+    <h3>How It Works</h3>
+<p>The with expression creates a shallow copy of the original record object and then applies the property changes specified in the object initializer block. The original record object is left completely untouched.</p>
+    <h3>Syntax</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>var newRecord = oldRecord with { PropertyName = newValue };</code></pre>
+    </div>
+  
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public record Book(string Title, string Author, int PublicationYear);
+// --- In your Main method ---
+var originalBook = new Book(&quot;The Hobbit&quot;, &quot;J.R.R. Tolkien&quot;, 1937);
+// Let's create a new record for a &quot;revised edition&quot;.
+// It creates a copy of originalBook and then changes the PublicationYear.
+var revisedEdition = originalBook with { PublicationYear = 2007 };
+Console.WriteLine(originalBook);
+// Output: Book { Title = The Hobbit, Author = J.R.R. Tolkien,
+PublicationYear = 1937 }
+Console.WriteLine(revisedEdition);
+// Output: Book { Title = The Hobbit, Author = J.R.R. Tolkien,
+PublicationYear = 2007 }
+// The original object is unchanged.
+Console.WriteLine($&quot;Original year is still: {originalBook.PublicationYear}&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-29-records-deconstruct">Lecture 28: Records - Deconstruct</h2>
     <h3>Introduction</h3>
-    <p>When you declare a record using the concise positional syntax, the compiler automatically generates a Deconstruct method for you. This allows you to easily unpack the properties of a record into separate variables, just like with tuples. How It Works The generated Deconstruct method has an out parameter for each positional parameter defined in the record's primary constructor. This enables the deconstruction syntax. Example public record Person(string FirstName, string LastName, int Age); // --- In your Main method --- var person = new Person(&quot;John&quot;, &quot;Doe&quot;, 42); // Deconstruct the record's properties into new variables. var (fn, ln, age) = person; Console.WriteLine($&quot;The first name is {fn}&quot;); Console.WriteLine($&quot;The last name is {ln}&quot;); Console.WriteLine($&quot;The age is {age}&quot;);</p>
+<p>When you declare a record using the concise positional syntax, the compiler automatically generates a Deconstruct method for you. This allows you to easily unpack the properties of a record into separate variables, just like with tuples.</p>
+    <h3>How It Works</h3>
+<p>The generated Deconstruct method has an out parameter for each positional parameter defined in the record's primary constructor. This enables the deconstruction syntax.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public record Person(string FirstName, string LastName, int Age);
+// --- In your Main method ---
+var person = new Person(&quot;John&quot;, &quot;Doe&quot;, 42);
+// Deconstruct the record's properties into new variables.
+var (fn, ln, age) = person;
+Console.WriteLine($&quot;The first name is {fn}&quot;);
+Console.WriteLine($&quot;The last name is {ln}&quot;);
+Console.WriteLine($&quot;The age is {age}&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-30-records-tostring">Lecture 29: Records - ToString</h2>
     <h3>Introduction</h3>
-    <p>A simple but significant benefit of using records is that the compiler automatically overrides the ToString() method to provide a clean, readable, built-in text representation of the object's state. How It Works Unlike a standard class, which by default would only print its type name (e.g., MyProject.Person), the record's generated ToString() method prints the type name followed by the names and values of all its public properties, formatted in a style that looks similar to an object initializer. This makes debugging and logging with records much more convenient. Example public record Person(string FirstName, string LastName); // --- In your Main method --- var person = new Person(&quot;John&quot;, &quot;Doe&quot;); // Console.WriteLine automatically calls the .ToString() method on the object. Console.WriteLine(person); Output: Person { FirstName = John, LastName = Doe }</p>
+<p>A simple but significant benefit of using records is that the compiler automatically overrides the ToString() method to provide a clean, readable, built-in text representation of the object's state.</p>
+    <h3>How It Works</h3>
+<p>Unlike a standard class, which by default would only print its type name (e.g., MyProject.Person), the record's generated ToString() method prints the type name followed by the names and values of all its public properties, formatted in a style that looks similar to an object initializer. This makes debugging and logging with records much more convenient.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public record Person(string FirstName, string LastName);
+// --- In your Main method ---
+var person = new Person(&quot;John&quot;, &quot;Doe&quot;);
+// Console.WriteLine automatically calls the .ToString() method on the object.
+Console.WriteLine(person);
+Output: Person { FirstName = John, LastName = Doe }</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-31-records-inheritance">Lecture 30: Records - Inheritance</h2>
     <h3>Introduction</h3>
-    <p>Record types support inheritance, allowing you to create hierarchies of immutable data models. However, the rules are specific:</p>
+<p>Record types support inheritance, allowing you to create hierarchies of immutable data models. However, the rules are specific:</p>
     <ul>
       <li>A record can inherit from another record.</li>
       <li>A record cannot inherit from a class.</li>
-      <li>A class cannot inherit from a record. How It Works Inheritance for records follows the standard syntax and rules. The derived record inherits all the properties of the base record. The compiler-generated features like value-based equality and ToString() are automatically updated to include the properties from both the base and the derived records. Example // Base record public record Person(string FirstName, string LastName); // Derived record that inherits from Person. // It passes the common properties up to the base constructor. public record Employee(string FirstName, string LastName, int EmployeeId) : Person(FirstName, LastName); // --- In your Main method --- var employee = new Employee(&quot;Jane&quot;, &quot;Smith&quot;, 101); // The generated ToString() includes properties from both base and derived records. Console.WriteLine(employee); // Output: Employee { FirstName = Jane, LastName = Smith, EmployeeId = 101 }</li>
+      <li>A class cannot inherit from a record.</li>
     </ul>
+    <h3>How It Works</h3>
+<p>Inheritance for records follows the standard syntax and rules. The derived record inherits all the properties of the base record. The compiler-generated features like value-based equality and ToString() are automatically updated to include the properties from both the base and the derived records.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Base record
+public record Person(string FirstName, string LastName);
+// Derived record that inherits from Person.
+// It passes the common properties up to the base constructor.
+public record Employee(string FirstName, string LastName, int
+EmployeeId) : Person(FirstName, LastName);
+// --- In your Main method ---
+var employee = new Employee(&quot;Jane&quot;, &quot;Smith&quot;, 101);
+// The generated ToString() includes properties from both base and derived records.
+Console.WriteLine(employee);
+// Output: Employee { FirstName = Jane, LastName = Smith, EmployeeId
+= 101 }</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-32-records-sealed-tostring">Lecture 31: Records - sealed ToString</h2>
     <h3>Introduction</h3>
-    <p>This C# 10 feature gives you control over the ToString() behavior in a record inheritance hierarchy. By marking an overridden ToString() method as sealed, you can &quot;lock it down&quot; and prevent any further derived records from generating their own ToString() implementation. How It Works If you create a sealed override of ToString in a base record, any record that inherits from it will use this &quot;sealed&quot; implementation instead of generating a new one that includes its own properties. When to Use It Use this when you want to define a final, canonical string representation for an entire record hierarchy and you do not want the output to change even when new derived records are created. Example // Base record with a sealed ToString public record Person(string Name) { // This implementation is now final for all derived records. public sealed override string ToString() { return $&quot;Person: {Name}&quot;; } } // Derived record public record Employee(string Name, int EmployeeId) : Person(Name); // --- In your Main method --- var employee = new Employee(&quot;John Doe&quot;, 101); // This now calls the sealed implementation from the Person base record. Console.WriteLine(employee); // Output: Person: John Doe</p>
+<p>This C# 10 feature gives you control over the ToString() behavior in a record inheritance hierarchy. By marking an overridden ToString() method as sealed, you can &quot;lock it down&quot; and prevent any further derived records from generating their own ToString() implementation.</p>
+    <h3>How It Works</h3>
+<p>If you create a sealed override of ToString in a base record, any record that inherits from it will use this &quot;sealed&quot; implementation instead of generating a new one that includes its own properties.</p>
+    <h3>When to Use It</h3>
+<p>Use this when you want to define a final, canonical string representation for an entire record hierarchy and you do not want the output to change even when new derived records are created.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Base record with a sealed ToString public record Person(string Name)
+{
+    // This implementation is now final for all derived records. public sealed override string ToString()
+    {
+        return $&quot;Person: {Name}&quot;;
+    }
+}
+// Derived record
+public record Employee(string Name, int EmployeeId) : Person(Name);
+// --- In your Main method ---
+var employee = new Employee(&quot;John Doe&quot;, 101);
+// This now calls the sealed implementation from the Person base record.
+Console.WriteLine(employee); // Output: Person: John Doe</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-33-record-structs">Lecture 32: Record Structs</h2>
     <h3>Introduction</h3>
-    <p>Record structs, introduced in C# 10, combine the compiler-generated benefits of records with the performance and semantics of a value type (struct). How It Works You declare them using record struct. Like a class-based record, a record struct automatically gets:</p>
+<p>Record structs, introduced in C# 10, combine the compiler-generated benefits of records with the performance and semantics of a value type (struct).</p>
+    <h3>How It Works</h3>
+<p>You declare them using record struct. Like a class-based record, a record</p>
     <ul>
       <li>Value-based equality (Equals, GetHashCode, ==, !=).</li>
       <li>A clean ToString() implementation.</li>
       <li>A Deconstruct method.</li>
-      <li>init-only properties (if declared as readonly record struct). The key difference is that it is a value type. It lives on the stack (typically), is copied on assignment, and cannot be null. Why and When to Use It Use a record struct for small, immutable data models where value type semantics and high performance are desired. It's an excellent modern replacement for a simple readonly struct because you get all the equality and display methods generated for free. Example // A readonly record struct is a fully immutable value type. public readonly record struct Point(int X, int Y); // --- In your Main method --- var p1 = new Point(10, 20); var p2 = new Point(10, 20); // A separate instance with the same values. // Like a record class, it has value-based equality. Console.WriteLine($&quot;p1 == p2: {p1 == p2}&quot;); // Output: True // It has a clean ToString() implementation. Console.WriteLine(p1); // Output: Point { X = 10, Y = 20 }</li>
+      <li>init-only properties (if declared as readonly record struct). The key difference is that it is a value type. It lives on the stack (typically), is copied on assignment, and cannot be null. Why and When to Use It Use a record struct for small, immutable data models where value type semantics and high performance are desired. It's an excellent modern replacement for a simple readonly struct because you get all the equality and display methods generated for free.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// A readonly record struct is a fully immutable value type.
+public readonly record struct Point(int X, int Y);
+// --- In your Main method ---
+var p1 = new Point(10, 20);</code></pre>
+    </div>
+  
+<p>var p2 = new Point(10, 20); // A separate instance with the same values.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Like a record class, it has value-based equality.
+Console.WriteLine($&quot;p1 == p2: {p1 == p2}&quot;); // Output: True
+// It has a clean ToString() implementation.
+Console.WriteLine(p1); // Output: Point { X = 10, Y = 20 }</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-34-command-line-arguments">Lecture 33: Command Line Arguments</h2>
     <h3>Introduction</h3>
-    <p>Command-line arguments are a way to pass data into a console application when it is launched from the command line. This is a fundamental feature that allows your applications to be configured or controlled dynamically, making them useful for automation and scripting. How It Works: The args Array The .NET runtime automatically collects any arguments provided after the executable name and makes them available to your program as an array of strings (string[]).</p>
+<p>Command-line arguments are a way to pass data into a console application when it is launched from the command line. This is a fundamental feature that allows your applications to be configured or controlled dynamically, making them useful for automation and scripting.</p>
+    <h3>How It Works</h3>
+<p>The args Array The .NET runtime automatically collects any arguments provided after the executable name and makes them available to your program as an array of strings (string[]).</p>
     <ul>
-      <li>In a traditional Main method: They are passed into the static void Main(string[] args) parameter.</li>
-      <li>In modern Top-Level Statements: A &quot;magic&quot; variable named args is automatically available in the global scope. Each space-separated value on the command line becomes a separate element in the args array. If an argument contains spaces, it must be enclosed in double quotes. Real-World Examples Example 1: A Simple Greeter</li>
-      <li>Command Line: MyGreeter.exe &quot;John Smith&quot; Code: // In a top-level statement file (Program.cs) if (args.Length &gt; 0) { string name = args[0]; Console.WriteLine($&quot;Hello, {name}!&quot;); } else { Console.WriteLine(&quot;Hello, World!&quot;); } Example 2: A File Processing Utility</li>
-      <li>Command Line: FileConverter.exe --input C:\data\report.csv — output C:\reports\report.json Logic: This requires more sophisticated parsing. You would typically loop through the args array looking for &quot;flags&quot; (like --input) and then treat the next element as the value for that flag. // A simplified parsing example string inputFile = null; string outputFile = null; for (int i = 0; i &lt; args.Length; i++) { if (args[i] == &quot;--input&quot; &amp;&amp; i + 1 &lt; args.Length) { inputFile = args[i + 1]; } else if (args[i] == &quot;--output&quot; &amp;&amp; i + 1 &lt; args.Length) { outputFile = args[i + 1]; } } Console.WriteLine($&quot;Input file is: {inputFile}&quot;); Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</li>
+      <li><strong>In a traditional Main method:</strong> They are passed into the static void Main(string[] args) parameter.</li>
+      <li>In modern Top-Level Statements: A &quot;magic&quot; variable named args is automatically available in the global scope. Each space-separated value on the command line becomes a separate element in the args array. If an argument contains spaces, it must be enclosed in double quotes.</li>
     </ul>
+    <h3>Real-World Examples</h3>
+    <h3>Example</h3>
+<p>1: A Simple Greeter</p>
+    <ul>
+      <li><strong>Command Line:</strong> MyGreeter.exe &quot;John Smith&quot; Code:</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// In a top-level statement file (Program.cs) if (args.Length &gt; 0)
+{
+    string name = args[0];
+    Console.WriteLine($&quot;Hello, {name}!&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;Hello, World!&quot;);
+}</code></pre>
+    </div>
+  
+    <h3>Example</h3>
+<p>2: A File Processing Utility</p>
+    <ul>
+      <li><strong>Command Line:</strong> FileConverter.exe --input C:\data\report.csv --</li>
+    </ul>
+    <h3>output</h3>
+<p>C:\reports\report.json Logic: This requires more sophisticated parsing. You would typically loop through the args array looking for &quot;flags&quot; (like --input) and then treat the next element as the value for that flag.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// A simplified parsing example
+string inputFile = null;
+string outputFile = null;</code></pre>
+    </div>
+  
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>{
+    if (args[i] == &quot;--input&quot; &amp;&amp; i + 1 &lt; args.Length)
+    {
+        inputFile = args[i + 1];
+    }
+    else if (args[i] == &quot;--output&quot; &amp;&amp; i + 1 &lt; args.Length)
+    {
+        outputFile = args[i + 1];
+    }
+}
+Console.WriteLine($&quot;Input file is: {inputFile}&quot;);
+Console.WriteLine($&quot;Output file is: {outputFile}&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-35-partial-methods-return-type">Lecture 34: Partial Methods Return Type</h2>
     <h3>Introduction</h3>
-    <p>This C# 9 feature is an enhancement to the partial methods we discussed earlier. In previous versions of C#, partial methods were required to have a void return type. Now, they can return a value. How It Works When a partial method is declared with a return type (e.g., partial bool IsValid();), it creates a new rule. The compiler will no longer just remove the method call if no implementation is found. Instead, if an implementation is not provided in another part of the partial class, the compiler will generate an error. Why and When to Use It This change makes partial methods much more useful in source generation scenarios. A code generator can now define a &quot;hook&quot; method that is expected to return a value (like a validation result or a computed property). The generated code can then call this method and use its return value in its logic, with the compiler guaranteeing that the developer has provided the necessary implementation.</p>
+<p>This C# 9 feature is an enhancement to the partial methods we discussed earlier. In previous versions of C#, partial methods were required to have a void return type. Now, they can return a value.</p>
+    <h3>How It Works</h3>
+<p>, partial bool IsValid();), it creates a new rule. The compiler will no longer just remove the method call if no implementation is found. Instead, if an implementation is not provided in another part of the partial class, the compiler will generate an error.</p>
+<p>Why and When to Use It This change makes partial methods much more useful in source generation scenarios. A code generator can now define a &quot;hook&quot; method that is expected to return a value (like a validation result or a computed property). The generated code can then call this method and use its return value in its logic, with the compiler guaranteeing that the developer has provided the necessary implementation.</p>
 
     <h2 id="sec-30-lec-36-static-anonymous-functions">Lecture 35: Static Anonymous Functions</h2>
     <h3>Introduction</h3>
-    <p>This C# 9 feature is a performance optimization that allows you to add the static modifier to a lambda expression or an anonymous method. How It Works By declaring a lambda as static, you are making a promise to the compiler that this function will not capture (access) any variables from its containing scope. It cannot access local variables, parameters from the outer method, or the this reference of the class. It can only work with the parameters passed directly to it. Syntax: static (x, y) =&gt; x + y Why and When to Use It This is primarily a performance optimization. A non-static lambda that &quot;captures&quot; outer variables requires the compiler to create a hidden &quot;closure&quot; object to hold those variables, which results in a small memory allocation. A static anonymous function avoids this allocation. Use it when your helper lambda is &quot;pure&quot;—meaning its output depends only on its input parameters—to prevent accidental capturing of state and to give the compiler a hint for minor optimizations. Example public void ProcessData(List&lt;int&gt; numbers) { int multiplier = 2; // This lambda CANNOT be static because it captures 'multiplier' from the outer scope. var result1 = numbers.Select(n =&gt; n * multiplier); // This lambda CAN be static because it only uses its own parameter 'n'. var result2 = numbers.Select(static n =&gt; n * 2); }</p>
+<p>This C# 9 feature is a performance optimization that allows you to add the static modifier to a lambda expression or an anonymous method.</p>
+    <h3>How It Works</h3>
+<p>By declaring a lambda as static, you are making a promise to the compiler that this function will not capture (access) any variables from its containing scope. It cannot access local variables, parameters from the outer method, or the this reference of the class. It can only work with the parameters passed directly to it.</p>
+    <h3>Syntax: static (x, y) =&gt; x + y</h3>
+<p>Why and When to Use It This is primarily a performance optimization. A non-static lambda that &quot;captures&quot; outer variables requires the compiler to create a hidden &quot;closure&quot; object to hold those variables, which results in a small memory allocation. A static anonymous function avoids this allocation.</p>
+<p>Use it when your helper lambda is &quot;pure&quot;—meaning its output depends only on its input parameters—to prevent accidental capturing of state and to give the compiler a hint for minor optimizations.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public void ProcessData(List&lt;int&gt; numbers)
+{
+    int multiplier = 2;
+    // This lambda CANNOT be static because it captures 'multiplier' from the outer scope.
+    var result1 = numbers.Select(n =&gt; n * multiplier);
+    // This lambda CAN be static because it only uses its own parameter 'n'.
+    var result2 = numbers.Select(static n =&gt; n * 2);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-37-constant-interpolated-strings">Lecture 36: Constant Interpolated Strings</h2>
     <h3>Introduction</h3>
-    <p>This is a quality-of-life feature from C# 10. It allows you to declare const strings that are built using string interpolation ($&quot;&quot;). How It Works The key restriction is that all the values used inside the interpolated placeholders ({...}) must also be compile-time constants. You cannot use variables or method calls. Example public static class ApiRoutes { private const string ApiBase = &quot;/api/v1&quot;; // This is valid because ApiBase is also a const. public const string GetAllUsers = $&quot;{ApiBase}/users&quot;; public const string GetUserById = $&quot;{GetAllUsers}/{{id}}&quot;; }</p>
+<p>This is a quality-of-life feature from C# 10. It allows you to declare const strings that are built using string interpolation ($&quot;&quot;).</p>
+    <h3>How It Works</h3>
+<p>The key restriction is that all the values used inside the interpolated placeholders ({...}) must also be compile-time constants. You cannot use variables or method calls.</p>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public static class ApiRoutes
+{
+    private const string ApiBase = &quot;/api/v1&quot;;
+    // This is valid because ApiBase is also a const.
+    public const string GetAllUsers = $&quot;{ApiBase}/users&quot;;
+    public const string GetUserById = $&quot;{GetAllUsers}/{{id}}&quot;;
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-38-interface-default-methods-and-static-members">Lecture 37: Interface Default Methods and Static Members</h2>
     <h3>Introduction</h3>
-    <p>Starting with C# 8.0, interfaces became significantly more powerful, blurring the lines slightly with abstract classes by allowing them to contain code. Default Interface Methods</p>
+<p>Starting with C# 8.0, interfaces became significantly more powerful, blurring the lines slightly with abstract classes by allowing them to contain code. Default Interface Methods</p>
     <ul>
-      <li>What It Is: You can now provide a default implementation (a method body) for a method directly inside an interface.</li>
+      <li><strong>What It Is:</strong> You can now provide a default implementation (a method body) for a method directly inside an interface.</li>
       <li>Why It's Important: This is a crucial feature for API evolution. Imagine you have a public ILogger interface used by hundreds of developers. If you need to add a new method to it, like LogWarning, all existing classes that implement ILogger would break because they don't have an implementation for the new method. With default interface methods, you can add LogWarning to the interface with a default implementation. Existing classes will continue to work, and new classes can choose to either use the default or provide their own override. Static Members in Interfaces</li>
-      <li>What It Is: Interfaces can now contain static members, including methods, properties, and events.</li>
-      <li>Why It's Important: This is useful for placing factory methods or utility functions directly on the interface where they are most relevant. For example, you could have an ICalculator.Add(a, b) static method. This is a key feature for enabling generic math in modern C#. Private and Protected Members in Interfaces</li>
-      <li>What It Is: Interfaces can now have private and protected members (both static and instance).</li>
-      <li>Why It's Important: These are typically used as helper methods to share common logic between multiple default method implementations within the interface itself, avoiding code duplication. Example public interface ILogger { // A required method for all implementers. void LogError(string message); // A default interface method. Existing classes don't have to implement this. void LogInfo(string message) { // Call a private helper. Log(&quot;INFO&quot;, message); } // A private method to share logic within the interface. private static void Log(string level, string message) { Console.WriteLine($&quot;[{level}] - {message}&quot;); } }</li>
+      <li><strong>What It Is:</strong> Interfaces can now contain static members, including methods, properties, and events.</li>
+      <li>Why It's Important: This is useful for placing factory methods or utility functions directly on the interface where they are most relevant. For</li>
     </ul>
+    <h3>example</h3>
+<p>, you could have an ICalculator.Add(a, b) static method. This is a key feature for enabling generic math in modern C#. Private and Protected Members in Interfaces</p>
+    <ul>
+      <li><strong>What It Is:</strong> Interfaces can now have private and protected members (both static and instance).</li>
+      <li>Why It's Important: These are typically used as helper methods to share common logic between multiple default method implementations within the interface itself, avoiding code duplication.</li>
+    </ul>
+    <h3>Example</h3>
 
-    <h2 id="sec-30-lec-39-index-from-end-operator">Lecture 38: Index-From-End Operator</h2>
-    <h3>Introduction</h3>
-    <p>The index-from-end operator ^, introduced in C# 8, provides a concise syntax for accessing elements from the end of an indexable collection. How It Works The ^ operator tells the indexer to count from the end rather than the beginning.</p>
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>public interface ILogger
+{
+    // A required method for all implementers.
+    void LogError(string message);
+    // A default interface method. Existing classes don't have to implement this.
+    void LogInfo(string message)
+    {
+        // Call a private helper.
+        Log(&quot;INFO&quot;, message);
+    }
+    // A private method to share logic within the interface.
+    private static void Log(string level, string message)
+    {
+        Console.WriteLine($&quot;[{level}] - {message}&quot;);
+    }
+}</code></pre>
+    </div>
+  
+
+    <h2 id="sec-30-lec-39-index-from-end-operator-introduction">Lecture 38: Index-From-End Operator Introduction</h2>
+<p>The index-from-end operator ^, introduced in C# 8, provides a concise syntax for accessing elements from the end of an indexable collection.</p>
+    <h3>How It Works</h3>
+<p>The ^ operator tells the indexer to count from the end rather than the beginning.</p>
     <ul>
       <li>^1 is the last element.</li>
       <li>^2 is the second-to-last element.</li>
-      <li>^0 is not the last element. It is equivalent to the collection's Length, so attempting to access myArray[^0] will result in an IndexOutOfRangeException. Example string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eve&quot; }; // Get the last element. string lastName = names[^1]; // Eve // Get the second-to-last element. string secondToLastName = names[^2]; // David Console.WriteLine($&quot;The last name is: {lastName}&quot;); Console.WriteLine($&quot;The second-to-last name is: {secondToLastName}&quot;);</li>
+      <li>^0 is not the last element. It is equivalent to the collection's Length, so attempting to access myArray[^0] will result in an IndexOutOfRangeException.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eve&quot; };
+// Get the last element.</code></pre>
+    </div>
+  
+<p>string lastName = names[^1]; // Eve</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Get the second-to-last element.</code></pre>
+    </div>
+  
+<p>string secondToLastName = names[^2]; // David</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine($&quot;The last name is: {lastName}&quot;);
+Console.WriteLine($&quot;The second-to-last name is: {secondToLastName}&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-40-range-struct">Lecture 39: Range Struct</h2>
     <h3>Introduction</h3>
-    <p>The .. operator, also introduced in C# 8, is used to create a Range object. It provides a simple and powerful syntax for specifying a &quot;slice&quot; or sub-section of a collection. How It Works The range operator is used inside an indexer []. The number on the left of .. is the inclusive start of the range, and the number on the right is the exclusive end of the range. It can be used with both standard integer indices and the index-from-end ^ operator. Syntax Variations:</p>
+<p>The .. operator, also introduced in C# 8, is used to create a Range object. It provides a simple and powerful syntax for specifying a &quot;slice&quot; or sub-section of a collection.</p>
+    <h3>How It Works</h3>
+<p>The range operator is used inside an indexer []. The number on the left of .. is the inclusive start of the range, and the number on the right is the exclusive end of the range. It can be used with both standard integer indices and the index-from-end ^ operator.</p>
+    <h3>Syntax: Variations:</h3>
     <ul>
       <li>myArray[1..4]: Gets elements from index 1 up to (but not including) index 4.</li>
       <li>myArray[..3]: From the start up to index 3.</li>
       <li>myArray[3..]: From index 3 to the end.</li>
-      <li>myArray[2..^1]: From index 2 up to the second-to-last element. Example string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eve&quot; }; // Indices: 0 1 2 3 4 // From-End: ^5 ^4 ^3 ^2 ^1 // Get the middle three names (Bob, Charlie, David) string[] middleNames = names[1..4]; // Get from index 1 up to 4. Console.WriteLine(&quot;Middle names: &quot; + string.Join(&quot;, &quot;, middleNames)); // Get all names except the first and last. string[] innerNames = names[1..^1]; Console.WriteLine(&quot;Inner names: &quot; + string.Join(&quot;, &quot;, innerNames));</li>
+      <li>myArray[2..^1]: From index 2 up to the second-to-last element.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>string[] names = { &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eve&quot; };
+// Indices: 	0 	1 	2 	3 	4
+// From-End: 	^5 	^4 	^3 	^2 	^1
+// Get the middle three names (Bob, Charlie, David)</code></pre>
+    </div>
+  
+<p>string[] middleNames = names[1..4]; // Get from index 1 up to 4.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>Console.WriteLine(&quot;Middle names: &quot; + string.Join(&quot;, &quot;, middleNames));
+// Get all names except the first and last.
+string[] innerNames = names[1..^1];
+Console.WriteLine(&quot;Inner names: &quot; + string.Join(&quot;, &quot;, innerNames));</code></pre>
+    </div>
+  
 
     <h2 id="sec-30-lec-41-things-to-remember">Lecture 40: Things to Remember</h2>
     <ul>
       <li>C# is Becoming More Concise: Many modern features like top-level statements, file-scoped namespaces, global usings, and expression- bodied members are all about reducing boilerplate and making C# code cleaner and quicker to write.</li>
-      <li>Immutability is a Key Theme: Records, init-only properties, and readonly record structs are powerful tools that push developers towards safer, immutable designs. Understanding and advocating for immutability is a sign of a modern developer.</li>
+      <li><strong>Immutability is a Key Theme:</strong> Records, init-only properties, and</li>
+    </ul>
+<p>towards safer, immutable designs. Understanding and advocating for immutability is a sign of a modern developer.</p>
+    <ul>
       <li>Pattern Matching Supercharges Conditional Logic: Modern pattern matching has transformed if and switch into highly expressive tools. You should prefer switch expressions with patterns over long if-else if chains for clarity and power.</li>
       <li>var is Static, dynamic is Dynamic: This is a crucial distinction. var is a compile-time convenience for strongly-typed variables. dynamic bypasses the compiler and defers type checking to run-time, which should be used with great caution.</li>
-      <li>Interfaces are More Powerful: With default implementations and static members, interfaces can now be used for API evolution and to group related utility methods, making them more flexible than ever before.</li>
+      <li><strong>Interfaces are More Powerful:</strong> With default implementations and static members, interfaces can now be used for API evolution and to group related utility methods, making them more flexible than ever before.</li>
     </ul>
 
       </article>
@@ -778,7 +2079,7 @@
       </li>
     
       <li class="toc-item">
-        <a href="#sec-30-lec-7-null-forgiving-operator" class="toc-link">Lecture 6: Null-Forgiving Operator</a>
+        <a href="#sec-30-lec-7-null-forgiving-operator-introduction" class="toc-link">Lecture 6: Null-Forgiving Operator Introduction</a>
       </li>
     
       <li class="toc-item">
@@ -906,7 +2207,7 @@
       </li>
     
       <li class="toc-item">
-        <a href="#sec-30-lec-39-index-from-end-operator" class="toc-link">Lecture 38: Index-From-End Operator</a>
+        <a href="#sec-30-lec-39-index-from-end-operator-introduction" class="toc-link">Lecture 38: Index-From-End Operator Introduction</a>
       </li>
     
       <li class="toc-item">

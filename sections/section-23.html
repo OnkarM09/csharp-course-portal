@@ -447,40 +447,183 @@
         
     <h2 id="sec-23-lec-1-anonymous-types">Lecture 1: Anonymous Types</h2>
     <h3>Introduction</h3>
-    <p>An anonymous type is a feature in C# that allows you to create a simple object to hold a set of read-only properties without having to explicitly define a full class first. It's a convenient, on-the-fly way to create a temporary data structure. The compiler generates a class for you behind the scenes, but this class is &quot;anonymous&quot; because it has no name that you can use in your code. How It Works: Compiler Generation The var keyword is essential when working with anonymous types. Because you don't know the name of the class the compiler is about to create, you need var to hold a reference to the object. When you write this: var user = new { Name = &quot;Alice&quot;, Age = 30 }; The C# compiler does this behind the scenes:</p>
+<p>An anonymous type is a feature in C# that allows you to create a simple object to hold a set of read-only properties without having to explicitly define a full class first. It's a convenient, on-the-fly way to create a temporary data structure. The compiler generates a class for you behind the scenes, but this class is &quot;anonymous&quot; because it has no name that you can use in your code.</p>
+    <h3>How It Works: Compiler Generation</h3>
+<p>The var keyword is essential when working with anonymous types. Because you don't know the name of the class the compiler is about to create, you need var to hold a reference to the object. When you write this:</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>var user = new { Name = &quot;Alice&quot;, Age = 30 };</code></pre>
+    </div>
+  
+<p>The C# compiler does this behind the scenes:</p>
     <ol>
-      <li>It invents a unique, &quot;unspeakable&quot; internal name for a new class, something like &lt;&gt;f__AnonymousType0. It generates the actual class definition with read-only properties matching what you provided: internal class &lt;&gt;f__AnonymousType0 { public string Name { get; } public int Age { get; } public &lt;&gt;f__AnonymousType0(string name, int age) { this.Name = name; this.Age = age; } // It also auto-generates Equals, GetHashCode, and ToString! }</li>
-      <li>It then replaces your original line with: &lt;&gt;f__AnonymousType0 user = new &lt;&gt;f__AnonymousType0(&quot;Alice&quot;, 30); Because you can't type that mangled name, var is the only practical way to declare the variable. Key Characteristics</li>
+      <li>It invents a unique, &quot;unspeakable&quot; internal name for a new class, something like &lt;&gt;f__AnonymousType0. It generates the actual class definition with read-only properties matching what you provided:</li>
     </ol>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>internal class &lt;&gt;f__AnonymousType0
+{
+    public string Name { get; }
+    public int Age { get; }
+    public &lt;&gt;f__AnonymousType0(string name, int age)
+    {
+        this.Name = name;
+        this.Age = age;
+    }
+    // It also auto-generates Equals, GetHashCode, and ToString!
+}</code></pre>
+    </div>
+  
+    <ol>
+      <li>It then replaces your original line with:</li>
+    </ol>
+<p>30); Because you can't type that mangled name, var is the only practical way to declare the variable.</p>
+    <h3>Key Characteristics</h3>
     <ul>
       <li>Read-Only: All properties of an anonymous type are read-only. Once created, the object is immutable.</li>
-      <li>Type Inference: The compiler infers the property names and types from the initialization syntax.</li>
-      <li>Reference Type: The generated type is a class (a reference type) that inherits directly from System.Object.</li>
-      <li>Compiler Optimization: If you create two anonymous types in the same assembly that have the same properties with the same types in the same order, the compiler is smart enough to reuse the same generated class definition. Why and When to Use It The primary use case is for holding temporary, intermediate data, especially in LINQ queries. When you use a .Select() clause to project data from a larger object into a smaller, temporary shape, an anonymous type is perfect. Example var product = new { Name = &quot;Laptop&quot;, Price = 1200.50M, IsAvailable = true }; Console.WriteLine($&quot;Product Name: {product.Name}&quot;); Console.WriteLine($&quot;Price: {product.Price:C}&quot;); // The following line would cause a compiler error because the properties are read-only. // product.Name = &quot;Desktop&quot;; // ERROR!</li>
+      <li><strong>Type Inference:</strong> The compiler infers the property names and types from the initialization syntax.</li>
+      <li><strong>Reference Type:</strong> The generated type is a class (a reference type) that inherits directly from System.Object.</li>
+      <li><strong>Compiler Optimization:</strong> If you create two anonymous types in the same assembly that have the same properties with the same types in the same order, the compiler is smart enough to reuse the same generated class definition. Why and When to Use It The primary use case is for holding temporary, intermediate data, especially in LINQ queries. When you use a .Select() clause to project data from a larger object into a smaller, temporary shape, an anonymous type is perfect.</li>
     </ul>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>var product = new
+{
+    Name = &quot;Laptop&quot;,
+    Price = 1200.50M,
+    IsAvailable = true
+};
+Console.WriteLine($&quot;Product Name: {product.Name}&quot;);
+Console.WriteLine($&quot;Price: {product.Price:C}&quot;);
+// The following line would cause a compiler error because the properties are read-only.
+// product.Name = &quot;Desktop&quot;; // ERROR!</code></pre>
+    </div>
+  
 
     <h2 id="sec-23-lec-2-nested-anonymous-types">Lecture 2: Nested Anonymous Types</h2>
     <h3>Introduction</h3>
-    <p>An anonymous type is not limited to holding only primitive types. One of its properties can be another anonymous type, allowing you to create simple, nested, hierarchical data structures on the fly. How It Works This works naturally because the compiler infers a property's type from the value it is assigned. If you assign a new anonymous type object as a property value, the compiler will generate the necessary nested class structure for you. Example Let's create an anonymous type for a user that includes a nested Address object. var userProfile = new { UserId = 101, Username = &quot;jane.doe&quot;, ContactInfo = new // This is a nested anonymous type { Email = &quot;jane.doe@example.com&quot;, PhoneNumber = &quot;555-1234&quot; }, IsActive = true }; // You can access the nested properties using standard dot notation. Console.WriteLine($&quot;Username: {userProfile.Username}&quot;); Console.WriteLine($&quot;Email: {userProfile.ContactInfo.Email}&quot;); // The nested object itself can be accessed. var contact = userProfile.ContactInfo; Console.WriteLine($&quot;Phone: {contact.PhoneNumber}&quot;);</p>
+<p>An anonymous type is not limited to holding only primitive types. One of its properties can be another anonymous type, allowing you to create simple, nested, hierarchical data structures on the fly.</p>
+    <h3>How It Works</h3>
+<p>This works naturally because the compiler infers a property's type from the value it is assigned. If you assign a new anonymous type object as a property value, the compiler will generate the necessary nested class structure for you.</p>
+    <h3>Example</h3>
+<p>Let's create an anonymous type for a user that includes a nested Address object.</p>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>var userProfile = new
+{
+    UserId = 101,
+    Username = &quot;jane.doe&quot;,
+    ContactInfo = new // This is a nested anonymous type
+    {
+        Email = &quot;jane.doe@example.com&quot;,
+        PhoneNumber = &quot;555-1234&quot;
+    },
+    IsActive = true
+};
+// You can access the nested properties using standard dot notation.
+Console.WriteLine($&quot;Username: {userProfile.Username}&quot;);
+Console.WriteLine($&quot;Email: {userProfile.ContactInfo.Email}&quot;);
+// The nested object itself can be accessed.
+var contact = userProfile.ContactInfo;
+Console.WriteLine($&quot;Phone: {contact.PhoneNumber}&quot;);</code></pre>
+    </div>
+  
 
     <h2 id="sec-23-lec-3-anonymous-arrays">Lecture 3: Anonymous Arrays</h2>
     <h3>Introduction</h3>
-    <p>An anonymous array is an array whose element type is implicitly inferred by the compiler from the elements you place inside the array initializer. It's a convenient shorthand that saves you from having to specify the type explicitly. How It Works You create an anonymous array using the new[] { ... } syntax, without putting a type name before the square brackets. The compiler will look at all the elements in the initializer and determine the best common type for them. Rules</p>
+<p>An anonymous array is an array whose element type is implicitly inferred by the compiler from the elements you place inside the array initializer. It's a convenient shorthand that saves you from having to specify the type explicitly.</p>
+    <h3>How It Works</h3>
+<p>You create an anonymous array using the new[] { ... } syntax, without putting a type name before the square brackets. The compiler will look at all the elements in the initializer and determine the best common type for them.</p>
+    <h3>Rules</h3>
     <ol>
       <li>All elements in an anonymous array initializer must be of the same type, or be implicitly convertible to a single common type.</li>
     </ol>
     <ul>
       <li>new[] { 1, 5, 10 } creates an int[].</li>
       <li>new[] { 1, 2.5, 3 } creates a double[] because int can be safely converted to double.</li>
-      <li>new[] { 1, &quot;hello&quot; } will cause a compiler error because there is no common type between int and string. 2. You can create an array of anonymous types. The compiler will check that all anonymous objects in the initializer have the same property names and types. Example // Compiler infers this is an int[] array. var numbers = new[] { 2, 4, 6, 8 }; // Create an array of anonymous types. var products = new[] { new { Name = &quot;Apple&quot;, Category = &quot;Fruit&quot; }, new { Name = &quot;Broccoli&quot;, Category = &quot;Vegetable&quot; }, new { Name = &quot;Orange&quot;, Category = &quot;Fruit&quot; } }; // We can now iterate over this strongly-typed anonymous array. foreach (var product in products) { Console.WriteLine($&quot;{product.Name} is in the {product.Category} category.&quot;); }</li>
+      <li>new[] { 1, &quot;hello&quot; } will cause a compiler error because there is no common type between int and string.</li>
     </ul>
+    <ol>
+      <li>You can create an array of anonymous types. The compiler will check that all anonymous objects in the initializer have the same property names and types.</li>
+    </ol>
+    <h3>Example</h3>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Compiler infers this is an int[] array.
+var numbers = new[] { 2, 4, 6, 8 };
+// Create an array of anonymous types.
+var products = new[]
+{
+    new { Name = &quot;Apple&quot;, Category = &quot;Fruit&quot; },
+    new { Name = &quot;Broccoli&quot;, Category = &quot;Vegetable&quot; },
+    new { Name = &quot;Orange&quot;, Category = &quot;Fruit&quot; }
+};
+// We can now iterate over this strongly-typed anonymous array. foreach (var product in products)
+{
+    Console.WriteLine($&quot;{product.Name} is in the {product.Category}
+    category.&quot;);
+}</code></pre>
+    </div>
+  
 
     <h2 id="sec-23-lec-4-points-to-remember">Lecture 4: Points to Remember</h2>
     <ul>
       <li>Temporary, Read-Only Data Containers: This is the core purpose of anonymous types. They are designed for creating simple, immutable data structures for immediate, local use. They are not a replacement for defining proper class or struct types for your application's business model.</li>
-      <li>LINQ's Best Friend: The most important real-world use case for anonymous types is in the Select clause of LINQ queries. They are perfect for projecting the results of a query into a new, flat shape without having to define a new class for every possible query result. // Example with LINQ var productNamesAndPrices = productList.Select(p =&gt; new { p.Name, p.Price });</li>
-      <li>Local Scope: Because you cannot write down the name of an anonymous type, their use is effectively limited to the local scope of the method where they are created. You cannot, for example, have a method that returns an anonymous type in a strongly-typed way (you would have to return object or dynamic, which loses the benefit of type safety and IntelliSense).</li>
-      <li>var is Essential: Reinforce that the var keyword is almost always used to hold a reference to an anonymous type object because you don't know the compiler-generated class name to write it down yourself. It is the key that unlocks the feature.</li>
+      <li>LINQ's Best Friend: The most important real-world use case for anonymous types is in the Select clause of LINQ queries. They are perfect for projecting the results of a query into a new, flat shape without having to define a new class for every possible query result.</li>
+    </ul>
+
+    <div class="code-block-container">
+      <div class="code-header">
+        <span class="code-lang-label">C#</span>
+        <button class="copy-btn" aria-label="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy
+        </button>
+      </div>
+      <pre><code>// Example with LINQ
+var productNamesAndPrices = productList.Select(p =&gt; new { p.Name,
+p.Price });</code></pre>
+    </div>
+  
+    <ul>
+      <li><strong>Local Scope:</strong> Because you cannot write down the name of an anonymous type, their use is effectively limited to the local scope of the method where they are created. You cannot, for example, have a method that returns an anonymous type in a strongly-typed way (you would have to return object or dynamic, which loses the benefit of type safety and IntelliSense).</li>
+      <li><strong>var is Essential:</strong> Reinforce that the var keyword is almost always used to hold a reference to an anonymous type object because you don't know the compiler-generated class name to write it down yourself. It is the key that unlocks the feature.</li>
     </ul>
 
       </article>

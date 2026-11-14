@@ -18,6 +18,7 @@ This document maintains the end-to-end audit, issue tracking, and resolution ver
 | **BUG-008** | Performance | Medium | **Core Web Vitals & Layout Shifts**: Ensure zero CLS, sub-100ms LCP, and lightweight asset minification. | **Resolved** | Audited with Playwright: CLS = 0.000, 0 unhandled JS errors, fully minified static bundles. |
 | **BUG-009** | Responsive / Viewports | High | **Multi-Viewport Consistency**: Validate layouts across 16 device viewports in both Dark and Light themes. | **Resolved** | Playwright test suite passed on Mobile (360px–414px), Tablet (768px–1024px), Desktop (1280px–2560px). |
 | **BUG-010** | UI / Architecture | High | **Curriculum Module Height & Dead Vertical Space**: 3-section modules stretched to 500px with 160px empty voids due to uneven section counts and `flex: 1` on description. | **Resolved** | Redesigned into executive Module Tiles (~280px uniform height) with top accent bar, topic tags, direct section launchpad chips, and expandable section breakdown drawer. |
+| **BUG-011** | Content Architecture | Critical | **Content Formatting, Split Headings, Flattened C# Code & Dense Prose Across All Pages**: Headings cut off mid-sentence (e.g. "...managed references, not"), C# code blocks flattened into single-line `<p>` tags, unformatted `//` comments, buried subheadings (`How it Works:` followed by sentence on line 1), and walls of text prose. | **Resolved** | Re-engineered full-fidelity parser using Notes PDFs as ground truth: 0 split headings, 0 flattened code blocks, multi-line indented `<pre><code class="language-csharp">` blocks, promoted subheadings/callouts, and scannable 2–4 line paragraphs across all 37 sections. |
 
 ---
 
@@ -75,6 +76,22 @@ This document maintains the end-to-end audit, issue tracking, and resolution ver
   4. Added a direct **Section Launchpad** with quick-jump chips (`[01]`, `[02]`, etc.) featuring full section titles in native tooltips.
   5. Added a primary `Start Module →` CTA button alongside an expandable `Breakdown (X) ▾` drawer that smoothly reveals the full section rows without forcing initial vertical bulk.
   6. Verified on desktop, tablet, and mobile with zero layout shift and uniform card heights.
+
+### BUG-011: Systematic Content Formatting Refactor Across All 37 Sections
+* **Root Cause**:
+  1. **Split & Broken Headings**: In non-lecture sections (Sections 32, 33, 34, 35), the previous parser used `/\n(?=\d+\.\s+[A-Za-z])/g`, erroneously splitting on *internal numbered list items* (such as `1. Must be in a ref struct...` and `8. Pointers vs. References: ref fields are managed references, not`), which split mid-sentence with remaining words spilling into the body text (`unmanaged pointers.`). In lecture sections, lines like `How it Works: The boolean expression inside the parentheses is evaluated. If it's` were naively converted into `<h3>${line}</h3>`, truncating the sentence in the heading and leaving the remainder in body text.
+  2. **Inline Flattened C# Code**: Code blocks lacking explicit standalone `C#` markers fell through to the paragraph collector, collapsing multi-line classes (e.g. `CustomSlice<T>`), methods, braces, and statements into single continuous lines in `<p>` tags with comments mashed into code.
+  3. **Buried Subheadings**: Labels like `When to Use:`, `How it Works:`, `Example:`, `Rules:`, and `Real-World Example:` were buried in plain paragraphs.
+  4. **Dense Wall-of-Text Prose**: Large blocks of joined PDF text lacked sentence boundary chunking.
+* **Resolution**:
+  1. **Canonical Top-Level Heading Ground-Truth**: Cross-referenced `D:\Dot net core\C#\Notes-20260207T163821Z-1-001` PDFs to define exact canonical top-level topic arrays for Sections 1, 32, 33, 34, 35 and strict `/\n(?=Lecture\s+\d+[:\-])/` boundaries for lecture sections. Wrapped title lines (e.g., `(Illustrating I/O-` + `Bound Operations)`) are cleanly merged into full titles.
+  2. **Semantic Subheading Separation**: Separated labels (`When to Use`, `How It Works`, `Real-World Example`) from explanation sentences. Subtitles without sentence verbs remain `<h3>Label: Subtitle</h3>`, while full explanation sentences cleanly populate the body paragraph below `<h3>Label</h3>`.
+  3. **Multi-Line Indented C# Code Block Extraction**: Enhanced code detection engine recognizing `using`, `namespace`, class/struct/record/interface/enum modifiers, method signatures, statements, lambdas, and comments. Implemented brace-depth tracking (`{` and `}`) to maintain code block integrity across multi-line statements. All code is formatted with 4-space indentation in `<div class="code-block-container">` with syntax highlighting and a 1-click copy button.
+  4. **Scannable Prose & Callouts**: Enforced 2–4 sentence maximum per paragraph with clean sentence boundary splitting. Promoted `Interview Perspective`, `Points to Remember`, `Key Takeaways`, and `Common Pitfalls` into rich styled callout components.
+* **Verification**:
+  - Ran automated validation script `tmp/audit_all_sections.js`: **0** split/cut-off headings, **0** colon sentence headings, **0** flattened code blocks in `<p>`, and **0** wall-of-text paragraphs across all 37 sections.
+  - Validated link and anchor integrity with `tmp/verify_links.js`: **650/650** links and anchors validated with **0** errors.
+  - Verified with Playwright across mobile, tablet, and desktop viewports in both Dark and Light themes.
 
 ---
 
